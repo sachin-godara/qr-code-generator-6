@@ -10,6 +10,8 @@ def apply_canvas_effects(img: Image.Image, params: dict) -> Image.Image:
     canvas_border_color = params.get("canvas_border_color", "#000000")
     canvas_border_radius = params.get("canvas_border_radius", 16)
     effect_shadow = params.get("effect_shadow", "none")
+    if params.get("bg_transparent", False):
+        effect_shadow = "none"
     effect_shadow_color = params.get("effect_shadow_color", "rgba(0,0,0,0.15)")
 
     if canvas_radius <= 0 and canvas_border_width <= 0 and effect_shadow == "none":
@@ -63,13 +65,27 @@ def apply_canvas_effects(img: Image.Image, params: dict) -> Image.Image:
     
     shadow_canvas = Image.new("RGBA", (full_w, full_h), (0, 0, 0, 0))
     
-    s_color = str(effect_shadow_color)
-    shadow_rgb = hex_to_rgb(s_color[:7]) if s_color.startswith("#") else (0, 80, 203)
+    s_color = str(effect_shadow_color).strip()
+    if s_color.startswith("#"):
+        clean_hex = s_color.lstrip("#")[:6]
+        if len(clean_hex) == 6 and all(c in "0123456789abcdefABCDEF" for c in clean_hex):
+            shadow_rgb = hex_to_rgb(clean_hex)
+        else:
+            shadow_rgb = (0, 102, 255) if effect_shadow == "neon" else (0, 0, 0)
+    elif s_color.startswith("rgb"):
+        try:
+            parts = s_color.split("(")[1].split(")")[0].split(",")
+            shadow_rgb = tuple(int(float(p.strip())) for p in parts[:3])
+        except Exception:
+            shadow_rgb = (0, 102, 255) if effect_shadow == "neon" else (0, 0, 0)
+    else:
+        shadow_rgb = (0, 102, 255) if effect_shadow == "neon" else (0, 0, 0)
+        
     s_alpha = 100 if effect_shadow == "soft" else (170 if effect_shadow == "elevated" else 220)
     
     s_mask = Image.new("L", (inner_w, inner_h), 0)
     sm_draw = ImageDraw.Draw(s_mask)
-    sm_draw.rounded_rectangle([0, 0, inner_w - 1, inner_h - 1], radius=total_r, fill=s_alpha)
+    sm_draw.rounded_rectangle([0, 0, inner_w - 1, inner_h - 1], radius=border_r, fill=s_alpha)
     
     s_block = Image.new("RGBA", (inner_w, inner_h), shadow_rgb + (255,))
     
@@ -214,7 +230,7 @@ def generate_qr_svg(data: str, params: dict) -> bytes:
         img = Image.open(png_io)
         w, h = img.size
         b64_str = base64.b64encode(png_io.getvalue()).decode('utf-8')
-        svg_str = f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}"><image href="data:image/png;base64,{b64_str}" width="{w}" height="{h}" /></svg>'
+        svg_str = f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="100%" height="100%" style="max-width: 100%; max-height: 100vh; height: auto;"><image href="data:image/png;base64,{b64_str}" width="{w}" height="{h}" /></svg>'
         return svg_str.encode('utf-8')
     else:
         svg_data = generate_svg_qr(
@@ -222,7 +238,9 @@ def generate_qr_svg(data: str, params: dict) -> bytes:
             fill_color=params.get("dots_color", "#000000"),
             back_color=params.get("bg_color", "#ffffff"),
             box_size=params.get("box_size", 10),
-            bg_transparent=params.get("bg_transparent", False)
+            bg_transparent=params.get("bg_transparent", False),
+            error_correction=params.get("error_correction", "H"),
+            quiet_zone=params.get("quiet_zone", 4)
         )
         return svg_data
 

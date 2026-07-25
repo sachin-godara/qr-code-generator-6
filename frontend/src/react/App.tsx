@@ -735,7 +735,7 @@ function App() {
                     <input
                       type="checkbox"
                       checked={settings.bg_transparent || false}
-                      onChange={(e) => updateSettings({ bg_transparent: e.target.checked })}
+                      onChange={(e) => updateSettings({ bg_transparent: e.target.checked, ...(e.target.checked ? { effect_shadow: "none" } : {}) })}
                       className="w-3.5 h-3.5 rounded border-outline text-primary focus:ring-primary accent-primary cursor-pointer"
                     />
                     <span>Transparent (PNG/SVG)</span>
@@ -1521,7 +1521,15 @@ function App() {
                 <span className="material-symbols-outlined text-primary text-[20px]">auto_fix_high</span>
                 Drop Shadow & Glow Effect
               </label>
-              <div className="grid grid-cols-4 gap-3">
+              {settings.bg_transparent && (
+                <div className="flex items-center gap-2.5 p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs">
+                  <span className="material-symbols-outlined text-amber-600 text-[18px] shrink-0">info</span>
+                  <span>
+                    Drop Shadow & Glow effects are disabled while <strong className="font-semibold text-amber-950">Transparent Background</strong> is active in Design settings.
+                  </span>
+                </div>
+              )}
+              <div className={`grid grid-cols-4 gap-3 transition-opacity duration-200 ${settings.bg_transparent ? "opacity-40 pointer-events-none" : ""}`}>
                 {[
                   { id: "none", name: "None" },
                   { id: "soft", name: "Soft Ambient" },
@@ -1530,7 +1538,17 @@ function App() {
                 ].map((s) => (
                   <button
                     key={s.id}
-                    onClick={() => updateSettings({ effect_shadow: s.id as any })}
+                    disabled={settings.bg_transparent}
+                    onClick={() => {
+                      const newId = s.id as any;
+                      let newColor = settings.effect_shadow_color;
+                      if (newId === "neon" && (newColor.startsWith("#000000") || newColor.startsWith("rgba(0,0,0"))) {
+                        newColor = "#0050cbee";
+                      } else if ((newId === "soft" || newId === "elevated") && newColor === "#0050cbee") {
+                        newColor = "#00000066";
+                      }
+                      updateSettings({ effect_shadow: newId, effect_shadow_color: newColor });
+                    }}
                     className={`p-3 rounded-xl border flex flex-col items-center text-center transition-all duration-200 ${
                       settings.effect_shadow === s.id
                         ? "bg-primary/10 border-primary text-primary font-bold shadow-sm"
@@ -1545,7 +1563,9 @@ function App() {
               {settings.effect_shadow !== "none" && (
                 <div className="space-y-3 pt-2">
                   <div className="flex items-center gap-3">
-                    <label className="text-xs font-semibold text-on-surface-variant w-24">Glow Color:</label>
+                    <label className="text-xs font-semibold text-on-surface-variant w-24">
+                      {settings.effect_shadow === "neon" ? "Glow Color:" : "Shadow Color:"}
+                    </label>
                     <input
                       type="color"
                       value={settings.effect_shadow_color.slice(0, 7)}
@@ -1556,7 +1576,7 @@ function App() {
                       type="text"
                       value={settings.effect_shadow_color}
                       onChange={(e) => updateSettings({ effect_shadow_color: e.target.value })}
-                      className="flex-1 p-2 text-xs border border-outline-variant rounded-lg bg-white"
+                      className="flex-1 p-2 text-xs border border-outline-variant rounded-lg bg-white font-mono"
                     />
                   </div>
                 </div>
@@ -1704,6 +1724,17 @@ function App() {
                   </button>
                 ))}
               </div>
+              {(settings.preset_logo !== "None" || !!settings.logo_image) &&
+                (settings.error_correction === "L" || settings.error_correction === "M") && (
+                  <div className="flex items-start gap-2.5 p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 mt-2">
+                    <span className="material-symbols-outlined text-amber-600 text-[20px] mt-0.5 shrink-0">
+                      warning
+                    </span>
+                    <div className="text-xs leading-relaxed">
+                      <strong className="font-semibold">Logo Active Recommendation:</strong> Covering center dots with a logo reduces redundancy. For optimum camera scanning performance with logos, we strongly suggest switching to <span className="font-bold underline">Quartile (Q)</span> or <span className="font-bold underline">High (H)</span>.
+                    </div>
+                  </div>
+                )}
             </div>
 
             {/* Quiet Zone (Border Width) */}

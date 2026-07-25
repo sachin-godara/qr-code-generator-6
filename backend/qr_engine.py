@@ -940,9 +940,6 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
         "H": qrcode.constants.ERROR_CORRECT_H,
     }
     ec_level = _ec_map.get(error_correction, qrcode.constants.ERROR_CORRECT_H)
-    # Always use H when a logo is present (needs max redundancy)
-    if has_logo:
-        ec_level = qrcode.constants.ERROR_CORRECT_H
 
     qr = qrcode.QRCode(
         error_correction=ec_level,
@@ -1595,13 +1592,20 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
     return img
 
 import qrcode.image.svg
-def generate_svg_qr(data, fill_color="#000000", back_color="#ffffff", box_size=30, bg_transparent=False):
+def generate_svg_qr(data, fill_color="#000000", back_color="#ffffff", box_size=30, bg_transparent=False, error_correction="H", quiet_zone=4):
     """Generates a raw SVG QR code (without custom styled dots or frames)"""
+    _ec_map = {
+        "L": qrcode.constants.ERROR_CORRECT_L,
+        "M": qrcode.constants.ERROR_CORRECT_M,
+        "Q": qrcode.constants.ERROR_CORRECT_Q,
+        "H": qrcode.constants.ERROR_CORRECT_H,
+    }
+    ec_level = _ec_map.get(error_correction, qrcode.constants.ERROR_CORRECT_M)
     factory = qrcode.image.svg.SvgPathImage
     qr = qrcode.QRCode(
-        error_correction=qrcode.constants.ERROR_CORRECT_M,
+        error_correction=ec_level,
         box_size=box_size,
-        border=4,
+        border=quiet_zone,
         image_factory=factory
     )
     qr.add_data(data)
@@ -1611,9 +1615,11 @@ def generate_svg_qr(data, fill_color="#000000", back_color="#ffffff", box_size=3
     svg_str = img.to_string().decode('utf-8')
     
     import re
-    # 1. Replace width and height to be 100% and responsive
+    # 1. Replace width and height to be 100% and responsive with aspect-ratio constraint
     svg_str = re.sub(r'width="[^"]+"', 'width="100%"', svg_str, count=1)
     svg_str = re.sub(r'height="[^"]+"', 'height="100%"', svg_str, count=1)
+    if 'style=' not in svg_str:
+        svg_str = svg_str.replace('<svg ', '<svg style="max-width: 100%; max-height: 100vh; height: auto;" ', 1)
     
     # 2. Add custom fill color to paths (replacing standard black style="fill:#000000;...")
     svg_str = svg_str.replace("fill:#000000", f"fill:{fill_color}")

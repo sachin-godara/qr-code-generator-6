@@ -171,7 +171,7 @@ export function SettingsPanel() {
                 <input
                   type="checkbox"
                   checked={settings.bg_transparent || false}
-                  onChange={(e) => updateSettings({ bg_transparent: e.target.checked })}
+                  onChange={(e) => updateSettings({ bg_transparent: e.target.checked, ...(e.target.checked ? { effect_shadow: "none" } : {}) })}
                   className="rounded border-input text-primary focus:ring-primary cursor-pointer"
                 />
                 <span>Transparent</span>
