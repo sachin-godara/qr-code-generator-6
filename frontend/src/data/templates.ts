@@ -825,5 +825,94 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_radius": 15,
       "frame_border": 8
     }
+  },
+  {
+    "name": "Amazon Gold Leaf",
+    "description": "Official Amazon brand template with gold leaf corner eyes",
+    "settings": {
+      "dots_style": "square",
+      "eye_frame_style": "leaf",
+      "eyeball_style": "leaf",
+      "dots_color": "#000000",
+      "dots_color_end": "#000000",
+      "bg_color": "#ffffff",
+      "gradient_type": "Solid Color",
+      "eye_color": "#FF9900",
+      "eyeball_color": "#FF9900",
+      "preset_logo": "Amazon",
+      "preset_logo_color": "#FF9900"
+    }
+  },
+  {
+    "name": "Red Hexagon Badge Card",
+    "description": "Bold red hexagon eyes template with SCAN ME badge",
+    "settings": {
+      "dots_style": "square",
+      "eye_frame_style": "octagon",
+      "eyeball_style": "octagon",
+      "dots_color": "#000000",
+      "bg_color": "#ffffff",
+      "eye_color": "#e50914",
+      "eyeball_color": "#e50914",
+      "frame_style": "border",
+      "text_style": "bottom_tab",
+      "frame_text": "SCAN ME",
+      "frame_color": "#e50914",
+      "frame_text_color": "#ffffff",
+      "frame_radius": 20
+    }
+  },
+  {
+    "name": "Pink Pixel Hearts",
+    "description": "Romantic pink heart dots theme with vibrant magenta accents",
+    "settings": {
+      "dots_style": "heart",
+      "eye_frame_style": "rounded",
+      "eyeball_style": "heart",
+      "dots_color": "#e91e63",
+      "dots_color_end": "#e91e63",
+      "bg_color": "#ffffff",
+      "gradient_type": "Solid Color",
+      "eye_color": "#e91e63",
+      "eyeball_color": "#e91e63"
+    }
+  },
+  {
+    "name": "Pink Heart Header Pill Card",
+    "description": "Cute pink pill header card with ♥ SCAN ME banner",
+    "settings": {
+      "dots_style": "rounded",
+      "eye_frame_style": "rounded",
+      "eyeball_style": "rounded",
+      "dots_color": "#ec4899",
+      "bg_color": "#ffffff",
+      "eye_color": "#ec4899",
+      "eyeball_color": "#ec4899",
+      "frame_style": "card",
+      "text_style": "top_pill",
+      "frame_text": "♥ SCAN ME",
+      "frame_color": "#f472b6",
+      "frame_text_color": "#ffffff",
+      "frame_radius": 20
+    }
+  },
+  {
+    "name": "Red Double Hearts Valentine Card",
+    "description": "Romantic red card with double interlocking hearts header",
+    "settings": {
+      "dots_style": "square",
+      "eye_frame_style": "square",
+      "eyeball_style": "square",
+      "dots_color": "#e50914",
+      "bg_color": "#ffffff",
+      "eye_color": "#e50914",
+      "eyeball_color": "#e50914",
+      "frame_style": "card",
+      "text_style": "bottom_tab",
+      "frame_text": "for you...",
+      "frame_color": "#e50914",
+      "frame_text_color": "#ffffff",
+      "frame_radius": 15
+    }
   }
 ];

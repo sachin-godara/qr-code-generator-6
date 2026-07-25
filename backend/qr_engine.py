@@ -48,7 +48,8 @@ PRESET_LOGO_BRAND_COLORS = {
     "store": "#f97316",
     "chat": "#3b82f6",
     "app": "#8b5cf6",
-    "discord": "#5865f2"
+    "discord": "#5865f2",
+    "amazon": "#FF9900"
 }
 
 def generate_preset_logo(name, color=(0,0,0)):
