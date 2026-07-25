@@ -1841,7 +1841,7 @@ function App() {
                     }
                     onWheel={(e) => {
                       if (isFullscreen) {
-                        const delta = e.deltaY * -0.001;
+                        const delta = e.deltaY * -0.003;
                         setZoomLevel(prev => Math.min(5, Math.max(0.5, prev + delta)));
                       }
                     }}
@@ -1849,11 +1849,11 @@ function App() {
                     {/* Floating Controls for Fullscreen */}
                     {isFullscreen && (
                       <div className="absolute bottom-8 right-8 z-50 flex items-center gap-2 bg-white/90 backdrop-blur-sm p-3 rounded-2xl shadow-xl border border-outline-variant">
-                        <button onClick={() => setZoomLevel(Math.max(0.5, zoomLevel - 0.1))} className="w-8 h-8 flex items-center justify-center font-bold rounded-xl transition-colors hover:bg-black/5 text-on-surface">
+                        <button onClick={() => setZoomLevel(prev => Math.max(0.5, prev - 0.25))} className="w-8 h-8 flex items-center justify-center font-bold rounded-xl transition-colors hover:bg-black/5 text-on-surface">
                           <span className="material-symbols-outlined text-sm">remove</span>
                         </button>
                         <span className="text-xs font-bold w-10 text-center">{Math.round(zoomLevel * 100)}%</span>
-                        <button onClick={() => setZoomLevel(Math.min(3, zoomLevel + 0.1))} className="w-8 h-8 flex items-center justify-center font-bold rounded-xl transition-colors hover:bg-black/5 text-on-surface">
+                        <button onClick={() => setZoomLevel(prev => Math.min(5, prev + 0.25))} className="w-8 h-8 flex items-center justify-center font-bold rounded-xl transition-colors hover:bg-black/5 text-on-surface">
                           <span className="material-symbols-outlined text-sm">add</span>
                         </button>
                         
