@@ -20,10 +20,15 @@ async function fetchQRCode(settings: any) {
     );
   }
 
+  const color = rest.logo_color_mode === "custom" 
+    ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#3b82f6")
+    : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
+
   const payload = {
     ...rest,
     data: contentData,
     logo_image: finalLogo,
+    preset_logo_color: color,
     box_size: 10
   }
 
@@ -203,7 +208,11 @@ function App() {
         );
       }
 
-      const payload = { ...rest, data: contentData, logo_image: finalLogo, box_size: 20, target_size: downloadSize };
+      const color = rest.logo_color_mode === "custom" 
+        ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#3b82f6")
+        : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
+
+      const payload = { ...rest, data: contentData, logo_image: finalLogo, preset_logo_color: color, box_size: 20, target_size: downloadSize };
 
       let endpoint = "/api/generator/generate";
       let ext = "png";
@@ -241,7 +250,11 @@ function App() {
     try {
       setIsCopying(true);
       const { contentData, ...rest } = settings;
-      const payload = { ...rest, data: contentData, box_size: 20, target_size: downloadSize };
+      const color = rest.logo_color_mode === "custom" 
+        ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#3b82f6")
+        : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
+
+      const payload = { ...rest, data: contentData, preset_logo_color: color, box_size: 20, target_size: downloadSize };
       const response = await fetch("/api/generator/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },

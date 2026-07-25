@@ -112,6 +112,7 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
         gradient_type=params.get("gradient_type", "Solid Color"),
         fill_color_end=params.get("dots_color_end", "#000000"),
         preset_logo=params.get("preset_logo", "None"),
+        preset_logo_color=params.get("preset_logo_color"),
         logo_card_shape=params.get("logo_card_shape", "None"),
         logo_card_padding=params.get("logo_card_padding", 10),
         logo_size_ratio=params.get("logo_size_ratio", 0.22),

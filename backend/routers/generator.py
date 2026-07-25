@@ -42,6 +42,7 @@ class QRRequest(BaseModel):
     # Logo embedding
     logo_image: Optional[str] = None
     preset_logo: str = "None"
+    preset_logo_color: Optional[str] = None
     logo_card_shape: str = "None"
     remove_logo_bg: bool = False
     logo_size_ratio: float = 0.22

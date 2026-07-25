@@ -353,7 +353,12 @@ export const PRESET_LOGO_BRAND_COLORS: Record<string, string> = {
   Music: "#06b6d4",
   Globe: "#3b82f6",
   Heart: "#f43f5e",
-  Star: "#f59e0b"
+  Star: "#f59e0b",
+  Calendar: "#0ea5e9",
+  Payment: "#10b981",
+  Store: "#f97316",
+  Chat: "#3b82f6",
+  App: "#8b5cf6"
 };
 
 /** Generates crisp PNG data URLs directly in React for preset logos via HTML5 Canvas */

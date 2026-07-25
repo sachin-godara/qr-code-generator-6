@@ -824,14 +824,15 @@ def make_eyeball_sharp_corner(draw, ebx, eby, corner, s, r2, color):
     elif corner == "BR":
         draw.rectangle([ebx + 3*s - r2, eby + 3*s - r2, ebx + 3*s - 1, eby + 3*s - 1], fill=color)
 
-def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_style="square", logo_image=None, box_size=30, eye_color=None, eyeball_color=None, eye_frame_style=None, eyeball_style=None, remove_logo_bg=False, logo_bg_color="#ffffff", logo_bg_tolerance=30, logo_clear_size=0, gradient_type="Solid Color", fill_color_end="#000000", preset_logo="None", logo_card_shape="None", logo_card_padding=10, logo_size_ratio=0.33, error_correction="H", quiet_zone=4):
+def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_style="square", logo_image=None, box_size=30, eye_color=None, eyeball_color=None, eye_frame_style=None, eyeball_style=None, remove_logo_bg=False, logo_bg_color="#ffffff", logo_bg_tolerance=30, logo_clear_size=0, gradient_type="Solid Color", fill_color_end="#000000", preset_logo="None", preset_logo_color=None, logo_card_shape="None", logo_card_padding=10, logo_size_ratio=0.33, error_correction="H", quiet_zone=4):
     if eye_frame_style is None: eye_frame_style = "square"
     if eyeball_style is None: eyeball_style = "square"
     
     # Generate preset logo if requested
     has_logo = logo_image is not None or preset_logo != "None"
     if preset_logo != "None":
-        logo_image = generate_preset_logo(preset_logo, hex_to_rgb(fill_color))
+        color_to_use = preset_logo_color if preset_logo_color else fill_color
+        logo_image = generate_preset_logo(preset_logo, hex_to_rgb(color_to_use))
         
     # Map error correction level string to qrcode constant
     _ec_map = {
