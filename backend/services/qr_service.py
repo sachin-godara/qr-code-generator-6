@@ -107,6 +107,16 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
     if params.get("invert_colors", False):
         fill_color, back_color = back_color, fill_color
 
+    eye_col = params.get("eye_color", fill_color)
+    eyeball_col = params.get("eyeball_color", eye_col)
+    
+    # Contrast fallback for dark themes
+    if back_color.lower() in ["#000000", "#1e1f22", "#111111", "#000", "#111"] and fill_color.lower() in ["#ffffff", "#fff"]:
+        if eye_col == "#000000":
+            eye_col = fill_color
+        if eyeball_col == "#000000":
+            eyeball_col = eye_col
+
     # 1. Generate base styled QR
     base_qr = generate_styled_qr(
         data=data,
@@ -115,13 +125,13 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
         dot_style=params.get("dots_style", "square"),
         logo_image=logo_pil,
         box_size=params.get("box_size", 10),
-        eye_color=params.get("eye_color", "#000000"),
-        eyeball_color=params.get("eyeball_color", "#000000"),
+        eye_color=eye_col,
+        eyeball_color=eyeball_col,
         eye_frame_style=params.get("eye_frame_style", "square"),
         eyeball_style=params.get("eyeball_style", "square"),
         remove_logo_bg=params.get("remove_logo_bg", False),
         gradient_type=params.get("gradient_type", "Solid Color"),
-        fill_color_end=params.get("dots_color_end", "#000000"),
+        fill_color_end=params.get("dots_color_end", fill_color),
         preset_logo=params.get("preset_logo", "None"),
         preset_logo_color=params.get("preset_logo_color"),
         logo_card_shape=params.get("logo_card_shape", "None"),

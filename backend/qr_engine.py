@@ -986,6 +986,13 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
     eye_rgb = hex_to_rgb(eye_color) if eye_color and str(eye_color).startswith('#') else fg
     eyeball_rgb = hex_to_rgb(eyeball_color) if eyeball_color and str(eyeball_color).startswith('#') else eye_rgb
     
+    # Ensure eyes and eyeballs have contrast against background
+    bg_lum = bg[0]*0.299 + bg[1]*0.587 + bg[2]*0.114
+    if eye_rgb == bg or (eye_color == "#000000" and fg != (0, 0, 0) and bg_lum < 128):
+        eye_rgb = fg
+    if eyeball_rgb == bg or (eyeball_color == "#000000" and fg != (0, 0, 0) and bg_lum < 128):
+        eyeball_rgb = eye_rgb
+    
     # We will erase the existing eyes and draw new ones
     for ex, ey in eye_positions:
         px = ex * s
