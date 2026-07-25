@@ -1957,19 +1957,6 @@ function App() {
                       </div>
 
                     </div>
-
-                    {/* Readability Score */}
-                    <div className="pt-4 border-t border-outline-variant">
-                      <div className="flex flex-col gap-3">
-                        <div className="flex justify-between items-center">
-                          <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Readability Score</span>
-                          <span className="font-label-md text-label-md font-bold text-primary">98% / Excellent</span>
-                        </div>
-                        <div className="w-full h-2 bg-surface-container rounded-full overflow-hidden">
-                          <div className="h-full bg-primary-container w-[98%] rounded-full"></div>
-                        </div>
-                      </div>
-                    </div>
                   </div>
 
                   {/* Mini Stats for Preview */}
