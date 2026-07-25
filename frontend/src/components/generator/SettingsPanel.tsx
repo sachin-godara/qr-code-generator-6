@@ -1,0 +1,264 @@
+import { useQRStore } from "@/store/useQRStore"
+import { Link2, Type, Wifi, Mail, Contact } from "lucide-react"
+
+export function SettingsPanel() {
+  const { settings, updateSettings } = useQRStore()
+
+  const contentTypes = [
+    { id: "url", label: "Link", icon: Link2 },
+    { id: "text", label: "Text", icon: Type },
+    { id: "wifi", label: "WiFi", icon: Wifi },
+    { id: "vcard", label: "V-Card", icon: Contact },
+    { id: "email", label: "Email", icon: Mail },
+  ]
+
+  const dotStyles = [
+    // Normal
+    "square", "circle", "rounded", "diamond", "hexagon", "octagon",
+    // Intermediate
+    "gapped", "star", "heart", "ring", "plus", "vertical_bars", "horizontal_bars",
+    // Advanced
+    "flower_cut", "clover", "rounded_plus", "sheared", "bevel", "fishtail", "squircle", 
+    "target_bullseye", "diamond_target", "dotted_cross", "arrow", "gear_dot", "hourglass", 
+    "pinwheel", "leaf_droplet", "pillow", "quad_dots", "tech_chevron", "sparkle", 
+    "medical_cross", "lotus_petal", "network_nodes"
+  ]
+
+  const eyeFrameStyles = [
+    // Normal
+    "square", "rounded", "circle", "diamond", "hexagon", "octagon",
+    // Intermediate
+    "star", "leaf", "shield", "gear", "droplet_tl", "droplet_tr", "droplet_bl",
+    // Advanced
+    "corner_brackets", "double_ring", "dotted_circle", "leaf_opposite", "shield_opposite", 
+    "left_rounded", "right_rounded", "solid_square_circle_cut", "sheared", "crystal_frame", 
+    "arch_frame", "cross_notch_frame", "pill_frame", "pointed_top_frame", "aztec_step_frame", 
+    "tv_frame", "house_frame", "camera_lens", "steering_wheel"
+  ]
+
+  const eyeballStyles = [
+    // Normal
+    "square", "rounded", "circle", "diamond", "hexagon", "octagon",
+    // Intermediate
+    "star", "leaf", "shield", "gear", "flower", "cross", "plus", "rhombus",
+    // Advanced
+    "corner_brackets", "target_bullseye", "leaf_opposite", "shield_opposite", 
+    "left_rounded", "right_rounded", "droplet_tl", "droplet_tr", "droplet_bl", 
+    "sheared", "flower_cut", "clover", "heart", "rounded_triangle", "pinched_square", 
+    "dumbbell_eyeball"
+  ]
+  const frameStyles = ["none", "border", "double_border", "circle", "phone_frame", "chalkboard"]
+  const textStyles = ["none", "top_text", "bottom_text", "speech_bubble", "floating_badge"]
+  
+  return (
+    <div className="space-y-8 pb-10">
+      
+      {/* Content Type Selector */}
+      <section className="space-y-4">
+        <h3 className="text-lg font-semibold flex items-center gap-2">
+          <span className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm">1</span>
+          Select Content Type
+        </h3>
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
+          {contentTypes.map((type) => (
+            <button
+              key={type.id}
+              onClick={() => updateSettings({ contentType: type.id as any })}
+              className={`flex flex-col items-center justify-center p-4 rounded-xl border transition-all ${
+                settings.contentType === type.id 
+                  ? 'border-primary bg-primary/5 text-primary ring-1 ring-primary' 
+                  : 'border-border bg-card hover:bg-muted text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              <type.icon className="w-6 h-6 mb-2" />
+              <span className="text-sm font-medium">{type.label}</span>
+            </button>
+          ))}
+        </div>
+      </section>
+
+      {/* Content Input */}
+      <section className="space-y-4 bg-card border border-border p-5 rounded-2xl shadow-sm">
+        <h3 className="text-lg font-semibold">Enter Content</h3>
+        {settings.contentType === "url" && (
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-muted-foreground">Website URL</label>
+            <input 
+              type="url" 
+              className="w-full p-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
+              placeholder="https://example.com"
+              value={settings.contentData}
+              onChange={(e) => updateSettings({ contentData: e.target.value })}
+            />
+          </div>
+        )}
+        {settings.contentType === "text" && (
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-muted-foreground">Plain Text</label>
+            <textarea 
+              className="w-full p-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow min-h-[100px]"
+              placeholder="Enter your message here..."
+              value={settings.contentData}
+              onChange={(e) => updateSettings({ contentData: e.target.value })}
+            />
+          </div>
+        )}
+        {/* We can expand other content types like WiFi and VCard later */}
+        {["wifi", "vcard", "email"].includes(settings.contentType) && (
+          <div className="p-4 bg-muted/50 rounded-lg text-muted-foreground text-sm border border-dashed border-border">
+            Advanced forms for {settings.contentType} will be rendered here. For now, enter raw string.
+            <input 
+              type="text" 
+              className="w-full p-3 mt-2 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50"
+              value={settings.contentData}
+              onChange={(e) => updateSettings({ contentData: e.target.value })}
+            />
+          </div>
+        )}
+      </section>
+
+      {/* Design Customization */}
+      <section className="space-y-6 bg-card border border-border p-5 rounded-2xl shadow-sm">
+        <h3 className="text-lg font-semibold flex items-center gap-2">
+          <span className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm">2</span>
+          Design & Colors
+        </h3>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-3">
+            <label className="text-sm font-medium">Foreground Color</label>
+            <div className="flex items-center gap-3">
+              <input 
+                type="color" 
+                value={settings.dots_color} 
+                onChange={(e) => updateSettings({ dots_color: e.target.value })}
+                className="w-12 h-12 rounded cursor-pointer border-0 p-0"
+              />
+              <input 
+                type="text" 
+                value={settings.dots_color} 
+                onChange={(e) => updateSettings({ dots_color: e.target.value })}
+                className="flex-1 p-2 border border-input rounded-lg"
+              />
+            </div>
+          </div>
+          <div className="space-y-3">
+            <label className="text-sm font-medium">Background Color</label>
+            <div className="flex items-center gap-3">
+              <input 
+                type="color" 
+                value={settings.bg_color} 
+                onChange={(e) => updateSettings({ bg_color: e.target.value })}
+                className="w-12 h-12 rounded cursor-pointer border-0 p-0"
+              />
+              <input 
+                type="text" 
+                value={settings.bg_color} 
+                onChange={(e) => updateSettings({ bg_color: e.target.value })}
+                className="flex-1 p-2 border border-input rounded-lg"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div className="space-y-3 max-h-60 overflow-y-auto pr-2">
+          <label className="text-sm font-medium sticky top-0 bg-card z-10 py-1 block">Dot Style</label>
+          <div className="grid grid-cols-3 md:grid-cols-4 gap-2">
+            {dotStyles.map(style => (
+              <button 
+                key={style}
+                onClick={() => updateSettings({ dots_style: style as any })}
+                className={`p-2 border rounded-lg text-[10px] sm:text-xs capitalize transition-colors truncate ${settings.dots_style === style ? 'bg-primary text-primary-foreground border-primary' : 'bg-background hover:bg-muted'}`}
+                title={style.replace(/_/g, ' ')}
+              >
+                {style.replace(/_/g, ' ')}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="space-y-3 max-h-60 overflow-y-auto pr-2">
+          <label className="text-sm font-medium sticky top-0 bg-card z-10 py-1 block">Eye Frame Style</label>
+          <div className="grid grid-cols-3 gap-2">
+            {eyeFrameStyles.map(style => (
+              <button 
+                key={style}
+                onClick={() => updateSettings({ eye_frame_style: style as any })}
+                className={`p-2 border rounded-lg text-[10px] sm:text-xs capitalize transition-colors truncate ${settings.eye_frame_style === style ? 'bg-primary text-primary-foreground border-primary' : 'bg-background hover:bg-muted'}`}
+                title={style.replace(/_/g, ' ')}
+              >
+                {style.replace(/_/g, ' ')}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="space-y-3 max-h-60 overflow-y-auto pr-2">
+          <label className="text-sm font-medium sticky top-0 bg-card z-10 py-1 block">Eyeball Style</label>
+          <div className="grid grid-cols-3 gap-2">
+            {eyeballStyles.map(style => (
+              <button 
+                key={style}
+                onClick={() => updateSettings({ eyeball_style: style as any })}
+                className={`p-2 border rounded-lg text-[10px] sm:text-xs capitalize transition-colors truncate ${settings.eyeball_style === style ? 'bg-primary text-primary-foreground border-primary' : 'bg-background hover:bg-muted'}`}
+                title={style.replace(/_/g, ' ')}
+              >
+                {style.replace(/_/g, ' ')}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Frame Settings */}
+      <section className="space-y-6 bg-card border border-border p-5 rounded-2xl shadow-sm">
+        <h3 className="text-lg font-semibold flex items-center gap-2">
+          <span className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm">3</span>
+          Frame & Text
+        </h3>
+
+        <div className="space-y-3">
+          <label className="text-sm font-medium">Frame Style</label>
+          <div className="grid grid-cols-3 gap-2">
+            {frameStyles.map(style => (
+              <button 
+                key={style}
+                onClick={() => updateSettings({ frame_style: style as any })}
+                className={`p-2 border rounded-lg text-xs capitalize transition-colors ${settings.frame_style === style ? 'bg-primary text-primary-foreground border-primary' : 'bg-background hover:bg-muted'}`}
+              >
+                {style.replace('_', ' ')}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="space-y-3">
+          <label className="text-sm font-medium">Text Template</label>
+          <div className="grid grid-cols-3 gap-2">
+            {textStyles.map(style => (
+              <button 
+                key={style}
+                onClick={() => updateSettings({ text_style: style as any })}
+                className={`p-2 border rounded-lg text-xs capitalize transition-colors ${settings.text_style === style ? 'bg-primary text-primary-foreground border-primary' : 'bg-background hover:bg-muted'}`}
+              >
+                {style.replace('_', ' ')}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {settings.text_style !== "none" && (
+          <div className="space-y-3">
+            <label className="text-sm font-medium">Frame Text</label>
+            <input 
+              type="text" 
+              value={settings.frame_text}
+              onChange={(e) => updateSettings({ frame_text: e.target.value })}
+              className="w-full p-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50"
+            />
+          </div>
+        )}
+      </section>
+    </div>
+  )
+}

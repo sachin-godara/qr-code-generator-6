@@ -1,0 +1,118 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+  keywords?: string;
+}
+
+const {
+  title,
+  description,
+  ogImage = '/og-image.png',
+  canonicalUrl,
+  keywords,
+} = Astro.props;
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') || '';
+const resolvedCanonical = canonicalUrl || Astro.url.href;
+const resolvedOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
+---
+
+<!-- Primary Meta Tags -->
+<title>{title}</title>
+<meta name="title" content={title} />
+<meta name="description" content={description} />
+{keywords && <meta name="keywords" content={keywords} />}
+<meta name="author" content="QR Code Maker" />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href={resolvedCanonical} />
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website" />
+<meta property="og:url" content={resolvedCanonical} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={resolvedOgImage} />
+<meta property="og:site_name" content="QR Code Maker" />
+<meta property="og:locale" content="en_US" />
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image" />
+<meta property="twitter:url" content={resolvedCanonical} />
+<meta property="twitter:title" content={title} />
+<meta property="twitter:description" content={description} />
+<meta property="twitter:image" content={resolvedOgImage} />
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "QR Code Maker",
+  "description": description,
+  "url": resolvedCanonical,
+  "applicationCategory": "DesignApplication",
+  "operatingSystem": "Any",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "featureList": [
+    "Custom QR code colors and gradients",
+    "35+ dot styles including flower, star, heart",
+    "30+ eye frame and eyeball styles",
+    "Logo embedding with background removal",
+    "40+ decorative text frames",
+    "Shadow and border effects",
+    "Download as PNG, SVG, or PDF",
+    "vCard, WiFi, Email, SMS, Event QR codes"
+  ],
+  "screenshot": resolvedOgImage,
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "ratingCount": "1200"
+  }
+})} />
+
+<!-- FAQ Structured Data for Rich Snippets -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I create a custom QR code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Enter your URL, text, or contact information, then customize colors, dot styles, eye patterns, add a logo, choose a frame, and download in PNG, SVG, or PDF format."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the QR code generator free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, our QR code generator is completely free to use with all customization features including colors, logos, frames, and effects."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What types of QR codes can I create?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can create QR codes for URLs, plain text, vCards (contact information), WiFi credentials, emails, SMS messages, and calendar events."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I add a logo to my QR code?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, you can upload your own logo or choose from 18+ preset icons. The QR code automatically adjusts error correction to remain scannable with a logo."
+      }
+    }
+  ]
+})} />

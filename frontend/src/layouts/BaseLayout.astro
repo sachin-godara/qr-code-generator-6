@@ -1,0 +1,47 @@
+---
+import SEOHead from '../components/SEOHead.astro';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonicalUrl?: string;
+  keywords?: string;
+}
+
+const {
+  title = 'QR Code Maker — Free Custom QR Code Generator',
+  description = 'Create stunning, fully customizable QR codes with custom colors, logos, frames, and effects. Download in PNG, SVG, or PDF. Free online QR code generator.',
+  ogImage = '/og-image.png',
+  canonicalUrl,
+  keywords = 'QR code generator, custom QR code, QR code maker, free QR code, QR code with logo, QR code design',
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- SEO Head -->
+    <SEOHead
+      title={title}
+      description={description}
+      ogImage={ogImage}
+      canonicalUrl={canonicalUrl}
+      keywords={keywords}
+    />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist:wght@400;500;600&family=Outfit:wght@400;600;700&family=Playfair+Display:wght@400;600;700&family=Courier+Prime:wght@400;700&family=Montserrat:wght@400;600;700&family=Roboto:wght@400;500;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Material Symbols -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
