@@ -11,6 +11,31 @@ from PIL import Image, ImageDraw
 import os
 import fitz
 
+PRESET_LOGO_BRAND_COLORS = {
+    "link": "#6d28d9",
+    "location": "#dc2626",
+    "wifi": "#0f766e",
+    "vcard": "#1d4ed8",
+    "email": "#d97706",
+    "scan": "#be185d",
+    "whatsapp": "#25d366",
+    "instagram": "#e1306c",
+    "facebook": "#1877f2",
+    "youtube": "#ff0000",
+    "phone": "#10b981",
+    "coffee": "#d97706",
+    "shopping": "#8b5cf6",
+    "music": "#06b6d4",
+    "globe": "#3b82f6",
+    "heart": "#f43f5e",
+    "star": "#f59e0b",
+    "calendar": "#0ea5e9",
+    "payment": "#10b981",
+    "store": "#f97316",
+    "chat": "#3b82f6",
+    "app": "#8b5cf6"
+}
+
 def generate_preset_logo(name, color=(0,0,0)):
     svg_path = os.path.join(os.path.dirname(__file__), "assets", "preset_logos", f"{name.lower()}.svg")
     
@@ -831,7 +856,8 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
     # Generate preset logo if requested
     has_logo = logo_image is not None or preset_logo != "None"
     if preset_logo != "None":
-        color_to_use = preset_logo_color if preset_logo_color else fill_color
+        brand_color = PRESET_LOGO_BRAND_COLORS.get(preset_logo.lower())
+        color_to_use = preset_logo_color if preset_logo_color else (brand_color if brand_color else fill_color)
         logo_image = generate_preset_logo(preset_logo, hex_to_rgb(color_to_use))
         
     # Map error correction level string to qrcode constant

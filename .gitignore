@@ -9,3 +9,8 @@ venv/
 .venv/
 node_modules/
 .DS_Store
+
+# Test outputs
+backend/test_*.png
+backend/test_out*.pdf
+backend/test_out2.pdf

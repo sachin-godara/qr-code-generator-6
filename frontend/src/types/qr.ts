@@ -20,7 +20,9 @@ export interface QRSettings {
   
   // Logo
   logo_image?: string | null;
-  preset_logo: "None" | "Link" | "Location" | "WiFi" | "Vcard" | "Email" | "Scan";
+  preset_logo: "None" | "Link" | "Location" | "WiFi" | "Vcard" | "Email" | "Scan" | "WhatsApp" | "Instagram" | "Facebook" | "YouTube" | "Phone" | "Coffee" | "Shopping" | "Music" | "Globe" | "Heart" | "Star" | "Calendar" | "Payment" | "Store" | "Chat" | "App";
+  logo_color_mode?: "default" | "custom";
+  logo_custom_color?: string;
   remove_logo_bg: boolean;
   logo_card_shape: "None" | "Circle" | "Rounded Square";
   logo_size_ratio: number;
@@ -52,6 +54,7 @@ export interface QRSettings {
   canvas_radius: number;
   canvas_border_width: number;
   canvas_border_color: string;
+  canvas_border_radius: number;
   invert_colors: boolean;
 }
 
@@ -69,6 +72,8 @@ export const defaultSettings: QRSettings = {
   eyeball_style: "square",
   logo_image: null,
   preset_logo: "None",
+  logo_color_mode: "default",
+  logo_custom_color: "#3b82f6",
   remove_logo_bg: false,
   logo_card_shape: "None",
   logo_size_ratio: 0.22,
@@ -94,5 +99,6 @@ export const defaultSettings: QRSettings = {
   canvas_radius: 16,
   canvas_border_width: 0,
   canvas_border_color: "#0050cb",
+  canvas_border_radius: 16,
   invert_colors: false
 };

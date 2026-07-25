@@ -5,7 +5,7 @@ import { type ContentType } from "@/types/qr"
 import { PRESET_TEMPLATES } from "@/data/templates"
 import { DOT_STYLES, EYE_FRAME_STYLES, EYEBALL_STYLES, FRAME_STYLES, TEXT_STYLES } from "@/data/options"
 import { StylePreviewCard } from "@/components/previews/StylePreviewCard"
-import { PresetLogoPreview, getReactLogoPngDataUrl } from "@/components/previews/SvgIcons"
+import { PresetLogoPreview, getReactLogoPngDataUrl, PRESET_LOGO_BRAND_COLORS } from "@/components/previews/SvgIcons"
 
 async function fetchQRCode(settings: any) {
   const { contentData, ...rest } = settings
@@ -149,7 +149,20 @@ function App() {
   const handleDownloadSVG = async () => {
     try {
       const { contentData, ...rest } = settings
-      const payload = { ...rest, data: contentData }
+      let finalLogo = rest.logo_image;
+      if (!finalLogo && rest.preset_logo && rest.preset_logo !== "None") {
+        finalLogo = await getReactLogoPngDataUrl(
+          rest.preset_logo, 
+          rest.logo_color_mode || "default", 
+          rest.logo_custom_color || "#3b82f6", 
+          rest.dots_color || "#000000"
+        );
+      }
+      const color = rest.logo_color_mode === "custom" 
+        ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#3b82f6")
+        : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
+
+      const payload = { ...rest, data: contentData, logo_image: finalLogo, preset_logo_color: color }
       const response = await fetch("/api/generator/generate/svg", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -170,7 +183,20 @@ function App() {
   const handleDownloadPDF = async () => {
     try {
       const { contentData, ...rest } = settings
-      const payload = { ...rest, data: contentData }
+      let finalLogo = rest.logo_image;
+      if (!finalLogo && rest.preset_logo && rest.preset_logo !== "None") {
+        finalLogo = await getReactLogoPngDataUrl(
+          rest.preset_logo, 
+          rest.logo_color_mode || "default", 
+          rest.logo_custom_color || "#3b82f6", 
+          rest.dots_color || "#000000"
+        );
+      }
+      const color = rest.logo_color_mode === "custom" 
+        ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#3b82f6")
+        : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
+
+      const payload = { ...rest, data: contentData, logo_image: finalLogo, preset_logo_color: color }
       const response = await fetch("/api/generator/generate/pdf", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -1426,20 +1452,47 @@ function App() {
                 className="w-full accent-primary h-2 bg-surface-container-highest rounded-lg cursor-pointer"
               />
               {settings.canvas_border_width > 0 && (
-                <div className="flex items-center gap-3 pt-2">
-                  <label className="text-xs font-semibold text-on-surface-variant w-24">Border Color:</label>
-                  <input
-                    type="color"
-                    value={settings.canvas_border_color}
-                    onChange={(e) => updateSettings({ canvas_border_color: e.target.value })}
-                    className="w-10 h-10 rounded-lg cursor-pointer border border-outline-variant p-0.5 bg-white"
-                  />
-                  <input
-                    type="text"
-                    value={settings.canvas_border_color}
-                    onChange={(e) => updateSettings({ canvas_border_color: e.target.value })}
-                    className="flex-1 p-2 text-xs border border-outline-variant rounded-lg bg-white"
-                  />
+                <div className="space-y-4 pt-2">
+                  <div className="flex items-center gap-3">
+                    <label className="text-xs font-semibold text-on-surface-variant w-24">Border Color:</label>
+                    <input
+                      type="color"
+                      value={settings.canvas_border_color}
+                      onChange={(e) => updateSettings({ canvas_border_color: e.target.value })}
+                      className="w-10 h-10 rounded-lg cursor-pointer border border-outline-variant p-0.5 bg-white"
+                    />
+                    <input
+                      type="text"
+                      value={settings.canvas_border_color}
+                      onChange={(e) => updateSettings({ canvas_border_color: e.target.value })}
+                      className="flex-1 p-2 text-xs border border-outline-variant rounded-lg bg-white"
+                    />
+                  </div>
+
+                  <div className="space-y-2 pt-2 border-t border-outline-variant/30">
+                    <div className="flex justify-between items-center">
+                      <label className="text-xs font-semibold text-on-surface-variant flex items-center gap-1.5">
+                        <span className="material-symbols-outlined text-[16px] text-primary/80">rounded_corner</span>
+                        Border Corner Rounding
+                      </label>
+                      <span className="text-xs font-bold text-primary bg-primary/10 px-2 py-0.5 rounded">
+                        {settings.canvas_border_radius}px
+                      </span>
+                    </div>
+                    <input
+                      type="range"
+                      min="0"
+                      max="40"
+                      value={settings.canvas_border_radius}
+                      onChange={(e) => updateSettings({ canvas_border_radius: parseInt(e.target.value, 10) })}
+                      className="w-full accent-primary h-1.5 bg-surface-container-highest rounded-lg cursor-pointer"
+                    />
+                    <div className="flex justify-between text-[10px] text-on-surface-variant/80 font-medium px-1">
+                      <span>0px (Sharp)</span>
+                      <span>16px (Concentric)</span>
+                      <span>40px (Max Round)</span>
+                    </div>
+                  </div>
                 </div>
               )}
             </div>

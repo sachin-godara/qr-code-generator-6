@@ -57,6 +57,7 @@ class QRRequest(BaseModel):
     canvas_radius: int = 0
     canvas_border_width: int = 0
     canvas_border_color: str = "#000000"
+    canvas_border_radius: int = 16
     invert_colors: bool = False
 
     # Other configs

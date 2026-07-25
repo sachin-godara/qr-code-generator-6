@@ -8,6 +8,7 @@ def apply_canvas_effects(img: Image.Image, params: dict) -> Image.Image:
     canvas_radius = params.get("canvas_radius", 0)
     canvas_border_width = params.get("canvas_border_width", 0)
     canvas_border_color = params.get("canvas_border_color", "#000000")
+    canvas_border_radius = params.get("canvas_border_radius", 16)
     effect_shadow = params.get("effect_shadow", "none")
     effect_shadow_color = params.get("effect_shadow_color", "rgba(0,0,0,0.15)")
 
@@ -18,9 +19,13 @@ def apply_canvas_effects(img: Image.Image, params: dict) -> Image.Image:
     b_width = canvas_border_width
     base_img = img.convert("RGBA")
     
-    corner_r = int(canvas_radius * (w / 300.0))
-    total_r = corner_r + b_width
-    
+    if b_width > 0:
+        border_r = int(canvas_border_radius * (w / 300.0))
+        inner_r = max(0, border_r - b_width)
+    else:
+        border_r = int(canvas_radius * (w / 300.0))
+        inner_r = border_r
+        
     inner_w = w + b_width * 2
     inner_h = h + b_width * 2
     
@@ -29,17 +34,23 @@ def apply_canvas_effects(img: Image.Image, params: dict) -> Image.Image:
     
     if b_width > 0:
         border_rgb = hex_to_rgb(canvas_border_color) if str(canvas_border_color).startswith("#") else (0, 0, 0)
-        f_draw.rounded_rectangle([0, 0, inner_w - 1, inner_h - 1], radius=total_r, fill=border_rgb + (255,))
-    
-    frame_layer.paste(base_img, (b_width, b_width))
-    
+        f_draw.rounded_rectangle([0, 0, inner_w - 1, inner_h - 1], radius=border_r, fill=border_rgb + (255,))
+        
+        # Concentric inner rounded mask for pasting the QR code
+        inner_mask = Image.new("L", (w, h), 0)
+        im_draw = ImageDraw.Draw(inner_mask)
+        im_draw.rounded_rectangle([0, 0, w - 1, h - 1], radius=inner_r, fill=255)
+        frame_layer.paste(base_img, (b_width, b_width), inner_mask)
+    else:
+        frame_layer.paste(base_img, (b_width, b_width))
+        
     mask = Image.new("L", (inner_w, inner_h), 0)
     m_draw = ImageDraw.Draw(mask)
-    m_draw.rounded_rectangle([0, 0, inner_w - 1, inner_h - 1], radius=total_r, fill=255)
+    m_draw.rounded_rectangle([0, 0, inner_w - 1, inner_h - 1], radius=border_r, fill=255)
     
     canvas_result = Image.new("RGBA", (inner_w, inner_h), (0, 0, 0, 0))
     canvas_result.paste(frame_layer, (0, 0), mask)
-    
+
     if effect_shadow == "none":
         return canvas_result
         
