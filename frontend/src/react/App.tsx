@@ -1823,7 +1823,17 @@ function App() {
                   {/* QR Preview Surface */}
                   <div 
                     id="qr-preview-container" 
-                    className={`aspect-square border-outline-variant flex items-center justify-center relative overflow-hidden group p-8 ${isFullscreen ? 'bg-white rounded-none border-none h-screen w-screen' : 'bg-surface-container-lowest rounded-2xl border'}`}
+                    className={`aspect-square border-outline-variant flex items-center justify-center relative overflow-hidden group p-8 ${isFullscreen ? 'bg-white rounded-none border-none h-screen w-screen' : 'rounded-2xl border'}`}
+                    style={
+                      isFullscreen 
+                        ? { backgroundColor: '#ffffff' }
+                        : {
+                            backgroundImage: "linear-gradient(45deg, #f3f4f6 25%, transparent 25%), linear-gradient(-45deg, #f3f4f6 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f3f4f6 75%), linear-gradient(-45deg, transparent 75%, #f3f4f6 75%)",
+                            backgroundSize: "16px 16px",
+                            backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0px",
+                            backgroundColor: "#f9fafb"
+                          }
+                    }
                     onWheel={(e) => {
                       if (isFullscreen) {
                         const delta = e.deltaY * -0.001;
