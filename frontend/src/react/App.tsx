@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { useQRStore } from "@/store/useQRStore"
 import { useQuery } from "@tanstack/react-query"
-import { type ContentType } from "@/types/qr"
+import { type ContentType, type QRSettings } from "@/types/qr"
 import { PRESET_TEMPLATES } from "@/data/templates"
 import { DOT_STYLES, EYE_FRAME_STYLES, EYEBALL_STYLES, FRAME_STYLES, TEXT_STYLES } from "@/data/options"
 import { StylePreviewCard } from "@/components/previews/StylePreviewCard"
@@ -677,12 +677,21 @@ function App() {
             </div>
           </div>
         )
-      case "Design":
+      case "Design": {
+        const isGradientActive = settings.gradient_type && settings.gradient_type !== "Solid Color";
         return (
           <div className="bg-surface-container-lowest p-gutter rounded-2xl border border-outline-variant shadow-sm space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {isGradientActive && (
+              <div className="flex items-center gap-2 p-3 bg-primary/10 border border-primary/20 rounded-xl text-xs font-semibold text-primary">
+                <span className="material-symbols-outlined text-base">palette</span>
+                <span>Gradient Effect Active (<strong>{settings.gradient_type}</strong>). Showing both foreground start and end colors below:</span>
+              </div>
+            )}
+            <div className={`grid grid-cols-1 ${isGradientActive ? 'md:grid-cols-3' : 'md:grid-cols-2'} gap-6`}>
               <div className="space-y-2">
-                <label className="block text-sm font-semibold">Foreground Color</label>
+                <label className="block text-sm font-semibold">
+                  {isGradientActive ? "Foreground (Start)" : "Foreground Color"}
+                </label>
                 <div className="flex items-center gap-3">
                   <input
                     type="color"
@@ -699,9 +708,40 @@ function App() {
                 </div>
               </div>
 
+              {isGradientActive && (
+                <div className="space-y-2">
+                  <label className="block text-sm font-semibold">Foreground (End)</label>
+                  <div className="flex items-center gap-3">
+                    <input
+                      type="color"
+                      value={settings.dots_color_end || "#0050cb"}
+                      onChange={(e) => updateSettings({ dots_color_end: e.target.value })}
+                      className="w-12 h-12 rounded-xl cursor-pointer border border-outline-variant"
+                    />
+                    <input
+                      type="text"
+                      value={settings.dots_color_end || "#0050cb"}
+                      onChange={(e) => updateSettings({ dots_color_end: e.target.value })}
+                      className="flex-1 p-3 border border-outline-variant rounded-xl bg-white font-body-md"
+                    />
+                  </div>
+                </div>
+              )}
+
               <div className="space-y-2">
-                <label className="block text-sm font-semibold">Background Color</label>
-                <div className="flex items-center gap-3">
+                <div className="flex justify-between items-center">
+                  <label className="block text-sm font-semibold">Background Color</label>
+                  <label className="flex items-center gap-2 text-xs font-semibold cursor-pointer select-none px-2.5 py-1 rounded-full bg-surface-variant text-on-surface-variant hover:bg-outline-variant/30 transition-colors">
+                    <input
+                      type="checkbox"
+                      checked={settings.bg_transparent || false}
+                      onChange={(e) => updateSettings({ bg_transparent: e.target.checked })}
+                      className="w-3.5 h-3.5 rounded border-outline text-primary focus:ring-primary accent-primary cursor-pointer"
+                    />
+                    <span>Transparent (PNG/SVG)</span>
+                  </label>
+                </div>
+                <div className={`flex items-center gap-3 transition-opacity ${settings.bg_transparent ? 'opacity-40 pointer-events-none' : ''}`}>
                   <input
                     type="color"
                     value={settings.bg_color}
@@ -817,7 +857,8 @@ function App() {
               </div>
             </div>
           </div>
-        )
+        );
+      }
       case "Logo":
         const hasLogo = settings.preset_logo !== "None" || !!settings.logo_image;
         return (
@@ -1332,14 +1373,125 @@ function App() {
             )}
           </div>
         )
-      case "Effects":
+      case "Effects": {
+        const effectsGradientOptions: Array<{ label: string; value: QRSettings['gradient_type']; icon: string }> = [
+          { label: "Solid (No Effect)", value: "Solid Color", icon: "format_color_fill" },
+          { label: "Vertical Blend", value: "Vertical Gradient", icon: "gradient" },
+          { label: "Horizontal Blend", value: "Horizontal Gradient", icon: "linear_scale" },
+          { label: "Diagonal (TL ↘ BR)", value: "Diagonal (TL to BR)", icon: "trending_down" },
+          { label: "Diagonal (TR ↙ BL)", value: "Diagonal (TR to BL)", icon: "call_received" },
+          { label: "Radial Glow", value: "Radial Gradient", icon: "radio_button_checked" },
+        ];
+        const isEffectsGradient = settings.gradient_type !== "Solid Color";
+
         return (
           <div className="bg-surface-container-lowest p-gutter rounded-2xl border border-outline-variant shadow-sm space-y-8">
             <div>
               <h3 className="font-headline-sm text-on-surface font-bold">Visual Effects & Finishing</h3>
               <p className="text-on-surface-variant font-label-md text-label-md mt-1">
-                Enhance your QR code with drop shadows, outer canvas borders, corner rounding, and dark-mode color inversion.
+                Enhance your QR code with color gradients, drop shadows, outer canvas borders, corner rounding, and dark-mode color inversion.
               </p>
+            </div>
+
+            {/* Module Color Gradient Effect */}
+            <div className="space-y-4 p-5 bg-surface-container-low/60 rounded-2xl border border-outline-variant/80 shadow-inner-sm">
+              <div className="flex items-center justify-between">
+                <label className="text-sm font-bold text-on-surface flex items-center gap-2">
+                  <span className="material-symbols-outlined text-primary text-[20px]">gradient</span>
+                  Module Color Gradient Effect
+                </label>
+                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-primary/10 text-primary">
+                  {isEffectsGradient ? "Active Gradient" : "Solid Fill"}
+                </span>
+              </div>
+
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2.5">
+                {effectsGradientOptions.map((opt) => {
+                  const selected = settings.gradient_type === opt.value;
+                  return (
+                    <button
+                      key={opt.value}
+                      type="button"
+                      onClick={() => updateSettings({ 
+                        gradient_type: opt.value,
+                        dots_color_end: opt.value !== "Solid Color" && settings.dots_color_end === "#000000" && settings.dots_color === "#000000" ? "#0050cb" : settings.dots_color_end
+                      })}
+                      className={`flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl border text-xs font-bold transition-all duration-200 ${
+                        selected 
+                          ? 'bg-primary/15 border-primary text-primary shadow-sm scale-[1.02]' 
+                          : 'bg-white border-outline-variant text-on-surface-variant hover:bg-surface hover:border-outline'
+                      }`}
+                    >
+                      <span className="material-symbols-outlined text-lg">{opt.icon}</span>
+                      <span>{opt.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Gradient Color Pickers & Live Preview */}
+              {isEffectsGradient && (
+                <div className="space-y-4 pt-3 border-t border-outline-variant/60">
+                  <div className="p-3.5 rounded-xl bg-surface border border-outline-variant/60 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-sm">
+                    <span className="text-xs font-bold text-on-surface uppercase tracking-wider flex items-center gap-1.5">
+                      <span className="material-symbols-outlined text-primary text-base">palette</span>
+                      Live Blend Preview:
+                    </span>
+                    <div 
+                      className="w-full sm:w-64 h-6 rounded-lg border border-outline-variant shadow-inner transition-all duration-300"
+                      style={{
+                        background: settings.gradient_type === "Radial Gradient" 
+                          ? `radial-gradient(circle, ${settings.dots_color}, ${settings.dots_color_end})` 
+                          : settings.gradient_type === "Horizontal Gradient"
+                          ? `linear-gradient(to right, ${settings.dots_color}, ${settings.dots_color_end})`
+                          : settings.gradient_type === "Diagonal (TL to BR)"
+                          ? `linear-gradient(135deg, ${settings.dots_color}, ${settings.dots_color_end})`
+                          : settings.gradient_type === "Diagonal (TR to BL)"
+                          ? `linear-gradient(225deg, ${settings.dots_color}, ${settings.dots_color_end})`
+                          : `linear-gradient(to bottom, ${settings.dots_color}, ${settings.dots_color_end})`
+                      }}
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold text-on-surface-variant">Start Color (Foreground)</label>
+                      <div className="flex items-center gap-2.5">
+                        <input
+                          type="color"
+                          value={settings.dots_color}
+                          onChange={(e) => updateSettings({ dots_color: e.target.value })}
+                          className="w-10 h-10 rounded-xl cursor-pointer border border-outline-variant p-0.5 bg-white"
+                        />
+                        <input
+                          type="text"
+                          value={settings.dots_color}
+                          onChange={(e) => updateSettings({ dots_color: e.target.value })}
+                          className="flex-1 p-2.5 border border-outline-variant rounded-xl bg-white text-xs font-mono font-semibold"
+                        />
+                      </div>
+                    </div>
+
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold text-on-surface-variant">End Color (Gradient Destination)</label>
+                      <div className="flex items-center gap-2.5">
+                        <input
+                          type="color"
+                          value={settings.dots_color_end}
+                          onChange={(e) => updateSettings({ dots_color_end: e.target.value })}
+                          className="w-10 h-10 rounded-xl cursor-pointer border border-outline-variant p-0.5 bg-white"
+                        />
+                        <input
+                          type="text"
+                          value={settings.dots_color_end}
+                          onChange={(e) => updateSettings({ dots_color_end: e.target.value })}
+                          className="flex-1 p-2.5 border border-outline-variant rounded-xl bg-white text-xs font-mono font-semibold"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Invert Colors Toggle */}
@@ -1502,7 +1654,8 @@ function App() {
               )}
             </div>
           </div>
-        )
+        );
+      }
       case "Advanced":
         return (
           <div className="bg-surface-container-lowest p-gutter rounded-2xl border border-outline-variant shadow-sm space-y-8">
@@ -1900,6 +2053,14 @@ function App() {
                           src={imageUrl}
                           alt="QR Code Preview"
                           className={`max-w-[240px] max-h-[240px] object-contain transition-all duration-300 ${isComparing ? 'grayscale contrast-125 opacity-90' : ''}`}
+                          style={settings.bg_transparent ? {
+                            backgroundImage: "linear-gradient(45deg, #e5e7eb 25%, transparent 25%), linear-gradient(-45deg, #e5e7eb 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e5e7eb 75%), linear-gradient(-45deg, transparent 75%, #e5e7eb 75%)",
+                            backgroundSize: "16px 16px",
+                            backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0",
+                            backgroundColor: "#f3f4f6",
+                            borderRadius: "12px",
+                            boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.08)"
+                          } : {}}
                         />
                         {isScanning && (
                           <div className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none">

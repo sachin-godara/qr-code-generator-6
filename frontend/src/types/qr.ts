@@ -9,7 +9,8 @@ export interface QRSettings {
   dots_color: string;
   dots_color_end: string;
   bg_color: string;
-  gradient_type: "Solid Color" | "Vertical Gradient" | "Horizontal Gradient" | "Radial Gradient";
+  bg_transparent: boolean;
+  gradient_type: "Solid Color" | "Vertical Gradient" | "Horizontal Gradient" | "Radial Gradient" | "Diagonal (TL to BR)" | "Diagonal (TR to BL)";
   dots_style: string;
   
   // Markers
@@ -21,6 +22,7 @@ export interface QRSettings {
   // Logo
   logo_image?: string | null;
   preset_logo: "None" | "Link" | "Location" | "WiFi" | "Vcard" | "Email" | "Scan" | "WhatsApp" | "Instagram" | "Facebook" | "YouTube" | "Phone" | "Coffee" | "Shopping" | "Music" | "Globe" | "Heart" | "Star" | "Calendar" | "Payment" | "Store" | "Chat" | "App" | "Discord" | "Amazon";
+  preset_logo_color?: string;
   logo_color_mode?: "default" | "custom";
   logo_custom_color?: string;
   remove_logo_bg: boolean;
@@ -64,6 +66,7 @@ export const defaultSettings: QRSettings = {
   dots_color: "#000000",
   dots_color_end: "#000000",
   bg_color: "#ffffff",
+  bg_transparent: false,
   gradient_type: "Solid Color",
   dots_style: "square",
   eye_color: "#000000",

@@ -1,5 +1,6 @@
 import qrcode
 import math
+import numpy as np
 from qrcode.image.styledpil import StyledPilImage
 
 class CustomStyledPilImage(StyledPilImage):
@@ -19,8 +20,35 @@ from qrcode.image.styles.moduledrawers import (
     SquareModuleDrawer, GappedSquareModuleDrawer, CircleModuleDrawer,
     RoundedModuleDrawer, VerticalBarsDrawer, HorizontalBarsDrawer
 )
-from qrcode.image.styles.colormasks import SolidFillColorMask, VerticalGradiantColorMask, HorizontalGradiantColorMask, RadialGradiantColorMask
+from qrcode.image.styles.colormasks import (
+    SolidFillColorMask, VerticalGradiantColorMask, HorizontalGradiantColorMask, 
+    RadialGradiantColorMask, QRColorMask
+)
 from PIL import Image, ImageDraw
+
+class DiagonalGradiantColorMask(QRColorMask):
+    """
+    Fills in the foreground with a gradient sweeping diagonally from corner to corner.
+    """
+    def __init__(
+        self, back_color=(255, 255, 255), start_color=(0, 0, 0), end_color=(0, 0, 255), direction="TL_BR"
+    ):
+        self.back_color = back_color
+        self.start_color = start_color
+        self.end_color = end_color
+        self.direction = direction
+        self.has_transparency = len(self.back_color) == 4
+
+    def get_fg_pixel(self, image, x, y):
+        width, height = image.size
+        if width <= 0 or height <= 0:
+            return self.start_color
+        if self.direction == "TR_BL":
+            ratio = ((width - x) / width + y / height) / 2.0
+        else:
+            ratio = (x / width + y / height) / 2.0
+        ratio = max(0.0, min(1.0, ratio))
+        return self.interp_color(self.start_color, self.end_color, ratio)
 
 import os
 import fitz
@@ -842,6 +870,33 @@ def make_color_transparent(img, target_color=(255, 255, 255), tolerance=30):
     img.putdata(new_data)
     return img
 
+def remove_qr_background(img: Image.Image, bg_color_hex: str, tolerance: float = 12.0, smooth: float = 60.0) -> Image.Image:
+    """
+    Replaces the background color with transparent alpha using mathematical color dematting.
+    This removes white/solid color halos around antialiased modules and corner eyes.
+    """
+    if not isinstance(bg_color_hex, str) or not bg_color_hex.startswith('#'):
+        bg_rgb = np.array([255.0, 255.0, 255.0], dtype=np.float32)
+    else:
+        bg_rgb = np.array(hex_to_rgb(bg_color_hex), dtype=np.float32)
+        
+    arr = np.array(img.convert("RGBA"), dtype=np.float32)
+    rgb = arr[:, :, :3]
+    alpha = arr[:, :, 3]
+    
+    diff = np.max(np.abs(rgb - bg_rgb), axis=2)
+    factor = np.clip((diff - tolerance) / max(1.0, smooth), 0.0, 1.0)
+    
+    safe_factor = np.where(factor < 0.05, 1.0, factor)[:, :, np.newaxis]
+    bg_3d = bg_rgb[np.newaxis, np.newaxis, :]
+    
+    recovered_rgb = (rgb - bg_3d * (1.0 - safe_factor)) / safe_factor
+    new_rgb = np.clip(np.where(factor[:, :, np.newaxis] < 0.05, rgb, recovered_rgb), 0.0, 255.0)
+    new_alpha = (alpha * factor)[:, :, np.newaxis]
+    
+    out_arr = np.concatenate([new_rgb, new_alpha], axis=2).astype(np.uint8)
+    return Image.fromarray(out_arr, "RGBA")
+
 def make_sharp_corner(draw, px, py, corner, s, r, color):
     if corner == "TL":
         draw.rectangle([px, py, px + r - 1, py + s - 1], fill=color)
@@ -866,7 +921,7 @@ def make_eyeball_sharp_corner(draw, ebx, eby, corner, s, r2, color):
     elif corner == "BR":
         draw.rectangle([ebx + 3*s - r2, eby + 3*s - r2, ebx + 3*s - 1, eby + 3*s - 1], fill=color)
 
-def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_style="square", logo_image=None, box_size=30, eye_color=None, eyeball_color=None, eye_frame_style=None, eyeball_style=None, remove_logo_bg=False, logo_bg_color="#ffffff", logo_bg_tolerance=30, logo_clear_size=0, gradient_type="Solid Color", fill_color_end="#000000", preset_logo="None", preset_logo_color=None, logo_card_shape="None", logo_card_padding=10, logo_size_ratio=0.33, error_correction="H", quiet_zone=4):
+def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_style="square", logo_image=None, box_size=30, eye_color=None, eyeball_color=None, eye_frame_style=None, eyeball_style=None, remove_logo_bg=False, logo_bg_color="#ffffff", logo_bg_tolerance=30, logo_clear_size=0, gradient_type="Solid Color", fill_color_end="#000000", preset_logo="None", preset_logo_color=None, logo_card_shape="None", logo_card_padding=10, logo_size_ratio=0.33, error_correction="H", quiet_zone=4, bg_transparent=False):
     if eye_frame_style is None: eye_frame_style = "square"
     if eyeball_style is None: eyeball_style = "square"
     
@@ -976,7 +1031,9 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
     elif gradient_type in ["Radial Gradient", "Radial Center"]:
         color_mask = RadialGradiantColorMask(back_color=bg, center_color=fg, edge_color=fg_end)
     elif gradient_type in ["Diagonal (TL to BR)", "Diagonal Gradient"]:
-        color_mask = HorizontalGradiantColorMask(back_color=bg, left_color=fg, right_color=fg_end)
+        color_mask = DiagonalGradiantColorMask(back_color=bg, start_color=fg, end_color=fg_end, direction="TL_BR")
+    elif gradient_type in ["Diagonal (TR to BL)"]:
+        color_mask = DiagonalGradiantColorMask(back_color=bg, start_color=fg, end_color=fg_end, direction="TR_BL")
     else:
         color_mask = SolidFillColorMask(back_color=bg, front_color=fg)
 
@@ -1487,7 +1544,9 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
             draw.ellipse([cx + 0.2*s, cy - s, cx + 1.5*s, cy + s], fill=eyeball_rgb + (255,))
         else: # square
             draw.rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], fill=eyeball_rgb + (255,))
-            
+
+    if bg_transparent:
+        img = remove_qr_background(img, back_color)
 
     if logo_image:
         try:
@@ -1536,7 +1595,7 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
     return img
 
 import qrcode.image.svg
-def generate_svg_qr(data, fill_color="#000000", back_color="#ffffff", box_size=30):
+def generate_svg_qr(data, fill_color="#000000", back_color="#ffffff", box_size=30, bg_transparent=False):
     """Generates a raw SVG QR code (without custom styled dots or frames)"""
     factory = qrcode.image.svg.SvgPathImage
     qr = qrcode.QRCode(
@@ -1559,14 +1618,15 @@ def generate_svg_qr(data, fill_color="#000000", back_color="#ffffff", box_size=3
     # 2. Add custom fill color to paths (replacing standard black style="fill:#000000;...")
     svg_str = svg_str.replace("fill:#000000", f"fill:{fill_color}")
     
-    # 3. Add background color rect matching back_color
-    match = re.search(r'viewBox="0 0 (\d+) (\d+)"', svg_str)
-    if match:
-        v_w = match.group(1)
-        v_h = match.group(2)
-        rect_str = f'<rect width="{v_w}" height="{v_h}" fill="{back_color}"/>'
-        tag_end = svg_str.find('>')
-        if tag_end != -1:
-            svg_str = svg_str[:tag_end+1] + "\n  " + rect_str + svg_str[tag_end+1:]
+    # 3. Add background color rect matching back_color if not transparent
+    if not bg_transparent:
+        match = re.search(r'viewBox="0 0 (\d+) (\d+)"', svg_str)
+        if match:
+            v_w = match.group(1)
+            v_h = match.group(2)
+            rect_str = f'<rect width="{v_w}" height="{v_h}" fill="{back_color}"/>'
+            tag_end = svg_str.find('>')
+            if tag_end != -1:
+                svg_str = svg_str[:tag_end+1] + "\n  " + rect_str + svg_str[tag_end+1:]
             
     return svg_str.encode('utf-8')

@@ -142,6 +142,7 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
         logo_bg_tolerance=params.get("logo_bg_tolerance", 30),
         error_correction=params.get("error_correction", "H"),
         quiet_zone=params.get("quiet_zone", 4),
+        bg_transparent=params.get("bg_transparent", False),
     )
     
     # 2. Apply Layout Frame
@@ -220,7 +221,8 @@ def generate_qr_svg(data: str, params: dict) -> bytes:
             data=data,
             fill_color=params.get("dots_color", "#000000"),
             back_color=params.get("bg_color", "#ffffff"),
-            box_size=params.get("box_size", 10)
+            box_size=params.get("box_size", 10),
+            bg_transparent=params.get("bg_transparent", False)
         )
         return svg_data
 
@@ -229,7 +231,13 @@ def generate_qr_pdf(data: str, params: dict) -> io.BytesIO:
     Generates a PDF file containing the QR code.
     """
     png_io = generate_qr_image(data, params)
-    img = Image.open(png_io).convert("RGB")
+    img = Image.open(png_io)
+    if img.mode == 'RGBA':
+        white_bg = Image.new("RGB", img.size, (255, 255, 255))
+        white_bg.paste(img, mask=img.split()[3])
+        img = white_bg
+    else:
+        img = img.convert("RGB")
     pdf_io = io.BytesIO()
     img.save(pdf_io, format="PDF", resolution=300.0)
     pdf_io.seek(0)

@@ -14,6 +14,7 @@ class QRRequest(BaseModel):
     data: str
     dots_color: str = "#000000"
     bg_color: str = "#ffffff"
+    bg_transparent: bool = False
     dots_style: str = "square"
     
     # Eye styling

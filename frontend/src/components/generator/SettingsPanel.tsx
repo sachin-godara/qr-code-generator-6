@@ -124,9 +124,11 @@ export function SettingsPanel() {
           Design & Colors
         </h3>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className={`grid grid-cols-1 ${settings.gradient_type && settings.gradient_type !== "Solid Color" ? 'md:grid-cols-3' : 'md:grid-cols-2'} gap-6`}>
           <div className="space-y-3">
-            <label className="text-sm font-medium">Foreground Color</label>
+            <label className="text-sm font-medium">
+              {settings.gradient_type && settings.gradient_type !== "Solid Color" ? "Foreground (Start)" : "Foreground Color"}
+            </label>
             <div className="flex items-center gap-3">
               <input 
                 type="color" 
@@ -138,13 +140,44 @@ export function SettingsPanel() {
                 type="text" 
                 value={settings.dots_color} 
                 onChange={(e) => updateSettings({ dots_color: e.target.value })}
-                className="flex-1 p-2 border border-input rounded-lg"
+                className="flex-1 p-2 border border-input rounded-lg text-sm font-mono"
               />
             </div>
           </div>
+
+          {settings.gradient_type && settings.gradient_type !== "Solid Color" && (
+            <div className="space-y-3">
+              <label className="text-sm font-medium">Foreground (End)</label>
+              <div className="flex items-center gap-3">
+                <input 
+                  type="color" 
+                  value={settings.dots_color_end || "#0050cb"} 
+                  onChange={(e) => updateSettings({ dots_color_end: e.target.value })}
+                  className="w-12 h-12 rounded cursor-pointer border-0 p-0"
+                />
+                <input 
+                  type="text" 
+                  value={settings.dots_color_end || "#0050cb"} 
+                  onChange={(e) => updateSettings({ dots_color_end: e.target.value })}
+                  className="flex-1 p-2 border border-input rounded-lg text-sm font-mono"
+                />
+              </div>
+            </div>
+          )}
           <div className="space-y-3">
-            <label className="text-sm font-medium">Background Color</label>
-            <div className="flex items-center gap-3">
+            <div className="flex justify-between items-center">
+              <label className="text-sm font-medium">Background Color</label>
+              <label className="flex items-center gap-1.5 text-xs text-muted-foreground cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  checked={settings.bg_transparent || false}
+                  onChange={(e) => updateSettings({ bg_transparent: e.target.checked })}
+                  className="rounded border-input text-primary focus:ring-primary cursor-pointer"
+                />
+                <span>Transparent</span>
+              </label>
+            </div>
+            <div className={`flex items-center gap-3 ${settings.bg_transparent ? 'opacity-40 pointer-events-none' : ''}`}>
               <input 
                 type="color" 
                 value={settings.bg_color} 

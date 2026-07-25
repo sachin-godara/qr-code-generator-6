@@ -51,6 +51,12 @@ export function LivePreview() {
               src={imageUrl} 
               alt="QR Code Preview" 
               className="max-w-[280px] w-full rounded-xl shadow-lg border border-border/50 transition-transform duration-300 group-hover:scale-[1.02]"
+              style={settings.bg_transparent ? {
+                backgroundImage: "linear-gradient(45deg, #e5e7eb 25%, transparent 25%), linear-gradient(-45deg, #e5e7eb 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e5e7eb 75%), linear-gradient(-45deg, transparent 75%, #e5e7eb 75%)",
+                backgroundSize: "16px 16px",
+                backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0",
+                backgroundColor: "#f3f4f6",
+              } : {}}
             />
           </div>
         )}
