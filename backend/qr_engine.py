@@ -8,14 +8,13 @@ class CustomStyledPilImage(StyledPilImage):
     When back_color is dark, self.paint_color must be light/white so module drawing is distinct
     from back_color during extrapolation.
     """
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
+    def init_new_image(self):
         if hasattr(self, 'color_mask') and hasattr(self.color_mask, 'back_color'):
             bg = self.color_mask.back_color
             bg_lum = bg[0]*0.299 + bg[1]*0.587 + bg[2]*0.114
             if bg_lum < 128:
                 self.paint_color = (255, 255, 255, 255) if len(bg) == 4 else (255, 255, 255)
-                self.color_mask.paint_color = self.paint_color
+        super().init_new_image()
 from qrcode.image.styles.moduledrawers import (
     SquareModuleDrawer, GappedSquareModuleDrawer, CircleModuleDrawer,
     RoundedModuleDrawer, VerticalBarsDrawer, HorizontalBarsDrawer
