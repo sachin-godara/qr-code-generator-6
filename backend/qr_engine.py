@@ -8,106 +8,40 @@ from qrcode.image.styles.moduledrawers import (
 from qrcode.image.styles.colormasks import SolidFillColorMask, VerticalGradiantColorMask, HorizontalGradiantColorMask, RadialGradiantColorMask
 from PIL import Image, ImageDraw
 
+import os
+import fitz
+
 def generate_preset_logo(name, color=(0,0,0)):
-    # Create a high-res 1000x1000 canvas for beautiful anti-aliased output
-    img = Image.new("RGBA", (1000, 1000), (255, 255, 255, 0))
-    draw = ImageDraw.Draw(img)
+    svg_path = os.path.join(os.path.dirname(__file__), "assets", "preset_logos", f"{name.lower()}.svg")
     
-    if name == "Link":
-        draw.ellipse([50, 50, 950, 950], fill=(111, 50, 229, 255))
-        draw.line([(425, 575), (575, 425)], fill=(255, 255, 255, 255), width=60)
-        draw.line([(325, 675), (475, 525)], fill=(255, 255, 255, 255), width=140)
-        draw.line([(325, 675), (475, 525)], fill=(111, 50, 229, 255), width=70)
-        draw.line([(525, 475), (675, 325)], fill=(255, 255, 255, 255), width=140)
-        draw.line([(525, 475), (675, 325)], fill=(111, 50, 229, 255), width=70)
-    elif name == "Location":
-        draw.ellipse([50, 50, 950, 950], fill=(234, 67, 53, 255))
-        draw.ellipse([350, 200, 650, 500], fill=(255, 255, 255, 255))
-        draw.polygon([(350, 420), (650, 420), (500, 780)], fill=(255, 255, 255, 255))
-        draw.ellipse([440, 290, 560, 410], fill=(234, 67, 53, 255))
-    elif name == "WiFi":
-        draw.ellipse([50, 50, 950, 950], fill=(43, 182, 173, 255))
-        draw.ellipse([450, 680, 550, 780], fill=(255, 255, 255, 255))
-        draw.arc([350, 450, 650, 750], start=210, end=330, fill=(255, 255, 255, 255), width=50)
-        draw.arc([220, 320, 780, 880], start=210, end=330, fill=(255, 255, 255, 255), width=50)
-        draw.arc([90, 190, 910, 1010], start=210, end=330, fill=(255, 255, 255, 255), width=50)
-    elif name == "Vcard":
-        draw.ellipse([50, 50, 950, 950], fill=(26, 95, 246, 255))
-        draw.rounded_rectangle([280, 280, 720, 760], radius=50, outline=(255, 255, 255, 255), width=45)
-        draw.rounded_rectangle([420, 200, 580, 280], radius=20, fill=(255, 255, 255, 255))
-        draw.ellipse([350, 420, 480, 560], fill=(255, 255, 255, 255))
-        draw.arc([290, 520, 530, 760], start=180, end=360, fill=(255, 255, 255, 255), width=40)
-        draw.line([(520, 460), (660, 460)], fill=(255, 255, 255, 255), width=40)
-        draw.line([(520, 560), (660, 560)], fill=(255, 255, 255, 255), width=40)
-        draw.line([(340, 660), (660, 660)], fill=(255, 255, 255, 255), width=40)
-    elif name == "Email":
-        draw.ellipse([50, 50, 950, 950], fill=(212, 163, 28, 255))
-        draw.rounded_rectangle([250, 300, 750, 700], radius=50, outline=(255, 255, 255, 255), width=45)
-        draw.line([(265, 340), (500, 520)], fill=(255, 255, 255, 255), width=45)
-        draw.line([(735, 340), (500, 520)], fill=(255, 255, 255, 255), width=45)
-    elif name == "Scan":
-        draw.ellipse([50, 50, 950, 950], fill=(216, 67, 184, 255))
-        draw.line([(250, 250), (400, 250)], fill=(255, 255, 255, 255), width=45)
-        draw.line([(250, 250), (250, 400)], fill=(255, 255, 255, 255), width=45)
-        draw.line([(600, 250), (750, 250)], fill=(255, 255, 255, 255), width=45)
-        draw.line([(750, 250), (750, 400)], fill=(255, 255, 255, 255), width=45)
-        draw.line([(250, 750), (400, 750)], fill=(255, 255, 255, 255), width=45)
-        draw.line([(250, 600), (250, 750)], fill=(255, 255, 255, 255), width=45)
-        draw.line([(600, 750), (750, 750)], fill=(255, 255, 255, 255), width=45)
-        draw.line([(750, 600), (750, 750)], fill=(255, 255, 255, 255), width=45)
-        draw.line([(200, 500), (800, 500)], fill=(255, 255, 255, 255), width=45)
-    elif name == "WhatsApp":
-        draw.ellipse([50, 50, 950, 950], fill=(37, 211, 102, 255))
-        draw.ellipse([250, 250, 750, 750], fill=(255, 255, 255, 255))
-        draw.polygon([(280, 650), (200, 800), (350, 720)], fill=(255, 255, 255, 255))
-        draw.ellipse([330, 330, 670, 670], fill=(37, 211, 102, 255))
-    elif name == "Instagram":
-        draw.ellipse([50, 50, 950, 950], fill=(225, 48, 108, 255))
-        draw.rounded_rectangle([250, 250, 750, 750], radius=120, outline=(255, 255, 255, 255), width=50)
-        draw.ellipse([375, 375, 625, 625], outline=(255, 255, 255, 255), width=50)
-        draw.ellipse([640, 310, 690, 360], fill=(255, 255, 255, 255))
-    elif name == "Facebook":
-        draw.ellipse([50, 50, 950, 950], fill=(24, 119, 242, 255))
-        draw.rectangle([460, 280, 580, 850], fill=(255, 255, 255, 255))
-        draw.rectangle([340, 420, 680, 540], fill=(255, 255, 255, 255))
-    elif name == "YouTube":
-        draw.ellipse([50, 50, 950, 950], fill=(255, 0, 0, 255))
-        draw.rounded_rectangle([230, 330, 770, 670], radius=80, fill=(255, 255, 255, 255))
-        draw.polygon([(420, 420), (620, 500), (420, 580)], fill=(255, 0, 0, 255))
-    elif name == "Phone":
-        draw.ellipse([50, 50, 950, 950], fill=(16, 185, 129, 255))
-        draw.rounded_rectangle([320, 250, 680, 750], radius=60, outline=(255, 255, 255, 255), width=50)
-        draw.ellipse([460, 650, 540, 710], fill=(255, 255, 255, 255))
-    elif name == "Coffee":
-        draw.ellipse([50, 50, 950, 950], fill=(120, 53, 15, 255))
-        draw.rounded_rectangle([250, 380, 680, 750], radius=60, fill=(255, 255, 255, 255))
-        draw.arc([600, 440, 780, 660], start=270, end=90, fill=(255, 255, 255, 255), width=45)
-    elif name == "Shopping":
-        draw.ellipse([50, 50, 950, 950], fill=(139, 92, 246, 255))
-        draw.rounded_rectangle([260, 380, 740, 780], radius=40, fill=(255, 255, 255, 255))
-        draw.arc([380, 240, 620, 480], start=180, end=360, fill=(255, 255, 255, 255), width=45)
-    elif name == "Music":
-        draw.ellipse([50, 50, 950, 950], fill=(6, 182, 212, 255))
-        draw.ellipse([260, 600, 420, 740], fill=(255, 255, 255, 255))
-        draw.ellipse([580, 520, 740, 660], fill=(255, 255, 255, 255))
-        draw.rectangle([380, 260, 430, 670], fill=(255, 255, 255, 255))
-        draw.rectangle([700, 180, 750, 590], fill=(255, 255, 255, 255))
-        draw.polygon([(380, 260), (750, 180), (750, 260), (380, 340)], fill=(255, 255, 255, 255))
-    elif name == "Globe":
-        draw.ellipse([50, 50, 950, 950], fill=(59, 130, 246, 255))
-        draw.ellipse([220, 220, 780, 780], outline=(255, 255, 255, 255), width=45)
-        draw.line([(220, 500), (780, 500)], fill=(255, 255, 255, 255), width=45)
-        draw.ellipse([380, 220, 620, 780], outline=(255, 255, 255, 255), width=45)
-    elif name == "Heart":
-        draw.ellipse([50, 50, 950, 950], fill=(244, 63, 94, 255))
-        draw.ellipse([300, 300, 540, 540], fill=(255, 255, 255, 255))
-        draw.ellipse([460, 300, 700, 540], fill=(255, 255, 255, 255))
-        draw.polygon([(290, 470), (710, 470), (500, 760)], fill=(255, 255, 255, 255))
-    elif name == "Star":
-        draw.ellipse([50, 50, 950, 950], fill=(245, 158, 11, 255))
-        draw.polygon([(500, 200), (590, 380), (790, 410), (640, 550), (680, 750), (500, 650), (320, 750), (360, 550), (210, 410), (410, 380)], fill=(255, 255, 255, 255))
+    if not os.path.exists(svg_path):
+        return None
         
-    return img.resize((200, 200), Image.Resampling.LANCZOS)
+    try:
+        with open(svg_path, "r", encoding="utf-8") as f:
+            svg_content = f.read()
+            
+        hex_color = "#{:02x}{:02x}{:02x}".format(*color)
+        svg_content = svg_content.replace('currentColor', hex_color)
+        
+        doc = fitz.open("svg", svg_content.encode('utf-8'))
+        page = doc[0]
+        
+        # Original QR code generation used 1000x1000, resized to 200x200
+        # PyMuPDF uses the viewBox. Our viewBox is 24x24.
+        # We'll render directly to a 200x200 image.
+        mat = fitz.Matrix(200 / 24, 200 / 24)
+        pix = page.get_pixmap(matrix=mat, alpha=True)
+        img = Image.frombytes("RGBA", [pix.width, pix.height], pix.samples)
+        
+        # Create a padded 200x200 image just in case dimensions are off
+        out_img = Image.new("RGBA", (200, 200), (255, 255, 255, 0))
+        offset = ((200 - img.width) // 2, (200 - img.height) // 2)
+        out_img.paste(img, offset, img)
+        return out_img
+    except Exception as e:
+        print(f"Error generating preset logo: {e}")
+        return None
 
 from qrcode.image.styles.moduledrawers.pil import StyledPilQRModuleDrawer, ANTIALIASING_FACTOR
 
