@@ -651,25 +651,34 @@ function App() {
                     onClick={() => updateSettings(template.settings)}
                   >
                     <div className="relative w-full h-full group/template">
-                      <img 
-                        src={`/previews/templates/${cleanName}.png`} 
-                        alt={template.name} 
-                        className="w-full h-full object-contain" 
-                        style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.12))" }} 
-                      />
-                      {/* Overlay dots for primary colors */}
-                      <div className="absolute bottom-1 right-1 flex gap-0.5 bg-white/90 backdrop-blur-[2px] p-0.5 rounded-full shadow-sm border border-outline-variant/30 opacity-80 group-hover/template:opacity-100 transition-opacity">
-                        <span 
-                          className="w-2 h-2 rounded-full border border-black/10" 
-                          style={{ backgroundColor: template.settings.dots_color || "#000" }}
-                          title={`Foreground: ${template.settings.dots_color}`}
-                        />
-                        <span 
-                          className="w-2 h-2 rounded-full border border-black/10" 
-                          style={{ backgroundColor: template.settings.bg_color || "#fff" }}
-                          title={`Background: ${template.settings.bg_color}`}
-                        />
-                      </div>
+                      {template.name === "None" ? (
+                        <div className="w-full h-full flex flex-col items-center justify-center bg-surface-container rounded-xl border border-dashed border-outline-variant gap-2 p-2 min-h-[90px]">
+                          <span className="material-symbols-outlined text-4xl text-on-surface-variant">restart_alt</span>
+                          <span className="text-[10px] font-bold text-on-surface-variant uppercase tracking-wider">None / Reset</span>
+                        </div>
+                      ) : (
+                        <>
+                          <img 
+                            src={`/previews/templates/${cleanName}.png`} 
+                            alt={template.name} 
+                            className="w-full h-full object-contain" 
+                            style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.12))" }} 
+                          />
+                          {/* Overlay dots for primary colors */}
+                          <div className="absolute bottom-1 right-1 flex gap-0.5 bg-white/90 backdrop-blur-[2px] p-0.5 rounded-full shadow-sm border border-outline-variant/30 opacity-80 group-hover/template:opacity-100 transition-opacity">
+                            <span 
+                              className="w-2 h-2 rounded-full border border-black/10" 
+                              style={{ backgroundColor: template.settings.dots_color || "#000" }}
+                              title={`Foreground: ${template.settings.dots_color}`}
+                            />
+                            <span 
+                              className="w-2 h-2 rounded-full border border-black/10" 
+                              style={{ backgroundColor: template.settings.bg_color || "#fff" }}
+                              title={`Background: ${template.settings.bg_color}`}
+                            />
+                          </div>
+                        </>
+                      )}
                     </div>
                   </StylePreviewCard>
                 );

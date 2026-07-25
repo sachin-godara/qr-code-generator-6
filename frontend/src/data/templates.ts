@@ -8,6 +8,25 @@ export interface Template {
 
 export const PRESET_TEMPLATES: Template[] = [
   {
+    "name": "None",
+    "description": "Standard black and white square QR code with no decorations",
+    "settings": {
+      "dots_style": "square",
+      "eye_frame_style": "square",
+      "eyeball_style": "square",
+      "dots_color": "#000000",
+      "dots_color_end": "#000000",
+      "bg_color": "#ffffff",
+      "gradient_type": "Solid Color",
+      "eye_color": "#000000",
+      "eyeball_color": "#000000",
+      "frame_style": "none",
+      "text_style": "none",
+      "preset_logo": "None",
+      "logo_image": null
+    }
+  },
+  {
     "name": "Blue Speech Bubble",
     "settings": {
       "dots_style": "square",
