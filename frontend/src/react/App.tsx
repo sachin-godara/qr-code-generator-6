@@ -56,7 +56,7 @@ async function fetchQRCode(settings: any) {
 
 
 function App() {
-  const { settings, updateSettings } = useQRStore()
+  const { settings, updateSettings, applyTemplate } = useQRStore()
   const [activeTab, setActiveTab] = useState<string>("Content")
   const [zoomLevel, setZoomLevel] = useState<number>(1)
   
@@ -648,7 +648,7 @@ function App() {
                     key={template.name}
                     title={template.name}
                     isSelected={isSelected}
-                    onClick={() => updateSettings(template.settings)}
+                    onClick={() => applyTemplate(template.settings)}
                   >
                     <div className="relative w-full h-full group/template">
                       <img 
