@@ -944,15 +944,23 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
     drawer = module_drawers.get(dot_style, SquareModuleDrawer())
     
     fg = hex_to_rgb(fill_color) if str(fill_color).startswith('#') else (0, 0, 0)
-    fg_end = hex_to_rgb(fill_color_end) if str(fill_color_end).startswith('#') else (0, 0, 0)
     bg = hex_to_rgb(back_color) if str(back_color).startswith('#') else (255, 255, 255)
+    
+    if gradient_type == "Solid Color" or not fill_color_end or fill_color_end == fill_color:
+        fg_end = fg
+    elif fill_color_end == "#000000" and fill_color.lower() in ["#ffffff", "#fff"]:
+        fg_end = fg
+    else:
+        fg_end = hex_to_rgb(fill_color_end) if str(fill_color_end).startswith('#') else fg
 
-    if gradient_type == "Vertical Gradient":
+    if gradient_type in ["Vertical Gradient", "Linear Vertical"]:
         color_mask = VerticalGradiantColorMask(back_color=bg, top_color=fg, bottom_color=fg_end)
-    elif gradient_type == "Horizontal Gradient":
+    elif gradient_type in ["Horizontal Gradient", "Linear Horizontal"]:
         color_mask = HorizontalGradiantColorMask(back_color=bg, left_color=fg, right_color=fg_end)
-    elif gradient_type == "Radial Gradient":
+    elif gradient_type in ["Radial Gradient", "Radial Center"]:
         color_mask = RadialGradiantColorMask(back_color=bg, center_color=fg, edge_color=fg_end)
+    elif gradient_type in ["Diagonal (TL to BR)", "Diagonal Gradient"]:
+        color_mask = HorizontalGradiantColorMask(back_color=bg, left_color=fg, right_color=fg_end)
     else:
         color_mask = SolidFillColorMask(back_color=bg, front_color=fg)
 
