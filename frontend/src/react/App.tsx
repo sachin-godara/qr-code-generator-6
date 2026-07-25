@@ -89,6 +89,11 @@ function App() {
     return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
   }, []);
 
+  // Reset page scroll position to top when switching active configuration tabs
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, [activeTab]);
+
   // Fetch fast light QR preview using react-query
   const { data: qrData, isLoading, isError } = useQuery({
     queryKey: ["qr-code", settings],
