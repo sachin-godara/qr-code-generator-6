@@ -27,6 +27,278 @@ export const PRESET_TEMPLATES: Template[] = [
     }
   },
   {
+    "name": "Instagram Sunset Dots",
+    "description": "Vibrant Instagram gradient dots with centered logo",
+    "settings": {
+      "dots_style": "rounded",
+      "eye_frame_style": "rounded",
+      "eyeball_style": "rounded",
+      "dots_color": "#f09433",
+      "dots_color_end": "#bc1888",
+      "gradient_type": "Diagonal (TL to BR)",
+      "eye_color": "#bc1888",
+      "eyeball_color": "#e1306c",
+      "bg_color": "#ffffff",
+      "preset_logo": "Instagram",
+      "preset_logo_color": "#e1306c"
+    }
+  },
+  {
+    "name": "Instagram Sunset Card",
+    "description": "Full sunset gradient rounded card background",
+    "settings": {
+      "dots_style": "rounded",
+      "eye_frame_style": "rounded",
+      "eyeball_style": "rounded",
+      "dots_color": "#bc1888",
+      "dots_color_end": "#e1306c",
+      "gradient_type": "Diagonal (TL to BR)",
+      "eye_color": "#bc1888",
+      "eyeball_color": "#e1306c",
+      "bg_color": "#ffffff",
+      "canvas_border_width": 10,
+      "canvas_border_color": "#f09433",
+      "canvas_border_radius": 24,
+      "preset_logo": "Instagram",
+      "preset_logo_color": "#e1306c"
+    }
+  },
+  {
+    "name": "Instagram Banner Poster",
+    "description": "Instagram branded poster banner card",
+    "settings": {
+      "dots_style": "rounded",
+      "eye_frame_style": "rounded",
+      "eyeball_style": "rounded",
+      "dots_color": "#bc1888",
+      "eye_color": "#bc1888",
+      "frame_style": "border",
+      "text_style": "bottom_tab",
+      "frame_text": "INSTAGRAM",
+      "frame_color": "#e1306c",
+      "frame_text_color": "#ffffff",
+      "preset_logo": "Instagram",
+      "preset_logo_color": "#e1306c"
+    }
+  },
+  {
+    "name": "Facebook Royal Blue Frame",
+    "description": "Royal blue Facebook rounded accent frame",
+    "settings": {
+      "dots_style": "rounded",
+      "eye_frame_style": "rounded",
+      "eyeball_style": "rounded",
+      "dots_color": "#1877f2",
+      "eye_color": "#1877f2",
+      "eyeball_color": "#1877f2",
+      "canvas_border_width": 8,
+      "canvas_border_color": "#1877f2",
+      "canvas_border_radius": 20,
+      "preset_logo": "Facebook",
+      "preset_logo_color": "#1877f2"
+    }
+  },
+  {
+    "name": "Facebook Blue Banner Card",
+    "description": "Official Facebook banner card with Follow Us On CTA",
+    "settings": {
+      "dots_style": "square",
+      "eye_frame_style": "square",
+      "eyeball_style": "square",
+      "dots_color": "#1877f2",
+      "eye_color": "#1877f2",
+      "frame_style": "border",
+      "text_style": "bottom_tab",
+      "frame_text": "FOLLOW US ON",
+      "frame_color": "#1877f2",
+      "frame_text_color": "#ffffff",
+      "preset_logo": "Facebook",
+      "preset_logo_color": "#1877f2"
+    }
+  },
+  {
+    "name": "Discord Dark Mode",
+    "description": "Discord dark mode theme with brand logo",
+    "settings": {
+      "dots_style": "square",
+      "eye_frame_style": "square",
+      "eyeball_style": "square",
+      "dots_color": "#ffffff",
+      "bg_color": "#1e1f22",
+      "eye_color": "#ffffff",
+      "eyeball_color": "#5865F2",
+      "preset_logo": "Chat",
+      "preset_logo_color": "#5865F2"
+    }
+  },
+  {
+    "name": "Discord Soft Blue Gradient",
+    "description": "Light blue Discord community accent card",
+    "settings": {
+      "dots_style": "rounded",
+      "eye_frame_style": "rounded",
+      "eyeball_style": "rounded",
+      "dots_color": "#5865F2",
+      "eye_color": "#5865F2",
+      "canvas_border_width": 8,
+      "canvas_border_color": "#5865F2",
+      "canvas_border_radius": 20,
+      "preset_logo": "Chat",
+      "preset_logo_color": "#5865F2"
+    }
+  },
+  {
+    "name": "Black Pill Badge",
+    "description": "Sleek black frame with solid SCAN ME pill badge",
+    "settings": {
+      "dots_style": "square",
+      "eye_frame_style": "rounded",
+      "eyeball_style": "rounded",
+      "dots_color": "#000000",
+      "eye_color": "#000000",
+      "frame_style": "border",
+      "text_style": "bottom_tab",
+      "frame_text": "SCAN ME",
+      "frame_color": "#000000",
+      "frame_text_color": "#ffffff",
+      "frame_radius": 15
+    }
+  },
+  {
+    "name": "Blue Header Tab",
+    "description": "Blue accent card with top SCAN ME tab",
+    "settings": {
+      "dots_style": "square",
+      "eye_frame_style": "square",
+      "eyeball_style": "square",
+      "dots_color": "#1d4ed8",
+      "eye_color": "#1d4ed8",
+      "frame_style": "border",
+      "text_style": "speech_bubble_top",
+      "frame_text": "SCAN ME",
+      "frame_color": "#1d4ed8",
+      "frame_text_color": "#ffffff"
+    }
+  },
+  {
+    "name": "Orange Outline Card",
+    "description": "Bright orange outline border with bottom text label",
+    "settings": {
+      "dots_style": "square",
+      "eye_frame_style": "rounded",
+      "eyeball_style": "rounded",
+      "dots_color": "#000000",
+      "eye_color": "#000000",
+      "canvas_border_width": 6,
+      "canvas_border_color": "#ff7a00",
+      "canvas_border_radius": 16,
+      "text_style": "bottom_text",
+      "frame_text": "SCAN ME",
+      "frame_text_color": "#ff7a00"
+    }
+  },
+  {
+    "name": "Red Phone Footer Card",
+    "description": "Red phone contact card with bottom action badge",
+    "settings": {
+      "dots_style": "square",
+      "eye_frame_style": "rounded",
+      "eyeball_style": "rounded",
+      "dots_color": "#000000",
+      "eye_color": "#000000",
+      "frame_style": "border",
+      "text_style": "bottom_tab",
+      "frame_text": "SCAN ME",
+      "frame_color": "#dc2626",
+      "frame_text_color": "#ffffff",
+      "preset_logo": "Phone",
+      "preset_logo_color": "#dc2626"
+    }
+  },
+  {
+    "name": "Black Glossy Header Card",
+    "description": "Monochrome glossy card with top SCAN ME header",
+    "settings": {
+      "dots_style": "square",
+      "eye_frame_style": "square",
+      "eyeball_style": "square",
+      "dots_color": "#000000",
+      "eye_color": "#000000",
+      "canvas_border_width": 4,
+      "canvas_border_color": "#000000",
+      "canvas_border_radius": 12,
+      "text_style": "speech_bubble_top",
+      "frame_text": "SCAN ME",
+      "frame_color": "#000000",
+      "frame_text_color": "#ffffff"
+    }
+  },
+  {
+    "name": "Black Canvas Dark Mode",
+    "description": "Inverted dark theme canvas with white modules",
+    "settings": {
+      "dots_style": "rounded",
+      "eye_frame_style": "rounded",
+      "eyeball_style": "rounded",
+      "dots_color": "#ffffff",
+      "bg_color": "#000000",
+      "eye_color": "#ffffff",
+      "eyeball_color": "#ffffff",
+      "canvas_border_width": 8,
+      "canvas_border_color": "#222222",
+      "canvas_border_radius": 20,
+      "preset_logo": "Link",
+      "preset_logo_color": "#ffffff"
+    }
+  },
+  {
+    "name": "LinkedIn Banner Card",
+    "description": "Professional LinkedIn blue brand card",
+    "settings": {
+      "dots_style": "square",
+      "eye_frame_style": "square",
+      "eyeball_style": "square",
+      "dots_color": "#0a66c2",
+      "eye_color": "#0a66c2",
+      "canvas_border_width": 8,
+      "canvas_border_color": "#0a66c2",
+      "canvas_border_radius": 16,
+      "preset_logo": "App",
+      "preset_logo_color": "#0a66c2"
+    }
+  },
+  {
+    "name": "Threads Black Canvas",
+    "description": "Ultra dark Threads edition with crisp white elements",
+    "settings": {
+      "dots_style": "rounded",
+      "eye_frame_style": "circle",
+      "eyeball_style": "circle",
+      "dots_color": "#ffffff",
+      "bg_color": "#000000",
+      "eye_color": "#ffffff",
+      "eyeball_color": "#ffffff",
+      "preset_logo": "Chat",
+      "preset_logo_color": "#ffffff"
+    }
+  },
+  {
+    "name": "Google 4-Color Brand Card",
+    "description": "Multi-colored Google brand style card",
+    "settings": {
+      "dots_style": "rounded",
+      "eye_color": "#4285f4",
+      "eyeball_color": "#ea4335",
+      "dots_color": "#34a853",
+      "bg_color": "#ffffff",
+      "canvas_border_width": 8,
+      "canvas_border_color": "#4285f4",
+      "canvas_border_radius": 16,
+      "preset_logo": "Globe",
+      "preset_logo_color": "#4285f4"
+    }
+  },
+  {
     "name": "Blue Speech Bubble",
     "settings": {
       "dots_style": "square",
