@@ -1,6 +1,21 @@
 import qrcode
 import math
 from qrcode.image.styledpil import StyledPilImage
+
+class CustomStyledPilImage(StyledPilImage):
+    """
+    Subclass of StyledPilImage that fixes the python qrcode library bug on dark backgrounds.
+    When back_color is dark, self.paint_color must be light/white so module drawing is distinct
+    from back_color during extrapolation.
+    """
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        if hasattr(self, 'color_mask') and hasattr(self.color_mask, 'back_color'):
+            bg = self.color_mask.back_color
+            bg_lum = bg[0]*0.299 + bg[1]*0.587 + bg[2]*0.114
+            if bg_lum < 128:
+                self.paint_color = (255, 255, 255, 255) if len(bg) == 4 else (255, 255, 255)
+                self.color_mask.paint_color = self.paint_color
 from qrcode.image.styles.moduledrawers import (
     SquareModuleDrawer, GappedSquareModuleDrawer, CircleModuleDrawer,
     RoundedModuleDrawer, VerticalBarsDrawer, HorizontalBarsDrawer
@@ -965,7 +980,7 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
         color_mask = SolidFillColorMask(back_color=bg, front_color=fg)
 
     img = qr.make_image(
-        image_factory=StyledPilImage,
+        image_factory=CustomStyledPilImage,
         module_drawer=drawer,
         color_mask=color_mask,
     ).convert("RGBA")
