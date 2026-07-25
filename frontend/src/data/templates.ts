@@ -127,7 +127,7 @@ export const PRESET_TEMPLATES: Template[] = [
       "bg_color": "#1e1f22",
       "eye_color": "#ffffff",
       "eyeball_color": "#5865F2",
-      "preset_logo": "Chat",
+      "preset_logo": "Discord",
       "preset_logo_color": "#5865F2"
     }
   },
@@ -143,7 +143,7 @@ export const PRESET_TEMPLATES: Template[] = [
       "canvas_border_width": 8,
       "canvas_border_color": "#5865F2",
       "canvas_border_radius": 20,
-      "preset_logo": "Chat",
+      "preset_logo": "Discord",
       "preset_logo_color": "#5865F2"
     }
   },

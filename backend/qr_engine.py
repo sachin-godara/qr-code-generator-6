@@ -33,7 +33,8 @@ PRESET_LOGO_BRAND_COLORS = {
     "payment": "#10b981",
     "store": "#f97316",
     "chat": "#3b82f6",
-    "app": "#8b5cf6"
+    "app": "#8b5cf6",
+    "discord": "#5865f2"
 }
 
 def generate_preset_logo(name, color=(0,0,0)):
