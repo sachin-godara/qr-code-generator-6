@@ -68,10 +68,11 @@ def generate_preset_logo(name, color=(0,0,0)):
         doc = fitz.open("svg", svg_content.encode('utf-8'))
         page = doc[0]
         
-        # Original QR code generation used 1000x1000, resized to 200x200
-        # PyMuPDF uses the viewBox. Our viewBox is 24x24.
-        # We'll render directly to a 200x200 image.
-        mat = fitz.Matrix(200 / 24, 200 / 24)
+        # Dynamically scale SVG based on its bounding rect to fit 200x200
+        rect = page.rect
+        svg_w = rect.width if rect.width > 0 else 24.0
+        svg_h = rect.height if rect.height > 0 else 24.0
+        mat = fitz.Matrix(200.0 / svg_w, 200.0 / svg_h)
         pix = page.get_pixmap(matrix=mat, alpha=True)
         img = Image.frombytes("RGBA", [pix.width, pix.height], pix.samples)
         
