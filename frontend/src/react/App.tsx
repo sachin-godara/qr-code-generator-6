@@ -1578,7 +1578,7 @@ function App() {
                       }
                       updateSettings({ effect_shadow: newId, effect_shadow_color: newColor });
                     }}
-                    className={`p-3 rounded-xl border flex flex-col items-center text-center transition-all duration-200 ${settings.effect_shadow === s.id
+                    className={`p-3 rounded-xl border flex flex-col items-center text-center tab-spring ${settings.effect_shadow === s.id
                         ? "bg-primary/10 border-primary text-primary font-bold shadow-sm"
                         : "border-outline-variant bg-white text-on-surface hover:bg-surface-container-highest"
                       }`}
@@ -2015,7 +2015,7 @@ function App() {
               <button
                 key={tab.name}
                 onClick={() => setActiveTab(tab.name)}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium transition-all duration-150 relative sidebar-item ${
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium tab-spring relative sidebar-item ${
                   activeTab === tab.name
                     ? "sidebar-item-active"
                     : "text-on-surface-variant hover:bg-surface-container hover:text-on-surface"
@@ -2160,9 +2160,9 @@ function App() {
                         <div className="grid grid-cols-2 gap-2">
                           <button
                             onClick={() => setZoomLevel(1)}
-                            className={`flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg border text-sm font-semibold transition-all min-h-[40px] touch-press ${zoomLevel === 1
+                            className={`flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg border text-sm font-semibold tab-spring min-h-[40px] touch-press ${zoomLevel === 1
                                 ? 'bg-primary border-primary text-white shadow-md'
-                                : 'bg-surface border-outline-variant text-on-surface hover:bg-surface-container-highest active:scale-95'
+                                : 'bg-surface border-outline-variant text-on-surface hover:bg-surface-container-highest'
                               }`}
                           >
                             <span className="material-symbols-outlined text-[18px]">fit_screen</span>
@@ -2170,9 +2170,9 @@ function App() {
                           </button>
                           <button
                             onClick={() => setZoomLevel(2)}
-                            className={`flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg border text-sm font-semibold transition-all min-h-[40px] touch-press ${zoomLevel === 2
+                            className={`flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg border text-sm font-semibold tab-spring min-h-[40px] touch-press ${zoomLevel === 2
                                 ? 'bg-primary border-primary text-white shadow-md'
-                                : 'bg-surface border-outline-variant text-on-surface hover:bg-surface-container-highest active:scale-95'
+                                : 'bg-surface border-outline-variant text-on-surface hover:bg-surface-container-highest'
                               }`}
                           >
                             <span className="material-symbols-outlined text-[18px]">zoom_in</span>
