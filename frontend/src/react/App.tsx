@@ -9,18 +9,18 @@ import { PresetLogoPreview, getReactLogoPngDataUrl, PRESET_LOGO_BRAND_COLORS } f
 
 async function fetchQRCode(settings: any) {
   const { contentData, ...rest } = settings
-  
+
   let finalLogo = rest.logo_image;
   if (!finalLogo && rest.preset_logo && rest.preset_logo !== "None") {
     finalLogo = await getReactLogoPngDataUrl(
-      rest.preset_logo, 
-      rest.logo_color_mode || "default", 
-      rest.logo_custom_color || "#3b82f6", 
+      rest.preset_logo,
+      rest.logo_color_mode || "default",
+      rest.logo_custom_color || "#3b82f6",
       rest.dots_color || "#000000"
     );
   }
 
-  const color = rest.logo_color_mode === "custom" 
+  const color = rest.logo_color_mode === "custom"
     ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#3b82f6")
     : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
 
@@ -39,11 +39,11 @@ async function fetchQRCode(settings: any) {
     },
     body: JSON.stringify(payload),
   })
-  
+
   if (!response.ok) {
     throw new Error("Failed to generate QR code")
   }
-  
+
   const blob = await response.blob()
   const url = URL.createObjectURL(blob)
 
@@ -59,24 +59,23 @@ function App() {
   const { settings, updateSettings, applyTemplate } = useQRStore()
   const [activeTab, setActiveTab] = useState<string>("Content")
   const [zoomLevel, setZoomLevel] = useState<number>(1)
-  
+
   const [vcard, setVcard] = useState({ fn: '', ln: '', org: '', title: '', tel: '', email: '', url: '' })
   const [event, setEvent] = useState({ title: '', desc: '', loc: '', start: '', end: '' })
   const [sms, setSms] = useState({ phone: '', msg: '' })
   const [wifi, setWifi] = useState({ ssid: '', type: 'WPA/WPA2', pass: '' })
 
   // Mobile UI state
-  const [mobileSheetOpen, setMobileSheetOpen] = useState<string | null>(null)
+  const [mobileMainTab, setMobileMainTab] = useState<'content' | 'design'>('content')
+  const [mobileDesignSubTab, setMobileDesignSubTab] = useState<string>('Shape')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [showMiniPreview, setShowMiniPreview] = useState(false)
-  const [mobileMoreOpen, setMobileMoreOpen] = useState(false)
   const previewRef = useRef<HTMLDivElement>(null)
-  const mobileSheetRef = useRef<HTMLDivElement>(null)
-  
+
   const [isComparing, setIsComparing] = useState(false);
   const [isScanning, setIsScanning] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  
+
   const [downloadFormat, setDownloadFormat] = useState<"PNG" | "SVG" | "PDF">("PNG");
   const [downloadSize, setDownloadSize] = useState<number>(1024);
   const [customFilename, setCustomFilename] = useState<string>("");
@@ -105,36 +104,12 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
-  // Lock body scroll when mobile sheet is open
-  useEffect(() => {
-    if (mobileSheetOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => { document.body.style.overflow = ''; };
-  }, [mobileSheetOpen]);
-
-  // Close mobile "more" menu when clicking outside
-  useEffect(() => {
-    if (!mobileMoreOpen) return;
-    const handleClick = () => setMobileMoreOpen(false);
-    document.addEventListener('click', handleClick);
-    return () => document.removeEventListener('click', handleClick);
-  }, [mobileMoreOpen]);
-
   // Reset page scroll position to top when switching active configuration tabs (desktop)
   useEffect(() => {
     if (window.innerWidth >= 1024) {
       window.scrollTo({ top: 0, behavior: "auto" });
     }
   }, [activeTab]);
-
-  // Handle mobile bottom tab selection
-  const handleMobileTab = useCallback((tabName: string) => {
-    setMobileSheetOpen(tabName);
-    setMobileMoreOpen(false);
-  }, []);
 
   // Fetch fast light QR preview using react-query
   const { data: qrData, isLoading, isError } = useQuery({
@@ -174,8 +149,8 @@ function App() {
   const frameStyles = FRAME_STYLES
   const textStyles = TEXT_STYLES
   const fontStyles = [
-    "Outfit (Modern)", 
-    "Playfair Display (Elegant)", 
+    "Outfit (Modern)",
+    "Playfair Display (Elegant)",
     "Courier Prime (Retro)",
     "Montserrat (Geometric)",
     "Roboto (Clean)",
@@ -199,13 +174,13 @@ function App() {
       let finalLogo = rest.logo_image;
       if (!finalLogo && rest.preset_logo && rest.preset_logo !== "None") {
         finalLogo = await getReactLogoPngDataUrl(
-          rest.preset_logo, 
-          rest.logo_color_mode || "default", 
-          rest.logo_custom_color || "#3b82f6", 
+          rest.preset_logo,
+          rest.logo_color_mode || "default",
+          rest.logo_custom_color || "#3b82f6",
           rest.dots_color || "#000000"
         );
       }
-      const color = rest.logo_color_mode === "custom" 
+      const color = rest.logo_color_mode === "custom"
         ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#3b82f6")
         : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
 
@@ -233,13 +208,13 @@ function App() {
       let finalLogo = rest.logo_image;
       if (!finalLogo && rest.preset_logo && rest.preset_logo !== "None") {
         finalLogo = await getReactLogoPngDataUrl(
-          rest.preset_logo, 
-          rest.logo_color_mode || "default", 
-          rest.logo_custom_color || "#3b82f6", 
+          rest.preset_logo,
+          rest.logo_color_mode || "default",
+          rest.logo_custom_color || "#3b82f6",
           rest.dots_color || "#000000"
         );
       }
-      const color = rest.logo_color_mode === "custom" 
+      const color = rest.logo_color_mode === "custom"
         ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#3b82f6")
         : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
 
@@ -274,14 +249,14 @@ function App() {
       let finalLogo = rest.logo_image;
       if (!finalLogo && rest.preset_logo && rest.preset_logo !== "None") {
         finalLogo = await getReactLogoPngDataUrl(
-          rest.preset_logo, 
-          rest.logo_color_mode || "default", 
-          rest.logo_custom_color || "#3b82f6", 
+          rest.preset_logo,
+          rest.logo_color_mode || "default",
+          rest.logo_custom_color || "#3b82f6",
           rest.dots_color || "#000000"
         );
       }
 
-      const color = rest.logo_color_mode === "custom" 
+      const color = rest.logo_color_mode === "custom"
         ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#3b82f6")
         : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
 
@@ -323,7 +298,7 @@ function App() {
     try {
       setIsCopying(true);
       const { contentData, ...rest } = settings;
-      const color = rest.logo_color_mode === "custom" 
+      const color = rest.logo_color_mode === "custom"
         ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#3b82f6")
         : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
 
@@ -399,11 +374,10 @@ function App() {
                 <button
                   key={type.id}
                   onClick={() => updateSettings({ contentType: type.id })}
-                  className={`flex flex-col items-center gap-1 sm:gap-1.5 p-2.5 sm:p-3.5 rounded-xl duration-200 border min-h-[48px] touch-press ${
-                    settings.contentType === type.id
+                  className={`flex flex-col items-center gap-1 sm:gap-1.5 p-2.5 sm:p-3.5 rounded-xl duration-200 border min-h-[48px] touch-press ${settings.contentType === type.id
                       ? "bg-primary text-white border-primary font-bold shadow-md shadow-primary/10"
                       : "text-on-surface-variant hover:bg-white/50 border-transparent active:scale-95"
-                  }`}
+                    }`}
                 >
                   <span className="material-symbols-outlined text-[20px] sm:text-[22px]">{type.icon}</span>
                   <span className="font-label-md text-[10px] sm:text-label-md leading-tight">{type.label}</span>
@@ -665,10 +639,10 @@ function App() {
             <p className="text-on-surface-variant font-label-md text-label-md">
               Choose a preset combination of styles, frames, and markers.
             </p>
-            <div className="flex flex-wrap gap-4 max-h-[600px] overflow-y-auto pr-2 custom-scrollbar justify-start">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 gap-3 max-h-[600px] overflow-y-auto pr-1 pb-4 custom-scrollbar">
               {PRESET_TEMPLATES.map((template) => {
                 const cleanName = template.name.toLowerCase().replace(/\s+/g, "_");
-                const isSelected = 
+                const isSelected =
                   settings.dots_style === template.settings.dots_style &&
                   settings.eye_frame_style === template.settings.eye_frame_style &&
                   settings.eyeball_style === template.settings.eyeball_style &&
@@ -685,21 +659,21 @@ function App() {
                     onClick={() => applyTemplate(template.settings)}
                   >
                     <div className="relative w-full h-full group/template">
-                      <img 
-                        src={`/previews/templates/${cleanName}.png`} 
-                        alt={template.name} 
-                        className="w-full h-full object-contain p-1" 
-                        style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.12))" }} 
+                      <img
+                        src={`/previews/templates/${cleanName}.png`}
+                        alt={template.name}
+                        className="w-full h-full object-contain p-1"
+                        style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.12))" }}
                       />
                       {/* Overlay dots for primary colors */}
                       <div className="absolute bottom-1 right-1 flex gap-0.5 bg-white/90 backdrop-blur-[2px] p-0.5 rounded-full shadow-sm border border-outline-variant/30 opacity-80 group-hover/template:opacity-100 transition-opacity">
-                        <span 
-                          className="w-2 h-2 rounded-full border border-black/10" 
+                        <span
+                          className="w-2 h-2 rounded-full border border-black/10"
                           style={{ backgroundColor: template.settings.dots_color || "#000" }}
                           title={`Foreground: ${template.settings.dots_color}`}
                         />
-                        <span 
-                          className="w-2 h-2 rounded-full border border-black/10" 
+                        <span
+                          className="w-2 h-2 rounded-full border border-black/10"
                           style={{ backgroundColor: template.settings.bg_color || "#fff" }}
                           title={`Background: ${template.settings.bg_color}`}
                         />
@@ -794,48 +768,48 @@ function App() {
 
             <div className="space-y-3">
               <label className="block text-sm font-semibold">Dot Module Style</label>
-              <div className="flex overflow-x-auto gap-4 pt-2 pb-4 px-1 snap-x snap-mandatory custom-scrollbar">
+              <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-3 xl:grid-cols-4 gap-2 pt-2 pb-4">
                 {dotStyles.map((style) => (
-                    <StylePreviewCard
-                      key={style}
-                      title={style}
-                      isSelected={settings.dots_style === style}
-                      onClick={() => updateSettings({ dots_style: style as any })}
-                    >
-                      <img src={`/previews/dots/${style}.png`} alt={style} className="w-[95%] h-[95%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
-                    </StylePreviewCard>
+                  <StylePreviewCard
+                    key={style}
+                    title={style}
+                    isSelected={settings.dots_style === style}
+                    onClick={() => updateSettings({ dots_style: style as any })}
+                  >
+                    <img src={`/previews/dots/${style}.png`} alt={style} className="w-[95%] h-[95%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
+                  </StylePreviewCard>
                 ))}
               </div>
             </div>
 
             <div className="space-y-3">
               <label className="block text-sm font-semibold">Eye Style (Outer Frame)</label>
-              <div className="flex overflow-x-auto gap-4 pt-2 pb-4 px-1 snap-x snap-mandatory custom-scrollbar">
+              <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-3 xl:grid-cols-4 gap-2 pt-2 pb-4">
                 {eyeFrameStyles.map((style) => (
-                    <StylePreviewCard
-                      key={style}
-                      title={style}
-                      isSelected={settings.eye_frame_style === style}
-                      onClick={() => updateSettings({ eye_frame_style: style as any })}
-                    >
-                      <img src={`/previews/eye_frames/${style}.png`} alt={style} className="w-[95%] h-[95%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
-                    </StylePreviewCard>
+                  <StylePreviewCard
+                    key={style}
+                    title={style}
+                    isSelected={settings.eye_frame_style === style}
+                    onClick={() => updateSettings({ eye_frame_style: style as any })}
+                  >
+                    <img src={`/previews/eye_frames/${style}.png`} alt={style} className="w-[95%] h-[95%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
+                  </StylePreviewCard>
                 ))}
               </div>
             </div>
-            
+
             <div className="space-y-3">
               <label className="block text-sm font-semibold">Eyeball Style (Inner)</label>
-              <div className="flex overflow-x-auto gap-4 pt-2 pb-4 px-1 snap-x snap-mandatory custom-scrollbar">
+              <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-3 xl:grid-cols-4 gap-2 pt-2 pb-4">
                 {eyeballStyles.map((style) => (
-                    <StylePreviewCard
-                      key={style}
-                      title={style}
-                      isSelected={settings.eyeball_style === style}
-                      onClick={() => updateSettings({ eyeball_style: style as any })}
-                    >
-                      <img src={`/previews/eyeballs/${style}.png`} alt={style} className="w-[95%] h-[95%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
-                    </StylePreviewCard>
+                  <StylePreviewCard
+                    key={style}
+                    title={style}
+                    isSelected={settings.eyeball_style === style}
+                    onClick={() => updateSettings({ eyeball_style: style as any })}
+                  >
+                    <img src={`/previews/eyeballs/${style}.png`} alt={style} className="w-[95%] h-[95%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
+                  </StylePreviewCard>
                 ))}
               </div>
             </div>
@@ -922,7 +896,7 @@ function App() {
                   }}
                   className="absolute inset-0 opacity-0 cursor-pointer z-10"
                 />
-                
+
                 {settings.logo_image ? (
                   <div className="flex flex-col items-center gap-3">
                     <div className="w-16 h-16 rounded-xl overflow-hidden border border-outline-variant shadow-md bg-white p-1.5 relative group/thumb">
@@ -974,16 +948,15 @@ function App() {
               <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
                 {presetLogos.map((logo) => {
                   const isSelected = settings.preset_logo === logo && !settings.logo_image;
-                  
+
                   return (
                     <button
                       key={logo}
                       onClick={() => updateSettings({ preset_logo: logo as any, logo_image: null })}
-                      className={`p-2 border rounded-xl flex flex-col items-center justify-center gap-1.5 transition-all duration-200 ${
-                        isSelected
+                      className={`p-2 border rounded-xl flex flex-col items-center justify-center gap-1.5 transition-all duration-200 ${isSelected
                           ? "bg-primary/10 text-primary border-primary ring-2 ring-primary/20 scale-[1.02] shadow-sm font-semibold"
                           : "bg-white hover:bg-muted border-outline-variant text-on-surface"
-                      }`}
+                        }`}
                     >
                       <PresetLogoPreview name={logo} />
                       <span className="text-[10px] truncate max-w-full font-medium">{logo}</span>
@@ -1009,11 +982,10 @@ function App() {
                   <button
                     type="button"
                     onClick={() => updateSettings({ logo_color_mode: "default" })}
-                    className={`p-2.5 rounded-lg border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
-                      settings.logo_color_mode === "default"
+                    className={`p-2.5 rounded-lg border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${settings.logo_color_mode === "default"
                         ? "bg-primary text-white border-primary shadow-sm"
                         : "bg-white text-on-surface border-outline-variant hover:bg-surface-container-highest"
-                    }`}
+                      }`}
                   >
                     <span className="material-symbols-outlined text-sm">color_lens</span>
                     Default Brand
@@ -1022,11 +994,10 @@ function App() {
                   <button
                     type="button"
                     onClick={() => updateSettings({ logo_color_mode: "custom" })}
-                    className={`p-2.5 rounded-lg border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${
-                      settings.logo_color_mode === "custom"
+                    className={`p-2.5 rounded-lg border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${settings.logo_color_mode === "custom"
                         ? "bg-primary text-white border-primary shadow-sm"
                         : "bg-white text-on-surface border-outline-variant hover:bg-surface-container-highest"
-                    }`}
+                      }`}
                   >
                     <span className="material-symbols-outlined text-sm">colorize</span>
                     Custom Color
@@ -1057,9 +1028,8 @@ function App() {
                           key={c}
                           type="button"
                           onClick={() => updateSettings({ logo_custom_color: c })}
-                          className={`w-6 h-6 rounded-full border border-outline-variant/60 shadow-xs transition-transform hover:scale-110 ${
-                            (settings.logo_custom_color || "#3b82f6").toLowerCase() === c ? "ring-2 ring-primary ring-offset-1" : ""
-                          }`}
+                          className={`w-6 h-6 rounded-full border border-outline-variant/60 shadow-xs transition-transform hover:scale-110 ${(settings.logo_custom_color || "#3b82f6").toLowerCase() === c ? "ring-2 ring-primary ring-offset-1" : ""
+                            }`}
                           style={{ backgroundColor: c }}
                         />
                       ))}
@@ -1099,11 +1069,11 @@ function App() {
                       Dot Clearance Around Logo
                     </label>
                     <span className="text-xs text-on-surface-variant font-medium">
-                      {settings.logo_clear_size === -1 
-                        ? "None (Overlap)" 
-                        : settings.logo_clear_size === 0 
-                        ? "Tight (0 dots)" 
-                        : `${settings.logo_clear_size.toFixed(1)} dots`}
+                      {settings.logo_clear_size === -1
+                        ? "None (Overlap)"
+                        : settings.logo_clear_size === 0
+                          ? "Tight (0 dots)"
+                          : `${settings.logo_clear_size.toFixed(1)} dots`}
                     </span>
                   </div>
                   <input
@@ -1139,11 +1109,10 @@ function App() {
                         <button
                           key={shape}
                           onClick={() => updateSettings({ logo_card_shape: shape as any })}
-                          className={`p-3 border rounded-xl text-xs flex items-center justify-center gap-2 transition-all duration-200 ${
-                            isSelected
+                          className={`p-3 border rounded-xl text-xs flex items-center justify-center gap-2 transition-all duration-200 ${isSelected
                               ? "bg-primary text-white border-primary font-bold shadow-md scale-[1.02]"
                               : "bg-white hover:bg-muted border-outline-variant text-on-surface"
-                          }`}
+                            }`}
                         >
                           {shape === "None" && <span className="material-symbols-outlined text-sm">block</span>}
                           {shape === "Circle" && <span className="material-symbols-outlined text-sm">circle</span>}
@@ -1242,7 +1211,7 @@ function App() {
           <div className="bg-surface-container-lowest p-gutter rounded-2xl border border-outline-variant shadow-sm space-y-6">
             <div className="space-y-3">
               <label className="block text-sm font-semibold">Layout Frame Style</label>
-              <div className="flex overflow-x-auto gap-4 pt-2 pb-4 px-1 snap-x snap-mandatory custom-scrollbar">
+              <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-3 xl:grid-cols-4 gap-2 pt-2 pb-4">
                 {frameStyles.map((style) => (
                   <StylePreviewCard
                     key={style}
@@ -1325,7 +1294,7 @@ function App() {
 
             <div className="space-y-3 pt-4 border-t border-outline-variant/30">
               <label className="block text-sm font-semibold">Text Style</label>
-              <div className="flex overflow-x-auto gap-4 pt-2 pb-4 px-1 snap-x snap-mandatory custom-scrollbar">
+              <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-3 xl:grid-cols-4 gap-2 pt-2 pb-4">
                 {textStyles.map((style) => (
                   <StylePreviewCard
                     key={style}
@@ -1358,11 +1327,10 @@ function App() {
                       <button
                         key={font}
                         onClick={() => updateSettings({ font_name: font as any })}
-                        className={`p-3 border rounded-xl flex flex-col items-center justify-center gap-1 transition-colors ${
-                          settings.font_name === font
+                        className={`p-3 border rounded-xl flex flex-col items-center justify-center gap-1 transition-colors ${settings.font_name === font
                             ? "bg-primary text-white border-primary shadow-md"
                             : "bg-white hover:bg-muted border-outline-variant text-on-surface"
-                        }`}
+                          }`}
                       >
                         <span style={{ fontFamily: font.split(" (")[0] }} className="text-2xl leading-none">Ag</span>
                         <span className="text-[10px] font-body-md opacity-80">{font.split(" (")[0]}</span>
@@ -1446,15 +1414,14 @@ function App() {
                     <button
                       key={opt.value}
                       type="button"
-                      onClick={() => updateSettings({ 
+                      onClick={() => updateSettings({
                         gradient_type: opt.value,
                         dots_color_end: opt.value !== "Solid Color" && settings.dots_color_end === "#000000" && settings.dots_color === "#000000" ? "#0050cb" : settings.dots_color_end
                       })}
-                      className={`flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl border text-xs font-bold transition-all duration-200 ${
-                        selected 
-                          ? 'bg-primary/15 border-primary text-primary shadow-sm scale-[1.02]' 
+                      className={`flex flex-col items-center justify-center gap-1.5 p-3 rounded-xl border text-xs font-bold transition-all duration-200 ${selected
+                          ? 'bg-primary/15 border-primary text-primary shadow-sm scale-[1.02]'
                           : 'bg-white border-outline-variant text-on-surface-variant hover:bg-surface hover:border-outline'
-                      }`}
+                        }`}
                     >
                       <span className="material-symbols-outlined text-lg">{opt.icon}</span>
                       <span>{opt.label}</span>
@@ -1471,18 +1438,18 @@ function App() {
                       <span className="material-symbols-outlined text-primary text-base">palette</span>
                       Live Blend Preview:
                     </span>
-                    <div 
+                    <div
                       className="w-full sm:w-64 h-6 rounded-lg border border-outline-variant shadow-inner transition-all duration-300"
                       style={{
-                        background: settings.gradient_type === "Radial Gradient" 
-                          ? `radial-gradient(circle, ${settings.dots_color}, ${settings.dots_color_end})` 
+                        background: settings.gradient_type === "Radial Gradient"
+                          ? `radial-gradient(circle, ${settings.dots_color}, ${settings.dots_color_end})`
                           : settings.gradient_type === "Horizontal Gradient"
-                          ? `linear-gradient(to right, ${settings.dots_color}, ${settings.dots_color_end})`
-                          : settings.gradient_type === "Diagonal (TL to BR)"
-                          ? `linear-gradient(135deg, ${settings.dots_color}, ${settings.dots_color_end})`
-                          : settings.gradient_type === "Diagonal (TR to BL)"
-                          ? `linear-gradient(225deg, ${settings.dots_color}, ${settings.dots_color_end})`
-                          : `linear-gradient(to bottom, ${settings.dots_color}, ${settings.dots_color_end})`
+                            ? `linear-gradient(to right, ${settings.dots_color}, ${settings.dots_color_end})`
+                            : settings.gradient_type === "Diagonal (TL to BR)"
+                              ? `linear-gradient(135deg, ${settings.dots_color}, ${settings.dots_color_end})`
+                              : settings.gradient_type === "Diagonal (TR to BL)"
+                                ? `linear-gradient(225deg, ${settings.dots_color}, ${settings.dots_color_end})`
+                                : `linear-gradient(to bottom, ${settings.dots_color}, ${settings.dots_color_end})`
                       }}
                     />
                   </div>
@@ -1537,14 +1504,12 @@ function App() {
               <button
                 type="button"
                 onClick={() => updateSettings({ invert_colors: !settings.invert_colors })}
-                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  settings.invert_colors ? "bg-primary" : "bg-outline-variant"
-                }`}
+                className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${settings.invert_colors ? "bg-primary" : "bg-outline-variant"
+                  }`}
               >
                 <span
-                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
-                    settings.invert_colors ? "translate-x-6" : "translate-x-1"
-                  }`}
+                  className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${settings.invert_colors ? "translate-x-6" : "translate-x-1"
+                    }`}
                 />
               </button>
             </div>
@@ -1583,11 +1548,10 @@ function App() {
                       }
                       updateSettings({ effect_shadow: newId, effect_shadow_color: newColor });
                     }}
-                    className={`p-3 rounded-xl border flex flex-col items-center text-center transition-all duration-200 ${
-                      settings.effect_shadow === s.id
+                    className={`p-3 rounded-xl border flex flex-col items-center text-center transition-all duration-200 ${settings.effect_shadow === s.id
                         ? "bg-primary/10 border-primary text-primary font-bold shadow-sm"
                         : "border-outline-variant bg-white text-on-surface hover:bg-surface-container-highest"
-                    }`}
+                      }`}
                   >
                     <span className="text-xs font-bold">{s.name}</span>
                   </button>
@@ -1747,11 +1711,10 @@ function App() {
                   <button
                     key={level.id}
                     onClick={() => updateSettings({ error_correction: level.id as any })}
-                    className={`p-3.5 rounded-xl border flex flex-col items-center justify-center transition-all duration-200 ${
-                      settings.error_correction === level.id
+                    className={`p-3.5 rounded-xl border flex flex-col items-center justify-center transition-all duration-200 ${settings.error_correction === level.id
                         ? "bg-primary/10 border-primary text-primary font-bold shadow-sm"
                         : "border-outline-variant bg-white text-on-surface hover:bg-surface-container-highest"
-                    }`}
+                      }`}
                   >
                     <span className="text-base font-bold">{level.id} - {level.name}</span>
                     <span className="text-[11px] text-on-surface-variant mt-0.5">{level.desc}</span>
@@ -1834,11 +1797,10 @@ function App() {
                   <button
                     key={fmt.id}
                     onClick={() => setDownloadFormat(fmt.id as any)}
-                    className={`p-4 rounded-xl border flex flex-col items-center text-center transition-all duration-200 ${
-                      downloadFormat === fmt.id
+                    className={`p-4 rounded-xl border flex flex-col items-center text-center transition-all duration-200 ${downloadFormat === fmt.id
                         ? "bg-primary/10 border-primary text-primary font-bold shadow-sm"
                         : "border-outline-variant bg-white text-on-surface hover:bg-surface-container-highest"
-                    }`}
+                      }`}
                   >
                     <span className="material-symbols-outlined text-2xl mb-1">{fmt.icon}</span>
                     <span className="text-base font-bold">{fmt.id}</span>
@@ -1862,11 +1824,10 @@ function App() {
                     <button
                       key={size}
                       onClick={() => setDownloadSize(size)}
-                      className={`py-2.5 px-3 rounded-xl border text-xs font-bold transition-all ${
-                        downloadSize === size
+                      className={`py-2.5 px-3 rounded-xl border text-xs font-bold transition-all ${downloadSize === size
                           ? "bg-primary text-white border-primary shadow-sm"
                           : "border-outline-variant bg-white text-on-surface hover:bg-surface-container-highest"
-                      }`}
+                        }`}
                     >
                       {size}px
                     </button>
@@ -1899,13 +1860,12 @@ function App() {
               <button
                 onClick={handleDownloadCustom}
                 disabled={isLoading || isError || isDownloading || isCopying}
-                className={`flex-1 py-4 px-6 rounded-xl font-bold flex items-center justify-center gap-3 transition-all duration-300 shadow-lg text-base ${
-                  downloadSuccess
+                className={`flex-1 py-4 px-6 rounded-xl font-bold flex items-center justify-center gap-3 transition-all duration-300 shadow-lg text-base ${downloadSuccess
                     ? "bg-emerald-600 text-white shadow-emerald-600/25 scale-[1.01]"
                     : isDownloading
-                    ? "bg-primary/80 text-on-primary cursor-wait shadow-primary/20 animate-pulse"
-                    : "bg-gradient-to-r from-primary to-primary/90 hover:from-primary/95 hover:to-primary text-on-primary shadow-primary/25 hover:shadow-xl hover:scale-[1.01] active:scale-[0.99]"
-                } disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100`}
+                      ? "bg-primary/80 text-on-primary cursor-wait shadow-primary/20 animate-pulse"
+                      : "bg-gradient-to-r from-primary to-primary/90 hover:from-primary/95 hover:to-primary text-on-primary shadow-primary/25 hover:shadow-xl hover:scale-[1.01] active:scale-[0.99]"
+                  } disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100`}
               >
                 {isDownloading ? (
                   <>
@@ -1930,13 +1890,12 @@ function App() {
               <button
                 onClick={handleCopyToClipboard}
                 disabled={isLoading || isError || isDownloading || isCopying}
-                className={`py-4 px-6 rounded-xl font-bold flex items-center justify-center gap-2 border transition-all duration-300 shadow-sm ${
-                  copySuccess
+                className={`py-4 px-6 rounded-xl font-bold flex items-center justify-center gap-2 border transition-all duration-300 shadow-sm ${copySuccess
                     ? "bg-emerald-600 text-white border-emerald-600 shadow-emerald-600/20 scale-[1.01]"
                     : isCopying
-                    ? "bg-surface-container-highest text-on-surface cursor-wait border-outline-variant"
-                    : "bg-white border-outline-variant text-on-surface hover:bg-surface-container-highest hover:border-outline hover:shadow-md active:scale-[0.99]"
-                } disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100`}
+                      ? "bg-surface-container-highest text-on-surface cursor-wait border-outline-variant"
+                      : "bg-white border-outline-variant text-on-surface hover:bg-surface-container-highest hover:border-outline hover:shadow-md active:scale-[0.99]"
+                  } disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100`}
               >
                 {isCopying ? (
                   <>
@@ -1964,10 +1923,10 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col font-body-md text-on-surface bg-background antialiased">
-      
+    <div className="min-h-screen flex flex-col font-body-md text-on-surface bg-background antialiased pt-14 sm:pt-16">
+
       {/* TopNavBar with mobile hamburger */}
-      <nav className="w-full top-0 sticky z-50 bg-surface-container-lowest border-b border-outline-variant shadow-sm backdrop-blur-md bg-opacity-95 safe-top">
+      <nav className="fixed w-full top-0 z-50 bg-surface-container-lowest border-b border-outline-variant shadow-sm backdrop-blur-md bg-opacity-95 safe-top">
         <div className="flex justify-between items-center h-14 sm:h-16 px-4 sm:px-gutter w-full">
           <div className="flex items-center gap-4 sm:gap-8">
             <span className="text-headline-md font-headline-md text-primary tracking-tight font-bold flex items-center gap-2">
@@ -1980,9 +1939,9 @@ function App() {
               <a href="#" className="text-secondary font-medium hover:text-primary transition-colors duration-200 text-body-md">Resources</a>
             </div>
           </div>
-          
+
           {/* Mobile hamburger button */}
-          <button 
+          <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl hover:bg-surface-container transition-colors touch-press"
           >
@@ -2011,47 +1970,25 @@ function App() {
         )}
       </nav>
 
-      {/* Sticky Mini Preview — appears when main preview scrolls out of view on mobile */}
-      {showMiniPreview && imageUrl && !mobileSheetOpen && (
-        <div className="lg:hidden fixed top-14 sm:top-16 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-b border-outline-variant shadow-md px-4 py-2 flex items-center gap-3">
-          <div className="w-12 h-12 rounded-xl border border-outline-variant overflow-hidden flex-shrink-0 bg-white p-1">
-            <img src={imageUrl} alt="QR Preview" className="w-full h-full object-contain" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-xs font-bold text-on-surface truncate">Live QR Preview</p>
-            <p className="text-[10px] text-on-surface-variant truncate">
-              {settings.contentType.toUpperCase()} &bull; {settings.dots_style} &bull; EC: {settings.error_correction}
-            </p>
-          </div>
-          <button 
-            onClick={() => previewRef.current?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-3 py-2 text-xs font-bold text-primary bg-primary/10 rounded-xl hover:bg-primary/20 transition-colors touch-press flex-shrink-0 min-h-[40px]"
-          >
-            View
-          </button>
-        </div>
-      )}
-
       {/* Main Content Area */}
       <div className="flex flex-1 w-full relative">
-        
+
         {/* Desktop Sidebar */}
         <aside className="w-80 border-r border-outline-variant bg-surface-container-low hidden lg:flex flex-col p-6 gap-4 sticky top-16 h-[calc(100vh-4rem)]">
           <div className="mb-4">
             <h2 className="font-headline-md text-headline-md text-on-surface font-bold tracking-tight">Customization</h2>
             <p className="text-on-surface-variant font-label-md text-label-md">Personalize your code</p>
           </div>
-          
+
           <div className="space-y-1.5 flex-1 overflow-y-auto">
             {sidebarTabs.map((tab) => (
               <button
                 key={tab.name}
                 onClick={() => setActiveTab(tab.name)}
-                className={`w-full flex items-center gap-3 p-3 transition-all rounded-xl duration-200 ${
-                  activeTab === tab.name
+                className={`w-full flex items-center gap-3 p-3 transition-all rounded-xl duration-200 ${activeTab === tab.name
                     ? "bg-primary/10 text-primary font-bold active-tab-glow border border-primary/20 shadow-sm"
                     : "text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface border border-transparent"
-                }`}
+                  }`}
               >
                 <span className="material-symbols-outlined text-[20px]">{tab.icon}</span>
                 <span className="font-label-md text-label-md">{tab.name}</span>
@@ -2060,15 +1997,16 @@ function App() {
           </div>
         </aside>
 
-        {/* Workspace panel — extra bottom padding on mobile for the bottom tab bar */}
-        <div className="flex-1 p-4 sm:p-gutter lg:p-margin-desktop bg-surface pb-24 lg:pb-margin-desktop">
-          
-          <div className="max-w-container-max mx-auto w-full">
-            
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
-              
+        {/* Workspace panel */}
+        <div className="flex-1 min-w-0 max-w-full lg:p-margin-desktop bg-surface lg:pb-margin-desktop">
+
+          <div className="max-w-container-max mx-auto w-full max-w-full">
+
+            {/* DESKTOP LAYOUT (lg and above) */}
+            <div className="hidden lg:grid lg:grid-cols-12 gap-8 items-start p-margin-desktop max-w-full">
+
               {/* Left Column: Desktop Config Forms */}
-              <div className="lg:col-span-7 space-y-8 hidden lg:block">
+              <div className="lg:col-span-7 space-y-8 max-w-full">
                 <header>
                   <h1 className="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">Generate New QR Code</h1>
                   <p className="text-on-surface-variant font-body-lg text-body-lg mt-2">
@@ -2079,10 +2017,10 @@ function App() {
                 {renderPanelContent(activeTab)}
               </div>
 
-              {/* Right/Top Column: Live Preview */}
-              <div className="lg:col-span-5 lg:sticky lg:top-24 order-first lg:order-last" ref={previewRef}>
-                <div className="bg-white rounded-3xl p-4 sm:p-6 md:p-8 border border-outline-variant shadow-md space-y-6 sm:space-y-8">
-                  
+              {/* Right Column: Sticky Live Preview */}
+              <div className="lg:col-span-5 lg:sticky lg:top-24" ref={previewRef}>
+                <div className="bg-white rounded-3xl p-6 md:p-8 border border-outline-variant shadow-md space-y-6 sm:space-y-8">
+
                   <div className="flex justify-between items-center">
                     <h3 className="font-headline-md text-headline-md text-on-surface font-bold">Live Preview</h3>
                     <span className="px-2.5 py-1 bg-secondary-container text-on-secondary-container text-[10px] font-bold rounded uppercase tracking-wider">
@@ -2091,18 +2029,18 @@ function App() {
                   </div>
 
                   {/* QR Preview Surface */}
-                  <div 
-                    id="qr-preview-container" 
-                    className={`aspect-square border-outline-variant flex items-center justify-center relative overflow-hidden group p-4 sm:p-8 ${isFullscreen ? 'bg-white rounded-none border-none h-screen w-screen' : 'rounded-2xl border'}`}
+                  <div
+                    id="qr-preview-container"
+                    className={`aspect-square border-outline-variant flex items-center justify-center relative overflow-hidden group p-8 ${isFullscreen ? 'bg-white rounded-none border-none h-screen w-screen' : 'rounded-2xl border'}`}
                     style={
-                      isFullscreen 
+                      isFullscreen
                         ? { backgroundColor: '#ffffff' }
                         : {
-                            backgroundImage: "linear-gradient(45deg, #f3f4f6 25%, transparent 25%), linear-gradient(-45deg, #f3f4f6 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f3f4f6 75%), linear-gradient(-45deg, transparent 75%, #f3f4f6 75%)",
-                            backgroundSize: "16px 16px",
-                            backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0px",
-                            backgroundColor: "#f9fafb"
-                          }
+                          backgroundImage: "linear-gradient(45deg, #f3f4f6 25%, transparent 25%), linear-gradient(-45deg, #f3f4f6 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f3f4f6 75%), linear-gradient(-45deg, transparent 75%, #f3f4f6 75%)",
+                          backgroundSize: "16px 16px",
+                          backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0px",
+                          backgroundColor: "#f9fafb"
+                        }
                     }
                     onWheel={(e) => {
                       if (isFullscreen) {
@@ -2111,7 +2049,6 @@ function App() {
                       }
                     }}
                   >
-                    {/* Fullscreen Controls */}
                     {isFullscreen && (
                       <div className="absolute bottom-8 right-8 z-50 flex items-center gap-2 bg-white/90 backdrop-blur-sm p-3 rounded-2xl shadow-xl border border-outline-variant">
                         <button onClick={() => setZoomLevel(prev => Math.max(0.5, prev - 0.25))} className="w-10 h-10 flex items-center justify-center font-bold rounded-xl transition-colors hover:bg-black/5 text-on-surface touch-press">
@@ -2138,7 +2075,7 @@ function App() {
                       </div>
                     )}
                     <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "radial-gradient(#0050cb 1px, transparent 1px)", backgroundSize: "20px 20px" }}></div>
-                    
+
                     {isLoading ? (
                       <div className="relative z-10 flex flex-col items-center text-on-surface-variant gap-2">
                         <span className="material-symbols-outlined animate-spin text-primary text-4xl">autorenew</span>
@@ -2157,7 +2094,7 @@ function App() {
                         <img
                           src={imageUrl}
                           alt="QR Code Preview"
-                          className={`w-full max-w-[200px] sm:max-w-[240px] max-h-[200px] sm:max-h-[240px] object-contain transition-all duration-300 ${isComparing ? 'grayscale contrast-125 opacity-90' : ''}`}
+                          className={`w-full max-w-[240px] max-h-[240px] object-contain transition-all duration-300 ${isComparing ? 'grayscale contrast-125 opacity-90' : ''}`}
                           style={settings.bg_transparent ? {
                             backgroundImage: "linear-gradient(45deg, #e5e7eb 25%, transparent 25%), linear-gradient(-45deg, #e5e7eb 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e5e7eb 75%), linear-gradient(-45deg, transparent 75%, #e5e7eb 75%)",
                             backgroundSize: "16px 16px",
@@ -2185,24 +2122,22 @@ function App() {
                         <div className="grid grid-cols-2 gap-2">
                           <button
                             onClick={() => setZoomLevel(1)}
-                            className={`flex items-center justify-center gap-1.5 py-2 px-2 sm:px-3 rounded-lg border text-xs sm:text-sm font-semibold transition-all min-h-[40px] touch-press ${
-                              zoomLevel === 1 
-                                ? 'bg-primary border-primary text-white shadow-md' 
+                            className={`flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg border text-sm font-semibold transition-all min-h-[40px] touch-press ${zoomLevel === 1
+                                ? 'bg-primary border-primary text-white shadow-md'
                                 : 'bg-surface border-outline-variant text-on-surface hover:bg-surface-container-highest active:scale-95'
-                            }`}
+                              }`}
                           >
-                            <span className="material-symbols-outlined text-[16px] sm:text-[18px]">fit_screen</span>
+                            <span className="material-symbols-outlined text-[18px]">fit_screen</span>
                             100%
                           </button>
                           <button
                             onClick={() => setZoomLevel(2)}
-                            className={`flex items-center justify-center gap-1.5 py-2 px-2 sm:px-3 rounded-lg border text-xs sm:text-sm font-semibold transition-all min-h-[40px] touch-press ${
-                              zoomLevel === 2
-                                ? 'bg-primary border-primary text-white shadow-md' 
+                            className={`flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg border text-sm font-semibold transition-all min-h-[40px] touch-press ${zoomLevel === 2
+                                ? 'bg-primary border-primary text-white shadow-md'
                                 : 'bg-surface border-outline-variant text-on-surface hover:bg-surface-container-highest active:scale-95'
-                            }`}
+                              }`}
                           >
-                            <span className="material-symbols-outlined text-[16px] sm:text-[18px]">zoom_in</span>
+                            <span className="material-symbols-outlined text-[18px]">zoom_in</span>
                             200%
                           </button>
                         </div>
@@ -2210,11 +2145,11 @@ function App() {
 
                       <div className="flex flex-col gap-2">
                         <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Tools</span>
-                        <div className="flex gap-1.5 sm:gap-2">
+                        <div className="flex gap-2">
                           <button onClick={handleScanTest} className={`flex-1 flex items-center justify-center transition-colors rounded-xl duration-200 min-w-[40px] min-h-[40px] touch-press ${isScanning ? 'bg-primary text-white shadow-md' : 'bg-surface-container hover:bg-surface-container-high text-on-surface-variant active:scale-95'}`} title="Scan Test">
                             <span className="material-symbols-outlined text-[20px]">qr_code_scanner</span>
                           </button>
-                          <button onClick={handleFullscreen} className="flex-1 hidden sm:flex items-center justify-center bg-surface-container hover:bg-surface-container-high transition-colors text-on-surface-variant rounded-xl duration-200 min-w-[40px] min-h-[40px] touch-press active:scale-95" title="Full Screen">
+                          <button onClick={handleFullscreen} className="flex-1 flex items-center justify-center bg-surface-container hover:bg-surface-container-high transition-colors text-on-surface-variant rounded-xl duration-200 min-w-[40px] min-h-[40px] touch-press active:scale-95" title="Full Screen">
                             <span className="material-symbols-outlined text-[20px]">fullscreen</span>
                           </button>
                           <button onClick={() => setIsComparing(!isComparing)} className={`flex-1 flex items-center justify-center transition-colors rounded-xl duration-200 min-w-[40px] min-h-[40px] touch-press ${isComparing ? 'bg-primary text-white shadow-md' : 'bg-surface-container hover:bg-surface-container-high text-on-surface-variant active:scale-95'}`} title="Compare Raw">
@@ -2229,148 +2164,130 @@ function App() {
                   </div>
 
                   {/* Mini Stats */}
-                  <div className="pt-4 sm:pt-6 border-t border-outline-variant grid grid-cols-2 gap-4">
+                  <div className="pt-6 border-t border-outline-variant grid grid-cols-2 gap-4">
                     <div className="text-center">
                       <p className="text-[10px] uppercase font-bold text-outline-variant tracking-widest mb-1">Resolution</p>
-                      <p className="font-headline-md text-sm sm:text-headline-md text-on-surface font-bold">{targetResolution}</p>
+                      <p className="font-headline-md text-headline-md text-on-surface font-bold">{targetResolution}</p>
                     </div>
                     <div className="text-center border-l border-outline-variant">
                       <p className="text-[10px] uppercase font-bold text-outline-variant tracking-widest mb-1">Error Recovery</p>
-                      <p className="font-headline-md text-sm sm:text-headline-md text-on-surface font-bold">Level {settings.error_correction}</p>
+                      <p className="font-headline-md text-headline-md text-on-surface font-bold">Level {settings.error_correction}</p>
                     </div>
                   </div>
                 </div>
-
-                {/* Mobile: Quick action buttons below preview */}
-                <div className="lg:hidden mt-4 flex gap-3">
-                  <button 
-                    onClick={() => handleMobileTab("Content")}
-                    className="flex-1 py-3 px-4 bg-primary text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-primary/20 touch-press active:scale-[0.98] min-h-[48px]"
-                  >
-                    <span className="material-symbols-outlined text-[18px]">edit_note</span>
-                    Customize
-                  </button>
-                  <button 
-                    onClick={() => handleMobileTab("Download")}
-                    className="py-3 px-4 bg-white border border-outline-variant text-on-surface rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-sm touch-press active:scale-[0.98] min-h-[48px]"
-                  >
-                    <span className="material-symbols-outlined text-[18px]">download</span>
-                    Export
-                  </button>
-                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
 
-      {/* MOBILE BOTTOM TAB BAR — replaces old accordion navigation */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-outline-variant shadow-[0_-4px_20px_rgba(0,0,0,0.08)] pb-safe">
-        <div className="flex items-stretch justify-around px-1 pt-1.5 pb-1">
-          {[
-            { name: "Content", icon: "edit_note" },
-            { name: "Templates", icon: "grid_view" },
-            { name: "Design", icon: "palette" },
-            { name: "Logo", icon: "image" },
-            { name: "Download", icon: "download" },
-          ].map((tab) => (
-            <button
-              key={tab.name}
-              onClick={() => handleMobileTab(tab.name)}
-              className={`flex flex-col items-center justify-center gap-0.5 py-1.5 px-2 rounded-xl min-w-[56px] min-h-[48px] transition-all duration-200 touch-press ${
-                mobileSheetOpen === tab.name
-                  ? "text-primary bg-primary/10 font-bold"
-                  : "text-on-surface-variant hover:text-on-surface active:bg-surface-container"
-              }`}
-            >
-              <span className="material-symbols-outlined text-[22px]">{tab.icon}</span>
-              <span className="text-[10px] font-semibold leading-tight">{tab.name}</span>
-            </button>
-          ))}
-          
-          {/* More button */}
-          <div className="relative">
-            <button
-              onClick={(e) => { e.stopPropagation(); setMobileMoreOpen(!mobileMoreOpen); }}
-              className={`flex flex-col items-center justify-center gap-0.5 py-1.5 px-2 rounded-xl min-w-[56px] min-h-[48px] transition-all duration-200 touch-press ${
-                mobileMoreOpen || ["Frames", "Effects", "Advanced"].includes(mobileSheetOpen || "")
-                  ? "text-primary bg-primary/10 font-bold"
-                  : "text-on-surface-variant hover:text-on-surface active:bg-surface-container"
-              }`}
-            >
-              <span className="material-symbols-outlined text-[22px]">more_horiz</span>
-              <span className="text-[10px] font-semibold leading-tight">More</span>
-            </button>
-            
-            {mobileMoreOpen && (
-              <div className="absolute bottom-full right-0 mb-2 bg-white rounded-2xl shadow-xl border border-outline-variant overflow-hidden min-w-[160px]">
-                {[
-                  { name: "Frames", icon: "branding_watermark" },
-                  { name: "Effects", icon: "auto_fix_high" },
-                  { name: "Advanced", icon: "settings" },
-                ].map((tab) => (
+            {/* MOBILE LAYOUT (below lg breakpoint) — Encapsulated Card layout */}
+            <div className="lg:hidden w-full max-w-[100vw] p-4 sm:p-6 pb-12 bg-surface">
+              <div className="bg-white border border-outline-variant/60 rounded-[28px] overflow-hidden shadow-sm flex flex-col max-w-full">
+
+                {/* ── TOP ZONE: Preview + Tabs ── */}
+                <div className="bg-surface-container-lowest">
+
+                  {/* Centered Preview Card */}
+                  <div className="px-4 pt-6 pb-4 text-center">
+                    <p className="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-3">Preview</p>
+                    <div className="bg-white rounded-2xl border border-outline-variant/50 p-6 max-w-[200px] mx-auto aspect-square flex items-center justify-center shadow-sm">
+                      {isLoading ? (
+                        <span className="material-symbols-outlined animate-spin text-primary text-3xl">autorenew</span>
+                      ) : isError ? (
+                        <span className="material-symbols-outlined text-error text-2xl">error</span>
+                      ) : (
+                        <img src={imageUrl} alt="QR Preview" className="w-full h-full object-contain" />
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Stepped Main Segment Tabs: Content | Design */}
+                  <div className="px-5 pb-5 pt-1">
+                    <div className="bg-surface border border-outline-variant/70 rounded-xl p-1 grid grid-cols-2 gap-1">
+                      <button
+                        onClick={() => setMobileMainTab('content')}
+                        className={`flex items-center justify-center py-2 px-3 rounded-lg font-bold transition-all text-[13px] touch-press ${mobileMainTab === 'content'
+                            ? 'bg-white text-on-surface border border-outline-variant/60 shadow-sm'
+                            : 'text-on-surface-variant hover:text-on-surface'
+                          }`}
+                      >
+                        Content
+                      </button>
+
+                      <button
+                        onClick={() => setMobileMainTab('design')}
+                        className={`flex items-center justify-center py-2 px-3 rounded-lg font-bold transition-all text-[13px] touch-press ${mobileMainTab === 'design'
+                            ? 'bg-primary text-white shadow-md shadow-primary/20'
+                            : 'text-on-surface-variant hover:text-on-surface'
+                          }`}
+                      >
+                        Design
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Sub-Tabs Row (Visible when Design main tab is selected) */}
+                  {mobileMainTab === 'design' && (
+                    <div className="w-full min-w-0 max-w-full border-t border-b border-outline-variant/40 overflow-x-auto custom-scrollbar flex gap-2 px-5 py-2 select-none bg-surface-container-lowest">
+                      {[
+                        { name: "Templates", label: "Templates" },
+                        { name: "Shape", label: "Shape" },
+                        { name: "Logo", label: "Logo" },
+                        { name: "Frames", label: "Frames" },
+                        { name: "Effects", label: "Effects" },
+                        { name: "Advanced", label: "Advanced" },
+                      ].map((tab) => {
+                        const isSelected = mobileDesignSubTab === tab.name;
+                        return (
+                          <button
+                            key={tab.name}
+                            onClick={() => setMobileDesignSubTab(tab.name)}
+                            className={`py-2 px-3 rounded-lg text-[13px] font-semibold transition-all whitespace-nowrap touch-press ${isSelected
+                                ? 'bg-primary/10 text-primary font-bold'
+                                : 'bg-transparent text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface'
+                              }`}
+                          >
+                            {tab.label}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+
+                {/* ── PANEL CONTENT ── */}
+                <div className="p-4 sm:p-5 max-h-[400px] overflow-y-auto custom-scrollbar bg-white">
+                  {mobileMainTab === 'content'
+                    ? renderPanelContent('Content')
+                    : renderPanelContent(mobileDesignSubTab === 'Shape' ? 'Design' : mobileDesignSubTab)
+                  }
+                </div>
+
+                {/* ── CTA BAR ── */}
+                <div className="border-t border-outline-variant/40 bg-surface-container-lowest p-5 flex gap-3">
                   <button
-                    key={tab.name}
-                    onClick={(e) => { e.stopPropagation(); handleMobileTab(tab.name); }}
-                    className="w-full flex items-center gap-3 px-4 py-3 text-sm font-semibold text-on-surface hover:bg-surface-container transition-colors touch-press min-h-[48px]"
+                    onClick={handleDownloadPNG}
+                    disabled={isLoading || isError || isDownloading}
+                    className="flex-1 py-3.5 px-4 bg-primary text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-primary/20 touch-press active:scale-[0.98] min-h-[48px]"
                   >
-                    <span className="material-symbols-outlined text-[20px] text-primary">{tab.icon}</span>
-                    {tab.name}
+                    <span className="material-symbols-outlined text-[20px]">download</span>
+                    Download {downloadFormat}
                   </button>
-                ))}
+                  <button
+                    onClick={handleCopyToClipboard}
+                    disabled={isLoading || isError || isCopying}
+                    className="py-3.5 px-4 bg-surface border border-outline-variant text-on-surface rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-sm touch-press active:scale-[0.98] min-h-[48px]"
+                  >
+                    <span className="material-symbols-outlined text-[20px]">{copySuccess ? 'check' : 'content_copy'}</span>
+                    {copySuccess ? 'Copied' : 'Copy'}
+                  </button>
+                </div>
+
               </div>
-            )}
+
+            </div>
+
           </div>
         </div>
       </div>
-
-      {/* MOBILE BOTTOM SHEET — slides up when a tab is selected */}
-      {mobileSheetOpen && (
-        <div className="lg:hidden fixed inset-0 z-50 flex flex-col justify-end">
-          <div 
-            className="absolute inset-0 mobile-sheet-backdrop"
-            onClick={() => setMobileSheetOpen(null)}
-          />
-          
-          <div 
-            ref={mobileSheetRef}
-            className="relative bg-white rounded-t-3xl shadow-2xl max-h-[85vh] flex flex-col"
-            style={{ 
-              animation: 'slideUp 0.3s ease-out',
-              paddingBottom: 'max(env(safe-area-inset-bottom, 8px), 8px)'
-            }}
-          >
-            <div className="flex-shrink-0 pt-3 pb-2 px-5 border-b border-outline-variant/50">
-              <div className="w-10 h-1 bg-outline-variant/60 rounded-full mx-auto mb-3" />
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2.5">
-                  <span className="material-symbols-outlined text-primary text-[22px]">
-                    {sidebarTabs.find(t => t.name === mobileSheetOpen)?.icon}
-                  </span>
-                  <h3 className="font-bold text-on-surface text-lg">{mobileSheetOpen}</h3>
-                </div>
-                <button 
-                  onClick={() => setMobileSheetOpen(null)}
-                  className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors touch-press"
-                >
-                  <span className="material-symbols-outlined text-on-surface-variant">close</span>
-                </button>
-              </div>
-            </div>
-            
-            <div className="flex-1 overflow-y-auto p-4 sm:p-5 overscroll-contain">
-              {renderPanelContent(mobileSheetOpen)}
-            </div>
-          </div>
-        </div>
-      )}
-
-      <style>{`
-        @keyframes slideUp {
-          from { transform: translateY(100%); }
-          to { transform: translateY(0); }
-        }
-      `}</style>
     </div>
   )
 }

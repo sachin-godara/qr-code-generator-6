@@ -62,6 +62,7 @@
     -webkit-tap-highlight-color: transparent;
     overscroll-behavior: none;
     touch-action: manipulation;
+    width: 100%;
     /* Safe area padding for notched devices */
     padding-top: env(safe-area-inset-top);
     padding-left: env(safe-area-inset-left);

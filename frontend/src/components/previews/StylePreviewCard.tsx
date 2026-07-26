@@ -11,7 +11,7 @@ export function StylePreviewCard({ title, isSelected, onClick, children }: Style
   return (
     <button
       onClick={onClick}
-      className={`group relative flex-shrink-0 w-[4.5rem] sm:w-24 md:w-28 flex flex-col items-center justify-start p-1.5 gap-1.5 rounded-2xl border-2 transition-all duration-200 snap-center touch-press
+      className={`group relative w-full min-w-0 flex flex-col items-center justify-start p-1.5 gap-1.5 rounded-2xl border-2 transition-all duration-200 touch-press
         min-h-[60px] sm:min-h-0
         ${isSelected 
           ? 'border-primary bg-primary/[0.03] shadow-[0_0_15px_rgba(0,80,203,0.3)] scale-[1.02]' 
