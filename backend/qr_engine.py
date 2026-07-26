@@ -1063,7 +1063,7 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
     
     # Custom Eyes
     # The eyes are 7x7 modules at top-left, top-right, and bottom-left.
-    border_modules = 4
+    border_modules = quiet_zone
     s = box_size
     modules_count = len(qr.modules)
     
