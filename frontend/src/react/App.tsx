@@ -647,9 +647,9 @@ function App() {
                 <button
                   key={cat as string}
                   onClick={() => setActiveTemplateCategory(cat as string)}
-                  className={`px-3 py-1.5 rounded-full whitespace-nowrap text-xs font-medium transition-all snap-start ${
+                  className={`px-3 py-1.5 rounded-full whitespace-nowrap text-xs font-medium tab-spring snap-start ${
                     activeTemplateCategory === cat
-                      ? "bg-on-surface text-white border border-on-surface"
+                      ? "bg-on-surface text-white border border-on-surface shadow-sm scale-[1.02]"
                       : "bg-surface-container text-on-surface-variant hover:bg-surface-container-high border border-outline-variant"
                   }`}
                 >
@@ -1890,11 +1890,11 @@ function App() {
               <button
                 onClick={handleDownloadCustom}
                 disabled={isLoading || isError || isDownloading || isCopying}
-                className={`flex-1 py-4 px-6 rounded-xl font-bold flex items-center justify-center gap-3 transition-all duration-300 shadow-lg text-base ${downloadSuccess
-                    ? "bg-emerald-600 text-white shadow-emerald-600/25 scale-[1.01]"
+                className={`flex-1 py-4 px-6 rounded-xl font-bold flex items-center justify-center gap-3 btn-spring shadow-lg text-base ${downloadSuccess
+                    ? "bg-emerald-600 text-white shadow-xl shadow-emerald-600/30 animate-celebrate"
                     : isDownloading
                       ? "bg-primary/80 text-on-primary cursor-wait shadow-sm animate-pulse"
-                      : "bg-gradient-to-r from-primary to-primary-hover hover:from-primary-hover hover:to-primary text-white shadow-md hover:shadow-lg hover:scale-[1.01] active:scale-[0.99]"
+                      : "bg-gradient-to-r from-primary to-primary-hover hover:from-primary-hover hover:to-primary text-white shadow-md hover:shadow-lg hover:scale-[1.015]"
                   } disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100`}
               >
                 {isDownloading ? (
@@ -1904,7 +1904,7 @@ function App() {
                   </>
                 ) : downloadSuccess ? (
                   <>
-                    <span className="material-symbols-outlined text-2xl animate-bounce">check_circle</span>
+                    <span className="material-symbols-outlined text-2xl animate-[spin_400ms_ease-out_1]">check_circle</span>
                     <span>Downloaded Successfully!</span>
                   </>
                 ) : (
@@ -1920,11 +1920,11 @@ function App() {
               <button
                 onClick={handleCopyToClipboard}
                 disabled={isLoading || isError || isDownloading || isCopying}
-                className={`py-4 px-6 rounded-xl font-bold flex items-center justify-center gap-2 border transition-all duration-300 shadow-sm ${copySuccess
-                    ? "bg-emerald-600 text-white border-emerald-600 shadow-emerald-600/20 scale-[1.01]"
+                className={`py-4 px-6 rounded-xl font-bold flex items-center justify-center gap-2 border btn-spring shadow-sm ${copySuccess
+                    ? "bg-emerald-600 text-white border-emerald-600 shadow-lg shadow-emerald-600/25 animate-celebrate"
                     : isCopying
                       ? "bg-surface-container-highest text-on-surface cursor-wait border-outline-variant"
-                      : "bg-white border-outline-variant text-on-surface hover:bg-surface-container-highest hover:border-outline hover:shadow-md active:scale-[0.99]"
+                      : "bg-white border-outline-variant text-on-surface hover:bg-surface-container-highest hover:border-zinc-300 hover:shadow-md hover:scale-[1.015]"
                   } disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100`}
               >
                 {isCopying ? (
@@ -1934,7 +1934,7 @@ function App() {
                   </>
                 ) : copySuccess ? (
                   <>
-                    <span className="material-symbols-outlined text-xl">check_circle</span>
+                    <span className="material-symbols-outlined text-xl animate-[spin_400ms_ease-out_1]">check_circle</span>
                     <span>Copied!</span>
                   </>
                 ) : (
@@ -2126,13 +2126,13 @@ function App() {
                       </div>
                     ) : (
                       <div
-                        className={`relative z-10 transition-all duration-300 ${zoomLevel === 1 ? 'group-hover:scale-105' : ''}`}
+                        className={`relative z-10 transition-all duration-350 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${zoomLevel === 1 ? 'group-hover:scale-[1.06]' : ''}`}
                         style={{ transform: `scale(${zoomLevel})` }}
                       >
                         <img
                           src={imageUrl}
                           alt="QR Code Preview"
-                          className={`w-full max-w-[240px] max-h-[240px] object-contain transition-all duration-300 ${isComparing ? 'grayscale contrast-125 opacity-90' : ''}`}
+                          className={`w-full max-w-[240px] max-h-[240px] object-contain transition-all duration-350 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isComparing ? 'grayscale contrast-125 opacity-90' : ''}`}
                           style={settings.bg_transparent ? {
                             backgroundImage: "linear-gradient(45deg, #e5e7eb 25%, transparent 25%), linear-gradient(-45deg, #e5e7eb 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e5e7eb 75%), linear-gradient(-45deg, transparent 75%, #e5e7eb 75%)",
                             backgroundSize: "16px 16px",
@@ -2304,7 +2304,7 @@ function App() {
                   <button
                     onClick={handleDownloadPNG}
                     disabled={isLoading || isError || isDownloading}
-                    className="flex-1 py-3.5 px-4 bg-primary text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-primary/20 touch-press active:scale-[0.98] min-h-[48px]"
+                    className="flex-1 py-3.5 px-4 bg-primary text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-primary/20 btn-spring min-h-[48px]"
                   >
                     <span className="material-symbols-outlined text-[20px]">download</span>
                     Download {downloadFormat}
@@ -2312,10 +2312,12 @@ function App() {
                   <button
                     onClick={handleCopyToClipboard}
                     disabled={isLoading || isError || isCopying}
-                    className="py-3.5 px-4 bg-surface border border-outline-variant text-on-surface rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-sm touch-press active:scale-[0.98] min-h-[48px]"
+                    className={`py-3.5 px-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 border shadow-sm btn-spring min-h-[48px] ${
+                      copySuccess ? 'bg-emerald-600 text-white border-emerald-600 shadow-emerald-600/25 animate-celebrate' : 'bg-surface border-outline-variant text-on-surface'
+                    }`}
                   >
-                    <span className="material-symbols-outlined text-[20px]">{copySuccess ? 'check' : 'content_copy'}</span>
-                    {copySuccess ? 'Copied' : 'Copy'}
+                    <span className={`material-symbols-outlined text-[20px] ${copySuccess ? 'animate-[spin_350ms_ease-out_1]' : ''}`}>{copySuccess ? 'check' : 'content_copy'}</span>
+                    {copySuccess ? 'Copied!' : 'Copy'}
                   </button>
                 </div>
 

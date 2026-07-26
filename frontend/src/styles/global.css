@@ -150,6 +150,36 @@
   background: radial-gradient(circle at center, rgba(79, 70, 229, 0.05) 0%, rgba(24, 24, 27, 0.01) 50%, transparent 80%);
 }
 
+/* ==================================
+   KINETIC SPRING PHYSICS & ANIMATIONS
+   ================================== */
+.btn-spring {
+  transition: transform 300ms cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 250ms ease, background-color 200ms ease, border-color 200ms ease;
+}
+.btn-spring:active:not(:disabled) {
+  transform: scale(0.95);
+  transition-duration: 75ms;
+  transition-timing-function: ease-out;
+}
+
+.tab-spring {
+  transition: all 250ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+.tab-spring:active {
+  transform: scale(0.94);
+  transition-duration: 60ms;
+}
+
+/* Celebratory export feedback animation */
+@keyframes celebrate-pop {
+  0% { transform: scale(0.90); }
+  50% { transform: scale(1.06); }
+  100% { transform: scale(1.02); }
+}
+.animate-celebrate {
+  animation: celebrate-pop 400ms cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
 /* Section label — uppercase micro labels */
 .section-label {
   font-size: 0.6875rem;
