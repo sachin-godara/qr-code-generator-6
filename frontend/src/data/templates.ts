@@ -8,6 +8,162 @@ export interface Template {
 
 export const PRESET_TEMPLATES: Template[] = [
   {
+    "name": "Artisan Cafe Menu",
+    "description": "Perfect for coffee shops and cafes featuring our unique coffee cup frame.",
+    "settings": {
+      "dots_style": "pillow",
+      "eye_frame_style": "leaf",
+      "eyeball_style": "leaf_opposite",
+      "dots_color": "#5C4033",
+      "dots_color_end": "#8B5A2B",
+      "gradient_type": "Diagonal (TL to BR)",
+      "eye_color": "#5C4033",
+      "eyeball_color": "#8B5A2B",
+      "bg_color": "#FFF8DC",
+      "frame_style": "none",
+      "text_style": "coffee_cup",
+      "frame_text": "COFFEE TIME",
+      "frame_color": "#5C4033",
+      "frame_text_color": "#ffffff",
+      "effect_shadow": "none",
+      "font_name": "Playfair Display (Elegant)"
+    }
+  },
+  {
+    "name": "Premium Real Estate",
+    "description": "Elegant design for property tours and agent contacts with house-shaped markers.",
+    "settings": {
+      "dots_style": "diamond_target",
+      "eye_frame_style": "house_frame",
+      "eyeball_style": "diamond",
+      "dots_color": "#0F172A",
+      "dots_color_end": "#1E293B",
+      "gradient_type": "Solid Color",
+      "eye_color": "#D4AF37",
+      "eyeball_color": "#D4AF37",
+      "bg_color": "#ffffff",
+      "frame_style": "border",
+      "text_style": "bottom_tab",
+      "frame_text": "VIEW PROPERTY",
+      "frame_color": "#0F172A",
+      "frame_text_color": "#D4AF37",
+      "effect_shadow": "none",
+      "font_name": "Montserrat (Geometric)"
+    }
+  },
+  {
+    "name": "VIP Event Access",
+    "description": "Neon ticket-stub aesthetic for clubs, concerts, and exclusive events.",
+    "settings": {
+      "dots_style": "tech_chevron",
+      "eye_frame_style": "target_bullseye",
+      "eyeball_style": "target_bullseye",
+      "dots_color": "#ff00ff",
+      "dots_color_end": "#00ffff",
+      "gradient_type": "Diagonal (TL to BR)",
+      "eye_color": "#ff00ff",
+      "eyeball_color": "#00ffff",
+      "bg_color": "#0a0a0a",
+      "frame_style": "none",
+      "text_style": "ticket_stub",
+      "frame_text": "VIP PASS",
+      "frame_color": "#0a0a0a",
+      "frame_text_color": "#00ffff",
+      "effect_shadow": "none",
+      "canvas_border_width": 4,
+      "canvas_border_color": "#ff00ff",
+      "font_name": "Outfit (Modern)"
+    }
+  },
+  {
+    "name": "Tech App Download",
+    "description": "A sleek phone frame design mimicking an app store download button.",
+    "settings": {
+      "dots_style": "network_nodes",
+      "eye_frame_style": "camera_lens",
+      "eyeball_style": "circle",
+      "dots_color": "#6366f1",
+      "dots_color_end": "#a855f7",
+      "gradient_type": "Vertical Gradient",
+      "eye_color": "#6366f1",
+      "eyeball_color": "#a855f7",
+      "bg_color": "#ffffff",
+      "frame_style": "phone_frame",
+      "text_style": "app_store_badge",
+      "frame_text": "GET THE APP",
+      "frame_color": "#111827",
+      "frame_text_color": "#ffffff",
+      "effect_shadow": "none",
+      "font_name": "Roboto (Clean)"
+    }
+  },
+  {
+    "name": "Heavy Lifter Gym Pass",
+    "description": "Aggressive styling for gyms and personal trainers with dumbbell markers.",
+    "settings": {
+      "dots_style": "medical_cross",
+      "eye_frame_style": "square",
+      "eyeball_style": "dumbbell_eyeball",
+      "dots_color": "#dc2626",
+      "dots_color_end": "#991b1b",
+      "gradient_type": "Solid Color",
+      "eye_color": "#000000",
+      "eyeball_color": "#dc2626",
+      "bg_color": "#ffffff",
+      "frame_style": "border",
+      "text_style": "award_badge",
+      "frame_text": "FREE TRIAL",
+      "frame_color": "#000000",
+      "frame_text_color": "#dc2626",
+      "effect_shadow": "none",
+      "font_name": "Outfit (Modern)"
+    }
+  },
+  {
+    "name": "Slice Pizzeria",
+    "description": "A fun, eye-catching pizza slice frame for pizzerias and fast food.",
+    "settings": {
+      "dots_style": "rounded_plus",
+      "eye_frame_style": "droplet_tl",
+      "eyeball_style": "circle",
+      "dots_color": "#E74C3C",
+      "dots_color_end": "#C0392B",
+      "gradient_type": "Solid Color",
+      "eye_color": "#E74C3C",
+      "eyeball_color": "#F1C40F",
+      "bg_color": "#ffffff",
+      "frame_style": "none",
+      "text_style": "pizza_slice",
+      "frame_text": "ORDER PIZZA",
+      "frame_color": "#E74C3C",
+      "frame_text_color": "#ffffff",
+      "effect_shadow": "none",
+      "font_name": "Outfit (Modern)"
+    }
+  },
+  {
+    "name": "Elegant Wedding RSVP",
+    "description": "Soft, floral design for wedding invitations and gala RSVPs.",
+    "settings": {
+      "dots_style": "flower_cut",
+      "eye_frame_style": "crystal_frame",
+      "eyeball_style": "flower",
+      "dots_color": "#B76E79",
+      "dots_color_end": "#E0BFB8",
+      "gradient_type": "Diagonal (TL to BR)",
+      "eye_color": "#B76E79",
+      "eyeball_color": "#B76E79",
+      "bg_color": "#ffffff",
+      "frame_style": "none",
+      "text_style": "rsvp_envelope",
+      "frame_text": "RSVP NOW",
+      "frame_color": "#B76E79",
+      "frame_text_color": "#ffffff",
+      "effect_shadow": "none",
+      "font_name": "Playfair Display (Elegant)"
+    }
+  },
+  {
     "name": "None",
     "description": "Standard black and white square QR code with no decorations",
     "settings": {
