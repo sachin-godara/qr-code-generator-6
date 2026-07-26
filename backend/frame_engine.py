@@ -385,6 +385,120 @@ def apply_layout_frame(qr_img, layout_template="none", frame_color="#000000", pa
             
         new_img.paste(qr_img, (int(padding * 3), int(padding * 2)), qr_img)
         return new_img
+        
+    elif layout_template == "drop_shadow_card":
+        new_w = qr_w + padding * 4
+        new_h = qr_h + padding * 4
+        new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        
+        # Draw soft shadow (layers of rectangles)
+        shadow_layers = 5
+        for i in range(shadow_layers, 0, -1):
+            alpha = int(60 / (i + 1))
+            draw.rounded_rectangle([padding // 2 - i, padding // 2 - i, new_w - padding // 2 + i, new_h - padding // 2 + i], radius=corner_radius + i, fill=(0, 0, 0, alpha))
+            
+        # Draw main card
+        draw.rounded_rectangle([padding // 2, padding // 2, new_w - padding // 2, new_h - padding // 2], radius=corner_radius, fill=(255, 255, 255, 255))
+        
+        new_img.paste(qr_img, (padding * 2, padding * 2), qr_img)
+        return new_img
+        
+    elif layout_template == "coupon_dashed":
+        new_w = qr_w + padding * 4
+        new_h = qr_h + padding * 4
+        new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        
+        draw.rectangle([0, 0, new_w, new_h], fill=(255, 255, 255, 255))
+        
+        # Dashed border
+        dash_len = 15
+        gap_len = 10
+        b_margin = padding // 2
+        bw = max(2, border_thickness // 2)
+        
+        # Top and Bottom
+        for x in range(b_margin, new_w - b_margin, dash_len + gap_len):
+            draw.line([x, b_margin, min(x + dash_len, new_w - b_margin), b_margin], fill=bg_color, width=bw)
+            draw.line([x, new_h - b_margin, min(x + dash_len, new_w - b_margin), new_h - b_margin], fill=bg_color, width=bw)
+            
+        # Left and Right
+        for y in range(b_margin, new_h - b_margin, dash_len + gap_len):
+            draw.line([b_margin, y, b_margin, min(y + dash_len, new_h - b_margin)], fill=bg_color, width=bw)
+            draw.line([new_w - b_margin, y, new_w - b_margin, min(y + dash_len, new_h - b_margin)], fill=bg_color, width=bw)
+            
+        new_img.paste(qr_img, (padding * 2, padding * 2), qr_img)
+        return new_img
+        
+    elif layout_template == "hanging_sign":
+        new_w = qr_w + padding * 4
+        new_h = qr_h + padding * 6
+        new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        
+        # Ropes
+        draw.line([new_w // 4, padding // 2, new_w // 4, padding * 2], fill=(100, 100, 100, 255), width=max(2, border_thickness // 3))
+        draw.line([new_w * 3 // 4, padding // 2, new_w * 3 // 4, padding * 2], fill=(100, 100, 100, 255), width=max(2, border_thickness // 3))
+        
+        # Nail heads
+        draw.ellipse([new_w // 4 - 4, padding // 2 - 4, new_w // 4 + 4, padding // 2 + 4], fill=(50, 50, 50, 255))
+        draw.ellipse([new_w * 3 // 4 - 4, padding // 2 - 4, new_w * 3 // 4 + 4, padding // 2 + 4], fill=(50, 50, 50, 255))
+        
+        # Sign board
+        draw.rounded_rectangle([padding // 2, padding * 2, new_w - padding // 2, new_h - padding // 2], radius=corner_radius, fill=bg_color)
+        draw.rounded_rectangle([padding, padding * 2 + padding // 2, new_w - padding, new_h - padding], radius=corner_radius // 2, fill=(255, 255, 255, 255))
+        
+        new_img.paste(qr_img, (padding * 2, int(padding * 2.5 + padding // 2)), qr_img)
+        return new_img
+        
+    elif layout_template == "monitor_screen":
+        new_w = qr_w + padding * 4
+        new_h = qr_h + padding * 6
+        new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        
+        # Screen frame
+        draw.rounded_rectangle([0, 0, new_w, new_h - padding * 2], radius=corner_radius // 2, fill=bg_color)
+        # Screen inner
+        draw.rectangle([padding, padding, new_w - padding, new_h - padding * 3], fill=(255, 255, 255, 255))
+        
+        # Stand neck
+        draw.rectangle([new_w // 2 - padding, new_h - padding * 2, new_w // 2 + padding, new_h - padding // 2], fill=bg_color)
+        # Stand base
+        draw.ellipse([new_w // 2 - padding * 2, new_h - padding, new_w // 2 + padding * 2, new_h], fill=bg_color)
+        
+        new_img.paste(qr_img, (padding * 2, padding * 2), qr_img)
+        return new_img
+        
+    elif layout_template == "storefront_awning":
+        new_w = qr_w + padding * 4
+        new_h = qr_h + padding * 5
+        new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        
+        # Background
+        draw.rectangle([padding, padding * 3, new_w - padding, new_h - padding], fill=(255, 255, 255, 255))
+        draw.rectangle([padding, padding * 3, new_w - padding, new_h - padding], outline=bg_color, width=max(2, border_thickness // 2))
+        
+        # Awning
+        awning_h = padding * 3
+        stripe_w = padding * 1.5
+        x = 0
+        color1 = bg_color
+        color2 = (255, 255, 255, 255)
+        is_color1 = True
+        
+        while x < new_w:
+            c = color1 if is_color1 else color2
+            draw.rectangle([x, padding, min(x + stripe_w, new_w), awning_h], fill=c)
+            # Scallop at bottom of stripe
+            draw.ellipse([x, awning_h - stripe_w // 2, min(x + stripe_w, new_w), awning_h + stripe_w // 2], fill=c)
+            x += stripe_w
+            is_color1 = not is_color1
+            
+        new_img.paste(qr_img, (padding * 2, int(padding * 3.5)), qr_img)
+        return new_img
 
     return qr_img
 
