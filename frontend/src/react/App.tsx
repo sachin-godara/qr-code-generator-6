@@ -375,19 +375,19 @@ function App() {
                 <button
                   key={type.id}
                   onClick={() => updateSettings({ contentType: type.id })}
-                  className={`flex flex-col items-center gap-1 sm:gap-1.5 p-2.5 sm:p-3.5 rounded-xl duration-200 border min-h-[48px] touch-press ${settings.contentType === type.id
-                      ? "bg-primary text-white border-primary font-bold shadow-md shadow-primary/10"
-                      : "text-on-surface-variant hover:bg-white/50 border-transparent active:scale-95"
+                  className={`flex flex-col items-center gap-1 sm:gap-1.5 p-2.5 sm:p-3 rounded-xl duration-200 border min-h-[44px] touch-press transition-all ${settings.contentType === type.id
+                      ? "bg-primary text-white border-primary font-semibold shadow-sm"
+                      : "text-on-surface-variant hover:bg-surface-container border-transparent active:scale-95"
                     }`}
                 >
-                  <span className="material-symbols-outlined text-[20px] sm:text-[22px]">{type.icon}</span>
-                  <span className="font-label-md text-[10px] sm:text-label-md leading-tight">{type.label}</span>
+                  <span className="material-symbols-outlined text-[18px] sm:text-[20px]">{type.icon}</span>
+                  <span className="text-[10px] sm:text-[11px] leading-tight font-medium">{type.label}</span>
                 </button>
               ))}
             </div>
 
             {/* Input Card */}
-            <div className="bg-surface-container-lowest p-gutter rounded-2xl border border-outline-variant shadow-sm space-y-6">
+            <div className="bg-white rounded-xl border border-outline-variant space-y-6 p-6">
               {settings.contentType === "url" && (
                 <div>
                   <label className="block font-label-md text-label-md text-on-surface mb-2 font-semibold">Website URL</label>
@@ -647,10 +647,10 @@ function App() {
                 <button
                   key={cat as string}
                   onClick={() => setActiveTemplateCategory(cat as string)}
-                  className={`px-3 py-1.5 rounded-full whitespace-nowrap text-xs font-semibold transition-all snap-start ${
+                  className={`px-3 py-1.5 rounded-full whitespace-nowrap text-xs font-medium transition-all snap-start ${
                     activeTemplateCategory === cat
-                      ? "bg-primary text-white shadow-sm shadow-primary/20 border border-primary"
-                      : "bg-surface text-on-surface-variant hover:bg-surface-container-high border border-outline-variant"
+                      ? "bg-on-surface text-white border border-on-surface"
+                      : "bg-surface-container text-on-surface-variant hover:bg-surface-container-high border border-outline-variant"
                   }`}
                 >
                   {cat as string}
@@ -707,16 +707,16 @@ function App() {
       case "Design": {
         const isGradientActive = settings.gradient_type && settings.gradient_type !== "Solid Color";
         return (
-          <div className="bg-surface-container-lowest p-gutter rounded-2xl border border-outline-variant shadow-sm space-y-6">
+          <div className="bg-white rounded-xl border border-outline-variant space-y-6 p-6">
             {isGradientActive && (
-              <div className="flex items-center gap-2 p-3 bg-primary/10 border border-primary/20 rounded-xl text-xs font-semibold text-primary">
+              <div className="flex items-center gap-2 p-3 bg-primary/5 border border-primary/15 rounded-lg text-xs font-medium text-primary">
                 <span className="material-symbols-outlined text-base">palette</span>
                 <span>Gradient Effect Active (<strong>{settings.gradient_type}</strong>). Showing both foreground start and end colors below:</span>
               </div>
             )}
             <div className={`grid grid-cols-1 ${isGradientActive ? 'md:grid-cols-3' : 'md:grid-cols-2'} gap-6`}>
               <div className="space-y-2">
-                <label className="block text-sm font-semibold">
+                <label className="section-label block mb-1">
                   {isGradientActive ? "Foreground (Start)" : "Foreground Color"}
                 </label>
                 <div className="flex items-center gap-3">
@@ -724,40 +724,40 @@ function App() {
                     type="color"
                     value={settings.dots_color}
                     onChange={(e) => updateSettings({ dots_color: e.target.value })}
-                    className="w-12 h-12 rounded-xl cursor-pointer border border-outline-variant"
+                    className="w-10 h-10 rounded-lg cursor-pointer border border-outline-variant bg-white p-0.5"
                   />
                   <input
                     type="text"
                     value={settings.dots_color}
                     onChange={(e) => updateSettings({ dots_color: e.target.value })}
-                    className="flex-1 p-3 border border-outline-variant rounded-xl bg-white font-body-md"
+                    className="flex-1 p-2.5 border border-outline-variant rounded-lg bg-white text-sm font-mono tracking-wider"
                   />
                 </div>
               </div>
 
               {isGradientActive && (
                 <div className="space-y-2">
-                  <label className="block text-sm font-semibold">Foreground (End)</label>
+                  <label className="section-label block mb-1">Foreground (End)</label>
                   <div className="flex items-center gap-3">
                     <input
                       type="color"
                       value={settings.dots_color_end || "#0050cb"}
                       onChange={(e) => updateSettings({ dots_color_end: e.target.value })}
-                      className="w-12 h-12 rounded-xl cursor-pointer border border-outline-variant"
+                      className="w-10 h-10 rounded-lg cursor-pointer border border-outline-variant bg-white p-0.5"
                     />
                     <input
                       type="text"
                       value={settings.dots_color_end || "#0050cb"}
                       onChange={(e) => updateSettings({ dots_color_end: e.target.value })}
-                      className="flex-1 p-3 border border-outline-variant rounded-xl bg-white font-body-md"
+                      className="flex-1 p-2.5 border border-outline-variant rounded-lg bg-white text-sm font-mono tracking-wider"
                     />
                   </div>
                 </div>
               )}
 
               <div className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <label className="block text-sm font-semibold">Background Color</label>
+                <div className="flex justify-between items-center mb-1">
+                  <label className="section-label block">Background Color</label>
                   <label className="flex items-center gap-2 text-xs font-semibold cursor-pointer select-none px-2.5 py-1 rounded-full bg-surface-variant text-on-surface-variant hover:bg-outline-variant/30 transition-colors">
                     <input
                       type="checkbox"
@@ -773,20 +773,20 @@ function App() {
                     type="color"
                     value={settings.bg_color}
                     onChange={(e) => updateSettings({ bg_color: e.target.value })}
-                    className="w-12 h-12 rounded-xl cursor-pointer border border-outline-variant"
+                    className="w-10 h-10 rounded-lg cursor-pointer border border-outline-variant bg-white p-0.5"
                   />
                   <input
                     type="text"
                     value={settings.bg_color}
                     onChange={(e) => updateSettings({ bg_color: e.target.value })}
-                    className="flex-1 p-3 border border-outline-variant rounded-xl bg-white font-body-md"
+                    className="flex-1 p-2.5 border border-outline-variant rounded-lg bg-white text-sm font-mono tracking-wider"
                   />
                 </div>
               </div>
             </div>
 
             <div className="space-y-3">
-              <label className="block text-sm font-semibold">Dot Module Style</label>
+              <label className="section-label block mb-1">Dot Module Style</label>
               <div className="flex overflow-x-auto gap-3 pt-2 pb-4 custom-scrollbar snap-x scroll-smooth">
                 {dotStyles.map((style) => (
                   <div key={style} className="w-[85px] sm:w-[95px] shrink-0 snap-start">
@@ -803,7 +803,7 @@ function App() {
             </div>
 
             <div className="space-y-3">
-              <label className="block text-sm font-semibold">Eye Style (Outer Frame)</label>
+              <label className="section-label block mb-1">Eye Style (Outer Frame)</label>
               <div className="flex overflow-x-auto gap-3 pt-2 pb-4 custom-scrollbar snap-x scroll-smooth">
                 {eyeFrameStyles.map((style) => (
                   <div key={style} className="w-[85px] sm:w-[95px] shrink-0 snap-start">
@@ -820,7 +820,7 @@ function App() {
             </div>
 
             <div className="space-y-3">
-              <label className="block text-sm font-semibold">Eyeball Style (Inner)</label>
+              <label className="section-label block mb-1">Eyeball Style (Inner)</label>
               <div className="flex overflow-x-auto gap-3 pt-2 pb-4 custom-scrollbar snap-x scroll-smooth">
                 {eyeballStyles.map((style) => (
                   <div key={style} className="w-[85px] sm:w-[95px] shrink-0 snap-start">
@@ -839,8 +839,8 @@ function App() {
             {/* Dual-Tone Marker Colors */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <label className="block text-sm font-semibold flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full border-2 border-primary inline-block"></span>
+                <label className="section-label flex items-center gap-1.5 mb-1">
+                  <span className="w-2 h-2 rounded-full border-2 border-primary inline-block"></span>
                   Eye Frame (Outer)
                 </label>
                 <div className="flex items-center gap-2">
@@ -866,8 +866,8 @@ function App() {
               </div>
 
               <div className="space-y-2">
-                <label className="block text-sm font-semibold flex items-center gap-1.5">
-                  <span className="w-2.5 h-2.5 rounded-full bg-primary inline-block"></span>
+                <label className="section-label flex items-center gap-1.5 mb-1">
+                  <span className="w-2 h-2 rounded-full bg-primary inline-block"></span>
                   Eyeball (Inner Core)
                 </label>
                 <div className="flex items-center gap-2">
@@ -892,10 +892,10 @@ function App() {
       case "Logo":
         const hasLogo = settings.preset_logo !== "None" || !!settings.logo_image;
         return (
-          <div className="bg-surface-container-lowest p-gutter rounded-2xl border border-outline-variant shadow-sm space-y-6">
+          <div className="bg-white rounded-xl border border-outline-variant space-y-6 p-6">
             {/* Custom Premium Drag-and-Drop Zone */}
             <div className="space-y-3">
-              <label className="block text-sm font-semibold flex items-center gap-1.5">
+              <label className="section-label flex items-center gap-1.5 mb-1">
                 <span className="material-symbols-outlined text-sm opacity-70">upload_file</span>
                 Custom Logo File
               </label>
@@ -963,7 +963,7 @@ function App() {
 
             {/* Preset Logos Grid */}
             <div className="space-y-3">
-              <label className="block text-sm font-semibold flex items-center gap-1.5">
+              <label className="section-label flex items-center gap-1.5 mb-1">
                 <span className="material-symbols-outlined text-sm opacity-70">auto_awesome</span>
                 Preset Logo Icon
               </label>
@@ -1230,9 +1230,9 @@ function App() {
         )
       case "Frames":
         return (
-          <div className="bg-surface-container-lowest p-gutter rounded-2xl border border-outline-variant shadow-sm space-y-6">
+          <div className="bg-white rounded-xl border border-outline-variant space-y-6 p-6">
             <div className="space-y-3">
-              <label className="block text-sm font-semibold">Layout Frame Style</label>
+              <label className="section-label block mb-1">Layout Frame Style</label>
               <div className="flex overflow-x-auto gap-3 pt-2 pb-4 custom-scrollbar snap-x scroll-smooth">
                 {frameStyles.map((style) => (
                   <div key={style} className="w-[85px] sm:w-[95px] shrink-0 snap-start">
@@ -1316,7 +1316,7 @@ function App() {
             )}
 
             <div className="space-y-3 pt-4 border-t border-outline-variant/30">
-              <label className="block text-sm font-semibold">Text Style</label>
+              <label className="section-label block mb-1">Text Style</label>
               <div className="flex overflow-x-auto gap-3 pt-2 pb-4 custom-scrollbar snap-x scroll-smooth">
                 {textStyles.map((style) => (
                   <div key={style} className="w-[85px] sm:w-[95px] shrink-0 snap-start">
@@ -1351,7 +1351,7 @@ function App() {
                 </div>
 
                 <div className="space-y-3">
-                  <label className="block text-sm font-semibold">Font Style</label>
+                  <label className="section-label block mb-1">Font Style</label>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                     {fontStyles.map((font) => (
                       <button
@@ -1893,8 +1893,8 @@ function App() {
                 className={`flex-1 py-4 px-6 rounded-xl font-bold flex items-center justify-center gap-3 transition-all duration-300 shadow-lg text-base ${downloadSuccess
                     ? "bg-emerald-600 text-white shadow-emerald-600/25 scale-[1.01]"
                     : isDownloading
-                      ? "bg-primary/80 text-on-primary cursor-wait shadow-primary/20 animate-pulse"
-                      : "bg-gradient-to-r from-primary to-primary/90 hover:from-primary/95 hover:to-primary text-on-primary shadow-primary/25 hover:shadow-xl hover:scale-[1.01] active:scale-[0.99]"
+                      ? "bg-primary/80 text-on-primary cursor-wait shadow-sm animate-pulse"
+                      : "bg-gradient-to-r from-primary to-primary-hover hover:from-primary-hover hover:to-primary text-white shadow-md hover:shadow-lg hover:scale-[1.01] active:scale-[0.99]"
                   } disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100`}
               >
                 {isDownloading ? (
@@ -1959,14 +1959,14 @@ function App() {
       <nav className="fixed w-full top-0 z-50 bg-surface-container-lowest border-b border-outline-variant shadow-sm backdrop-blur-md bg-opacity-95 safe-top">
         <div className="flex justify-between items-center h-14 sm:h-16 px-4 sm:px-gutter w-full">
           <div className="flex items-center gap-4 sm:gap-8">
-            <span className="text-headline-md font-headline-md text-primary tracking-tight font-bold flex items-center gap-2">
-              <span className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white text-base">QR</span>
+            <span className="text-sm font-semibold text-on-surface tracking-tight flex items-center gap-2.5">
+              <span className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center text-white text-[11px] font-bold">QR</span>
               QRStream
             </span>
             <div className="hidden md:flex items-center gap-6">
-              <a href="#" className="text-primary font-bold border-b-2 border-primary pb-1 text-body-md">Generator</a>
-              <a href="#" className="text-secondary font-medium hover:text-primary transition-colors duration-200 text-body-md">My Codes</a>
-              <a href="#" className="text-secondary font-medium hover:text-primary transition-colors duration-200 text-body-md">Resources</a>
+              <a href="#" className="text-on-surface font-semibold text-sm border-b-2 border-primary pb-1">Generator</a>
+              <a href="#" className="text-on-surface-variant font-medium text-sm hover:text-on-surface transition-colors duration-200">My Codes</a>
+              <a href="#" className="text-on-surface-variant font-medium text-sm hover:text-on-surface transition-colors duration-200">Resources</a>
             </div>
           </div>
 
@@ -2004,24 +2004,25 @@ function App() {
       <div className="flex flex-1 w-full relative">
 
         {/* Desktop Sidebar */}
-        <aside className="w-80 border-r border-outline-variant bg-surface-container-low hidden lg:flex flex-col p-6 gap-4 sticky top-16 h-[calc(100vh-4rem)]">
-          <div className="mb-4">
-            <h2 className="font-headline-md text-headline-md text-on-surface font-bold tracking-tight">Customization</h2>
-            <p className="text-on-surface-variant font-label-md text-label-md">Personalize your code</p>
+        <aside className="w-72 border-r border-outline-variant bg-surface-container-lowest hidden lg:flex flex-col py-6 px-4 gap-2 sticky top-16 h-[calc(100vh-4rem)]">
+          <div className="mb-3 px-2">
+            <h2 className="text-sm font-semibold text-on-surface tracking-tight">Customization</h2>
+            <p className="text-xs text-on-surface-variant mt-0.5">Personalize your QR code</p>
           </div>
 
-          <div className="space-y-1.5 flex-1 overflow-y-auto">
+          <div className="space-y-1 flex-1 overflow-y-auto">
             {sidebarTabs.map((tab) => (
               <button
                 key={tab.name}
                 onClick={() => setActiveTab(tab.name)}
-                className={`w-full flex items-center gap-3 p-3 transition-all rounded-xl duration-200 ${activeTab === tab.name
-                    ? "bg-primary/10 text-primary font-bold active-tab-glow border border-primary/20 shadow-sm"
-                    : "text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface border border-transparent"
-                  }`}
+                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium transition-all duration-150 relative sidebar-item ${
+                  activeTab === tab.name
+                    ? "sidebar-item-active"
+                    : "text-on-surface-variant hover:bg-surface-container hover:text-on-surface"
+                }`}
               >
-                <span className="material-symbols-outlined text-[20px]">{tab.icon}</span>
-                <span className="font-label-md text-label-md">{tab.name}</span>
+                <span className={`material-symbols-outlined text-[18px] transition-colors ${activeTab === tab.name ? "text-primary" : "text-on-surface-variant"}`}>{tab.icon}</span>
+                <span>{tab.name}</span>
               </button>
             ))}
           </div>
@@ -2038,13 +2039,13 @@ function App() {
               {/* Left Column: Desktop Config Forms */}
               <div className="lg:col-span-7 space-y-8 max-w-full">
                 <header>
-                  <h1 className="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">Generate New QR Code</h1>
-                  <p className="text-on-surface-variant font-body-lg text-body-lg mt-2">
+                  <h1 className="text-xl font-semibold text-on-surface tracking-tight">Generate New QR Code</h1>
+                  <p className="text-sm text-on-surface-variant mt-1">
                     Choose your data type and customize the appearance.
                   </p>
                 </header>
 
-                <div className="bg-white rounded-3xl p-6 md:p-8 border border-outline-variant shadow-sm max-w-full">
+                <div className="bg-white rounded-2xl p-6 md:p-8 border border-outline-variant shadow-sm max-w-full panel-enter" key={activeTab}>
                   {renderPanelContent(activeTab)}
                 </div>
               </div>
@@ -2054,9 +2055,10 @@ function App() {
                 <div className="bg-white rounded-3xl p-6 md:p-8 border border-outline-variant shadow-md space-y-6 sm:space-y-8">
 
                   <div className="flex justify-between items-center">
-                    <h3 className="font-headline-md text-headline-md text-on-surface font-bold">Live Preview</h3>
-                    <span className="px-2.5 py-1 bg-secondary-container text-on-secondary-container text-[10px] font-bold rounded uppercase tracking-wider">
-                      Dynamic
+                    <h3 className="text-sm font-semibold text-on-surface">Live Preview</h3>
+                    <span className="px-2 py-1 bg-surface-container text-on-surface-variant text-[10px] font-medium rounded-full flex items-center gap-1.5 tracking-wider uppercase">
+                      <span className="pulse-dot"></span>
+                      Live
                     </span>
                   </div>
 
@@ -2150,7 +2152,7 @@ function App() {
                   <div className="space-y-6">
                     <div className="flex flex-col gap-5">
                       <div className="flex flex-col gap-2">
-                        <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1 font-semibold">Zoom</span>
+                        <span className="section-label mb-1">Zoom</span>
                         <div className="grid grid-cols-2 gap-2">
                           <button
                             onClick={() => setZoomLevel(1)}
@@ -2176,7 +2178,7 @@ function App() {
                       </div>
 
                       <div className="flex flex-col gap-2">
-                        <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Tools</span>
+                        <span className="section-label mb-1">Tools</span>
                         <div className="flex gap-2">
                           <button onClick={handleScanTest} className={`flex-1 flex items-center justify-center transition-colors rounded-xl duration-200 min-w-[40px] min-h-[40px] touch-press ${isScanning ? 'bg-primary text-white shadow-md' : 'bg-surface-container hover:bg-surface-container-high text-on-surface-variant active:scale-95'}`} title="Scan Test">
                             <span className="material-symbols-outlined text-[20px]">qr_code_scanner</span>
@@ -2198,12 +2200,12 @@ function App() {
                   {/* Mini Stats */}
                   <div className="pt-6 border-t border-outline-variant grid grid-cols-2 gap-4">
                     <div className="text-center">
-                      <p className="text-[10px] uppercase font-bold text-outline-variant tracking-widest mb-1">Resolution</p>
-                      <p className="font-headline-md text-headline-md text-on-surface font-bold">{targetResolution}</p>
+                      <p className="section-label mb-1">Resolution</p>
+                      <p className="text-sm font-semibold text-on-surface">{targetResolution}</p>
                     </div>
                     <div className="text-center border-l border-outline-variant">
-                      <p className="text-[10px] uppercase font-bold text-outline-variant tracking-widest mb-1">Error Recovery</p>
-                      <p className="font-headline-md text-headline-md text-on-surface font-bold">Level {settings.error_correction}</p>
+                      <p className="section-label mb-1">Error Recovery</p>
+                      <p className="text-sm font-semibold text-on-surface">Level {settings.error_correction}</p>
                     </div>
                   </div>
                 </div>

@@ -11,34 +11,33 @@ export function StylePreviewCard({ title, isSelected, onClick, children }: Style
   return (
     <button
       onClick={onClick}
-      className={`group relative w-full min-w-0 flex flex-col items-center justify-start p-1.5 gap-1.5 rounded-2xl border-2 transition-all duration-200 touch-press
+      className={`group relative w-full min-w-0 flex flex-col items-center justify-start p-1.5 gap-1.5 rounded-xl border transition-all duration-200 touch-press select-spring
         min-h-[60px] sm:min-h-0
         ${isSelected 
-          ? 'border-primary bg-primary/[0.03] shadow-[0_0_15px_rgba(0,80,203,0.3)] scale-[1.02]' 
-          : 'border-outline-variant bg-surface hover:bg-surface-container-high hover:border-primary/50 hover:shadow-md hover:scale-[1.04] active:scale-95'
+          ? 'border-primary ring-2 ring-primary/20 bg-primary/[0.04] scale-[1.02]' 
+          : 'border-outline-variant bg-surface-container-lowest hover:bg-surface-container hover:border-zinc-300 hover:shadow-sm active:scale-[0.97]'
         }
       `}
     >
-      {/* Selected Indicator */}
+      {/* Selected Indicator — small, clean checkmark */}
       {isSelected && (
-        <div className="absolute -top-2 -right-2 w-5 h-5 bg-primary text-white rounded-full flex items-center justify-center shadow-md z-20 transition-transform">
-          <span className="material-symbols-outlined text-[12px] font-bold">check</span>
+        <div className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-primary text-white rounded-full flex items-center justify-center shadow-sm z-20">
+          <span className="material-symbols-outlined text-[10px] font-bold">check</span>
         </div>
       )}
 
       {/* Preview Container */}
-      <div className={`w-full aspect-square rounded-xl flex items-center justify-center shadow-sm overflow-hidden relative transition-colors duration-200
-        ${isSelected ? 'bg-primary/[0.04] border border-primary/30' : 'bg-white border border-outline-variant/30 group-hover:border-primary/30'}
+      <div className={`w-full aspect-square rounded-lg flex items-center justify-center overflow-hidden relative transition-colors duration-200
+        ${isSelected ? 'bg-primary/[0.03]' : 'bg-white group-hover:bg-zinc-50/50'}
       `}>
-         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "radial-gradient(#0050cb 1px, transparent 1px)", backgroundSize: "8px 8px" }}></div>
          <div className="relative z-10 w-full h-full flex items-center justify-center p-0.5">
            {children}
          </div>
       </div>
 
       {/* Title */}
-      <span className={`text-[9px] sm:text-[10px] md:text-[11px] font-semibold text-center w-full truncate px-0.5 capitalize transition-colors duration-200 leading-tight
-        ${isSelected ? 'text-primary' : 'text-on-surface group-hover:text-primary'}
+      <span className={`text-[9px] sm:text-[10px] font-medium text-center w-full truncate px-0.5 capitalize transition-colors duration-200 leading-tight
+        ${isSelected ? 'text-primary font-semibold' : 'text-zinc-500 group-hover:text-zinc-700'}
       `}>
         {title.replace(/_/g, ' ')}
       </span>
