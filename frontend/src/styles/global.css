@@ -125,6 +125,31 @@
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03), 0 1px 3px 0 rgba(0, 0, 0, 0.04);
 }
 
+/* Vercel-style precision multi-layer surface ring with top inner highlight */
+.surface-ring-vercel {
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.03), 0 1px 2px -1px rgba(0, 0, 0, 0.02), inset 0 1px 0 0 rgba(255, 255, 255, 0.9), 0 0 0 1px var(--color-outline-variant);
+}
+
+/* Interactive surface ring for clickable option cards and buttons */
+.surface-ring-interactive {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.04), inset 0 1px 0 0 rgba(255, 255, 255, 0.8), 0 0 0 1px var(--color-outline-variant);
+  transition: box-shadow 200ms ease, transform 150ms ease, border-color 200ms ease, background-color 200ms ease;
+}
+.surface-ring-interactive:hover {
+  box-shadow: 0 3px 8px -1px rgba(0, 0, 0, 0.06), inset 0 1px 0 0 rgba(255, 255, 255, 0.95), 0 0 0 1px #d4d4d8;
+}
+
+/* Framer-style ambient radial hero glow for preview showpieces */
+.ambient-hero-glow {
+  background: radial-gradient(circle at 50% 50%, rgba(79, 70, 229, 0.12) 0%, rgba(139, 92, 246, 0.06) 45%, transparent 75%);
+  filter: blur(48px);
+}
+
+/* Soft interior illumination aura inside canvas boxes */
+.canvas-aura {
+  background: radial-gradient(circle at center, rgba(79, 70, 229, 0.05) 0%, rgba(24, 24, 27, 0.01) 50%, transparent 80%);
+}
+
 /* Section label — uppercase micro labels */
 .section-label {
   font-size: 0.6875rem;

@@ -2045,14 +2045,17 @@ function App() {
                   </p>
                 </header>
 
-                <div className="bg-white rounded-2xl p-6 md:p-8 border border-outline-variant shadow-sm max-w-full panel-enter" key={activeTab}>
+                <div className="bg-white rounded-2xl p-6 md:p-8 surface-ring-vercel max-w-full panel-enter" key={activeTab}>
                   {renderPanelContent(activeTab)}
                 </div>
               </div>
 
               {/* Right Column: Sticky Live Preview */}
-              <div className="lg:col-span-5 lg:sticky lg:top-24" ref={previewRef}>
-                <div className="bg-white rounded-3xl p-6 md:p-8 border border-outline-variant shadow-md space-y-6 sm:space-y-8">
+              <div className="lg:col-span-5 lg:sticky lg:top-24 relative" ref={previewRef}>
+                {/* Framer-style Ambient Hero Glow */}
+                <div className="absolute -inset-4 sm:-inset-6 ambient-hero-glow -z-10 pointer-events-none rounded-[40px]" />
+
+                <div className="bg-white rounded-3xl p-6 md:p-8 surface-ring-vercel space-y-6 sm:space-y-8 relative z-10">
 
                   <div className="flex justify-between items-center">
                     <h3 className="text-sm font-semibold text-on-surface">Live Preview</h3>
@@ -2065,7 +2068,7 @@ function App() {
                   {/* QR Preview Surface */}
                   <div
                     id="qr-preview-container"
-                    className={`aspect-square border-outline-variant flex items-center justify-center relative overflow-hidden group p-8 ${isFullscreen ? 'bg-white rounded-none border-none h-screen w-screen' : 'rounded-2xl border'}`}
+                    className={`aspect-square flex items-center justify-center relative overflow-hidden group p-8 ${isFullscreen ? 'bg-white rounded-none border-none h-screen w-screen' : 'rounded-2xl surface-ring-vercel'}`}
                     style={
                       isFullscreen
                         ? { backgroundColor: '#ffffff' }
@@ -2108,6 +2111,7 @@ function App() {
                         </button>
                       </div>
                     )}
+                    <div className="absolute inset-0 canvas-aura pointer-events-none"></div>
                     <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "radial-gradient(#0050cb 1px, transparent 1px)", backgroundSize: "20px 20px" }}></div>
 
                     {isLoading ? (
