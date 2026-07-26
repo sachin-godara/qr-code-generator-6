@@ -781,7 +781,7 @@ function App() {
             </div>
 
             <div className="space-y-3">
-              <label className="section-label block mb-1">Dot Module Style</label>
+              <label className="section-label block mb-1">Dot Style</label>
               <div className="flex overflow-x-auto gap-3 px-2 pt-2 pb-4 custom-scrollbar snap-x scroll-smooth">
                 {dotStyles.map((style) => (
                   <div key={style} className="w-[85px] sm:w-[95px] shrink-0 snap-start">
@@ -798,7 +798,7 @@ function App() {
             </div>
 
             <div className="space-y-3">
-              <label className="section-label block mb-1">Eye Style (Outer Frame)</label>
+              <label className="section-label block mb-1">Eye Frame</label>
               <div className="flex overflow-x-auto gap-3 px-2 pt-2 pb-4 custom-scrollbar snap-x scroll-smooth">
                 {eyeFrameStyles.map((style) => (
                   <div key={style} className="w-[85px] sm:w-[95px] shrink-0 snap-start">
@@ -815,7 +815,7 @@ function App() {
             </div>
 
             <div className="space-y-3">
-              <label className="section-label block mb-1">Eyeball Style (Inner)</label>
+              <label className="section-label block mb-1">Eyeball</label>
               <div className="flex overflow-x-auto gap-3 px-2 pt-2 pb-4 custom-scrollbar snap-x scroll-smooth">
                 {eyeballStyles.map((style) => (
                   <div key={style} className="w-[85px] sm:w-[95px] shrink-0 snap-start">
