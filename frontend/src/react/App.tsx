@@ -1923,7 +1923,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen flex flex-col font-body-md text-on-surface bg-background antialiased pt-14 sm:pt-16">
+    <div className="lg:min-h-screen flex flex-col font-body-md text-on-surface bg-background antialiased pt-14 sm:pt-16">
 
       {/* TopNavBar with mobile hamburger */}
       <nav className="fixed w-full top-0 z-50 bg-surface-container-lowest border-b border-outline-variant shadow-sm backdrop-blur-md bg-opacity-95 safe-top">
@@ -2014,7 +2014,9 @@ function App() {
                   </p>
                 </header>
 
-                {renderPanelContent(activeTab)}
+                <div className="bg-white rounded-3xl p-6 md:p-8 border border-outline-variant shadow-sm max-w-full">
+                  {renderPanelContent(activeTab)}
+                </div>
               </div>
 
               {/* Right Column: Sticky Live Preview */}
@@ -2116,7 +2118,7 @@ function App() {
 
                   {/* Export Toolbar */}
                   <div className="space-y-6">
-                    <div className="grid grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
                       <div className="flex flex-col gap-2">
                         <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1 font-semibold">Zoom</span>
                         <div className="grid grid-cols-2 gap-2">
