@@ -1424,9 +1424,13 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
         elif eyeball_style == "minimal_plus":
             cx = ebx + 1.5 * s
             cy = eby + 1.5 * s
-            th = max(1, s // 2)
-            draw.rectangle([ebx + s, cy - th, ebx + 2*s, cy + th], fill=eyeball_rgb + (255,))
-            draw.rectangle([cx - th, eby + s, cx + th, eby + 2*s], fill=eyeball_rgb + (255,))
+            w = 2.4 * s
+            t = max(2, int(0.5 * s))
+            hw = w / 2
+            ht = t / 2
+            rad = max(1, int(t / 3))
+            draw.rounded_rectangle([cx - hw, cy - ht, cx + hw, cy + ht], radius=rad, fill=eyeball_rgb + (255,))
+            draw.rounded_rectangle([cx - ht, cy - hw, cx + ht, cy + hw], radius=rad, fill=eyeball_rgb + (255,))
         elif eyeball_style == "leaf":
             draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=eyeball_rgb + (255,))
             make_eyeball_sharp_corner(draw, ebx, eby, "TL", s, r2, eyeball_rgb + (255,))
@@ -1514,9 +1518,23 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
             draw.ellipse([cx - 1.2*s, cy - cr, cx - 0.2*s, cy + cr], fill=eyeball_rgb + (255,))
             draw.ellipse([cx + 0.2*s, cy - cr, cx + 1.2*s, cy + cr], fill=eyeball_rgb + (255,))
             draw.rectangle([cx - 0.5*s, cy - 0.5*s, cx + 0.5*s, cy + 0.5*s], fill=eyeball_rgb + (255,))
-        elif eyeball_style == "plus" or eyeball_style == "cross":
+        elif eyeball_style == "plus":
             draw.rectangle([ebx, eby + s, ebx + 3*s - 1, eby + 2*s - 1], fill=eyeball_rgb + (255,))
             draw.rectangle([ebx + s, eby, ebx + 2*s - 1, eby + 3*s - 1], fill=eyeball_rgb + (255,))
+        elif eyeball_style == "cross":
+            th = int(0.7 * s)
+            draw.polygon([
+                (ebx + th, eby),
+                (ebx, eby + th),
+                (ebx + 3*s - 1 - th, eby + 3*s - 1),
+                (ebx + 3*s - 1, eby + 3*s - 1 - th)
+            ], fill=eyeball_rgb + (255,))
+            draw.polygon([
+                (ebx + 3*s - 1 - th, eby),
+                (ebx + 3*s - 1, eby + th),
+                (ebx + th, eby + 3*s - 1),
+                (ebx, eby + 3*s - 1 - th)
+            ], fill=eyeball_rgb + (255,))
         elif eyeball_style == "flower":
             cx = ebx + 1.5 * s
             cy = eby + 1.5 * s

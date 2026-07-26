@@ -46,7 +46,7 @@ def main():
         clean_name = get_clean_name(name)
         out_path = os.path.join(out_dir, f'{clean_name}.png')
         
-        if os.path.exists(out_path):
+        if False:
             print(f"Skipping {name}, already exists.")
             continue
             
