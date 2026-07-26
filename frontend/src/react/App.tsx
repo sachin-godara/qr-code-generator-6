@@ -2118,7 +2118,7 @@ function App() {
 
                   {/* Export Toolbar */}
                   <div className="space-y-6">
-                    <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
+                    <div className="flex flex-col gap-5">
                       <div className="flex flex-col gap-2">
                         <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1 font-semibold">Zoom</span>
                         <div className="grid grid-cols-2 gap-2">
