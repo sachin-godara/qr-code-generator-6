@@ -7,7 +7,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from services.qr_service import generate_qr_image
 
 styles = [
-    'drop_shadow_card', 'coupon_dashed', 'hanging_sign', 'monitor_screen', 'storefront_awning'
+    'film_strip', 'ticket_cutout', 'drop_shadow_card', 'coupon_dashed', 'hanging_sign', 'monitor_screen', 'storefront_awning', 'modern_polaroid'
 ]
 
 output_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'frontend', 'public', 'previews', 'frames')

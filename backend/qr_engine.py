@@ -921,6 +921,26 @@ def make_eyeball_sharp_corner(draw, ebx, eby, corner, s, r2, color):
     elif corner == "BR":
         draw.rectangle([ebx + 3*s - r2, eby + 3*s - r2, ebx + 3*s - 1, eby + 3*s - 1], fill=color)
 
+class SleekDashModuleDrawer(StyledPilQRModuleDrawer):
+    def initialize(self, *args, **kwargs):
+        super().initialize(*args, **kwargs)
+        box_size = self.img.box_size
+        fake_size = box_size * ANTIALIASING_FACTOR
+        self.img_module = Image.new(
+            self.img.mode,
+            (fake_size, fake_size),
+            self.img.color_mask.back_color,
+        )
+        draw = ImageDraw.Draw(self.img_module)
+        h = fake_size // 4
+        # A minimal horizontal dash vertically centered
+        draw.rounded_rectangle([0, fake_size // 2 - h // 2, fake_size - 1, fake_size // 2 + h // 2], radius=max(1, h//2), fill=self.img.paint_color)
+        self.img_module = self.img_module.resize((box_size, box_size), Image.Resampling.LANCZOS)
+
+    def drawrect(self, box, is_active: bool):
+        if is_active:
+            self.img._img.paste(self.img_module, (box[0][0], box[0][1]))
+
 def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_style="square", logo_image=None, box_size=30, eye_color=None, eyeball_color=None, eye_frame_style=None, eyeball_style=None, remove_logo_bg=False, logo_bg_color="#ffffff", logo_bg_tolerance=30, logo_clear_size=0, gradient_type="Solid Color", fill_color_end="#000000", preset_logo="None", preset_logo_color=None, logo_card_shape="None", logo_card_padding=10, logo_size_ratio=0.33, error_correction="H", quiet_zone=4, bg_transparent=False):
     if eye_frame_style is None: eye_frame_style = "square"
     if eyeball_style is None: eyeball_style = "square"
@@ -973,6 +993,7 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
                         qr.modules[y][x] = False
 
     module_drawers = {
+        "sleek_dash": SleekDashModuleDrawer(),
         "square": SquareModuleDrawer(),
         "gapped": GappedSquareModuleDrawer(),
         "circle": CircleModuleDrawer(),
@@ -1325,6 +1346,8 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
             draw.polygon([(cx, cy - spoke_w//2), (cx, cy + spoke_w//2), (px + 6*s, cy + spoke_w//2 + s), (px + 6*s, cy - spoke_w//2 + s)], fill=eye_rgb + (255,))
         elif eye_frame_style == "square":
             draw.rectangle([px, py, px + 7*s - 1, py + 7*s - 1], outline=eye_rgb + (255,), width=s)
+        elif eye_frame_style == "minimal_ring":
+            draw.ellipse([px + s//2, py + s//2, px + 7*s - s//2 - 1, py + 7*s - s//2 - 1], outline=eye_rgb + (255,), width=max(1, s // 2))
         elif eye_frame_style == "none":
             pass
 
@@ -1398,6 +1421,12 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
                 draw.ellipse([fx - dot_r, fy - dot_r, fx + dot_r, fy + dot_r], fill=eyeball_rgb + (255,))
         elif eyeball_style == "circle":
             draw.ellipse([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], fill=eyeball_rgb + (255,))
+        elif eyeball_style == "minimal_plus":
+            cx = ebx + 1.5 * s
+            cy = eby + 1.5 * s
+            th = max(1, s // 2)
+            draw.rectangle([ebx + s, cy - th, ebx + 2*s, cy + th], fill=eyeball_rgb + (255,))
+            draw.rectangle([cx - th, eby + s, cx + th, eby + 2*s], fill=eyeball_rgb + (255,))
         elif eyeball_style == "leaf":
             draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=eyeball_rgb + (255,))
             make_eyeball_sharp_corner(draw, ebx, eby, "TL", s, r2, eyeball_rgb + (255,))

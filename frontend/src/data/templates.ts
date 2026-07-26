@@ -1127,4 +1127,425 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_radius": 15
     }
   }
+,
+  {
+    "name": "Artisan Menu Scan",
+    "category": "Food & Dining",
+    "description": "Sleek dashes and coffee frame for premium cafes.",
+    "settings": {
+        "dots_style": "sleek_dash",
+        "eye_frame_style": "minimal_ring",
+        "eyeball_style": "minimal_plus",
+        "dots_color": "#3E2723",
+        "dots_color_end": "#4E342E",
+        "gradient_type": "Linear Vertical",
+        "eye_color": "#3E2723",
+        "eyeball_color": "#3E2723",
+        "bg_color": "#EFEBE9",
+        "frame_style": "none",
+        "text_style": "coffee_cup",
+        "frame_text": "VIEW MENU",
+        "frame_color": "#3E2723",
+        "frame_text_color": "#ffffff"
+    }
+},
+  {
+    "name": "Table Check Out",
+    "category": "Food & Dining",
+    "description": "High contrast ticket style for paying at the table.",
+    "settings": {
+        "dots_style": "sleek_dash",
+        "eye_frame_style": "border",
+        "eyeball_style": "minimal_plus",
+        "dots_color": "#212121",
+        "dots_color_end": "#212121",
+        "gradient_type": "Solid Color",
+        "eye_color": "#212121",
+        "eyeball_color": "#212121",
+        "bg_color": "#FAFAFA",
+        "frame_style": "ticket_cutout",
+        "text_style": "none",
+        "frame_text": "PAY BILL",
+        "frame_color": "#212121",
+        "frame_text_color": "#ffffff"
+    }
+},
+  {
+    "name": "Cocktail Lounge",
+    "category": "Food & Dining",
+    "description": "Dark mode with gold accents and a floating pill badge.",
+    "settings": {
+        "dots_style": "diamond",
+        "eye_frame_style": "minimal_ring",
+        "eyeball_style": "diamond",
+        "dots_color": "#FFD700",
+        "dots_color_end": "#FFC107",
+        "gradient_type": "Diagonal (TL to BR)",
+        "eye_color": "#FFD700",
+        "eyeball_color": "#FFD700",
+        "bg_color": "#121212",
+        "frame_style": "none",
+        "text_style": "floating_pill",
+        "frame_text": "DRINKS",
+        "frame_color": "#FFD700",
+        "frame_text_color": "#121212"
+    }
+},
+  {
+    "name": "Food Delivery Promo",
+    "category": "Food & Dining",
+    "description": "Vibrant colors with a storefront awning layout.",
+    "settings": {
+        "dots_style": "rounded",
+        "eye_frame_style": "circle",
+        "eyeball_style": "circle",
+        "dots_color": "#E53935",
+        "dots_color_end": "#FF5252",
+        "gradient_type": "Linear Horizontal",
+        "eye_color": "#E53935",
+        "eyeball_color": "#E53935",
+        "bg_color": "#ffffff",
+        "frame_style": "storefront_awning",
+        "text_style": "none",
+        "frame_text": "ORDER NOW",
+        "frame_color": "#E53935",
+        "frame_text_color": "#ffffff"
+    }
+},
+  {
+    "name": "Flash Sale Tag",
+    "category": "Shopping",
+    "description": "Bright red coupon style for retail flash sales.",
+    "settings": {
+        "dots_style": "sleek_dash",
+        "eye_frame_style": "pointed_top_frame",
+        "eyeball_style": "minimal_plus",
+        "dots_color": "#D50000",
+        "dots_color_end": "#D50000",
+        "gradient_type": "Solid Color",
+        "eye_color": "#D50000",
+        "eyeball_color": "#D50000",
+        "bg_color": "#ffffff",
+        "frame_style": "coupon_dashed",
+        "text_style": "none",
+        "frame_text": "SALE 50% OFF",
+        "frame_color": "#D50000",
+        "frame_text_color": "#ffffff"
+    }
+},
+  {
+    "name": "Boutique Shop",
+    "category": "Shopping",
+    "description": "Pastel gradients with a minimal shopping bag.",
+    "settings": {
+        "dots_style": "lotus_petal",
+        "eye_frame_style": "minimal_ring",
+        "eyeball_style": "flower",
+        "dots_color": "#EC407A",
+        "dots_color_end": "#AB47BC",
+        "gradient_type": "Diagonal (TL to BR)",
+        "eye_color": "#EC407A",
+        "eyeball_color": "#AB47BC",
+        "bg_color": "#ffffff",
+        "frame_style": "none",
+        "text_style": "shopping_bag",
+        "frame_text": "SHOP NOW",
+        "frame_color": "#AB47BC",
+        "frame_text_color": "#ffffff"
+    }
+},
+  {
+    "name": "Product Authenticity",
+    "category": "Shopping",
+    "description": "Solid black and gold with shield eye frames.",
+    "settings": {
+        "dots_style": "tech_chevron",
+        "eye_frame_style": "shield_opposite",
+        "eyeball_style": "minimal_plus",
+        "dots_color": "#000000",
+        "dots_color_end": "#333333",
+        "gradient_type": "Linear Vertical",
+        "eye_color": "#D4AF37",
+        "eyeball_color": "#D4AF37",
+        "bg_color": "#ffffff",
+        "frame_style": "none",
+        "text_style": "floating_pill",
+        "frame_text": "VERIFY",
+        "frame_color": "#000000",
+        "frame_text_color": "#D4AF37"
+    }
+},
+  {
+    "name": "App Download Promo",
+    "category": "Business & Events",
+    "description": "Tech chevron dots with a monitor screen layout.",
+    "settings": {
+        "dots_style": "tech_chevron",
+        "eye_frame_style": "minimal_ring",
+        "eyeball_style": "minimal_plus",
+        "dots_color": "#2962FF",
+        "dots_color_end": "#00B0FF",
+        "gradient_type": "Linear Horizontal",
+        "eye_color": "#2962FF",
+        "eyeball_color": "#2962FF",
+        "bg_color": "#ffffff",
+        "frame_style": "monitor_screen",
+        "text_style": "none",
+        "frame_text": "DOWNLOAD APP",
+        "frame_color": "#2962FF",
+        "frame_text_color": "#ffffff"
+    }
+},
+  {
+    "name": "Luxury Property",
+    "category": "Business & Events",
+    "description": "Gold on navy with a house frame for luxury real estate.",
+    "settings": {
+        "dots_style": "sleek_dash",
+        "eye_frame_style": "house_frame",
+        "eyeball_style": "minimal_plus",
+        "dots_color": "#D4AF37",
+        "dots_color_end": "#F9A825",
+        "gradient_type": "Diagonal (TL to BR)",
+        "eye_color": "#D4AF37",
+        "eyeball_color": "#D4AF37",
+        "bg_color": "#001F3F",
+        "frame_style": "none",
+        "text_style": "bottom_tab",
+        "frame_text": "VIEW LISTING",
+        "frame_color": "#D4AF37",
+        "frame_text_color": "#001F3F"
+    }
+},
+  {
+    "name": "Agent vCard",
+    "category": "Social Media",
+    "description": "Professional blue with modern polaroid frame for agent contacts.",
+    "settings": {
+        "dots_style": "rounded",
+        "eye_frame_style": "minimal_ring",
+        "eyeball_style": "circle",
+        "dots_color": "#1565C0",
+        "dots_color_end": "#1E88E5",
+        "gradient_type": "Linear Vertical",
+        "eye_color": "#1565C0",
+        "eyeball_color": "#1565C0",
+        "bg_color": "#ffffff",
+        "frame_style": "modern_polaroid",
+        "text_style": "none",
+        "frame_text": "SAVE CONTACT",
+        "frame_color": "#1565C0",
+        "frame_text_color": "#ffffff"
+    }
+},
+  {
+    "name": "Virtual Tour",
+    "category": "Business & Events",
+    "description": "Green gradient target bullseye for real estate virtual tours.",
+    "settings": {
+        "dots_style": "target_bullseye",
+        "eye_frame_style": "camera_lens",
+        "eyeball_style": "target_bullseye",
+        "dots_color": "#2E7D32",
+        "dots_color_end": "#43A047",
+        "gradient_type": "Linear Horizontal",
+        "eye_color": "#2E7D32",
+        "eyeball_color": "#2E7D32",
+        "bg_color": "#ffffff",
+        "frame_style": "none",
+        "text_style": "floating_pill",
+        "frame_text": "START TOUR",
+        "frame_color": "#2E7D32",
+        "frame_text_color": "#ffffff"
+    }
+},
+  {
+    "name": "Concert VIP Pass",
+    "category": "Business & Events",
+    "description": "Neon colors with film strip frame for VIP event access.",
+    "settings": {
+        "dots_style": "sleek_dash",
+        "eye_frame_style": "brackets",
+        "eyeball_style": "minimal_plus",
+        "dots_color": "#00E5FF",
+        "dots_color_end": "#D500F9",
+        "gradient_type": "Diagonal (TL to BR)",
+        "eye_color": "#00E5FF",
+        "eyeball_color": "#D500F9",
+        "bg_color": "#121212",
+        "frame_style": "film_strip",
+        "text_style": "none",
+        "frame_text": "VIP ACCESS",
+        "frame_color": "#121212",
+        "frame_text_color": "#00E5FF"
+    }
+},
+  {
+    "name": "Wedding RSVP",
+    "category": "Social Media",
+    "description": "Rose gold gradient with heart dots for elegant weddings.",
+    "settings": {
+        "dots_style": "heart",
+        "eye_frame_style": "minimal_ring",
+        "eyeball_style": "heart",
+        "dots_color": "#B76E79",
+        "dots_color_end": "#E0BFB8",
+        "gradient_type": "Linear Vertical",
+        "eye_color": "#B76E79",
+        "eyeball_color": "#B76E79",
+        "bg_color": "#ffffff",
+        "frame_style": "none",
+        "text_style": "rsvp_envelope",
+        "frame_text": "RSVP",
+        "frame_color": "#B76E79",
+        "frame_text_color": "#ffffff"
+    }
+},
+  {
+    "name": "Conference Badge",
+    "category": "Business & Events",
+    "description": "Lanyard style monitor screen frame for conferences.",
+    "settings": {
+        "dots_style": "square",
+        "eye_frame_style": "square",
+        "eyeball_style": "square",
+        "dots_color": "#424242",
+        "dots_color_end": "#424242",
+        "gradient_type": "Solid Color",
+        "eye_color": "#424242",
+        "eyeball_color": "#424242",
+        "bg_color": "#ffffff",
+        "frame_style": "hanging_sign",
+        "text_style": "none",
+        "frame_text": "ATTENDEE",
+        "frame_color": "#424242",
+        "frame_text_color": "#ffffff"
+    }
+},
+  {
+    "name": "Patient Portal",
+    "category": "Business & Events",
+    "description": "Medical cross dots with clean blue minimal ring eyes.",
+    "settings": {
+        "dots_style": "medical_cross",
+        "eye_frame_style": "minimal_ring",
+        "eyeball_style": "minimal_plus",
+        "dots_color": "#0277BD",
+        "dots_color_end": "#0288D1",
+        "gradient_type": "Linear Horizontal",
+        "eye_color": "#0277BD",
+        "eyeball_color": "#0277BD",
+        "bg_color": "#ffffff",
+        "frame_style": "none",
+        "text_style": "floating_pill",
+        "frame_text": "PATIENT PORTAL",
+        "frame_color": "#0277BD",
+        "frame_text_color": "#ffffff"
+    }
+},
+  {
+    "name": "Telehealth Link",
+    "category": "Business & Events",
+    "description": "Soft green rounded dots with a floating pill.",
+    "settings": {
+        "dots_style": "rounded",
+        "eye_frame_style": "circle",
+        "eyeball_style": "circle",
+        "dots_color": "#00897B",
+        "dots_color_end": "#00897B",
+        "gradient_type": "Solid Color",
+        "eye_color": "#00897B",
+        "eyeball_color": "#00897B",
+        "bg_color": "#ffffff",
+        "frame_style": "drop_shadow_card",
+        "text_style": "none",
+        "frame_text": "JOIN CALL",
+        "frame_color": "#00897B",
+        "frame_text_color": "#ffffff"
+    }
+},
+  {
+    "name": "Prescription Info",
+    "category": "Business & Events",
+    "description": "High contrast black and white with pill frame eyes.",
+    "settings": {
+        "dots_style": "sleek_dash",
+        "eye_frame_style": "pill_frame",
+        "eyeball_style": "minimal_plus",
+        "dots_color": "#000000",
+        "dots_color_end": "#000000",
+        "gradient_type": "Solid Color",
+        "eye_color": "#000000",
+        "eyeball_color": "#000000",
+        "bg_color": "#ffffff",
+        "frame_style": "none",
+        "text_style": "floating_pill",
+        "frame_text": "REFILL INFO",
+        "frame_color": "#000000",
+        "frame_text_color": "#ffffff"
+    }
+},
+  {
+    "name": "Billboard Scalable",
+    "category": "Social Media",
+    "description": "Extreme contrast thick bracket eyes for outdoor advertising.",
+    "settings": {
+        "dots_style": "square",
+        "eye_frame_style": "corner_brackets",
+        "eyeball_style": "square",
+        "dots_color": "#000000",
+        "dots_color_end": "#000000",
+        "gradient_type": "Solid Color",
+        "eye_color": "#000000",
+        "eyeball_color": "#000000",
+        "bg_color": "#ffffff",
+        "frame_style": "none",
+        "text_style": "floating_pill",
+        "frame_text": "SCAN TO WIN",
+        "frame_color": "#FFEB3B",
+        "frame_text_color": "#000000"
+    }
+},
+  {
+    "name": "Social Media Link",
+    "category": "Social Media",
+    "description": "Phone frame for Instagram/TikTok style marketing.",
+    "settings": {
+        "dots_style": "sleek_dash",
+        "eye_frame_style": "minimal_ring",
+        "eyeball_style": "minimal_plus",
+        "dots_color": "#E1306C",
+        "dots_color_end": "#405DE6",
+        "gradient_type": "Diagonal (TL to BR)",
+        "eye_color": "#E1306C",
+        "eyeball_color": "#405DE6",
+        "bg_color": "#ffffff",
+        "frame_style": "phone_frame",
+        "text_style": "none",
+        "frame_text": "FOLLOW US",
+        "frame_color": "#E1306C",
+        "frame_text_color": "#ffffff"
+    }
+},
+  {
+    "name": "Direct Mail CTA",
+    "category": "Business & Events",
+    "description": "Drop shadow card with dashed edge and loud gradient.",
+    "settings": {
+        "dots_style": "rounded",
+        "eye_frame_style": "circle",
+        "eyeball_style": "circle",
+        "dots_color": "#FF5722",
+        "dots_color_end": "#FF9800",
+        "gradient_type": "Linear Horizontal",
+        "eye_color": "#FF5722",
+        "eyeball_color": "#FF5722",
+        "bg_color": "#ffffff",
+        "frame_style": "drop_shadow_card",
+        "text_style": "none",
+        "frame_text": "CLAIM OFFER",
+        "frame_color": "#FF5722",
+        "frame_text_color": "#ffffff"
+    }
+}
 ];

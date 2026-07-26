@@ -500,17 +500,37 @@ def apply_layout_frame(qr_img, layout_template="none", frame_color="#000000", pa
         new_img.paste(qr_img, (padding * 2, int(padding * 3.5)), qr_img)
         return new_img
 
+    elif layout_template == "modern_polaroid":
+        new_w = qr_w + padding * 4
+        new_h = qr_h + padding * 7
+        new_img = Image.new("RGBA", (new_w + 20, new_h + 20), color=(255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        
+        # Draw shadow
+        shadow_offset = 10
+        for i in range(5):
+            alpha = int(40 / (i + 1))
+            draw.rounded_rectangle([shadow_offset - i, shadow_offset - i, new_w + shadow_offset + i, new_h + shadow_offset + i], radius=corner_radius, fill=(0, 0, 0, alpha))
+        
+        # Draw frame
+        draw.rounded_rectangle([0, 0, new_w, new_h], radius=corner_radius, fill=(255, 255, 255, 255))
+        draw.rectangle([padding, padding, new_w - padding, new_w - padding], fill=bg_color)
+        
+        new_img.paste(qr_img, (padding * 2, padding * 2), qr_img)
+        return new_img
+
     return qr_img
 
 def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="SCAN ME", text_color="#ffffff", text_size=40, padding=20, corner_radius=15, border_thickness=10, top_text="SCAN ME", font_name="Outfit-Bold.ttf"):
-    if text_template == "none":
+    if text_template == "none" or not text_template:
         return qr_img
-        
+
     if qr_img.mode != 'RGBA':
         qr_img = qr_img.convert('RGBA')
         
     qr_w, qr_h = qr_img.size
     bg_color = hex_to_rgb(frame_color)
+    text_rgba = hex_to_rgb(text_color)
     
     # Map and resolve font path
     font_mapping = {
@@ -588,7 +608,34 @@ def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="
         top_w = top_bbox[2] - top_bbox[0]
         top_h = top_bbox[3] - top_bbox[1]
         
-    if text_template == "top_text":
+    if text_template == "floating_pill":
+        new_w = qr_w
+        new_h = qr_h + text_size * 2 + padding * 2
+        new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
+        new_img.paste(qr_img, (0, 0), qr_img)
+        draw = ImageDraw.Draw(new_img)
+        
+        # Calculate text width
+        f_lbl, tw_lbl, th_lbl = get_fitted_font(text, qr_w, text_size)
+        pill_w = max(qr_w // 2, tw_lbl + padding * 4)
+        pill_h = text_size * 2
+        pill_x = (new_w - pill_w) // 2
+        pill_y = qr_h + padding // 2
+        
+        # Draw shadow
+        for i in range(4):
+            alpha = int(30 / (i + 1))
+            draw.rounded_rectangle([pill_x - i, pill_y + 4 - i, pill_x + pill_w + i, pill_y + pill_h + 4 + i], radius=pill_h // 2, fill=(0, 0, 0, alpha))
+            
+        # Draw pill
+        draw.rounded_rectangle([pill_x, pill_y, pill_x + pill_w, pill_y + pill_h], radius=pill_h // 2, fill=bg_color)
+        
+        text_x = pill_x + (pill_w - tw_lbl) // 2
+        text_y = pill_y + (pill_h - text_size) // 2 - 2
+        draw.text((text_x, text_y), text, fill=text_rgba, font=f_lbl)
+        return new_img
+
+    elif text_template == "top_text":
         text_area_height = text_h + padding * 2 if text_h > 0 else padding * 2
         new_w = qr_w + padding * 2
         new_h = qr_h + padding * 2 + text_area_height
