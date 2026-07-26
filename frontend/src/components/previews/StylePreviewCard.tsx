@@ -21,7 +21,7 @@ export function StylePreviewCard({ title, isSelected, onClick, children }: Style
     >
       {/* Selected Indicator — small, clean checkmark */}
       {isSelected && (
-        <div className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-primary text-white rounded-full flex items-center justify-center shadow-sm z-20">
+        <div className="absolute -top-1.5 -right-1.5 w-4 h-4 bg-primary text-white rounded-full flex items-center justify-center shadow-sm z-20 animate-celebrate">
           <span className="material-symbols-outlined text-[10px] font-bold">check</span>
         </div>
       )}

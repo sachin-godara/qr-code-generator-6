@@ -661,14 +661,9 @@ function App() {
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 gap-3 max-h-[600px] overflow-y-auto pr-1 pb-4 custom-scrollbar">
               {filteredTemplates.map((template) => {
                 const cleanName = template.name.toLowerCase().replace(/\s+/g, "_");
-                const isSelected =
-                  settings.dots_style === template.settings.dots_style &&
-                  settings.eye_frame_style === template.settings.eye_frame_style &&
-                  settings.eyeball_style === template.settings.eyeball_style &&
-                  settings.dots_color === template.settings.dots_color &&
-                  settings.bg_color === template.settings.bg_color &&
-                  settings.frame_style === template.settings.frame_style &&
-                  settings.text_style === template.settings.text_style;
+                const isSelected = Object.keys(template.settings).every(
+                  (key) => settings[key as keyof typeof settings] === template.settings[key as keyof typeof template.settings]
+                );
 
                 return (
                   <StylePreviewCard
