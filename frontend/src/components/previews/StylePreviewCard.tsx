@@ -36,7 +36,7 @@ export function StylePreviewCard({ title, isSelected, onClick, children }: Style
       </div>
 
       {/* Title */}
-      <span className={`text-[9px] sm:text-[10px] font-medium text-center w-full truncate px-0.5 capitalize transition-colors duration-200 leading-tight
+      <span className={`text-[9px] sm:text-[10px] font-medium text-center w-full px-1 capitalize transition-colors duration-200 leading-tight whitespace-normal break-words h-7 flex items-center justify-center
         ${isSelected ? 'text-primary font-semibold' : 'text-zinc-500 group-hover:text-zinc-700'}
       `}>
         {title.replace(/_/g, ' ')}

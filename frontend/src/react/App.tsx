@@ -642,7 +642,7 @@ function App() {
 
         return (
           <div className="bg-surface-container-lowest p-gutter rounded-2xl border border-outline-variant shadow-sm space-y-4">
-            <div className="flex overflow-x-auto gap-2 pb-2 custom-scrollbar snap-x">
+            <div className="flex overflow-x-auto gap-2 px-2 pb-2 custom-scrollbar snap-x">
               {categories.map(cat => (
                 <button
                   key={cat as string}
@@ -787,7 +787,7 @@ function App() {
 
             <div className="space-y-3">
               <label className="section-label block mb-1">Dot Module Style</label>
-              <div className="flex overflow-x-auto gap-3 pt-2 pb-4 custom-scrollbar snap-x scroll-smooth">
+              <div className="flex overflow-x-auto gap-3 px-2 pt-2 pb-4 custom-scrollbar snap-x scroll-smooth">
                 {dotStyles.map((style) => (
                   <div key={style} className="w-[85px] sm:w-[95px] shrink-0 snap-start">
                     <StylePreviewCard
@@ -795,7 +795,7 @@ function App() {
                       isSelected={settings.dots_style === style}
                       onClick={() => updateSettings({ dots_style: style as any })}
                     >
-                      <img src={`/previews/dots/${style}.png`} alt={style} className="w-[95%] h-[95%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
+                      <img src={`/previews/dots/${style}.png`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
                     </StylePreviewCard>
                   </div>
                 ))}
@@ -804,7 +804,7 @@ function App() {
 
             <div className="space-y-3">
               <label className="section-label block mb-1">Eye Style (Outer Frame)</label>
-              <div className="flex overflow-x-auto gap-3 pt-2 pb-4 custom-scrollbar snap-x scroll-smooth">
+              <div className="flex overflow-x-auto gap-3 px-2 pt-2 pb-4 custom-scrollbar snap-x scroll-smooth">
                 {eyeFrameStyles.map((style) => (
                   <div key={style} className="w-[85px] sm:w-[95px] shrink-0 snap-start">
                     <StylePreviewCard
@@ -812,7 +812,7 @@ function App() {
                       isSelected={settings.eye_frame_style === style}
                       onClick={() => updateSettings({ eye_frame_style: style as any })}
                     >
-                      <img src={`/previews/eye_frames/${style}.png`} alt={style} className="w-[95%] h-[95%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
+                      <img src={`/previews/eye_frames/${style}.png`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
                     </StylePreviewCard>
                   </div>
                 ))}
@@ -821,7 +821,7 @@ function App() {
 
             <div className="space-y-3">
               <label className="section-label block mb-1">Eyeball Style (Inner)</label>
-              <div className="flex overflow-x-auto gap-3 pt-2 pb-4 custom-scrollbar snap-x scroll-smooth">
+              <div className="flex overflow-x-auto gap-3 px-2 pt-2 pb-4 custom-scrollbar snap-x scroll-smooth">
                 {eyeballStyles.map((style) => (
                   <div key={style} className="w-[85px] sm:w-[95px] shrink-0 snap-start">
                     <StylePreviewCard
@@ -829,7 +829,7 @@ function App() {
                       isSelected={settings.eyeball_style === style}
                       onClick={() => updateSettings({ eyeball_style: style as any })}
                     >
-                      <img src={`/previews/eyeballs/${style}.png`} alt={style} className="w-[95%] h-[95%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
+                      <img src={`/previews/eyeballs/${style}.png`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
                     </StylePreviewCard>
                   </div>
                 ))}
@@ -1233,7 +1233,7 @@ function App() {
           <div className="bg-white rounded-xl border border-outline-variant space-y-6 p-6">
             <div className="space-y-3">
               <label className="section-label block mb-1">Layout Frame Style</label>
-              <div className="flex overflow-x-auto gap-3 pt-2 pb-4 custom-scrollbar snap-x scroll-smooth">
+              <div className="flex overflow-x-auto gap-3 px-2 pt-2 pb-4 custom-scrollbar snap-x scroll-smooth">
                 {frameStyles.map((style) => (
                   <div key={style} className="w-[85px] sm:w-[95px] shrink-0 snap-start">
                     <StylePreviewCard
@@ -1241,7 +1241,7 @@ function App() {
                       isSelected={settings.frame_style === style}
                       onClick={() => updateSettings({ frame_style: style as any })}
                     >
-                      <img src={`/previews/frames/${style}.png`} alt={style} className="w-[95%] h-[95%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
+                      <img src={`/previews/frames/${style}.png`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
                     </StylePreviewCard>
                   </div>
                 ))}
@@ -1317,7 +1317,7 @@ function App() {
 
             <div className="space-y-3 pt-4 border-t border-outline-variant/30">
               <label className="section-label block mb-1">Text Style</label>
-              <div className="flex overflow-x-auto gap-3 pt-2 pb-4 custom-scrollbar snap-x scroll-smooth">
+              <div className="flex overflow-x-auto gap-3 px-2 pt-2 pb-4 custom-scrollbar snap-x scroll-smooth">
                 {textStyles.map((style) => (
                   <div key={style} className="w-[85px] sm:w-[95px] shrink-0 snap-start">
                     <StylePreviewCard
@@ -1325,7 +1325,7 @@ function App() {
                       isSelected={settings.text_style === style}
                       onClick={() => updateSettings({ text_style: style as any })}
                     >
-                      <img src={`/previews/text_styles/${style}.png`} alt={style} className="w-[95%] h-[95%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
+                      <img src={`/previews/text_styles/${style}.png`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
                     </StylePreviewCard>
                   </div>
                 ))}
