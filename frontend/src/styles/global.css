@@ -49,13 +49,36 @@
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-on-surface);
     font-family: var(--font-body-md);
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior: none;
+    touch-action: manipulation;
+    /* Safe area padding for notched devices */
+    padding-top: env(safe-area-inset-top);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* Prevent iOS auto-zoom on focus — inputs must be ≥ 16px */
+  @media (max-width: 767px) {
+    input, textarea, select {
+      font-size: 16px !important;
+    }
   }
 }
 
+/* ========================
+   Glass Panel & Tab Glow
+   ======================== */
 .glass-panel {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(12px);
@@ -64,4 +87,101 @@
 
 .active-tab-glow {
   box-shadow: 0 0 12px rgba(0, 80, 203, 0.15);
+}
+
+/* ========================
+   Mobile-Optimized Scrollbars
+   ======================== */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
+}
+.custom-scrollbar::-webkit-scrollbar {
+  height: 4px;
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 9999px;
+}
+
+/* Hide scrollbar completely (for mobile swipe areas) */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* ========================
+   Mobile Range Slider Styling
+   ======================== */
+@media (max-width: 767px) {
+  input[type="range"] {
+    height: 6px;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    border: 3px solid white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+  input[type="range"]::-moz-range-thumb {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--color-primary);
+    border: 3px solid white;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+}
+
+/* ========================
+   Safe Area Utilities
+   ======================== */
+.safe-top {
+  padding-top: env(safe-area-inset-top);
+}
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.safe-left {
+  padding-left: env(safe-area-inset-left);
+}
+.safe-right {
+  padding-right: env(safe-area-inset-right);
+}
+
+/* Bottom bar safe area (for fixed bottom navigation) */
+.pb-safe {
+  padding-bottom: max(env(safe-area-inset-bottom), 8px);
+}
+
+/* ========================
+   Mobile Sheet Overlay
+   ======================== */
+.mobile-sheet-backdrop {
+  background: rgba(0, 0, 0, 0.4);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+/* ========================
+   Touch Press Feedback
+   ======================== */
+@media (hover: none) and (pointer: coarse) {
+  .touch-press:active {
+    transform: scale(0.96);
+    transition: transform 0.1s ease;
+  }
 }

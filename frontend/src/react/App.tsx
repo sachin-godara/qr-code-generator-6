@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef, useCallback } from "react"
 import { useQRStore } from "@/store/useQRStore"
 import { useQuery } from "@tanstack/react-query"
 import { type ContentType, type QRSettings } from "@/types/qr"
@@ -65,9 +65,13 @@ function App() {
   const [sms, setSms] = useState({ phone: '', msg: '' })
   const [wifi, setWifi] = useState({ ssid: '', type: 'WPA/WPA2', pass: '' })
 
-  
-  // Track open accordions on mobile (default open: "Content")
-  const [openAccordions, setOpenAccordions] = useState<string[]>(["Content"])
+  // Mobile UI state
+  const [mobileSheetOpen, setMobileSheetOpen] = useState<string | null>(null)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [showMiniPreview, setShowMiniPreview] = useState(false)
+  const [mobileMoreOpen, setMobileMoreOpen] = useState(false)
+  const previewRef = useRef<HTMLDivElement>(null)
+  const mobileSheetRef = useRef<HTMLDivElement>(null)
   
   const [isComparing, setIsComparing] = useState(false);
   const [isScanning, setIsScanning] = useState(false);
@@ -89,10 +93,48 @@ function App() {
     return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
   }, []);
 
-  // Reset page scroll position to top when switching active configuration tabs
+  // Sticky mini preview observer — shows floating QR thumbnail when main preview scrolls out of view on mobile
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "auto" });
+    const el = previewRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setShowMiniPreview(!entry.isIntersecting),
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // Lock body scroll when mobile sheet is open
+  useEffect(() => {
+    if (mobileSheetOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileSheetOpen]);
+
+  // Close mobile "more" menu when clicking outside
+  useEffect(() => {
+    if (!mobileMoreOpen) return;
+    const handleClick = () => setMobileMoreOpen(false);
+    document.addEventListener('click', handleClick);
+    return () => document.removeEventListener('click', handleClick);
+  }, [mobileMoreOpen]);
+
+  // Reset page scroll position to top when switching active configuration tabs (desktop)
+  useEffect(() => {
+    if (window.innerWidth >= 1024) {
+      window.scrollTo({ top: 0, behavior: "auto" });
+    }
   }, [activeTab]);
+
+  // Handle mobile bottom tab selection
+  const handleMobileTab = useCallback((tabName: string) => {
+    setMobileSheetOpen(tabName);
+    setMobileMoreOpen(false);
+  }, []);
 
   // Fetch fast light QR preview using react-query
   const { data: qrData, isLoading, isError } = useQuery({
@@ -307,14 +349,6 @@ function App() {
     }
   };
 
-  const toggleAccordion = (name: string) => {
-    if (openAccordions.includes(name)) {
-      setOpenAccordions(openAccordions.filter(a => a !== name))
-    } else {
-      setOpenAccordions([...openAccordions, name])
-    }
-  }
-
   const handleFullscreen = () => {
     const el = document.getElementById("qr-preview-container");
     if (el) {
@@ -360,19 +394,19 @@ function App() {
         return (
           <div className="space-y-6">
             {/* Type Tabs */}
-            <div className="glass-panel p-2 rounded-2xl flex flex-wrap gap-1 border border-outline-variant shadow-sm">
+            <div className="glass-panel p-1.5 sm:p-2 rounded-2xl grid grid-cols-4 sm:grid-cols-7 gap-1 border border-outline-variant shadow-sm">
               {contentTypes.map((type) => (
                 <button
                   key={type.id}
                   onClick={() => updateSettings({ contentType: type.id })}
-                  className={`flex-1 flex flex-col items-center gap-1.5 p-3.5 rounded-xl duration-200 border ${
+                  className={`flex flex-col items-center gap-1 sm:gap-1.5 p-2.5 sm:p-3.5 rounded-xl duration-200 border min-h-[48px] touch-press ${
                     settings.contentType === type.id
                       ? "bg-primary text-white border-primary font-bold shadow-md shadow-primary/10"
-                      : "text-on-surface-variant hover:bg-white/50 border-transparent"
+                      : "text-on-surface-variant hover:bg-white/50 border-transparent active:scale-95"
                   }`}
                 >
-                  <span className="material-symbols-outlined text-[22px]">{type.icon}</span>
-                  <span className="font-label-md text-label-md">{type.label}</span>
+                  <span className="material-symbols-outlined text-[20px] sm:text-[22px]">{type.icon}</span>
+                  <span className="font-label-md text-[10px] sm:text-label-md leading-tight">{type.label}</span>
                 </button>
               ))}
             </div>
@@ -1932,10 +1966,10 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col font-body-md text-on-surface bg-background antialiased">
       
-      {/* TopNavBar - Full viewport width */}
-      <nav className="w-full top-0 sticky z-50 bg-surface-container-lowest border-b border-outline-variant shadow-sm backdrop-blur-md bg-opacity-95">
-        <div className="flex justify-between items-center h-16 px-gutter w-full">
-          <div className="flex items-center gap-8 px-4">
+      {/* TopNavBar with mobile hamburger */}
+      <nav className="w-full top-0 sticky z-50 bg-surface-container-lowest border-b border-outline-variant shadow-sm backdrop-blur-md bg-opacity-95 safe-top">
+        <div className="flex justify-between items-center h-14 sm:h-16 px-4 sm:px-gutter w-full">
+          <div className="flex items-center gap-4 sm:gap-8">
             <span className="text-headline-md font-headline-md text-primary tracking-tight font-bold flex items-center gap-2">
               <span className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white text-base">QR</span>
               QRStream
@@ -1946,13 +1980,62 @@ function App() {
               <a href="#" className="text-secondary font-medium hover:text-primary transition-colors duration-200 text-body-md">Resources</a>
             </div>
           </div>
+          
+          {/* Mobile hamburger button */}
+          <button 
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl hover:bg-surface-container transition-colors touch-press"
+          >
+            <span className="material-symbols-outlined text-on-surface">
+              {mobileMenuOpen ? 'close' : 'menu'}
+            </span>
+          </button>
         </div>
+
+        {/* Mobile menu drawer */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-outline-variant bg-surface-container-lowest px-4 py-3 space-y-1 shadow-lg">
+            <a href="#" className="flex items-center gap-3 p-3 rounded-xl bg-primary/10 text-primary font-bold min-h-[48px]">
+              <span className="material-symbols-outlined text-[20px]">qr_code_2</span>
+              Generator
+            </a>
+            <a href="#" className="flex items-center gap-3 p-3 rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors min-h-[48px]">
+              <span className="material-symbols-outlined text-[20px]">folder</span>
+              My Codes
+            </a>
+            <a href="#" className="flex items-center gap-3 p-3 rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors min-h-[48px]">
+              <span className="material-symbols-outlined text-[20px]">menu_book</span>
+              Resources
+            </a>
+          </div>
+        )}
       </nav>
 
-      {/* Main Content Area - Full viewport width (no max-w at this level so sidebar stays far left) */}
+      {/* Sticky Mini Preview — appears when main preview scrolls out of view on mobile */}
+      {showMiniPreview && imageUrl && !mobileSheetOpen && (
+        <div className="lg:hidden fixed top-14 sm:top-16 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-b border-outline-variant shadow-md px-4 py-2 flex items-center gap-3">
+          <div className="w-12 h-12 rounded-xl border border-outline-variant overflow-hidden flex-shrink-0 bg-white p-1">
+            <img src={imageUrl} alt="QR Preview" className="w-full h-full object-contain" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-xs font-bold text-on-surface truncate">Live QR Preview</p>
+            <p className="text-[10px] text-on-surface-variant truncate">
+              {settings.contentType.toUpperCase()} &bull; {settings.dots_style} &bull; EC: {settings.error_correction}
+            </p>
+          </div>
+          <button 
+            onClick={() => previewRef.current?.scrollIntoView({ behavior: 'smooth' })}
+            className="px-3 py-2 text-xs font-bold text-primary bg-primary/10 rounded-xl hover:bg-primary/20 transition-colors touch-press flex-shrink-0 min-h-[40px]"
+          >
+            View
+          </button>
+        </div>
+      )}
+
+      {/* Main Content Area */}
       <div className="flex flex-1 w-full relative">
         
-        {/* Desktop Sidebar (lg and above only) - stays at the absolute left of the screen */}
+        {/* Desktop Sidebar */}
         <aside className="w-80 border-r border-outline-variant bg-surface-container-low hidden lg:flex flex-col p-6 gap-4 sticky top-16 h-[calc(100vh-4rem)]">
           <div className="mb-4">
             <h2 className="font-headline-md text-headline-md text-on-surface font-bold tracking-tight">Customization</h2>
@@ -1977,16 +2060,14 @@ function App() {
           </div>
         </aside>
 
-        {/* Workspace panel - Takes remaining horizontal viewport width */}
-        <div className="flex-1 p-gutter lg:p-margin-desktop bg-surface">
+        {/* Workspace panel — extra bottom padding on mobile for the bottom tab bar */}
+        <div className="flex-1 p-4 sm:p-gutter lg:p-margin-desktop bg-surface pb-24 lg:pb-margin-desktop">
           
-          {/* Centered workspace content matching the desktop container-max (1280px) */}
           <div className="max-w-container-max mx-auto w-full">
             
-            {/* Responsive Layout Grid (Side-by-side on lg+, stacked on mobile/tablet) */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
               
-              {/* Left Column: Configuration Forms (Desktop only) */}
+              {/* Left Column: Desktop Config Forms */}
               <div className="lg:col-span-7 space-y-8 hidden lg:block">
                 <header>
                   <h1 className="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">Generate New QR Code</h1>
@@ -1998,9 +2079,9 @@ function App() {
                 {renderPanelContent(activeTab)}
               </div>
 
-              {/* Right/Top Column: Sticky Live Preview (Always visible) */}
-              <div className="lg:col-span-5 lg:sticky lg:top-24 order-first lg:order-last">
-                <div className="bg-white rounded-3xl p-6 sm:p-8 border border-outline-variant shadow-md space-y-8">
+              {/* Right/Top Column: Live Preview */}
+              <div className="lg:col-span-5 lg:sticky lg:top-24 order-first lg:order-last" ref={previewRef}>
+                <div className="bg-white rounded-3xl p-4 sm:p-6 md:p-8 border border-outline-variant shadow-md space-y-6 sm:space-y-8">
                   
                   <div className="flex justify-between items-center">
                     <h3 className="font-headline-md text-headline-md text-on-surface font-bold">Live Preview</h3>
@@ -2012,7 +2093,7 @@ function App() {
                   {/* QR Preview Surface */}
                   <div 
                     id="qr-preview-container" 
-                    className={`aspect-square border-outline-variant flex items-center justify-center relative overflow-hidden group p-8 ${isFullscreen ? 'bg-white rounded-none border-none h-screen w-screen' : 'rounded-2xl border'}`}
+                    className={`aspect-square border-outline-variant flex items-center justify-center relative overflow-hidden group p-4 sm:p-8 ${isFullscreen ? 'bg-white rounded-none border-none h-screen w-screen' : 'rounded-2xl border'}`}
                     style={
                       isFullscreen 
                         ? { backgroundColor: '#ffffff' }
@@ -2030,37 +2111,32 @@ function App() {
                       }
                     }}
                   >
-                    {/* Floating Controls for Fullscreen */}
+                    {/* Fullscreen Controls */}
                     {isFullscreen && (
                       <div className="absolute bottom-8 right-8 z-50 flex items-center gap-2 bg-white/90 backdrop-blur-sm p-3 rounded-2xl shadow-xl border border-outline-variant">
-                        <button onClick={() => setZoomLevel(prev => Math.max(0.5, prev - 0.25))} className="w-8 h-8 flex items-center justify-center font-bold rounded-xl transition-colors hover:bg-black/5 text-on-surface">
+                        <button onClick={() => setZoomLevel(prev => Math.max(0.5, prev - 0.25))} className="w-10 h-10 flex items-center justify-center font-bold rounded-xl transition-colors hover:bg-black/5 text-on-surface touch-press">
                           <span className="material-symbols-outlined text-sm">remove</span>
                         </button>
                         <span className="text-xs font-bold w-10 text-center">{Math.round(zoomLevel * 100)}%</span>
-                        <button onClick={() => setZoomLevel(prev => Math.min(5, prev + 0.25))} className="w-8 h-8 flex items-center justify-center font-bold rounded-xl transition-colors hover:bg-black/5 text-on-surface">
+                        <button onClick={() => setZoomLevel(prev => Math.min(5, prev + 0.25))} className="w-10 h-10 flex items-center justify-center font-bold rounded-xl transition-colors hover:bg-black/5 text-on-surface touch-press">
                           <span className="material-symbols-outlined text-sm">add</span>
                         </button>
-                        
                         <div className="w-px h-8 bg-outline-variant my-1 mx-1"></div>
-                        
-                        <button onClick={handleScanTest} className={`w-10 h-10 flex items-center justify-center transition-colors rounded-xl duration-200 ${isScanning ? 'bg-primary text-white shadow-md' : 'hover:bg-black/5 text-on-surface'}`} title="Scan Test">
+                        <button onClick={handleScanTest} className={`w-10 h-10 flex items-center justify-center transition-colors rounded-xl duration-200 touch-press ${isScanning ? 'bg-primary text-white shadow-md' : 'hover:bg-black/5 text-on-surface'}`} title="Scan Test">
                           <span className="material-symbols-outlined">qr_code_scanner</span>
                         </button>
-                        <button onClick={() => setIsComparing(!isComparing)} className={`w-10 h-10 flex items-center justify-center transition-colors rounded-xl duration-200 ${isComparing ? 'bg-primary text-white shadow-md' : 'hover:bg-black/5 text-on-surface'}`} title="Compare Raw">
+                        <button onClick={() => setIsComparing(!isComparing)} className={`w-10 h-10 flex items-center justify-center transition-colors rounded-xl duration-200 touch-press ${isComparing ? 'bg-primary text-white shadow-md' : 'hover:bg-black/5 text-on-surface'}`} title="Compare Raw">
                           <span className="material-symbols-outlined">compare</span>
                         </button>
-                        <button onClick={handleShare} className="w-10 h-10 flex items-center justify-center hover:bg-black/5 transition-colors text-on-surface rounded-xl duration-200" title="Share">
+                        <button onClick={handleShare} className="w-10 h-10 flex items-center justify-center hover:bg-black/5 transition-colors text-on-surface rounded-xl duration-200 touch-press" title="Share">
                           <span className="material-symbols-outlined">share</span>
                         </button>
-
                         <div className="w-px h-8 bg-outline-variant my-1 mx-1"></div>
-                        
-                        <button onClick={() => document.exitFullscreen()} className="w-10 h-10 font-bold rounded-xl text-error hover:bg-error/10 flex items-center justify-center transition-colors">
+                        <button onClick={() => document.exitFullscreen()} className="w-10 h-10 font-bold rounded-xl text-error hover:bg-error/10 flex items-center justify-center transition-colors touch-press">
                           <span className="material-symbols-outlined">fullscreen_exit</span>
                         </button>
                       </div>
                     )}
-                    {/* Minimalist Grid Background */}
                     <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "radial-gradient(#0050cb 1px, transparent 1px)", backgroundSize: "20px 20px" }}></div>
                     
                     {isLoading ? (
@@ -2076,14 +2152,12 @@ function App() {
                     ) : (
                       <div
                         className={`relative z-10 transition-all duration-300 ${zoomLevel === 1 ? 'group-hover:scale-105' : ''}`}
-                        style={{
-                          transform: `scale(${zoomLevel})`,
-                        }}
+                        style={{ transform: `scale(${zoomLevel})` }}
                       >
                         <img
                           src={imageUrl}
                           alt="QR Code Preview"
-                          className={`max-w-[240px] max-h-[240px] object-contain transition-all duration-300 ${isComparing ? 'grayscale contrast-125 opacity-90' : ''}`}
+                          className={`w-full max-w-[200px] sm:max-w-[240px] max-h-[200px] sm:max-h-[240px] object-contain transition-all duration-300 ${isComparing ? 'grayscale contrast-125 opacity-90' : ''}`}
                           style={settings.bg_transparent ? {
                             backgroundImage: "linear-gradient(45deg, #e5e7eb 25%, transparent 25%), linear-gradient(-45deg, #e5e7eb 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e5e7eb 75%), linear-gradient(-45deg, transparent 75%, #e5e7eb 75%)",
                             backgroundSize: "16px 16px",
@@ -2106,30 +2180,29 @@ function App() {
                   {/* Export Toolbar */}
                   <div className="space-y-6">
                     <div className="grid grid-cols-2 gap-3">
-                      
                       <div className="flex flex-col gap-2">
                         <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-1 font-semibold">Zoom</span>
                         <div className="grid grid-cols-2 gap-2">
                           <button
                             onClick={() => setZoomLevel(1)}
-                            className={`flex items-center justify-center gap-2 py-2 px-3 rounded-lg border text-sm font-semibold transition-all ${
+                            className={`flex items-center justify-center gap-1.5 py-2 px-2 sm:px-3 rounded-lg border text-xs sm:text-sm font-semibold transition-all min-h-[40px] touch-press ${
                               zoomLevel === 1 
                                 ? 'bg-primary border-primary text-white shadow-md' 
-                                : 'bg-surface border-outline-variant text-on-surface hover:bg-surface-container-highest'
+                                : 'bg-surface border-outline-variant text-on-surface hover:bg-surface-container-highest active:scale-95'
                             }`}
                           >
-                            <span className="material-symbols-outlined text-[18px]">fit_screen</span>
+                            <span className="material-symbols-outlined text-[16px] sm:text-[18px]">fit_screen</span>
                             100%
                           </button>
                           <button
                             onClick={() => setZoomLevel(2)}
-                            className={`flex items-center justify-center gap-2 py-2 px-3 rounded-lg border text-sm font-semibold transition-all ${
+                            className={`flex items-center justify-center gap-1.5 py-2 px-2 sm:px-3 rounded-lg border text-xs sm:text-sm font-semibold transition-all min-h-[40px] touch-press ${
                               zoomLevel === 2
                                 ? 'bg-primary border-primary text-white shadow-md' 
-                                : 'bg-surface border-outline-variant text-on-surface hover:bg-surface-container-highest'
+                                : 'bg-surface border-outline-variant text-on-surface hover:bg-surface-container-highest active:scale-95'
                             }`}
                           >
-                            <span className="material-symbols-outlined text-[18px]">zoom_in</span>
+                            <span className="material-symbols-outlined text-[16px] sm:text-[18px]">zoom_in</span>
                             200%
                           </button>
                         </div>
@@ -2137,90 +2210,170 @@ function App() {
 
                       <div className="flex flex-col gap-2">
                         <span className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Tools</span>
-                        <div className="flex gap-2">
-                          <button onClick={handleScanTest} className={`flex-1 aspect-square flex items-center justify-center transition-colors rounded-xl duration-200 ${isScanning ? 'bg-primary text-white shadow-md' : 'bg-surface-container hover:bg-surface-container-high text-on-surface-variant'}`} title="Scan Test">
-                            <span className="material-symbols-outlined">qr_code_scanner</span>
+                        <div className="flex gap-1.5 sm:gap-2">
+                          <button onClick={handleScanTest} className={`flex-1 flex items-center justify-center transition-colors rounded-xl duration-200 min-w-[40px] min-h-[40px] touch-press ${isScanning ? 'bg-primary text-white shadow-md' : 'bg-surface-container hover:bg-surface-container-high text-on-surface-variant active:scale-95'}`} title="Scan Test">
+                            <span className="material-symbols-outlined text-[20px]">qr_code_scanner</span>
                           </button>
-                          <button onClick={handleFullscreen} className="flex-1 aspect-square flex items-center justify-center bg-surface-container hover:bg-surface-container-high transition-colors text-on-surface-variant rounded-xl duration-200" title="Full Screen">
-                            <span className="material-symbols-outlined">fullscreen</span>
+                          <button onClick={handleFullscreen} className="flex-1 hidden sm:flex items-center justify-center bg-surface-container hover:bg-surface-container-high transition-colors text-on-surface-variant rounded-xl duration-200 min-w-[40px] min-h-[40px] touch-press active:scale-95" title="Full Screen">
+                            <span className="material-symbols-outlined text-[20px]">fullscreen</span>
                           </button>
-                          <button onClick={() => setIsComparing(!isComparing)} className={`flex-1 aspect-square flex items-center justify-center transition-colors rounded-xl duration-200 ${isComparing ? 'bg-primary text-white shadow-md' : 'bg-surface-container hover:bg-surface-container-high text-on-surface-variant'}`} title="Compare Raw">
-                            <span className="material-symbols-outlined">compare</span>
+                          <button onClick={() => setIsComparing(!isComparing)} className={`flex-1 flex items-center justify-center transition-colors rounded-xl duration-200 min-w-[40px] min-h-[40px] touch-press ${isComparing ? 'bg-primary text-white shadow-md' : 'bg-surface-container hover:bg-surface-container-high text-on-surface-variant active:scale-95'}`} title="Compare Raw">
+                            <span className="material-symbols-outlined text-[20px]">compare</span>
                           </button>
-                          <button onClick={handleShare} className="flex-1 aspect-square flex items-center justify-center bg-surface-container hover:bg-surface-container-high transition-colors text-on-surface-variant rounded-xl duration-200" title="Share">
-                            <span className="material-symbols-outlined">share</span>
+                          <button onClick={handleShare} className="flex-1 flex items-center justify-center bg-surface-container hover:bg-surface-container-high transition-colors text-on-surface-variant rounded-xl duration-200 min-w-[40px] min-h-[40px] touch-press active:scale-95" title="Share">
+                            <span className="material-symbols-outlined text-[20px]">share</span>
                           </button>
                         </div>
                       </div>
-
                     </div>
                   </div>
 
-                  {/* Mini Stats for Preview */}
-                  <div className="pt-6 border-t border-outline-variant grid grid-cols-2 gap-4">
+                  {/* Mini Stats */}
+                  <div className="pt-4 sm:pt-6 border-t border-outline-variant grid grid-cols-2 gap-4">
                     <div className="text-center">
                       <p className="text-[10px] uppercase font-bold text-outline-variant tracking-widest mb-1">Resolution</p>
-                      <p className="font-headline-md text-headline-md text-on-surface font-bold">
-                        {targetResolution}
-                      </p>
+                      <p className="font-headline-md text-sm sm:text-headline-md text-on-surface font-bold">{targetResolution}</p>
                     </div>
                     <div className="text-center border-l border-outline-variant">
                       <p className="text-[10px] uppercase font-bold text-outline-variant tracking-widest mb-1">Error Recovery</p>
-                      <p className="font-headline-md text-headline-md text-on-surface font-bold">
-                        Level {settings.error_correction}
-                      </p>
+                      <p className="font-headline-md text-sm sm:text-headline-md text-on-surface font-bold">Level {settings.error_correction}</p>
                     </div>
                   </div>
+                </div>
 
+                {/* Mobile: Quick action buttons below preview */}
+                <div className="lg:hidden mt-4 flex gap-3">
+                  <button 
+                    onClick={() => handleMobileTab("Content")}
+                    className="flex-1 py-3 px-4 bg-primary text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-primary/20 touch-press active:scale-[0.98] min-h-[48px]"
+                  >
+                    <span className="material-symbols-outlined text-[18px]">edit_note</span>
+                    Customize
+                  </button>
+                  <button 
+                    onClick={() => handleMobileTab("Download")}
+                    className="py-3 px-4 bg-white border border-outline-variant text-on-surface rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-sm touch-press active:scale-[0.98] min-h-[48px]"
+                  >
+                    <span className="material-symbols-outlined text-[18px]">download</span>
+                    Export
+                  </button>
                 </div>
               </div>
-
-              {/* Mobile/Tablet Accordions (below lg only) */}
-              <div className="space-y-4 lg:hidden w-full">
-                <header className="mb-4">
-                  <h1 className="font-headline-lg text-headline-lg text-on-surface font-bold tracking-tight">Generate New QR Code</h1>
-                  <p className="text-on-surface-variant font-body-lg text-body-lg mt-2">
-                    Choose your data type and customize the appearance.
-                  </p>
-                </header>
-
-                {sidebarTabs.map((tab) => {
-                  const isOpen = openAccordions.includes(tab.name);
-                  return (
-                    <div 
-                      key={tab.name}
-                      className={`bg-surface-container-lowest border border-outline-variant rounded-2xl overflow-hidden transition-all duration-200 ${isOpen ? 'shadow-md' : 'shadow-sm'}`}
-                    >
-                      <button
-                        onClick={() => toggleAccordion(tab.name)}
-                        className="w-full p-4 flex justify-between items-center text-left hover:bg-muted/40 transition-colors"
-                      >
-                        <div className="flex items-center gap-3 text-on-surface font-bold">
-                          <span className="material-symbols-outlined text-[20px] text-primary">{tab.icon}</span>
-                          <span className="font-headline-md text-headline-md">{tab.name}</span>
-                        </div>
-                        <span className={`material-symbols-outlined transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`}>
-                          expand_more
-                        </span>
-                      </button>
-                      
-                      {isOpen && (
-                        <div className="p-4 border-t border-outline-variant bg-surface-container-lowest">
-                          {renderPanelContent(tab.name)}
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-
             </div>
-
           </div>
         </div>
       </div>
+
+      {/* MOBILE BOTTOM TAB BAR — replaces old accordion navigation */}
+      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-outline-variant shadow-[0_-4px_20px_rgba(0,0,0,0.08)] pb-safe">
+        <div className="flex items-stretch justify-around px-1 pt-1.5 pb-1">
+          {[
+            { name: "Content", icon: "edit_note" },
+            { name: "Templates", icon: "grid_view" },
+            { name: "Design", icon: "palette" },
+            { name: "Logo", icon: "image" },
+            { name: "Download", icon: "download" },
+          ].map((tab) => (
+            <button
+              key={tab.name}
+              onClick={() => handleMobileTab(tab.name)}
+              className={`flex flex-col items-center justify-center gap-0.5 py-1.5 px-2 rounded-xl min-w-[56px] min-h-[48px] transition-all duration-200 touch-press ${
+                mobileSheetOpen === tab.name
+                  ? "text-primary bg-primary/10 font-bold"
+                  : "text-on-surface-variant hover:text-on-surface active:bg-surface-container"
+              }`}
+            >
+              <span className="material-symbols-outlined text-[22px]">{tab.icon}</span>
+              <span className="text-[10px] font-semibold leading-tight">{tab.name}</span>
+            </button>
+          ))}
+          
+          {/* More button */}
+          <div className="relative">
+            <button
+              onClick={(e) => { e.stopPropagation(); setMobileMoreOpen(!mobileMoreOpen); }}
+              className={`flex flex-col items-center justify-center gap-0.5 py-1.5 px-2 rounded-xl min-w-[56px] min-h-[48px] transition-all duration-200 touch-press ${
+                mobileMoreOpen || ["Frames", "Effects", "Advanced"].includes(mobileSheetOpen || "")
+                  ? "text-primary bg-primary/10 font-bold"
+                  : "text-on-surface-variant hover:text-on-surface active:bg-surface-container"
+              }`}
+            >
+              <span className="material-symbols-outlined text-[22px]">more_horiz</span>
+              <span className="text-[10px] font-semibold leading-tight">More</span>
+            </button>
+            
+            {mobileMoreOpen && (
+              <div className="absolute bottom-full right-0 mb-2 bg-white rounded-2xl shadow-xl border border-outline-variant overflow-hidden min-w-[160px]">
+                {[
+                  { name: "Frames", icon: "branding_watermark" },
+                  { name: "Effects", icon: "auto_fix_high" },
+                  { name: "Advanced", icon: "settings" },
+                ].map((tab) => (
+                  <button
+                    key={tab.name}
+                    onClick={(e) => { e.stopPropagation(); handleMobileTab(tab.name); }}
+                    className="w-full flex items-center gap-3 px-4 py-3 text-sm font-semibold text-on-surface hover:bg-surface-container transition-colors touch-press min-h-[48px]"
+                  >
+                    <span className="material-symbols-outlined text-[20px] text-primary">{tab.icon}</span>
+                    {tab.name}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* MOBILE BOTTOM SHEET — slides up when a tab is selected */}
+      {mobileSheetOpen && (
+        <div className="lg:hidden fixed inset-0 z-50 flex flex-col justify-end">
+          <div 
+            className="absolute inset-0 mobile-sheet-backdrop"
+            onClick={() => setMobileSheetOpen(null)}
+          />
+          
+          <div 
+            ref={mobileSheetRef}
+            className="relative bg-white rounded-t-3xl shadow-2xl max-h-[85vh] flex flex-col"
+            style={{ 
+              animation: 'slideUp 0.3s ease-out',
+              paddingBottom: 'max(env(safe-area-inset-bottom, 8px), 8px)'
+            }}
+          >
+            <div className="flex-shrink-0 pt-3 pb-2 px-5 border-b border-outline-variant/50">
+              <div className="w-10 h-1 bg-outline-variant/60 rounded-full mx-auto mb-3" />
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <span className="material-symbols-outlined text-primary text-[22px]">
+                    {sidebarTabs.find(t => t.name === mobileSheetOpen)?.icon}
+                  </span>
+                  <h3 className="font-bold text-on-surface text-lg">{mobileSheetOpen}</h3>
+                </div>
+                <button 
+                  onClick={() => setMobileSheetOpen(null)}
+                  className="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors touch-press"
+                >
+                  <span className="material-symbols-outlined text-on-surface-variant">close</span>
+                </button>
+              </div>
+            </div>
+            
+            <div className="flex-1 overflow-y-auto p-4 sm:p-5 overscroll-contain">
+              {renderPanelContent(mobileSheetOpen)}
+            </div>
+          </div>
+        </div>
+      )}
+
+      <style>{`
+        @keyframes slideUp {
+          from { transform: translateY(100%); }
+          to { transform: translateY(0); }
+        }
+      `}</style>
     </div>
   )
 }
 
 export default App
+
