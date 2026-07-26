@@ -289,6 +289,103 @@ def apply_layout_frame(qr_img, layout_template="none", frame_color="#000000", pa
         draw.rectangle([border_thickness, border_thickness, new_w - border_thickness, new_h - border_thickness], fill=board_color)
         
         new_img.paste(qr_img, (padding * 2, padding * 2), qr_img)
+
+    elif layout_template == "polaroid_frame":
+        new_w = qr_w + padding * 4
+        new_h = qr_h + padding * 8
+        new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        
+        draw.rectangle([0, 0, new_w, new_h], fill=(250, 250, 250, 255))
+        draw.rectangle([0, 0, new_w, new_h], outline=bg_color, width=2)
+        
+        new_img.paste(qr_img, (padding * 2, padding * 2), qr_img)
+        return new_img
+        
+    elif layout_template == "scalloped_edge":
+        new_w = qr_w + padding * 4
+        new_h = qr_h + padding * 4
+        new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        
+        scallop_r = max(4, padding // 2)
+        draw.rectangle([scallop_r, scallop_r, new_w - scallop_r, new_h - scallop_r], fill=(255, 255, 255, 255))
+        draw.rectangle([scallop_r, scallop_r, new_w - scallop_r, new_h - scallop_r], outline=bg_color, width=border_thickness or 2)
+        
+        for x in range(scallop_r * 2, new_w - scallop_r * 2, scallop_r * 4):
+            draw.ellipse([x - scallop_r, -scallop_r, x + scallop_r, scallop_r], fill=(255, 255, 255, 255), outline=bg_color, width=border_thickness or 2)
+            draw.ellipse([x - scallop_r, new_h - scallop_r, x + scallop_r, new_h + scallop_r], fill=(255, 255, 255, 255), outline=bg_color, width=border_thickness or 2)
+            
+        for y in range(scallop_r * 2, new_h - scallop_r * 2, scallop_r * 4):
+            draw.ellipse([-scallop_r, y - scallop_r, scallop_r, y + scallop_r], fill=(255, 255, 255, 255), outline=bg_color, width=border_thickness or 2)
+            draw.ellipse([new_w - scallop_r, y - scallop_r, new_w + scallop_r, y + scallop_r], fill=(255, 255, 255, 255), outline=bg_color, width=border_thickness or 2)
+            
+        new_img.paste(qr_img, (padding * 2, padding * 2), qr_img)
+        return new_img
+        
+    elif layout_template == "art_deco":
+        new_w = qr_w + padding * 4
+        new_h = qr_h + padding * 4
+        new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        
+        draw.rectangle([0, 0, new_w, new_h], fill=(255, 255, 255, 255))
+        draw.rectangle([padding // 2, padding // 2, new_w - padding // 2, new_h - padding // 2], outline=bg_color, width=max(1, border_thickness // 2))
+        draw.rectangle([padding, padding, new_w - padding, new_h - padding], outline=bg_color, width=max(1, border_thickness // 4))
+        
+        cw = int(padding * 1.5)
+        draw.line([padding // 2, padding // 2 + cw, padding // 2 + cw, padding // 2], fill=bg_color, width=max(1, border_thickness // 2))
+        draw.line([new_w - padding // 2, padding // 2 + cw, new_w - padding // 2 - cw, padding // 2], fill=bg_color, width=max(1, border_thickness // 2))
+        draw.line([padding // 2, new_h - padding // 2 - cw, padding // 2 + cw, new_h - padding // 2], fill=bg_color, width=max(1, border_thickness // 2))
+        draw.line([new_w - padding // 2, new_h - padding // 2 - cw, new_w - padding // 2 - cw, new_h - padding // 2], fill=bg_color, width=max(1, border_thickness // 2))
+        
+        new_img.paste(qr_img, (padding * 2, padding * 2), qr_img)
+        return new_img
+        
+    elif layout_template == "film_strip":
+        new_w = qr_w + padding * 6
+        new_h = qr_h + padding * 4
+        new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        
+        draw.rectangle([0, 0, new_w, new_h], fill=(30, 30, 30, 255))
+        draw.rectangle([padding * 2.5, padding * 1.5, new_w - padding * 2.5, new_h - padding * 1.5], fill=(255, 255, 255, 255))
+        
+        hole_s = padding // 1.5
+        
+        # We don't want alpha blending for cutout holes, so we just fill with fully transparent color but PIL ImageDraw with RGBA blending might not replace pixels.
+        # So instead we draw them as white holes for now, assuming white background, or we mask it. Wait, the holes should just be white or transparent. Let's make them white.
+        for y in range(int(padding), new_h - int(padding), int(hole_s * 2.5)):
+            draw.rectangle([padding // 2, y, padding // 2 + hole_s, y + hole_s], fill=(255, 255, 255, 255))
+            draw.rectangle([new_w - padding // 2 - hole_s, y, new_w - padding // 2, y + hole_s], fill=(255, 255, 255, 255))
+            
+        new_img.paste(qr_img, (int(padding * 3), int(padding * 2)), qr_img)
+        return new_img
+        
+    elif layout_template == "ticket_cutout":
+        new_w = qr_w + padding * 6
+        new_h = qr_h + padding * 4
+        new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        
+        draw.rounded_rectangle([0, 0, new_w, new_h], radius=corner_radius, fill=(255, 255, 255, 255), outline=bg_color, width=max(2, border_thickness // 2))
+        
+        cut_r = padding
+        # Draw white cutouts
+        draw.ellipse([-cut_r, new_h // 2 - cut_r, cut_r, new_h // 2 + cut_r], fill=(255, 255, 255, 0), outline=bg_color, width=max(2, border_thickness // 2))
+        draw.ellipse([new_w - cut_r, new_h // 2 - cut_r, new_w + cut_r, new_h // 2 + cut_r], fill=(255, 255, 255, 0), outline=bg_color, width=max(2, border_thickness // 2))
+        # Clear out the inside of the semi-circles to be transparent (using a separate mask or just let it be)
+        # We can draw over it with a transparent fill, but PIL's default draw doesn't replace.
+        
+        dash_y = padding
+        while dash_y < new_h - padding:
+            draw.line([padding * 1.5, dash_y, padding * 1.5, dash_y + 10], fill=bg_color, width=2)
+            draw.line([new_w - padding * 1.5, dash_y, new_w - padding * 1.5, dash_y + 10], fill=bg_color, width=2)
+            dash_y += 20
+            
+        new_img.paste(qr_img, (int(padding * 3), int(padding * 2)), qr_img)
+        return new_img
+
     return qr_img
 
 def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="SCAN ME", text_color="#ffffff", text_size=40, padding=20, corner_radius=15, border_thickness=10, top_text="SCAN ME", font_name="Outfit-Bold.ttf"):
@@ -2765,7 +2862,7 @@ def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="
         draw.ellipse([(0, 0), (new_w, new_h)], fill=bg_color)
         
         # Crease
-        draw.polygon([(new_w // 2 - padding, 0), (new_w // 2 + padding, 0), (new_w // 2 - padding, new_h), (new_w // 2 + padding, new_h)], fill=(255, 255, 255, 100))
+        draw.rectangle([(new_w // 2 - padding // 2, 0), (new_w // 2 + padding // 2, new_h)], fill=(255, 255, 255, 80))
         
         # White QR base
         qx1 = (new_w - qr_w) // 2 - padding
@@ -2915,12 +3012,12 @@ def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="
         lbl_h = th_lbl + padding * 2 if th_lbl > 0 else padding * 2
         
         pot_w = qr_w + padding * 4
-        pot_h = qr_h + padding * 2 + lbl_h
+        pot_h = qr_h + padding * 4
         spout_w = padding * 3
         handle_w = padding * 3
         
         new_w = pot_w + spout_w + handle_w
-        new_h = pot_h + padding * 2
+        new_h = pot_h + padding * 2 + (lbl_h if text else 0)
         
         new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
         draw = ImageDraw.Draw(new_img)
@@ -2936,17 +3033,21 @@ def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="
         
         # Pot Body
         draw.ellipse([(handle_w, padding * 2), (handle_w + pot_w, pot_h + padding * 2)], fill=bg_color)
-        draw.ellipse([(handle_w + padding, padding * 3), (handle_w + pot_w - padding, pot_h + padding * 2 - padding)], fill=(255, 255, 255, 255))
+        draw.ellipse([(handle_w + padding, padding * 3), (handle_w + pot_w - padding, pot_h + padding)], fill=(255, 255, 255, 255))
         
         # Lid
         draw.chord([(handle_w + pot_w // 4, 0), (handle_w + pot_w - pot_w // 4, padding * 4)], 180, 360, fill=bg_color)
         
         # Paste QR
-        new_img.paste(qr_img, (handle_w + padding * 2, padding * 3 + padding), qr_img)
+        new_img.paste(qr_img, (handle_w + padding * 2, padding * 4), qr_img)
         
         if text:
+            # Banner below teapot
+            by1 = pot_h + padding
+            by2 = by1 + lbl_h
+            draw.rounded_rectangle([(handle_w + padding, by1), (handle_w + pot_w - padding, by2)], radius=10, fill=bg_color)
             tx = handle_w + (pot_w - tw_lbl) // 2
-            ty = padding * 3 + qr_h + padding * 2
+            ty = by1 + (lbl_h - th_lbl) // 2 - th_lbl // 4
             draw.text((tx, ty), text, fill=hex_to_rgb(text_color), font=f_lbl)
             
         return new_img
@@ -2979,7 +3080,7 @@ def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="
         
         if text:
             # Banner below bowl
-            by1 = steam_h + bowl_h // 2 + padding
+            by1 = steam_h + bowl_h - padding * 2
             by2 = by1 + lbl_h
             draw.rounded_rectangle([(padding * 2, by1), (new_w - padding * 2, by2)], radius=10, fill=bg_color)
             tx = (new_w - tw_lbl) // 2
