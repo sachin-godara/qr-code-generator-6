@@ -3,12 +3,34 @@ import type { QRSettings } from '../types/qr';
 export interface Template {
   name: string;
   description?: string;
+  category?: string;
   settings: Partial<QRSettings>;
 }
 
 export const PRESET_TEMPLATES: Template[] = [
+
   {
+    "name": "None",
+    "category": "Creative & Misc",
+    "description": "Standard black and white square QR code with no decorations",
+    "settings": {
+      "dots_style": "square",
+      "eye_frame_style": "square",
+      "eyeball_style": "square",
+      "dots_color": "#000000",
+      "dots_color_end": "#000000",
+      "bg_color": "#ffffff",
+      "gradient_type": "Solid Color",
+      "eye_color": "#000000",
+      "eyeball_color": "#000000",
+      "frame_style": "none",
+      "text_style": "none",
+      "preset_logo": "None",
+      "logo_image": null
+    }
+  },  {
     "name": "Artisan Cafe Menu",
+    "category": "Food & Dining",
     "description": "Perfect for coffee shops and cafes featuring our unique coffee cup frame.",
     "settings": {
       "dots_style": "pillow",
@@ -31,6 +53,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Premium Real Estate",
+    "category": "Business & Events",
     "description": "Elegant design for property tours and agent contacts with house-shaped markers.",
     "settings": {
       "dots_style": "diamond_target",
@@ -53,6 +76,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "VIP Event Access",
+    "category": "Business & Events",
     "description": "Neon ticket-stub aesthetic for clubs, concerts, and exclusive events.",
     "settings": {
       "dots_style": "tech_chevron",
@@ -77,6 +101,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Tech App Download",
+    "category": "Social & Digital",
     "description": "A sleek phone frame design mimicking an app store download button.",
     "settings": {
       "dots_style": "network_nodes",
@@ -99,6 +124,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Heavy Lifter Gym Pass",
+    "category": "Business & Events",
     "description": "Aggressive styling for gyms and personal trainers with dumbbell markers.",
     "settings": {
       "dots_style": "medical_cross",
@@ -121,6 +147,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Slice Pizzeria",
+    "category": "Food & Dining",
     "description": "A fun, eye-catching pizza slice frame for pizzerias and fast food.",
     "settings": {
       "dots_style": "rounded_plus",
@@ -143,6 +170,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Elegant Wedding RSVP",
+    "category": "Business & Events",
     "description": "Soft, floral design for wedding invitations and gala RSVPs.",
     "settings": {
       "dots_style": "flower_cut",
@@ -164,26 +192,8 @@ export const PRESET_TEMPLATES: Template[] = [
     }
   },
   {
-    "name": "None",
-    "description": "Standard black and white square QR code with no decorations",
-    "settings": {
-      "dots_style": "square",
-      "eye_frame_style": "square",
-      "eyeball_style": "square",
-      "dots_color": "#000000",
-      "dots_color_end": "#000000",
-      "bg_color": "#ffffff",
-      "gradient_type": "Solid Color",
-      "eye_color": "#000000",
-      "eyeball_color": "#000000",
-      "frame_style": "none",
-      "text_style": "none",
-      "preset_logo": "None",
-      "logo_image": null
-    }
-  },
-  {
     "name": "Instagram Sunset Dots",
+    "category": "Social & Digital",
     "description": "Vibrant Instagram gradient dots with centered logo",
     "settings": {
       "dots_style": "rounded",
@@ -201,6 +211,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Instagram Sunset Card",
+    "category": "Social & Digital",
     "description": "Full sunset gradient rounded card background",
     "settings": {
       "dots_style": "rounded",
@@ -221,6 +232,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Instagram Banner Poster",
+    "category": "Social & Digital",
     "description": "Instagram branded poster banner card",
     "settings": {
       "dots_style": "rounded",
@@ -239,6 +251,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Facebook Royal Blue Frame",
+    "category": "Social & Digital",
     "description": "Royal blue Facebook rounded accent frame",
     "settings": {
       "dots_style": "rounded",
@@ -256,6 +269,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Facebook Blue Banner Card",
+    "category": "Social & Digital",
     "description": "Official Facebook banner card with Follow Us On CTA",
     "settings": {
       "dots_style": "square",
@@ -274,6 +288,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Discord Dark Mode",
+    "category": "Social & Digital",
     "description": "Discord dark mode theme with brand logo",
     "settings": {
       "dots_style": "square",
@@ -291,6 +306,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Discord Soft Blue Gradient",
+    "category": "Social & Digital",
     "description": "Light blue Discord community accent card",
     "settings": {
       "dots_style": "rounded",
@@ -309,6 +325,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Black Pill Badge",
+    "category": "Creative & Misc",
     "description": "Sleek black frame with solid SCAN ME pill badge",
     "settings": {
       "dots_style": "square",
@@ -326,6 +343,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Blue Header Tab",
+    "category": "Creative & Misc",
     "description": "Blue accent card with top SCAN ME tab",
     "settings": {
       "dots_style": "square",
@@ -342,6 +360,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Orange Outline Card",
+    "category": "Creative & Misc",
     "description": "Bright orange outline border with bottom text label",
     "settings": {
       "dots_style": "square",
@@ -359,6 +378,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Red Phone Footer Card",
+    "category": "Creative & Misc",
     "description": "Red phone contact card with bottom action badge",
     "settings": {
       "dots_style": "square",
@@ -377,6 +397,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Black Glossy Header Card",
+    "category": "Creative & Misc",
     "description": "Monochrome glossy card with top SCAN ME header",
     "settings": {
       "dots_style": "square",
@@ -395,6 +416,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Black Canvas Dark Mode",
+    "category": "Creative & Misc",
     "description": "Inverted dark theme canvas with white modules",
     "settings": {
       "dots_style": "rounded",
@@ -415,6 +437,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "LinkedIn Banner Card",
+    "category": "Social & Digital",
     "description": "Professional LinkedIn blue brand card",
     "settings": {
       "dots_style": "square",
@@ -431,6 +454,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Threads Black Canvas",
+    "category": "Social & Digital",
     "description": "Ultra dark Threads edition with crisp white elements",
     "settings": {
       "dots_style": "rounded",
@@ -448,6 +472,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Google 4-Color Brand Card",
+    "category": "Social & Digital",
     "description": "Multi-colored Google brand style card",
     "settings": {
       "dots_style": "rounded",
@@ -464,6 +489,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Blue Speech Bubble",
+    "category": "Creative & Misc",
     "settings": {
       "dots_style": "square",
       "eye_frame_style": "square",
@@ -484,6 +510,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Green Leaf",
+    "category": "Creative & Misc",
     "settings": {
       "dots_style": "rounded",
       "eye_frame_style": "leaf",
@@ -504,6 +531,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Pink Dotted",
+    "category": "Creative & Misc",
     "settings": {
       "dots_style": "circle",
       "eye_frame_style": "circle",
@@ -524,6 +552,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Blue Circle Sprinkles",
+    "category": "Creative & Misc",
     "settings": {
       "dots_style": "circle",
       "eye_frame_style": "circle",
@@ -544,6 +573,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Purple Rate Us Tab",
+    "category": "Creative & Misc",
     "settings": {
       "dots_style": "rounded",
       "eye_frame_style": "leaf",
@@ -564,6 +594,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Blue Juice Cup",
+    "category": "Food & Dining",
     "settings": {
       "dots_style": "circle",
       "eye_frame_style": "circle",
@@ -584,6 +615,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Red Ribbon Banner",
+    "category": "Business & Events",
     "settings": {
       "dots_style": "rounded",
       "eye_frame_style": "square",
@@ -604,6 +636,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Warm Coffee Cup",
+    "category": "Food & Dining",
     "settings": {
       "dots_style": "rounded",
       "eye_frame_style": "leaf",
@@ -624,6 +657,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Food Cloche Dome",
+    "category": "Food & Dining",
     "settings": {
       "dots_style": "rounded",
       "eye_frame_style": "circle",
@@ -644,6 +678,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Orange Shopping Bag",
+    "category": "Creative & Misc",
     "settings": {
       "dots_style": "rounded",
       "eye_frame_style": "shield",
@@ -664,6 +699,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "VIP Ticket Stub",
+    "category": "Business & Events",
     "settings": {
       "dots_style": "square",
       "eye_frame_style": "square",
@@ -684,6 +720,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Retro Polaroid",
+    "category": "Creative & Misc",
     "settings": {
       "dots_style": "rounded",
       "eye_frame_style": "rounded",
@@ -704,6 +741,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Vantage Price Tag",
+    "category": "Business & Events",
     "settings": {
       "dots_style": "diamond",
       "eye_frame_style": "diamond",
@@ -724,6 +762,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Web Browser",
+    "category": "Social & Digital",
     "settings": {
       "dots_style": "rounded",
       "eye_frame_style": "rounded",
@@ -744,6 +783,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Coffee Mug Frame",
+    "category": "Food & Dining",
     "settings": {
       "dots_style": "rounded",
       "eye_frame_style": "leaf",
@@ -764,6 +804,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Best Seller Badge",
+    "category": "Business & Events",
     "settings": {
       "dots_style": "rounded",
       "eye_frame_style": "circle",
@@ -784,6 +825,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Postage Stamp",
+    "category": "Business & Events",
     "settings": {
       "dots_style": "square",
       "eye_frame_style": "square",
@@ -804,6 +846,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Support Chat",
+    "category": "Creative & Misc",
     "settings": {
       "dots_style": "rounded",
       "eye_frame_style": "rounded",
@@ -824,6 +867,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Vinyl Soundtrack",
+    "category": "Creative & Misc",
     "settings": {
       "dots_style": "rounded",
       "eye_frame_style": "circle",
@@ -844,6 +888,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Verified Shield",
+    "category": "Creative & Misc",
     "settings": {
       "dots_style": "rounded",
       "eye_frame_style": "shield",
@@ -864,6 +909,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Laptop Workspace",
+    "category": "Creative & Misc",
     "settings": {
       "dots_style": "rounded",
       "eye_frame_style": "rounded",
@@ -884,6 +930,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Recipe Chef",
+    "category": "Creative & Misc",
     "settings": {
       "dots_style": "rounded",
       "eye_frame_style": "leaf",
@@ -904,6 +951,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Retro Console",
+    "category": "Creative & Misc",
     "settings": {
       "dots_style": "square",
       "eye_frame_style": "square",
@@ -924,6 +972,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Destination Pin",
+    "category": "Creative & Misc",
     "settings": {
       "dots_style": "rounded",
       "eye_frame_style": "circle",
@@ -944,6 +993,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Envelope RSVP",
+    "category": "Creative & Misc",
     "settings": {
       "dots_style": "rounded",
       "eye_frame_style": "rounded",
@@ -964,6 +1014,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Academic Diploma",
+    "category": "Creative & Misc",
     "settings": {
       "dots_style": "rounded",
       "eye_frame_style": "rounded",
@@ -984,6 +1035,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Amazon Gold Leaf",
+    "category": "Creative & Misc",
     "description": "Official Amazon brand template with gold leaf corner eyes",
     "settings": {
       "dots_style": "square",
@@ -1001,6 +1053,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Red Hexagon Badge Card",
+    "category": "Creative & Misc",
     "description": "Bold red hexagon eyes template with SCAN ME badge",
     "settings": {
       "dots_style": "square",
@@ -1020,6 +1073,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Pink Pixel Hearts",
+    "category": "Creative & Misc",
     "description": "Romantic pink heart dots theme with vibrant magenta accents",
     "settings": {
       "dots_style": "heart",
@@ -1035,6 +1089,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Pink Heart Header Pill Card",
+    "category": "Creative & Misc",
     "description": "Cute pink pill header card with ♥ SCAN ME banner",
     "settings": {
       "dots_style": "rounded",
@@ -1054,6 +1109,7 @@ export const PRESET_TEMPLATES: Template[] = [
   },
   {
     "name": "Red Double Hearts Valentine Card",
+    "category": "Creative & Misc",
     "description": "Romantic red card with double interlocking hearts header",
     "settings": {
       "dots_style": "square",

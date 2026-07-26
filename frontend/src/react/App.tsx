@@ -58,6 +58,7 @@ async function fetchQRCode(settings: any) {
 function App() {
   const { settings, updateSettings, applyTemplate } = useQRStore()
   const [activeTab, setActiveTab] = useState<string>("Content")
+  const [activeTemplateCategory, setActiveTemplateCategory] = useState<string>("All")
   const [zoomLevel, setZoomLevel] = useState<number>(1)
 
   const [vcard, setVcard] = useState({ fn: '', ln: '', org: '', title: '', tel: '', email: '', url: '' })
@@ -634,13 +635,31 @@ function App() {
           </div>
         )
       case "Templates":
+        const categories = ["All", ...Array.from(new Set(PRESET_TEMPLATES.map(t => t.category).filter(Boolean)))];
+        const filteredTemplates = PRESET_TEMPLATES.filter(t => 
+          activeTemplateCategory === "All" || t.category === activeTemplateCategory
+        );
+
         return (
-          <div className="bg-surface-container-lowest p-gutter rounded-2xl border border-outline-variant shadow-sm space-y-6">
-            <p className="text-on-surface-variant font-label-md text-label-md">
-              Choose a preset combination of styles, frames, and markers.
-            </p>
+          <div className="bg-surface-container-lowest p-gutter rounded-2xl border border-outline-variant shadow-sm space-y-4">
+            <div className="flex overflow-x-auto gap-2 pb-2 custom-scrollbar snap-x">
+              {categories.map(cat => (
+                <button
+                  key={cat as string}
+                  onClick={() => setActiveTemplateCategory(cat as string)}
+                  className={`px-3 py-1.5 rounded-full whitespace-nowrap text-xs font-semibold transition-all snap-start ${
+                    activeTemplateCategory === cat
+                      ? "bg-primary text-white shadow-sm shadow-primary/20 border border-primary"
+                      : "bg-surface text-on-surface-variant hover:bg-surface-container-high border border-outline-variant"
+                  }`}
+                >
+                  {cat as string}
+                </button>
+              ))}
+            </div>
+
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 gap-3 max-h-[600px] overflow-y-auto pr-1 pb-4 custom-scrollbar">
-              {PRESET_TEMPLATES.map((template) => {
+              {filteredTemplates.map((template) => {
                 const cleanName = template.name.toLowerCase().replace(/\s+/g, "_");
                 const isSelected =
                   settings.dots_style === template.settings.dots_style &&
