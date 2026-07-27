@@ -676,7 +676,7 @@ function App() {
 
         return (
           <div className="bg-surface-container-lowest p-gutter rounded-2xl border border-outline-variant shadow-sm space-y-4">
-            <div className="flex overflow-x-auto gap-2 px-2 pb-2 custom-scrollbar snap-x">
+            <div className="flex overflow-x-auto gap-2 px-3 pb-3 mb-1 custom-scrollbar snap-x">
               {categories.map(cat => (
                 <button
                   key={cat as string}
@@ -692,7 +692,7 @@ function App() {
               ))}
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 gap-3 max-h-[600px] overflow-y-auto pr-1 pb-4 custom-scrollbar">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 gap-3.5 max-h-[600px] overflow-y-auto px-3.5 pt-3.5 pb-6 custom-scrollbar">
               {filteredTemplates.map((template) => {
                 const cleanName = template.name.toLowerCase().replace(/\s+/g, "_");
                 const isSelected = Object.keys(template.settings).every(
@@ -710,7 +710,7 @@ function App() {
                       <img
                         src={`/previews/templates/${cleanName}.png`}
                         alt={template.name}
-                        className="w-full h-full object-contain p-1"
+                        className="w-full h-full object-contain p-2.5 transition-transform duration-300 group-hover/template:scale-[1.03]"
                         style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.12))" }}
                       />
                       {/* Overlay dots for primary colors */}
