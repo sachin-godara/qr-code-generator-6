@@ -1,3 +1,4 @@
+import { Slider } from "@/components/ui/Slider"
 import { useState, useEffect, useRef, useCallback } from "react"
 import { useQRStore } from "@/store/useQRStore"
 import { useQuery } from "@tanstack/react-query"
@@ -321,6 +322,7 @@ function App() {
   const handleCopyToClipboard = async () => {
     try {
       setIsCopying(true);
+      const { contentData, ...rest } = settings;
       let finalLogo = rest.logo_image;
       const isPresetLogo = !finalLogo && rest.preset_logo && rest.preset_logo !== "None";
       if (isPresetLogo) {
@@ -1241,15 +1243,13 @@ function App() {
                     </label>
                     <span className="text-xs text-on-surface-variant font-medium">{Math.round(settings.logo_size_ratio * 100)}%</span>
                   </div>
-                  <input
-                    type="range"
-                    min="0.10"
+                  <Slider min="0.10"
                     max="0.30"
                     step="0.01"
                     value={settings.logo_size_ratio}
-                    onChange={(e) => updateSettings({ logo_size_ratio: parseFloat(e.target.value) })}
-                    className="w-full accent-primary h-1.5 bg-outline-variant/30 rounded-full appearance-none cursor-pointer"
-                  />
+                    onChange={(val) => updateSettings({ logo_size_ratio: val })}
+                    
+                   />
                 </div>
 
                 {/* Dot Clearance */}
@@ -1267,15 +1267,13 @@ function App() {
                           : `${settings.logo_clear_size.toFixed(1)} dots`}
                     </span>
                   </div>
-                  <input
-                    type="range"
-                    min="-1"
+                  <Slider min="-1"
                     max="5"
                     step="0.1"
                     value={settings.logo_clear_size}
-                    onChange={(e) => updateSettings({ logo_clear_size: parseFloat(e.target.value) })}
-                    className="w-full accent-primary h-1.5 bg-outline-variant/30 rounded-full appearance-none cursor-pointer"
-                  />
+                    onChange={(val) => updateSettings({ logo_clear_size: val })}
+                    
+                   />
                   {settings.logo_clear_size > 3.0 && (
                     <div className="flex items-center gap-2 p-2 bg-error/10 border border-error/20 text-error rounded-lg text-[10px] font-medium mt-1">
                       <span className="material-symbols-outlined text-xs">warning</span>
@@ -1325,15 +1323,13 @@ function App() {
                       </label>
                       <span className="text-xs text-on-surface-variant">{settings.logo_card_padding}px</span>
                     </div>
-                    <input
-                      type="range"
-                      min="0"
+                    <Slider min="0"
                       max="30"
                       step="1"
                       value={settings.logo_card_padding}
-                      onChange={(e) => updateSettings({ logo_card_padding: parseInt(e.target.value) })}
-                      className="w-full accent-primary h-1.5 bg-outline-variant/30 rounded-full appearance-none cursor-pointer"
-                    />
+                      onChange={(val) => updateSettings({ logo_card_padding: val })}
+                      
+                     />
                   </div>
                 )}
 
@@ -1379,15 +1375,13 @@ function App() {
                             </label>
                             <span className="text-xs text-on-surface-variant">{settings.logo_bg_tolerance}</span>
                           </div>
-                          <input
-                            type="range"
-                            min="0"
+                          <Slider min="0"
                             max="150"
                             step="1"
                             value={settings.logo_bg_tolerance}
-                            onChange={(e) => updateSettings({ logo_bg_tolerance: parseInt(e.target.value) })}
-                            className="w-full accent-primary h-1.5 bg-outline-variant/30 rounded-full appearance-none cursor-pointer"
-                          />
+                            onChange={(val) => updateSettings({ logo_bg_tolerance: val })}
+                            
+                           />
                         </div>
                       </div>
                     )}
@@ -1439,15 +1433,13 @@ function App() {
                     <label className="text-xs font-semibold">Frame Padding</label>
                     <span className="text-xs text-on-surface-variant">{settings.frame_padding}px</span>
                   </div>
-                  <input
-                    type="range"
-                    min="0"
+                  <Slider min="0"
                     max="100"
                     step="1"
                     value={settings.frame_padding}
-                    onChange={(e) => updateSettings({ frame_padding: parseInt(e.target.value) })}
-                    className="w-full accent-primary h-1.5 bg-outline-variant/30 rounded-full appearance-none cursor-pointer"
-                  />
+                    onChange={(val) => updateSettings({ frame_padding: val })}
+                    
+                   />
                 </div>
 
                 <div className="space-y-2">
@@ -1455,15 +1447,13 @@ function App() {
                     <label className="text-xs font-semibold">Corner Radius</label>
                     <span className="text-xs text-on-surface-variant">{settings.frame_radius}px</span>
                   </div>
-                  <input
-                    type="range"
-                    min="0"
+                  <Slider min="0"
                     max="50"
                     step="1"
                     value={settings.frame_radius}
-                    onChange={(e) => updateSettings({ frame_radius: parseInt(e.target.value) })}
-                    className="w-full accent-primary h-1.5 bg-outline-variant/30 rounded-full appearance-none cursor-pointer"
-                  />
+                    onChange={(val) => updateSettings({ frame_radius: val })}
+                    
+                   />
                 </div>
 
                 <div className="space-y-2">
@@ -1471,15 +1461,13 @@ function App() {
                     <label className="text-xs font-semibold">Border Thickness</label>
                     <span className="text-xs text-on-surface-variant">{settings.frame_border}px</span>
                   </div>
-                  <input
-                    type="range"
-                    min="0"
+                  <Slider min="0"
                     max="50"
                     step="1"
                     value={settings.frame_border}
-                    onChange={(e) => updateSettings({ frame_border: parseInt(e.target.value) })}
-                    className="w-full accent-primary h-1.5 bg-outline-variant/30 rounded-full appearance-none cursor-pointer"
-                  />
+                    onChange={(val) => updateSettings({ frame_border: val })}
+                    
+                   />
                 </div>
               </div>
             )}
@@ -1559,15 +1547,13 @@ function App() {
                       <label className="text-xs font-semibold">Text Size</label>
                       <span className="text-xs text-on-surface-variant">{settings.frame_text_size}px</span>
                     </div>
-                    <input
-                      type="range"
-                      min="20"
+                    <Slider min="20"
                       max="120"
                       step="1"
                       value={settings.frame_text_size}
-                      onChange={(e) => updateSettings({ frame_text_size: parseInt(e.target.value) })}
-                      className="w-full accent-primary h-1.5 bg-outline-variant/30 rounded-full appearance-none cursor-pointer"
-                    />
+                      onChange={(val) => updateSettings({ frame_text_size: val })}
+                      
+                     />
                   </div>
                 </div>
               </div>
@@ -1791,14 +1777,12 @@ function App() {
                   {settings.canvas_radius}px
                 </span>
               </div>
-              <input
-                type="range"
-                min="0"
+              <Slider min="0"
                 max="40"
                 value={settings.canvas_radius}
-                onChange={(e) => updateSettings({ canvas_radius: parseInt(e.target.value, 10) })}
-                className="w-full accent-primary h-2 bg-surface-container-highest rounded-lg cursor-pointer"
-              />
+                onChange={(val) => updateSettings({ canvas_radius: val })}
+                
+               />
               <div className="flex justify-between text-[11px] text-on-surface-variant font-semibold px-1">
                 <span>0px (Sharp)</span>
                 <span>16px (Standard)</span>
@@ -1817,14 +1801,12 @@ function App() {
                   {settings.canvas_border_width}px Width
                 </span>
               </div>
-              <input
-                type="range"
-                min="0"
+              <Slider min="0"
                 max="10"
                 value={settings.canvas_border_width}
-                onChange={(e) => updateSettings({ canvas_border_width: parseInt(e.target.value, 10) })}
-                className="w-full accent-primary h-2 bg-surface-container-highest rounded-lg cursor-pointer"
-              />
+                onChange={(val) => updateSettings({ canvas_border_width: val })}
+                
+               />
               {settings.canvas_border_width > 0 && (
                 <div className="space-y-4 pt-2">
                   <div className="flex items-center gap-3">
@@ -1853,14 +1835,12 @@ function App() {
                         {settings.canvas_border_radius}px
                       </span>
                     </div>
-                    <input
-                      type="range"
-                      min="0"
+                    <Slider min="0"
                       max="40"
                       value={settings.canvas_border_radius}
-                      onChange={(e) => updateSettings({ canvas_border_radius: parseInt(e.target.value, 10) })}
-                      className="w-full accent-primary h-1.5 bg-surface-container-highest rounded-lg cursor-pointer"
-                    />
+                      onChange={(val) => updateSettings({ canvas_border_radius: val })}
+                      
+                     />
                     <div className="flex justify-between text-[10px] text-on-surface-variant/80 font-medium px-1">
                       <span>0px (Sharp)</span>
                       <span>16px (Concentric)</span>
@@ -1947,14 +1927,12 @@ function App() {
               <p className="text-xs text-on-surface-variant">
                 The blank padding around the QR matrix. Standard specification requires at least 4 modules.
               </p>
-              <input
-                type="range"
-                min="0"
+              <Slider min="0"
                 max="10"
                 value={settings.quiet_zone}
-                onChange={(e) => updateSettings({ quiet_zone: parseInt(e.target.value, 10) })}
-                className="w-full accent-primary h-2 bg-surface-container-highest rounded-lg cursor-pointer"
-              />
+                onChange={(val) => updateSettings({ quiet_zone: val })}
+                
+               />
               <div className="flex justify-between text-[11px] text-on-surface-variant font-semibold px-1">
                 <span>0 (No Border)</span>
                 <span>4 (Standard)</span>
