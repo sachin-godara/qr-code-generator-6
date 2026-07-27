@@ -327,16 +327,7 @@ def draw_inner_eyeball(draw, ebx, eby, s, eyeball_style, eyeball_rgb, bg):
         if eyeball_style == "iris_ring":
             draw.ellipse([ebx + s, eby + s, ebx + 2*s - 1, eby + 2*s - 1], fill=bg + (255,))
             draw.ellipse([ebx + 1.3*s, eby + 1.3*s, ebx + 1.7*s - 1, eby + 1.7*s - 1], fill=eyeball_rgb + (255,))
-    elif eyeball_style == "minimal_plus":
-        cx = ebx + 1.5 * s
-        cy = eby + 1.5 * s
-        w = 2.4 * s
-        t = max(2, int(0.5 * s))
-        hw = w / 2
-        ht = t / 2
-        rad = max(1, int(t / 3))
-        draw.rounded_rectangle([cx - hw, cy - ht, cx + hw, cy + ht], radius=rad, fill=eyeball_rgb + (255,))
-        draw.rounded_rectangle([cx - ht, cy - hw, cx + ht, cy + hw], radius=rad, fill=eyeball_rgb + (255,))
+
     elif eyeball_style == "leaf":
         draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=eyeball_rgb + (255,))
         make_eyeball_sharp_corner(draw, ebx, eby, "TL", s, r2, eyeball_rgb + (255,))

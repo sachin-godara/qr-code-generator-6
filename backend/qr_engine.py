@@ -1649,9 +1649,6 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
                 draw.ellipse([fx - dot_r, fy - dot_r, fx + dot_r, fy + dot_r], fill=eyeball_rgb + (255,))
         elif eyeball_style == "circle":
             draw.ellipse([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], fill=eyeball_rgb + (255,))
-        elif eyeball_style == "minimal_plus":
-            cx = ebx + 1.5 * s
-            cy = eby + 1.5 * s
 
         elif eyeball_style == "tiny_dot":
             draw.ellipse([px + 3*s, py + 3*s, px + 4*s - 1, py + 4*s - 1], fill=eyeball_rgb + (255,))

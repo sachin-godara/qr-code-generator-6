@@ -1135,7 +1135,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "settings": {
         "dots_style": "sleek_dash",
         "eye_frame_style": "minimal_ring",
-        "eyeball_style": "minimal_plus",
+        "eyeball_style": "plus",
         "dots_color": "#3E2723",
         "dots_color_end": "#4E342E",
         "gradient_type": "Linear Vertical",
@@ -1156,7 +1156,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "settings": {
         "dots_style": "sleek_dash",
         "eye_frame_style": "border",
-        "eyeball_style": "minimal_plus",
+        "eyeball_style": "plus",
         "dots_color": "#212121",
         "dots_color_end": "#212121",
         "gradient_type": "Solid Color",
@@ -1219,7 +1219,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "settings": {
         "dots_style": "sleek_dash",
         "eye_frame_style": "pointed_top_frame",
-        "eyeball_style": "minimal_plus",
+        "eyeball_style": "plus",
         "dots_color": "#D50000",
         "dots_color_end": "#D50000",
         "gradient_type": "Solid Color",
@@ -1261,7 +1261,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "settings": {
         "dots_style": "tech_chevron",
         "eye_frame_style": "shield_opposite",
-        "eyeball_style": "minimal_plus",
+        "eyeball_style": "plus",
         "dots_color": "#000000",
         "dots_color_end": "#333333",
         "gradient_type": "Linear Vertical",
@@ -1282,7 +1282,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "settings": {
         "dots_style": "tech_chevron",
         "eye_frame_style": "minimal_ring",
-        "eyeball_style": "minimal_plus",
+        "eyeball_style": "plus",
         "dots_color": "#2962FF",
         "dots_color_end": "#00B0FF",
         "gradient_type": "Linear Horizontal",
@@ -1303,7 +1303,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "settings": {
         "dots_style": "sleek_dash",
         "eye_frame_style": "house_frame",
-        "eyeball_style": "minimal_plus",
+        "eyeball_style": "plus",
         "dots_color": "#D4AF37",
         "dots_color_end": "#F9A825",
         "gradient_type": "Diagonal (TL to BR)",
@@ -1366,7 +1366,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "settings": {
         "dots_style": "sleek_dash",
         "eye_frame_style": "brackets",
-        "eyeball_style": "minimal_plus",
+        "eyeball_style": "plus",
         "dots_color": "#00E5FF",
         "dots_color_end": "#D500F9",
         "gradient_type": "Diagonal (TL to BR)",
@@ -1429,7 +1429,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "settings": {
         "dots_style": "medical_cross",
         "eye_frame_style": "minimal_ring",
-        "eyeball_style": "minimal_plus",
+        "eyeball_style": "plus",
         "dots_color": "#0277BD",
         "dots_color_end": "#0288D1",
         "gradient_type": "Linear Horizontal",
@@ -1471,7 +1471,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "settings": {
         "dots_style": "sleek_dash",
         "eye_frame_style": "pill_frame",
-        "eyeball_style": "minimal_plus",
+        "eyeball_style": "plus",
         "dots_color": "#000000",
         "dots_color_end": "#000000",
         "gradient_type": "Solid Color",
@@ -1513,7 +1513,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "settings": {
         "dots_style": "sleek_dash",
         "eye_frame_style": "minimal_ring",
-        "eyeball_style": "minimal_plus",
+        "eyeball_style": "plus",
         "dots_color": "#E1306C",
         "dots_color_end": "#405DE6",
         "gradient_type": "Diagonal (TL to BR)",
