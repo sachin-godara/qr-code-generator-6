@@ -14,8 +14,8 @@ export function StylePreviewCard({ title, isSelected, onClick, children }: Style
       className={`group relative w-full min-w-0 flex flex-col items-center justify-start p-1.5 gap-1.5 rounded-xl border tab-spring touch-press
         min-h-[60px] sm:min-h-0
         ${isSelected 
-          ? 'border-primary ring-2 ring-primary/20 bg-primary/[0.04] scale-[1.02] shadow-sm' 
-          : 'border-transparent surface-ring-interactive bg-surface-container-lowest hover:bg-surface-container/60'
+          ? 'border-primary border-2 ring-2 ring-primary/15 bg-primary/[0.05] shadow-md' 
+          : 'border-transparent border surface-ring-interactive bg-surface-container-lowest hover:bg-surface-container/60'
         }
       `}
     >

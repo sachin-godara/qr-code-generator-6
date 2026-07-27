@@ -816,9 +816,9 @@ function App() {
 
             <div className="space-y-3">
               <label className="section-label block mb-1">Dot Style</label>
-              <div className="flex overflow-x-auto gap-3 px-2 pt-2 pb-4 custom-scrollbar snap-x scroll-smooth">
+              <div className="flex overflow-x-auto gap-3.5 px-3.5 pt-3.5 pb-5 custom-scrollbar snap-x scroll-smooth scroll-pl-3.5">
                 {dotStyles.map((style) => (
-                  <div key={style} className="w-[85px] sm:w-[95px] shrink-0 snap-start">
+                  <div key={style} className="w-[88px] sm:w-[98px] shrink-0 snap-start p-0.5">
                     <StylePreviewCard
                       title={style}
                       isSelected={settings.dots_style === style}
@@ -833,9 +833,9 @@ function App() {
 
             <div className="space-y-3">
               <label className="section-label block mb-1">Eye Frame</label>
-              <div className="flex overflow-x-auto gap-3 px-2 pt-2 pb-4 custom-scrollbar snap-x scroll-smooth">
+              <div className="flex overflow-x-auto gap-3.5 px-3.5 pt-3.5 pb-5 custom-scrollbar snap-x scroll-smooth scroll-pl-3.5">
                 {eyeFrameStyles.map((style) => (
-                  <div key={style} className="w-[85px] sm:w-[95px] shrink-0 snap-start">
+                  <div key={style} className="w-[88px] sm:w-[98px] shrink-0 snap-start p-0.5">
                     <StylePreviewCard
                       title={style}
                       isSelected={settings.eye_frame_style === style}
@@ -850,9 +850,9 @@ function App() {
 
             <div className="space-y-3">
               <label className="section-label block mb-1">Eyeball</label>
-              <div className="flex overflow-x-auto gap-3 px-2 pt-2 pb-4 custom-scrollbar snap-x scroll-smooth">
+              <div className="flex overflow-x-auto gap-3.5 px-3.5 pt-3.5 pb-5 custom-scrollbar snap-x scroll-smooth scroll-pl-3.5">
                 {eyeballStyles.map((style) => (
-                  <div key={style} className="w-[85px] sm:w-[95px] shrink-0 snap-start">
+                  <div key={style} className="w-[88px] sm:w-[98px] shrink-0 snap-start p-0.5">
                     <StylePreviewCard
                       title={style}
                       isSelected={settings.eyeball_style === style}
@@ -1114,7 +1114,7 @@ function App() {
               </div>
 
               {/* Reactive Icon Grid */}
-              <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 gap-2.5 max-h-[340px] overflow-y-auto p-1.5 border border-outline-variant/40 rounded-2xl bg-surface/20">
+              <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 gap-2.5 max-h-[340px] overflow-y-auto p-3.5 border border-outline-variant/40 rounded-2xl bg-surface/20">
                 {filteredLogos.length > 0 ? (
                   filteredLogos.map((item) => {
                     const isSelected = settings.preset_logo === item.id && !settings.logo_image;
@@ -1125,7 +1125,7 @@ function App() {
                         onClick={() => updateSettings({ preset_logo: item.id as any, logo_image: null })}
                         className={`p-2.5 rounded-xl flex flex-col items-center justify-center gap-2 border transition-all duration-200 group relative ${
                           isSelected
-                            ? "bg-primary/10 text-primary border-primary ring-2 ring-primary/20 scale-[1.02] shadow-sm font-semibold"
+                            ? "bg-primary/10 text-primary border-primary border-2 ring-2 ring-primary/15 shadow-sm font-semibold"
                             : "bg-white hover:bg-surface-container-lowest border-outline-variant hover:border-primary/40 text-on-surface shadow-2xs hover:shadow-md hover:-translate-y-0.5"
                         }`}
                       >
@@ -1404,9 +1404,9 @@ function App() {
           <div className="bg-white rounded-xl border border-outline-variant space-y-6 p-6">
             <div className="space-y-3">
               <label className="section-label block mb-1">Layout Frame Style</label>
-              <div className="flex overflow-x-auto gap-3 px-2 pt-2 pb-4 custom-scrollbar snap-x scroll-smooth">
+              <div className="flex overflow-x-auto gap-3.5 px-3.5 pt-3.5 pb-5 custom-scrollbar snap-x scroll-smooth scroll-pl-3.5">
                 {frameStyles.map((style) => (
-                  <div key={style} className="w-[85px] sm:w-[95px] shrink-0 snap-start">
+                  <div key={style} className="w-[88px] sm:w-[98px] shrink-0 snap-start p-0.5">
                     <StylePreviewCard
                       title={style}
                       isSelected={settings.frame_style === style}
@@ -1488,9 +1488,9 @@ function App() {
 
             <div className="space-y-3 pt-4 border-t border-outline-variant/30">
               <label className="section-label block mb-1">Text Style</label>
-              <div className="flex overflow-x-auto gap-3 px-2 pt-2 pb-4 custom-scrollbar snap-x scroll-smooth">
+              <div className="flex overflow-x-auto gap-3.5 px-3.5 pt-3.5 pb-5 custom-scrollbar snap-x scroll-smooth scroll-pl-3.5">
                 {textStyles.map((style) => (
-                  <div key={style} className="w-[85px] sm:w-[95px] shrink-0 snap-start">
+                  <div key={style} className="w-[88px] sm:w-[98px] shrink-0 snap-start p-0.5">
                     <StylePreviewCard
                       title={style}
                       isSelected={settings.text_style === style}
