@@ -73,7 +73,7 @@ async function fetchQRCode(settings: any) {
 
 
 function App() {
-  const { settings, updateSettings, applyTemplate } = useQRStore()
+  const { settings, updateSettings, applyTemplate, undo, redo, resetSettings, history, historyIndex } = useQRStore()
   const [activeTab, setActiveTab] = useState<string>("Content")
   const [activeTemplateCategory, setActiveTemplateCategory] = useState<string>("All")
   const [logoSearchQuery, setLogoSearchQuery] = useState<string>("")
@@ -2255,11 +2255,40 @@ function App() {
 
               {/* Left Column: Desktop Config Forms */}
               <div className="lg:col-span-7 space-y-8 max-w-full">
-                <header>
-                  <h1 className="text-xl font-semibold text-on-surface tracking-tight">Generate New QR Code</h1>
-                  <p className="text-sm text-on-surface-variant mt-1">
-                    Choose your data type and customize the appearance.
-                  </p>
+                <header className="flex flex-wrap items-center justify-between gap-4 pb-2 border-b border-outline-variant/30">
+                  <div>
+                    <h1 className="text-xl font-semibold text-on-surface tracking-tight">Generate New QR Code</h1>
+                    <p className="text-sm text-on-surface-variant mt-1">
+                      Choose your data type and customize the appearance.
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-1 bg-surface-container-low p-1.5 rounded-xl border border-outline-variant/50 shadow-2xs shrink-0 select-none">
+                    <button
+                      onClick={undo}
+                      disabled={historyIndex <= 0}
+                      className="p-2 rounded-lg bg-surface hover:bg-surface-container-high text-on-surface-variant disabled:opacity-40 disabled:pointer-events-none transition-all duration-200 hover:scale-105 active:scale-95 flex items-center justify-center border border-outline-variant/30 shadow-2xs group"
+                      title="Undo (Step Back in Time)"
+                    >
+                      <span className="material-symbols-outlined text-[18px] group-active:-rotate-45 transition-transform duration-200">undo</span>
+                    </button>
+                    <button
+                      onClick={redo}
+                      disabled={historyIndex >= history.length - 1}
+                      className="p-2 rounded-lg bg-surface hover:bg-surface-container-high text-on-surface-variant disabled:opacity-40 disabled:pointer-events-none transition-all duration-200 hover:scale-105 active:scale-95 flex items-center justify-center border border-outline-variant/30 shadow-2xs group"
+                      title="Redo (Step Forward)"
+                    >
+                      <span className="material-symbols-outlined text-[18px] group-active:rotate-45 transition-transform duration-200">redo</span>
+                    </button>
+                    <div className="w-[1px] h-5 bg-outline-variant/50 mx-1"></div>
+                    <button
+                      onClick={resetSettings}
+                      className="py-1.5 px-3 rounded-lg bg-error-container/20 hover:bg-error-container/40 text-error font-semibold text-xs transition-all duration-200 hover:scale-105 active:scale-95 flex items-center gap-1.5 shadow-2xs group"
+                      title="Reset Design to Default (Safely Preserves Your Content)"
+                    >
+                      <span className="material-symbols-outlined text-[16px] group-hover:rotate-180 transition-transform duration-300">restart_alt</span>
+                      <span>Reset Design</span>
+                    </button>
+                  </div>
                 </header>
 
                 <div className="bg-white rounded-2xl p-6 md:p-8 surface-ring-vercel max-w-full panel-enter" key={activeTab}>
@@ -2440,9 +2469,9 @@ function App() {
                     </div>
                   </div>
 
-                  {/* Slim Main Segment Tabs: Content | Design */}
-                  <div className="px-3 py-1.5 border-b border-outline-variant/20">
-                    <div className="bg-surface border border-outline-variant/70 rounded-xl p-1 grid grid-cols-2 gap-1">
+                  {/* Slim Main Segment Tabs: Content | Design & Undo/Redo/Reset */}
+                  <div className="px-3 py-1.5 border-b border-outline-variant/20 flex items-center justify-between gap-2.5">
+                    <div className="bg-surface border border-outline-variant/70 rounded-xl p-1 grid grid-cols-2 gap-1 flex-1 max-w-[200px] sm:max-w-[240px]">
                       <button
                         onClick={() => setMobileMainTab('content')}
                         className={`flex items-center justify-center py-1.5 px-3 rounded-lg font-bold transition-all text-xs sm:text-[13px] touch-press ${mobileMainTab === 'content'
@@ -2461,6 +2490,34 @@ function App() {
                           }`}
                       >
                         Design
+                      </button>
+                    </div>
+
+                    {/* Mobile Time-Travel Controls */}
+                    <div className="flex items-center gap-1 bg-surface-container-low p-1 rounded-xl border border-outline-variant/50 shadow-2xs shrink-0 select-none">
+                      <button
+                        onClick={undo}
+                        disabled={historyIndex <= 0}
+                        className="p-1.5 rounded-lg bg-surface hover:bg-surface-container-high text-on-surface-variant disabled:opacity-30 disabled:pointer-events-none transition-all duration-200 active:scale-90 flex items-center justify-center border border-outline-variant/30 shadow-2xs group"
+                        title="Undo"
+                      >
+                        <span className="material-symbols-outlined text-[15px] group-active:-rotate-45 transition-transform duration-200">undo</span>
+                      </button>
+                      <button
+                        onClick={redo}
+                        disabled={historyIndex >= history.length - 1}
+                        className="p-1.5 rounded-lg bg-surface hover:bg-surface-container-high text-on-surface-variant disabled:opacity-30 disabled:pointer-events-none transition-all duration-200 active:scale-90 flex items-center justify-center border border-outline-variant/30 shadow-2xs group"
+                        title="Redo"
+                      >
+                        <span className="material-symbols-outlined text-[15px] group-active:rotate-45 transition-transform duration-200">redo</span>
+                      </button>
+                      <div className="w-[1px] h-4 bg-outline-variant/50 mx-0.5"></div>
+                      <button
+                        onClick={resetSettings}
+                        className="p-1.5 rounded-lg bg-error-container/20 hover:bg-error-container/40 text-error transition-all duration-200 active:scale-90 flex items-center justify-center border border-error/20 shadow-2xs group"
+                        title="Reset Design"
+                      >
+                        <span className="material-symbols-outlined text-[15px] group-active:scale-95">restart_alt</span>
                       </button>
                     </div>
                   </div>
