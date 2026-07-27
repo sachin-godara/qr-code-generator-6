@@ -2871,18 +2871,19 @@ def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="
         new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
         draw = ImageDraw.Draw(new_img)
         
-        draw.rounded_rectangle([(badge_w, 0), (new_w, new_h)], radius=corner_radius, fill=(255, 255, 255, 255))
-        if border_thickness > 0:
-            draw.rounded_rectangle([(badge_w + border_thickness//2, border_thickness//2), 
-                                    (new_w - border_thickness//2, new_h - border_thickness//2)], 
-                                   radius=corner_radius, outline=bg_color, width=border_thickness)
-                                   
-        new_img.paste(qr_img, (badge_w + padding, padding), qr_img)
-        
+        # 1. Draw the badge capsule first
         by1 = (new_h - badge_h) // 2
         by2 = by1 + badge_h
         draw.rounded_rectangle([(0, by1), (badge_w * 2, by2)], radius=badge_w//2, fill=bg_color)
-        draw.rectangle([(badge_w, by1), (badge_w * 2, by2)], fill=(255,255,255,0)) 
+        
+        # 2. Draw the card on top of the capsule's right half
+        draw.rounded_rectangle([(badge_w, 0), (new_w - 1, new_h - 1)], radius=corner_radius, fill=(255, 255, 255, 255))
+        if border_thickness > 0:
+            draw.rounded_rectangle([(badge_w + border_thickness//2, border_thickness//2), 
+                                    (new_w - 1 - border_thickness//2, new_h - 1 - border_thickness//2)], 
+                                   radius=corner_radius, outline=bg_color, width=border_thickness)
+                                   
+        new_img.paste(qr_img, (badge_w + padding, padding), qr_img)
         
         if text:
             rotated_text = render_clean_text(text, f_lbl, text_color, angle=90)
@@ -2903,24 +2904,26 @@ def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="
         new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
         draw = ImageDraw.Draw(new_img)
         
-        draw.rounded_rectangle([(0, 0), (new_w - badge_w, new_h)], radius=corner_radius, fill=(255, 255, 255, 255))
+        # 1. Draw the badge capsule first
+        bx1 = new_w - badge_w * 2
+        by1 = (new_h - badge_h) // 2
+        by2 = by1 + badge_h
+        draw.rounded_rectangle([(bx1, by1), (new_w - 1, by2)], radius=badge_w//2, fill=bg_color)
+        
+        # 2. Draw the card on top of the capsule's left half
+        card_w = new_w - badge_w
+        draw.rounded_rectangle([(0, 0), (card_w - 1, new_h - 1)], radius=corner_radius, fill=(255, 255, 255, 255))
         if border_thickness > 0:
             draw.rounded_rectangle([(border_thickness//2, border_thickness//2), 
-                                    (new_w - badge_w - border_thickness//2, new_h - border_thickness//2)], 
+                                    (card_w - 1 - border_thickness//2, new_h - 1 - border_thickness//2)], 
                                    radius=corner_radius, outline=bg_color, width=border_thickness)
                                    
         new_img.paste(qr_img, (padding, padding), qr_img)
         
-        bx1 = new_w - badge_w * 2
-        by1 = (new_h - badge_h) // 2
-        by2 = by1 + badge_h
-        draw.rounded_rectangle([(bx1, by1), (new_w, by2)], radius=badge_w//2, fill=bg_color)
-        draw.rectangle([(bx1, by1), (new_w - badge_w, by2)], fill=(255,255,255,0)) 
-        
         if text:
             rotated_text = render_clean_text(text, f_lbl, text_color, angle=270)
             rot_w, rot_h = rotated_text.size
-            tx = new_w - badge_w + (badge_w - rot_w) // 2
+            tx = card_w + (badge_w - rot_w) // 2
             ty = by1 + (badge_h - rot_h) // 2
             new_img.paste(rotated_text, (tx, ty), rotated_text)
             
