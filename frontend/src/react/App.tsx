@@ -33,7 +33,7 @@ async function fetchQRCode(settings: any) {
     data: contentData,
     logo_image: finalLogo,
     preset_logo: isPresetLogo ? "None" : rest.preset_logo,
-    logo_card_shape: isPresetLogo ? "None" : rest.logo_card_shape,
+    logo_card_shape: rest.logo_card_shape,
     preset_logo_color: color,
     box_size: 10
   }
@@ -195,7 +195,7 @@ function App() {
         ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#000000")
         : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
 
-      const payload = { ...rest, data: contentData, logo_image: finalLogo, preset_logo: isPresetLogo ? "None" : rest.preset_logo, logo_card_shape: isPresetLogo ? "None" : rest.logo_card_shape, preset_logo_color: color }
+      const payload = { ...rest, data: contentData, logo_image: finalLogo, preset_logo: isPresetLogo ? "None" : rest.preset_logo, logo_card_shape: rest.logo_card_shape, preset_logo_color: color }
       const response = await fetch("/api/generator/generate/svg", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -232,7 +232,7 @@ function App() {
         ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#000000")
         : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
 
-      const payload = { ...rest, data: contentData, logo_image: finalLogo, preset_logo: isPresetLogo ? "None" : rest.preset_logo, logo_card_shape: isPresetLogo ? "None" : rest.logo_card_shape, preset_logo_color: color }
+      const payload = { ...rest, data: contentData, logo_image: finalLogo, preset_logo: isPresetLogo ? "None" : rest.preset_logo, logo_card_shape: rest.logo_card_shape, preset_logo_color: color }
       const response = await fetch("/api/generator/generate/pdf", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -277,7 +277,7 @@ function App() {
         ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#000000")
         : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
 
-      const payload = { ...rest, data: contentData, logo_image: finalLogo, preset_logo: isPresetLogo ? "None" : rest.preset_logo, logo_card_shape: isPresetLogo ? "None" : rest.logo_card_shape, preset_logo_color: color, box_size: 20, target_size: downloadSize };
+      const payload = { ...rest, data: contentData, logo_image: finalLogo, preset_logo: isPresetLogo ? "None" : rest.preset_logo, logo_card_shape: rest.logo_card_shape, preset_logo_color: color, box_size: 20, target_size: downloadSize };
 
       let endpoint = "/api/generator/generate";
       let ext = "png";
@@ -331,7 +331,7 @@ function App() {
         ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#000000")
         : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
 
-      const payload = { ...rest, data: contentData, logo_image: finalLogo, preset_logo: isPresetLogo ? "None" : rest.preset_logo, logo_card_shape: isPresetLogo ? "None" : rest.logo_card_shape, preset_logo_color: color, box_size: 20, target_size: downloadSize };
+      const payload = { ...rest, data: contentData, logo_image: finalLogo, preset_logo: isPresetLogo ? "None" : rest.preset_logo, logo_card_shape: rest.logo_card_shape, preset_logo_color: color, box_size: 20, target_size: downloadSize };
       const response = await fetch("/api/generator/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -1276,22 +1276,29 @@ function App() {
                     <span className="material-symbols-outlined text-sm opacity-70">layers</span>
                     Logo Card Shape
                   </label>
-                  <div className="flex flex-wrap sm:grid sm:grid-cols-3 gap-2">
+                  <div className="grid grid-cols-3 gap-2">
                     {logoCardShapes.map((shape) => {
                       const isSelected = settings.logo_card_shape === shape;
                       return (
                         <button
                           key={shape}
                           onClick={() => updateSettings({ logo_card_shape: shape as any })}
-                          className={`flex-1 min-w-[90px] py-2.5 px-2 sm:p-3 border rounded-xl text-[11px] sm:text-xs flex items-center justify-center gap-1.5 sm:gap-2 transition-all duration-200 ${isSelected
+                          className={`py-2.5 px-1 sm:p-3 border rounded-xl text-xs flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 transition-all duration-200 overflow-hidden text-center touch-press ${isSelected
                               ? "bg-primary text-white border-primary font-bold shadow-md ring-2 ring-primary/15"
                               : "bg-white hover:bg-muted border-outline-variant text-on-surface"
                             }`}
                         >
-                          {shape === "None" && <span className="material-symbols-outlined text-sm shrink-0">block</span>}
-                          {shape === "Circle" && <span className="material-symbols-outlined text-sm shrink-0">circle</span>}
-                          {shape === "Rounded Square" && <span className="material-symbols-outlined text-sm shrink-0">crop_square</span>}
-                          <span className="whitespace-nowrap">{shape}</span>
+                          {shape === "None" && <span className="material-symbols-outlined text-base sm:text-sm shrink-0">block</span>}
+                          {shape === "Circle" && <span className="material-symbols-outlined text-base sm:text-sm shrink-0">circle</span>}
+                          {shape === "Rounded Square" && <span className="material-symbols-outlined text-base sm:text-sm shrink-0">crop_square</span>}
+                          <span className="truncate max-w-full text-[11px] sm:text-xs leading-tight">
+                            {shape === "Rounded Square" ? (
+                              <>
+                                <span className="sm:hidden">Square</span>
+                                <span className="hidden sm:inline">Rounded Square</span>
+                              </>
+                            ) : shape}
+                          </span>
                         </button>
                       );
                     })}

@@ -1871,7 +1871,8 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
                 if logo_card_shape == "Circle":
                     card_draw.ellipse(card_box, fill=card_rgb)
                 elif logo_card_shape == "Rounded Square":
-                    card_draw.rounded_rectangle(card_box, radius=10, fill=card_rgb)
+                    card_radius = max(8, int(min(card_w, card_h) * 0.2))
+                    card_draw.rounded_rectangle(card_box, radius=card_radius, fill=card_rgb)
                     
             # if logo has alpha, use it as mask
             if logo.mode == 'RGBA':
