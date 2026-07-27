@@ -21,8 +21,9 @@ def apply_canvas_effects(img: Image.Image, params: dict) -> Image.Image:
     b_width = canvas_border_width
     base_img = img.convert("RGBA")
     
+    active_radius = canvas_radius if ("canvas_radius" in params) else canvas_border_radius
     if b_width > 0:
-        border_r = int(canvas_border_radius * (w / 300.0))
+        border_r = int(active_radius * (w / 300.0))
         inner_r = max(0, border_r - b_width)
     else:
         border_r = int(canvas_radius * (w / 300.0))

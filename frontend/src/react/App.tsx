@@ -1761,18 +1761,23 @@ function App() {
             {/* Canvas Outer Corner Radius */}
             <div className="space-y-3 border-t border-outline-variant pt-6">
               <div className="flex justify-between items-center">
-                <label className="text-sm font-semibold text-on-surface flex items-center gap-2">
+                <label className="text-sm font-semibold text-on-surface flex items-center gap-2 flex-wrap">
                   <span className="material-symbols-outlined text-primary text-[20px]">rounded_corner</span>
-                  Canvas Corner Rounding
+                  <span>Canvas Corner Rounding</span>
+                  {settings.canvas_border_width > 0 && (
+                    <span className="text-[10px] bg-primary/10 text-primary px-2 py-0.5 rounded-full font-bold border border-primary/20">
+                      Syncs with Accent Border
+                    </span>
+                  )}
                 </label>
-                <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-lg">
+                <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-lg shrink-0">
                   {settings.canvas_radius}px
                 </span>
               </div>
               <Slider min="0"
                 max="40"
                 value={settings.canvas_radius}
-                onChange={(val) => updateSettings({ canvas_radius: val })}
+                onChange={(val) => updateSettings({ canvas_radius: val, canvas_border_radius: val })}
                 
                />
               <div className="flex justify-between text-[11px] text-on-surface-variant font-semibold px-1">
@@ -1800,45 +1805,26 @@ function App() {
                 
                />
               {settings.canvas_border_width > 0 && (
-                <div className="space-y-4 pt-2">
+                <div className="space-y-3 pt-2">
                   <div className="flex items-center gap-3">
                     <label className="text-xs font-semibold text-on-surface-variant w-24">Border Color:</label>
                     <input
                       type="color"
                       value={settings.canvas_border_color}
                       onChange={(e) => updateSettings({ canvas_border_color: e.target.value })}
-                      className="w-10 h-10 rounded-lg cursor-pointer border border-outline-variant p-0.5 bg-white"
+                      className="w-10 h-10 rounded-lg cursor-pointer border border-outline-variant p-0.5 bg-white shrink-0"
                     />
                     <input
                       type="text"
                       value={settings.canvas_border_color}
                       onChange={(e) => updateSettings({ canvas_border_color: e.target.value })}
-                      className="flex-1 p-2 text-xs border border-outline-variant rounded-lg bg-white"
+                      className="flex-1 p-2 text-xs border border-outline-variant rounded-lg bg-white font-mono uppercase"
                     />
                   </div>
-
-                  <div className="space-y-2 pt-2 border-t border-outline-variant/30">
-                    <div className="flex justify-between items-center">
-                      <label className="text-xs font-semibold text-on-surface-variant flex items-center gap-1.5">
-                        <span className="material-symbols-outlined text-[16px] text-primary/80">rounded_corner</span>
-                        Border Corner Rounding
-                      </label>
-                      <span className="text-xs font-bold text-primary bg-primary/10 px-2 py-0.5 rounded">
-                        {settings.canvas_border_radius}px
-                      </span>
-                    </div>
-                    <Slider min="0"
-                      max="40"
-                      value={settings.canvas_border_radius}
-                      onChange={(val) => updateSettings({ canvas_border_radius: val })}
-                      
-                     />
-                    <div className="flex justify-between text-[10px] text-on-surface-variant/80 font-medium px-1">
-                      <span>0px (Sharp)</span>
-                      <span>16px (Concentric)</span>
-                      <span>40px (Max Round)</span>
-                    </div>
-                  </div>
+                  <p className="text-[11px] font-semibold text-on-surface-variant bg-surface-container-low p-2.5 rounded-xl border border-outline-variant/60 flex items-center gap-2 shadow-2xs">
+                    <span className="material-symbols-outlined text-primary text-[16px] shrink-0">info</span>
+                    <span>Border corner curvature dynamically aligns with your <b>Canvas Corner Rounding</b> above.</span>
+                  </p>
                 </div>
               )}
             </div>
