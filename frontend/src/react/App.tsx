@@ -1114,7 +1114,7 @@ function App() {
               </div>
 
               {/* Reactive Icon Grid */}
-              <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 gap-2.5 max-h-[340px] overflow-y-auto p-3.5 border border-outline-variant/40 rounded-2xl bg-surface/20">
+              <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 gap-2 sm:gap-2.5 max-h-[340px] overflow-y-auto p-2 sm:p-3.5 border border-outline-variant/40 rounded-2xl bg-surface/20">
                 {filteredLogos.length > 0 ? (
                   filteredLogos.map((item) => {
                     const isSelected = settings.preset_logo === item.id && !settings.logo_image;
@@ -1123,7 +1123,7 @@ function App() {
                         key={item.id}
                         type="button"
                         onClick={() => updateSettings({ preset_logo: item.id as any, logo_image: null })}
-                        className={`p-2.5 rounded-xl flex flex-col items-center justify-center gap-2 border transition-all duration-200 group relative ${
+                        className={`p-2 sm:p-2.5 rounded-xl flex flex-col items-center justify-center gap-1.5 sm:gap-2 border transition-all duration-200 group relative ${
                           isSelected
                             ? "bg-primary/10 text-primary border-primary border-2 ring-2 ring-primary/15 shadow-sm font-semibold"
                             : "bg-white hover:bg-surface-container-lowest border-outline-variant hover:border-primary/40 text-on-surface shadow-2xs hover:shadow-md hover:-translate-y-0.5"
@@ -1136,7 +1136,7 @@ function App() {
                           cardShape={settings.logo_card_shape || "Rounded Square"}
                           iconStyle={settings.logo_icon_style || "badge"}
                         />
-                        <span className="text-[11px] truncate max-w-full font-medium tracking-tight text-center">{item.label}</span>
+                        <span className="text-[10px] sm:text-[11px] line-clamp-2 sm:truncate max-w-full font-medium tracking-tight text-center leading-tight">{item.label}</span>
                         {isSelected && (
                           <div className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-primary ring-2 ring-white"></div>
                         )}
@@ -1295,22 +1295,22 @@ function App() {
                     <span className="material-symbols-outlined text-sm opacity-70">layers</span>
                     Logo Card Shape
                   </label>
-                  <div className="grid grid-cols-3 gap-2">
+                  <div className="flex flex-wrap sm:grid sm:grid-cols-3 gap-2">
                     {logoCardShapes.map((shape) => {
                       const isSelected = settings.logo_card_shape === shape;
                       return (
                         <button
                           key={shape}
                           onClick={() => updateSettings({ logo_card_shape: shape as any })}
-                          className={`p-3 border rounded-xl text-xs flex items-center justify-center gap-2 transition-all duration-200 ${isSelected
-                              ? "bg-primary text-white border-primary font-bold shadow-md scale-[1.02]"
+                          className={`flex-1 min-w-[90px] py-2.5 px-2 sm:p-3 border rounded-xl text-[11px] sm:text-xs flex items-center justify-center gap-1.5 sm:gap-2 transition-all duration-200 ${isSelected
+                              ? "bg-primary text-white border-primary font-bold shadow-md ring-2 ring-primary/15"
                               : "bg-white hover:bg-muted border-outline-variant text-on-surface"
                             }`}
                         >
-                          {shape === "None" && <span className="material-symbols-outlined text-sm">block</span>}
-                          {shape === "Circle" && <span className="material-symbols-outlined text-sm">circle</span>}
-                          {shape === "Rounded Square" && <span className="material-symbols-outlined text-sm">crop_square</span>}
-                          <span>{shape}</span>
+                          {shape === "None" && <span className="material-symbols-outlined text-sm shrink-0">block</span>}
+                          {shape === "Circle" && <span className="material-symbols-outlined text-sm shrink-0">circle</span>}
+                          {shape === "Rounded Square" && <span className="material-symbols-outlined text-sm shrink-0">crop_square</span>}
+                          <span className="whitespace-nowrap">{shape}</span>
                         </button>
                       );
                     })}
@@ -1902,7 +1902,7 @@ function App() {
               <p className="text-xs text-on-surface-variant">
                 Determines how much data can be damaged or hidden (by logos) while retaining scannability.
               </p>
-              <div className="grid grid-cols-4 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
                 {[
                   { id: "L", name: "Low", desc: "~7%" },
                   { id: "M", name: "Medium", desc: "~15%" },
@@ -1912,13 +1912,13 @@ function App() {
                   <button
                     key={level.id}
                     onClick={() => updateSettings({ error_correction: level.id as any })}
-                    className={`p-3.5 rounded-xl border flex flex-col items-center justify-center transition-all duration-200 ${settings.error_correction === level.id
+                    className={`p-3 sm:p-3.5 rounded-xl border flex flex-col items-center justify-center transition-all duration-200 ${settings.error_correction === level.id
                         ? "bg-primary/10 border-primary text-primary font-bold shadow-sm"
                         : "border-outline-variant bg-white text-on-surface hover:bg-surface-container-highest"
                       }`}
                   >
-                    <span className="text-base font-bold">{level.id} - {level.name}</span>
-                    <span className="text-[11px] text-on-surface-variant mt-0.5">{level.desc}</span>
+                    <span className="text-xs sm:text-sm md:text-base font-bold whitespace-nowrap">{level.id} - {level.name}</span>
+                    <span className="text-[10px] sm:text-[11px] text-on-surface-variant mt-0.5">{level.desc}</span>
                   </button>
                 ))}
               </div>
@@ -2387,33 +2387,54 @@ function App() {
               </div>
             </div>
 
-            {/* MOBILE LAYOUT (below lg breakpoint) — Encapsulated Card layout */}
-            <div className="lg:hidden w-full max-w-[100vw] p-4 sm:p-6 pb-12 bg-surface">
-              <div className="bg-white border border-outline-variant/60 rounded-[28px] overflow-hidden shadow-sm flex flex-col max-w-full">
+            {/* MOBILE LAYOUT (below lg breakpoint) — Sleek Single-Scroll Architecture */}
+            <div className="lg:hidden w-full max-w-[100vw] bg-surface min-h-screen">
+              <div className="bg-white flex flex-col max-w-full relative pb-28">
 
-                {/* ── TOP ZONE: Preview + Tabs ── */}
-                <div className="bg-surface-container-lowest">
+                {/* ── STICKY ULTRA-COMPACT HEADER: Mini-Preview + Navigation ── */}
+                <div className="sticky top-0 z-40 bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant/50 shadow-sm transition-all duration-200">
 
-                  {/* Centered Preview Card */}
-                  <div className="px-4 pt-6 pb-4 text-center">
-                    <p className="text-[11px] font-bold text-on-surface-variant uppercase tracking-widest mb-3">Preview</p>
-                    <div className="bg-white rounded-2xl border border-outline-variant/50 p-6 max-w-[200px] mx-auto aspect-square flex items-center justify-center shadow-sm">
-                      {isLoading ? (
-                        <span className="material-symbols-outlined animate-spin text-primary text-3xl">autorenew</span>
-                      ) : isError ? (
-                        <span className="material-symbols-outlined text-error text-2xl">error</span>
-                      ) : (
-                        <img src={imageUrl} alt="QR Preview" className="w-full h-full object-contain" />
-                      )}
+                  {/* Compact Bar with Live QR Engine */}
+                  <div className="px-3.5 py-2 flex items-center justify-between gap-2.5 border-b border-outline-variant/30">
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <div className="bg-white rounded-xl border border-outline-variant/60 p-1 w-[56px] h-[56px] sm:w-[68px] sm:h-[68px] shrink-0 aspect-square flex items-center justify-center shadow-2xs">
+                        {isLoading ? (
+                          <span className="material-symbols-outlined animate-spin text-primary text-xl">autorenew</span>
+                        ) : isError ? (
+                          <span className="material-symbols-outlined text-error text-lg">error</span>
+                        ) : (
+                          <img src={imageUrl} alt="QR Preview" className="w-full h-full object-contain" />
+                        )}
+                      </div>
+                      <div className="min-w-0 overflow-hidden">
+                        <div className="flex items-center gap-1.5 mb-0.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                          <span className="text-[10px] font-extrabold uppercase tracking-widest text-primary truncate">Live Engine</span>
+                        </div>
+                        <p className="text-xs sm:text-sm font-bold text-on-surface truncate">{settings.contentType} QR Code</p>
+                        <p className="text-[10px] sm:text-[11px] text-on-surface-variant truncate">Level {settings.error_correction} • {downloadFormat}</p>
+                      </div>
+                    </div>
+
+                    {/* Compact Quick Tools */}
+                    <div className="flex gap-1.5 shrink-0">
+                      <button onClick={handleFullscreen} className="p-2 bg-surface hover:bg-surface-container-high transition-colors text-on-surface-variant rounded-xl border border-outline-variant/40 flex items-center justify-center text-xs font-bold gap-1 shadow-2xs min-w-[36px] min-h-[36px] touch-press" title="View Fullscreen">
+                        <span className="material-symbols-outlined text-[18px]">fullscreen</span>
+                        <span className="hidden sm:inline text-xs">Expand</span>
+                      </button>
+                      <button onClick={handleScanTest} className="p-2 bg-primary/10 hover:bg-primary/20 transition-colors text-primary rounded-xl border border-primary/20 flex items-center justify-center text-xs font-bold gap-1 min-w-[36px] min-h-[36px] touch-press" title="Scan Test">
+                        <span className="material-symbols-outlined text-[18px]">qr_code_scanner</span>
+                        <span className="hidden sm:inline text-xs">Test</span>
+                      </button>
                     </div>
                   </div>
 
-                  {/* Stepped Main Segment Tabs: Content | Design */}
-                  <div className="px-5 pb-5 pt-1">
+                  {/* Slim Main Segment Tabs: Content | Design */}
+                  <div className="px-3 py-1.5 border-b border-outline-variant/20">
                     <div className="bg-surface border border-outline-variant/70 rounded-xl p-1 grid grid-cols-2 gap-1">
                       <button
                         onClick={() => setMobileMainTab('content')}
-                        className={`flex items-center justify-center py-2 px-3 rounded-lg font-bold transition-all text-[13px] touch-press ${mobileMainTab === 'content'
+                        className={`flex items-center justify-center py-1.5 px-3 rounded-lg font-bold transition-all text-xs sm:text-[13px] touch-press ${mobileMainTab === 'content'
                             ? 'bg-white text-on-surface border border-outline-variant/60 shadow-sm'
                             : 'text-on-surface-variant hover:text-on-surface'
                           }`}
@@ -2423,7 +2444,7 @@ function App() {
 
                       <button
                         onClick={() => setMobileMainTab('design')}
-                        className={`flex items-center justify-center py-2 px-3 rounded-lg font-bold transition-all text-[13px] touch-press ${mobileMainTab === 'design'
+                        className={`flex items-center justify-center py-1.5 px-3 rounded-lg font-bold transition-all text-xs sm:text-[13px] touch-press ${mobileMainTab === 'design'
                             ? 'bg-primary text-white shadow-md shadow-primary/20'
                             : 'text-on-surface-variant hover:text-on-surface'
                           }`}
@@ -2433,9 +2454,9 @@ function App() {
                     </div>
                   </div>
 
-                  {/* Sub-Tabs Row (Visible when Design main tab is selected) */}
+                  {/* Compact Sub-Tabs Row (Visible when Design main tab is selected) */}
                   {mobileMainTab === 'design' && (
-                    <div className="w-full min-w-0 max-w-full border-t border-b border-outline-variant/40 overflow-x-auto custom-scrollbar flex gap-2 px-5 py-2 select-none bg-surface-container-lowest">
+                    <div className="w-full min-w-0 max-w-full overflow-x-auto custom-scrollbar flex gap-1.5 px-3 py-1.5 select-none bg-surface-container-lowest scroll-smooth scroll-pl-3">
                       {[
                         { name: "Templates", label: "Templates" },
                         { name: "Shape", label: "Shape" },
@@ -2449,8 +2470,8 @@ function App() {
                           <button
                             key={tab.name}
                             onClick={() => setMobileDesignSubTab(tab.name)}
-                            className={`py-2 px-3 rounded-lg text-[13px] font-semibold transition-all whitespace-nowrap touch-press ${isSelected
-                                ? 'bg-primary/10 text-primary font-bold'
+                            className={`py-1 px-2.5 sm:px-3 rounded-lg text-[11px] sm:text-xs font-bold transition-all whitespace-nowrap touch-press ${isSelected
+                                ? 'bg-primary/10 text-primary shadow-2xs'
                                 : 'bg-transparent text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface'
                               }`}
                           >
@@ -2462,32 +2483,32 @@ function App() {
                   )}
                 </div>
 
-                {/* ── PANEL CONTENT ── */}
-                <div className="p-4 sm:p-5 max-h-[400px] overflow-y-auto custom-scrollbar bg-white">
+                {/* ── PANEL CONTENT (Single native scroll flow without double scrollbars!) ── */}
+                <div className="p-4 sm:p-5 bg-white">
                   {mobileMainTab === 'content'
                     ? renderPanelContent('Content')
                     : renderPanelContent(mobileDesignSubTab === 'Shape' ? 'Design' : mobileDesignSubTab)
                   }
                 </div>
 
-                {/* ── CTA BAR ── */}
-                <div className="border-t border-outline-variant/40 bg-surface-container-lowest p-5 flex gap-3">
+                {/* ── FIXED FLOATING BOTTOM CTA BAR ── */}
+                <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-outline-variant/50 bg-surface-container-lowest/95 backdrop-blur-md p-3 sm:p-4 flex gap-2.5 shadow-[0_-4px_16px_rgba(0,0,0,0.08)]">
                   <button
                     onClick={handleDownloadPNG}
                     disabled={isLoading || isError || isDownloading}
-                    className="flex-1 py-3.5 px-4 bg-primary text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-md shadow-primary/20 btn-spring min-h-[48px]"
+                    className="flex-1 py-3 px-3 sm:px-4 bg-primary text-white rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 shadow-md shadow-primary/20 btn-spring min-h-[44px]"
                   >
-                    <span className="material-symbols-outlined text-[20px]">download</span>
+                    <span className="material-symbols-outlined text-[18px]">download</span>
                     Download {downloadFormat}
                   </button>
                   <button
                     onClick={handleCopyToClipboard}
                     disabled={isLoading || isError || isCopying}
-                    className={`py-3.5 px-4 rounded-xl font-bold text-sm flex items-center justify-center gap-2 border shadow-sm btn-spring min-h-[48px] ${
+                    className={`py-3 px-4 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 border shadow-sm btn-spring min-h-[44px] ${
                       copySuccess ? 'bg-emerald-600 text-white border-emerald-600 shadow-emerald-600/25 animate-celebrate' : 'bg-surface border-outline-variant text-on-surface'
                     }`}
                   >
-                    <span className={`material-symbols-outlined text-[20px] ${copySuccess ? 'animate-[spin_350ms_ease-out_1]' : ''}`}>{copySuccess ? 'check' : 'content_copy'}</span>
+                    <span className={`material-symbols-outlined text-[18px] ${copySuccess ? 'animate-[spin_350ms_ease-out_1]' : ''}`}>{copySuccess ? 'check' : 'content_copy'}</span>
                     {copySuccess ? 'Copied!' : 'Copy'}
                   </button>
                 </div>
