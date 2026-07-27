@@ -947,6 +947,159 @@ class SleekDashModuleDrawer(StyledPilQRModuleDrawer):
         if is_active:
             self.img._img.paste(self.img_module, (box[0][0], box[0][1]))
 
+
+class MinimalDotsModuleDrawer(StyledPilQRModuleDrawer):
+    def initialize(self, *args, **kwargs):
+        super().initialize(*args, **kwargs)
+        box_size = self.img.box_size
+        fake_size = box_size * ANTIALIASING_FACTOR
+        self.shape = Image.new(self.img.mode, (fake_size, fake_size), self.img.color_mask.back_color)
+        draw = ImageDraw.Draw(self.shape)
+        padding = fake_size // 4
+        draw.ellipse((padding, padding, fake_size - padding - 1, fake_size - padding - 1), fill=self.img.paint_color)
+        self.shape = self.shape.resize((box_size, box_size), Image.Resampling.LANCZOS)
+    def drawrect(self, box, is_active: bool):
+        if is_active:
+            self.img._img.paste(self.shape, (box[0][0], box[0][1]))
+
+class HollowDotsModuleDrawer(StyledPilQRModuleDrawer):
+    def initialize(self, *args, **kwargs):
+        super().initialize(*args, **kwargs)
+        box_size = self.img.box_size
+        fake_size = box_size * ANTIALIASING_FACTOR
+        self.shape = Image.new(self.img.mode, (fake_size, fake_size), self.img.color_mask.back_color)
+        draw = ImageDraw.Draw(self.shape)
+        w = max(1, fake_size // 10)
+        padding = fake_size // 8
+        draw.ellipse((padding, padding, fake_size - padding - 1, fake_size - padding - 1), outline=self.img.paint_color, width=w)
+        self.shape = self.shape.resize((box_size, box_size), Image.Resampling.LANCZOS)
+    def drawrect(self, box, is_active: bool):
+        if is_active:
+            self.img._img.paste(self.shape, (box[0][0], box[0][1]))
+
+class CrossstitchModuleDrawer(StyledPilQRModuleDrawer):
+    def initialize(self, *args, **kwargs):
+        super().initialize(*args, **kwargs)
+        box_size = self.img.box_size
+        fake_size = box_size * ANTIALIASING_FACTOR
+        self.shape = Image.new(self.img.mode, (fake_size, fake_size), self.img.color_mask.back_color)
+        draw = ImageDraw.Draw(self.shape)
+        w = max(1, fake_size // 6)
+        p = fake_size // 5
+        draw.line((p, p, fake_size - p, fake_size - p), fill=self.img.paint_color, width=w)
+        draw.line((fake_size - p, p, p, fake_size - p), fill=self.img.paint_color, width=w)
+        self.shape = self.shape.resize((box_size, box_size), Image.Resampling.LANCZOS)
+    def drawrect(self, box, is_active: bool):
+        if is_active:
+            self.img._img.paste(self.shape, (box[0][0], box[0][1]))
+
+class PixelArtModuleDrawer(StyledPilQRModuleDrawer):
+    def initialize(self, *args, **kwargs):
+        super().initialize(*args, **kwargs)
+        box_size = self.img.box_size
+        fake_size = box_size * ANTIALIASING_FACTOR
+        self.shape = Image.new(self.img.mode, (fake_size, fake_size), self.img.color_mask.back_color)
+        draw = ImageDraw.Draw(self.shape)
+        p = fake_size // 4
+        draw.rectangle((p, p, fake_size - p - 1, fake_size - p - 1), fill=self.img.paint_color)
+        self.shape = self.shape.resize((box_size, box_size), Image.Resampling.NEAREST)
+    def drawrect(self, box, is_active: bool):
+        if is_active:
+            self.img._img.paste(self.shape, (box[0][0], box[0][1]))
+
+class DiagonalStripeModuleDrawer(StyledPilQRModuleDrawer):
+    def initialize(self, *args, **kwargs):
+        super().initialize(*args, **kwargs)
+        box_size = self.img.box_size
+        fake_size = box_size * ANTIALIASING_FACTOR
+        self.shape = Image.new(self.img.mode, (fake_size, fake_size), self.img.color_mask.back_color)
+        draw = ImageDraw.Draw(self.shape)
+        w = max(1, fake_size // 3)
+        draw.line((0, fake_size, fake_size, 0), fill=self.img.paint_color, width=w)
+        self.shape = self.shape.resize((box_size, box_size), Image.Resampling.LANCZOS)
+    def drawrect(self, box, is_active: bool):
+        if is_active:
+            self.img._img.paste(self.shape, (box[0][0], box[0][1]))
+
+class HorizontalSlashModuleDrawer(StyledPilQRModuleDrawer):
+    def initialize(self, *args, **kwargs):
+        super().initialize(*args, **kwargs)
+        box_size = self.img.box_size
+        fake_size = box_size * ANTIALIASING_FACTOR
+        self.shape = Image.new(self.img.mode, (fake_size, fake_size), self.img.color_mask.back_color)
+        draw = ImageDraw.Draw(self.shape)
+        h = fake_size // 3
+        cy = fake_size // 2
+        draw.rectangle((0, cy - h//2, fake_size - 1, cy + h//2), fill=self.img.paint_color)
+        self.shape = self.shape.resize((box_size, box_size), Image.Resampling.LANCZOS)
+    def drawrect(self, box, is_active: bool):
+        if is_active:
+            self.img._img.paste(self.shape, (box[0][0], box[0][1]))
+
+class VerticalSlashModuleDrawer(StyledPilQRModuleDrawer):
+    def initialize(self, *args, **kwargs):
+        super().initialize(*args, **kwargs)
+        box_size = self.img.box_size
+        fake_size = box_size * ANTIALIASING_FACTOR
+        self.shape = Image.new(self.img.mode, (fake_size, fake_size), self.img.color_mask.back_color)
+        draw = ImageDraw.Draw(self.shape)
+        w = fake_size // 3
+        cx = fake_size // 2
+        draw.rectangle((cx - w//2, 0, cx + w//2, fake_size - 1), fill=self.img.paint_color)
+        self.shape = self.shape.resize((box_size, box_size), Image.Resampling.LANCZOS)
+    def drawrect(self, box, is_active: bool):
+        if is_active:
+            self.img._img.paste(self.shape, (box[0][0], box[0][1]))
+
+class TriangleMosaicModuleDrawer(StyledPilQRModuleDrawer):
+    def initialize(self, *args, **kwargs):
+        super().initialize(*args, **kwargs)
+        box_size = self.img.box_size
+        fake_size = box_size * ANTIALIASING_FACTOR
+        self.shape = Image.new(self.img.mode, (fake_size, fake_size), self.img.color_mask.back_color)
+        draw = ImageDraw.Draw(self.shape)
+        p = fake_size // 8
+        pts = [(fake_size//2, p), (fake_size - p, fake_size - p), (p, fake_size - p)]
+        draw.polygon(pts, fill=self.img.paint_color)
+        self.shape = self.shape.resize((box_size, box_size), Image.Resampling.LANCZOS)
+    def drawrect(self, box, is_active: bool):
+        if is_active:
+            self.img._img.paste(self.shape, (box[0][0], box[0][1]))
+
+class MoonCrescentModuleDrawer(StyledPilQRModuleDrawer):
+    def initialize(self, *args, **kwargs):
+        super().initialize(*args, **kwargs)
+        box_size = self.img.box_size
+        fake_size = box_size * ANTIALIASING_FACTOR
+        self.shape = Image.new(self.img.mode, (fake_size, fake_size), self.img.color_mask.back_color)
+        draw = ImageDraw.Draw(self.shape)
+        p = fake_size // 6
+        draw.ellipse((p, p, fake_size - p, fake_size - p), fill=self.img.paint_color)
+        offset = fake_size // 4
+        draw.ellipse((p + offset, p - offset//2, fake_size - p + offset, fake_size - p - offset//2), fill=self.img.color_mask.back_color)
+        self.shape = self.shape.resize((box_size, box_size), Image.Resampling.LANCZOS)
+    def drawrect(self, box, is_active: bool):
+        if is_active:
+            self.img._img.paste(self.shape, (box[0][0], box[0][1]))
+
+class LiquidDropModuleDrawer(StyledPilQRModuleDrawer):
+    def initialize(self, *args, **kwargs):
+        super().initialize(*args, **kwargs)
+        box_size = self.img.box_size
+        fake_size = box_size * ANTIALIASING_FACTOR
+        self.shape = Image.new(self.img.mode, (fake_size, fake_size), self.img.color_mask.back_color)
+        draw = ImageDraw.Draw(self.shape)
+        cx = fake_size // 2
+        cy_circle = fake_size - fake_size // 3
+        r = fake_size // 3
+        draw.ellipse((cx - r, cy_circle - r, cx + r, cy_circle + r), fill=self.img.paint_color)
+        pts = [(cx, fake_size // 6), (cx - r, cy_circle), (cx + r, cy_circle)]
+        draw.polygon(pts, fill=self.img.paint_color)
+        self.shape = self.shape.resize((box_size, box_size), Image.Resampling.LANCZOS)
+    def drawrect(self, box, is_active: bool):
+        if is_active:
+            self.img._img.paste(self.shape, (box[0][0], box[0][1]))
+
 def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_style="square", logo_image=None, box_size=30, eye_color=None, eyeball_color=None, eye_frame_style=None, eyeball_style=None, remove_logo_bg=False, logo_bg_color="#ffffff", logo_bg_tolerance=30, logo_clear_size=0.5, gradient_type="Solid Color", fill_color_end="#000000", preset_logo="None", preset_logo_color=None, logo_card_shape="None", logo_card_padding=10, logo_size_ratio=0.18, error_correction="H", quiet_zone=4, bg_transparent=False):
     if eye_frame_style is None: eye_frame_style = "square"
     if eyeball_style is None: eyeball_style = "square"
@@ -1035,6 +1188,18 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
         "medical_cross": MedicalCrossModuleDrawer(),
         "lotus_petal": LotusPetalModuleDrawer(),
         "network_nodes": NetworkNodesModuleDrawer(),
+
+        "minimal_dots": MinimalDotsModuleDrawer(),
+        "hollow_dots": HollowDotsModuleDrawer(),
+        "crossstitch": CrossstitchModuleDrawer(),
+        "pixel_art": PixelArtModuleDrawer(),
+        "diagonal_stripe": DiagonalStripeModuleDrawer(),
+        "horizontal_slash": HorizontalSlashModuleDrawer(),
+        "vertical_slash": VerticalSlashModuleDrawer(),
+        "triangle_mosaic": TriangleMosaicModuleDrawer(),
+        "moon_crescent": MoonCrescentModuleDrawer(),
+        "liquid_drop": LiquidDropModuleDrawer(),
+
     }
     drawer = module_drawers.get(dot_style, SquareModuleDrawer())
     
@@ -1354,6 +1519,63 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
             draw.rectangle([px, py, px + 7*s - 1, py + 7*s - 1], outline=eye_rgb + (255,), width=s)
         elif eye_frame_style == "minimal_ring":
             draw.ellipse([px + s//2, py + s//2, px + 7*s - s//2 - 1, py + 7*s - s//2 - 1], outline=eye_rgb + (255,), width=max(1, s // 2))
+
+        elif eye_frame_style == "ultra_thin_square":
+            draw.rectangle([px, py, px + 7*s - 1, py + 7*s - 1], outline=eye_rgb + (255,), width=max(1, s // 6))
+        elif eye_frame_style == "ultra_thin_circle":
+            draw.ellipse([px, py, px + 7*s - 1, py + 7*s - 1], outline=eye_rgb + (255,), width=max(1, s // 6))
+        elif eye_frame_style == "dashed_square":
+            w = max(1, s // 3)
+            for i in range(7):
+                if i % 2 == 0:
+                    draw.rectangle([px + i*s, py, px + (i+1)*s - 1, py + w], fill=eye_rgb + (255,))
+                    draw.rectangle([px + i*s, py + 7*s - w - 1, px + (i+1)*s - 1, py + 7*s - 1], fill=eye_rgb + (255,))
+                    draw.rectangle([px, py + i*s, px + w, py + (i+1)*s - 1], fill=eye_rgb + (255,))
+                    draw.rectangle([px + 7*s - w - 1, py + i*s, px + 7*s - 1, py + (i+1)*s - 1], fill=eye_rgb + (255,))
+        elif eye_frame_style == "corner_dots":
+            dot_s = s
+            draw.ellipse([px, py, px + dot_s, py + dot_s], fill=eye_rgb + (255,))
+            draw.ellipse([px + 7*s - dot_s, py, px + 7*s, py + dot_s], fill=eye_rgb + (255,))
+            draw.ellipse([px, py + 7*s - dot_s, px + dot_s, py + 7*s], fill=eye_rgb + (255,))
+            draw.ellipse([px + 7*s - dot_s, py + 7*s - dot_s, px + 7*s, py + 7*s], fill=eye_rgb + (255,))
+        elif eye_frame_style == "minimal_corners":
+            w = max(1, s // 3)
+            c = int(1.5 * s)
+            draw.rectangle([px, py, px + c, py + w], fill=eye_rgb + (255,))
+            draw.rectangle([px, py, px + w, py + c], fill=eye_rgb + (255,))
+            draw.rectangle([px + 7*s - c, py, px + 7*s, py + w], fill=eye_rgb + (255,))
+            draw.rectangle([px + 7*s - w, py, px + 7*s, py + c], fill=eye_rgb + (255,))
+            draw.rectangle([px, py + 7*s - w, px + c, py + 7*s], fill=eye_rgb + (255,))
+            draw.rectangle([px, py + 7*s - c, px + w, py + 7*s], fill=eye_rgb + (255,))
+            draw.rectangle([px + 7*s - c, py + 7*s - w, px + 7*s, py + 7*s], fill=eye_rgb + (255,))
+            draw.rectangle([px + 7*s - w, py + 7*s - c, px + 7*s, py + 7*s], fill=eye_rgb + (255,))
+        elif eye_frame_style == "target_minimal":
+            draw.ellipse([px, py, px + 7*s - 1, py + 7*s - 1], outline=eye_rgb + (255,), width=max(1, s // 4))
+            draw.ellipse([px + 1.2*s, py + 1.2*s, px + 5.8*s, py + 5.8*s], outline=eye_rgb + (255,), width=max(1, s // 4))
+        elif eye_frame_style == "hollow_diamond":
+            cx, cy = px + 3.5*s, py + 3.5*s
+            pts = [(cx, py), (px + 7*s, cy), (cx, py + 7*s), (px, cy)]
+            draw.polygon(pts, outline=eye_rgb + (255,), width=max(1, s // 2))
+        elif eye_frame_style == "brackets_square":
+            w = max(1, s // 2)
+            c = s
+            draw.rectangle([px, py, px + c, py + w], fill=eye_rgb + (255,))
+            draw.rectangle([px, py, px + w, py + 7*s], fill=eye_rgb + (255,))
+            draw.rectangle([px, py + 7*s - w, px + c, py + 7*s], fill=eye_rgb + (255,))
+            draw.rectangle([px + 7*s - c, py, px + 7*s, py + w], fill=eye_rgb + (255,))
+            draw.rectangle([px + 7*s - w, py, px + 7*s, py + 7*s], fill=eye_rgb + (255,))
+            draw.rectangle([px + 7*s - c, py + 7*s - w, px + 7*s, py + 7*s], fill=eye_rgb + (255,))
+        elif eye_frame_style == "brackets_curly":
+            w = max(1, s // 2)
+            cx, cy = px + 3.5*s, py + 3.5*s
+            # Left curly approximation
+            draw.arc([px, py, px + 2*s, cy], start=90, end=270, fill=eye_rgb + (255,), width=w)
+            draw.arc([px, cy, px + 2*s, py + 7*s], start=90, end=270, fill=eye_rgb + (255,), width=w)
+            # Right curly approximation
+            draw.arc([px + 5*s, py, px + 7*s, cy], start=270, end=90, fill=eye_rgb + (255,), width=w)
+            draw.arc([px + 5*s, cy, px + 7*s, py + 7*s], start=270, end=90, fill=eye_rgb + (255,), width=w)
+        elif eye_frame_style == "capsule_horizontal":
+            draw.rounded_rectangle([px, py + 1.5*s, px + 7*s - 1, py + 5.5*s - 1], radius=2*s, outline=eye_rgb + (255,), width=s)
         elif eye_frame_style == "none":
             pass
 
@@ -1430,13 +1652,33 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
         elif eyeball_style == "minimal_plus":
             cx = ebx + 1.5 * s
             cy = eby + 1.5 * s
-            w = 2.4 * s
-            t = max(2, int(0.5 * s))
-            hw = w / 2
-            ht = t / 2
-            rad = max(1, int(t / 3))
-            draw.rounded_rectangle([cx - hw, cy - ht, cx + hw, cy + ht], radius=rad, fill=eyeball_rgb + (255,))
-            draw.rounded_rectangle([cx - ht, cy - hw, cx + ht, cy + hw], radius=rad, fill=eyeball_rgb + (255,))
+
+        elif eyeball_style == "tiny_dot":
+            draw.ellipse([px + 3*s, py + 3*s, px + 4*s - 1, py + 4*s - 1], fill=eyeball_rgb + (255,))
+        elif eyeball_style == "tiny_square":
+            draw.rectangle([px + 3*s, py + 3*s, px + 4*s - 1, py + 4*s - 1], fill=eyeball_rgb + (255,))
+        elif eyeball_style == "hollow_circle":
+            draw.ellipse([px + 2*s, py + 2*s, px + 5*s - 1, py + 5*s - 1], outline=eyeball_rgb + (255,), width=max(1, s // 2))
+        elif eyeball_style == "hollow_square":
+            draw.rectangle([px + 2*s, py + 2*s, px + 5*s - 1, py + 5*s - 1], outline=eyeball_rgb + (255,), width=max(1, s // 2))
+        elif eyeball_style == "minimal_cross":
+            w = max(1, s // 2)
+            draw.line([px + 3.5*s, py + 1.5*s, px + 3.5*s, py + 5.5*s], fill=eyeball_rgb + (255,), width=w)
+            draw.line([px + 1.5*s, py + 3.5*s, px + 5.5*s, py + 3.5*s], fill=eyeball_rgb + (255,), width=w)
+        elif eyeball_style == "minimal_x":
+            w = max(1, s // 2)
+            draw.line([px + 2*s, py + 2*s, px + 5*s, py + 5*s], fill=eyeball_rgb + (255,), width=w)
+            draw.line([px + 5*s, py + 2*s, px + 2*s, py + 5*s], fill=eyeball_rgb + (255,), width=w)
+        elif eyeball_style == "vertical_pill":
+            draw.rounded_rectangle([px + 2.5*s, py + 1.5*s, px + 4.5*s, py + 5.5*s], radius=s, fill=eyeball_rgb + (255,))
+        elif eyeball_style == "horizontal_pill":
+            draw.rounded_rectangle([px + 1.5*s, py + 2.5*s, px + 5.5*s, py + 4.5*s], radius=s, fill=eyeball_rgb + (255,))
+        elif eyeball_style == "slash_forward":
+            w = max(1, s // 1.5)
+            draw.line([px + 5*s, py + 2*s, px + 2*s, py + 5*s], fill=eyeball_rgb + (255,), width=int(w))
+        elif eyeball_style == "slash_back":
+            w = max(1, s // 1.5)
+            draw.line([px + 2*s, py + 2*s, px + 5*s, py + 5*s], fill=eyeball_rgb + (255,), width=int(w))
         elif eyeball_style == "leaf":
             draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=eyeball_rgb + (255,))
             make_eyeball_sharp_corner(draw, ebx, eby, "TL", s, r2, eyeball_rgb + (255,))

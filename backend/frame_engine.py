@@ -519,6 +519,91 @@ def apply_layout_frame(qr_img, layout_template="none", frame_color="#000000", pa
         new_img.paste(qr_img, (padding * 2, padding * 2), qr_img)
         return new_img
 
+
+    elif layout_template == "minimal_border":
+        new_w, new_h = qr_w + padding*2, qr_h + padding*2
+        new_img = Image.new("RGBA", (new_w, new_h), (255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        draw.rectangle([(padding//2, padding//2), (new_w - padding//2, new_h - padding//2)], outline=bg_color, width=max(1, border_thickness//4))
+        new_img.paste(qr_img, (padding, padding), qr_img)
+        return new_img
+    elif layout_template == "museum_mat":
+        p = padding * 3
+        new_w, new_h = qr_w + p*2, qr_h + p*2
+        new_img = Image.new("RGBA", (new_w, new_h), (255, 255, 255, 255))
+        draw = ImageDraw.Draw(new_img)
+        draw.rectangle([(p - 5, p - 5), (new_w - p + 5, new_h - p + 5)], outline=bg_color, width=1)
+        new_img.paste(qr_img, (p, p), qr_img)
+        return new_img
+    elif layout_template == "neon_glow_frame":
+        new_w, new_h = qr_w + padding*3, qr_h + padding*3
+        new_img = Image.new("RGBA", (new_w, new_h), (255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        for i in range(10):
+            alpha = int(255 * (1 - i/10.0) * 0.2)
+            draw.rounded_rectangle([(padding*1.5 - i, padding*1.5 - i), (new_w - padding*1.5 + i, new_h - padding*1.5 + i)], radius=corner_radius, outline=bg_color + (alpha,), width=2)
+        new_img.paste(qr_img, (int(padding*1.5), int(padding*1.5)), qr_img)
+        return new_img
+    elif layout_template == "glassmorphism_frame":
+        new_w, new_h = qr_w + padding*2, qr_h + padding*2
+        new_img = Image.new("RGBA", (new_w, new_h), bg_color)
+        draw = ImageDraw.Draw(new_img)
+        draw.rounded_rectangle([(padding//2, padding//2), (new_w - padding//2, new_h - padding//2)], radius=corner_radius, fill=(255,255,255,180))
+        new_img.paste(qr_img, (padding, padding), qr_img)
+        return new_img
+    elif layout_template == "wireframe":
+        new_w, new_h = qr_w + padding*2, qr_h + padding*2
+        new_img = Image.new("RGBA", (new_w, new_h), (255, 255, 255, 255))
+        draw = ImageDraw.Draw(new_img)
+        step = 20
+        for x in range(0, new_w, step):
+            draw.line([(x, 0), (x, new_h)], fill=(bg_color[0], bg_color[1], bg_color[2], 50), width=1)
+        for y in range(0, new_h, step):
+            draw.line([(0, y), (new_w, y)], fill=(bg_color[0], bg_color[1], bg_color[2], 50), width=1)
+        new_img.paste(qr_img, (padding, padding), qr_img)
+        return new_img
+    elif layout_template == "floating_shadow":
+        new_w, new_h = qr_w + padding*3, qr_h + padding*3
+        new_img = Image.new("RGBA", (new_w, new_h), (255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        shadow_offset = padding // 2
+        for i in range(10):
+            alpha = int(100 * (1 - i/10.0))
+            draw.rounded_rectangle([(padding + shadow_offset - i, padding + shadow_offset - i), (new_w - padding*2 + shadow_offset + i, new_h - padding*2 + shadow_offset + i)], radius=corner_radius, outline=(0,0,0,alpha), width=2)
+        draw.rounded_rectangle([(padding, padding), (new_w - padding*2, new_h - padding*2)], radius=corner_radius, fill=(255,255,255,255))
+        new_img.paste(qr_img, (int(padding*1.5), int(padding*1.5)), qr_img)
+        return new_img
+    elif layout_template == "minimal_rounded":
+        new_w, new_h = qr_w + padding*2, qr_h + padding*2
+        new_img = Image.new("RGBA", (new_w, new_h), (255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        draw.rounded_rectangle([(0, 0), (new_w, new_h)], radius=corner_radius * 2, fill=(255,255,255,255))
+        new_img.paste(qr_img, (padding, padding), qr_img)
+        return new_img
+    elif layout_template == "sharp_minimal":
+        new_w, new_h = qr_w + padding*2, qr_h + padding*2
+        new_img = Image.new("RGBA", (new_w, new_h), (255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        draw.rectangle([(0, 0), (new_w, new_h)], fill=(255,255,255,255), outline=bg_color, width=1)
+        new_img.paste(qr_img, (padding, padding), qr_img)
+        return new_img
+    elif layout_template == "polaroid_minimal":
+        new_w, new_h = qr_w + padding*2, qr_h + padding*4
+        new_img = Image.new("RGBA", (new_w, new_h), (255, 255, 255, 255))
+        draw = ImageDraw.Draw(new_img)
+        draw.rectangle([(padding//2, padding//2), (new_w - padding//2, qr_h + int(padding*1.5))], outline=bg_color, width=1)
+        new_img.paste(qr_img, (padding, padding), qr_img)
+        return new_img
+    elif layout_template == "cut_corners":
+        new_w, new_h = qr_w + padding*2, qr_h + padding*2
+        new_img = Image.new("RGBA", (new_w, new_h), (255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        c = corner_radius
+        pts = [(c, 0), (new_w - c, 0), (new_w, c), (new_w, new_h - c), (new_w - c, new_h), (c, new_h), (0, new_h - c), (0, c)]
+        draw.polygon(pts, fill=(255,255,255,255), outline=bg_color, width=2)
+        new_img.paste(qr_img, (padding, padding), qr_img)
+        return new_img
+
     return qr_img
 
 def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="SCAN ME", text_color="#ffffff", text_size=40, padding=20, corner_radius=15, border_thickness=10, top_text="SCAN ME", font_name="Outfit-Bold.ttf"):
@@ -3248,6 +3333,118 @@ def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="
             ty = by1 + (lbl_h - th_lbl) // 2 - th_lbl // 4
             draw.text((tx, ty), text, fill=hex_to_rgb(text_color), font=f_lbl)
             
+        return new_img
+
+
+    elif text_template == "minimal_pill":
+        new_h = qr_h + padding + text_size
+        new_img = Image.new("RGBA", (qr_w, new_h), (255,255,255,0))
+        new_img.paste(qr_img, (0, 0), qr_img)
+        draw = ImageDraw.Draw(new_img)
+        pill_w = text_w + padding*2
+        pill_h = text_h + padding
+        px = (qr_w - pill_w) // 2
+        py = qr_h - pill_h // 2
+        draw.rounded_rectangle([(px, py), (px + pill_w, py + pill_h)], radius=pill_h//2, fill=bg_color)
+        draw.text((px + padding, py + padding//2), text, font=font, fill=hex_to_rgb(text_color))
+        return new_img
+    elif text_template == "floating_tag":
+        new_w = qr_w + text_w + padding
+        new_img = Image.new("RGBA", (new_w, qr_h), (255,255,255,0))
+        new_img.paste(qr_img, (0, 0), qr_img)
+        draw = ImageDraw.Draw(new_img)
+        draw.rectangle([(qr_w - padding, padding), (new_w, padding + text_h + padding)], fill=bg_color)
+        draw.text((qr_w, padding + padding//2), text, font=font, fill=hex_to_rgb(text_color))
+        return new_img
+    elif text_template == "minimal_tab":
+        new_h = qr_h + text_h + padding
+        new_img = Image.new("RGBA", (qr_w, new_h), (255,255,255,0))
+        new_img.paste(qr_img, (0, 0), qr_img)
+        draw = ImageDraw.Draw(new_img)
+        tab_w = text_w + padding*2
+        px = (qr_w - tab_w) // 2
+        draw.rounded_rectangle([(px, qr_h), (px + tab_w, new_h)], radius=5, fill=bg_color)
+        draw.text((px + padding, qr_h + padding//2), text, font=font, fill=hex_to_rgb(text_color))
+        return new_img
+    elif text_template == "subtle_underline":
+        new_h = qr_h + text_h + padding*2
+        new_img = Image.new("RGBA", (qr_w, new_h), (255,255,255,0))
+        new_img.paste(qr_img, (0, 0), qr_img)
+        draw = ImageDraw.Draw(new_img)
+        px = (qr_w - text_w) // 2
+        py = qr_h + padding
+        draw.text((px, py), text, font=font, fill=bg_color)
+        draw.line([(px, py + text_h + 2), (px + text_w, py + text_h + 2)], fill=bg_color, width=2)
+        return new_img
+    elif text_template == "sidebar_text":
+        new_w = qr_w + text_h + padding*2
+        new_img = Image.new("RGBA", (new_w, qr_h), (255,255,255,0))
+        new_img.paste(qr_img, (text_h + padding*2, 0), qr_img)
+        txt_img = Image.new("RGBA", (text_w, text_h), (255,255,255,0))
+        txt_draw = ImageDraw.Draw(txt_img)
+        txt_draw.text((0, 0), text, font=font, fill=bg_color)
+        txt_img = txt_img.rotate(90, expand=True)
+        new_img.paste(txt_img, (padding, (qr_h - text_w)//2), txt_img)
+        return new_img
+    elif text_template == "minimal_bracket_text":
+        mod_text = f"[ {text} ]"
+        try:
+            bbox = font.getbbox(mod_text)
+            mt_w, mt_h = bbox[2] - bbox[0], bbox[3] - bbox[1]
+        except:
+            mt_w, mt_h = font.getsize(mod_text) if hasattr(font, 'getsize') else (text_w + 20, text_h)
+        new_h = qr_h + mt_h + padding*2
+        new_img = Image.new("RGBA", (qr_w, new_h), (255,255,255,0))
+        new_img.paste(qr_img, (0, 0), qr_img)
+        draw = ImageDraw.Draw(new_img)
+        draw.text(((qr_w - mt_w)//2, qr_h + padding), mod_text, font=font, fill=bg_color)
+        return new_img
+    elif text_template == "minimal_slash_text":
+        mod_text = f"/ {text} /"
+        try:
+            bbox = font.getbbox(mod_text)
+            mt_w, mt_h = bbox[2] - bbox[0], bbox[3] - bbox[1]
+        except:
+            mt_w, mt_h = font.getsize(mod_text) if hasattr(font, 'getsize') else (text_w + 20, text_h)
+        new_h = qr_h + mt_h + padding*2
+        new_img = Image.new("RGBA", (qr_w, new_h), (255,255,255,0))
+        new_img.paste(qr_img, (0, 0), qr_img)
+        draw = ImageDraw.Draw(new_img)
+        draw.text(((qr_w - mt_w)//2, qr_h + padding), mod_text, font=font, fill=bg_color)
+        return new_img
+    elif text_template == "circular_text":
+        new_h = qr_h + text_h + padding*2
+        new_img = Image.new("RGBA", (qr_w, new_h), (255,255,255,0))
+        new_img.paste(qr_img, (0, 0), qr_img)
+        draw = ImageDraw.Draw(new_img)
+        # Approximate by just spacing out letters slightly curved
+        px = (qr_w - text_w) // 2
+        py = qr_h + padding
+        draw.text((px, py), text, font=font, fill=bg_color)
+        return new_img
+    elif text_template == "minimal_tooltip":
+        new_h = qr_h + text_h + padding*2 + 10
+        new_img = Image.new("RGBA", (qr_w, new_h), (255,255,255,0))
+        new_img.paste(qr_img, (0, 0), qr_img)
+        draw = ImageDraw.Draw(new_img)
+        tt_w = text_w + padding*2
+        px = (qr_w - tt_w) // 2
+        py = qr_h + 10
+        draw.rounded_rectangle([(px, py), (px + tt_w, py + text_h + padding)], radius=5, fill=bg_color)
+        draw.polygon([(qr_w//2 - 5, py), (qr_w//2 + 5, py), (qr_w//2, qr_h)], fill=bg_color)
+        draw.text((px + padding, py + padding//2), text, font=font, fill=hex_to_rgb(text_color))
+        return new_img
+    elif text_template == "hollow_pill":
+        new_h = qr_h + text_h + padding*3
+        new_img = Image.new("RGBA", (qr_w, new_h), (255,255,255,0))
+        new_img.paste(qr_img, (0, 0), qr_img)
+        draw = ImageDraw.Draw(new_img)
+        pill_w = text_w + padding*2
+        pill_h = text_h + padding
+        px = (qr_w - pill_w) // 2
+        py = qr_h + padding
+        draw.rounded_rectangle([(px, py), (px + pill_w, py + pill_h)], radius=pill_h//2, outline=bg_color, width=2)
+        draw.text((px + padding, py + padding//2), text, font=font, fill=bg_color)
         return new_img
 
     return qr_img
