@@ -708,7 +708,7 @@ function App() {
                   >
                     <div className="relative w-full h-full group/template">
                       <img
-                        src={`/previews/templates/${cleanName}.png`}
+                        src={`/previews/templates/${cleanName}.png?v=4`}
                         alt={template.name}
                         className="w-full h-full object-contain p-2.5 transition-transform duration-300 group-hover/template:scale-[1.03]"
                         style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.12))" }}
@@ -824,7 +824,7 @@ function App() {
                       isSelected={settings.dots_style === style}
                       onClick={() => updateSettings({ dots_style: style as any })}
                     >
-                      <img src={`/previews/dots/${style}.png`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
+                      <img src={`/previews/dots/${style}.png?v=4`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
                     </StylePreviewCard>
                   </div>
                 ))}
@@ -841,7 +841,7 @@ function App() {
                       isSelected={settings.eye_frame_style === style}
                       onClick={() => updateSettings({ eye_frame_style: style as any })}
                     >
-                      <img src={`/previews/eye_frames/${style}.png`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
+                      <img src={`/previews/eye_frames/${style}.png?v=4`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
                     </StylePreviewCard>
                   </div>
                 ))}
@@ -858,7 +858,7 @@ function App() {
                       isSelected={settings.eyeball_style === style}
                       onClick={() => updateSettings({ eyeball_style: style as any })}
                     >
-                      <img src={`/previews/eyeballs/${style}.png`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
+                      <img src={`/previews/eyeballs/${style}.png?v=4`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
                     </StylePreviewCard>
                   </div>
                 ))}
@@ -1412,7 +1412,7 @@ function App() {
                       isSelected={settings.frame_style === style}
                       onClick={() => updateSettings({ frame_style: style as any })}
                     >
-                      <img src={`/previews/frames/${style}.png`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
+                      <img src={`/previews/frames/${style}.png?v=4`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
                     </StylePreviewCard>
                   </div>
                 ))}
@@ -1496,7 +1496,7 @@ function App() {
                       isSelected={settings.text_style === style}
                       onClick={() => updateSettings({ text_style: style as any })}
                     >
-                      <img src={`/previews/text_styles/${style}.png`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
+                      <img src={`/previews/text_styles/${style}.png?v=4`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
                     </StylePreviewCard>
                   </div>
                 ))}
