@@ -21,10 +21,11 @@ export interface QRSettings {
   
   // Logo
   logo_image?: string | null;
-  preset_logo: "None" | "Link" | "Location" | "WiFi" | "Vcard" | "Email" | "Scan" | "WhatsApp" | "Instagram" | "Facebook" | "YouTube" | "Phone" | "Coffee" | "Shopping" | "Music" | "Globe" | "Heart" | "Star" | "Calendar" | "Payment" | "Store" | "Chat" | "App" | "Discord" | "Amazon";
+  preset_logo: "None" | "Link" | "Location" | "WiFi" | "Vcard" | "Email" | "Scan" | "WhatsApp" | "Instagram" | "Facebook" | "YouTube" | "Phone" | "Coffee" | "Shopping" | "Music" | "Globe" | "Heart" | "Star" | "Calendar" | "Payment" | "Store" | "Chat" | "App" | "Discord" | "Amazon" | "TikTok" | "X" | "LinkedIn" | "Telegram" | "PayPal" | "Spotify" | string;
   preset_logo_color?: string;
   logo_color_mode?: "default" | "custom";
   logo_custom_color?: string;
+  logo_icon_style?: "badge" | "duotone" | "glyph";
   remove_logo_bg: boolean;
   logo_card_shape: "None" | "Circle" | "Rounded Square";
   logo_size_ratio: number;
@@ -76,12 +77,13 @@ export const defaultSettings: QRSettings = {
   logo_image: null,
   preset_logo: "None",
   logo_color_mode: "default",
-  logo_custom_color: "#3b82f6",
+  logo_custom_color: "#000000",
+  logo_icon_style: "badge",
   remove_logo_bg: false,
   logo_card_shape: "None",
-  logo_size_ratio: 0.22,
+  logo_size_ratio: 0.18,
   logo_card_padding: 10,
-  logo_clear_size: 2,
+  logo_clear_size: 0.5,
   logo_bg_color: "#ffffff",
   logo_bg_tolerance: 30,
   frame_style: "none",

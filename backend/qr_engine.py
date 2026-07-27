@@ -77,7 +77,13 @@ PRESET_LOGO_BRAND_COLORS = {
     "chat": "#3b82f6",
     "app": "#8b5cf6",
     "discord": "#5865f2",
-    "amazon": "#FF9900"
+    "amazon": "#FF9900",
+    "tiktok": "#000000",
+    "x": "#000000",
+    "linkedin": "#0a66c2",
+    "telegram": "#24a1de",
+    "paypal": "#003087",
+    "spotify": "#1db954"
 }
 
 def generate_preset_logo(name, color=(0,0,0)):
@@ -941,13 +947,13 @@ class SleekDashModuleDrawer(StyledPilQRModuleDrawer):
         if is_active:
             self.img._img.paste(self.img_module, (box[0][0], box[0][1]))
 
-def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_style="square", logo_image=None, box_size=30, eye_color=None, eyeball_color=None, eye_frame_style=None, eyeball_style=None, remove_logo_bg=False, logo_bg_color="#ffffff", logo_bg_tolerance=30, logo_clear_size=0, gradient_type="Solid Color", fill_color_end="#000000", preset_logo="None", preset_logo_color=None, logo_card_shape="None", logo_card_padding=10, logo_size_ratio=0.33, error_correction="H", quiet_zone=4, bg_transparent=False):
+def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_style="square", logo_image=None, box_size=30, eye_color=None, eyeball_color=None, eye_frame_style=None, eyeball_style=None, remove_logo_bg=False, logo_bg_color="#ffffff", logo_bg_tolerance=30, logo_clear_size=0.5, gradient_type="Solid Color", fill_color_end="#000000", preset_logo="None", preset_logo_color=None, logo_card_shape="None", logo_card_padding=10, logo_size_ratio=0.18, error_correction="H", quiet_zone=4, bg_transparent=False):
     if eye_frame_style is None: eye_frame_style = "square"
     if eyeball_style is None: eyeball_style = "square"
     
-    # Generate preset logo if requested
+    # Generate preset logo if requested and no explicit image was provided
     has_logo = logo_image is not None or preset_logo != "None"
-    if preset_logo != "None":
+    if logo_image is None and preset_logo != "None":
         brand_color = PRESET_LOGO_BRAND_COLORS.get(preset_logo.lower())
         color_to_use = preset_logo_color if preset_logo_color else (brand_color if brand_color else fill_color)
         logo_image = generate_preset_logo(preset_logo, hex_to_rgb(color_to_use))

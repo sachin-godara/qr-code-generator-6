@@ -5,29 +5,34 @@ import { type ContentType, type QRSettings } from "@/types/qr"
 import { PRESET_TEMPLATES } from "@/data/templates"
 import { DOT_STYLES, EYE_FRAME_STYLES, EYEBALL_STYLES, FRAME_STYLES, TEXT_STYLES } from "@/data/options"
 import { StylePreviewCard } from "@/components/previews/StylePreviewCard"
-import { PresetLogoPreview, getReactLogoPngDataUrl, PRESET_LOGO_BRAND_COLORS } from "@/components/previews/SvgIcons"
+import { PresetLogoPreview, getReactLogoPngDataUrl, PRESET_LOGO_BRAND_COLORS, LOGO_ITEMS, LOGO_CATEGORIES } from "@/components/previews/SvgIcons"
 
 async function fetchQRCode(settings: any) {
   const { contentData, ...rest } = settings
 
   let finalLogo = rest.logo_image;
-  if (!finalLogo && rest.preset_logo && rest.preset_logo !== "None") {
+  const isPresetLogo = !finalLogo && rest.preset_logo && rest.preset_logo !== "None";
+  if (isPresetLogo) {
     finalLogo = await getReactLogoPngDataUrl(
       rest.preset_logo,
       rest.logo_color_mode || "default",
-      rest.logo_custom_color || "#3b82f6",
-      rest.dots_color || "#000000"
+      rest.logo_custom_color || "#000000",
+      rest.dots_color || "#000000",
+      rest.logo_icon_style || "badge",
+      rest.logo_card_shape || "Rounded Square"
     );
   }
 
   const color = rest.logo_color_mode === "custom"
-    ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#3b82f6")
+    ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#000000")
     : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
 
   const payload = {
     ...rest,
     data: contentData,
     logo_image: finalLogo,
+    preset_logo: isPresetLogo ? "None" : rest.preset_logo,
+    logo_card_shape: isPresetLogo ? "None" : rest.logo_card_shape,
     preset_logo_color: color,
     box_size: 10
   }
@@ -59,6 +64,8 @@ function App() {
   const { settings, updateSettings, applyTemplate } = useQRStore()
   const [activeTab, setActiveTab] = useState<string>("Content")
   const [activeTemplateCategory, setActiveTemplateCategory] = useState<string>("All")
+  const [logoSearchQuery, setLogoSearchQuery] = useState<string>("")
+  const [activeLogoCategory, setActiveLogoCategory] = useState<string>("All")
   const [zoomLevel, setZoomLevel] = useState<number>(1)
 
   const [vcard, setVcard] = useState({ fn: '', ln: '', org: '', title: '', tel: '', email: '', url: '' })
@@ -157,7 +164,14 @@ function App() {
     "Roboto (Clean)",
     "Lora (Serif)"
   ]
-  const presetLogos = ["None", "Link", "Location", "WiFi", "Vcard", "Email", "Scan", "WhatsApp", "Instagram", "Facebook", "YouTube", "Phone", "Coffee", "Shopping", "Music", "Globe", "Heart", "Star"]
+  const filteredLogos = LOGO_ITEMS.filter(item => {
+    const matchesCategory = activeLogoCategory === "All" || item.category === activeLogoCategory;
+    const searchLower = logoSearchQuery.toLowerCase().trim();
+    const matchesSearch = !searchLower || 
+      item.label.toLowerCase().includes(searchLower) || 
+      item.tags.some(t => t.toLowerCase().includes(searchLower));
+    return matchesCategory && matchesSearch;
+  });
   const logoCardShapes = ["None", "Circle", "Rounded Square"]
 
   const handleDownloadPNG = () => {
@@ -173,19 +187,22 @@ function App() {
     try {
       const { contentData, ...rest } = settings
       let finalLogo = rest.logo_image;
-      if (!finalLogo && rest.preset_logo && rest.preset_logo !== "None") {
+      const isPresetLogo = !finalLogo && rest.preset_logo && rest.preset_logo !== "None";
+      if (isPresetLogo) {
         finalLogo = await getReactLogoPngDataUrl(
           rest.preset_logo,
           rest.logo_color_mode || "default",
-          rest.logo_custom_color || "#3b82f6",
-          rest.dots_color || "#000000"
+          rest.logo_custom_color || "#000000",
+          rest.dots_color || "#000000",
+          rest.logo_icon_style || "badge",
+          rest.logo_card_shape || "Rounded Square"
         );
       }
       const color = rest.logo_color_mode === "custom"
-        ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#3b82f6")
+        ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#000000")
         : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
 
-      const payload = { ...rest, data: contentData, logo_image: finalLogo, preset_logo_color: color }
+      const payload = { ...rest, data: contentData, logo_image: finalLogo, preset_logo: isPresetLogo ? "None" : rest.preset_logo, logo_card_shape: isPresetLogo ? "None" : rest.logo_card_shape, preset_logo_color: color }
       const response = await fetch("/api/generator/generate/svg", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -207,19 +224,22 @@ function App() {
     try {
       const { contentData, ...rest } = settings
       let finalLogo = rest.logo_image;
-      if (!finalLogo && rest.preset_logo && rest.preset_logo !== "None") {
+      const isPresetLogo = !finalLogo && rest.preset_logo && rest.preset_logo !== "None";
+      if (isPresetLogo) {
         finalLogo = await getReactLogoPngDataUrl(
           rest.preset_logo,
           rest.logo_color_mode || "default",
-          rest.logo_custom_color || "#3b82f6",
-          rest.dots_color || "#000000"
+          rest.logo_custom_color || "#000000",
+          rest.dots_color || "#000000",
+          rest.logo_icon_style || "badge",
+          rest.logo_card_shape || "Rounded Square"
         );
       }
       const color = rest.logo_color_mode === "custom"
-        ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#3b82f6")
+        ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#000000")
         : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
 
-      const payload = { ...rest, data: contentData, logo_image: finalLogo, preset_logo_color: color }
+      const payload = { ...rest, data: contentData, logo_image: finalLogo, preset_logo: isPresetLogo ? "None" : rest.preset_logo, logo_card_shape: isPresetLogo ? "None" : rest.logo_card_shape, preset_logo_color: color }
       const response = await fetch("/api/generator/generate/pdf", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -248,20 +268,23 @@ function App() {
       const { contentData, ...rest } = settings;
 
       let finalLogo = rest.logo_image;
-      if (!finalLogo && rest.preset_logo && rest.preset_logo !== "None") {
+      const isPresetLogo = !finalLogo && rest.preset_logo && rest.preset_logo !== "None";
+      if (isPresetLogo) {
         finalLogo = await getReactLogoPngDataUrl(
           rest.preset_logo,
           rest.logo_color_mode || "default",
-          rest.logo_custom_color || "#3b82f6",
-          rest.dots_color || "#000000"
+          rest.logo_custom_color || "#000000",
+          rest.dots_color || "#000000",
+          rest.logo_icon_style || "badge",
+          rest.logo_card_shape || "Rounded Square"
         );
       }
 
       const color = rest.logo_color_mode === "custom"
-        ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#3b82f6")
+        ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#000000")
         : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
 
-      const payload = { ...rest, data: contentData, logo_image: finalLogo, preset_logo_color: color, box_size: 20, target_size: downloadSize };
+      const payload = { ...rest, data: contentData, logo_image: finalLogo, preset_logo: isPresetLogo ? "None" : rest.preset_logo, logo_card_shape: isPresetLogo ? "None" : rest.logo_card_shape, preset_logo_color: color, box_size: 20, target_size: downloadSize };
 
       let endpoint = "/api/generator/generate";
       let ext = "png";
@@ -298,12 +321,23 @@ function App() {
   const handleCopyToClipboard = async () => {
     try {
       setIsCopying(true);
-      const { contentData, ...rest } = settings;
+      let finalLogo = rest.logo_image;
+      const isPresetLogo = !finalLogo && rest.preset_logo && rest.preset_logo !== "None";
+      if (isPresetLogo) {
+        finalLogo = await getReactLogoPngDataUrl(
+          rest.preset_logo,
+          rest.logo_color_mode || "default",
+          rest.logo_custom_color || "#000000",
+          rest.dots_color || "#000000",
+          rest.logo_icon_style || "badge",
+          rest.logo_card_shape || "Rounded Square"
+        );
+      }
       const color = rest.logo_color_mode === "custom"
-        ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#3b82f6")
+        ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#000000")
         : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
 
-      const payload = { ...rest, data: contentData, preset_logo_color: color, box_size: 20, target_size: downloadSize };
+      const payload = { ...rest, data: contentData, logo_image: finalLogo, preset_logo: isPresetLogo ? "None" : rest.preset_logo, logo_card_shape: isPresetLogo ? "None" : rest.logo_card_shape, preset_logo_color: color, box_size: 20, target_size: downloadSize };
       const response = await fetch("/api/generator/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -890,9 +924,12 @@ function App() {
           <div className="bg-white rounded-xl border border-outline-variant space-y-6 p-6">
             {/* Custom Premium Drag-and-Drop Zone */}
             <div className="space-y-3">
-              <label className="section-label flex items-center gap-1.5 mb-1">
-                <span className="material-symbols-outlined text-sm opacity-70">upload_file</span>
-                Custom Logo File
+              <label className="section-label flex items-center justify-between mb-1">
+                <span className="flex items-center gap-1.5 font-bold text-on-surface">
+                  <span className="material-symbols-outlined text-sm text-primary">upload_file</span>
+                  Custom Brand Upload
+                </span>
+                <span className="text-[10px] uppercase font-mono text-on-surface-variant bg-surface-container-low px-2 py-0.5 rounded">PNG / JPG / WEBP</span>
               </label>
               <div className="flex flex-col items-center justify-center border-2 border-dashed border-outline-variant hover:border-primary/50 rounded-2xl p-6 bg-surface/30 hover:bg-surface/70 transition-all duration-200 cursor-pointer relative group">
                 <input
@@ -952,34 +989,173 @@ function App() {
 
             <div className="relative flex items-center py-1">
               <div className="flex-grow border-t border-outline-variant/50"></div>
-              <span className="flex-shrink-0 mx-4 text-[10px] text-on-surface-variant uppercase font-bold tracking-wider">OR CHOOSE PRESET</span>
+              <span className="flex-shrink-0 mx-4 text-[10px] text-on-surface-variant uppercase font-bold tracking-wider">OR CHOOSE PRESET ICON</span>
               <div className="flex-grow border-t border-outline-variant/50"></div>
             </div>
-
-            {/* Preset Logos Grid */}
-            <div className="space-y-3">
-              <label className="section-label flex items-center gap-1.5 mb-1">
-                <span className="material-symbols-outlined text-sm opacity-70">auto_awesome</span>
-                Preset Logo Icon
+            {/* Visual Theme Style Selector (Inspired by Phosphor Icons & iOS 18) */}
+            <div className="space-y-2 p-3.5 bg-gradient-to-br from-surface-container-lowest via-surface/60 to-surface-container-low rounded-2xl border border-outline-variant/60 shadow-2xs">
+              <label className="text-xs font-bold text-on-surface flex items-center justify-between">
+                <span className="flex items-center gap-1.5">
+                  <span className="material-symbols-outlined text-sm text-primary">auto_awesome</span>
+                  Icon Visual Style
+                </span>
+                <span className="text-[10px] text-primary font-semibold bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20">
+                  Inspired by Phosphor & iOS 18
+                </span>
               </label>
-              <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
-                {presetLogos.map((logo) => {
-                  const isSelected = settings.preset_logo === logo && !settings.logo_image;
-
+              <div className="grid grid-cols-3 gap-2">
+                {[
+                  {
+                    id: "badge",
+                    label: "Brand Badge",
+                    desc: "Vibrant solid cards",
+                    icon: (
+                      <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-primary to-blue-700 flex items-center justify-center text-white shadow-xs">
+                        <span className="material-symbols-outlined text-base">style</span>
+                      </div>
+                    ),
+                  },
+                  {
+                    id: "duotone",
+                    label: "Soft Glass",
+                    desc: "Pastel translucent",
+                    icon: (
+                      <div className="w-8 h-8 rounded-xl bg-primary/15 border border-primary/20 flex items-center justify-center text-primary">
+                        <span className="material-symbols-outlined text-base">blur_on</span>
+                      </div>
+                    ),
+                  },
+                  {
+                    id: "glyph",
+                    label: "Pure Glyph",
+                    desc: "Bare vector icon",
+                    icon: (
+                      <div className="w-8 h-8 rounded-xl bg-transparent flex items-center justify-center text-primary border border-dashed border-outline-variant">
+                        <span className="material-symbols-outlined text-base">token</span>
+                      </div>
+                    ),
+                  },
+                ].map((style) => {
+                  const isSelected = (settings.logo_icon_style || "badge") === style.id;
                   return (
                     <button
-                      key={logo}
-                      onClick={() => updateSettings({ preset_logo: logo as any, logo_image: null })}
-                      className={`p-2 border rounded-xl flex flex-col items-center justify-center gap-1.5 transition-all duration-200 ${isSelected
-                          ? "bg-primary/10 text-primary border-primary ring-2 ring-primary/20 scale-[1.02] shadow-sm font-semibold"
-                          : "bg-white hover:bg-muted border-outline-variant text-on-surface"
-                        }`}
+                      key={style.id}
+                      type="button"
+                      onClick={() => updateSettings({ logo_icon_style: style.id as any })}
+                      className={`p-2.5 rounded-xl flex flex-col items-center justify-center text-center gap-1.5 transition-all duration-200 border relative ${
+                        isSelected
+                          ? "bg-white border-primary ring-2 ring-primary/20 text-primary shadow-sm scale-[1.02]"
+                          : "bg-surface-container-lowest/60 hover:bg-white border-outline-variant/60 hover:border-primary/40 text-on-surface hover:shadow-2xs"
+                      }`}
                     >
-                      <PresetLogoPreview name={logo} />
-                      <span className="text-[10px] truncate max-w-full font-medium">{logo}</span>
+                      {style.icon}
+                      <div>
+                        <div className="text-[11px] font-bold tracking-tight">{style.label}</div>
+                        <div className="text-[9px] text-on-surface-variant/80 font-normal">{style.desc}</div>
+                      </div>
+                      {isSelected && (
+                        <div className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-primary ring-2 ring-white"></div>
+                      )}
                     </button>
                   );
                 })}
+              </div>
+            </div>
+
+            {/* Icon Studio: Search & Category Filter Pills */}
+            <div className="space-y-3.5">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <label className="section-label flex items-center gap-1.5 font-bold text-on-surface">
+                  <span className="material-symbols-outlined text-sm text-primary">grid_view</span>
+                  Preset Icon Gallery ({filteredLogos.length})
+                </label>
+                <div className="relative flex-1 max-w-sm">
+                  <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/70 text-base">search</span>
+                  <input
+                    type="text"
+                    placeholder="Search 30+ icons (e.g., WhatsApp, TikTok)..."
+                    value={logoSearchQuery}
+                    onChange={(e) => setLogoSearchQuery(e.target.value)}
+                    className="w-full pl-9 pr-8 py-1.5 bg-surface/50 border border-outline-variant rounded-xl text-xs placeholder:text-on-surface-variant/70 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all"
+                  />
+                  {logoSearchQuery && (
+                    <button
+                      type="button"
+                      onClick={() => setLogoSearchQuery("")}
+                      className="absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface p-0.5 rounded-full"
+                    >
+                      <span className="material-symbols-outlined text-sm leading-none">close</span>
+                    </button>
+                  )}
+                </div>
+              </div>
+
+              {/* Scrollable Category Filter Pills */}
+              <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+                {LOGO_CATEGORIES.map((category) => (
+                  <button
+                    key={category}
+                    type="button"
+                    onClick={() => setActiveLogoCategory(category)}
+                    className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-200 flex items-center gap-1.5 ${
+                      activeLogoCategory === category
+                        ? "bg-primary text-white shadow-xs scale-[1.02]"
+                        : "bg-surface-container-low hover:bg-surface-container-highest text-on-surface-variant border border-outline-variant/60"
+                    }`}
+                  >
+                    {category === "All" && <span className="material-symbols-outlined text-xs">apps</span>}
+                    {category === "Social & Apps" && <span className="material-symbols-outlined text-xs">share</span>}
+                    {category === "Tech & Contact" && <span className="material-symbols-outlined text-xs">contact_page</span>}
+                    {category === "Business & Pay" && <span className="material-symbols-outlined text-xs">payments</span>}
+                    {category === "Media & More" && <span className="material-symbols-outlined text-xs">play_circle</span>}
+                    {category}
+                  </button>
+                ))}
+              </div>
+
+              {/* Reactive Icon Grid */}
+              <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 gap-2.5 max-h-[340px] overflow-y-auto p-1.5 border border-outline-variant/40 rounded-2xl bg-surface/20">
+                {filteredLogos.length > 0 ? (
+                  filteredLogos.map((item) => {
+                    const isSelected = settings.preset_logo === item.id && !settings.logo_image;
+                    return (
+                      <button
+                        key={item.id}
+                        type="button"
+                        onClick={() => updateSettings({ preset_logo: item.id as any, logo_image: null })}
+                        className={`p-2.5 rounded-xl flex flex-col items-center justify-center gap-2 border transition-all duration-200 group relative ${
+                          isSelected
+                            ? "bg-primary/10 text-primary border-primary ring-2 ring-primary/20 scale-[1.02] shadow-sm font-semibold"
+                            : "bg-white hover:bg-surface-container-lowest border-outline-variant hover:border-primary/40 text-on-surface shadow-2xs hover:shadow-md hover:-translate-y-0.5"
+                        }`}
+                      >
+                        <PresetLogoPreview
+                          name={item.id}
+                          colorMode={settings.logo_color_mode || "default"}
+                          customColor={settings.logo_custom_color || "#000000"}
+                          cardShape={settings.logo_card_shape || "Rounded Square"}
+                          iconStyle={settings.logo_icon_style || "badge"}
+                        />
+                        <span className="text-[11px] truncate max-w-full font-medium tracking-tight text-center">{item.label}</span>
+                        {isSelected && (
+                          <div className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-primary ring-2 ring-white"></div>
+                        )}
+                      </button>
+                    );
+                  })
+                ) : (
+                  <div className="col-span-full py-8 text-center text-on-surface-variant">
+                    <span className="material-symbols-outlined text-3xl opacity-40 block mb-1">search_off</span>
+                    <p className="text-xs font-semibold">No icons match "{logoSearchQuery}"</p>
+                    <button
+                      type="button"
+                      onClick={() => { setLogoSearchQuery(""); setActiveLogoCategory("All"); }}
+                      className="mt-2 text-[11px] text-primary hover:underline font-bold"
+                    >
+                      Clear all filters
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -1027,25 +1203,25 @@ function App() {
                     <div className="flex items-center gap-3">
                       <input
                         type="color"
-                        value={settings.logo_custom_color || "#3b82f6"}
+                        value={settings.logo_custom_color || "#000000"}
                         onChange={(e) => updateSettings({ logo_custom_color: e.target.value })}
                         className="w-9 h-9 rounded-lg cursor-pointer border border-outline-variant p-0.5 bg-white"
                       />
                       <input
                         type="text"
-                        value={settings.logo_custom_color || "#3b82f6"}
+                        value={settings.logo_custom_color || "#000000"}
                         onChange={(e) => updateSettings({ logo_custom_color: e.target.value })}
                         className="flex-1 p-2 text-xs font-mono border border-outline-variant rounded-lg bg-white uppercase"
                       />
                     </div>
                     {/* Preset Color Swatches */}
                     <div className="flex flex-wrap gap-1.5 pt-1">
-                      {["#3b82f6", "#ef4444", "#10b981", "#f59e0b", "#8b5cf6", "#ec4899", "#000000", "#ffffff"].map((c) => (
+                      {["#000000", "#3b82f6", "#ef4444", "#10b981", "#f59e0b", "#8b5cf6", "#ec4899", "#ffffff"].map((c) => (
                         <button
                           key={c}
                           type="button"
                           onClick={() => updateSettings({ logo_custom_color: c })}
-                          className={`w-6 h-6 rounded-full border border-outline-variant/60 shadow-xs transition-transform hover:scale-110 ${(settings.logo_custom_color || "#3b82f6").toLowerCase() === c ? "ring-2 ring-primary ring-offset-1" : ""
+                          className={`w-6 h-6 rounded-full border border-outline-variant/60 shadow-xs transition-transform hover:scale-110 ${(settings.logo_custom_color || "#000000").toLowerCase() === c ? "ring-2 ring-primary ring-offset-1" : ""
                             }`}
                           style={{ backgroundColor: c }}
                         />

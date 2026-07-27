@@ -46,9 +46,9 @@ class QRRequest(BaseModel):
     preset_logo_color: Optional[str] = None
     logo_card_shape: str = "None"
     remove_logo_bg: bool = False
-    logo_size_ratio: float = 0.22
+    logo_size_ratio: float = 0.18
     logo_card_padding: int = 10
-    logo_clear_size: float = 2.0
+    logo_clear_size: float = 0.5
     logo_bg_color: str = "#ffffff"
     logo_bg_tolerance: int = 30
     
