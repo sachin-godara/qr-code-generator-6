@@ -2315,7 +2315,7 @@ function App() {
 
             {/* MOBILE LAYOUT (below lg breakpoint) — Sleek Single-Scroll Architecture */}
             <div className="lg:hidden w-full max-w-[100vw] bg-surface min-h-screen">
-              <div className="bg-white flex flex-col max-w-full relative pb-28">
+              <div className="bg-white flex flex-col max-w-full relative">
 
                 {/* ── STICKY ULTRA-COMPACT HEADER: Mini-Preview + Navigation ── */}
                 <div className="sticky top-14 sm:top-16 z-40 bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant/50 shadow-sm transition-all duration-200">
@@ -2417,24 +2417,24 @@ function App() {
                   }
                 </div>
 
-                {/* ── FIXED FLOATING BOTTOM CTA BAR ── */}
-                <div className="fixed bottom-0 left-0 right-0 z-40 border-t border-outline-variant/50 bg-surface-container-lowest/95 backdrop-blur-md p-3 sm:p-4 flex gap-2.5 shadow-[0_-4px_16px_rgba(0,0,0,0.08)]">
+                {/* ── ACTION FOOTER: DOWNLOAD & COPY (In-Flow directly above SEO section) ── */}
+                <div className="border-t border-outline-variant/40 bg-surface-container-lowest p-4 sm:p-6 flex gap-3 shadow-2xs rounded-b-3xl">
                   <button
                     onClick={handleDownloadPNG}
                     disabled={isLoading || isError || isDownloading}
-                    className="flex-1 py-3 px-3 sm:px-4 bg-primary text-white rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 shadow-md shadow-primary/20 btn-spring min-h-[44px]"
+                    className="flex-1 py-3.5 px-4 bg-primary text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-primary/25 btn-spring min-h-[48px]"
                   >
-                    <span className="material-symbols-outlined text-[18px]">download</span>
+                    <span className="material-symbols-outlined text-[20px]">download</span>
                     Download {downloadFormat}
                   </button>
                   <button
                     onClick={handleCopyToClipboard}
                     disabled={isLoading || isError || isCopying}
-                    className={`py-3 px-4 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-1.5 border shadow-sm btn-spring min-h-[44px] ${
-                      copySuccess ? 'bg-emerald-600 text-white border-emerald-600 shadow-emerald-600/25 animate-celebrate' : 'bg-surface border-outline-variant text-on-surface'
+                    className={`py-3.5 px-5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 border shadow-sm btn-spring min-h-[48px] ${
+                      copySuccess ? 'bg-emerald-600 text-white border-emerald-600 shadow-emerald-600/25 animate-celebrate' : 'bg-white border-outline-variant/80 text-on-surface hover:bg-surface-container-low'
                     }`}
                   >
-                    <span className={`material-symbols-outlined text-[18px] ${copySuccess ? 'animate-[spin_350ms_ease-out_1]' : ''}`}>{copySuccess ? 'check' : 'content_copy'}</span>
+                    <span className={`material-symbols-outlined text-[20px] ${copySuccess ? 'animate-[spin_350ms_ease-out_1]' : ''}`}>{copySuccess ? 'check' : 'content_copy'}</span>
                     {copySuccess ? 'Copied!' : 'Copy'}
                   </button>
                 </div>
