@@ -93,14 +93,6 @@ function App() {
   const [downloadSuccess, setDownloadSuccess] = useState<boolean>(false);
   const [isCopying, setIsCopying] = useState<boolean>(false);
 
-  useEffect(() => {
-    const handleFullscreenChange = () => {
-      setIsFullscreen(!!document.fullscreenElement);
-    };
-    document.addEventListener("fullscreenchange", handleFullscreenChange);
-    return () => document.removeEventListener("fullscreenchange", handleFullscreenChange);
-  }, []);
-
   // Sticky mini preview observer — shows floating QR thumbnail when main preview scrolls out of view on mobile
   useEffect(() => {
     const el = previewRef.current;
@@ -362,15 +354,8 @@ function App() {
   };
 
   const handleFullscreen = () => {
-    const el = document.getElementById("qr-preview-container");
-    if (el) {
-      if (document.fullscreenElement) {
-        document.exitFullscreen();
-      } else {
-        el.requestFullscreen();
-      }
-    }
-  }
+    setIsFullscreen(prev => !prev);
+  };
 
   const handleShare = async () => {
     if (navigator.share && imageUrl) {
@@ -2215,49 +2200,14 @@ function App() {
                   {/* QR Preview Surface */}
                   <div
                     id="qr-preview-container"
-                    className={`aspect-square flex items-center justify-center relative overflow-hidden group p-8 ${isFullscreen ? 'bg-white rounded-none border-none h-screen w-screen' : 'rounded-2xl surface-ring-vercel'}`}
-                    style={
-                      isFullscreen
-                        ? { backgroundColor: '#ffffff' }
-                        : {
-                          backgroundImage: "linear-gradient(45deg, #f3f4f6 25%, transparent 25%), linear-gradient(-45deg, #f3f4f6 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f3f4f6 75%), linear-gradient(-45deg, transparent 75%, #f3f4f6 75%)",
-                          backgroundSize: "16px 16px",
-                          backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0px",
-                          backgroundColor: "#f9fafb"
-                        }
-                    }
-                    onWheel={(e) => {
-                      if (isFullscreen) {
-                        const delta = e.deltaY * -0.003;
-                        setZoomLevel(prev => Math.min(5, Math.max(0.5, prev + delta)));
-                      }
+                    className="aspect-square flex items-center justify-center relative overflow-hidden group p-8 rounded-2xl surface-ring-vercel"
+                    style={{
+                      backgroundImage: "linear-gradient(45deg, #f3f4f6 25%, transparent 25%), linear-gradient(-45deg, #f3f4f6 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f3f4f6 75%), linear-gradient(-45deg, transparent 75%, #f3f4f6 75%)",
+                      backgroundSize: "16px 16px",
+                      backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0px",
+                      backgroundColor: "#f9fafb"
                     }}
                   >
-                    {isFullscreen && (
-                      <div className="absolute bottom-8 right-8 z-50 flex items-center gap-2 bg-white/90 backdrop-blur-sm p-3 rounded-2xl shadow-xl border border-outline-variant">
-                        <button onClick={() => setZoomLevel(prev => Math.max(0.5, prev - 0.25))} className="w-10 h-10 flex items-center justify-center font-bold rounded-xl transition-colors hover:bg-black/5 text-on-surface touch-press">
-                          <span className="material-symbols-outlined text-sm">remove</span>
-                        </button>
-                        <span className="text-xs font-bold w-10 text-center">{Math.round(zoomLevel * 100)}%</span>
-                        <button onClick={() => setZoomLevel(prev => Math.min(5, prev + 0.25))} className="w-10 h-10 flex items-center justify-center font-bold rounded-xl transition-colors hover:bg-black/5 text-on-surface touch-press">
-                          <span className="material-symbols-outlined text-sm">add</span>
-                        </button>
-                        <div className="w-px h-8 bg-outline-variant my-1 mx-1"></div>
-                        <button onClick={handleScanTest} className={`w-10 h-10 flex items-center justify-center transition-colors rounded-xl duration-200 touch-press ${isScanning ? 'bg-primary text-white shadow-md' : 'hover:bg-black/5 text-on-surface'}`} title="Scan Test">
-                          <span className="material-symbols-outlined">qr_code_scanner</span>
-                        </button>
-                        <button onClick={() => setIsComparing(!isComparing)} className={`w-10 h-10 flex items-center justify-center transition-colors rounded-xl duration-200 touch-press ${isComparing ? 'bg-primary text-white shadow-md' : 'hover:bg-black/5 text-on-surface'}`} title="Compare Raw">
-                          <span className="material-symbols-outlined">compare</span>
-                        </button>
-                        <button onClick={handleShare} className="w-10 h-10 flex items-center justify-center hover:bg-black/5 transition-colors text-on-surface rounded-xl duration-200 touch-press" title="Share">
-                          <span className="material-symbols-outlined">share</span>
-                        </button>
-                        <div className="w-px h-8 bg-outline-variant my-1 mx-1"></div>
-                        <button onClick={() => document.exitFullscreen()} className="w-10 h-10 font-bold rounded-xl text-error hover:bg-error/10 flex items-center justify-center transition-colors touch-press">
-                          <span className="material-symbols-outlined">fullscreen_exit</span>
-                        </button>
-                      </div>
-                    )}
                     <div className="absolute inset-0 canvas-aura pointer-events-none"></div>
                     <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "radial-gradient(#0050cb 1px, transparent 1px)", backgroundSize: "20px 20px" }}></div>
 
@@ -2368,7 +2318,7 @@ function App() {
               <div className="bg-white flex flex-col max-w-full relative pb-28">
 
                 {/* ── STICKY ULTRA-COMPACT HEADER: Mini-Preview + Navigation ── */}
-                <div className="sticky top-0 z-40 bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant/50 shadow-sm transition-all duration-200">
+                <div className="sticky top-14 sm:top-16 z-40 bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant/50 shadow-sm transition-all duration-200">
 
                   {/* Compact Bar with Live QR Engine */}
                   <div className="px-3.5 py-2 flex items-center justify-between gap-2.5 border-b border-outline-variant/30">
@@ -2496,6 +2446,77 @@ function App() {
           </div>
         </div>
       </div>
+
+      {/* ── IN-APP FULLSCREEN / EXPANDED PREVIEW MODAL LIGHTBOX ── */}
+      {isFullscreen && (
+        <div className="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md flex flex-col items-center justify-center p-4 sm:p-8 animate-fadeIn" onClick={() => setIsFullscreen(false)}>
+          <div className="relative bg-white rounded-3xl p-8 sm:p-12 max-w-[90vw] max-h-[80vh] flex items-center justify-center shadow-2xl border border-white/20 overflow-hidden" onClick={(e) => e.stopPropagation()} onWheel={(e) => {
+            const delta = e.deltaY * -0.003;
+            setZoomLevel(prev => Math.min(5, Math.max(0.5, prev + delta)));
+          }}>
+            <button onClick={() => setIsFullscreen(false)} className="absolute top-4 right-4 z-50 w-10 h-10 bg-surface hover:bg-surface-container-high rounded-full flex items-center justify-center text-on-surface transition-colors shadow-sm touch-press" title="Close">
+              <span className="material-symbols-outlined text-xl">close</span>
+            </button>
+
+            {isLoading ? (
+              <div className="flex flex-col items-center text-on-surface-variant gap-2 p-12">
+                <span className="material-symbols-outlined animate-spin text-primary text-4xl">autorenew</span>
+                <span className="text-sm font-semibold">Generating...</span>
+              </div>
+            ) : isError ? (
+              <div className="text-error p-8 bg-error-container text-on-error-container rounded-2xl text-center text-sm">
+                <span className="material-symbols-outlined text-3xl mb-2">error</span>
+                <p className="font-bold">Failed to load preview</p>
+              </div>
+            ) : (
+              <div className="transition-transform duration-200" style={{ transform: `scale(${zoomLevel})` }}>
+                <img
+                  src={imageUrl}
+                  alt="Expanded QR Preview"
+                  className={`w-64 h-64 sm:w-80 sm:h-80 md:w-[420px] md:h-[420px] object-contain ${isComparing ? 'grayscale contrast-125 opacity-90' : ''}`}
+                  style={settings.bg_transparent ? {
+                    backgroundImage: "linear-gradient(45deg, #e5e7eb 25%, transparent 25%), linear-gradient(-45deg, #e5e7eb 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e5e7eb 75%), linear-gradient(-45deg, transparent 75%, #e5e7eb 75%)",
+                    backgroundSize: "16px 16px",
+                    backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0",
+                    backgroundColor: "#f3f4f6",
+                    borderRadius: "12px",
+                    boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.08)"
+                  } : {}}
+                />
+              </div>
+            )}
+          </div>
+
+          {/* Floating Controls Bar in Lightbox */}
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2 bg-white/95 backdrop-blur-md p-2 sm:p-2.5 rounded-2xl shadow-2xl border border-outline-variant/60 z-10" onClick={(e) => e.stopPropagation()}>
+            <button onClick={() => setZoomLevel(prev => Math.max(0.5, prev - 0.25))} className="w-10 h-10 flex items-center justify-center font-bold rounded-xl transition-colors hover:bg-black/5 text-on-surface touch-press" title="Zoom Out">
+              <span className="material-symbols-outlined text-sm">remove</span>
+            </button>
+            <span className="text-xs font-bold w-12 text-center text-on-surface">{Math.round(zoomLevel * 100)}%</span>
+            <button onClick={() => setZoomLevel(prev => Math.min(5, prev + 0.25))} className="w-10 h-10 flex items-center justify-center font-bold rounded-xl transition-colors hover:bg-black/5 text-on-surface touch-press" title="Zoom In">
+              <span className="material-symbols-outlined text-sm">add</span>
+            </button>
+            <div className="w-px h-7 bg-outline-variant/60 my-1 mx-0.5"></div>
+            <button onClick={handleScanTest} className={`h-10 px-3 flex items-center justify-center gap-1.5 transition-colors rounded-xl duration-200 text-xs font-bold touch-press ${isScanning ? 'bg-primary text-white shadow-md' : 'hover:bg-black/5 text-on-surface'}`} title="Scan Test">
+              <span className="material-symbols-outlined text-[18px]">qr_code_scanner</span>
+              <span className="hidden sm:inline">Test</span>
+            </button>
+            <button onClick={() => setIsComparing(!isComparing)} className={`h-10 px-3 flex items-center justify-center gap-1.5 transition-colors rounded-xl duration-200 text-xs font-bold touch-press ${isComparing ? 'bg-primary text-white shadow-md' : 'hover:bg-black/5 text-on-surface'}`} title="Compare Raw">
+              <span className="material-symbols-outlined text-[18px]">compare</span>
+              <span className="hidden sm:inline">Compare</span>
+            </button>
+            <button onClick={handleShare} className="h-10 px-3 flex items-center justify-center gap-1.5 hover:bg-black/5 transition-colors text-on-surface text-xs font-bold rounded-xl duration-200 touch-press" title="Share">
+              <span className="material-symbols-outlined text-[18px]">share</span>
+              <span className="hidden sm:inline">Share</span>
+            </button>
+            <div className="w-px h-7 bg-outline-variant/60 my-1 mx-0.5"></div>
+            <button onClick={() => setIsFullscreen(false)} className="h-10 px-3 font-bold rounded-xl text-error hover:bg-error/10 flex items-center justify-center gap-1 text-xs transition-colors touch-press">
+              <span className="material-symbols-outlined text-[18px]">close</span>
+              <span>Close</span>
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
