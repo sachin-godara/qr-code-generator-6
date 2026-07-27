@@ -999,9 +999,7 @@ function App() {
                   <span className="material-symbols-outlined text-sm text-primary">auto_awesome</span>
                   Icon Visual Style
                 </span>
-                <span className="text-[10px] text-primary font-semibold bg-primary/10 px-2 py-0.5 rounded-full border border-primary/20">
-                  Inspired by Phosphor & iOS 18
-                </span>
+
               </label>
               <div className="grid grid-cols-3 gap-2">
                 {[

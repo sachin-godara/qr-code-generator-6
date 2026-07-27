@@ -278,17 +278,27 @@ def apply_layout_frame(qr_img, layout_template="none", frame_color="#000000", pa
         
     elif layout_template == "chalkboard":
         bg_color = hex_to_rgb(frame_color)
-        board_color = (30, 60, 45, 255) # Dark green
+        board_color = (40, 53, 43, 255) # Classic chalkboard green
         
         new_w = qr_w + padding * 4
         new_h = qr_h + padding * 4
         new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
         draw = ImageDraw.Draw(new_img)
         
+        # Outer wooden frame
         draw.rounded_rectangle([0, 0, new_w, new_h], radius=corner_radius, fill=bg_color)
+        # Inner chalkboard
         draw.rectangle([border_thickness, border_thickness, new_w - border_thickness, new_h - border_thickness], fill=board_color)
         
+        # Inner wooden lip shadow (darker line)
+        draw.rectangle([border_thickness, border_thickness, new_w - border_thickness, new_h - border_thickness], outline=(20, 20, 20, 100), width=3)
+        
+        # Chalk border effect
+        chalk_margin = border_thickness + max(2, padding // 4)
+        draw.rectangle([chalk_margin, chalk_margin, new_w - chalk_margin, new_h - chalk_margin], outline=(255, 255, 255, 150), width=2)
+        
         new_img.paste(qr_img, (padding * 2, padding * 2), qr_img)
+        return new_img
 
     elif layout_template == "polaroid_frame":
         new_w = qr_w + padding * 4
