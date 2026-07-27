@@ -8,6 +8,17 @@ import { DOT_STYLES, EYE_FRAME_STYLES, EYEBALL_STYLES, FRAME_STYLES, TEXT_STYLES
 import { StylePreviewCard } from "@/components/previews/StylePreviewCard"
 import { PresetLogoPreview, getReactLogoPngDataUrl, PRESET_LOGO_BRAND_COLORS, LOGO_ITEMS, LOGO_CATEGORIES } from "@/components/previews/SvgIcons"
 
+const TEMPLATE_CATEGORIES = [
+  { id: "All", name: "All", icon: "apps" },
+  { id: "Business", name: "Business", icon: "business_center" },
+  { id: "Marketing", name: "Marketing", icon: "campaign" },
+  { id: "Restaurant", name: "Restaurant", icon: "restaurant" },
+  { id: "Events", name: "Events", icon: "event" },
+  { id: "Social", name: "Social", icon: "share" },
+  { id: "Retail", name: "Retail", icon: "storefront" },
+  { id: "Education", name: "Education", icon: "school" },
+];
+
 async function fetchQRCode(settings: any) {
   const { contentData, ...rest } = settings
 
@@ -80,6 +91,21 @@ function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [showMiniPreview, setShowMiniPreview] = useState(false)
   const previewRef = useRef<HTMLDivElement>(null)
+
+  // Refs for style horizontal scroll containers
+  const dotsScrollRef = useRef<HTMLDivElement>(null)
+  const eyeFrameScrollRef = useRef<HTMLDivElement>(null)
+  const eyeballScrollRef = useRef<HTMLDivElement>(null)
+
+  const handleScroll = (ref: React.RefObject<HTMLDivElement | null>, direction: "left" | "right") => {
+    if (ref.current) {
+      const scrollAmount = 250;
+      ref.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth"
+      });
+    }
+  };
 
   const [isComparing, setIsComparing] = useState(false);
   const [isScanning, setIsScanning] = useState(false);
@@ -171,7 +197,7 @@ function App() {
     if (imageUrl) {
       const a = document.createElement("a")
       a.href = imageUrl
-      a.download = `QRStream-${settings.contentType}.png`
+      a.download = getEffectiveFilename("png")
       a.click()
     }
   }
@@ -206,7 +232,7 @@ function App() {
       const url = URL.createObjectURL(blob)
       const a = document.createElement("a")
       a.href = url
-      a.download = `QRStream-${settings.contentType}.svg`
+      a.download = getEffectiveFilename("svg")
       a.click()
     } catch (e) {
       console.error(e)
@@ -243,7 +269,7 @@ function App() {
       const url = URL.createObjectURL(blob)
       const a = document.createElement("a")
       a.href = url
-      a.download = `QRStream-${settings.contentType}.pdf`
+      a.download = getEffectiveFilename("pdf")
       a.click()
     } catch (e) {
       console.error(e)
@@ -656,25 +682,26 @@ function App() {
           </div>
         )
       case "Templates":
-        const categories = ["All", ...Array.from(new Set(PRESET_TEMPLATES.map(t => t.category).filter(Boolean)))];
         const filteredTemplates = PRESET_TEMPLATES.filter(t => 
           activeTemplateCategory === "All" || t.category === activeTemplateCategory
         );
 
         return (
           <div className="bg-surface-container-lowest p-gutter rounded-2xl border border-outline-variant shadow-sm space-y-4">
-            <div className="flex overflow-x-auto gap-2 px-3 pb-3 mb-1 custom-scrollbar snap-x">
-              {categories.map(cat => (
+            <div className="flex overflow-x-auto gap-1.5 px-3 pb-3 mb-1 custom-scrollbar snap-x">
+              {TEMPLATE_CATEGORIES.map(cat => (
                 <button
-                  key={cat as string}
-                  onClick={() => setActiveTemplateCategory(cat as string)}
-                  className={`px-3 py-1.5 rounded-full whitespace-nowrap text-xs font-medium tab-spring snap-start ${
-                    activeTemplateCategory === cat
-                      ? "bg-on-surface text-white border border-on-surface shadow-sm scale-[1.02]"
-                      : "bg-surface-container text-on-surface-variant hover:bg-surface-container-high border border-outline-variant"
+                  key={cat.id}
+                  type="button"
+                  onClick={() => setActiveTemplateCategory(cat.id)}
+                  className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-200 flex items-center gap-1.5 tab-spring snap-start ${
+                    activeTemplateCategory === cat.id
+                      ? "bg-primary text-white shadow-xs scale-[1.02]"
+                      : "bg-surface-container-low hover:bg-surface-container-highest text-on-surface-variant border border-outline-variant/60"
                   }`}
                 >
-                  {cat as string}
+                  <span className="material-symbols-outlined text-xs">{cat.icon}</span>
+                  <span>{cat.name}</span>
                 </button>
               ))}
             </div>
@@ -803,52 +830,106 @@ function App() {
 
             <div className="space-y-3">
               <label className="section-label block mb-1">Dot Style</label>
-              <div className="flex overflow-x-auto gap-3.5 px-3.5 pt-3.5 pb-5 custom-scrollbar snap-x scroll-smooth scroll-pl-3.5">
-                {dotStyles.map((style) => (
-                  <div key={style} className="w-[88px] sm:w-[98px] shrink-0 snap-start p-0.5">
-                    <StylePreviewCard
-                      title={style}
-                      isSelected={settings.dots_style === style}
-                      onClick={() => updateSettings({ dots_style: style as any })}
-                    >
-                      <img src={`/previews/dots/${style}.png?v=4`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
-                    </StylePreviewCard>
-                  </div>
-                ))}
+              <div className="relative group">
+                <button
+                  type="button"
+                  onClick={() => handleScroll(dotsScrollRef, "left")}
+                  className="absolute left-1 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white/90 border border-outline-variant/65 shadow-xs flex items-center justify-center hover:bg-white hover:scale-105 active:scale-95 transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
+                  aria-label="Scroll left"
+                >
+                  <span className="material-symbols-outlined text-xs leading-none font-bold text-on-surface">arrow_back_ios_new</span>
+                </button>
+                <div ref={dotsScrollRef} className="flex overflow-x-auto gap-3.5 px-3.5 pt-3.5 pb-5 custom-scrollbar snap-x scroll-smooth scroll-pl-3.5">
+                  {dotStyles.map((style) => (
+                    <div key={style} className="w-[88px] sm:w-[98px] shrink-0 snap-start p-0.5">
+                      <StylePreviewCard
+                        title={style}
+                        isSelected={settings.dots_style === style}
+                        onClick={() => updateSettings({ dots_style: style as any })}
+                      >
+                        <img src={`/previews/dots/${style}.png?v=4`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
+                      </StylePreviewCard>
+                    </div>
+                  ))}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => handleScroll(dotsScrollRef, "right")}
+                  className="absolute right-1 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white/90 border border-outline-variant/65 shadow-xs flex items-center justify-center hover:bg-white hover:scale-105 active:scale-95 transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
+                  aria-label="Scroll right"
+                >
+                  <span className="material-symbols-outlined text-xs leading-none font-bold text-on-surface">arrow_forward_ios</span>
+                </button>
               </div>
             </div>
 
             <div className="space-y-3">
               <label className="section-label block mb-1">Eye Frame</label>
-              <div className="flex overflow-x-auto gap-3.5 px-3.5 pt-3.5 pb-5 custom-scrollbar snap-x scroll-smooth scroll-pl-3.5">
-                {eyeFrameStyles.map((style) => (
-                  <div key={style} className="w-[88px] sm:w-[98px] shrink-0 snap-start p-0.5">
-                    <StylePreviewCard
-                      title={style}
-                      isSelected={settings.eye_frame_style === style}
-                      onClick={() => updateSettings({ eye_frame_style: style as any })}
-                    >
-                      <img src={`/previews/eye_frames/${style}.png?v=4`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
-                    </StylePreviewCard>
-                  </div>
-                ))}
+              <div className="relative group">
+                <button
+                  type="button"
+                  onClick={() => handleScroll(eyeFrameScrollRef, "left")}
+                  className="absolute left-1 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white/90 border border-outline-variant/65 shadow-xs flex items-center justify-center hover:bg-white hover:scale-105 active:scale-95 transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
+                  aria-label="Scroll left"
+                >
+                  <span className="material-symbols-outlined text-xs leading-none font-bold text-on-surface">arrow_back_ios_new</span>
+                </button>
+                <div ref={eyeFrameScrollRef} className="flex overflow-x-auto gap-3.5 px-3.5 pt-3.5 pb-5 custom-scrollbar snap-x scroll-smooth scroll-pl-3.5">
+                  {eyeFrameStyles.map((style) => (
+                    <div key={style} className="w-[88px] sm:w-[98px] shrink-0 snap-start p-0.5">
+                      <StylePreviewCard
+                        title={style}
+                        isSelected={settings.eye_frame_style === style}
+                        onClick={() => updateSettings({ eye_frame_style: style as any })}
+                      >
+                        <img src={`/previews/eye_frames/${style}.png?v=4`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
+                      </StylePreviewCard>
+                    </div>
+                  ))}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => handleScroll(eyeFrameScrollRef, "right")}
+                  className="absolute right-1 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white/90 border border-outline-variant/65 shadow-xs flex items-center justify-center hover:bg-white hover:scale-105 active:scale-95 transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
+                  aria-label="Scroll right"
+                >
+                  <span className="material-symbols-outlined text-xs leading-none font-bold text-on-surface">arrow_forward_ios</span>
+                </button>
               </div>
             </div>
 
             <div className="space-y-3">
               <label className="section-label block mb-1">Eyeball</label>
-              <div className="flex overflow-x-auto gap-3.5 px-3.5 pt-3.5 pb-5 custom-scrollbar snap-x scroll-smooth scroll-pl-3.5">
-                {eyeballStyles.map((style) => (
-                  <div key={style} className="w-[88px] sm:w-[98px] shrink-0 snap-start p-0.5">
-                    <StylePreviewCard
-                      title={style}
-                      isSelected={settings.eyeball_style === style}
-                      onClick={() => updateSettings({ eyeball_style: style as any })}
-                    >
-                      <img src={`/previews/eyeballs/${style}.png?v=4`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
-                    </StylePreviewCard>
-                  </div>
-                ))}
+              <div className="relative group">
+                <button
+                  type="button"
+                  onClick={() => handleScroll(eyeballScrollRef, "left")}
+                  className="absolute left-1 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white/90 border border-outline-variant/65 shadow-xs flex items-center justify-center hover:bg-white hover:scale-105 active:scale-95 transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
+                  aria-label="Scroll left"
+                >
+                  <span className="material-symbols-outlined text-xs leading-none font-bold text-on-surface">arrow_back_ios_new</span>
+                </button>
+                <div ref={eyeballScrollRef} className="flex overflow-x-auto gap-3.5 px-3.5 pt-3.5 pb-5 custom-scrollbar snap-x scroll-smooth scroll-pl-3.5">
+                  {eyeballStyles.map((style) => (
+                    <div key={style} className="w-[88px] sm:w-[98px] shrink-0 snap-start p-0.5">
+                      <StylePreviewCard
+                        title={style}
+                        isSelected={settings.eyeball_style === style}
+                        onClick={() => updateSettings({ eyeball_style: style as any })}
+                      >
+                        <img src={`/previews/eyeballs/${style}.png?v=4`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
+                      </StylePreviewCard>
+                    </div>
+                  ))}
+                </div>
+                <button
+                  type="button"
+                  onClick={() => handleScroll(eyeballScrollRef, "right")}
+                  className="absolute right-1 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-white/90 border border-outline-variant/65 shadow-xs flex items-center justify-center hover:bg-white hover:scale-105 active:scale-95 transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
+                  aria-label="Scroll right"
+                >
+                  <span className="material-symbols-outlined text-xs leading-none font-bold text-on-surface">arrow_forward_ios</span>
+                </button>
               </div>
             </div>
 
@@ -1929,17 +2010,6 @@ function App() {
                 <span>10 (Spacious)</span>
               </div>
             </div>
-
-            {/* Engine pipeline status card */}
-            <div className="bg-primary/5 rounded-2xl p-4 border border-primary/20 flex items-start gap-3">
-              <span className="material-symbols-outlined text-primary mt-0.5">verified</span>
-              <div className="space-y-1 text-xs">
-                <p className="font-bold text-on-surface">Lanczos Anti-Aliasing Active</p>
-                <p className="text-on-surface-variant leading-relaxed">
-                  Every QR matrix is generated at a super-sampled 1000x1000 canvas resolution and downscaled using high-precision Lanczos filtering to guarantee crisp curves and zero jagged edges.
-                </p>
-              </div>
-            </div>
           </div>
         )
       case "Download":
@@ -1999,6 +2069,16 @@ function App() {
                       {size}px
                     </button>
                   ))}
+                </div>
+                {/* Engine pipeline status card */}
+                <div className="bg-primary/5 rounded-2xl p-4 border border-primary/20 flex items-start gap-3 mt-3">
+                  <span className="material-symbols-outlined text-primary mt-0.5">verified</span>
+                  <div className="space-y-1 text-xs text-left">
+                    <p className="font-bold text-on-surface">Lanczos Resampling Active ({downloadSize}px)</p>
+                    <p className="text-on-surface-variant leading-relaxed">
+                      To ensure ultra-sharp output, the QR matrix is generated at a high-resolution grid and downscaled to {downloadSize}px using premium Lanczos filtering. This guarantees zero pixelation, smooth gradients, and clear borders.
+                    </p>
+                  </div>
                 </div>
               </div>
             )}

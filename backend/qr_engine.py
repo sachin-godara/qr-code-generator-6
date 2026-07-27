@@ -2,6 +2,7 @@ import qrcode
 import math
 import numpy as np
 from qrcode.image.styledpil import StyledPilImage
+from qrcode.main import ActiveWithNeighbors
 
 class CustomStyledPilImage(StyledPilImage):
     """
