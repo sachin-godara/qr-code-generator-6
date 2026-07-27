@@ -691,6 +691,21 @@ def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="
         bbox = dummy_draw.textbbox((0, 0), txt, font=f)
         return f, bbox[2] - bbox[0], bbox[3] - bbox[1]
 
+    def render_clean_text(txt, font_obj, fill_color, angle=0):
+        if not txt or font_obj is None:
+            return Image.new("RGBA", (1, 1), (0, 0, 0, 0))
+        bbox = dummy_draw.textbbox((0, 0), txt, font=font_obj)
+        w = max(1, bbox[2] - bbox[0])
+        h = max(1, bbox[3] - bbox[1])
+        pad = max(6, int(h * 0.2))
+        img_txt = Image.new("RGBA", (w + pad * 2, h + pad * 2), (0, 0, 0, 0))
+        d = ImageDraw.Draw(img_txt)
+        fc = hex_to_rgb(fill_color) if isinstance(fill_color, str) else fill_color
+        d.text((-bbox[0] + pad, -bbox[1] + pad), txt, fill=fc, font=font_obj)
+        if angle != 0:
+            img_txt = img_txt.rotate(angle, expand=True, resample=Image.BICUBIC)
+        return img_txt
+
     text_w, text_h = 0, 0
     if text:
         text_bbox = dummy_draw.textbbox((0, 0), text, font=font)
@@ -876,10 +891,7 @@ def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="
         new_img.paste(qr_img, (tab_w + padding, padding), qr_img)
         
         if text:
-            text_canvas = Image.new("RGBA", (text_w, text_h), (0, 0, 0, 0))
-            t_draw = ImageDraw.Draw(text_canvas)
-            t_draw.text((0, 0), text, fill=hex_to_rgb(text_color), font=font)
-            rotated_text = text_canvas.rotate(90, expand=True)
+            rotated_text = render_clean_text(text, font, text_color, angle=90)
             rot_w, rot_h = rotated_text.size
             tx = (tab_w - rot_w) // 2
             ty = (new_h - rot_h) // 2
@@ -902,10 +914,7 @@ def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="
         new_img.paste(qr_img, (padding, padding), qr_img)
         
         if text:
-            text_canvas = Image.new("RGBA", (text_w, text_h), (0, 0, 0, 0))
-            t_draw = ImageDraw.Draw(text_canvas)
-            t_draw.text((0, 0), text, fill=hex_to_rgb(text_color), font=font)
-            rotated_text = text_canvas.rotate(270, expand=True)
+            rotated_text = render_clean_text(text, font, text_color, angle=270)
             rot_w, rot_h = rotated_text.size
             tx = new_w - tab_w + (tab_w - rot_w) // 2
             ty = (new_h - rot_h) // 2
@@ -2786,79 +2795,75 @@ def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="
         return new_img
 
     elif text_template == "vertical_ribbon_left":
-        f_lbl, tw_lbl, th_lbl = get_fitted_font(text, qr_h, text_size) if text else (None, 0, 0)
-        ribbon_w = th_lbl + padding * 2 if th_lbl > 0 else padding * 3
-        ribbon_extend = 40
+        f_lbl, tw_lbl, th_lbl = get_fitted_font(text, int((qr_h + padding * 2) * 0.75), text_size) if text else (None, 0, 0)
+        ribbon_w = max(52, int(th_lbl + padding * 1.5)) if th_lbl > 0 else max(52, padding * 2)
         new_w = qr_w + padding * 2 + ribbon_w
-        new_h = qr_h + padding * 2 + ribbon_extend
+        new_h = qr_h + padding * 2
         
         new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
         draw = ImageDraw.Draw(new_img)
         
-        card_y2 = qr_h + padding * 2
-        draw.rounded_rectangle([(ribbon_w, 0), (new_w, card_y2)], radius=corner_radius, fill=(255, 255, 255, 255))
+        card_x1 = max(0, ribbon_w - 6)
+        draw.rounded_rectangle([(card_x1, 0), (new_w - 1, new_h - 1)], radius=corner_radius, fill=(255, 255, 255, 255))
         if border_thickness > 0:
-            draw.rounded_rectangle([(ribbon_w + border_thickness//2, border_thickness//2), 
-                                    (new_w - border_thickness//2, card_y2 - border_thickness//2)], 
+            draw.rounded_rectangle([(card_x1 + border_thickness//2, border_thickness//2), 
+                                    (new_w - 1 - border_thickness//2, new_h - 1 - border_thickness//2)], 
                                    radius=corner_radius, outline=bg_color, width=border_thickness)
                                    
         new_img.paste(qr_img, (ribbon_w + padding, padding), qr_img)
         
-        r_color = bg_color
-        draw.rectangle([(0, 0), (ribbon_w, new_h - ribbon_w//2)], fill=r_color)
-        draw.polygon([(0, new_h - ribbon_w//2), (ribbon_w//2, new_h - ribbon_w), (ribbon_w, new_h - ribbon_w//2), (ribbon_w, new_h), (0, new_h)], fill=(255,255,255,0))
-        draw.polygon([(0, new_h - ribbon_w//2), (ribbon_w//2, new_h - ribbon_w), (ribbon_w, new_h - ribbon_w//2), (ribbon_w, 0), (0, 0)], fill=r_color)
+        r_color = hex_to_rgb(bg_color) if isinstance(bg_color, str) else bg_color
+        notch_d = max(16, int(ribbon_w * 0.35))
+        ribbon_pts = [(0, 0), (ribbon_w - 1, 0), (ribbon_w - 1, new_h - 1), (ribbon_w // 2, new_h - 1 - notch_d), (0, new_h - 1)]
+        draw.polygon(ribbon_pts, fill=r_color)
         
         if text:
-            text_canvas = Image.new("RGBA", (tw_lbl, th_lbl), (0, 0, 0, 0))
-            t_draw = ImageDraw.Draw(text_canvas)
-            t_draw.text((0, 0), text, fill=hex_to_rgb(text_color), font=f_lbl)
-            rotated_text = text_canvas.rotate(90, expand=True)
+            rotated_text = render_clean_text(text, f_lbl, text_color, angle=90)
             rot_w, rot_h = rotated_text.size
             tx = (ribbon_w - rot_w) // 2
-            ty = (new_h - ribbon_w//2 - rot_h) // 2
+            available_h = new_h - notch_d
+            ty = (available_h - rot_h) // 2
             new_img.paste(rotated_text, (tx, ty), rotated_text)
             
         return new_img
 
     elif text_template == "vertical_ribbon_right":
-        f_lbl, tw_lbl, th_lbl = get_fitted_font(text, qr_h, text_size) if text else (None, 0, 0)
-        ribbon_w = th_lbl + padding * 2 if th_lbl > 0 else padding * 3
-        ribbon_extend = 40
+        f_lbl, tw_lbl, th_lbl = get_fitted_font(text, int((qr_h + padding * 2) * 0.75), text_size) if text else (None, 0, 0)
+        ribbon_w = max(52, int(th_lbl + padding * 1.5)) if th_lbl > 0 else max(52, padding * 2)
         new_w = qr_w + padding * 2 + ribbon_w
-        new_h = qr_h + padding * 2 + ribbon_extend
+        new_h = qr_h + padding * 2
         
         new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
         draw = ImageDraw.Draw(new_img)
         
-        card_y2 = qr_h + padding * 2
-        draw.rounded_rectangle([(0, 0), (new_w - ribbon_w, card_y2)], radius=corner_radius, fill=(255, 255, 255, 255))
+        card_x2 = min(new_w, new_w - ribbon_w + 6)
+        draw.rounded_rectangle([(0, 0), (card_x2 - 1, new_h - 1)], radius=corner_radius, fill=(255, 255, 255, 255))
         if border_thickness > 0:
             draw.rounded_rectangle([(border_thickness//2, border_thickness//2), 
-                                    (new_w - ribbon_w - border_thickness//2, card_y2 - border_thickness//2)], 
+                                    (card_x2 - 1 - border_thickness//2, new_h - 1 - border_thickness//2)], 
                                    radius=corner_radius, outline=bg_color, width=border_thickness)
                                    
         new_img.paste(qr_img, (padding, padding), qr_img)
         
-        r_color = bg_color
+        r_color = hex_to_rgb(bg_color) if isinstance(bg_color, str) else bg_color
         rx = new_w - ribbon_w
-        draw.polygon([(rx, new_h - ribbon_w//2), (rx + ribbon_w//2, new_h - ribbon_w), (new_w, new_h - ribbon_w//2), (new_w, 0), (rx, 0)], fill=r_color)
+        notch_d = max(16, int(ribbon_w * 0.35))
+        ribbon_pts = [(rx, 0), (new_w - 1, 0), (new_w - 1, new_h - 1), (rx + ribbon_w // 2, new_h - 1 - notch_d), (rx, new_h - 1)]
+        draw.polygon(ribbon_pts, fill=r_color)
         
         if text:
-            text_canvas = Image.new("RGBA", (tw_lbl, th_lbl), (0, 0, 0, 0))
-            t_draw = ImageDraw.Draw(text_canvas)
-            t_draw.text((0, 0), text, fill=hex_to_rgb(text_color), font=f_lbl)
-            rotated_text = text_canvas.rotate(270, expand=True)
+            rotated_text = render_clean_text(text, f_lbl, text_color, angle=270)
             rot_w, rot_h = rotated_text.size
             tx = rx + (ribbon_w - rot_w) // 2
-            ty = (new_h - ribbon_w//2 - rot_h) // 2
+            available_h = new_h - notch_d
+            ty = (available_h - rot_h) // 2
             new_img.paste(rotated_text, (tx, ty), rotated_text)
             
         return new_img
 
     elif text_template == "vertical_side_badge_left":
         f_lbl, tw_lbl, th_lbl = get_fitted_font(text, qr_h - padding * 4, text_size) if text else (None, 0, 0)
-        badge_w = th_lbl + padding * 2 if th_lbl > 0 else padding * 3
+        badge_w = max(50, th_lbl + padding * 2) if th_lbl > 0 else max(50, padding * 3)
         badge_h = qr_h - padding * 2
         new_w = qr_w + padding * 2 + badge_w
         new_h = qr_h + padding * 2
@@ -2880,10 +2885,7 @@ def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="
         draw.rectangle([(badge_w, by1), (badge_w * 2, by2)], fill=(255,255,255,0)) 
         
         if text:
-            text_canvas = Image.new("RGBA", (tw_lbl, th_lbl), (0, 0, 0, 0))
-            t_draw = ImageDraw.Draw(text_canvas)
-            t_draw.text((0, 0), text, fill=hex_to_rgb(text_color), font=f_lbl)
-            rotated_text = text_canvas.rotate(90, expand=True)
+            rotated_text = render_clean_text(text, f_lbl, text_color, angle=90)
             rot_w, rot_h = rotated_text.size
             tx = (badge_w - rot_w) // 2
             ty = by1 + (badge_h - rot_h) // 2
@@ -2893,7 +2895,7 @@ def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="
 
     elif text_template == "vertical_side_badge_right":
         f_lbl, tw_lbl, th_lbl = get_fitted_font(text, qr_h - padding * 4, text_size) if text else (None, 0, 0)
-        badge_w = th_lbl + padding * 2 if th_lbl > 0 else padding * 3
+        badge_w = max(50, th_lbl + padding * 2) if th_lbl > 0 else max(50, padding * 3)
         badge_h = qr_h - padding * 2
         new_w = qr_w + padding * 2 + badge_w
         new_h = qr_h + padding * 2
@@ -2916,10 +2918,7 @@ def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="
         draw.rectangle([(bx1, by1), (new_w - badge_w, by2)], fill=(255,255,255,0)) 
         
         if text:
-            text_canvas = Image.new("RGBA", (tw_lbl, th_lbl), (0, 0, 0, 0))
-            t_draw = ImageDraw.Draw(text_canvas)
-            t_draw.text((0, 0), text, fill=hex_to_rgb(text_color), font=f_lbl)
-            rotated_text = text_canvas.rotate(270, expand=True)
+            rotated_text = render_clean_text(text, f_lbl, text_color, angle=270)
             rot_w, rot_h = rotated_text.size
             tx = new_w - badge_w + (badge_w - rot_w) // 2
             ty = by1 + (badge_h - rot_h) // 2
@@ -3387,14 +3386,14 @@ def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="
         draw.line([(px, py + text_h + 2), (px + text_w, py + text_h + 2)], fill=bg_color, width=2)
         return new_img
     elif text_template == "sidebar_text":
-        new_w = qr_w + text_h + padding*2
+        side_w = max(45, text_h + padding * 2)
+        new_w = qr_w + side_w
         new_img = Image.new("RGBA", (new_w, qr_h), (255,255,255,0))
-        new_img.paste(qr_img, (text_h + padding*2, 0), qr_img)
-        txt_img = Image.new("RGBA", (text_w, text_h), (255,255,255,0))
-        txt_draw = ImageDraw.Draw(txt_img)
-        txt_draw.text((0, 0), text, font=font, fill=bg_color)
-        txt_img = txt_img.rotate(90, expand=True)
-        new_img.paste(txt_img, (padding, (qr_h - text_w)//2), txt_img)
+        new_img.paste(qr_img, (side_w, 0), qr_img)
+        if text:
+            txt_img = render_clean_text(text, font, bg_color, angle=90)
+            rot_w, rot_h = txt_img.size
+            new_img.paste(txt_img, ((side_w - rot_w)//2, (qr_h - rot_h)//2), txt_img)
         return new_img
     elif text_template == "minimal_bracket_text":
         mod_text = f"[ {text} ]"
