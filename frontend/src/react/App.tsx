@@ -1079,40 +1079,6 @@ function App() {
                           </table>
                         </div>
                       </div>
-                      
-                      <div className="grid grid-cols-2 gap-4 pt-2">
-                        <div className="space-y-1.5">
-                          <label className="text-xs font-bold text-on-surface-variant">Export Format</label>
-                          <div className="flex bg-surface-container rounded-lg p-1 border border-outline-variant/50">
-                            {["PNG", "SVG", "PDF"].map(fmt => (
-                              <button key={fmt} type="button" onClick={() => setBatchFormat(fmt)} className={`flex-1 text-xs py-1.5 rounded-md font-bold transition-all ${batchFormat === fmt ? "bg-white shadow-sm text-primary" : "text-on-surface-variant hover:text-on-surface"}`}>{fmt}</button>
-                            ))}
-                          </div>
-                        </div>
-                        {batchFormat === "PNG" && (
-                          <div className="space-y-1.5">
-                            <label className="text-xs font-bold text-on-surface-variant">Size (px)</label>
-                            <div className="flex bg-surface-container rounded-lg p-1 border border-outline-variant/50">
-                              {["512", "1024", "2048"].map(s => (
-                                <button key={s} type="button" onClick={() => setBatchSize(s)} className={`flex-1 text-xs py-1.5 rounded-md font-bold transition-all ${batchSize === s ? "bg-white shadow-sm text-primary" : "text-on-surface-variant hover:text-on-surface"}`}>{s}</button>
-                              ))}
-                            </div>
-                          </div>
-                        )}
-                      </div>
-
-                      <button
-                        type="button"
-                        onClick={handleBatchDownload}
-                        disabled={isBatchGenerating || !dataColumn}
-                        className="w-full py-3.5 mt-2 rounded-xl font-bold flex items-center justify-center gap-2 bg-gradient-to-r from-primary to-primary-hover text-white shadow-md hover:shadow-lg disabled:opacity-50 transition-all text-sm"
-                      >
-                        {isBatchGenerating ? (
-                          <><span className="material-symbols-outlined animate-spin text-[20px]">progress_activity</span> Generating Batch Archive...</>
-                        ) : (
-                          <><span className="material-symbols-outlined text-[20px]">bolt</span> Generate & Download ZIP ({csvRows.length > 500 ? 500 : csvRows.length} items)</>
-                        )}
-                      </button>
                     </div>
                   )}
                 </div>
@@ -2452,6 +2418,65 @@ function App() {
           </div>
         )
       case "Download":
+        if (settings.contentType === "batch") {
+          return (
+            <div className="bg-surface-container-lowest p-gutter rounded-2xl border border-outline-variant shadow-sm space-y-8">
+              <div>
+                <h3 className="font-headline-sm text-on-surface font-bold">Batch ZIP Export</h3>
+                <p className="text-on-surface-variant font-label-md text-label-md mt-1">
+                  Choose your preferred file format, custom resolution, and generate your ZIP archive.
+                </p>
+              </div>
+
+              {csvRows.length === 0 ? (
+                <div className="text-center py-10 border-2 border-dashed border-outline-variant rounded-xl bg-surface-container-lowest">
+                  <span className="material-symbols-outlined text-4xl text-outline mb-2">upload_file</span>
+                  <p className="font-bold text-on-surface">No CSV Data</p>
+                  <p className="text-sm text-on-surface-variant mt-1">Please upload a CSV file in the Content tab first.</p>
+                  <button onClick={() => setActiveTab("Content")} className="mt-4 text-primary font-bold hover:underline text-sm bg-primary/10 px-4 py-2 rounded-lg">Go to Content</button>
+                </div>
+              ) : (
+                <div className="space-y-6">
+                  {/* Format and Size */}
+                  <div className="grid grid-cols-2 gap-4 border-t border-outline-variant pt-6">
+                    <div className="space-y-3">
+                      <label className="text-sm font-semibold text-on-surface">Export Format</label>
+                      <div className="flex bg-surface-container rounded-lg p-1 border border-outline-variant/50">
+                        {["PNG", "SVG", "PDF"].map(fmt => (
+                          <button key={fmt} type="button" onClick={() => setBatchFormat(fmt)} className={`flex-1 py-2.5 rounded-md font-bold transition-all text-sm ${batchFormat === fmt ? "bg-white shadow-sm text-primary" : "text-on-surface-variant hover:text-on-surface"}`}>{fmt}</button>
+                        ))}
+                      </div>
+                    </div>
+                    {batchFormat === "PNG" && (
+                      <div className="space-y-3">
+                        <label className="text-sm font-semibold text-on-surface">Size (px)</label>
+                        <div className="flex bg-surface-container rounded-lg p-1 border border-outline-variant/50">
+                          {["512", "1024", "2048"].map(s => (
+                            <button key={s} type="button" onClick={() => setBatchSize(s)} className={`flex-1 py-2.5 rounded-md font-bold transition-all text-sm ${batchSize === s ? "bg-white shadow-sm text-primary" : "text-on-surface-variant hover:text-on-surface"}`}>{s}</button>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={handleBatchDownload}
+                    disabled={isBatchGenerating || !dataColumn}
+                    className="w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 bg-gradient-to-r from-primary to-primary-hover text-white shadow-md hover:shadow-lg disabled:opacity-50 transition-all text-base"
+                  >
+                    {isBatchGenerating ? (
+                      <><span className="material-symbols-outlined animate-spin text-[24px]">progress_activity</span> Generating Batch Archive...</>
+                    ) : (
+                      <><span className="material-symbols-outlined text-[24px]">bolt</span> Generate & Download ZIP ({csvRows.length > 500 ? 500 : csvRows.length} items)</>
+                    )}
+                  </button>
+                </div>
+              )}
+            </div>
+          );
+        }
+
         return (
           <div className="bg-surface-container-lowest p-gutter rounded-2xl border border-outline-variant shadow-sm space-y-8">
             <div>
