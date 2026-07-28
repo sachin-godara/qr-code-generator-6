@@ -1,9 +1,12 @@
 from fastapi import APIRouter, HTTPException, BackgroundTasks, Form, UploadFile, File
 from fastapi.responses import StreamingResponse, Response
 from pydantic import BaseModel
-from typing import Optional, Any
+from typing import Optional, Any, List, Dict
 from services.qr_service import generate_qr_image, generate_qr_svg, generate_qr_pdf, get_frame_preview, get_text_frame_preview
 import json
+import zipfile
+import io
+import re
 
 router = APIRouter(
     prefix="/api/generator",
@@ -107,3 +110,62 @@ async def get_text_frame_thumbnail(style: str):
         return Response(content=img_bytes, media_type="image/png")
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+class BatchItem(BaseModel):
+    data: str
+    filename: Optional[str] = None
+
+class BatchQRRequest(BaseModel):
+    items: List[BatchItem]
+    settings: Dict[str, Any]
+    format: str = "png"
+    target_size: Optional[int] = 1024
+
+def sanitize_filename(name: str) -> str:
+    # Remove invalid characters for filenames
+    name = re.sub(r'[\\/*?:"<>|]', "", name)
+    name = name.strip()
+    return name if name else "QR_Item"
+
+@router.post("/generate/batch")
+async def generate_batch(request: BatchQRRequest):
+    try:
+        if len(request.items) > 500:
+            raise HTTPException(status_code=400, detail="Batch size limited to 500 items per request.")
+
+        # Create an in-memory zip file
+        zip_buffer = io.BytesIO()
+        
+        # Inject target size if requested
+        if request.target_size:
+            request.settings["target_size"] = request.target_size
+
+        with zipfile.ZipFile(zip_buffer, "a", zipfile.ZIP_DEFLATED, False) as zip_file:
+            for idx, item in enumerate(request.items):
+                # Generate base filename
+                base_name = sanitize_filename(item.filename) if item.filename else f"QR_Item_{idx+1:03d}"
+                ext = request.format.lower()
+                if ext not in ["png", "svg", "pdf"]:
+                    ext = "png"
+                file_name = f"{base_name}.{ext}"
+                
+                # Generate QR code
+                if ext == "svg":
+                    svg_bytes = generate_qr_svg(item.data, request.settings)
+                    zip_file.writestr(file_name, svg_bytes)
+                elif ext == "pdf":
+                    pdf_io = generate_qr_pdf(item.data, request.settings)
+                    zip_file.writestr(file_name, pdf_io.getvalue())
+                else:
+                    png_io = generate_qr_image(item.data, request.settings)
+                    zip_file.writestr(file_name, png_io.getvalue())
+
+        zip_buffer.seek(0)
+        return StreamingResponse(
+            zip_buffer,
+            media_type="application/zip",
+            headers={"Content-Disposition": "attachment; filename=batch_qrcodes.zip"}
+        )
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
