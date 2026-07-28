@@ -180,7 +180,6 @@ function App() {
     { name: "Frames", icon: "branding_watermark" },
     { name: "Effects", icon: "auto_fix_high" },
     { name: "Advanced", icon: "settings" },
-    { name: "Batch", icon: "dataset" },
     { name: "Download", icon: "download" },
   ]
 
@@ -289,6 +288,7 @@ function App() {
     { id: "location", label: "Location", icon: "location_on" },
     { id: "paypal", label: "PayPal", icon: "payments" },
     { id: "appstore", label: "App Store", icon: "apps" },
+    { id: "batch", label: "Batch CSV", icon: "dataset" },
   ]
 
   const dotStyles = DOT_STYLES
@@ -992,6 +992,129 @@ function App() {
                       updateSettings({ contentData: newA.url })
                     }}
                   />
+                </div>
+              )}
+
+              {settings.contentType === "batch" && (
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="font-headline-sm text-on-surface font-bold">Batch ZIP Generation</h3>
+                    <p className="text-on-surface-variant font-label-md text-label-md mt-1">
+                      Upload a CSV file to generate up to 500 QR codes in a single ZIP file.
+                    </p>
+                  </div>
+                  
+                  <div className="space-y-3">
+                    <label className="section-label flex justify-between items-center mb-1">
+                      <span className="font-bold flex items-center gap-1.5"><span className="material-symbols-outlined text-primary text-sm">upload_file</span>Upload CSV</span>
+                      <button type="button" onClick={downloadSampleCSV} className="text-xs text-primary font-bold hover:underline">Download Sample CSV</button>
+                    </label>
+                    <div className="flex flex-col items-center justify-center border-2 border-dashed border-outline-variant hover:border-primary/40 rounded-3xl p-8 bg-surface/40 hover:bg-primary/5 transition-all cursor-pointer relative group overflow-hidden">
+                      <input type="file" accept=".csv" onChange={(e) => {
+                        const file = e.target.files?.[0];
+                        if (file) {
+                          const reader = new FileReader();
+                          reader.onload = (e) => parseCSV(e.target?.result as string);
+                          reader.readAsText(file);
+                        }
+                      }} className="absolute inset-0 opacity-0 cursor-pointer z-10" />
+                      <div className="flex flex-col items-center gap-3 text-center">
+                        <div className="w-14 h-14 rounded-full bg-primary/10 text-primary flex items-center justify-center shadow-sm">
+                          <span className="material-symbols-outlined text-2xl">dataset</span>
+                        </div>
+                        <div>
+                          <p className="text-sm font-bold text-on-surface">{csvRows.length > 0 ? `${csvRows.length} rows loaded` : "Select or drag CSV file"}</p>
+                          <p className="text-xs text-on-surface-variant mt-1">{csvRows.length > 0 ? "Click or drag to replace" : "Max 500 rows supported"}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {csvRows.length > 0 && (
+                    <div className="space-y-4 pt-4 border-t border-outline-variant">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="space-y-1.5">
+                          <label className="text-xs font-bold text-on-surface-variant">QR Data Column (Required)</label>
+                          <select value={dataColumn} onChange={(e) => setDataColumn(e.target.value)} className="w-full p-2.5 bg-white border border-outline-variant rounded-xl text-sm outline-none focus:border-primary">
+                            <option value="">Select column...</option>
+                            {csvHeaders.map(h => <option key={h} value={h}>{h}</option>)}
+                          </select>
+                        </div>
+                        <div className="space-y-1.5">
+                          <label className="text-xs font-bold text-on-surface-variant">File Name Column (Optional)</label>
+                          <select value={filenameColumn} onChange={(e) => setFilenameColumn(e.target.value)} className="w-full p-2.5 bg-white border border-outline-variant rounded-xl text-sm outline-none focus:border-primary">
+                            <option value="">Auto-generate names (QR_Item_001)</option>
+                            {csvHeaders.map(h => <option key={h} value={h}>{h}</option>)}
+                          </select>
+                        </div>
+                      </div>
+
+                      <div className="rounded-xl border border-outline-variant overflow-hidden">
+                        <div className="bg-surface-container-low px-4 py-2 border-b border-outline-variant text-xs font-bold flex justify-between">
+                          <span>Data Preview (First 5 rows)</span>
+                          <span className="text-primary">{csvRows.length} total rows</span>
+                        </div>
+                        <div className="overflow-x-auto">
+                          <table className="w-full text-left border-collapse text-xs">
+                            <thead>
+                              <tr className="bg-surface">
+                                {csvHeaders.map(h => (
+                                  <th key={h} className="p-2 border-b border-outline-variant font-semibold text-on-surface-variant whitespace-nowrap">
+                                    {h}
+                                    {h === dataColumn && <span className="ml-1 text-primary material-symbols-outlined text-[10px]">qr_code</span>}
+                                    {h === filenameColumn && <span className="ml-1 text-primary material-symbols-outlined text-[10px]">description</span>}
+                                  </th>
+                                ))}
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {csvRows.slice(0, 5).map((row, i) => (
+                                <tr key={i} className="border-b border-outline-variant/30 hover:bg-surface-container-lowest">
+                                  {csvHeaders.map(h => (
+                                    <td key={h} className="p-2 truncate max-w-[150px]" title={row[h]}>{row[h]}</td>
+                                  ))}
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                      
+                      <div className="grid grid-cols-2 gap-4 pt-2">
+                        <div className="space-y-1.5">
+                          <label className="text-xs font-bold text-on-surface-variant">Export Format</label>
+                          <div className="flex bg-surface-container rounded-lg p-1 border border-outline-variant/50">
+                            {["PNG", "SVG", "PDF"].map(fmt => (
+                              <button key={fmt} type="button" onClick={() => setBatchFormat(fmt)} className={`flex-1 text-xs py-1.5 rounded-md font-bold transition-all ${batchFormat === fmt ? "bg-white shadow-sm text-primary" : "text-on-surface-variant hover:text-on-surface"}`}>{fmt}</button>
+                            ))}
+                          </div>
+                        </div>
+                        {batchFormat === "PNG" && (
+                          <div className="space-y-1.5">
+                            <label className="text-xs font-bold text-on-surface-variant">Size (px)</label>
+                            <div className="flex bg-surface-container rounded-lg p-1 border border-outline-variant/50">
+                              {["512", "1024", "2048"].map(s => (
+                                <button key={s} type="button" onClick={() => setBatchSize(s)} className={`flex-1 text-xs py-1.5 rounded-md font-bold transition-all ${batchSize === s ? "bg-white shadow-sm text-primary" : "text-on-surface-variant hover:text-on-surface"}`}>{s}</button>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+
+                      <button
+                        type="button"
+                        onClick={handleBatchDownload}
+                        disabled={isBatchGenerating || !dataColumn}
+                        className="w-full py-3.5 mt-2 rounded-xl font-bold flex items-center justify-center gap-2 bg-gradient-to-r from-primary to-primary-hover text-white shadow-md hover:shadow-lg disabled:opacity-50 transition-all text-sm"
+                      >
+                        {isBatchGenerating ? (
+                          <><span className="material-symbols-outlined animate-spin text-[20px]">progress_activity</span> Generating Batch Archive...</>
+                        ) : (
+                          <><span className="material-symbols-outlined text-[20px]">bolt</span> Generate & Download ZIP ({csvRows.length > 500 ? 500 : csvRows.length} items)</>
+                        )}
+                      </button>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
@@ -2328,131 +2451,6 @@ function App() {
             </div>
           </div>
         )
-      case "Batch":
-        return (
-          <div className="bg-surface-container-lowest p-gutter rounded-2xl border border-outline-variant shadow-sm space-y-6">
-            <div>
-              <h3 className="font-headline-sm text-on-surface font-bold">Batch ZIP Generation</h3>
-              <p className="text-on-surface-variant font-label-md text-label-md mt-1">
-                Upload a CSV file to generate up to 500 QR codes in a single ZIP file.
-              </p>
-            </div>
-            
-            <div className="space-y-3">
-              <label className="section-label flex justify-between items-center mb-1">
-                <span className="font-bold flex items-center gap-1.5"><span className="material-symbols-outlined text-primary text-sm">upload_file</span>Upload CSV</span>
-                <button type="button" onClick={downloadSampleCSV} className="text-xs text-primary font-bold hover:underline">Download Sample CSV</button>
-              </label>
-              <div className="flex flex-col items-center justify-center border-2 border-dashed border-outline-variant hover:border-primary/40 rounded-3xl p-8 bg-surface/40 hover:bg-primary/5 transition-all cursor-pointer relative group overflow-hidden">
-                <input type="file" accept=".csv" onChange={(e) => {
-                  const file = e.target.files?.[0];
-                  if (file) {
-                    const reader = new FileReader();
-                    reader.onload = (e) => parseCSV(e.target?.result as string);
-                    reader.readAsText(file);
-                  }
-                }} className="absolute inset-0 opacity-0 cursor-pointer z-10" />
-                <div className="flex flex-col items-center gap-3 text-center">
-                  <div className="w-14 h-14 rounded-full bg-primary/10 text-primary flex items-center justify-center shadow-sm">
-                    <span className="material-symbols-outlined text-2xl">dataset</span>
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-on-surface">{csvRows.length > 0 ? `${csvRows.length} rows loaded` : "Select or drag CSV file"}</p>
-                    <p className="text-xs text-on-surface-variant mt-1">{csvRows.length > 0 ? "Click or drag to replace" : "Max 500 rows supported"}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {csvRows.length > 0 && (
-              <div className="space-y-4 pt-4 border-t border-outline-variant">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-on-surface-variant">QR Data Column (Required)</label>
-                    <select value={dataColumn} onChange={(e) => setDataColumn(e.target.value)} className="w-full p-2.5 bg-white border border-outline-variant rounded-xl text-sm outline-none focus:border-primary">
-                      <option value="">Select column...</option>
-                      {csvHeaders.map(h => <option key={h} value={h}>{h}</option>)}
-                    </select>
-                  </div>
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-on-surface-variant">File Name Column (Optional)</label>
-                    <select value={filenameColumn} onChange={(e) => setFilenameColumn(e.target.value)} className="w-full p-2.5 bg-white border border-outline-variant rounded-xl text-sm outline-none focus:border-primary">
-                      <option value="">Auto-generate names (QR_Item_001)</option>
-                      {csvHeaders.map(h => <option key={h} value={h}>{h}</option>)}
-                    </select>
-                  </div>
-                </div>
-
-                {/* Preview Table */}
-                <div className="rounded-xl border border-outline-variant overflow-hidden">
-                  <div className="bg-surface-container-low px-4 py-2 border-b border-outline-variant text-xs font-bold flex justify-between">
-                    <span>Data Preview (First 5 rows)</span>
-                    <span className="text-primary">{csvRows.length} total rows</span>
-                  </div>
-                  <div className="overflow-x-auto">
-                    <table className="w-full text-left border-collapse text-xs">
-                      <thead>
-                        <tr className="bg-surface">
-                          {csvHeaders.map(h => (
-                            <th key={h} className="p-2 border-b border-outline-variant font-semibold text-on-surface-variant whitespace-nowrap">
-                              {h}
-                              {h === dataColumn && <span className="ml-1 text-primary material-symbols-outlined text-[10px]">qr_code</span>}
-                              {h === filenameColumn && <span className="ml-1 text-primary material-symbols-outlined text-[10px]">description</span>}
-                            </th>
-                          ))}
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {csvRows.slice(0, 5).map((row, i) => (
-                          <tr key={i} className="border-b border-outline-variant/30 hover:bg-surface-container-lowest">
-                            {csvHeaders.map(h => (
-                              <td key={h} className="p-2 truncate max-w-[150px]" title={row[h]}>{row[h]}</td>
-                            ))}
-                          </tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-                
-                {/* Format and Size */}
-                <div className="grid grid-cols-2 gap-4 pt-2">
-                  <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-on-surface-variant">Export Format</label>
-                    <div className="flex bg-surface-container rounded-lg p-1 border border-outline-variant/50">
-                      {["PNG", "SVG", "PDF"].map(fmt => (
-                        <button key={fmt} type="button" onClick={() => setBatchFormat(fmt)} className={`flex-1 text-xs py-1.5 rounded-md font-bold transition-all ${batchFormat === fmt ? "bg-white shadow-sm text-primary" : "text-on-surface-variant hover:text-on-surface"}`}>{fmt}</button>
-                      ))}
-                    </div>
-                  </div>
-                  {batchFormat === "PNG" && (
-                    <div className="space-y-1.5">
-                      <label className="text-xs font-bold text-on-surface-variant">Size (px)</label>
-                      <div className="flex bg-surface-container rounded-lg p-1 border border-outline-variant/50">
-                        {["512", "1024", "2048"].map(s => (
-                          <button key={s} type="button" onClick={() => setBatchSize(s)} className={`flex-1 text-xs py-1.5 rounded-md font-bold transition-all ${batchSize === s ? "bg-white shadow-sm text-primary" : "text-on-surface-variant hover:text-on-surface"}`}>{s}</button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                <button
-                  type="button"
-                  onClick={handleBatchDownload}
-                  disabled={isBatchGenerating || !dataColumn}
-                  className="w-full py-3.5 mt-2 rounded-xl font-bold flex items-center justify-center gap-2 bg-gradient-to-r from-primary to-primary-hover text-white shadow-md hover:shadow-lg disabled:opacity-50 transition-all text-sm"
-                >
-                  {isBatchGenerating ? (
-                    <><span className="material-symbols-outlined animate-spin text-[20px]">progress_activity</span> Generating Batch Archive...</>
-                  ) : (
-                    <><span className="material-symbols-outlined text-[20px]">bolt</span> Generate & Download ZIP ({csvRows.length > 500 ? 500 : csvRows.length} items)</>
-                  )}
-                </button>
-              </div>
-            )}
-          </div>
-        );
       case "Download":
         return (
           <div className="bg-surface-container-lowest p-gutter rounded-2xl border border-outline-variant shadow-sm space-y-8">
