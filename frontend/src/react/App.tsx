@@ -118,6 +118,15 @@ function App() {
   const [isDownloading, setIsDownloading] = useState<boolean>(false);
   const [downloadSuccess, setDownloadSuccess] = useState<boolean>(false);
   const [isCopying, setIsCopying] = useState<boolean>(false);
+  const [toast, setToast] = useState<{ message: string, icon: string } | null>(null);
+
+  // Auto-dismiss toast
+  useEffect(() => {
+    if (toast) {
+      const timer = setTimeout(() => setToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [toast]);
 
   // Sticky mini preview observer — shows floating QR thumbnail when main preview scrolls out of view on mobile
   useEffect(() => {
@@ -329,9 +338,11 @@ function App() {
       a.click();
       URL.revokeObjectURL(url);
       setDownloadSuccess(true);
+      setToast({ message: `Downloaded as ${ext.toUpperCase()}`, icon: "download_done" });
       setTimeout(() => setDownloadSuccess(false), 3000);
     } catch (e) {
       console.error(e);
+      setToast({ message: "Download Failed", icon: "error" });
     } finally {
       setIsDownloading(false);
     }
@@ -371,9 +382,11 @@ function App() {
         })
       ]);
       setCopySuccess(true);
+      setToast({ message: "Copied to Clipboard!", icon: "content_copy" });
       setTimeout(() => setCopySuccess(false), 2500);
     } catch (e) {
       console.error("Clipboard copy failed:", e);
+      setToast({ message: "Failed to Copy", icon: "error" });
     } finally {
       setIsCopying(false);
     }
@@ -398,7 +411,7 @@ function App() {
       }
     } else if (imageUrl) {
       navigator.clipboard.writeText(imageUrl);
-      alert("Image URL copied to clipboard!");
+      setToast({ message: "Image URL Copied!", icon: "link" });
     }
   }
 
@@ -406,7 +419,7 @@ function App() {
     setIsScanning(true);
     setTimeout(() => {
       setIsScanning(false);
-      alert(`✅ Scan Successful!\n\nType: ${settings.contentType.toUpperCase()}\nData: ${settings.contentData}`);
+      setToast({ message: `Scan OK: ${settings.contentType.toUpperCase()}`, icon: "check_circle" });
     }, 1500);
   }
 
@@ -2168,6 +2181,45 @@ function App() {
         return null
     }
   }
+  // Global Keyboard Shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Guard clause: Don't trigger if typing in an input
+      const activeElement = document.activeElement as HTMLElement | null;
+      if (activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA' || activeElement.isContentEditable)) {
+        return;
+      }
+      
+      if (e.metaKey || e.ctrlKey) {
+        if (e.key === 'z') {
+          e.preventDefault();
+          if (e.shiftKey) {
+            redo();
+            setToast({ message: "Redone", icon: "redo" });
+          } else {
+            undo();
+            setToast({ message: "Undone", icon: "undo" });
+          }
+        } else if (e.key === 'y') {
+          e.preventDefault();
+          redo();
+          setToast({ message: "Redone", icon: "redo" });
+        } else if (e.key === 's') {
+          e.preventDefault();
+          handleDownloadCustom();
+        } else if (e.key === 'c') {
+          const selection = window.getSelection();
+          if (selection && selection.toString().length === 0) {
+            e.preventDefault();
+            handleCopyToClipboard();
+          }
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [undo, redo, handleDownloadCustom, handleCopyToClipboard]);
 
   return (
     <div className="lg:min-h-screen flex flex-col font-body-md text-on-surface bg-background antialiased pt-14 sm:pt-16">
@@ -2318,26 +2370,21 @@ function App() {
                     style={{
                       backgroundImage: "linear-gradient(45deg, #f3f4f6 25%, transparent 25%), linear-gradient(-45deg, #f3f4f6 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f3f4f6 75%), linear-gradient(-45deg, transparent 75%, #f3f4f6 75%)",
                       backgroundSize: "16px 16px",
-                      backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0px",
+                  backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0px",
                       backgroundColor: "#f9fafb"
                     }}
                   >
                     <div className="absolute inset-0 canvas-aura pointer-events-none"></div>
                     <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "radial-gradient(#18181b 1px, transparent 1px)", backgroundSize: "20px 20px" }}></div>
 
-                    {isLoading ? (
-                      <div className="relative z-10 flex flex-col items-center text-on-surface-variant gap-2">
-                        <span className="material-symbols-outlined animate-spin text-primary text-4xl">autorenew</span>
-                        <span className="text-sm font-semibold">Generating...</span>
-                      </div>
-                    ) : isError ? (
+                    {isError ? (
                       <div className="relative z-10 text-error p-4 bg-error-container text-on-error-container rounded-xl text-center text-xs">
                         <span className="material-symbols-outlined text-2xl mb-1">error</span>
                         <p className="font-bold">Failed to load preview</p>
                       </div>
                     ) : (
                       <div
-                        className={`relative z-10 transition-all duration-350 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${zoomLevel === 1 ? 'group-hover:scale-[1.06]' : ''}`}
+                        className={`relative z-10 transition-all duration-350 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${zoomLevel === 1 && !isLoading ? 'group-hover:scale-[1.06]' : ''}`}
                         style={{ transform: `scale(${zoomLevel})` }}
                       >
                         <img
@@ -2353,6 +2400,13 @@ function App() {
                             boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.08)"
                           } : {}}
                         />
+                        {/* Shimmer Overlay for Loading State */}
+                        {isLoading && (
+                          <div className="absolute inset-0 rounded-xl overflow-hidden backdrop-blur-[4px] bg-white/40 flex items-center justify-center transition-opacity duration-300">
+                            <div className="absolute inset-0 skeleton-shimmer"></div>
+                            <span className="material-symbols-outlined animate-spin text-primary text-3xl relative z-10">autorenew</span>
+                          </div>
+                        )}
                         {isScanning && (
                           <div className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none">
                             <div className="w-full h-1 bg-green-500 absolute top-0 animate-bounce shadow-[0_0_12px_rgba(34,197,94,1)]"></div>
@@ -2363,52 +2417,56 @@ function App() {
                     )}
                   </div>
 
-                  {/* Export Toolbar */}
-                  <div className="space-y-6">
-                    <div className="flex flex-col gap-5">
-                      <div className="flex flex-col gap-2">
-                        <span className="section-label mb-1">Zoom</span>
-                        <div className="grid grid-cols-2 gap-2">
-                          <button
-                            onClick={() => setZoomLevel(1)}
-                            className={`flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg border text-sm font-semibold tab-spring min-h-[40px] touch-press ${zoomLevel === 1
-                                ? 'bg-primary border-primary text-white shadow-md'
-                                : 'bg-surface border-outline-variant text-on-surface hover:bg-surface-container-highest'
-                              }`}
-                          >
-                            <span className="material-symbols-outlined text-[18px]">fit_screen</span>
-                            100%
-                          </button>
-                          <button
-                            onClick={() => setZoomLevel(2)}
-                            className={`flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg border text-sm font-semibold tab-spring min-h-[40px] touch-press ${zoomLevel === 2
-                                ? 'bg-primary border-primary text-white shadow-md'
-                                : 'bg-surface border-outline-variant text-on-surface hover:bg-surface-container-highest'
-                              }`}
-                          >
-                            <span className="material-symbols-outlined text-[18px]">zoom_in</span>
-                            200%
-                          </button>
-                        </div>
-                      </div>
-
-                      <div className="flex flex-col gap-2">
-                        <span className="section-label mb-1">Tools</span>
-                        <div className="flex gap-2">
-                          <button onClick={handleScanTest} className={`flex-1 flex items-center justify-center transition-colors rounded-xl duration-200 min-w-[40px] min-h-[40px] touch-press ${isScanning ? 'bg-primary text-white shadow-md' : 'bg-surface-container hover:bg-surface-container-high text-on-surface-variant active:scale-95'}`} title="Scan Test">
-                            <span className="material-symbols-outlined text-[20px]">qr_code_scanner</span>
-                          </button>
-                          <button onClick={handleFullscreen} className="flex-1 flex items-center justify-center bg-surface-container hover:bg-surface-container-high transition-colors text-on-surface-variant rounded-xl duration-200 min-w-[40px] min-h-[40px] touch-press active:scale-95" title="Full Screen">
-                            <span className="material-symbols-outlined text-[20px]">fullscreen</span>
-                          </button>
-                          <button onClick={() => setIsComparing(!isComparing)} className={`flex-1 flex items-center justify-center transition-colors rounded-xl duration-200 min-w-[40px] min-h-[40px] touch-press ${isComparing ? 'bg-primary text-white shadow-md' : 'bg-surface-container hover:bg-surface-container-high text-on-surface-variant active:scale-95'}`} title="Compare Raw">
-                            <span className="material-symbols-outlined text-[20px]">compare</span>
-                          </button>
-                          <button onClick={handleShare} className="flex-1 flex items-center justify-center bg-surface-container hover:bg-surface-container-high transition-colors text-on-surface-variant rounded-xl duration-200 min-w-[40px] min-h-[40px] touch-press active:scale-95" title="Share">
-                            <span className="material-symbols-outlined text-[20px]">share</span>
-                          </button>
-                        </div>
-                      </div>
+                  {/* Segmented Controls (Zoom & Tools) */}
+                  <div className="flex items-center justify-between gap-1 bg-surface-container-low p-1.5 rounded-full border border-outline-variant/60 shadow-inner">
+                    <div className="flex items-center gap-1">
+                      <button
+                        onClick={() => setZoomLevel(1)}
+                        className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 ${zoomLevel === 1 ? 'bg-white shadow-sm text-primary' : 'text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface'}`}
+                        title="Zoom 100%"
+                      >
+                        <span className="material-symbols-outlined text-[18px]">fit_screen</span>
+                      </button>
+                      <button
+                        onClick={() => setZoomLevel(2)}
+                        className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 ${zoomLevel === 2 ? 'bg-white shadow-sm text-primary' : 'text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface'}`}
+                        title="Zoom 200%"
+                      >
+                        <span className="material-symbols-outlined text-[18px]">zoom_in</span>
+                      </button>
+                    </div>
+                    
+                    <div className="w-[1px] h-5 bg-outline-variant/50 mx-1"></div>
+                    
+                    <div className="flex items-center gap-1">
+                      <button
+                        onClick={handleScanTest}
+                        className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 ${isScanning ? 'bg-white shadow-sm text-primary' : 'text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface'}`}
+                        title="Scan Test"
+                      >
+                        <span className="material-symbols-outlined text-[18px]">qr_code_scanner</span>
+                      </button>
+                      <button
+                        onClick={handleFullscreen}
+                        className="w-9 h-9 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all duration-200"
+                        title="Full Screen"
+                      >
+                        <span className="material-symbols-outlined text-[18px]">fullscreen</span>
+                      </button>
+                      <button
+                        onClick={() => setIsComparing(!isComparing)}
+                        className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 ${isComparing ? 'bg-white shadow-sm text-primary' : 'text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface'}`}
+                        title="Compare Raw"
+                      >
+                        <span className="material-symbols-outlined text-[18px]">compare</span>
+                      </button>
+                      <button
+                        onClick={handleShare}
+                        className="w-9 h-9 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all duration-200"
+                        title="Share"
+                      >
+                        <span className="material-symbols-outlined text-[18px]">share</span>
+                      </button>
                     </div>
                   </div>
 
@@ -2552,11 +2610,13 @@ function App() {
                 </div>
 
                 {/* ── PANEL CONTENT (Single native scroll flow without double scrollbars!) ── */}
-                <div className="p-4 sm:p-5 bg-white">
-                  {mobileMainTab === 'content'
-                    ? renderPanelContent('Content')
-                    : renderPanelContent(mobileDesignSubTab === 'Shape' ? 'Design' : mobileDesignSubTab)
-                  }
+                <div className="p-4 sm:p-5 bg-white overflow-hidden">
+                  <div className="panel-enter" key={mobileMainTab === 'content' ? 'content' : mobileDesignSubTab}>
+                    {mobileMainTab === 'content'
+                      ? renderPanelContent('Content')
+                      : renderPanelContent(mobileDesignSubTab === 'Shape' ? 'Design' : mobileDesignSubTab)
+                    }
+                  </div>
                 </div>
 
                 {/* ── ACTION FOOTER: DOWNLOAD & COPY (In-Flow directly above SEO section) ── */}
@@ -2659,9 +2719,17 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* Global Toast Notification */}
+      {toast && (
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[100] animate-[slide-up_0.3s_ease-out_forwards]">
+          <div className="flex items-center gap-3 px-4 py-3 bg-surface-container-highest/90 backdrop-blur-md border border-outline-variant/60 shadow-lg rounded-full text-on-surface font-semibold text-sm">
+            <span className={`material-symbols-outlined text-[20px] ${toast.icon === 'error' ? 'text-error' : 'text-primary'}`}>{toast.icon}</span>
+            <span>{toast.message}</span>
+          </div>
+        </div>
+      )}
     </div>
   )
 }
-
 export default App
-

@@ -43,7 +43,7 @@
   --color-on-error-container: #991b1b;
   
   /* Background */
-  --color-background: #fafafa;
+  --color-background: #f8fafc;
   --color-on-background: #18181b;
   
   /* Spacing */
@@ -70,6 +70,26 @@
   --radius-xl: 0.75rem;
   --radius-2xl: 1rem;
   --radius-full: 9999px;
+
+  @keyframes shimmer-sweep {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  @keyframes slide-up {
+    0% { transform: translate(-50%, 100%); opacity: 0; }
+    100% { transform: translate(-50%, 0); opacity: 1; }
+  }
+
+  .skeleton-shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.4) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    animation: shimmer-sweep 1.5s infinite ease-in-out;
+  }
 }
 
 /* ========================
