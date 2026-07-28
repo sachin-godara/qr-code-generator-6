@@ -999,7 +999,7 @@ function App() {
                 </span>
                 <span className="text-[10px] uppercase font-mono text-on-surface-variant bg-surface-container-low px-2 py-0.5 rounded">PNG / JPG / WEBP</span>
               </label>
-              <div className="flex flex-col items-center justify-center border-2 border-dashed border-outline-variant hover:border-primary/50 rounded-2xl p-6 bg-surface/30 hover:bg-surface/70 transition-all duration-200 cursor-pointer relative group">
+              <div className="flex flex-col items-center justify-center border-2 border-dashed border-outline-variant hover:border-primary/40 rounded-3xl p-8 bg-surface/40 hover:bg-primary/5 transition-all duration-300 cursor-pointer relative group overflow-hidden">
                 <input
                   type="file"
                   accept="image/*"
@@ -1021,34 +1021,34 @@ function App() {
 
                 {settings.logo_image ? (
                   <div className="flex flex-col items-center gap-3">
-                    <div className="w-16 h-16 rounded-xl overflow-hidden border border-outline-variant shadow-md bg-white p-1.5 relative group/thumb">
-                      <img src={settings.logo_image} className="w-full h-full object-contain rounded-lg" />
-                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/thumb:opacity-100 transition-opacity flex items-center justify-center rounded-lg z-20">
+                    <div className="w-20 h-20 rounded-2xl overflow-hidden border-2 border-outline-variant/60 shadow-md bg-white p-2 relative group/thumb transition-transform group-hover:scale-105">
+                      <img src={settings.logo_image} className="w-full h-full object-contain rounded-xl" />
+                      <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/thumb:opacity-100 transition-opacity duration-200 flex items-center justify-center rounded-xl z-20 backdrop-blur-[2px]">
                         <button
                           onClick={(e) => {
                             e.preventDefault();
                             e.stopPropagation();
                             updateSettings({ logo_image: null });
                           }}
-                          className="p-1.5 bg-error text-white rounded-full hover:bg-error/95 transition-transform hover:scale-110"
+                          className="p-2 bg-error text-white rounded-full hover:bg-error/90 transition-transform hover:scale-110 shadow-lg"
                         >
-                          <span className="material-symbols-outlined text-sm leading-none">delete</span>
+                          <span className="material-symbols-outlined text-[18px] leading-none">delete_forever</span>
                         </button>
                       </div>
                     </div>
                     <div className="text-center">
-                      <p className="text-xs font-semibold text-on-surface">Custom Logo Loaded</p>
-                      <p className="text-[10px] text-on-surface-variant">Hover to remove / Click to replace</p>
+                      <p className="text-[13px] font-bold text-on-surface">Custom Logo Loaded</p>
+                      <p className="text-[11px] text-on-surface-variant/80 font-medium mt-0.5">Hover to remove or click to replace</p>
                     </div>
                   </div>
                 ) : (
-                  <div className="flex flex-col items-center gap-2 text-center z-0">
-                    <div className="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:scale-110 transition-transform duration-200">
-                      <span className="material-symbols-outlined text-lg">cloud_upload</span>
+                  <div className="flex flex-col items-center gap-3 text-center z-0">
+                    <div className="w-14 h-14 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300 shadow-sm border border-primary/10">
+                      <span className="material-symbols-outlined text-2xl">cloud_upload</span>
                     </div>
                     <div>
-                      <p className="text-xs font-semibold text-on-surface">Upload your logo</p>
-                      <p className="text-[10px] text-on-surface-variant">Drag & drop or click to browse (PNG, JPG)</p>
+                      <p className="text-[14px] font-bold text-on-surface">Upload your logo</p>
+                      <p className="text-[11px] text-on-surface-variant font-medium mt-1">Drag & drop or click to browse (PNG, JPG)</p>
                     </div>
                   </div>
                 )}
@@ -2412,15 +2412,15 @@ function App() {
                     </div>
                   </div>
 
-                  {/* Mini Stats */}
-                  <div className="pt-6 border-t border-outline-variant grid grid-cols-2 gap-4">
-                    <div className="text-center">
-                      <p className="section-label mb-1">Resolution</p>
-                      <p className="text-sm font-semibold text-on-surface">{targetResolution}</p>
+                  {/* Premium Metadata Badges */}
+                  <div className="pt-5 border-t border-outline-variant/50 flex items-center justify-center gap-3">
+                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/40 shadow-2xs hover:shadow-sm hover:border-primary/30 transition-all">
+                      <span className="material-symbols-outlined text-[14px] text-primary">aspect_ratio</span>
+                      <span className="text-xs font-bold text-on-surface">{targetResolution}</span>
                     </div>
-                    <div className="text-center border-l border-outline-variant">
-                      <p className="section-label mb-1">Error Recovery</p>
-                      <p className="text-sm font-semibold text-on-surface">Level {settings.error_correction}</p>
+                    <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/40 shadow-2xs hover:shadow-sm hover:border-primary/30 transition-all">
+                      <span className="material-symbols-outlined text-[14px] text-primary">shield_locked</span>
+                      <span className="text-xs font-bold text-on-surface">Level {settings.error_correction}</span>
                     </div>
                   </div>
                 </div>
