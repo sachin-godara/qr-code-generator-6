@@ -151,13 +151,13 @@ export function SettingsPanel() {
               <div className="flex items-center gap-3">
                 <input 
                   type="color" 
-                  value={settings.dots_color_end || "#0050cb"} 
+                  value={settings.dots_color_end || "#52525b"} 
                   onChange={(e) => updateSettings({ dots_color_end: e.target.value })}
                   className="w-12 h-12 rounded cursor-pointer border-0 p-0"
                 />
                 <input 
                   type="text" 
-                  value={settings.dots_color_end || "#0050cb"} 
+                  value={settings.dots_color_end || "#52525b"} 
                   onChange={(e) => updateSettings({ dots_color_end: e.target.value })}
                   className="flex-1 p-2 border border-input rounded-lg text-sm font-mono"
                 />

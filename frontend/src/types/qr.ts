@@ -87,7 +87,7 @@ export const defaultSettings: QRSettings = {
   logo_bg_color: "#ffffff",
   logo_bg_tolerance: 30,
   frame_style: "none",
-  frame_color: "#0050cb",
+  frame_color: "#18181b",
   text_style: "none",
   frame_text: "SCAN ME",
   frame_text_color: "#ffffff",
@@ -103,7 +103,7 @@ export const defaultSettings: QRSettings = {
   effect_shadow_blur: 12,
   canvas_radius: 16,
   canvas_border_width: 0,
-  canvas_border_color: "#0050cb",
+  canvas_border_color: "#18181b",
   canvas_border_radius: 16,
   invert_colors: false
 };

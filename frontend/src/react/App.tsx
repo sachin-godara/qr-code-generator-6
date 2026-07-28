@@ -784,13 +784,13 @@ function App() {
                   <div className="flex items-center gap-2 h-11 px-1 mt-auto border border-outline-variant rounded-lg bg-white focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-shadow">
                     <input
                       type="color"
-                      value={settings.dots_color_end || "#0050cb"}
+                      value={settings.dots_color_end || "#52525b"}
                       onChange={(e) => updateSettings({ dots_color_end: e.target.value })}
                       className="w-9 h-9 shrink-0 rounded-md cursor-pointer border border-outline-variant/30 bg-white p-0"
                     />
                     <input
                       type="text"
-                      value={settings.dots_color_end || "#0050cb"}
+                      value={settings.dots_color_end || "#52525b"}
                       onChange={(e) => updateSettings({ dots_color_end: e.target.value })}
                       className="flex-1 w-full bg-transparent text-sm font-mono tracking-wider border-none outline-none focus:ring-0 px-2 text-on-surface"
                     />
@@ -1686,7 +1686,7 @@ function App() {
                       type="button"
                       onClick={() => updateSettings({
                         gradient_type: opt.value,
-                        dots_color_end: opt.value !== "Solid Color" && settings.dots_color_end === "#000000" && settings.dots_color === "#000000" ? "#0050cb" : settings.dots_color_end
+                        dots_color_end: opt.value !== "Solid Color" && settings.dots_color_end === "#000000" && settings.dots_color === "#000000" ? "#52525b" : settings.dots_color_end
                       })}
                       className={`flex flex-col items-center justify-center gap-1.5 p-2 sm:p-3 rounded-xl border text-[11px] sm:text-xs leading-tight font-bold transition-all duration-200 ${selected
                           ? 'bg-primary/15 border-primary text-primary shadow-sm scale-[1.02]'
@@ -1812,8 +1812,8 @@ function App() {
                       const newId = s.id as any;
                       let newColor = settings.effect_shadow_color;
                       if (newId === "neon" && (newColor.startsWith("#000000") || newColor.startsWith("rgba(0,0,0"))) {
-                        newColor = "#0050cbee";
-                      } else if ((newId === "soft" || newId === "elevated") && newColor === "#0050cbee") {
+                        newColor = "#18181bee";
+                      } else if ((newId === "soft" || newId === "elevated") && newColor === "#18181bee") {
                         newColor = "#00000066";
                       }
                       updateSettings({ effect_shadow: newId, effect_shadow_color: newColor });
@@ -2323,7 +2323,7 @@ function App() {
                     }}
                   >
                     <div className="absolute inset-0 canvas-aura pointer-events-none"></div>
-                    <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "radial-gradient(#0050cb 1px, transparent 1px)", backgroundSize: "20px 20px" }}></div>
+                    <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "radial-gradient(#18181b 1px, transparent 1px)", backgroundSize: "20px 20px" }}></div>
 
                     {isLoading ? (
                       <div className="relative z-10 flex flex-col items-center text-on-surface-variant gap-2">
