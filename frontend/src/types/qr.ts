@@ -1,4 +1,4 @@
-export type ContentType = "url" | "vcard" | "text" | "email" | "wifi" | "sms" | "event";
+export type ContentType = "url" | "vcard" | "text" | "email" | "wifi" | "sms" | "event" | "phone" | "crypto" | "location" | "paypal" | "appstore";
 
 export interface QRSettings {
   // Content

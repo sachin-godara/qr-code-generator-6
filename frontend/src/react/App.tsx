@@ -84,6 +84,11 @@ function App() {
   const [event, setEvent] = useState({ title: '', desc: '', loc: '', start: '', end: '' })
   const [sms, setSms] = useState({ phone: '', msg: '' })
   const [wifi, setWifi] = useState({ ssid: '', type: 'WPA/WPA2', pass: '' })
+  const [phone, setPhone] = useState({ number: '' })
+  const [crypto, setCrypto] = useState({ currency: 'bitcoin', address: '', amount: '' })
+  const [location, setLocation] = useState({ type: 'coords', lat: '', lng: '', query: '' })
+  const [paypal, setPaypal] = useState({ username: '', amount: '', currency: 'USD' })
+  const [appstore, setAppstore] = useState({ store: 'apple', url: '' })
 
   // Mobile UI state
   const [mobileMainTab, setMobileMainTab] = useState<'content' | 'design'>('content')
@@ -177,6 +182,11 @@ function App() {
     { id: "wifi", label: "WiFi", icon: "wifi" },
     { id: "sms", label: "SMS", icon: "sms" },
     { id: "event", label: "Event", icon: "event" },
+    { id: "phone", label: "Phone", icon: "phone" },
+    { id: "crypto", label: "Crypto", icon: "currency_bitcoin" },
+    { id: "location", label: "Location", icon: "location_on" },
+    { id: "paypal", label: "PayPal", icon: "payments" },
+    { id: "appstore", label: "App Store", icon: "apps" },
   ]
 
   const dotStyles = DOT_STYLES
@@ -430,7 +440,7 @@ function App() {
         return (
           <div className="space-y-6">
             {/* Type Tabs */}
-            <div className="glass-panel p-1.5 sm:p-2 rounded-2xl grid grid-cols-4 sm:grid-cols-7 gap-1 border border-outline-variant shadow-sm">
+            <div className="glass-panel p-1.5 sm:p-2 rounded-2xl grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-1 border border-outline-variant shadow-sm">
               {contentTypes.map((type) => (
                 <button
                   key={type.id}
@@ -689,6 +699,197 @@ function App() {
                       />
                     </div>
                   </div>
+                </div>
+              )}
+
+              {settings.contentType === "phone" && (
+                <div className="space-y-4">
+                  <label className="block font-label-md text-label-md text-on-surface font-semibold">Phone Number</label>
+                  <input
+                    type="tel"
+                    placeholder="+1 (234) 567-8900"
+                    className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md"
+                    value={phone.number}
+                    onChange={(e) => {
+                      const newPhone = { ...phone, number: e.target.value }
+                      setPhone(newPhone)
+                      updateSettings({ contentData: `tel:${newPhone.number.replace(/\s+/g, '')}` })
+                    }}
+                  />
+                </div>
+              )}
+
+              {settings.contentType === "crypto" && (
+                <div className="space-y-4">
+                  <label className="block font-label-md text-label-md text-on-surface font-semibold">Crypto Wallet</label>
+                  <select
+                    className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md"
+                    value={crypto.currency}
+                    onChange={(e) => {
+                      const newC = { ...crypto, currency: e.target.value }
+                      setCrypto(newC)
+                      updateSettings({ contentData: `${newC.currency}:${newC.address}${newC.amount ? '?amount='+newC.amount : ''}` })
+                    }}
+                  >
+                    <option value="bitcoin">Bitcoin (BTC)</option>
+                    <option value="ethereum">Ethereum (ETH)</option>
+                    <option value="bitcoincash">Bitcoin Cash (BCH)</option>
+                    <option value="litecoin">Litecoin (LTC)</option>
+                    <option value="dash">Dash (DASH)</option>
+                  </select>
+                  <input
+                    type="text"
+                    placeholder="Wallet Address"
+                    className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md"
+                    value={crypto.address}
+                    onChange={(e) => {
+                      const newC = { ...crypto, address: e.target.value }
+                      setCrypto(newC)
+                      updateSettings({ contentData: `${newC.currency}:${newC.address}${newC.amount ? '?amount='+newC.amount : ''}` })
+                    }}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Amount (optional)"
+                    className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md"
+                    value={crypto.amount}
+                    onChange={(e) => {
+                      const newC = { ...crypto, amount: e.target.value }
+                      setCrypto(newC)
+                      updateSettings({ contentData: `${newC.currency}:${newC.address}${newC.amount ? '?amount='+newC.amount : ''}` })
+                    }}
+                  />
+                </div>
+              )}
+
+              {settings.contentType === "location" && (
+                <div className="space-y-4">
+                  <label className="block font-label-md text-label-md text-on-surface font-semibold">Location</label>
+                  <select
+                    className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md"
+                    value={location.type}
+                    onChange={(e) => {
+                      const newL = { ...location, type: e.target.value }
+                      setLocation(newL)
+                      if (newL.type === 'coords') {
+                        updateSettings({ contentData: `geo:${newL.lat},${newL.lng}` })
+                      } else {
+                        updateSettings({ contentData: `https://maps.google.com/maps?q=${encodeURIComponent(newL.query)}` })
+                      }
+                    }}
+                  >
+                    <option value="coords">Latitude / Longitude</option>
+                    <option value="query">Address / Place Name</option>
+                  </select>
+                  
+                  {location.type === 'coords' ? (
+                    <div className="grid grid-cols-2 gap-4">
+                      <input
+                        type="text" placeholder="Latitude (e.g. 40.7128)" className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none"
+                        value={location.lat}
+                        onChange={(e) => {
+                          const newL = { ...location, lat: e.target.value }
+                          setLocation(newL)
+                          updateSettings({ contentData: `geo:${newL.lat},${newL.lng}` })
+                        }}
+                      />
+                      <input
+                        type="text" placeholder="Longitude (e.g. -74.0060)" className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none"
+                        value={location.lng}
+                        onChange={(e) => {
+                          const newL = { ...location, lng: e.target.value }
+                          setLocation(newL)
+                          updateSettings({ contentData: `geo:${newL.lat},${newL.lng}` })
+                        }}
+                      />
+                    </div>
+                  ) : (
+                    <textarea
+                      placeholder="Enter full address or place name..."
+                      rows={3}
+                      className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none resize-none"
+                      value={location.query}
+                      onChange={(e) => {
+                        const newL = { ...location, query: e.target.value }
+                        setLocation(newL)
+                        updateSettings({ contentData: `https://maps.google.com/maps?q=${encodeURIComponent(newL.query)}` })
+                      }}
+                    />
+                  )}
+                </div>
+              )}
+
+              {settings.contentType === "paypal" && (
+                <div className="space-y-4">
+                  <label className="block font-label-md text-label-md text-on-surface font-semibold">PayPal Payment</label>
+                  <input
+                    type="text"
+                    placeholder="PayPal.Me Username"
+                    className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md"
+                    value={paypal.username}
+                    onChange={(e) => {
+                      const newP = { ...paypal, username: e.target.value }
+                      setPaypal(newP)
+                      updateSettings({ contentData: `https://paypal.me/${newP.username}${newP.amount ? '/'+newP.amount : ''}${newP.amount ? newP.currency : ''}` })
+                    }}
+                  />
+                  <div className="grid grid-cols-2 gap-4">
+                    <input
+                      type="number"
+                      placeholder="Amount (optional)"
+                      className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md"
+                      value={paypal.amount}
+                      onChange={(e) => {
+                        const newP = { ...paypal, amount: e.target.value }
+                        setPaypal(newP)
+                        updateSettings({ contentData: `https://paypal.me/${newP.username}${newP.amount ? '/'+newP.amount : ''}${newP.amount ? newP.currency : ''}` })
+                      }}
+                    />
+                    <select
+                      className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md"
+                      value={paypal.currency}
+                      onChange={(e) => {
+                        const newP = { ...paypal, currency: e.target.value }
+                        setPaypal(newP)
+                        updateSettings({ contentData: `https://paypal.me/${newP.username}${newP.amount ? '/'+newP.amount : ''}${newP.amount ? newP.currency : ''}` })
+                      }}
+                    >
+                      <option value="USD">USD</option>
+                      <option value="EUR">EUR</option>
+                      <option value="GBP">GBP</option>
+                      <option value="JPY">JPY</option>
+                      <option value="CAD">CAD</option>
+                      <option value="AUD">AUD</option>
+                    </select>
+                  </div>
+                </div>
+              )}
+
+              {settings.contentType === "appstore" && (
+                <div className="space-y-4">
+                  <label className="block font-label-md text-label-md text-on-surface font-semibold">App Store Link</label>
+                  <select
+                    className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md"
+                    value={appstore.store}
+                    onChange={(e) => {
+                      const newA = { ...appstore, store: e.target.value }
+                      setAppstore(newA)
+                    }}
+                  >
+                    <option value="apple">Apple App Store</option>
+                    <option value="google">Google Play Store</option>
+                  </select>
+                  <input
+                    type="url"
+                    placeholder={appstore.store === 'apple' ? "https://apps.apple.com/..." : "https://play.google.com/..."}
+                    className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md"
+                    value={appstore.url}
+                    onChange={(e) => {
+                      const newA = { ...appstore, url: e.target.value }
+                      setAppstore(newA)
+                      updateSettings({ contentData: newA.url })
+                    }}
+                  />
                 </div>
               )}
             </div>
