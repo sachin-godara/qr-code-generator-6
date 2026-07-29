@@ -75,13 +75,16 @@ Step 6: ✅ Approve or 🔄 Retry  → Pass/fail decision
 
 | Failure | Likely Cause | Fix |
 |---------|-------------|-----|
-| Cannot decode | Low contrast colors | Increase contrast ratio |
-| Cannot decode | Logo too large | Reduce logo to ≤ 25% |
+| Cannot decode | Low contrast colors | Increase contrast ratio (e.g. use Dark on Light) |
+| Cannot decode | Inverted colors | Switch to Black QR on White background |
+| Cannot decode | Logo too large | Reduce logo to ≤ 20% (Max 25% with Error Correct H) |
 | Cannot decode | Low error correction | Upgrade to `ERROR_CORRECT_H` |
+| Cannot decode | Missing Quiet Zone | Ensure at least 4 modules of white space around border |
 | Low quality score | Small box_size | Increase `box_size` to ≥ 10 |
 | Low quality score | Aggressive dot style | Switch to `rounded` or `square` |
-| Artifacts in output | JPEG save used | Always save as PNG |
+| Artifacts in output | JPEG save used | Always save as PNG (SVG preferred for scaling) |
 | Blurry output | Image upscaled | Regenerate at target size |
+| Decode failure in real world | Specular reflections | Avoid glossy paper/lamination; use matte finish |
 
 ---
 
@@ -156,10 +159,33 @@ Verdict:      ✅ APPROVED / 🔄 RETRY NEEDED
 
 ---
 
-## References
+## 9. ISO 18004 Scannability Requirements (The 15 Rules)
 
+When validating a QR code, cross-reference these 15 technical requirements:
+
+1. **Sufficient Quiet Zone:** Minimum 4 modules on every side. No graphics/text inside.
+2. **High Contrast:** Dark modules on a light background. Avoid low contrast like yellow on white.
+3. **Adequate Size:** Minimum size ≈ Viewing distance ÷ 10.
+4. **Module Clarity:** Avoid blurry edges, thick shadows, or overlapping decorations. Modules must be distinct.
+5. **Error Correction Level:** Higher EC (like H/30%) allows logos but increases density.
+6. **Data Density:** Denser codes (57x57) require larger print sizes than short URLs (21x21).
+7. **Finder Patterns:** The 3 large corner squares must NEVER be cropped, covered, or distorted.
+8. **Timing Pattern:** The alternating black/white line between finders must remain intact.
+9. **Logo Size:** 10–15% is safe. 15–20% works with EC H. Above 25% is risky.
+10. **Gradients:** Slight linear gradients are OK. Rainbows, transparency, and low contrast are bad.
+11. **Inverted Colors:** White QR on Black background is unreliable. Always prefer Dark on Light.
+12. **Avoid Reflections:** Glossy surfaces obscure modules. Use matte finishes.
+13. **Geometric Accuracy:** Avoid stretching, skewing, or perspective warping.
+14. **Image Resolution:** Export at 300 DPI for print (PNG), or use SVG. Avoid JPEG compression.
+15. **Do Not Remove Modules:** Only modify modules within the EC limit.
+
+---
+
+## 10. References
+
+- **Internal Guide:** Read `qr-code-full-documentation.md` in the project root for full theory on ISO standards, optics, sizes, and module clarity.
 - MCP Tool: `decode_qr_image` — qrcode-enhanced server
 - MCP Tool: `analyze_qr_quality` — qrcode-enhanced server
 - MCP Tool: `validate_qr_content` — qrcode-enhanced server
 - WebAIM Contrast Checker: https://webaim.org/resources/contrastchecker/
-- QR Code spec: ISO/IEC 18004:2015
+- QR Code spec: ISO/IEC 18004:2015 / 2024
