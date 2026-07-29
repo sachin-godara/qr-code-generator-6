@@ -13,9 +13,9 @@ export const EYE_FRAME_STYLES = [
   // Normal
   "square", "rounded", "octagon",
   // Intermediate
-  "leaf", "perfect_leaf_tl", "perfect_leaf_tr", "perfect_leaf_bl", "perfect_leaf_br", "dynamic_swept", "shield", "droplet_tl", "droplet_tr", "droplet_bl", "droplet_br",
+  "leaf", "perfect_leaf_tl", "perfect_leaf_tr", "dynamic_swept", "dynamic_swept_opposite", "shield", "droplet_tl", "droplet_tr", "droplet_bl", "droplet_br",
   // Advanced
-  "deckled",
+  "deckled", "crystal", "topographic",
   "leaf_opposite", "shield_opposite", 
   "left_rounded", "right_rounded", "solid_square_circle_cut", "crystal_frame", 
   "arch_frame", "cross_notch_frame", "pointed_top_frame", "aztec_step_frame", 
@@ -25,7 +25,7 @@ export const EYEBALL_STYLES = [
   // Normal
   "square", "rounded", "circle", "diamond", "hexagon", "octagon",
   // Intermediate
-  "leaf", "perfect_leaf", "dynamic_swept", "shield", "gear", "plus", "rhombus",
+  "leaf", "perfect_leaf", "dynamic_swept", "dynamic_swept_opposite", "shield", "gear", "plus", "rhombus",
   // Advanced
   "deckled",
   "leaf_opposite", "shield_opposite", 

@@ -48,8 +48,68 @@ def generate_deckled_rect(x0, y0, x1, y1, segments, freq1, amp1, freq2, amp2, se
     add_edge(x1, y0, x1, y1, noise_right)
     add_edge(x1, y1, x0, y1, noise_bottom)
     add_edge(x0, y1, x0, y0, noise_left)
-    
     return points
+
+def draw_topographic_frame_func(draw, px, py, s, color):
+    # Iterate over the 7x7 outer bounds plus a margin
+    cx, cy = px + 3.5*s, py + 3.5*s
+    for y in range(int(py - 2*s), int(py + 9*s)):
+        for x in range(int(px - 2*s), int(px + 9*s)):
+            dx_dist = abs(x - cx) - 3.0*s
+            dy_dist = abs(y - cy) - 3.0*s
+            if dx_dist > 0 and dy_dist > 0:
+                d = math.sqrt(dx_dist*dx_dist + dy_dist*dy_dist)
+            elif dx_dist > 0:
+                d = dx_dist
+            elif dy_dist > 0:
+                d = dy_dist
+            else:
+                d = max(dx_dist, dy_dist)
+            
+            # Distance field + Noise
+            noise = math.sin(x*0.1) + math.sin(y*0.1) + math.sin((x+y)*0.07) + math.cos((x-y)*0.05)
+            height = d * 0.5 + noise * 5.0
+            
+            if height % 10 < 3:
+                draw.point((x, y), fill=color)
+
+def draw_crystal_frame_func(draw, px, py, s, color):
+    for _ in range(40):
+        side = random.randint(0, 3)
+        if side == 0:
+            bx, by = random.uniform(px, px+7*s), py
+            dx, dy = random.uniform(-0.5, 0.5), -1
+        elif side == 1:
+            bx, by = px+7*s, random.uniform(py, py+7*s)
+            dx, dy = 1, random.uniform(-0.5, 0.5)
+        elif side == 2:
+            bx, by = random.uniform(px, px+7*s), py+7*s
+            dx, dy = random.uniform(-0.5, 0.5), 1
+        else:
+            bx, by = px, random.uniform(py, py+7*s)
+            dx, dy = -1, random.uniform(-0.5, 0.5)
+            
+        length = random.randint(int(0.5*s), int(2.5*s))
+        pts = [(bx, by)]
+        cx2, cy2 = bx, by
+        for _ in range(length):
+            cx2 += dx * 3 + random.uniform(-2, 2)
+            cy2 += dy * 3 + random.uniform(-2, 2)
+            pts.append((cx2, cy2))
+            
+        draw.line(pts, fill=color, width=2, joint="curve")
+        
+        if random.random() > 0.5:
+            cx3, cy3 = pts[len(pts)//2]
+            dx2 = dx + random.uniform(-1, 1)
+            dy2 = dy + random.uniform(-1, 1)
+            pts2 = [(cx3, cy3)]
+            for _ in range(length//2):
+                cx3 += dx2 * 3
+                cy3 += dy2 * 3
+                pts2.append((cx3, cy3))
+            draw.line(pts2, fill=color, width=2, joint="curve")
+
 from qrcode.image.styledpil import StyledPilImage
 from qrcode.main import ActiveWithNeighbors
 
@@ -1523,6 +1583,31 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
             color_patch = Image.new("RGBA", (7*s, 7*s), eye_rgb + (255,))
             color_patch.putalpha(warped)
             img.paste(color_patch, (px, py), color_patch)
+        elif eye_frame_style == "dynamic_swept_opposite":
+            W = 7 * s * 4
+            mask = Image.new("L", (W, W), 0)
+            mdraw = ImageDraw.Draw(mask)
+            ms = W // 7
+            r_out = 3.0 * ms
+            mdraw.rounded_rectangle([0, 0, W - 1, W - 1], radius=r_out, fill=255)
+            mdraw.rectangle([W - r_out, 0, W - 1, r_out], fill=255)
+            mdraw.rectangle([0, W - r_out, r_out, W - 1], fill=255)
+            
+            r_in = 2.0 * ms
+            mdraw.rounded_rectangle([ms, ms, W - ms - 1, W - ms - 1], radius=r_in, fill=0)
+            mdraw.rectangle([W - ms - r_in, ms, W - ms - 1, ms + r_in], fill=0)
+            mdraw.rectangle([ms, W - ms - r_in, ms + r_in, W - ms - 1], fill=0)
+            
+            k = 1.0 * ms
+            pa = [(0, k), (W, 0), (W - k, W), (0, W)]
+            pb = [(0, 0), (W, 0), (W, W), (0, W)]
+            coeffs = find_coeffs(pa, pb)
+            warped = mask.transform((W, W), Image.PERSPECTIVE, coeffs, Image.BICUBIC)
+            warped = warped.resize((7*s, 7*s), Image.Resampling.LANCZOS)
+            
+            color_patch = Image.new("RGBA", (7*s, 7*s), eye_rgb + (255,))
+            color_patch.putalpha(warped)
+            img.paste(color_patch, (px, py), color_patch)
         elif eye_frame_style == "leaf":
             draw.rounded_rectangle([px, py, px + 7*s - 1, py + 7*s - 1], radius=r, outline=eye_rgb + (255,), width=s)
             make_sharp_corner(draw, px, py, "TL", s, r, eye_rgb + (255,))
@@ -1660,6 +1745,29 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
             draw.polygon([(px, py + 3.5*s), (px + 3.5*s, py), (px + 7*s - 1, py + 3.5*s), (px + 7*s - 1, py + 7*s - 1), (px, py + 7*s - 1)], fill=eye_rgb + (255,))
             draw.polygon([(px + s, py + 4*s), (px + 3.5*s, py + 1.5*s), (px + 6*s - 1, py + 4*s), (px + 6*s - 1, py + 6*s - 1), (px + s, py + 6*s - 1)], fill=bg + (255,))
             draw.rectangle([px + 5*s, py + s, px + 6*s, py + 3*s], fill=eye_rgb + (255,))
+        elif eye_frame_style == "particle_swarm":
+            # Solid standard base
+            draw.rectangle([px, py, px + 7*s - 1, py + 7*s - 1], fill=eye_rgb + (255,))
+            draw.rectangle([px + s, py + s, px + 6*s - 1, py + 6*s - 1], fill=bg + (255,))
+            
+            # Add dust bleeding out and in
+            draw_particle_frame_func(draw, px, py, px + 7*s, py + 7*s, num_particles=3000, color=eye_rgb + (255,))
+            draw_particle_frame_func(draw, px + s, py + s, px + 6*s, py + 6*s, num_particles=1500, color=bg + (255,))
+            
+        elif eye_frame_style == "crystal":
+            # Solid standard base
+            draw.rectangle([px, py, px + 7*s - 1, py + 7*s - 1], fill=eye_rgb + (255,))
+            draw.rectangle([px + s, py + s, px + 6*s - 1, py + 6*s - 1], fill=bg + (255,))
+            
+            draw_crystal_frame_func(draw, px, py, s, eye_rgb + (255,))
+            
+        elif eye_frame_style == "topographic":
+            # Solid standard base
+            draw.rectangle([px, py, px + 7*s - 1, py + 7*s - 1], fill=eye_rgb + (255,))
+            draw.rectangle([px + s, py + s, px + 6*s - 1, py + 6*s - 1], fill=bg + (255,))
+            
+            draw_topographic_frame_func(draw, px, py, s, eye_rgb + (255,))
+            
         elif eye_frame_style == "camera_lens":
             draw.ellipse([px, py, px + 7*s - 1, py + 7*s - 1], fill=eye_rgb + (255,))
             draw.ellipse([px + s, py + s, px + 6*s - 1, py + 6*s - 1], fill=bg + (255,))
@@ -1880,6 +1988,26 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
             
             k = 1.2 * ms
             pa = [(0, 0), (W, k), (W, W), (k, W)]
+            pb = [(0, 0), (W, 0), (W, W), (0, W)]
+            coeffs = find_coeffs(pa, pb)
+            warped = mask.transform((W, W), Image.PERSPECTIVE, coeffs, Image.BICUBIC)
+            warped = warped.resize((3*s, 3*s), Image.Resampling.LANCZOS)
+            
+            color_patch = Image.new("RGBA", (3*s, 3*s), current_eyeball_rgb + (255,))
+            color_patch.putalpha(warped)
+            img.paste(color_patch, (ebx, eby), color_patch)
+        elif current_eyeball_style == "dynamic_swept_opposite":
+            W = 3 * s * 4
+            mask = Image.new("L", (W, W), 0)
+            mdraw = ImageDraw.Draw(mask)
+            ms = W // 3
+            r_eb = 1.5 * ms
+            mdraw.rounded_rectangle([0, 0, W - 1, W - 1], radius=r_eb, fill=255)
+            mdraw.rectangle([W - r_eb, 0, W - 1, r_eb], fill=255)
+            mdraw.rectangle([0, W - r_eb, r_eb, W - 1], fill=255)
+            
+            k = 1.2 * ms
+            pa = [(0, k), (W, 0), (W - k, W), (0, W)]
             pb = [(0, 0), (W, 0), (W, W), (0, W)]
             coeffs = find_coeffs(pa, pb)
             warped = mask.transform((W, W), Image.PERSPECTIVE, coeffs, Image.BICUBIC)
