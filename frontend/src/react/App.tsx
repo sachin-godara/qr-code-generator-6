@@ -122,8 +122,7 @@ function App() {
   };
 
   const [isComparing, setIsComparing] = useState(false);
-  const [isScanning, setIsScanning] = useState(false);
-  const [isFullscreen, setIsFullscreen] = useState(false);
+    const [isFullscreen, setIsFullscreen] = useState(false);
 
   const [downloadFormat, setDownloadFormat] = useState<"PNG" | "SVG" | "PDF">("PNG");
   const [downloadSize, setDownloadSize] = useState<number>(1024);
@@ -524,56 +523,6 @@ function App() {
     } else if (imageUrl) {
       navigator.clipboard.writeText(imageUrl);
       setToast({ message: "Image URL Copied!", icon: "link" });
-    }
-  }
-
-  const handleScanTest = async () => {
-    setIsScanning(true);
-    try {
-      const { contentData, ...rest } = settings;
-      let finalLogo = rest.logo_image;
-      const isPresetLogo = !finalLogo && rest.preset_logo && rest.preset_logo !== "None";
-      if (isPresetLogo) {
-        finalLogo = await getReactLogoPngDataUrl(
-          rest.preset_logo,
-          rest.logo_color_mode || "default",
-          rest.logo_custom_color || "#000000",
-          rest.dots_color || "#000000",
-          rest.logo_icon_style || "badge",
-          rest.logo_card_shape || "Rounded Square"
-        );
-      }
-      const color = rest.logo_color_mode === "custom"
-        ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#000000")
-        : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
-
-      const payload = {
-        ...rest,
-        data: contentData,
-        logo_image: finalLogo,
-        preset_logo: isPresetLogo ? "None" : rest.preset_logo,
-        logo_card_shape: rest.logo_card_shape,
-        preset_logo_color: color,
-        box_size: 10
-      };
-
-      const res = await fetch("/api/generator/scan-test", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      });
-      if (!res.ok) throw new Error("Scan test failed");
-      const data = await res.json();
-      
-      if (data.scannable) {
-        setToast({ message: `Scannable! Score: ${data.readability_score}%`, icon: "check_circle" });
-      } else {
-        setToast({ message: "Unreadable! Try changing styles.", icon: "error" });
-      }
-    } catch (e) {
-      setToast({ message: "Error during scan test", icon: "error" });
-    } finally {
-      setIsScanning(false);
     }
   }
 
@@ -2900,12 +2849,7 @@ function App() {
                             <span className="material-symbols-outlined animate-spin text-primary text-3xl relative z-10">autorenew</span>
                           </div>
                         )}
-                        {isScanning && (
-                          <div className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none">
-                            <div className="w-full h-1 bg-green-500 absolute top-0 animate-bounce shadow-[0_0_12px_rgba(34,197,94,1)]"></div>
-                            <div className="absolute inset-0 bg-green-500/15 animate-pulse"></div>
-                          </div>
-                        )}
+                        
                       </div>
                     )}
                   </div>
@@ -2932,13 +2876,7 @@ function App() {
                     <div className="w-[1px] h-5 bg-outline-variant/50 mx-1"></div>
                     
                     <div className="flex items-center gap-1">
-                      <button
-                        onClick={handleScanTest}
-                        className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 ${isScanning ? 'bg-white shadow-sm text-primary' : 'text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface'}`}
-                        title="Scan Test"
-                      >
-                        <span className="material-symbols-outlined text-[18px]">qr_code_scanner</span>
-                      </button>
+                      
                       <button
                         onClick={handleFullscreen}
                         className="w-9 h-9 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all duration-200"
@@ -3013,10 +2951,7 @@ function App() {
                         <span className="material-symbols-outlined text-[18px]">fullscreen</span>
                         <span className="hidden sm:inline text-xs">Expand</span>
                       </button>
-                      <button onClick={handleScanTest} className="p-2 bg-primary/10 hover:bg-primary/20 transition-colors text-primary rounded-xl border border-primary/20 flex items-center justify-center text-xs font-bold gap-1 min-w-[36px] min-h-[36px] touch-press" title="Scan Test">
-                        <span className="material-symbols-outlined text-[18px]">qr_code_scanner</span>
-                        <span className="hidden sm:inline text-xs">Test</span>
-                      </button>
+                      
                     </div>
                   </div>
 
@@ -3192,10 +3127,7 @@ function App() {
               <span className="material-symbols-outlined text-sm">add</span>
             </button>
             <div className="w-px h-7 bg-outline-variant/60 my-1 mx-0.5"></div>
-            <button onClick={handleScanTest} className={`h-10 px-3 flex items-center justify-center gap-1.5 transition-colors rounded-xl duration-200 text-xs font-bold touch-press ${isScanning ? 'bg-primary text-white shadow-md' : 'hover:bg-black/5 text-on-surface'}`} title="Scan Test">
-              <span className="material-symbols-outlined text-[18px]">qr_code_scanner</span>
-              <span className="hidden sm:inline">Test</span>
-            </button>
+            
             <button onClick={() => setIsComparing(!isComparing)} className={`h-10 px-3 flex items-center justify-center gap-1.5 transition-colors rounded-xl duration-200 text-xs font-bold touch-press ${isComparing ? 'bg-primary text-white shadow-md' : 'hover:bg-black/5 text-on-surface'}`} title="Compare Raw">
               <span className="material-symbols-outlined text-[18px]">compare</span>
               <span className="hidden sm:inline">Compare</span>

@@ -3,9 +3,6 @@ import base64
 from PIL import Image, ImageDraw, ImageFilter
 from qr_engine import generate_styled_qr, generate_svg_qr, hex_to_rgb
 from frame_engine import apply_layout_frame, apply_text_frame
-import cv2
-import numpy as np
-from pyzbar.pyzbar import decode
 
 def apply_canvas_effects(img: Image.Image, params: dict) -> Image.Image:
     canvas_radius = params.get("canvas_radius", 0)
@@ -300,72 +297,3 @@ def get_text_frame_preview(text_style: str) -> bytes:
     png_io = generate_qr_image("PREVIEW", params)
     return png_io.getvalue()
 
-def analyze_qr_scannability(data: str, params: dict) -> dict:
-    """
-    Generates a QR code from the data and params, and calculates its readability score.
-    Returns:
-        {"scannable": bool, "readability_score": int, "decoded_data": str, "error": str}
-    """
-    try:
-        # Generate the image in memory
-        png_io = generate_qr_image(data, params)
-        img_bytes = png_io.getvalue()
-        
-        # Convert bytes to cv2 image
-        nparr = np.frombuffer(img_bytes, np.uint8)
-        img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-        
-        # 1. Base decode
-        base_decoded = decode(img)
-        if not base_decoded:
-            return {
-                "scannable": False,
-                "readability_score": 0,
-                "decoded_data": None,
-                "error": "The generated QR code is unreadable by standard scanners. Try changing the dots style, eye style, or increasing the error correction level."
-            }
-            
-        decoded_data = base_decoded[0].data.decode('utf-8')
-        
-        # Check if the decoded data matches the input data
-        # Note: sometimes they don't exactly match if data is binary or URL encoded, 
-        # but usually they do. We'll just return it.
-        
-        score = 100
-        
-        # Test resilience by blurring
-        for k in [3, 5, 7, 9, 11, 15, 19]:
-            blurred = cv2.GaussianBlur(img, (k, k), 0)
-            if not decode(blurred):
-                score -= 10
-                break
-                
-        # Test resilience by shrinking
-        for scale in [0.8, 0.6, 0.4, 0.3, 0.2]:
-            new_w, new_h = max(1, int(img.shape[1] * scale)), max(1, int(img.shape[0] * scale))
-            shrunk = cv2.resize(img, (new_w, new_h))
-            if not decode(shrunk):
-                score -= 10
-                break
-                
-        # Test contrast resilience (convert to grayscale and reduce contrast)
-        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        for alpha in [0.8, 0.6, 0.4, 0.2]:
-            low_contrast = cv2.convertScaleAbs(gray, alpha=alpha, beta=128*(1-alpha))
-            if not decode(low_contrast):
-                score -= 10
-                break
-                
-        return {
-            "scannable": True,
-            "readability_score": max(10, score),
-            "decoded_data": decoded_data,
-            "error": None
-        }
-    except Exception as e:
-        return {
-            "scannable": False,
-            "readability_score": 0,
-            "decoded_data": None,
-            "error": f"An error occurred during scan test: {str(e)}"
-        }

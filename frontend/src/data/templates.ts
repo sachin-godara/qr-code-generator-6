@@ -75,31 +75,6 @@ export const PRESET_TEMPLATES: Template[] = [
     }
   },
   {
-    "name": "VIP Event Access",
-    "category": "Events",
-    "description": "Neon ticket-stub aesthetic for clubs, concerts, and exclusive events.",
-    "settings": {
-      "dots_style": "arrow",
-      "eye_frame_style": "camera_lens",
-      "eyeball_style": "circle",
-      "dots_color": "#ff00ff",
-      "dots_color_end": "#00ffff",
-      "gradient_type": "Diagonal (TL to BR)",
-      "eye_color": "#ff00ff",
-      "eyeball_color": "#00ffff",
-      "bg_color": "#0a0a0a",
-      "frame_style": "none",
-      "text_style": "ticket_stub",
-      "frame_text": "VIP PASS",
-      "frame_color": "#0a0a0a",
-      "frame_text_color": "#00ffff",
-      "effect_shadow": "none",
-      "canvas_border_width": 4,
-      "canvas_border_color": "#ff00ff",
-      "font_name": "Outfit (Modern)"
-    }
-  },
-  {
     "name": "Tech App Download",
     "category": "Marketing",
     "description": "A sleek phone frame design mimicking an app store download button.",
@@ -1297,27 +1272,6 @@ export const PRESET_TEMPLATES: Template[] = [
     }
 },
   {
-    "name": "Luxury Property",
-    "category": "Business",
-    "description": "Gold on navy with a house frame for luxury real estate.",
-    "settings": {
-        "dots_style": "sleek_dash",
-        "eye_frame_style": "pointed_top_frame",
-        "eyeball_style": "plus",
-        "dots_color": "#D4AF37",
-        "dots_color_end": "#F9A825",
-        "gradient_type": "Diagonal (TL to BR)",
-        "eye_color": "#D4AF37",
-        "eyeball_color": "#D4AF37",
-        "bg_color": "#001F3F",
-        "frame_style": "none",
-        "text_style": "bottom_tab",
-        "frame_text": "VIEW LISTING",
-        "frame_color": "#D4AF37",
-        "frame_text_color": "#001F3F"
-    }
-},
-  {
     "name": "Agent vCard",
     "category": "Business",
     "description": "Professional blue with modern polaroid frame for agent contacts.",
@@ -1357,27 +1311,6 @@ export const PRESET_TEMPLATES: Template[] = [
         "frame_text": "START TOUR",
         "frame_color": "#2E7D32",
         "frame_text_color": "#ffffff"
-    }
-},
-  {
-    "name": "Concert VIP Pass",
-    "category": "Events",
-    "description": "Neon colors with film strip frame for VIP event access.",
-    "settings": {
-        "dots_style": "sleek_dash",
-        "eye_frame_style": "cross_notch_frame",
-        "eyeball_style": "plus",
-        "dots_color": "#00E5FF",
-        "dots_color_end": "#D500F9",
-        "gradient_type": "Diagonal (TL to BR)",
-        "eye_color": "#00E5FF",
-        "eyeball_color": "#D500F9",
-        "bg_color": "#121212",
-        "frame_style": "film_strip",
-        "text_style": "none",
-        "frame_text": "VIP ACCESS",
-        "frame_color": "#121212",
-        "frame_text_color": "#00E5FF"
     }
 },
   {

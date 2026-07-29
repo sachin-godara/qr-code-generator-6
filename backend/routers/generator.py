@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, BackgroundTasks, Form, UploadFile,
 from fastapi.responses import StreamingResponse, Response
 from pydantic import BaseModel
 from typing import Optional, Any, List, Dict
-from services.qr_service import generate_qr_image, generate_qr_svg, generate_qr_pdf, get_frame_preview, get_text_frame_preview, analyze_qr_scannability
+from services.qr_service import generate_qr_image, generate_qr_svg, generate_qr_pdf, get_frame_preview, get_text_frame_preview
 import json
 import zipfile
 import io
@@ -76,14 +76,6 @@ async def generate_qr(request: QRRequest):
     try:
         img_bytes = generate_qr_image(request.data, request.model_dump())
         return StreamingResponse(img_bytes, media_type="image/png")
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-@router.post("/scan-test")
-async def scan_test_qr(request: QRRequest):
-    try:
-        result = analyze_qr_scannability(request.data, request.model_dump())
-        return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
