@@ -176,6 +176,11 @@ function App() {
   const [downloadSuccess, setDownloadSuccess] = useState<boolean>(false);
   const [isCopying, setIsCopying] = useState<boolean>(false);
   const [toast, setToast] = useState<{ message: string, icon: string } | null>(null);
+  
+  const [previewBg, setPreviewBg] = useState<"white" | "light" | "dark" | "transparent">("white");
+  const [touchDistance, setTouchDistance] = useState<number | null>(null);
+  const [initialZoom, setInitialZoom] = useState<number>(1);
+  const [lastTap, setLastTap] = useState<number>(0);
 
   // Auto-dismiss toast
   useEffect(() => {
@@ -3034,16 +3039,35 @@ function App() {
                   {/* QR Preview Surface */}
                   <div
                     id="qr-preview-container"
-                    className="aspect-square flex items-center justify-center relative overflow-hidden group p-8 rounded-2xl surface-ring-vercel"
-                    style={{
+                    className={`aspect-square flex items-center justify-center relative overflow-hidden group p-8 rounded-2xl surface-ring-vercel transition-colors duration-300 ${previewBg === 'dark' ? 'bg-[#18181b]' : previewBg === 'transparent' ? 'bg-[#f3f4f6]' : previewBg === 'white' ? 'bg-[#f4f4f5]' : 'bg-[#f9fafb]'}`}
+                    style={previewBg === 'transparent' ? {
+                      backgroundImage: "linear-gradient(45deg, #e5e7eb 25%, transparent 25%), linear-gradient(-45deg, #e5e7eb 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e5e7eb 75%), linear-gradient(-45deg, transparent 75%, #e5e7eb 75%)",
+                      backgroundSize: "16px 16px",
+                      backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0px",
+                    } : previewBg === 'light' ? {
                       backgroundImage: "linear-gradient(45deg, #f3f4f6 25%, transparent 25%), linear-gradient(-45deg, #f3f4f6 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f3f4f6 75%), linear-gradient(-45deg, transparent 75%, #f3f4f6 75%)",
                       backgroundSize: "16px 16px",
-                  backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0px",
-                      backgroundColor: "#f9fafb"
-                    }}
+                      backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0px",
+                    } : {}}
                   >
+                    {/* Background Tester Toggle */}
+                    <div className={`absolute top-3 left-3 z-30 flex backdrop-blur-md rounded-full p-1 shadow-sm border gap-0.5 ${previewBg === 'dark' ? 'bg-[#27272a]/90 border-white/10' : 'bg-white/90 border-outline-variant/30'}`}>
+                      <button onClick={() => setPreviewBg("white")} className={`w-7 h-7 rounded-full flex items-center justify-center transition-colors ${previewBg === "white" ? "bg-white shadow-sm ring-1 ring-outline-variant/30" : "hover:bg-black/5 dark:hover:bg-white/10"}`} title="Solid Light Background">
+                        <span className="w-4 h-4 rounded-full bg-[#f4f4f5] border border-outline-variant/60 shadow-inner"></span>
+                      </button>
+                      <button onClick={() => setPreviewBg("light")} className={`w-7 h-7 rounded-full flex items-center justify-center transition-colors ${previewBg === "light" ? "bg-white shadow-sm ring-1 ring-outline-variant/30" : "hover:bg-black/5 dark:hover:bg-white/10"}`} title="Light Background">
+                        <span className="w-4 h-4 rounded-full bg-[#f9fafb] border border-outline-variant/60 shadow-inner"></span>
+                      </button>
+                      <button onClick={() => setPreviewBg("dark")} className={`w-7 h-7 rounded-full flex items-center justify-center transition-colors ${previewBg === "dark" ? "bg-[#3f3f46] shadow-sm ring-1 ring-black/50" : "hover:bg-black/5 dark:hover:bg-white/10"}`} title="Dark Background">
+                        <span className="w-4 h-4 rounded-full bg-[#18181b] border border-black shadow-inner"></span>
+                      </button>
+                      <button onClick={() => setPreviewBg("transparent")} className={`w-7 h-7 rounded-full flex items-center justify-center transition-colors ${previewBg === "transparent" ? "bg-white shadow-sm ring-1 ring-outline-variant/30" : "hover:bg-black/5 dark:hover:bg-white/10"}`} title="Transparent (Checkerboard) Background">
+                        <span className="w-4 h-4 rounded-full border border-outline-variant/60 shadow-inner" style={{ backgroundImage: "linear-gradient(45deg, #e5e7eb 25%, transparent 25%), linear-gradient(-45deg, #e5e7eb 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e5e7eb 75%), linear-gradient(-45deg, transparent 75%, #e5e7eb 75%)", backgroundSize: "8px 8px", backgroundPosition: "0 0, 0 4px, 4px -4px, -4px 0px" }}></span>
+                      </button>
+                    </div>
+
                     <div className="absolute inset-0 canvas-aura pointer-events-none"></div>
-                    <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "radial-gradient(#18181b 1px, transparent 1px)", backgroundSize: "20px 20px" }}></div>
+                    <div className={`absolute inset-0 opacity-5 ${previewBg === 'dark' ? 'invert' : ''} ${previewBg === 'white' ? 'hidden' : ''}`} style={{ backgroundImage: "radial-gradient(#18181b 1px, transparent 1px)", backgroundSize: "20px 20px" }}></div>
 
                     {isError ? (
                       <div className="relative z-10 text-error p-4 bg-error-container text-on-error-container rounded-xl text-center text-xs">
@@ -3314,10 +3338,45 @@ function App() {
       {/* ── IN-APP FULLSCREEN / EXPANDED PREVIEW MODAL LIGHTBOX ── */}
       {isFullscreen && (
         <div className="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md flex flex-col items-center justify-center p-4 sm:p-8 animate-fadeIn" onClick={() => setIsFullscreen(false)}>
-          <div className="relative bg-white rounded-3xl p-8 sm:p-12 max-w-[90vw] max-h-[80vh] flex items-center justify-center shadow-2xl border border-white/20 overflow-hidden" onClick={(e) => e.stopPropagation()} onWheel={(e) => {
-            const delta = e.deltaY * -0.003;
-            setZoomLevel(prev => Math.min(5, Math.max(0.5, prev + delta)));
-          }}>
+          <div 
+            className="relative bg-white rounded-3xl p-8 sm:p-12 max-w-[90vw] max-h-[80vh] flex items-center justify-center shadow-2xl border border-white/20 overflow-hidden touch-none" 
+            onClick={(e) => e.stopPropagation()} 
+            onWheel={(e) => {
+              const delta = e.deltaY * -0.003;
+              setZoomLevel(prev => Math.min(5, Math.max(0.5, prev + delta)));
+            }}
+            onDoubleClick={() => setZoomLevel(1)}
+            onTouchStart={(e) => {
+              if (e.touches.length === 2) {
+                const dist = Math.hypot(
+                  e.touches[0].clientX - e.touches[1].clientX,
+                  e.touches[0].clientY - e.touches[1].clientY
+                );
+                setTouchDistance(dist);
+                setInitialZoom(zoomLevel);
+              }
+            }}
+            onTouchMove={(e) => {
+              if (e.touches.length === 2 && touchDistance !== null) {
+                const currentDist = Math.hypot(
+                  e.touches[0].clientX - e.touches[1].clientX,
+                  e.touches[0].clientY - e.touches[1].clientY
+                );
+                const scale = currentDist / touchDistance;
+                setZoomLevel(Math.min(5, Math.max(0.5, initialZoom * scale)));
+              }
+            }}
+            onTouchEnd={(e) => {
+              setTouchDistance(null);
+              if (e.changedTouches.length === 1) {
+                const now = Date.now();
+                if (now - lastTap < 300) {
+                  setZoomLevel(1);
+                }
+                setLastTap(now);
+              }
+            }}
+          >
             <button onClick={() => setIsFullscreen(false)} className="absolute top-4 right-4 z-50 w-10 h-10 bg-surface hover:bg-surface-container-high rounded-full flex items-center justify-center text-on-surface transition-colors shadow-sm touch-press" title="Close">
               <span className="material-symbols-outlined text-xl">close</span>
             </button>
