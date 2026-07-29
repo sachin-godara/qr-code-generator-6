@@ -13,7 +13,7 @@ export const EYE_FRAME_STYLES = [
   // Normal
   "square", "rounded", "octagon",
   // Intermediate
-  "leaf", "perfect_leaf", "dynamic_swept", "shield", "droplet_tl", "droplet_tr", "droplet_bl",
+  "leaf", "perfect_leaf_tl", "perfect_leaf_tr", "perfect_leaf_bl", "perfect_leaf_br", "dynamic_swept", "shield", "droplet_tl", "droplet_tr", "droplet_bl", "droplet_br",
   // Advanced
   "leaf_opposite", "shield_opposite", 
   "left_rounded", "right_rounded", "solid_square_circle_cut", "crystal_frame", 
@@ -27,7 +27,7 @@ export const EYEBALL_STYLES = [
   "leaf", "perfect_leaf", "dynamic_swept", "shield", "gear", "plus", "rhombus",
   // Advanced
   "leaf_opposite", "shield_opposite", 
-  "left_rounded", "right_rounded", "droplet_tl", "droplet_tr", "droplet_bl", 
+  "left_rounded", "right_rounded", "droplet_tl", "droplet_tr", "droplet_bl", "droplet_br", 
   "sheared", "flower_cut", "clover", "heart", "pinched_square"
 ];
 export const FRAME_STYLES = ['none', 'border', 'brackets', 'chalkboard', 'circle', 'circle_sprinkles', 'circle_sunburst', 'dotted_border', 'double_border', 'hexagon', 'phone_frame', 'polaroid_frame', 'scalloped_edge', 'art_deco', 'film_strip', 'ticket_cutout', 'drop_shadow_card', 'coupon_dashed', 'hanging_sign', 'monitor_screen', 'storefront_awning', 'modern_polaroid'];

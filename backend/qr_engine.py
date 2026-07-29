@@ -1418,7 +1418,7 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
             draw.ellipse([cx - 2*s, cy - 2*s, cx + 2*s, cy + 2*s], fill=bg + (255,))
         elif eye_frame_style == "circle":
             draw.ellipse([px, py, px + 7*s - 1, py + 7*s - 1], outline=eye_rgb + (255,), width=s)
-        elif eye_frame_style == "perfect_leaf":
+        elif eye_frame_style in ("perfect_leaf", "perfect_leaf_tl", "perfect_leaf_br"):
             r_out = 3.0 * s
             draw.rounded_rectangle([px, py, px + 7*s - 1, py + 7*s - 1], radius=r_out, fill=eye_rgb + (255,))
             draw.rectangle([px, py, px + r_out, py + r_out], fill=eye_rgb + (255,))
@@ -1428,6 +1428,16 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
             draw.rounded_rectangle([px + s, py + s, px + 6*s - 1, py + 6*s - 1], radius=r_in, fill=bg + (255,))
             draw.rectangle([px + s, py + s, px + s + r_in, py + s + r_in], fill=bg + (255,))
             draw.rectangle([px + 6*s - r_in, py + 6*s - r_in, px + 6*s - 1, py + 6*s - 1], fill=bg + (255,))
+        elif eye_frame_style in ("perfect_leaf_tr", "perfect_leaf_bl"):
+            r_out = 3.0 * s
+            draw.rounded_rectangle([px, py, px + 7*s - 1, py + 7*s - 1], radius=r_out, fill=eye_rgb + (255,))
+            draw.rectangle([px + 7*s - r_out, py, px + 7*s - 1, py + r_out], fill=eye_rgb + (255,))
+            draw.rectangle([px, py + 7*s - r_out, px + r_out, py + 7*s - 1], fill=eye_rgb + (255,))
+            
+            r_in = 2.0 * s
+            draw.rounded_rectangle([px + s, py + s, px + 6*s - 1, py + 6*s - 1], radius=r_in, fill=bg + (255,))
+            draw.rectangle([px + 6*s - r_in, py + s, px + 6*s - 1, py + s + r_in], fill=bg + (255,))
+            draw.rectangle([px + s, py + 6*s - r_in, px + s + r_in, py + 6*s - 1], fill=bg + (255,))
         elif eye_frame_style == "dynamic_swept":
             W = 7 * s * 4
             mask = Image.new("L", (W, W), 0)
@@ -1473,6 +1483,9 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
         elif eye_frame_style == "droplet_bl":
             draw.rounded_rectangle([px, py, px + 7*s - 1, py + 7*s - 1], radius=r, outline=eye_rgb + (255,), width=s)
             make_sharp_corner(draw, px, py, "BL", s, r, eye_rgb + (255,))
+        elif eye_frame_style == "droplet_br":
+            draw.rounded_rectangle([px, py, px + 7*s - 1, py + 7*s - 1], radius=r, outline=eye_rgb + (255,), width=s)
+            make_sharp_corner(draw, px, py, "BR", s, r, eye_rgb + (255,))
         elif eye_frame_style == "shield":
             draw.rounded_rectangle([px, py, px + 7*s - 1, py + 7*s - 1], radius=r, outline=eye_rgb + (255,), width=s)
             make_sharp_corner(draw, px, py, "TL", s, r, eye_rgb + (255,))
@@ -1780,11 +1793,16 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
                 (x1, y2 - d), (x1, y1 + d)
             ]
             draw.polygon(p_out, fill=current_eyeball_rgb + (255,))
-        elif current_eyeball_style == "perfect_leaf":
+        elif current_eyeball_style in ("perfect_leaf", "perfect_leaf_tl", "perfect_leaf_br"):
             r_eb = 1.5 * s
             draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r_eb, fill=current_eyeball_rgb + (255,))
             draw.rectangle([ebx, eby, ebx + r_eb, eby + r_eb], fill=current_eyeball_rgb + (255,))
             draw.rectangle([ebx + 3*s - r_eb, eby + 3*s - r_eb, ebx + 3*s - 1, eby + 3*s - 1], fill=current_eyeball_rgb + (255,))
+        elif current_eyeball_style in ("perfect_leaf_tr", "perfect_leaf_bl"):
+            r_eb = 1.5 * s
+            draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r_eb, fill=current_eyeball_rgb + (255,))
+            draw.rectangle([ebx + 3*s - r_eb, eby, ebx + 3*s - 1, eby + r_eb], fill=current_eyeball_rgb + (255,))
+            draw.rectangle([ebx, eby + 3*s - r_eb, ebx + r_eb, eby + 3*s - 1], fill=current_eyeball_rgb + (255,))
         elif current_eyeball_style == "dynamic_swept":
             W = 3 * s * 4
             mask = Image.new("L", (W, W), 0)
@@ -1825,6 +1843,9 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
         elif current_eyeball_style == "droplet_bl":
             draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=current_eyeball_rgb + (255,))
             make_eyeball_sharp_corner(draw, ebx, eby, "BL", s, r2, current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "droplet_br":
+            draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=current_eyeball_rgb + (255,))
+            make_eyeball_sharp_corner(draw, ebx, eby, "BR", s, r2, current_eyeball_rgb + (255,))
         elif current_eyeball_style == "shield":
             draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=current_eyeball_rgb + (255,))
             make_eyeball_sharp_corner(draw, ebx, eby, "TL", s, r2, current_eyeball_rgb + (255,))
