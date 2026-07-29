@@ -131,7 +131,7 @@ function App() {
   const [batchSize, setBatchSize] = useState<string>("1024")
 
   // Mobile UI state
-  const [mobileMainTab, setMobileMainTab] = useState<'content' | 'design'>('content')
+  const [mobileMainTab, setMobileMainTab] = useState<'content' | 'design' | 'download'>('content')
   const [mobileDesignSubTab, setMobileDesignSubTab] = useState<string>('Shape')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [showMiniPreview, setShowMiniPreview] = useState(false)
@@ -2679,7 +2679,7 @@ function App() {
                     type="button"
                     onClick={handleBatchDownload}
                     disabled={isBatchGenerating || !dataColumn}
-                    className="w-full py-4 rounded-xl font-bold flex items-center justify-center gap-2 bg-gradient-to-r from-primary to-primary-hover text-white shadow-md hover:shadow-lg disabled:opacity-50 transition-all text-base"
+                    className="hidden lg:flex w-full py-4 rounded-xl font-bold items-center justify-center gap-2 bg-gradient-to-r from-primary to-primary-hover text-white shadow-md hover:shadow-lg disabled:opacity-50 transition-all text-base"
                   >
                     {isBatchGenerating ? (
                       <><span className="material-symbols-outlined animate-spin text-[24px]">progress_activity</span> Generating Batch Archive...</>
@@ -2789,7 +2789,7 @@ function App() {
                 message="You have modified scannability settings from their defaults. Please test the QR scan first to ensure it scans reliably."
               />
             </div>
-            <div className="border-t border-outline-variant pt-6 flex flex-col sm:flex-row gap-4">
+            <div className="hidden lg:flex border-t border-outline-variant pt-6 flex-col sm:flex-row gap-4">
               <button
                 onClick={handleDownloadCustom}
                 disabled={isLoading || isError || isDownloading || isCopying}
@@ -3217,9 +3217,9 @@ function App() {
                     </div>
                   </div>
 
-                  {/* Slim Main Segment Tabs: Content | Design & Undo/Redo/Reset */}
-                  <div className="px-3 py-1.5 border-b border-outline-variant/20 flex items-center justify-between gap-2.5">
-                    <div className="bg-surface border border-outline-variant/70 rounded-xl p-1 grid grid-cols-2 gap-1 flex-1 max-w-[200px] sm:max-w-[240px]">
+                  {/* Slim Main Segment Tabs: Content | Design | Download & Undo/Redo/Reset */}
+                  <div className="px-3 py-1.5 border-b border-outline-variant/20 flex items-center justify-between gap-2.5 overflow-x-auto custom-scrollbar">
+                    <div className="bg-surface border border-outline-variant/70 rounded-xl p-1 grid grid-cols-3 gap-1 flex-1 min-w-[240px] max-w-[300px] sm:max-w-[340px] shrink-0">
                       <button
                         onClick={() => setMobileMainTab('content')}
                         className={`flex items-center justify-center py-1.5 px-3 rounded-lg font-bold transition-all text-xs sm:text-[13px] touch-press ${mobileMainTab === 'content'
@@ -3238,6 +3238,16 @@ function App() {
                           }`}
                       >
                         Design
+                      </button>
+
+                      <button
+                        onClick={() => setMobileMainTab('download')}
+                        className={`flex items-center justify-center py-1.5 px-3 rounded-lg font-bold transition-all text-xs sm:text-[13px] touch-press ${mobileMainTab === 'download'
+                            ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20'
+                            : 'text-on-surface-variant hover:text-on-surface'
+                          }`}
+                      >
+                        Download
                       </button>
                     </div>
 
@@ -3301,9 +3311,11 @@ function App() {
 
                 {/* ── PANEL CONTENT (Single native scroll flow without double scrollbars!) ── */}
                 <div className="p-4 sm:p-5 bg-white overflow-hidden">
-                  <div className="panel-enter" key={mobileMainTab === 'content' ? 'content' : mobileDesignSubTab}>
+                  <div className="panel-enter" key={mobileMainTab === 'content' ? 'content' : mobileMainTab === 'download' ? 'download' : mobileDesignSubTab}>
                     {mobileMainTab === 'content'
                       ? renderPanelContent('Content')
+                      : mobileMainTab === 'download'
+                      ? renderPanelContent('Download')
                       : renderPanelContent(mobileDesignSubTab === 'Shape' ? 'Design' : mobileDesignSubTab)
                     }
                   </div>
@@ -3319,12 +3331,19 @@ function App() {
                   </div>
                   <div className="flex gap-3 w-full">
                     <button
-                      onClick={handleDownloadPNG}
-                      disabled={isLoading || isError || isDownloading}
+                      onClick={settings.contentType === 'batch' ? handleBatchDownload : handleDownloadCustom}
+                      disabled={isLoading || isError || isDownloading || (settings.contentType === 'batch' && isBatchGenerating)}
                       className="flex-1 py-3.5 px-4 bg-primary text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-primary/25 btn-spring min-h-[48px]"
                     >
-                      <span className="material-symbols-outlined text-[20px]">download</span>
-                      Download {downloadFormat}
+                      <span className={`material-symbols-outlined text-[20px] ${isDownloading || isBatchGenerating ? 'animate-spin' : ''}`}>
+                        {isDownloading || isBatchGenerating ? 'progress_activity' : 'download'}
+                      </span>
+                      {isDownloading || isBatchGenerating 
+                        ? 'Generating...' 
+                        : settings.contentType === 'batch' 
+                          ? 'Download ZIP' 
+                          : `Download ${downloadFormat}`
+                      }
                     </button>
                     <button
                       onClick={handleCopyToClipboard}
