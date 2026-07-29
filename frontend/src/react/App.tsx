@@ -1,7 +1,7 @@
 import { Slider } from "@/components/ui/Slider"
 import { useState, useEffect, useRef, useCallback } from "react"
 import { useQRStore } from "@/store/useQRStore"
-import { useQuery } from "@tanstack/react-query"
+import { useQuery, keepPreviousData } from "@tanstack/react-query"
 import { type ContentType, type QRSettings } from "@/types/qr"
 import { PRESET_TEMPLATES } from "@/data/templates"
 import { DOT_STYLES, EYE_FRAME_STYLES, EYEBALL_STYLES, FRAME_STYLES, TEXT_STYLES } from "@/data/options"
@@ -227,6 +227,7 @@ function App() {
     queryKey: ["qr-code", settings],
     queryFn: () => fetchQRCode(settings),
     staleTime: 1000 * 60, // 1 minute
+    placeholderData: keepPreviousData,
   })
   const imageUrl = qrData?.url
 
@@ -3099,7 +3100,7 @@ function App() {
                       <img
                         src={imageUrl || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/%3E"}
                         alt="QR Code Preview"
-                        className={`w-full max-w-[240px] max-h-[240px] object-contain transition-all duration-350 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isComparing ? 'grayscale contrast-125 opacity-90' : ''} ${isError ? 'opacity-40 grayscale' : ''}`}
+                        className={`w-full aspect-square max-w-[240px] max-h-[240px] object-contain transition-all duration-350 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isComparing ? 'grayscale contrast-125 opacity-90' : ''} ${isError ? 'opacity-40 grayscale' : ''}`}
                         style={settings.bg_transparent ? {
                           backgroundImage: "linear-gradient(45deg, #e5e7eb 25%, transparent 25%), linear-gradient(-45deg, #e5e7eb 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e5e7eb 75%), linear-gradient(-45deg, transparent 75%, #e5e7eb 75%)",
                           backgroundSize: "16px 16px",
