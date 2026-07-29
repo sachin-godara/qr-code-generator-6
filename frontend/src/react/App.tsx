@@ -527,12 +527,54 @@ function App() {
     }
   }
 
-  const handleScanTest = () => {
+  const handleScanTest = async () => {
     setIsScanning(true);
-    setTimeout(() => {
+    try {
+      const { contentData, ...rest } = settings;
+      let finalLogo = rest.logo_image;
+      const isPresetLogo = !finalLogo && rest.preset_logo && rest.preset_logo !== "None";
+      if (isPresetLogo) {
+        finalLogo = await getReactLogoPngDataUrl(
+          rest.preset_logo,
+          rest.logo_color_mode || "default",
+          rest.logo_custom_color || "#000000",
+          rest.dots_color || "#000000",
+          rest.logo_icon_style || "badge",
+          rest.logo_card_shape || "Rounded Square"
+        );
+      }
+      const color = rest.logo_color_mode === "custom"
+        ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#000000")
+        : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
+
+      const payload = {
+        ...rest,
+        data: contentData,
+        logo_image: finalLogo,
+        preset_logo: isPresetLogo ? "None" : rest.preset_logo,
+        logo_card_shape: rest.logo_card_shape,
+        preset_logo_color: color,
+        box_size: 10
+      };
+
+      const res = await fetch("/api/generator/scan-test", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      if (!res.ok) throw new Error("Scan test failed");
+      const data = await res.json();
+      
+      if (data.scannable) {
+        setToast({ message: `Scannable! Score: ${data.readability_score}%`, icon: "check_circle" });
+      } else {
+        setToast({ message: "Unreadable! Try changing styles.", icon: "error" });
+      }
+    } catch (e) {
+      setToast({ message: "Error during scan test", icon: "error" });
+    } finally {
       setIsScanning(false);
-      setToast({ message: `Scan OK: ${settings.contentType.toUpperCase()}`, icon: "check_circle" });
-    }, 1500);
+    }
   }
 
   // Unified Renderer for tab contents (renders either as active desktop panel or accordion content)
