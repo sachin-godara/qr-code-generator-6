@@ -40,7 +40,7 @@ export interface QRSettings {
   
   // Logo
   logo_image?: string | null;
-  preset_logo: "None" | "Link" | "Location" | "WiFi" | "Vcard" | "Email" | "Scan" | "WhatsApp" | "Instagram" | "Facebook" | "YouTube" | "Phone" | "Coffee" | "Shopping" | "Music" | "Globe" | "Heart" | "Star" | "Calendar" | "Payment" | "Store" | "Chat" | "App" | "Discord" | "Amazon" | "TikTok" | "X" | "LinkedIn" | "Telegram" | "PayPal" | "Spotify" | string;
+  preset_logo: "None" | "Link" | "Location" | "WiFi" | "Vcard" | "Email" | "Scan" | "WhatsApp" | "Instagram" | "Facebook" | "YouTube" | "Phone" | "Coffee" | "Shopping" | "Music" | "Globe" | "Heart" | "Star" | "Calendar" | "Payment" | "Store" | "Chat" | "App" | "Discord" | "Amazon" | "TikTok" | "X" | "LinkedIn" | "Telegram" | "PayPal" | "Spotify" | "PDF" | string;
   preset_logo_color?: string;
   logo_color_mode?: "default" | "custom";
   logo_custom_color?: string;

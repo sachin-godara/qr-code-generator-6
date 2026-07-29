@@ -193,7 +193,19 @@ PRESET_LOGO_BRAND_COLORS = {
     "linkedin": "#0a66c2",
     "telegram": "#24a1de",
     "paypal": "#003087",
-    "spotify": "#1db954"
+    "spotify": "#1db954",
+    "pinterest": "#E60023",
+    "snapchat": "#FFFC00",
+    "maps": "#4285F4",
+    "play": "#3BCCFF",
+    "gmail": "#EA4335",
+    "forms": "#7248B9",
+    "scanme": "#ef4444",
+    "vimeo": "#1AB7EA",
+    "wechat": "#07C160",
+    "yelp": "#FF1A1A",
+    "pdf": "#F40F02",
+    "docs": "#4285F4"
 }
 
 def generate_preset_logo(name, color=(0,0,0)):
