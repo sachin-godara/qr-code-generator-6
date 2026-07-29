@@ -3097,7 +3097,7 @@ function App() {
                       style={{ transform: `scale(${zoomLevel})` }}
                     >
                       <img
-                        src={imageUrl || undefined}
+                        src={imageUrl || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/%3E"}
                         alt="QR Code Preview"
                         className={`w-full max-w-[240px] max-h-[240px] object-contain transition-all duration-350 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isComparing ? 'grayscale contrast-125 opacity-90' : ''} ${isError ? 'opacity-40 grayscale' : ''}`}
                         style={settings.bg_transparent ? {
@@ -3219,7 +3219,7 @@ function App() {
                           </div>
                         )}
                         
-                        <img src={imageUrl || undefined} alt="QR Preview" className={`w-full h-full object-contain ${isError ? 'opacity-40 grayscale' : ''}`} />
+                        <img src={imageUrl || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/%3E"} alt="QR Preview" className={`w-full h-full object-contain ${isError ? 'opacity-40 grayscale' : ''}`} />
                         <div className="absolute inset-0 bg-black/20 opacity-0 group-active:opacity-100 transition-opacity flex items-center justify-center pointer-events-none z-20">
                           <span className="material-symbols-outlined text-white drop-shadow-md text-[20px]">fullscreen</span>
                         </div>
@@ -3469,7 +3469,7 @@ function App() {
 
             <div style={{ transform: `scale(${zoomLevel})` }} className="relative">
               <img
-                src={imageUrl || undefined}
+                src={imageUrl || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/%3E"}
                 alt="Expanded QR Preview"
                 className={`w-64 h-64 sm:w-80 sm:h-80 md:w-[420px] md:h-[420px] object-contain ${isComparing ? 'grayscale contrast-125 opacity-90' : ''} ${isError ? 'opacity-40 grayscale' : ''}`}
                 style={settings.bg_transparent ? {
