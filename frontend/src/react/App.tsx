@@ -153,7 +153,19 @@ function App() {
   };
 
   const [isComparing, setIsComparing] = useState(false);
-    const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  // Prevent body scroll when modal is open
+  useEffect(() => {
+    if (isFullscreen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isFullscreen]);
 
   const [downloadFormat, setDownloadFormat] = useState<"PNG" | "SVG" | "PDF">("PNG");
   const [downloadSize, setDownloadSize] = useState<number>(1024);
@@ -3321,7 +3333,7 @@ function App() {
                 <p className="font-bold">Failed to load preview</p>
               </div>
             ) : (
-              <div className="transition-transform duration-200" style={{ transform: `scale(${zoomLevel})` }}>
+              <div style={{ transform: `scale(${zoomLevel})` }}>
                 <img
                   src={imageUrl}
                   alt="Expanded QR Preview"
