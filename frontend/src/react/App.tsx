@@ -154,6 +154,18 @@ function App() {
 
   const [isComparing, setIsComparing] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isOffline, setIsOffline] = useState(!navigator.onLine);
+
+  useEffect(() => {
+    const handleOnline = () => setIsOffline(false);
+    const handleOffline = () => setIsOffline(true);
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, []);
 
   // Prevent body scroll when modal is open
   useEffect(() => {
@@ -210,7 +222,7 @@ function App() {
   }, [activeTab]);
 
   // Fetch fast light QR preview using react-query
-  const { data: qrData, isLoading, isError } = useQuery({
+  const { data: qrData, isLoading, isError, isFetching } = useQuery({
     queryKey: ["qr-code", settings],
     queryFn: () => fetchQRCode(settings),
     staleTime: 1000 * 60, // 1 minute
@@ -2943,6 +2955,12 @@ function App() {
       </nav>
 
       {/* Main Content Area */}
+      {isOffline && (
+        <div className="bg-error text-error-on-container px-4 py-2 text-xs sm:text-sm font-medium flex items-center justify-center gap-2 shadow-md z-40 animate-in slide-in-from-top-2 duration-300">
+          <span className="material-symbols-outlined text-[18px]">wifi_off</span>
+          You are offline. QR code updates are paused until connection is restored.
+        </div>
+      )}
       <div className="flex flex-1 w-full relative">
 
         {/* Desktop Sidebar */}
@@ -3073,39 +3091,43 @@ function App() {
                     <div className="absolute inset-0 canvas-aura pointer-events-none"></div>
                     <div className={`absolute inset-0 opacity-5 ${previewBg === 'dark' ? 'invert' : ''} ${previewBg === 'white' ? 'hidden' : ''}`} style={{ backgroundImage: "radial-gradient(#18181b 1px, transparent 1px)", backgroundSize: "20px 20px" }}></div>
 
-                    {isError ? (
-                      <div className="relative z-10 text-error p-4 bg-error-container text-on-error-container rounded-xl text-center text-xs">
-                        <span className="material-symbols-outlined text-2xl mb-1">error</span>
-                        <p className="font-bold">Failed to load preview</p>
-                      </div>
-                    ) : (
-                      <div
-                        className={`relative z-10 transition-all duration-350 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${zoomLevel === 1 && !isLoading ? 'group-hover:scale-[1.06]' : ''}`}
-                        style={{ transform: `scale(${zoomLevel})` }}
-                      >
-                        <img
-                          src={imageUrl}
-                          alt="QR Code Preview"
-                          className={`w-full max-w-[240px] max-h-[240px] object-contain transition-all duration-350 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isComparing ? 'grayscale contrast-125 opacity-90' : ''}`}
-                          style={settings.bg_transparent ? {
-                            backgroundImage: "linear-gradient(45deg, #e5e7eb 25%, transparent 25%), linear-gradient(-45deg, #e5e7eb 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e5e7eb 75%), linear-gradient(-45deg, transparent 75%, #e5e7eb 75%)",
-                            backgroundSize: "16px 16px",
-                            backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0",
-                            backgroundColor: "#f3f4f6",
-                            borderRadius: "12px",
-                            boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.08)"
-                          } : {}}
-                        />
-                        {/* Shimmer Overlay for Loading State */}
-                        {isLoading && (
-                          <div className="absolute inset-0 rounded-xl overflow-hidden backdrop-blur-[4px] bg-white/40 flex items-center justify-center transition-opacity duration-300">
-                            <div className="absolute inset-0 skeleton-shimmer"></div>
-                            <span className="material-symbols-outlined animate-spin text-primary text-3xl relative z-10">autorenew</span>
+                    <div
+                      className={`relative z-10 transition-all duration-350 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${zoomLevel === 1 && !isLoading && !isFetching ? 'group-hover:scale-[1.06]' : ''}`}
+                      style={{ transform: `scale(${zoomLevel})` }}
+                    >
+                      <img
+                        src={imageUrl || ''}
+                        alt="QR Code Preview"
+                        className={`w-full max-w-[240px] max-h-[240px] object-contain transition-all duration-350 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isComparing ? 'grayscale contrast-125 opacity-90' : ''} ${isError ? 'opacity-40 grayscale' : ''}`}
+                        style={settings.bg_transparent ? {
+                          backgroundImage: "linear-gradient(45deg, #e5e7eb 25%, transparent 25%), linear-gradient(-45deg, #e5e7eb 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e5e7eb 75%), linear-gradient(-45deg, transparent 75%, #e5e7eb 75%)",
+                          backgroundSize: "16px 16px",
+                          backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0",
+                          backgroundColor: "#f3f4f6",
+                          borderRadius: "12px",
+                          boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.08)"
+                        } : {}}
+                      />
+                      
+                      {/* Offline / Error Overlay */}
+                      {isError && (
+                        <div className="absolute inset-0 rounded-xl overflow-hidden flex items-center justify-center pointer-events-none">
+                          <div className="bg-error/90 text-white px-3 py-2 rounded-lg flex flex-col items-center shadow-lg backdrop-blur-sm">
+                            <span className="material-symbols-outlined text-xl mb-0.5">wifi_off</span>
+                            <span className="text-[10px] font-bold uppercase tracking-wider">Offline</span>
                           </div>
-                        )}
-                        
-                      </div>
-                    )}
+                        </div>
+                      )}
+
+                      {/* Shimmer Overlay for Loading State */}
+                      {((isLoading || isFetching) && !isError) && (
+                        <div className="absolute inset-0 rounded-xl overflow-hidden backdrop-blur-[4px] bg-white/40 flex items-center justify-center transition-opacity duration-300 delay-150">
+                          <div className="absolute inset-0 skeleton-shimmer"></div>
+                          <span className="material-symbols-outlined animate-spin text-primary text-3xl relative z-10">autorenew</span>
+                        </div>
+                      )}
+                      
+                    </div>
                   </div>
 
                   {/* Segmented Controls (Zoom & Tools) */}
@@ -3185,18 +3207,21 @@ function App() {
                       title="Tap to view fullscreen"
                     >
                       <div className="bg-white rounded-xl border border-outline-variant/60 p-1 w-[56px] h-[56px] sm:w-[68px] sm:h-[68px] shrink-0 aspect-square flex items-center justify-center shadow-2xs relative overflow-hidden">
-                        {isLoading ? (
-                          <span className="material-symbols-outlined animate-spin text-primary text-xl">autorenew</span>
-                        ) : isError ? (
-                          <span className="material-symbols-outlined text-error text-lg">error</span>
-                        ) : (
-                          <>
-                            <img src={imageUrl} alt="QR Preview" className="w-full h-full object-contain" />
-                            <div className="absolute inset-0 bg-black/20 opacity-0 group-active:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
-                              <span className="material-symbols-outlined text-white drop-shadow-md text-[20px]">fullscreen</span>
-                            </div>
-                          </>
+                        {(isLoading || isFetching) && !isError ? (
+                          <div className="absolute inset-0 flex items-center justify-center bg-white/40 backdrop-blur-[2px] z-10 delay-150">
+                            <span className="material-symbols-outlined animate-spin text-primary text-xl">autorenew</span>
+                          </div>
+                        ) : null}
+                        {isError && (
+                          <div className="absolute inset-0 flex items-center justify-center bg-error/90 backdrop-blur-[2px] z-10 text-white">
+                            <span className="material-symbols-outlined text-lg">wifi_off</span>
+                          </div>
                         )}
+                        
+                        <img src={imageUrl || ''} alt="QR Preview" className={`w-full h-full object-contain ${isError ? 'opacity-40 grayscale' : ''}`} />
+                        <div className="absolute inset-0 bg-black/20 opacity-0 group-active:opacity-100 transition-opacity flex items-center justify-center pointer-events-none z-20">
+                          <span className="material-symbols-outlined text-white drop-shadow-md text-[20px]">fullscreen</span>
+                        </div>
                       </div>
                       <div className="min-w-0 overflow-hidden">
                         <div className="flex items-center gap-1.5 mb-0.5">
@@ -3441,33 +3466,38 @@ function App() {
               <span className="material-symbols-outlined text-xl pointer-events-none">close</span>
             </button>
 
-            {isLoading ? (
-              <div className="flex flex-col items-center text-on-surface-variant gap-2 p-12">
-                <span className="material-symbols-outlined animate-spin text-primary text-4xl">autorenew</span>
-                <span className="text-sm font-semibold">Generating...</span>
-              </div>
-            ) : isError ? (
-              <div className="text-error p-8 bg-error-container text-on-error-container rounded-2xl text-center text-sm">
-                <span className="material-symbols-outlined text-3xl mb-2">error</span>
-                <p className="font-bold">Failed to load preview</p>
-              </div>
-            ) : (
-              <div style={{ transform: `scale(${zoomLevel})` }}>
-                <img
-                  src={imageUrl}
-                  alt="Expanded QR Preview"
-                  className={`w-64 h-64 sm:w-80 sm:h-80 md:w-[420px] md:h-[420px] object-contain ${isComparing ? 'grayscale contrast-125 opacity-90' : ''}`}
-                  style={settings.bg_transparent ? {
-                    backgroundImage: "linear-gradient(45deg, #e5e7eb 25%, transparent 25%), linear-gradient(-45deg, #e5e7eb 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e5e7eb 75%), linear-gradient(-45deg, transparent 75%, #e5e7eb 75%)",
-                    backgroundSize: "16px 16px",
-                    backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0",
-                    backgroundColor: "#f3f4f6",
-                    borderRadius: "12px",
-                    boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.08)"
-                  } : {}}
-                />
-              </div>
-            )}
+            <div style={{ transform: `scale(${zoomLevel})` }} className="relative">
+              <img
+                src={imageUrl || ''}
+                alt="Expanded QR Preview"
+                className={`w-64 h-64 sm:w-80 sm:h-80 md:w-[420px] md:h-[420px] object-contain ${isComparing ? 'grayscale contrast-125 opacity-90' : ''} ${isError ? 'opacity-40 grayscale' : ''}`}
+                style={settings.bg_transparent ? {
+                  backgroundImage: "linear-gradient(45deg, #e5e7eb 25%, transparent 25%), linear-gradient(-45deg, #e5e7eb 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e5e7eb 75%), linear-gradient(-45deg, transparent 75%, #e5e7eb 75%)",
+                  backgroundSize: "16px 16px",
+                  backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0",
+                  backgroundColor: "#f3f4f6",
+                  borderRadius: "12px",
+                  boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.08)"
+                } : {}}
+              />
+              
+              {isError && (
+                <div className="absolute inset-0 rounded-2xl overflow-hidden flex items-center justify-center pointer-events-none">
+                  <div className="bg-error/90 text-white px-6 py-4 rounded-xl flex flex-col items-center shadow-2xl backdrop-blur-md">
+                    <span className="material-symbols-outlined text-4xl mb-2">wifi_off</span>
+                    <span className="text-sm font-bold uppercase tracking-widest">Offline</span>
+                    <span className="text-xs opacity-90 mt-1">Cannot fetch new preview</span>
+                  </div>
+                </div>
+              )}
+
+              {((isLoading || isFetching) && !isError) && (
+                <div className="absolute inset-0 rounded-2xl overflow-hidden backdrop-blur-[4px] bg-white/40 flex flex-col items-center justify-center transition-opacity duration-300 delay-150">
+                  <span className="material-symbols-outlined animate-spin text-primary text-5xl relative z-10 mb-3">autorenew</span>
+                  <span className="text-sm font-semibold text-primary">Generating...</span>
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Floating Controls Bar in Lightbox */}
