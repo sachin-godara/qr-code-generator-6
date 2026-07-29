@@ -1832,6 +1832,8 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
             draw.rectangle([cx - 1.5*s, cy - bar_w//2, cx + 1.5*s, cy + bar_w//2], fill=eyeball_rgb + (255,))
             draw.ellipse([cx - 1.5*s, cy - s, cx - 0.2*s, cy + s], fill=eyeball_rgb + (255,))
             draw.ellipse([cx + 0.2*s, cy - s, cx + 1.5*s, cy + s], fill=eyeball_rgb + (255,))
+        elif eyeball_style == "none":
+            pass
         else: # square
             draw.rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], fill=eyeball_rgb + (255,))
 
