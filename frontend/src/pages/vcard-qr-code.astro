@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import QRGeneratorApp from '../react/QRGeneratorApp';
+
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "vCard QR Code Generator", url: "/vcard-qr-code" }
+];
+
+const howTo = {
+  name: "How to Create a vCard QR Code",
+  description: "Create a digital business card QR code that saves your contact information directly to any phone's address book.",
+  steps: [
+    { name: "Select vCard content type", text: "Open QR Code Maker and choose 'V-Card' from the content type selector." },
+    { name: "Enter your contact details", text: "Fill in your first name, last name, organization, title, phone number, email, and website URL." },
+    { name: "Customize the design", text: "Style your QR code with custom colors, gradients, dot patterns, and add your company logo." },
+    { name: "Download and share", text: "Download in PNG, SVG, or PDF. Print on business cards, name badges, email signatures, or presentation slides." }
+  ]
+};
+---
+<BaseLayout
+  title="Free vCard QR Code Generator — Digital Business Card | QR Code Maker"
+  description="Create a free vCard QR code that saves your contact info to any phone instantly. Perfect for business cards, name badges, and networking events. No signup required."
+  keywords="vcard qr code, digital business card qr, contact qr code generator, vcard qr code free, business card qr code, qr code contact information"
+  breadcrumbs={breadcrumbs}
+  howTo={howTo}
+>
+  <style is:global>
+    @import '../styles/global.css';
+  </style>
+
+  <main id="generator">
+    <QRGeneratorApp client:load />
+  </main>
+
+  <section class="max-w-4xl mx-auto px-6 py-16 text-on-surface" id="about">
+    <h1 class="text-3xl sm:text-4xl font-bold mb-4 text-center">Free vCard QR Code Generator</h1>
+    <p class="text-lg text-on-surface-variant text-center max-w-2xl mx-auto mb-12">
+      Create a digital business card QR code that saves your name, phone, email, company, and website 
+      directly to anyone's phone contacts — in one scan. No app needed. Perfect for networking, conferences, and business cards.
+    </p>
+
+    <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+      <div class="text-center p-4">
+        <div class="w-12 h-12 mx-auto mb-3 rounded-2xl bg-primary/10 flex items-center justify-center">
+          <span class="material-symbols-outlined text-primary text-2xl">contact_page</span>
+        </div>
+        <h3 class="font-semibold mb-1">1. Select vCard</h3>
+        <p class="text-sm text-on-surface-variant">Choose V-Card as your content type</p>
+      </div>
+      <div class="text-center p-4">
+        <div class="w-12 h-12 mx-auto mb-3 rounded-2xl bg-primary/10 flex items-center justify-center">
+          <span class="material-symbols-outlined text-primary text-2xl">person</span>
+        </div>
+        <h3 class="font-semibold mb-1">2. Enter Info</h3>
+        <p class="text-sm text-on-surface-variant">Name, phone, email, company, title, URL</p>
+      </div>
+      <div class="text-center p-4">
+        <div class="w-12 h-12 mx-auto mb-3 rounded-2xl bg-primary/10 flex items-center justify-center">
+          <span class="material-symbols-outlined text-primary text-2xl">palette</span>
+        </div>
+        <h3 class="font-semibold mb-1">3. Brand It</h3>
+        <p class="text-sm text-on-surface-variant">Add your company logo and colors</p>
+      </div>
+      <div class="text-center p-4">
+        <div class="w-12 h-12 mx-auto mb-3 rounded-2xl bg-primary/10 flex items-center justify-center">
+          <span class="material-symbols-outlined text-primary text-2xl">print</span>
+        </div>
+        <h3 class="font-semibold mb-1">4. Print</h3>
+        <p class="text-sm text-on-surface-variant">Put on business cards, badges, or slides</p>
+      </div>
+    </div>
+
+    <div class="border-t border-outline-variant pt-12 mb-12">
+      <h2 class="text-2xl font-bold mb-6 text-center">Why Use a vCard QR Code?</h2>
+      <div class="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto">
+        <div class="flex items-start gap-3 p-4 rounded-xl bg-surface-container-lowest border border-outline-variant">
+          <span class="material-symbols-outlined text-primary mt-0.5">speed</span>
+          <div>
+            <h3 class="font-semibold text-sm">Instant Contact Saving</h3>
+            <p class="text-xs text-on-surface-variant mt-1">Recipients scan once and your full contact info is saved to their phone — no manual typing.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 p-4 rounded-xl bg-surface-container-lowest border border-outline-variant">
+          <span class="material-symbols-outlined text-primary mt-0.5">error_med</span>
+          <div>
+            <h3 class="font-semibold text-sm">No Typos or Lost Cards</h3>
+            <p class="text-xs text-on-surface-variant mt-1">Unlike paper business cards, a vCard QR ensures your info is saved correctly every time.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 p-4 rounded-xl bg-surface-container-lowest border border-outline-variant">
+          <span class="material-symbols-outlined text-primary mt-0.5">groups</span>
+          <div>
+            <h3 class="font-semibold text-sm">Networking Events</h3>
+            <p class="text-xs text-on-surface-variant mt-1">Share your contact at conferences, meetups, and trade shows without running out of cards.</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 p-4 rounded-xl bg-surface-container-lowest border border-outline-variant">
+          <span class="material-symbols-outlined text-primary mt-0.5">eco</span>
+          <div>
+            <h3 class="font-semibold text-sm">Eco-Friendly</h3>
+            <p class="text-xs text-on-surface-variant mt-1">Reduce paper waste by supplementing traditional business cards with a digital QR alternative.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-outline-variant pt-12" id="faq">
+      <h2 class="text-2xl font-bold mb-8 text-center">vCard QR Code FAQ</h2>
+      <div class="space-y-4 max-w-2xl mx-auto">
+        <details class="group border border-outline-variant rounded-2xl bg-surface-container-lowest overflow-hidden shadow-sm">
+          <summary class="flex justify-between items-center p-4 min-h-[56px] cursor-pointer font-semibold hover:bg-surface-container-low transition-colors select-none">
+            What information can I include in a vCard QR code?
+            <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary">expand_more</span>
+          </summary>
+          <p class="px-4 pb-4 pt-1 text-on-surface-variant text-sm leading-relaxed border-t border-outline-variant/30">
+            You can include your first name, last name, organization/company, job title, phone number, 
+            email address, and website URL. All fields are saved directly to the recipient's phone contacts when scanned.
+          </p>
+        </details>
+        <details class="group border border-outline-variant rounded-2xl bg-surface-container-lowest overflow-hidden shadow-sm">
+          <summary class="flex justify-between items-center p-4 min-h-[56px] cursor-pointer font-semibold hover:bg-surface-container-low transition-colors select-none">
+            Does it work on both iPhone and Android?
+            <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary">expand_more</span>
+          </summary>
+          <p class="px-4 pb-4 pt-1 text-on-surface-variant text-sm leading-relaxed border-t border-outline-variant/30">
+            Yes, vCard QR codes work on all modern smartphones. iPhones (iOS 11+) can scan with the built-in Camera app, 
+            and Android phones (8+) support scanning via Camera or Google Lens. The contact info is added to the phone's 
+            native Contacts app automatically.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-outline-variant py-8 pb-28 lg:pb-8 text-center text-sm text-on-surface-variant">
+    <p><a href="/" class="hover:text-primary transition-colors">← Back to QR Code Maker</a></p>
+    <p class="mt-2">&copy; {new Date().getFullYear()} QR Code Maker. Free custom QR code generator.</p>
+  </footer>
+</BaseLayout>

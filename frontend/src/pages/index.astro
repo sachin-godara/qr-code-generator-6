@@ -3,9 +3,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import QRGeneratorApp from '../react/QRGeneratorApp';
 ---
 <BaseLayout
-  title="QR Code Maker — Free Custom QR Code Generator"
-  description="Create stunning, fully customizable QR codes with custom colors, logos, frames, and effects. Download in PNG, SVG, or PDF. Free online QR code generator."
-  keywords="QR code generator, custom QR code, QR code maker, free QR code, QR code with logo, QR code design"
+  title="QR Code Maker — Free Custom QR Code Generator | 40+ Styles, Logo, Batch"
+  description="Create stunning custom QR codes with 40+ dot styles, 51 text frames, 48 templates, and logo embedding. Download in PNG, SVG, or PDF — 100% free, no signup."
+  keywords="QR code generator, custom QR code, QR code maker, free QR code, QR code with logo, QR code design, wifi QR code, vcard QR code, batch QR generator"
 >
   <!-- Import global styles -->
   <style is:global>
@@ -17,7 +17,9 @@ import QRGeneratorApp from '../react/QRGeneratorApp';
     client:load = hydrates immediately on page load (needed for interactive tool).
     All React logic, state, and API calls remain exactly as before.
   -->
-  <QRGeneratorApp client:load />
+  <main id="generator">
+    <QRGeneratorApp client:load />
+  </main>
 
   <!-- 
     SEO-only content: visible to crawlers in static HTML,
@@ -25,27 +27,102 @@ import QRGeneratorApp from '../react/QRGeneratorApp';
     This gives search engines rich, crawlable text content.
   -->
   <section class="max-w-4xl mx-auto px-6 py-16 text-on-surface" id="about">
-    <h2 class="text-3xl font-bold mb-6 text-center">Create Custom QR Codes in Seconds</h2>
+    <h1 class="text-3xl sm:text-4xl font-bold mb-4 text-center">Free Custom QR Code Generator</h1>
     <p class="text-lg text-on-surface-variant text-center max-w-2xl mx-auto mb-12">
-      QR Code Maker is a free online tool that lets you design and download professional QR codes 
-      with full customization — colors, gradients, logos, frames, and effects.
+      QR Code Maker is a 100% free online tool to design and download professional QR codes 
+      with full customization — colors, gradients, logos, frames, effects, and batch generation. 
+      No signup required. No watermarks.
     </p>
 
-    <div class="grid md:grid-cols-3 gap-8 mb-16">
+    <!-- Feature Highlights Grid -->
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8 mb-16">
       <div class="text-center">
         <span class="material-symbols-outlined text-4xl text-primary mb-3 block">palette</span>
-        <h3 class="font-semibold text-lg mb-2">35+ Dot Styles</h3>
-        <p class="text-on-surface-variant text-sm">Choose from square, circle, diamond, star, flower, heart, and many more unique dot patterns.</p>
+        <h2 class="font-semibold text-lg mb-2">40+ Dot Styles</h2>
+        <p class="text-on-surface-variant text-sm">Choose from square, circle, diamond, star, flower, heart, hexagon, sparkle, lotus, and many more unique dot patterns.</p>
       </div>
       <div class="text-center">
         <span class="material-symbols-outlined text-4xl text-primary mb-3 block">image</span>
-        <h3 class="font-semibold text-lg mb-2">Logo Embedding</h3>
-        <p class="text-on-surface-variant text-sm">Upload your own logo or choose from 18+ preset icons. Automatic background removal included.</p>
+        <h2 class="font-semibold text-lg mb-2">Logo Embedding</h2>
+        <p class="text-on-surface-variant text-sm">Upload your own logo or choose from 30+ preset brand icons. Automatic background removal and dot clearance included.</p>
       </div>
       <div class="text-center">
         <span class="material-symbols-outlined text-4xl text-primary mb-3 block">download</span>
-        <h3 class="font-semibold text-lg mb-2">PNG, SVG & PDF</h3>
-        <p class="text-on-surface-variant text-sm">Download your QR code in high-resolution PNG, scalable SVG, or print-ready PDF format.</p>
+        <h2 class="font-semibold text-lg mb-2">PNG, SVG & PDF</h2>
+        <p class="text-on-surface-variant text-sm">Download your QR code in high-resolution PNG, scalable SVG, or print-ready 300 DPI PDF format — all free.</p>
+      </div>
+      <div class="text-center">
+        <span class="material-symbols-outlined text-4xl text-primary mb-3 block">branding_watermark</span>
+        <h2 class="font-semibold text-lg mb-2">51 Text Frames</h2>
+        <p class="text-on-surface-variant text-sm">Add decorative call-to-action frames like speech bubbles, ribbon banners, coffee cups, ticket stubs, and more.</p>
+      </div>
+      <div class="text-center">
+        <span class="material-symbols-outlined text-4xl text-primary mb-3 block">grid_view</span>
+        <h2 class="font-semibold text-lg mb-2">48 Templates</h2>
+        <p class="text-on-surface-variant text-sm">Start with ready-made templates for Instagram, WhatsApp, WiFi, restaurants, events, business cards, and more.</p>
+      </div>
+      <div class="text-center">
+        <span class="material-symbols-outlined text-4xl text-primary mb-3 block">batch_prediction</span>
+        <h2 class="font-semibold text-lg mb-2">Batch Generation</h2>
+        <p class="text-on-surface-variant text-sm">Generate up to 500 QR codes at once from a CSV file. Download as a ZIP in PNG, SVG, or PDF format.</p>
+      </div>
+    </div>
+
+    <!-- Content Types Section -->
+    <div class="border-t border-outline-variant pt-12 mb-12" id="content-types">
+      <h2 class="text-2xl font-bold mb-6 text-center">12 QR Code Content Types</h2>
+      <p class="text-on-surface-variant text-center max-w-2xl mx-auto mb-8">
+        Create QR codes for any purpose — from simple URLs to complex contact cards and payment links.
+      </p>
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3 max-w-2xl mx-auto">
+        <div class="flex items-center gap-2 p-3 rounded-xl bg-surface-container-lowest border border-outline-variant">
+          <span class="material-symbols-outlined text-primary text-xl">link</span>
+          <span class="text-sm font-medium">URL / Website</span>
+        </div>
+        <div class="flex items-center gap-2 p-3 rounded-xl bg-surface-container-lowest border border-outline-variant">
+          <span class="material-symbols-outlined text-primary text-xl">subject</span>
+          <span class="text-sm font-medium">Plain Text</span>
+        </div>
+        <div class="flex items-center gap-2 p-3 rounded-xl bg-surface-container-lowest border border-outline-variant">
+          <span class="material-symbols-outlined text-primary text-xl">wifi</span>
+          <span class="text-sm font-medium">WiFi Network</span>
+        </div>
+        <div class="flex items-center gap-2 p-3 rounded-xl bg-surface-container-lowest border border-outline-variant">
+          <span class="material-symbols-outlined text-primary text-xl">contact_page</span>
+          <span class="text-sm font-medium">vCard Contact</span>
+        </div>
+        <div class="flex items-center gap-2 p-3 rounded-xl bg-surface-container-lowest border border-outline-variant">
+          <span class="material-symbols-outlined text-primary text-xl">mail</span>
+          <span class="text-sm font-medium">Email</span>
+        </div>
+        <div class="flex items-center gap-2 p-3 rounded-xl bg-surface-container-lowest border border-outline-variant">
+          <span class="material-symbols-outlined text-primary text-xl">sms</span>
+          <span class="text-sm font-medium">SMS Message</span>
+        </div>
+        <div class="flex items-center gap-2 p-3 rounded-xl bg-surface-container-lowest border border-outline-variant">
+          <span class="material-symbols-outlined text-primary text-xl">event</span>
+          <span class="text-sm font-medium">Calendar Event</span>
+        </div>
+        <div class="flex items-center gap-2 p-3 rounded-xl bg-surface-container-lowest border border-outline-variant">
+          <span class="material-symbols-outlined text-primary text-xl">call</span>
+          <span class="text-sm font-medium">Phone Call</span>
+        </div>
+        <div class="flex items-center gap-2 p-3 rounded-xl bg-surface-container-lowest border border-outline-variant">
+          <span class="material-symbols-outlined text-primary text-xl">currency_bitcoin</span>
+          <span class="text-sm font-medium">Cryptocurrency</span>
+        </div>
+        <div class="flex items-center gap-2 p-3 rounded-xl bg-surface-container-lowest border border-outline-variant">
+          <span class="material-symbols-outlined text-primary text-xl">location_on</span>
+          <span class="text-sm font-medium">Location / Maps</span>
+        </div>
+        <div class="flex items-center gap-2 p-3 rounded-xl bg-surface-container-lowest border border-outline-variant">
+          <span class="material-symbols-outlined text-primary text-xl">payments</span>
+          <span class="text-sm font-medium">PayPal</span>
+        </div>
+        <div class="flex items-center gap-2 p-3 rounded-xl bg-surface-container-lowest border border-outline-variant">
+          <span class="material-symbols-outlined text-primary text-xl">smartphone</span>
+          <span class="text-sm font-medium">App Store Link</span>
+        </div>
       </div>
     </div>
 
@@ -59,8 +136,10 @@ import QRGeneratorApp from '../react/QRGeneratorApp';
             <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary">expand_more</span>
           </summary>
           <p class="px-4 pb-4 pt-1 text-on-surface-variant text-sm sm:text-base leading-relaxed border-t border-outline-variant/30">
-            Enter your URL, text, or contact information, then customize colors, dot styles, eye patterns, 
-            add a logo, choose a frame, and download in PNG, SVG, or PDF format.
+            Enter your URL, text, or contact information in the Content tab. Then customize your QR code 
+            with 40+ dot styles, eye patterns, colors and gradients, add a logo from 30+ presets or upload 
+            your own, choose from 51 decorative text frames, and download in PNG, SVG, or PDF format — 
+            all completely free.
           </p>
         </details>
         <details class="group border border-outline-variant rounded-2xl bg-surface-container-lowest overflow-hidden shadow-sm">
@@ -69,8 +148,9 @@ import QRGeneratorApp from '../react/QRGeneratorApp';
             <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary">expand_more</span>
           </summary>
           <p class="px-4 pb-4 pt-1 text-on-surface-variant text-sm sm:text-base leading-relaxed border-t border-outline-variant/30">
-            Yes, our QR code generator is completely free to use with all customization features including 
-            colors, logos, frames, and effects.
+            Yes, QR Code Maker is 100% free with all features unlocked — no signup, no watermarks, no 
+            usage limits. You get full access to every customization option, including batch generation 
+            of up to 500 QR codes, high-resolution PNG/SVG/PDF export, and all 48 preset templates.
           </p>
         </details>
         <details class="group border border-outline-variant rounded-2xl bg-surface-container-lowest overflow-hidden shadow-sm">
@@ -79,8 +159,9 @@ import QRGeneratorApp from '../react/QRGeneratorApp';
             <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary">expand_more</span>
           </summary>
           <p class="px-4 pb-4 pt-1 text-on-surface-variant text-sm sm:text-base leading-relaxed border-t border-outline-variant/30">
-            You can create QR codes for URLs, plain text, vCards (contact information), WiFi credentials, 
-            emails, SMS messages, and calendar events.
+            You can create QR codes for 12 different content types: URLs, plain text, WiFi credentials, 
+            vCards (digital business cards), emails, SMS messages, calendar events, phone numbers, 
+            cryptocurrency addresses, Google Maps locations, PayPal payment links, and App Store links.
           </p>
         </details>
         <details class="group border border-outline-variant rounded-2xl bg-surface-container-lowest overflow-hidden shadow-sm">
@@ -89,8 +170,10 @@ import QRGeneratorApp from '../react/QRGeneratorApp';
             <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary">expand_more</span>
           </summary>
           <p class="px-4 pb-4 pt-1 text-on-surface-variant text-sm sm:text-base leading-relaxed border-t border-outline-variant/30">
-            Yes, you can upload your own logo or choose from 18+ preset icons. The QR code automatically 
-            adjusts error correction to remain scannable with a logo.
+            Yes! Upload your own logo or choose from 30+ preset brand icons including Instagram, WhatsApp, 
+            YouTube, Facebook, TikTok, and more. Features include automatic logo background removal, 
+            adjustable dot clearance around the logo, card shapes (circle or rounded square), and 
+            brand or custom color modes. Error correction automatically adjusts to keep the QR code scannable.
           </p>
         </details>
         <details class="group border border-outline-variant rounded-2xl bg-surface-container-lowest overflow-hidden shadow-sm">
@@ -99,16 +182,86 @@ import QRGeneratorApp from '../react/QRGeneratorApp';
             <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary">expand_more</span>
           </summary>
           <p class="px-4 pb-4 pt-1 text-on-surface-variant text-sm sm:text-base leading-relaxed border-t border-outline-variant/30">
-            You can download your QR code in PNG (up to 2048×2048 pixels), SVG (infinitely scalable vector), 
-            or PDF (print-ready with 300 DPI).
+            Download your QR code in three formats: PNG (custom resolution up to 4096×4096 pixels), 
+            SVG (infinitely scalable vector format for designers), or PDF (print-ready with 300 DPI). 
+            You can also export with a transparent background for placing QR codes on colored surfaces, 
+            and copy directly to your clipboard with one click.
+          </p>
+        </details>
+        <details class="group border border-outline-variant rounded-2xl bg-surface-container-lowest overflow-hidden shadow-sm">
+          <summary class="flex justify-between items-center p-4 min-h-[56px] cursor-pointer font-semibold hover:bg-surface-container-low transition-colors select-none touch-press">
+            Can I generate QR codes in bulk?
+            <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary">expand_more</span>
+          </summary>
+          <p class="px-4 pb-4 pt-1 text-on-surface-variant text-sm sm:text-base leading-relaxed border-t border-outline-variant/30">
+            Yes! QR Code Maker supports batch generation of up to 500 QR codes at once. Upload a CSV file, 
+            map the data and filename columns, apply your design settings, and download all QR codes 
+            as a ZIP file in PNG, SVG, or PDF format. Perfect for businesses needing product labels, 
+            event badges, or marketing campaigns.
+          </p>
+        </details>
+        <details class="group border border-outline-variant rounded-2xl bg-surface-container-lowest overflow-hidden shadow-sm">
+          <summary class="flex justify-between items-center p-4 min-h-[56px] cursor-pointer font-semibold hover:bg-surface-container-low transition-colors select-none touch-press">
+            How do I create a WiFi QR code?
+            <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary">expand_more</span>
+          </summary>
+          <p class="px-4 pb-4 pt-1 text-on-surface-variant text-sm sm:text-base leading-relaxed border-t border-outline-variant/30">
+            Select "WiFi" as your content type, enter your network name (SSID), choose the security 
+            type (WPA/WPA2 or WEP), and enter your password. The generated QR code lets anyone connect 
+            to your WiFi by simply scanning it with their phone camera — no need to type the password 
+            manually. Great for restaurants, offices, and guest networks.
+          </p>
+        </details>
+        <details class="group border border-outline-variant rounded-2xl bg-surface-container-lowest overflow-hidden shadow-sm">
+          <summary class="flex justify-between items-center p-4 min-h-[56px] cursor-pointer font-semibold hover:bg-surface-container-low transition-colors select-none touch-press">
+            Are the QR codes scannable with all phone cameras?
+            <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary">expand_more</span>
+          </summary>
+          <p class="px-4 pb-4 pt-1 text-on-surface-variant text-sm sm:text-base leading-relaxed border-t border-outline-variant/30">
+            Yes, all QR codes generated by QR Code Maker follow the ISO/IEC 18004 standard and are 
+            compatible with every modern smartphone camera and QR scanning app. The app uses high error 
+            correction (Level H) by default to ensure reliable scanning even with logos, colors, and 
+            decorative styles applied.
           </p>
         </details>
       </div>
     </div>
   </section>
 
-  <!-- Footer with site info & mobile safe area padding -->
-  <footer class="border-t border-outline-variant py-8 pb-28 lg:pb-8 text-center text-sm text-on-surface-variant safe-bottom">
-    <p>&copy; {new Date().getFullYear()} QR Code Maker. Free custom QR code generator.</p>
+  <!-- SEO Footer with internal links -->
+  <footer class="border-t border-outline-variant bg-surface-container-lowest">
+    <div class="max-w-4xl mx-auto px-6 py-12">
+      <!-- QR Code Types Navigation -->
+      <div class="mb-8">
+        <h3 class="font-semibold text-sm uppercase tracking-wider text-on-surface-variant mb-4">QR Code Types</h3>
+        <div class="flex flex-wrap gap-2">
+          <a href="/wifi-qr-code" class="text-sm text-on-surface-variant hover:text-primary transition-colors px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high">WiFi QR Code</a>
+          <a href="/vcard-qr-code" class="text-sm text-on-surface-variant hover:text-primary transition-colors px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high">vCard QR Code</a>
+          <a href="/qr-code-with-logo" class="text-sm text-on-surface-variant hover:text-primary transition-colors px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high">QR Code with Logo</a>
+          <a href="/event-qr-code" class="text-sm text-on-surface-variant hover:text-primary transition-colors px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high">Event QR Code</a>
+          <a href="/email-qr-code" class="text-sm text-on-surface-variant hover:text-primary transition-colors px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high">Email QR Code</a>
+          <a href="/free-qr-code-generator" class="text-sm text-on-surface-variant hover:text-primary transition-colors px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high">Free QR Code Generator</a>
+        </div>
+      </div>
+
+      <!-- About blurb -->
+      <div class="mb-8">
+        <h3 class="font-semibold text-sm uppercase tracking-wider text-on-surface-variant mb-3">About QR Code Maker</h3>
+        <p class="text-sm text-on-surface-variant leading-relaxed max-w-xl">
+          QR Code Maker is the most customizable free QR code generator available online. With 40+ dot styles, 
+          51 text frames, 48 ready-made templates, and powerful logo embedding, it's designed for designers, 
+          marketers, and businesses who want professional QR codes without paying for expensive subscriptions.
+        </p>
+      </div>
+
+      <!-- Copyright -->
+      <div class="border-t border-outline-variant pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+        <p class="text-sm text-on-surface-variant">&copy; {new Date().getFullYear()} QR Code Maker. Free custom QR code generator.</p>
+        <div class="flex items-center gap-1 text-xs text-on-surface-variant/60">
+          <span class="material-symbols-outlined text-xs">verified</span>
+          <span>No signup · No watermarks · 100% free</span>
+        </div>
+      </div>
+    </div>
   </footer>
 </BaseLayout>

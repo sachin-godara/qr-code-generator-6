@@ -1182,7 +1182,10 @@ function App() {
                     <div className="relative w-full h-full group/template">
                       <img
                         src={`/previews/templates/${cleanName}.png?v=4`}
-                        alt={template.name}
+                        alt={`${template.name} QR code template`}
+                        loading="lazy"
+                        width={120}
+                        height={120}
                         className="w-full h-full object-contain p-2.5 transition-transform duration-300 group-hover/template:scale-[1.03]"
                         style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.12))" }}
                       />
@@ -1308,7 +1311,7 @@ function App() {
                         isSelected={settings.dots_style === style}
                         onClick={() => updateSettings({ dots_style: style as any })}
                       >
-                        <img src={`/previews/dots/${style}.png?v=4`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
+                        <img src={`/previews/dots/${style}.png?v=4`} alt={`${style.replace(/_/g, ' ')} dot pattern`} loading="lazy" width={64} height={64} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
                       </StylePreviewCard>
                     </div>
                   ))}
@@ -1389,7 +1392,7 @@ function App() {
                             }
                           }}
                         >
-                          <img src={`/previews/eye_frames/${style}.png?v=4`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
+                          <img src={`/previews/eye_frames/${style}.png?v=4`} alt={`${style.replace(/_/g, ' ')} eye frame`} loading="lazy" width={64} height={64} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
                         </StylePreviewCard>
                       </div>
                     );
@@ -1434,7 +1437,7 @@ function App() {
                             }
                           }}
                         >
-                          <img src={`/previews/eyeballs/${style}.png?v=4`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
+                          <img src={`/previews/eyeballs/${style}.png?v=4`} alt={`${style.replace(/_/g, ' ')} eyeball style`} loading="lazy" width={64} height={64} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
                         </StylePreviewCard>
                       </div>
                     );
@@ -1586,7 +1589,7 @@ function App() {
                 {settings.logo_image ? (
                   <div className="flex flex-col items-center gap-3">
                     <div className="w-20 h-20 rounded-2xl overflow-hidden border-2 border-outline-variant/60 shadow-md bg-white p-2 relative group/thumb transition-transform group-hover:scale-105">
-                      <img src={settings.logo_image} className="w-full h-full object-contain rounded-xl" />
+                      <img src={settings.logo_image} alt="Uploaded logo preview" className="w-full h-full object-contain rounded-xl" />
                       <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/thumb:opacity-100 transition-opacity duration-200 flex items-center justify-center rounded-xl z-20 backdrop-blur-[2px]">
                         <button
                           onClick={(e) => {
@@ -2051,7 +2054,7 @@ function App() {
                       isSelected={settings.frame_style === style}
                       onClick={() => updateSettings({ frame_style: style as any })}
                     >
-                      <img src={`/previews/frames/${style}.png?v=4`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
+                      <img src={`/previews/frames/${style}.png?v=4`} alt={`${style.replace(/_/g, ' ')} layout frame`} loading="lazy" width={64} height={64} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
                     </StylePreviewCard>
                   </div>
                 ))}
@@ -2129,7 +2132,7 @@ function App() {
                       isSelected={settings.text_style === style}
                       onClick={() => updateSettings({ text_style: style as any })}
                     >
-                      <img src={`/previews/text_styles/${style}.png?v=4`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
+                      <img src={`/previews/text_styles/${style}.png?v=4`} alt={`${style.replace(/_/g, ' ')} text frame`} loading="lazy" width={64} height={64} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
                     </StylePreviewCard>
                   </div>
                 ))}

@@ -446,3 +446,44 @@ input[type="range"]::-moz-range-thumb {
     transition: transform 0.1s ease;
   }
 }
+
+/* ========================
+   REDUCED MOTION — Accessibility
+   ======================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ========================
+   PRINT STYLESHEET
+   ======================== */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  /* Hide everything except the QR code preview */
+  nav, footer, button, .sidebar, [role="tablist"],
+  .glass-panel, .mobile-sheet-backdrop {
+    display: none !important;
+  }
+
+  /* Make QR code image fill the page */
+  img[alt="QR Code Preview"],
+  img[alt="Generated QR code preview"] {
+    width: 100% !important;
+    max-width: 400px !important;
+    height: auto !important;
+    margin: 2rem auto !important;
+    display: block !important;
+  }
+}
+

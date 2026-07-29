@@ -7,14 +7,22 @@ interface Props {
   ogImage?: string;
   canonicalUrl?: string;
   keywords?: string;
+  breadcrumbs?: { name: string; url: string }[];
+  howTo?: {
+    name: string;
+    description: string;
+    steps: { name: string; text: string }[];
+  };
 }
 
 const {
   title = 'QR Code Maker — Free Custom QR Code Generator',
-  description = 'Create stunning, fully customizable QR codes with custom colors, logos, frames, and effects. Download in PNG, SVG, or PDF. Free online QR code generator.',
+  description = 'Create stunning custom QR codes with 40+ dot styles, 51 text frames, 48 templates, and logo embedding. Download in PNG, SVG, or PDF — 100% free, no signup.',
   ogImage = '/og-image.png',
   canonicalUrl,
-  keywords = 'QR code generator, custom QR code, QR code maker, free QR code, QR code with logo, QR code design',
+  keywords = 'QR code generator, custom QR code, QR code maker, free QR code, QR code with logo, QR code design, wifi QR code, vcard QR code, batch QR generator',
+  breadcrumbs,
+  howTo,
 } = Astro.props;
 ---
 <!doctype html>
@@ -22,13 +30,21 @@ const {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5" />
+    
+    <!-- Favicons -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png" />
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
     
     <!-- Mobile Native Experience -->
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#191c1e" media="(prefers-color-scheme: dark)" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="QR Code Maker" />
+    <meta name="application-name" content="QR Code Maker" />
     <meta name="format-detection" content="telephone=no" />
     <meta name="mobile-web-app-capable" content="yes" />
     
@@ -39,15 +55,22 @@ const {
       ogImage={ogImage}
       canonicalUrl={canonicalUrl}
       keywords={keywords}
+      breadcrumbs={breadcrumbs}
+      howTo={howTo}
     />
     
-    <!-- Google Fonts -->
+    <!-- Google Fonts — Preconnect + Preload critical font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist:wght@400;500;600&family=Outfit:wght@400;600;700&family=Playfair+Display:wght@400;600;700&family=Courier+Prime:wght@400;700&family=Montserrat:wght@400;600;700&family=Roboto:wght@400;500;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
     
-    <!-- Material Symbols -->
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
+    <!-- Material Symbols — Deferred loading to avoid render blocking -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+    <noscript>
+      <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=block" rel="stylesheet">
+    </noscript>
   </head>
   <body>
     <slot />

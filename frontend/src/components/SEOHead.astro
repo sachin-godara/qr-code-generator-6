@@ -5,6 +5,12 @@ interface Props {
   ogImage?: string;
   canonicalUrl?: string;
   keywords?: string;
+  breadcrumbs?: { name: string; url: string }[];
+  howTo?: {
+    name: string;
+    description: string;
+    steps: { name: string; text: string }[];
+  };
 }
 
 const {
@@ -13,6 +19,8 @@ const {
   ogImage = '/og-image.png',
   canonicalUrl,
   keywords,
+  breadcrumbs,
+  howTo,
 } = Astro.props;
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') || '';
@@ -26,7 +34,7 @@ const resolvedOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogIm
 <meta name="description" content={description} />
 {keywords && <meta name="keywords" content={keywords} />}
 <meta name="author" content="QR Code Maker" />
-<meta name="robots" content="index, follow" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <link rel="canonical" href={resolvedCanonical} />
 
 <!-- Open Graph / Facebook -->
@@ -35,6 +43,8 @@ const resolvedOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogIm
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:image" content={resolvedOgImage} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <meta property="og:site_name" content="QR Code Maker" />
 <meta property="og:locale" content="en_US" />
 
@@ -45,7 +55,7 @@ const resolvedOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogIm
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={resolvedOgImage} />
 
-<!-- JSON-LD Structured Data -->
+<!-- JSON-LD Structured Data — WebApplication -->
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -53,28 +63,36 @@ const resolvedOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogIm
   "description": description,
   "url": resolvedCanonical,
   "applicationCategory": "DesignApplication",
+  "applicationSubCategory": "QR Code Generator",
   "operatingSystem": "Any",
+  "browserRequirements": "Requires JavaScript. Works in Chrome, Firefox, Safari, Edge.",
+  "permissions": "none",
   "offers": {
     "@type": "Offer",
     "price": "0",
     "priceCurrency": "USD"
   },
   "featureList": [
-    "Custom QR code colors and gradients",
-    "35+ dot styles including flower, star, heart",
-    "30+ eye frame and eyeball styles",
-    "Logo embedding with background removal",
-    "40+ decorative text frames",
-    "Shadow and border effects",
-    "Download as PNG, SVG, or PDF",
-    "vCard, WiFi, Email, SMS, Event QR codes"
+    "40+ dot module styles including flower, star, heart, diamond, hexagon",
+    "19 eye frame shapes and 23 eyeball styles",
+    "51 decorative text and CTA frames",
+    "22 layout frame designs",
+    "48 preset QR code templates",
+    "30+ preset logo icons with brand colors",
+    "Custom logo upload with background removal",
+    "Logo dot clearance control",
+    "4 gradient types: vertical, horizontal, radial, diagonal",
+    "Shadow effects: soft, elevated, neon",
+    "12 content types: URL, Text, WiFi, vCard, Email, SMS, Event, Phone, Crypto, Location, PayPal, App Store",
+    "Download as PNG (custom resolution), SVG (vector), or PDF (300 DPI)",
+    "Transparent background export",
+    "Batch generation up to 500 QR codes from CSV",
+    "Per-eye independent styling for all 3 corners",
+    "Background image with blend modes",
+    "Copy to clipboard",
+    "100% free, no signup required, no watermarks"
   ],
-  "screenshot": resolvedOgImage,
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.8",
-    "ratingCount": "1200"
-  }
+  "screenshot": resolvedOgImage
 })} />
 
 <!-- FAQ Structured Data for Rich Snippets -->
@@ -87,7 +105,7 @@ const resolvedOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogIm
       "name": "How do I create a custom QR code?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Enter your URL, text, or contact information, then customize colors, dot styles, eye patterns, add a logo, choose a frame, and download in PNG, SVG, or PDF format."
+        "text": "Enter your URL, text, or contact information, choose from 40+ dot styles and 42 eye patterns, customize colors and gradients, add a logo from 30+ presets or upload your own, pick a decorative frame, and download your QR code in PNG, SVG, or PDF format — completely free."
       }
     },
     {
@@ -95,7 +113,7 @@ const resolvedOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogIm
       "name": "Is the QR code generator free?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, our QR code generator is completely free to use with all customization features including colors, logos, frames, and effects."
+        "text": "Yes, QR Code Maker is 100% free with all features unlocked — no signup, no watermarks, no usage limits. You get full access to 40+ dot styles, 51 text frames, 48 templates, logo embedding, batch generation, and PNG/SVG/PDF export at no cost."
       }
     },
     {
@@ -103,7 +121,7 @@ const resolvedOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogIm
       "name": "What types of QR codes can I create?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "You can create QR codes for URLs, plain text, vCards (contact information), WiFi credentials, emails, SMS messages, and calendar events."
+        "text": "You can create QR codes for 12 different content types: URLs, plain text, WiFi credentials, vCards (contact cards), emails, SMS messages, calendar events, phone numbers, cryptocurrency addresses, Google Maps locations, PayPal payment links, and App Store links."
       }
     },
     {
@@ -111,8 +129,59 @@ const resolvedOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogIm
       "name": "Can I add a logo to my QR code?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes, you can upload your own logo or choose from 18+ preset icons. The QR code automatically adjusts error correction to remain scannable with a logo."
+        "text": "Yes, you can upload your own logo or choose from 30+ preset brand icons including Instagram, WhatsApp, YouTube, Facebook, and more. Features include automatic background removal, adjustable dot clearance around the logo, multiple card shapes, and brand or custom color modes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What download formats are available?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can download QR codes in three formats: PNG (up to 4096×4096 pixels for print), SVG (infinitely scalable vector for designers), and PDF (300 DPI print-ready). All formats are free with no watermarks. You can also copy the QR code directly to your clipboard."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I generate QR codes in bulk?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, QR Code Maker supports batch generation of up to 500 QR codes at once. Upload a CSV file with your data, map the columns, choose your design settings, and download all QR codes as a ZIP file in PNG, SVG, or PDF format."
       }
     }
   ]
 })} />
+
+<!-- BreadcrumbList Structured Data (if breadcrumbs provided) -->
+{breadcrumbs && breadcrumbs.length > 0 && (
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs.map((crumb, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": crumb.name,
+      "item": crumb.url
+    }))
+  })} />
+)}
+
+<!-- HowTo Structured Data (if howTo provided) -->
+{howTo && (
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": howTo.name,
+    "description": howTo.description,
+    "totalTime": "PT2M",
+    "tool": {
+      "@type": "HowToTool",
+      "name": "QR Code Maker (web browser)"
+    },
+    "step": howTo.steps.map((step, index) => ({
+      "@type": "HowToStep",
+      "position": index + 1,
+      "name": step.name,
+      "text": step.text
+    }))
+  })} />
+)}

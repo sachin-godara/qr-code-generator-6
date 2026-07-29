@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import QRGeneratorApp from '../react/QRGeneratorApp';
+
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "Email QR Code Generator", url: "/email-qr-code" }
+];
+
+const howTo = {
+  name: "How to Create an Email QR Code",
+  description: "Generate a QR code that opens a pre-filled email draft when scanned — with recipient, subject, and body already set.",
+  steps: [
+    { name: "Select Email content type", text: "Open QR Code Maker and choose 'Email' from the content type options." },
+    { name: "Enter email details", text: "Type the recipient email address, subject line, and optional message body." },
+    { name: "Customize the design", text: "Style your QR code with colors, gradients, email-themed templates, and add a mail icon from presets." },
+    { name: "Download and share", text: "Download in PNG, SVG, or PDF. Add to business cards, flyers, or product packaging." }
+  ]
+};
+---
+<BaseLayout
+  title="Free Email QR Code Generator — Pre-filled Email Links | QR Code Maker"
+  description="Create a free email QR code that opens a pre-composed email with recipient, subject, and body when scanned. Perfect for customer support, feedback, and business cards."
+  keywords="email qr code, email qr code generator, mailto qr code, email link qr code, qr code for email address"
+  breadcrumbs={breadcrumbs}
+  howTo={howTo}
+>
+  <style is:global>
+    @import '../styles/global.css';
+  </style>
+
+  <main id="generator">
+    <QRGeneratorApp client:load />
+  </main>
+
+  <section class="max-w-4xl mx-auto px-6 py-16 text-on-surface" id="about">
+    <h1 class="text-3xl sm:text-4xl font-bold mb-4 text-center">Free Email QR Code Generator</h1>
+    <p class="text-lg text-on-surface-variant text-center max-w-2xl mx-auto mb-12">
+      Create a QR code that opens a pre-filled email draft when scanned. Set the recipient address, 
+      subject line, and message body in advance. Perfect for customer feedback, support requests, 
+      contact forms on business cards, and product packaging.
+    </p>
+
+    <div class="grid sm:grid-cols-2 gap-4 max-w-2xl mx-auto mb-12">
+      <div class="flex items-start gap-3 p-4 rounded-xl bg-surface-container-lowest border border-outline-variant">
+        <span class="material-symbols-outlined text-primary mt-0.5">support_agent</span>
+        <div>
+          <h3 class="font-semibold text-sm">Customer Support</h3>
+          <p class="text-xs text-on-surface-variant mt-1">Put on product packaging or receipts. Customers scan to send a support email with pre-filled subject line.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3 p-4 rounded-xl bg-surface-container-lowest border border-outline-variant">
+        <span class="material-symbols-outlined text-primary mt-0.5">rate_review</span>
+        <div>
+          <h3 class="font-semibold text-sm">Feedback Collection</h3>
+          <p class="text-xs text-on-surface-variant mt-1">Add to receipts, menus, or signage. One scan opens a feedback email ready to send.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3 p-4 rounded-xl bg-surface-container-lowest border border-outline-variant">
+        <span class="material-symbols-outlined text-primary mt-0.5">contact_mail</span>
+        <div>
+          <h3 class="font-semibold text-sm">Business Cards</h3>
+          <p class="text-xs text-on-surface-variant mt-1">Add to your business card so people can email you instantly without typing your address.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3 p-4 rounded-xl bg-surface-container-lowest border border-outline-variant">
+        <span class="material-symbols-outlined text-primary mt-0.5">inventory_2</span>
+        <div>
+          <h3 class="font-semibold text-sm">Product Packaging</h3>
+          <p class="text-xs text-on-surface-variant mt-1">Place on product labels for easy warranty registration, order inquiries, or return requests.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-outline-variant pt-12" id="faq">
+      <h2 class="text-2xl font-bold mb-8 text-center">Email QR Code FAQ</h2>
+      <div class="space-y-4 max-w-2xl mx-auto">
+        <details class="group border border-outline-variant rounded-2xl bg-surface-container-lowest overflow-hidden shadow-sm">
+          <summary class="flex justify-between items-center p-4 min-h-[56px] cursor-pointer font-semibold hover:bg-surface-container-low transition-colors select-none">
+            How does an email QR code work?
+            <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary">expand_more</span>
+          </summary>
+          <p class="px-4 pb-4 pt-1 text-on-surface-variant text-sm leading-relaxed border-t border-outline-variant/30">
+            An email QR code encodes a `mailto:` link with the recipient address, subject, and body pre-filled. 
+            When someone scans it, their phone's default email app opens with a draft ready to send. 
+            The scanner just needs to tap "Send."
+          </p>
+        </details>
+        <details class="group border border-outline-variant rounded-2xl bg-surface-container-lowest overflow-hidden shadow-sm">
+          <summary class="flex justify-between items-center p-4 min-h-[56px] cursor-pointer font-semibold hover:bg-surface-container-low transition-colors select-none">
+            Which email apps does it work with?
+            <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary">expand_more</span>
+          </summary>
+          <p class="px-4 pb-4 pt-1 text-on-surface-variant text-sm leading-relaxed border-t border-outline-variant/30">
+            Email QR codes work with any email app that handles `mailto:` links — Gmail, Apple Mail, 
+            Outlook, Yahoo Mail, Samsung Email, and all other standard email clients on iOS and Android.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <footer class="border-t border-outline-variant py-8 pb-28 lg:pb-8 text-center text-sm text-on-surface-variant">
+    <p><a href="/" class="hover:text-primary transition-colors">← Back to QR Code Maker</a></p>
+    <p class="mt-2">&copy; {new Date().getFullYear()} QR Code Maker. Free custom QR code generator.</p>
+  </footer>
+</BaseLayout>
