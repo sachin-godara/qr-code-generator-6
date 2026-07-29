@@ -11,6 +11,7 @@ def get_options(options_file, array_name):
 options_file = r'f:\Project 001\qr code generator 6\frontend\src\data\options.ts'
 valid_eyeballs = get_options(options_file, 'EYEBALL_STYLES')
 valid_eye_frames = get_options(options_file, 'EYE_FRAME_STYLES')
+valid_dots = get_options(options_file, 'DOT_STYLES')
 
 def cleanup(dir_path, valid_names):
     if not os.path.exists(dir_path): return
@@ -23,3 +24,4 @@ def cleanup(dir_path, valid_names):
 
 cleanup(r'f:\Project 001\qr code generator 6\frontend\public\previews\eyeballs', valid_eyeballs)
 cleanup(r'f:\Project 001\qr code generator 6\frontend\public\previews\eye_frames', valid_eye_frames)
+cleanup(r'f:\Project 001\qr code generator 6\frontend\public\previews\dots', valid_dots)
