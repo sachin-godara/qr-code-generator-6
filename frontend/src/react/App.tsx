@@ -3175,14 +3175,23 @@ function App() {
 
                   {/* Compact Bar with Live QR Engine */}
                   <div className="px-3.5 py-2 flex items-center justify-between gap-2.5 border-b border-outline-variant/30">
-                    <div className="flex items-center gap-2.5 min-w-0">
-                      <div className="bg-white rounded-xl border border-outline-variant/60 p-1 w-[56px] h-[56px] sm:w-[68px] sm:h-[68px] shrink-0 aspect-square flex items-center justify-center shadow-2xs">
+                    <div 
+                      className="flex items-center gap-2.5 min-w-0 cursor-pointer active:scale-[0.98] transition-transform group touch-press"
+                      onClick={handleFullscreen}
+                      title="Tap to view fullscreen"
+                    >
+                      <div className="bg-white rounded-xl border border-outline-variant/60 p-1 w-[56px] h-[56px] sm:w-[68px] sm:h-[68px] shrink-0 aspect-square flex items-center justify-center shadow-2xs relative overflow-hidden">
                         {isLoading ? (
                           <span className="material-symbols-outlined animate-spin text-primary text-xl">autorenew</span>
                         ) : isError ? (
                           <span className="material-symbols-outlined text-error text-lg">error</span>
                         ) : (
-                          <img src={imageUrl} alt="QR Preview" className="w-full h-full object-contain" />
+                          <>
+                            <img src={imageUrl} alt="QR Preview" className="w-full h-full object-contain" />
+                            <div className="absolute inset-0 bg-black/20 opacity-0 group-active:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                              <span className="material-symbols-outlined text-white drop-shadow-md text-[20px]">fullscreen</span>
+                            </div>
+                          </>
                         )}
                       </div>
                       <div className="min-w-0 overflow-hidden">
@@ -3190,8 +3199,11 @@ function App() {
                           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
                           <span className="text-[10px] font-extrabold uppercase tracking-widest text-primary truncate">Live Engine</span>
                         </div>
-                        <p className="text-xs sm:text-sm font-bold text-on-surface truncate">{settings.contentType} QR Code</p>
-                        <p className="text-[10px] sm:text-[11px] text-on-surface-variant truncate">Level {settings.error_correction} • {downloadFormat}</p>
+                        <p className="text-xs sm:text-sm font-bold text-on-surface truncate group-active:text-primary transition-colors">{settings.contentType} QR Code</p>
+                        <p className="text-[10px] sm:text-[11px] text-on-surface-variant truncate flex items-center gap-1">
+                          Level {settings.error_correction} • {downloadFormat}
+                          <span className="material-symbols-outlined text-[10px] opacity-70">open_in_full</span>
+                        </p>
                       </div>
                     </div>
 
@@ -3339,7 +3351,16 @@ function App() {
       {isFullscreen && (
         <div className="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md flex flex-col items-center justify-center p-4 sm:p-8 animate-fadeIn" onClick={() => setIsFullscreen(false)}>
           <div 
-            className="relative bg-white rounded-3xl p-8 sm:p-12 max-w-[90vw] max-h-[80vh] flex items-center justify-center shadow-2xl border border-white/20 overflow-hidden touch-none" 
+            className={`relative rounded-3xl p-8 sm:p-12 max-w-[90vw] max-h-[80vh] flex items-center justify-center shadow-2xl border border-white/20 overflow-hidden touch-none transition-colors duration-300 ${previewBg === 'dark' ? 'bg-[#18181b]' : previewBg === 'transparent' ? 'bg-[#f3f4f6]' : previewBg === 'white' ? 'bg-[#f4f4f5]' : 'bg-[#f9fafb]'}`}
+            style={previewBg === 'transparent' ? {
+              backgroundImage: "linear-gradient(45deg, #e5e7eb 25%, transparent 25%), linear-gradient(-45deg, #e5e7eb 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e5e7eb 75%), linear-gradient(-45deg, transparent 75%, #e5e7eb 75%)",
+              backgroundSize: "16px 16px",
+              backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0px",
+            } : previewBg === 'light' ? {
+              backgroundImage: "linear-gradient(45deg, #f3f4f6 25%, transparent 25%), linear-gradient(-45deg, #f3f4f6 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f3f4f6 75%), linear-gradient(-45deg, transparent 75%, #f3f4f6 75%)",
+              backgroundSize: "16px 16px",
+              backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0px",
+            } : {}} 
             onClick={(e) => e.stopPropagation()} 
             onWheel={(e) => {
               const delta = e.deltaY * -0.003;
@@ -3377,8 +3398,24 @@ function App() {
               }
             }}
           >
-            <button onClick={() => setIsFullscreen(false)} className="absolute top-4 right-4 z-50 w-10 h-10 bg-surface hover:bg-surface-container-high rounded-full flex items-center justify-center text-on-surface transition-colors shadow-sm touch-press" title="Close">
-              <span className="material-symbols-outlined text-xl">close</span>
+            {/* Background Tester Toggle in Fullscreen */}
+            <div className={`absolute top-4 left-4 z-50 flex backdrop-blur-md rounded-full p-1 shadow-sm border gap-0.5 ${previewBg === 'dark' ? 'bg-[#27272a]/90 border-white/10' : 'bg-white/90 border-outline-variant/30'}`}>
+              <button onClick={(e) => { e.stopPropagation(); setPreviewBg("white"); }} className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${previewBg === "white" ? "bg-white shadow-sm ring-1 ring-outline-variant/30" : "hover:bg-black/5 dark:hover:bg-white/10"}`} title="Solid Light Background">
+                <span className="w-5 h-5 rounded-full bg-[#f4f4f5] border border-outline-variant/60 shadow-inner pointer-events-none"></span>
+              </button>
+              <button onClick={(e) => { e.stopPropagation(); setPreviewBg("light"); }} className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${previewBg === "light" ? "bg-white shadow-sm ring-1 ring-outline-variant/30" : "hover:bg-black/5 dark:hover:bg-white/10"}`} title="Light Background">
+                <span className="w-5 h-5 rounded-full bg-[#f9fafb] border border-outline-variant/60 shadow-inner pointer-events-none"></span>
+              </button>
+              <button onClick={(e) => { e.stopPropagation(); setPreviewBg("dark"); }} className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${previewBg === "dark" ? "bg-[#3f3f46] shadow-sm ring-1 ring-black/50" : "hover:bg-black/5 dark:hover:bg-white/10"}`} title="Dark Background">
+                <span className="w-5 h-5 rounded-full bg-[#18181b] border border-black shadow-inner pointer-events-none"></span>
+              </button>
+              <button onClick={(e) => { e.stopPropagation(); setPreviewBg("transparent"); }} className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors ${previewBg === "transparent" ? "bg-white shadow-sm ring-1 ring-outline-variant/30" : "hover:bg-black/5 dark:hover:bg-white/10"}`} title="Transparent Background">
+                <span className="w-5 h-5 rounded-full border border-outline-variant/60 shadow-inner pointer-events-none" style={{ backgroundImage: "linear-gradient(45deg, #e5e7eb 25%, transparent 25%), linear-gradient(-45deg, #e5e7eb 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e5e7eb 75%), linear-gradient(-45deg, transparent 75%, #e5e7eb 75%)", backgroundSize: "8px 8px", backgroundPosition: "0 0, 0 4px, 4px -4px, -4px 0px" }}></span>
+              </button>
+            </div>
+
+            <button onClick={() => setIsFullscreen(false)} className="absolute top-4 right-4 z-50 w-12 h-12 sm:w-10 sm:h-10 bg-surface hover:bg-surface-container-high rounded-full flex items-center justify-center text-on-surface transition-colors shadow-sm touch-press" title="Close">
+              <span className="material-symbols-outlined text-xl pointer-events-none">close</span>
             </button>
 
             {isLoading ? (
