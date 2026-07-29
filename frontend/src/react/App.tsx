@@ -1319,7 +1319,7 @@ function App() {
                       onClick={() => setActiveCorner(corner as any)}
                       className={`flex-1 py-1.5 px-2 text-xs rounded-lg border font-medium transition-colors ${
                         activeCorner === corner 
-                          ? 'bg-primary text-on-primary border-primary' 
+                          ? 'bg-primary/10 border-primary text-primary font-bold shadow-sm' 
                           : 'bg-surface border-outline-variant text-on-surface-variant hover:bg-surface-variant'
                       }`}
                     >
@@ -2779,7 +2779,7 @@ function App() {
                 className={`flex-1 py-4 px-6 rounded-xl font-bold flex items-center justify-center gap-3 btn-spring shadow-lg text-base ${downloadSuccess
                     ? "bg-emerald-600 text-white shadow-xl shadow-emerald-600/30 animate-celebrate"
                     : isDownloading
-                      ? "bg-primary/80 text-on-primary cursor-wait shadow-sm animate-pulse"
+                      ? "bg-primary/80 text-white cursor-wait shadow-sm animate-pulse"
                       : "bg-gradient-to-r from-primary to-primary-hover hover:from-primary-hover hover:to-primary text-white shadow-md hover:shadow-lg hover:scale-[1.015]"
                   } disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100`}
               >

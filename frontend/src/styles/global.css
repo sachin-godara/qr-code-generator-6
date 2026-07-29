@@ -8,6 +8,7 @@
   
   /* Primary — Sleek Black (Vercel-inspired monochrome) */
   --color-primary: #18181b;
+  --color-on-primary: #ffffff;
   --color-primary-hover: #27272a;
   --color-primary-container: #f4f4f5;
   --color-on-primary-container: #18181b;
