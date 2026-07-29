@@ -74,16 +74,31 @@ async function fetchQRCode(settings: any) {
 
 const ScannabilityAlert = ({ show, message, compact = false }: { show: boolean, message: React.ReactNode, compact?: boolean }) => {
   if (!show) return null;
+  
+  if (compact) {
+    return (
+      <div className="flex items-center gap-1 mt-1">
+        <div className="w-1 h-1 rounded-full bg-amber-500 shrink-0"></div>
+        <p className="text-[9px] font-medium text-amber-600 dark:text-amber-500">
+          {message}
+        </p>
+      </div>
+    );
+  }
+
   return (
-    <div className={`flex items-start bg-amber-500/10 border border-amber-500/20 rounded-lg ${compact ? 'gap-2 p-2 mt-2 shadow-none' : 'gap-3 p-3.5 mt-3 shadow-sm'}`}>
-      <div className={`${compact ? 'bg-amber-500/20 p-1 rounded-md' : 'bg-amber-500/20 p-1.5 rounded-lg'} shrink-0 flex items-center justify-center`}>
-        <span className={`material-symbols-outlined text-amber-700 dark:text-amber-400 ${compact ? 'text-[14px]' : 'text-[18px]'}`}>
-          center_focus_strong
+    <div className="flex items-start bg-primary/5 border border-primary/20 rounded-xl gap-3 p-4 mt-3 shadow-sm">
+      <div className="bg-primary/10 p-1.5 rounded-lg shrink-0 flex items-center justify-center">
+        <span className="material-symbols-outlined text-primary text-[18px]">
+          tune
         </span>
       </div>
-      <p className={`font-semibold text-amber-800 dark:text-amber-300 leading-snug pt-0.5 ${compact ? 'text-[10px]' : 'text-[11px]'}`}>
-        {message}
-      </p>
+      <div className="pt-0.5">
+        <h4 className="font-bold text-primary text-[11px] mb-0.5 uppercase tracking-wide">Custom Settings Active</h4>
+        <p className="font-medium text-on-surface-variant leading-relaxed text-[11px]">
+          {message}
+        </p>
+      </div>
     </div>
   );
 };
@@ -1519,7 +1534,13 @@ function App() {
                     <button
                       key={style.id}
                       type="button"
-                      onClick={() => updateSettings({ logo_icon_style: style.id as any })}
+                      onClick={() => {
+                        const updates: any = { logo_icon_style: style.id };
+                        if (style.id === "glyph") {
+                          updates.logo_clear_size = 0;
+                        }
+                        updateSettings(updates);
+                      }}
                       className={`p-2.5 rounded-xl flex flex-col items-center justify-center text-center gap-1.5 transition-all duration-200 border relative ${
                         isSelected
                           ? "bg-white border-primary ring-2 ring-primary/20 text-primary shadow-sm scale-[1.02]"
@@ -1730,7 +1751,7 @@ function App() {
                    />
                   <ScannabilityAlert 
                     show={settings.logo_size_ratio > 0.18} 
-                    message="Large logo limits scannability. Test scan recommended."
+                    message="Test scan recommended"
                     compact={true}
                   />
                 </div>
@@ -1751,7 +1772,7 @@ function App() {
                     </span>
                   </div>
                   <Slider min="-1"
-                    max="5"
+                    max="2"
                     step="0.1"
                     value={settings.logo_clear_size}
                     onChange={(val) => updateSettings({ logo_clear_size: val })}
@@ -1759,7 +1780,7 @@ function App() {
                    />
                   <ScannabilityAlert 
                     show={settings.logo_clear_size > 0.5} 
-                    message="High clearance limits scannability. Test scan recommended."
+                    message="Test scan recommended"
                     compact={true}
                   />
                   <p className="text-[10px] text-on-surface-variant/80">
@@ -2389,7 +2410,7 @@ function App() {
               </div>
               <ScannabilityAlert
                 show={settings.error_correction !== "H"}
-                message="Lower error correction reduces scan reliability. Test scan recommended."
+                message="Test scan recommended"
                 compact={true}
               />
             </div>
@@ -2415,8 +2436,8 @@ function App() {
                 
                />
               <ScannabilityAlert
-                show={settings.quiet_zone !== 4}
-                message="Non-standard quiet zone affects scannability. Test scan recommended."
+                show={settings.quiet_zone > 4}
+                message="Test scan recommended"
                 compact={true}
               />
               <div className="flex justify-between text-[11px] text-on-surface-variant font-semibold px-1">
@@ -2579,7 +2600,7 @@ function App() {
             {/* Action Buttons */}
             <div className="mb-6 mt-2">
               <ScannabilityAlert
-                show={settings.logo_size_ratio > 0.18 || settings.logo_clear_size > 0.5 || settings.quiet_zone !== 4 || settings.error_correction !== "H"}
+                show={settings.logo_size_ratio > 0.18 || settings.logo_clear_size > 0.5 || settings.quiet_zone > 4 || settings.error_correction !== "H"}
                 message="You have modified scannability settings from their defaults. Please test the QR scan first to ensure it scans reliably."
               />
             </div>
@@ -3076,7 +3097,7 @@ function App() {
                 <div className="border-t border-outline-variant/40 bg-surface-container-lowest p-4 sm:p-6 flex flex-col gap-3 shadow-2xs rounded-b-3xl">
                   <div className="-mt-2 mb-1">
                     <ScannabilityAlert
-                      show={settings.logo_size_ratio > 0.18 || settings.logo_clear_size > 0.5 || settings.quiet_zone !== 4 || settings.error_correction !== "H"}
+                      show={settings.logo_size_ratio > 0.18 || settings.logo_clear_size > 0.5 || settings.quiet_zone > 4 || settings.error_correction !== "H"}
                       message="You have modified scannability settings from their defaults. Please test the QR scan first to ensure it scans reliably."
                     />
                   </div>
