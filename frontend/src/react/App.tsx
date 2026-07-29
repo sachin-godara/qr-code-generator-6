@@ -582,7 +582,7 @@ function App() {
         return (
           <div className="space-y-6">
             {/* Type Tabs */}
-            <div className="glass-panel p-1.5 sm:p-2 rounded-2xl grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-1 border border-outline-variant shadow-sm">
+            <div className="glass-panel p-1.5 sm:p-2 rounded-2xl grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-4 xl:grid-cols-6 gap-1 border border-outline-variant shadow-sm">
               {contentTypes.map((type) => (
                 <button
                   key={type.id}
@@ -1151,7 +1151,7 @@ function App() {
               ))}
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-3 xl:grid-cols-4 gap-3.5 max-h-[600px] overflow-y-auto px-3.5 pt-3.5 pb-6 custom-scrollbar">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-3.5 max-h-[600px] overflow-y-auto px-3.5 pt-3.5 pb-6 custom-scrollbar">
               {filteredTemplates.map((template) => {
                 const cleanName = template.name.toLowerCase().replace(/\s+/g, "_");
                 const isSelected = Object.keys(template.settings).every(
@@ -1736,7 +1736,7 @@ function App() {
               </div>
 
               {/* Reactive Icon Grid */}
-              <div className="grid grid-cols-3 sm:grid-cols-5 md:grid-cols-6 gap-2 sm:gap-2.5 max-h-[340px] overflow-y-auto p-2 sm:p-3.5 border border-outline-variant/40 rounded-2xl bg-surface/20">
+              <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-4 xl:grid-cols-6 gap-2 sm:gap-2.5 max-h-[340px] overflow-y-auto p-2 sm:p-3.5 border border-outline-variant/40 rounded-2xl bg-surface/20">
                 {filteredLogos.length > 0 ? (
                   filteredLogos.map((item) => {
                     const isSelected = settings.preset_logo === item.id && !settings.logo_image;
@@ -2946,25 +2946,29 @@ function App() {
       <div className="flex flex-1 w-full relative">
 
         {/* Desktop Sidebar */}
-        <aside className="w-72 border-r border-outline-variant bg-surface-container-lowest hidden lg:flex flex-col py-6 px-4 gap-2 sticky top-16 h-[calc(100vh-4rem)]">
-          <div className="mb-3 px-2">
-            <h2 className="text-sm font-semibold text-on-surface tracking-tight">Customization</h2>
-            <p className="text-xs text-on-surface-variant mt-0.5">Personalize your QR code</p>
+        <aside className="w-20 xl:w-72 border-r border-outline-variant bg-surface-container-lowest hidden lg:flex flex-col py-6 px-2 xl:px-4 gap-2 sticky top-16 h-[calc(100vh-4rem)] transition-all duration-300">
+          <div className="mb-3 px-1 xl:px-2 flex flex-col items-center xl:items-start text-center xl:text-left overflow-hidden">
+            <h2 className="text-xs xl:text-sm font-semibold text-on-surface tracking-tight truncate w-full">
+              <span className="xl:hidden">Tools</span>
+              <span className="hidden xl:inline">Customization</span>
+            </h2>
+            <p className="hidden xl:block text-xs text-on-surface-variant mt-0.5">Personalize your QR code</p>
           </div>
 
-          <div className="space-y-1 flex-1 overflow-y-auto">
+          <div className="space-y-1 flex-1 overflow-y-auto overflow-x-hidden">
             {sidebarTabs.map((tab) => (
               <button
                 key={tab.name}
                 onClick={() => setActiveTab(tab.name)}
-                className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-[13px] font-medium tab-spring relative sidebar-item ${
+                title={tab.name}
+                className={`w-full flex items-center justify-center xl:justify-start gap-3 px-0 xl:px-3 py-2.5 rounded-lg text-[13px] font-medium tab-spring relative sidebar-item ${
                   activeTab === tab.name
                     ? "sidebar-item-active"
                     : "text-on-surface-variant hover:bg-surface-container hover:text-on-surface"
                 }`}
               >
-                <span className={`material-symbols-outlined text-[18px] transition-colors ${activeTab === tab.name ? "text-primary" : "text-on-surface-variant"}`}>{tab.icon}</span>
-                <span>{tab.name}</span>
+                <span className={`material-symbols-outlined text-[22px] xl:text-[18px] transition-colors ${activeTab === tab.name ? "text-primary" : "text-on-surface-variant"}`}>{tab.icon}</span>
+                <span className="hidden xl:inline whitespace-nowrap">{tab.name}</span>
               </button>
             ))}
           </div>
@@ -2976,7 +2980,7 @@ function App() {
           <div className="max-w-container-max mx-auto w-full max-w-full">
 
             {/* DESKTOP LAYOUT (lg and above) */}
-            <div className="hidden lg:grid lg:grid-cols-12 gap-8 items-start p-margin-desktop max-w-full">
+            <div className="hidden lg:grid lg:grid-cols-12 gap-6 xl:gap-8 items-start p-margin-desktop max-w-full">
 
               {/* Left Column: Desktop Config Forms */}
               <div className="lg:col-span-7 space-y-8 max-w-full">
