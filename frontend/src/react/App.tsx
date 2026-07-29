@@ -72,6 +72,22 @@ async function fetchQRCode(settings: any) {
 
 
 
+const ScannabilityAlert = ({ show, message, compact = false }: { show: boolean, message: React.ReactNode, compact?: boolean }) => {
+  if (!show) return null;
+  return (
+    <div className={`flex items-start bg-amber-500/10 border border-amber-500/20 rounded-lg ${compact ? 'gap-2 p-2 mt-2 shadow-none' : 'gap-3 p-3.5 mt-3 shadow-sm'}`}>
+      <div className={`${compact ? 'bg-amber-500/20 p-1 rounded-md' : 'bg-amber-500/20 p-1.5 rounded-lg'} shrink-0 flex items-center justify-center`}>
+        <span className={`material-symbols-outlined text-amber-700 dark:text-amber-400 ${compact ? 'text-[14px]' : 'text-[18px]'}`}>
+          center_focus_strong
+        </span>
+      </div>
+      <p className={`font-semibold text-amber-800 dark:text-amber-300 leading-snug pt-0.5 ${compact ? 'text-[10px]' : 'text-[11px]'}`}>
+        {message}
+      </p>
+    </div>
+  );
+};
+
 function App() {
   const { settings, updateSettings, applyTemplate, undo, redo, resetSettings, history, historyIndex } = useQRStore()
   const [activeTab, setActiveTab] = useState<string>("Content")
@@ -1712,6 +1728,11 @@ function App() {
                     onChange={(val) => updateSettings({ logo_size_ratio: val })}
                     
                    />
+                  <ScannabilityAlert 
+                    show={settings.logo_size_ratio > 0.18} 
+                    message="Large logo limits scannability. Test scan recommended."
+                    compact={true}
+                  />
                 </div>
 
                 {/* Dot Clearance */}
@@ -1736,12 +1757,11 @@ function App() {
                     onChange={(val) => updateSettings({ logo_clear_size: val })}
                     
                    />
-                  {settings.logo_clear_size > 3.0 && (
-                    <div className="flex items-center gap-2 p-2 bg-error/10 border border-error/20 text-error rounded-lg text-[10px] font-medium mt-1">
-                      <span className="material-symbols-outlined text-xs">warning</span>
-                      <span>High clearance might affect scannability. Test before sharing.</span>
-                    </div>
-                  )}
+                  <ScannabilityAlert 
+                    show={settings.logo_clear_size > 0.5} 
+                    message="High clearance limits scannability. Test scan recommended."
+                    compact={true}
+                  />
                   <p className="text-[10px] text-on-surface-variant/80">
                     Fine-tune the circular spacing around the logo to clear individual dots smoothly.
                   </p>
@@ -2367,17 +2387,11 @@ function App() {
                   </button>
                 ))}
               </div>
-              {(settings.preset_logo !== "None" || !!settings.logo_image) &&
-                (settings.error_correction === "L" || settings.error_correction === "M") && (
-                  <div className="flex items-start gap-2.5 p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 mt-2">
-                    <span className="material-symbols-outlined text-amber-600 text-[20px] mt-0.5 shrink-0">
-                      warning
-                    </span>
-                    <div className="text-xs leading-relaxed">
-                      <strong className="font-semibold">Logo Active Recommendation:</strong> Covering center dots with a logo reduces redundancy. For optimum camera scanning performance with logos, we strongly suggest switching to <span className="font-bold underline">Quartile (Q)</span> or <span className="font-bold underline">High (H)</span>.
-                    </div>
-                  </div>
-                )}
+              <ScannabilityAlert
+                show={settings.error_correction !== "H"}
+                message="Lower error correction reduces scan reliability. Test scan recommended."
+                compact={true}
+              />
             </div>
 
             {/* Quiet Zone (Border Width) */}
@@ -2400,6 +2414,11 @@ function App() {
                 onChange={(val) => updateSettings({ quiet_zone: val })}
                 
                />
+              <ScannabilityAlert
+                show={settings.quiet_zone !== 4}
+                message="Non-standard quiet zone affects scannability. Test scan recommended."
+                compact={true}
+              />
               <div className="flex justify-between text-[11px] text-on-surface-variant font-semibold px-1">
                 <span>0 (No Border)</span>
                 <span>4 (Standard)</span>
@@ -2558,6 +2577,12 @@ function App() {
             </div>
 
             {/* Action Buttons */}
+            <div className="mb-6 mt-2">
+              <ScannabilityAlert
+                show={settings.logo_size_ratio > 0.18 || settings.logo_clear_size > 0.5 || settings.quiet_zone !== 4 || settings.error_correction !== "H"}
+                message="You have modified scannability settings from their defaults. Please test the QR scan first to ensure it scans reliably."
+              />
+            </div>
             <div className="border-t border-outline-variant pt-6 flex flex-col sm:flex-row gap-4">
               <button
                 onClick={handleDownloadCustom}
@@ -3048,25 +3073,33 @@ function App() {
                 </div>
 
                 {/* ── ACTION FOOTER: DOWNLOAD & COPY (In-Flow directly above SEO section) ── */}
-                <div className="border-t border-outline-variant/40 bg-surface-container-lowest p-4 sm:p-6 flex gap-3 shadow-2xs rounded-b-3xl">
-                  <button
-                    onClick={handleDownloadPNG}
-                    disabled={isLoading || isError || isDownloading}
-                    className="flex-1 py-3.5 px-4 bg-primary text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-primary/25 btn-spring min-h-[48px]"
-                  >
-                    <span className="material-symbols-outlined text-[20px]">download</span>
-                    Download {downloadFormat}
-                  </button>
-                  <button
-                    onClick={handleCopyToClipboard}
-                    disabled={isLoading || isError || isCopying}
-                    className={`py-3.5 px-5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 border shadow-sm btn-spring min-h-[48px] ${
-                      copySuccess ? 'bg-emerald-600 text-white border-emerald-600 shadow-emerald-600/25 animate-celebrate' : 'bg-white border-outline-variant/80 text-on-surface hover:bg-surface-container-low'
-                    }`}
-                  >
-                    <span className={`material-symbols-outlined text-[20px] ${copySuccess ? 'animate-[spin_350ms_ease-out_1]' : ''}`}>{copySuccess ? 'check' : 'content_copy'}</span>
-                    {copySuccess ? 'Copied!' : 'Copy'}
-                  </button>
+                <div className="border-t border-outline-variant/40 bg-surface-container-lowest p-4 sm:p-6 flex flex-col gap-3 shadow-2xs rounded-b-3xl">
+                  <div className="-mt-2 mb-1">
+                    <ScannabilityAlert
+                      show={settings.logo_size_ratio > 0.18 || settings.logo_clear_size > 0.5 || settings.quiet_zone !== 4 || settings.error_correction !== "H"}
+                      message="You have modified scannability settings from their defaults. Please test the QR scan first to ensure it scans reliably."
+                    />
+                  </div>
+                  <div className="flex gap-3 w-full">
+                    <button
+                      onClick={handleDownloadPNG}
+                      disabled={isLoading || isError || isDownloading}
+                      className="flex-1 py-3.5 px-4 bg-primary text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-primary/25 btn-spring min-h-[48px]"
+                    >
+                      <span className="material-symbols-outlined text-[20px]">download</span>
+                      Download {downloadFormat}
+                    </button>
+                    <button
+                      onClick={handleCopyToClipboard}
+                      disabled={isLoading || isError || isCopying}
+                      className={`py-3.5 px-5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 border shadow-sm btn-spring min-h-[48px] ${
+                        copySuccess ? 'bg-emerald-600 text-white border-emerald-600 shadow-emerald-600/25 animate-celebrate' : 'bg-white border-outline-variant/80 text-on-surface hover:bg-surface-container-low'
+                      }`}
+                    >
+                      <span className={`material-symbols-outlined text-[20px] ${copySuccess ? 'animate-[spin_350ms_ease-out_1]' : ''}`}>{copySuccess ? 'check' : 'content_copy'}</span>
+                      {copySuccess ? 'Copied!' : 'Copy'}
+                    </button>
+                  </div>
                 </div>
 
               </div>
