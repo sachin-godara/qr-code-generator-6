@@ -19,13 +19,13 @@ export const EYE_FRAME_STYLES = [
   "leaf_opposite", "shield_opposite", 
   "left_rounded", "right_rounded", "solid_square_circle_cut", "crystal_frame", 
   "arch_frame", "cross_notch_frame", "pointed_top_frame", "aztec_step_frame", 
-  "camera_lens", "squircle", "notched_ring", "circuit_trace"
+  "camera_lens", "squircle", "notched_ring", "circuit_trace", "fluted_bezel", "cushion_cut", "hex_nut", "split_crosshairs", "aerodynamic_slant"
 ];
 export const EYEBALL_STYLES = [
   // Normal
   "square", "rounded", "circle", "diamond", "hexagon", "octagon",
   // Intermediate
-  "leaf", "perfect_leaf", "dynamic_swept", "dynamic_swept_opposite", "shield", "gear", "plus", "rhombus", "squircle", "notched_ring", "circuit_trace",
+  "leaf", "perfect_leaf", "dynamic_swept", "dynamic_swept_opposite", "shield", "gear", "plus", "rhombus", "squircle", "notched_ring", "circuit_trace", "fluted_bezel", "cushion_cut", "hex_nut", "split_crosshairs", "aerodynamic_slant",
   // Advanced
   "deckled",
   "leaf_opposite", "shield_opposite", 

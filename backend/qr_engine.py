@@ -1801,6 +1801,65 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
             draw.polygon(out_pts, fill=eye_rgb)
             draw.rectangle([px + s, py + s, px + 6*s - 1, py + 6*s - 1], fill=(255,255,255))
             draw.rectangle([px + 2*s, py, px + 3.5*s, py + 0.8*s], fill=(255,255,255))
+        elif eye_frame_style == "fluted_bezel":
+            pts = []
+            cx, cy = px + 3.5*s, py + 3.5*s
+            r_base = 3.5 * s
+            amp = 0.2 * s
+            for i in range(360):
+                rad = math.radians(i)
+                r = r_base + amp * math.sin(12 * rad)
+                x = cx + r * math.cos(rad)
+                y = cy + r * math.sin(rad)
+                pts.append((x, y))
+            draw.polygon(pts, fill=eye_rgb)
+            draw.ellipse([px + s, py + s, px + 6*s - 1, py + 6*s - 1], fill=(255,255,255))
+        elif eye_frame_style == "cushion_cut":
+            pts = []
+            steps = 20
+            def curve_edge(p1, p2, bow_out_vec):
+                edge_pts = []
+                for i in range(steps):
+                    t = i / steps
+                    x = px + (p1[0] + t * (p2[0] - p1[0])) * s
+                    y = py + (p1[1] + t * (p2[1] - p1[1])) * s
+                    bow = math.sin(t * math.pi) * 0.4 * s
+                    x += bow * bow_out_vec[0]
+                    y += bow * bow_out_vec[1]
+                    edge_pts.append((x, y))
+                return edge_pts
+            pts.extend(curve_edge((0, 0), (7, 0), (0, -1)))
+            pts.extend(curve_edge((7, 0), (7, 7), (1, 0)))
+            pts.extend(curve_edge((7, 7), (0, 7), (0, 1)))
+            pts.extend(curve_edge((0, 7), (0, 0), (-1, 0)))
+            draw.polygon(pts, fill=eye_rgb)
+            draw.rectangle([px + s, py + s, px + 6*s - 1, py + 6*s - 1], fill=(255,255,255))
+        elif eye_frame_style == "hex_nut":
+            pts = []
+            cx, cy = px + 3.5*s, py + 3.5*s
+            for i in range(6):
+                rad = math.radians(i * 60 - 30)
+                x = cx + 3.5 * s * math.cos(rad)
+                y = cy + 3.5 * s * math.sin(rad)
+                pts.append((x, y))
+            draw.polygon(pts, fill=eye_rgb)
+            draw.ellipse([px + s, py + s, px + 6*s - 1, py + 6*s - 1], fill=(255,255,255))
+        elif eye_frame_style == "split_crosshairs":
+            draw.rectangle([px, py, px + 7*s - 1, py + 7*s - 1], fill=eye_rgb)
+            draw.rectangle([px + s, py + s, px + 6*s - 1, py + 6*s - 1], fill=(255,255,255))
+            cx, cy = px + 3.5*s, py + 3.5*s
+            gap = 0.3 * s
+            draw.rectangle([cx - gap, py, cx + gap, py + 1.2*s], fill=(255,255,255))
+            draw.rectangle([cx - gap, py + 5.8*s, cx + gap, py + 7*s], fill=(255,255,255))
+            draw.rectangle([px, cy - gap, px + 1.2*s, cy + gap], fill=(255,255,255))
+            draw.rectangle([px + 5.8*s, cy - gap, px + 7*s, cy + gap], fill=(255,255,255))
+        elif eye_frame_style == "aerodynamic_slant":
+            out_pts = [
+                (px, py + 2.2*s), (px + 3.8*s, py), (px + 7*s, py),
+                (px + 7*s, py + 4.8*s), (px + 3.2*s, py + 7*s), (px, py + 7*s)
+            ]
+            draw.polygon(out_pts, fill=eye_rgb)
+            draw.rectangle([px + s, py + s, px + 6*s - 1, py + 6*s - 1], fill=(255,255,255))
         elif eye_frame_style == "camera_lens":
             draw.ellipse([px, py, px + 7*s - 1, py + 7*s - 1], fill=eye_rgb + (255,))
             draw.ellipse([px + s, py + s, px + 6*s - 1, py + 6*s - 1], fill=bg + (255,))
@@ -1944,6 +2003,47 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
                 (px + 2*s, py + 2*s), (px + 4*s, py + 2*s), (px + 5*s, py + 3*s),
                 (px + 5*s, py + 5*s), (px + 3*s, py + 5*s), (px + 2*s, py + 4*s)
             ]
+            draw.polygon(pts, fill=eye_rgb)
+        elif eyeball_style == "fluted_bezel":
+            draw.ellipse([px + 2*s, py + 2*s, px + 5*s - 1, py + 5*s - 1], fill=eye_rgb)
+        elif eyeball_style == "cushion_cut":
+            pts = []
+            steps = 15
+            def curve_edge(p1, p2, bow_out_vec):
+                edge_pts = []
+                for i in range(steps):
+                    t = i / steps
+                    x = px + (p1[0] + t * (p2[0] - p1[0])) * s
+                    y = py + (p1[1] + t * (p2[1] - p1[1])) * s
+                    bow = math.sin(t * math.pi) * 0.25 * s
+                    x += bow * bow_out_vec[0]
+                    y += bow * bow_out_vec[1]
+                    edge_pts.append((x, y))
+                return edge_pts
+            pts.extend(curve_edge((2, 2), (5, 2), (0, -1)))
+            pts.extend(curve_edge((5, 2), (5, 5), (1, 0)))
+            pts.extend(curve_edge((5, 5), (2, 5), (0, 1)))
+            pts.extend(curve_edge((2, 5), (2, 2), (-1, 0)))
+            draw.polygon(pts, fill=eye_rgb)
+        elif eyeball_style == "hex_nut":
+            pts = []
+            cx, cy = px + 3.5*s, py + 3.5*s
+            for i in range(6):
+                rad = math.radians(i * 60 - 30)
+                x = cx + 1.5 * s * math.cos(rad)
+                y = cy + 1.5 * s * math.sin(rad)
+                pts.append((x, y))
+            draw.polygon(pts, fill=eye_rgb)
+        elif eyeball_style == "split_crosshairs":
+            draw.rectangle([px + 2*s, py + 2*s, px + 5*s - 1, py + 5*s - 1], fill=eye_rgb)
+            cx, cy = px + 3.5*s, py + 3.5*s
+            gap = 0.25 * s
+            draw.rectangle([cx - gap, py + 1.8*s, cx + gap, py + 2.4*s], fill=(255,255,255))
+            draw.rectangle([cx - gap, py + 4.6*s, cx + gap, py + 5.2*s], fill=(255,255,255))
+            draw.rectangle([px + 1.8*s, cy - gap, px + 2.4*s, cy + gap], fill=(255,255,255))
+            draw.rectangle([px + 4.6*s, cy - gap, px + 5.2*s, cy + gap], fill=(255,255,255))
+        elif eyeball_style == "aerodynamic_slant":
+            pts = [(px + 2.6*s, py + 2*s), (px + 5*s, py + 2*s), (px + 4.4*s, py + 5*s), (px + 2*s, py + 5*s)]
             draw.polygon(pts, fill=eye_rgb)
         elif eyeball_style == "gear":
             cx = ebx + 1.5 * s
