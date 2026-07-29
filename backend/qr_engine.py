@@ -1,6 +1,55 @@
 import qrcode
 import math
 import numpy as np
+import random
+
+def value_noise_1d(length, frequency, amplitude, seed_offset=0):
+    random.seed(seed_offset)
+    points = [random.uniform(-amplitude, amplitude) for _ in range(int(frequency) + 2)]
+    result = []
+    for i in range(length):
+        t = (i / length) * frequency
+        idx = int(t)
+        frac = t - idx
+        smooth = frac * frac * (3 - 2 * frac)
+        val = points[idx] * (1 - smooth) + points[idx+1] * smooth if idx + 1 < len(points) else points[idx]
+        result.append(val)
+    return result
+
+def fractal_noise_1d(length, freq1, amp1, freq2, amp2, seed_offset):
+    n1 = value_noise_1d(length, freq1, amp1, seed_offset)
+    n2 = value_noise_1d(length, freq2, amp2, seed_offset + 100)
+    return [a + b for a, b in zip(n1, n2)]
+
+def generate_deckled_rect(x0, y0, x1, y1, segments, freq1, amp1, freq2, amp2, seed):
+    points = []
+    
+    def add_edge(start_x, start_y, end_x, end_y, noise_array):
+        for i in range(segments):
+            t = i / segments
+            x = start_x + t * (end_x - start_x)
+            y = start_y + t * (end_y - start_y)
+            
+            n = noise_array[i]
+            if start_x == end_x: # vertical edge
+                nx = n if start_y < end_y else -n
+                ny = 0
+            else: # horizontal edge
+                nx = 0
+                ny = n if start_x < end_x else -n
+            points.append((x + nx, y + ny))
+
+    noise_top = fractal_noise_1d(segments, freq1, amp1, freq2, amp2, seed)
+    noise_right = fractal_noise_1d(segments, freq1, amp1, freq2, amp2, seed+1)
+    noise_bottom = fractal_noise_1d(segments, freq1, amp1, freq2, amp2, seed+2)
+    noise_left = fractal_noise_1d(segments, freq1, amp1, freq2, amp2, seed+3)
+    
+    add_edge(x0, y0, x1, y0, noise_top)
+    add_edge(x1, y0, x1, y1, noise_right)
+    add_edge(x1, y1, x0, y1, noise_bottom)
+    add_edge(x0, y1, x0, y0, noise_left)
+    
+    return points
 from qrcode.image.styledpil import StyledPilImage
 from qrcode.main import ActiveWithNeighbors
 
@@ -1438,6 +1487,17 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
             draw.rounded_rectangle([px + s, py + s, px + 6*s - 1, py + 6*s - 1], radius=r_in, fill=bg + (255,))
             draw.rectangle([px + 6*s - r_in, py + s, px + 6*s - 1, py + s + r_in], fill=bg + (255,))
             draw.rectangle([px + s, py + 6*s - r_in, px + s + r_in, py + 6*s - 1], fill=bg + (255,))
+        elif eye_frame_style == "deckled":
+            # Outer deckled edge
+            outer = generate_deckled_rect(px + 0.3*s, py + 0.3*s, px + 6.7*s - 1, py + 6.7*s - 1, segments=120, 
+                                          freq1=4, amp1=0.25*s, 
+                                          freq2=20, amp2=0.08*s, seed=hash(f"{px}_{py}_outer") % 10000)
+            draw.polygon(outer, fill=eye_rgb + (255,))
+            # Inner deckled edge
+            inner = generate_deckled_rect(px + 1.2*s, py + 1.2*s, px + 5.8*s - 1, py + 5.8*s - 1, segments=120, 
+                                          freq1=3, amp1=0.1*s, 
+                                          freq2=15, amp2=0.03*s, seed=hash(f"{px}_{py}_inner") % 10000)
+            draw.polygon(inner, fill=bg + (255,))
         elif eye_frame_style == "dynamic_swept":
             W = 7 * s * 4
             mask = Image.new("L", (W, W), 0)
@@ -1803,6 +1863,11 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
             draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r_eb, fill=current_eyeball_rgb + (255,))
             draw.rectangle([ebx + 3*s - r_eb, eby, ebx + 3*s - 1, eby + r_eb], fill=current_eyeball_rgb + (255,))
             draw.rectangle([ebx, eby + 3*s - r_eb, ebx + r_eb, eby + 3*s - 1], fill=current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "deckled":
+            eyeball = generate_deckled_rect(ebx + 0.3*s, eby + 0.3*s, ebx + 2.7*s - 1, eby + 2.7*s - 1, segments=80, 
+                                            freq1=2, amp1=0.05*s, 
+                                            freq2=10, amp2=0.02*s, seed=hash(f"{ebx}_{eby}_eyeball") % 10000)
+            draw.polygon(eyeball, fill=current_eyeball_rgb + (255,))
         elif current_eyeball_style == "dynamic_swept":
             W = 3 * s * 4
             mask = Image.new("L", (W, W), 0)
