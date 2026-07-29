@@ -904,6 +904,16 @@ def remove_qr_background(img: Image.Image, bg_color_hex: str, tolerance: float =
     out_arr = np.concatenate([new_rgb, new_alpha], axis=2).astype(np.uint8)
     return Image.fromarray(out_arr, "RGBA")
 
+def find_coeffs(pa, pb):
+    matrix = []
+    for p1, p2 in zip(pa, pb):
+        matrix.append([p1[0], p1[1], 1, 0, 0, 0, -p2[0]*p1[0], -p2[0]*p1[1]])
+        matrix.append([0, 0, 0, p1[0], p1[1], 1, -p2[1]*p1[0], -p2[1]*p1[1]])
+    A = np.matrix(matrix, dtype=np.float32)
+    B = np.array(pb).reshape(8)
+    res = np.dot(np.linalg.inv(A.T * A) * A.T, B)
+    return np.array(res).reshape(8)
+
 def make_sharp_corner(draw, px, py, corner, s, r, color):
     if corner == "TL":
         draw.rectangle([px, py, px + r - 1, py + s - 1], fill=color)
@@ -1408,6 +1418,41 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
             draw.ellipse([cx - 2*s, cy - 2*s, cx + 2*s, cy + 2*s], fill=bg + (255,))
         elif eye_frame_style == "circle":
             draw.ellipse([px, py, px + 7*s - 1, py + 7*s - 1], outline=eye_rgb + (255,), width=s)
+        elif eye_frame_style == "perfect_leaf":
+            r_out = 3.0 * s
+            draw.rounded_rectangle([px, py, px + 7*s - 1, py + 7*s - 1], radius=r_out, fill=eye_rgb + (255,))
+            draw.rectangle([px, py, px + r_out, py + r_out], fill=eye_rgb + (255,))
+            draw.rectangle([px + 7*s - r_out, py + 7*s - r_out, px + 7*s - 1, py + 7*s - 1], fill=eye_rgb + (255,))
+            
+            r_in = 2.0 * s
+            draw.rounded_rectangle([px + s, py + s, px + 6*s - 1, py + 6*s - 1], radius=r_in, fill=bg + (255,))
+            draw.rectangle([px + s, py + s, px + s + r_in, py + s + r_in], fill=bg + (255,))
+            draw.rectangle([px + 6*s - r_in, py + 6*s - r_in, px + 6*s - 1, py + 6*s - 1], fill=bg + (255,))
+        elif eye_frame_style == "dynamic_swept":
+            W = 7 * s * 4
+            mask = Image.new("L", (W, W), 0)
+            mdraw = ImageDraw.Draw(mask)
+            ms = W // 7
+            r_out = 3.0 * ms
+            mdraw.rounded_rectangle([0, 0, W - 1, W - 1], radius=r_out, fill=255)
+            mdraw.rectangle([0, 0, r_out, r_out], fill=255)
+            mdraw.rectangle([W - r_out, W - r_out, W - 1, W - 1], fill=255)
+            
+            r_in = 2.0 * ms
+            mdraw.rounded_rectangle([ms, ms, W - ms - 1, W - ms - 1], radius=r_in, fill=0)
+            mdraw.rectangle([ms, ms, ms + r_in, ms + r_in], fill=0)
+            mdraw.rectangle([W - ms - r_in, W - ms - r_in, W - ms - 1, W - ms - 1], fill=0)
+            
+            k = 1.0 * ms
+            pa = [(0, 0), (W, k), (W, W), (k, W)]
+            pb = [(0, 0), (W, 0), (W, W), (0, W)]
+            coeffs = find_coeffs(pa, pb)
+            warped = mask.transform((W, W), Image.PERSPECTIVE, coeffs, Image.BICUBIC)
+            warped = warped.resize((7*s, 7*s), Image.Resampling.LANCZOS)
+            
+            color_patch = Image.new("RGBA", (7*s, 7*s), eye_rgb + (255,))
+            color_patch.putalpha(warped)
+            img.paste(color_patch, (px, py), color_patch)
         elif eye_frame_style == "leaf":
             draw.rounded_rectangle([px, py, px + 7*s - 1, py + 7*s - 1], radius=r, outline=eye_rgb + (255,), width=s)
             make_sharp_corner(draw, px, py, "TL", s, r, eye_rgb + (255,))
@@ -1735,6 +1780,31 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
                 (x1, y2 - d), (x1, y1 + d)
             ]
             draw.polygon(p_out, fill=current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "perfect_leaf":
+            r_eb = 1.5 * s
+            draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r_eb, fill=current_eyeball_rgb + (255,))
+            draw.rectangle([ebx, eby, ebx + r_eb, eby + r_eb], fill=current_eyeball_rgb + (255,))
+            draw.rectangle([ebx + 3*s - r_eb, eby + 3*s - r_eb, ebx + 3*s - 1, eby + 3*s - 1], fill=current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "dynamic_swept":
+            W = 3 * s * 4
+            mask = Image.new("L", (W, W), 0)
+            mdraw = ImageDraw.Draw(mask)
+            ms = W // 3
+            r_eb = 1.5 * ms
+            mdraw.rounded_rectangle([0, 0, W - 1, W - 1], radius=r_eb, fill=255)
+            mdraw.rectangle([0, 0, r_eb, r_eb], fill=255)
+            mdraw.rectangle([W - r_eb, W - r_eb, W - 1, W - 1], fill=255)
+            
+            k = 1.2 * ms
+            pa = [(0, 0), (W, k), (W, W), (k, W)]
+            pb = [(0, 0), (W, 0), (W, W), (0, W)]
+            coeffs = find_coeffs(pa, pb)
+            warped = mask.transform((W, W), Image.PERSPECTIVE, coeffs, Image.BICUBIC)
+            warped = warped.resize((3*s, 3*s), Image.Resampling.LANCZOS)
+            
+            color_patch = Image.new("RGBA", (3*s, 3*s), current_eyeball_rgb + (255,))
+            color_patch.putalpha(warped)
+            img.paste(color_patch, (ebx, eby), color_patch)
         elif current_eyeball_style == "leaf":
             draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=current_eyeball_rgb + (255,))
             make_eyeball_sharp_corner(draw, ebx, eby, "TL", s, r2, current_eyeball_rgb + (255,))
