@@ -57,7 +57,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "description": "Elegant design for property tours and agent contacts with house-shaped markers.",
     "settings": {
       "dots_style": "diamond_target",
-      "eye_frame_style": "house_frame",
+      "eye_frame_style": "pointed_top_frame",
       "eyeball_style": "diamond",
       "dots_color": "#0F172A",
       "dots_color_end": "#1E293B",
@@ -79,9 +79,9 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "Events",
     "description": "Neon ticket-stub aesthetic for clubs, concerts, and exclusive events.",
     "settings": {
-      "dots_style": "tech_chevron",
-      "eye_frame_style": "target_bullseye",
-      "eyeball_style": "target_bullseye",
+      "dots_style": "arrow",
+      "eye_frame_style": "camera_lens",
+      "eyeball_style": "circle",
       "dots_color": "#ff00ff",
       "dots_color_end": "#00ffff",
       "gradient_type": "Diagonal (TL to BR)",
@@ -129,7 +129,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "settings": {
       "dots_style": "medical_cross",
       "eye_frame_style": "square",
-      "eyeball_style": "dumbbell_eyeball",
+      "eyeball_style": "rounded",
       "dots_color": "#dc2626",
       "dots_color_end": "#991b1b",
       "gradient_type": "Solid Color",
@@ -175,7 +175,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "settings": {
       "dots_style": "flower_cut",
       "eye_frame_style": "crystal_frame",
-      "eyeball_style": "flower",
+      "eyeball_style": "flower_cut",
       "dots_color": "#B76E79",
       "dots_color_end": "#E0BFB8",
       "gradient_type": "Diagonal (TL to BR)",
@@ -458,7 +458,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "description": "Ultra dark Threads edition with crisp white elements",
     "settings": {
       "dots_style": "rounded",
-      "eye_frame_style": "circle",
+      "eye_frame_style": "rounded",
       "eyeball_style": "circle",
       "dots_color": "#ffffff",
       "dots_color_end": "#ffffff",
@@ -534,7 +534,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "Social",
     "settings": {
       "dots_style": "circle",
-      "eye_frame_style": "circle",
+      "eye_frame_style": "rounded",
       "eyeball_style": "circle",
       "dots_color": "#FF69B4",
       "bg_color": "#FFFFFF",
@@ -555,7 +555,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "Social",
     "settings": {
       "dots_style": "circle",
-      "eye_frame_style": "circle",
+      "eye_frame_style": "rounded",
       "eyeball_style": "circle",
       "dots_color": "#007FFF",
       "bg_color": "#FFFFFF",
@@ -597,7 +597,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "Restaurant",
     "settings": {
       "dots_style": "circle",
-      "eye_frame_style": "circle",
+      "eye_frame_style": "rounded",
       "eyeball_style": "circle",
       "dots_color": "#1E90FF",
       "bg_color": "#FFFFFF",
@@ -660,7 +660,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "Restaurant",
     "settings": {
       "dots_style": "rounded",
-      "eye_frame_style": "circle",
+      "eye_frame_style": "rounded",
       "eyeball_style": "circle",
       "dots_color": "#2C3E50",
       "bg_color": "#FFFFFF",
@@ -744,7 +744,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "Retail",
     "settings": {
       "dots_style": "diamond",
-      "eye_frame_style": "diamond",
+      "eye_frame_style": "octagon",
       "eyeball_style": "diamond",
       "dots_color": "#8B4513",
       "bg_color": "#FFFFFF",
@@ -807,7 +807,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "Retail",
     "settings": {
       "dots_style": "rounded",
-      "eye_frame_style": "circle",
+      "eye_frame_style": "rounded",
       "eyeball_style": "circle",
       "dots_color": "#D4AF37",
       "bg_color": "#FFFFFF",
@@ -870,7 +870,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "Social",
     "settings": {
       "dots_style": "rounded",
-      "eye_frame_style": "circle",
+      "eye_frame_style": "rounded",
       "eyeball_style": "circle",
       "dots_color": "#E67E22",
       "bg_color": "#FFFFFF",
@@ -975,7 +975,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "Events",
     "settings": {
       "dots_style": "rounded",
-      "eye_frame_style": "circle",
+      "eye_frame_style": "rounded",
       "eyeball_style": "circle",
       "dots_color": "#E74C3C",
       "bg_color": "#FFFFFF",
@@ -1134,7 +1134,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "description": "Sleek dashes and coffee frame for premium cafes.",
     "settings": {
         "dots_style": "sleek_dash",
-        "eye_frame_style": "minimal_ring",
+        "eye_frame_style": "rounded",
         "eyeball_style": "plus",
         "dots_color": "#3E2723",
         "dots_color_end": "#4E342E",
@@ -1155,7 +1155,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "description": "High contrast ticket style for paying at the table.",
     "settings": {
         "dots_style": "sleek_dash",
-        "eye_frame_style": "border",
+        "eye_frame_style": "rounded",
         "eyeball_style": "plus",
         "dots_color": "#212121",
         "dots_color_end": "#212121",
@@ -1176,7 +1176,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "description": "Dark mode with gold accents and a floating pill badge.",
     "settings": {
         "dots_style": "diamond",
-        "eye_frame_style": "minimal_ring",
+        "eye_frame_style": "rounded",
         "eyeball_style": "diamond",
         "dots_color": "#FFD700",
         "dots_color_end": "#FFC107",
@@ -1197,7 +1197,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "description": "Vibrant colors with a storefront awning layout.",
     "settings": {
         "dots_style": "rounded",
-        "eye_frame_style": "circle",
+        "eye_frame_style": "rounded",
         "eyeball_style": "circle",
         "dots_color": "#E53935",
         "dots_color_end": "#FF5252",
@@ -1239,8 +1239,8 @@ export const PRESET_TEMPLATES: Template[] = [
     "description": "Pastel gradients with a minimal shopping bag.",
     "settings": {
         "dots_style": "lotus_petal",
-        "eye_frame_style": "minimal_ring",
-        "eyeball_style": "flower",
+        "eye_frame_style": "rounded",
+        "eyeball_style": "flower_cut",
         "dots_color": "#EC407A",
         "dots_color_end": "#AB47BC",
         "gradient_type": "Diagonal (TL to BR)",
@@ -1259,7 +1259,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "Retail",
     "description": "Solid black and gold with shield eye frames.",
     "settings": {
-        "dots_style": "tech_chevron",
+        "dots_style": "arrow",
         "eye_frame_style": "shield_opposite",
         "eyeball_style": "plus",
         "dots_color": "#000000",
@@ -1280,8 +1280,8 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "Marketing",
     "description": "Tech chevron dots with a monitor screen layout.",
     "settings": {
-        "dots_style": "tech_chevron",
-        "eye_frame_style": "minimal_ring",
+        "dots_style": "arrow",
+        "eye_frame_style": "rounded",
         "eyeball_style": "plus",
         "dots_color": "#2962FF",
         "dots_color_end": "#00B0FF",
@@ -1302,7 +1302,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "description": "Gold on navy with a house frame for luxury real estate.",
     "settings": {
         "dots_style": "sleek_dash",
-        "eye_frame_style": "house_frame",
+        "eye_frame_style": "pointed_top_frame",
         "eyeball_style": "plus",
         "dots_color": "#D4AF37",
         "dots_color_end": "#F9A825",
@@ -1323,7 +1323,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "description": "Professional blue with modern polaroid frame for agent contacts.",
     "settings": {
         "dots_style": "rounded",
-        "eye_frame_style": "minimal_ring",
+        "eye_frame_style": "rounded",
         "eyeball_style": "circle",
         "dots_color": "#1565C0",
         "dots_color_end": "#1E88E5",
@@ -1345,7 +1345,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "settings": {
         "dots_style": "target_bullseye",
         "eye_frame_style": "camera_lens",
-        "eyeball_style": "target_bullseye",
+        "eyeball_style": "circle",
         "dots_color": "#2E7D32",
         "dots_color_end": "#43A047",
         "gradient_type": "Horizontal Gradient",
@@ -1365,7 +1365,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "description": "Neon colors with film strip frame for VIP event access.",
     "settings": {
         "dots_style": "sleek_dash",
-        "eye_frame_style": "brackets",
+        "eye_frame_style": "cross_notch_frame",
         "eyeball_style": "plus",
         "dots_color": "#00E5FF",
         "dots_color_end": "#D500F9",
@@ -1386,7 +1386,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "description": "Rose gold gradient with heart dots for elegant weddings.",
     "settings": {
         "dots_style": "heart",
-        "eye_frame_style": "minimal_ring",
+        "eye_frame_style": "rounded",
         "eyeball_style": "heart",
         "dots_color": "#B76E79",
         "dots_color_end": "#E0BFB8",
@@ -1428,7 +1428,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "description": "Medical cross dots with clean blue minimal ring eyes.",
     "settings": {
         "dots_style": "medical_cross",
-        "eye_frame_style": "minimal_ring",
+        "eye_frame_style": "rounded",
         "eyeball_style": "plus",
         "dots_color": "#0277BD",
         "dots_color_end": "#0288D1",
@@ -1449,7 +1449,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "description": "Soft green rounded dots with a floating pill.",
     "settings": {
         "dots_style": "rounded",
-        "eye_frame_style": "circle",
+        "eye_frame_style": "rounded",
         "eyeball_style": "circle",
         "dots_color": "#00897B",
         "dots_color_end": "#00897B",
@@ -1470,7 +1470,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "description": "High contrast black and white with pill frame eyes.",
     "settings": {
         "dots_style": "sleek_dash",
-        "eye_frame_style": "pill_frame",
+        "eye_frame_style": "rounded",
         "eyeball_style": "plus",
         "dots_color": "#000000",
         "dots_color_end": "#000000",
@@ -1491,7 +1491,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "description": "Extreme contrast thick bracket eyes for outdoor advertising.",
     "settings": {
         "dots_style": "square",
-        "eye_frame_style": "corner_brackets",
+        "eye_frame_style": "square",
         "eyeball_style": "square",
         "dots_color": "#000000",
         "dots_color_end": "#000000",
@@ -1512,7 +1512,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "description": "Phone frame for Instagram/TikTok style marketing.",
     "settings": {
         "dots_style": "sleek_dash",
-        "eye_frame_style": "minimal_ring",
+        "eye_frame_style": "rounded",
         "eyeball_style": "plus",
         "dots_color": "#E1306C",
         "dots_color_end": "#405DE6",
@@ -1533,7 +1533,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "description": "Drop shadow card with dashed edge and loud gradient.",
     "settings": {
         "dots_style": "rounded",
-        "eye_frame_style": "circle",
+        "eye_frame_style": "rounded",
         "eyeball_style": "circle",
         "dots_color": "#FF5722",
         "dots_color_end": "#FF9800",
