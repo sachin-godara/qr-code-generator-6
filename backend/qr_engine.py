@@ -1780,6 +1780,27 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
             
             draw_topographic_frame_func(draw, px, py, s, eye_rgb + (255,))
             
+        elif eye_frame_style == "squircle":
+            draw.rounded_rectangle([px, py, px + 7*s - 1, py + 7*s - 1], radius=int(2.5*s), fill=eye_rgb)
+            draw.rounded_rectangle([px + s, py + s, px + 6*s - 1, py + 6*s - 1], radius=int(1.5*s), fill=(255,255,255))
+
+        elif eye_frame_style == "notched_ring":
+            draw.ellipse([px, py, px + 7*s - 1, py + 7*s - 1], fill=eye_rgb)
+            draw.ellipse([px + s, py + s, px + 6*s - 1, py + 6*s - 1], fill=(255,255,255))
+            cx, cy = px + 3.5*s, py + 3.5*s
+            draw.rectangle([cx - 0.4*s, py, cx + 0.4*s, py + 0.8*s], fill=(255,255,255))
+            draw.rectangle([cx - 0.4*s, py + 6.2*s, cx + 0.4*s, py + 7*s], fill=(255,255,255))
+            draw.rectangle([px, cy - 0.4*s, px + 0.8*s, cy + 0.4*s], fill=(255,255,255))
+            draw.rectangle([px + 6.2*s, cy - 0.4*s, px + 7*s, cy + 0.4*s], fill=(255,255,255))
+
+        elif eye_frame_style == "circuit_trace":
+            out_pts = [
+                (px, py), (px + 5.5*s, py), (px + 7*s, py + 1.5*s), (px + 7*s, py + 7*s),
+                (px + 1.5*s, py + 7*s), (px, py + 5.5*s)
+            ]
+            draw.polygon(out_pts, fill=eye_rgb)
+            draw.rectangle([px + s, py + s, px + 6*s - 1, py + 6*s - 1], fill=(255,255,255))
+            draw.rectangle([px + 2*s, py, px + 3.5*s, py + 0.8*s], fill=(255,255,255))
         elif eye_frame_style == "camera_lens":
             draw.ellipse([px, py, px + 7*s - 1, py + 7*s - 1], fill=eye_rgb + (255,))
             draw.ellipse([px + s, py + s, px + 6*s - 1, py + 6*s - 1], fill=bg + (255,))
@@ -1911,6 +1932,19 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
                 curr_r = R_val if i % 2 == 0 else r_val
                 p_eb.append((cx + curr_r * math.cos(angle), cy + curr_r * math.sin(angle)))
             draw.polygon(p_eb, fill=eyeball_rgb + (255,))
+        elif eyeball_style == "squircle":
+            draw.rounded_rectangle([px + 2*s, py + 2*s, px + 5*s - 1, py + 5*s - 1], radius=int(1.2*s), fill=eye_rgb)
+
+        elif eyeball_style == "notched_ring":
+            draw.ellipse([px + 2*s, py + 2*s, px + 5*s - 1, py + 5*s - 1], fill=eye_rgb)
+            draw.ellipse([px + 3*s, py + 3*s, px + 4*s - 1, py + 4*s - 1], fill=(255,255,255))
+
+        elif eyeball_style == "circuit_trace":
+            pts = [
+                (px + 2*s, py + 2*s), (px + 4*s, py + 2*s), (px + 5*s, py + 3*s),
+                (px + 5*s, py + 5*s), (px + 3*s, py + 5*s), (px + 2*s, py + 4*s)
+            ]
+            draw.polygon(pts, fill=eye_rgb)
         elif eyeball_style == "gear":
             cx = ebx + 1.5 * s
             cy = eby + 1.5 * s
