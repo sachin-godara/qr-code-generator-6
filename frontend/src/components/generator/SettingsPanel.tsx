@@ -1,8 +1,10 @@
+import { useState } from "react"
 import { useQRStore } from "@/store/useQRStore"
 import { Link2, Type, Wifi, Mail, Contact } from "lucide-react"
 
 export function SettingsPanel() {
   const { settings, updateSettings } = useQRStore()
+  const [activeCorner, setActiveCorner] = useState<"all" | "tl" | "tr" | "bl">("all")
 
   const contentTypes = [
     { id: "url", label: "Link", icon: Link2 },
@@ -191,6 +193,52 @@ export function SettingsPanel() {
                 className="flex-1 p-2 border border-input rounded-lg"
               />
             </div>
+          </div>
+          
+          <div className="space-y-3">
+            <div className="flex justify-between items-center">
+              <label className="text-sm font-medium">Background Image</label>
+              {settings.bg_image && (
+                <button 
+                  onClick={() => updateSettings({ bg_image: undefined })}
+                  className="text-xs text-red-500 hover:text-red-700"
+                >
+                  Remove
+                </button>
+              )}
+            </div>
+            <input
+              type="file"
+              accept="image/*"
+              className="text-sm file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-primary/10 file:text-primary hover:file:bg-primary/20"
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  const reader = new FileReader();
+                  reader.onload = (ev) => {
+                    updateSettings({ bg_image: ev.target?.result as string });
+                  };
+                  reader.readAsDataURL(file);
+                }
+              }}
+            />
+            {settings.bg_image && (
+              <div className="space-y-2 mt-2">
+                <div className="flex justify-between">
+                  <label className="text-xs text-muted-foreground">Opacity</label>
+                  <span className="text-xs font-mono">{settings.bg_image_opacity || 1}</span>
+                </div>
+                <input
+                  type="range"
+                  min="0"
+                  max="1"
+                  step="0.05"
+                  value={settings.bg_image_opacity || 1}
+                  onChange={(e) => updateSettings({ bg_image_opacity: parseFloat(e.target.value) })}
+                  className="w-full"
+                />
+              </div>
+            )}
           </div>
         </div>
 

@@ -18,13 +18,32 @@ class QRRequest(BaseModel):
     dots_color: str = "#000000"
     bg_color: str = "#ffffff"
     bg_transparent: bool = False
+    bg_image: Optional[str] = None
+    bg_blend_mode: str = "normal"
+    bg_image_opacity: int = 100
     dots_style: str = "square"
     
     # Eye styling
+    link_eyes: bool = True
     eye_color: str = "#000000"
     eyeball_color: str = "#000000"
     eye_frame_style: str = "square"
     eyeball_style: str = "square"
+    
+    eye_color_tl: Optional[str] = None
+    eyeball_color_tl: Optional[str] = None
+    eye_frame_style_tl: Optional[str] = None
+    eyeball_style_tl: Optional[str] = None
+
+    eye_color_tr: Optional[str] = None
+    eyeball_color_tr: Optional[str] = None
+    eye_frame_style_tr: Optional[str] = None
+    eyeball_style_tr: Optional[str] = None
+
+    eye_color_bl: Optional[str] = None
+    eyeball_color_bl: Optional[str] = None
+    eye_frame_style_bl: Optional[str] = None
+    eyeball_style_bl: Optional[str] = None
     
     # Frame styling
     frame_style: str = "none"

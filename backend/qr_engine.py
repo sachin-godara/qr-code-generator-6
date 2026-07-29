@@ -1101,7 +1101,9 @@ class LiquidDropModuleDrawer(StyledPilQRModuleDrawer):
         if is_active:
             self.img._img.paste(self.shape, (box[0][0], box[0][1]))
 
-def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_style="square", logo_image=None, box_size=30, eye_color=None, eyeball_color=None, eye_frame_style=None, eyeball_style=None, remove_logo_bg=False, logo_bg_color="#ffffff", logo_bg_tolerance=30, logo_clear_size=0.5, gradient_type="Solid Color", fill_color_end="#000000", preset_logo="None", preset_logo_color=None, logo_card_shape="None", logo_card_padding=10, logo_size_ratio=0.18, error_correction="H", quiet_zone=4, bg_transparent=False):
+def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_style="square", logo_image=None, box_size=30, eye_color=None, eyeball_color=None, eye_frame_style=None, eyeball_style=None, remove_logo_bg=False, logo_bg_color="#ffffff", logo_bg_tolerance=30, logo_clear_size=0.5, gradient_type="Solid Color", fill_color_end="#000000", preset_logo="None", preset_logo_color=None, logo_card_shape="None", logo_card_padding=10, logo_size_ratio=0.18, error_correction="H", quiet_zone=4, bg_transparent=False, params=None):
+    if params is None:
+        params = {}
     if eye_frame_style is None: eye_frame_style = "square"
     if eyeball_style is None: eyeball_style = "square"
     
@@ -1256,11 +1258,53 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
     if eyeball_rgb == bg or (eyeball_color == "#000000" and fg != (0, 0, 0) and bg_lum < 128):
         eyeball_rgb = eye_rgb
     
+    # Save globals to avoid overwriting across iterations
+    global_eye_frame_style = eye_frame_style
+    global_eyeball_style = eyeball_style
+    global_eye_rgb = eye_rgb
+    global_eyeball_rgb = eyeball_rgb
+
     # We will erase the existing eyes and draw new ones
     for ex, ey in eye_positions:
         px = ex * s
         py = ey * s
         
+        # Determine corner position
+        corner = "tl"
+        if ex > border_modules and ey == border_modules:
+            corner = "tr"
+        elif ex == border_modules and ey > border_modules:
+            corner = "bl"
+
+        # Apply specific styling if eyes are not linked
+        link_eyes = params.get("link_eyes", True)
+        
+        # Reset to globals at start of each iteration
+        eye_frame_style = global_eye_frame_style
+        eyeball_style = global_eyeball_style
+        eye_rgb = global_eye_rgb
+        eyeball_rgb = global_eyeball_rgb
+
+        if not link_eyes:
+            pos_frame = params.get(f"eye_frame_style_{corner}")
+            if pos_frame:
+                eye_frame_style = pos_frame
+            pos_eball = params.get(f"eyeball_style_{corner}")
+            if pos_eball:
+                eyeball_style = pos_eball
+            pos_ecol = params.get(f"eye_color_{corner}")
+            if pos_ecol:
+                eye_rgb = hex_to_rgb(pos_ecol) if str(pos_ecol).startswith('#') else fg
+            pos_ebcol = params.get(f"eyeball_color_{corner}")
+            if pos_ebcol:
+                eyeball_rgb = hex_to_rgb(pos_ebcol) if str(pos_ebcol).startswith('#') else eye_rgb
+
+        # Restore the aliases used further down the file
+        current_eye_frame_style = eye_frame_style
+        current_eyeball_style = eyeball_style
+        current_eye_rgb = eye_rgb
+        current_eyeball_rgb = eyeball_rgb
+
         # Erase existing eye
         draw.rectangle([px, py, px + 7*s - 1, py + 7*s - 1], fill=bg + (255,))
         
@@ -1671,56 +1715,80 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
             draw.rounded_rectangle([px + 2.5*s, py + 1.5*s, px + 4.5*s, py + 5.5*s], radius=s, fill=eyeball_rgb + (255,))
         elif eyeball_style == "horizontal_pill":
             draw.rounded_rectangle([px + 1.5*s, py + 2.5*s, px + 5.5*s, py + 4.5*s], radius=s, fill=eyeball_rgb + (255,))
-        elif eyeball_style == "slash_forward":
-            w = max(1, s // 1.5)
-            draw.line([px + 5*s, py + 2*s, px + 2*s, py + 5*s], fill=eyeball_rgb + (255,), width=int(w))
-        elif eyeball_style == "slash_back":
-            w = max(1, s // 1.5)
-            draw.line([px + 2*s, py + 2*s, px + 5*s, py + 5*s], fill=eyeball_rgb + (255,), width=int(w))
-        elif eyeball_style == "leaf":
-            draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=eyeball_rgb + (255,))
-            make_eyeball_sharp_corner(draw, ebx, eby, "TL", s, r2, eyeball_rgb + (255,))
-            make_eyeball_sharp_corner(draw, ebx, eby, "BR", s, r2, eyeball_rgb + (255,))
-        elif eyeball_style == "leaf_opposite":
-            draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=eyeball_rgb + (255,))
-            make_eyeball_sharp_corner(draw, ebx, eby, "TR", s, r2, eyeball_rgb + (255,))
-            make_eyeball_sharp_corner(draw, ebx, eby, "BL", s, r2, eyeball_rgb + (255,))
-        elif eyeball_style == "droplet" or eyeball_style == "droplet_br":
-            draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=eyeball_rgb + (255,))
-            make_eyeball_sharp_corner(draw, ebx, eby, "BR", s, r2, eyeball_rgb + (255,))
-        elif eyeball_style == "droplet_tl":
-            draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=eyeball_rgb + (255,))
-            make_eyeball_sharp_corner(draw, ebx, eby, "TL", s, r2, eyeball_rgb + (255,))
-        elif eyeball_style == "droplet_tr":
-            draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=eyeball_rgb + (255,))
-            make_eyeball_sharp_corner(draw, ebx, eby, "TR", s, r2, eyeball_rgb + (255,))
-        elif eyeball_style == "droplet_bl":
-            draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=eyeball_rgb + (255,))
-            make_eyeball_sharp_corner(draw, ebx, eby, "BL", s, r2, eyeball_rgb + (255,))
-        elif eyeball_style == "shield":
-            draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=eyeball_rgb + (255,))
-            make_eyeball_sharp_corner(draw, ebx, eby, "TL", s, r2, eyeball_rgb + (255,))
-            make_eyeball_sharp_corner(draw, ebx, eby, "TR", s, r2, eyeball_rgb + (255,))
-        elif eyeball_style == "shield_opposite":
-            draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=eyeball_rgb + (255,))
-            make_eyeball_sharp_corner(draw, ebx, eby, "BL", s, r2, eyeball_rgb + (255,))
-            make_eyeball_sharp_corner(draw, ebx, eby, "BR", s, r2, eyeball_rgb + (255,))
-        elif eyeball_style == "left_rounded":
-            draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=eyeball_rgb + (255,))
-            make_eyeball_sharp_corner(draw, ebx, eby, "TR", s, r2, eyeball_rgb + (255,))
-            make_eyeball_sharp_corner(draw, ebx, eby, "BR", s, r2, eyeball_rgb + (255,))
-        elif eyeball_style == "right_rounded":
-            draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=eyeball_rgb + (255,))
-            make_eyeball_sharp_corner(draw, ebx, eby, "TL", s, r2, eyeball_rgb + (255,))
-            make_eyeball_sharp_corner(draw, ebx, eby, "BL", s, r2, eyeball_rgb + (255,))
-        elif eyeball_style == "sheared":
+            r_val = 0.75 * s
+            p_out = []
+            for i in range(8):
+                angle = i * math.pi / 4 - math.pi / 2
+                curr_r = R_val if i % 2 == 0 else r_val
+                p_out.append((cx + curr_r * math.cos(angle), cy + curr_r * math.sin(angle)))
+            draw.polygon(p_out, fill=current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "cross":
+            draw.rectangle([ebx + s, eby, ebx + 2*s - 1, eby + 3*s - 1], fill=current_eyeball_rgb + (255,))
+            draw.rectangle([ebx, eby + s, ebx + 3*s - 1, eby + 2*s - 1], fill=current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "octagon":
+            d = s
+            x1, y1, x2, y2 = ebx, eby, ebx + 3*s - 1, eby + 3*s - 1
+            p_out = [
+                (x1 + d, y1), (x2 - d, y1),
+                (x2, y1 + d), (x2, y2 - d),
+                (x2 - d, y2), (x1 + d, y2),
+                (x1, y2 - d), (x1, y1 + d)
+            ]
+            draw.polygon(p_out, fill=current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "leaf":
+            draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=current_eyeball_rgb + (255,))
+            make_eyeball_sharp_corner(draw, ebx, eby, "TL", s, r2, current_eyeball_rgb + (255,))
+            make_eyeball_sharp_corner(draw, ebx, eby, "BR", s, r2, current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "leaf_opposite":
+            draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=current_eyeball_rgb + (255,))
+            make_eyeball_sharp_corner(draw, ebx, eby, "TR", s, r2, current_eyeball_rgb + (255,))
+            make_eyeball_sharp_corner(draw, ebx, eby, "BL", s, r2, current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "droplet":
+            draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=current_eyeball_rgb + (255,))
+            make_eyeball_sharp_corner(draw, ebx, eby, "BR", s, r2, current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "droplet_tl":
+            draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=current_eyeball_rgb + (255,))
+            make_eyeball_sharp_corner(draw, ebx, eby, "TL", s, r2, current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "droplet_tr":
+            draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=current_eyeball_rgb + (255,))
+            make_eyeball_sharp_corner(draw, ebx, eby, "TR", s, r2, current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "droplet_bl":
+            draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=current_eyeball_rgb + (255,))
+            make_eyeball_sharp_corner(draw, ebx, eby, "BL", s, r2, current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "shield":
+            draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=current_eyeball_rgb + (255,))
+            make_eyeball_sharp_corner(draw, ebx, eby, "TL", s, r2, current_eyeball_rgb + (255,))
+            make_eyeball_sharp_corner(draw, ebx, eby, "TR", s, r2, current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "shield_opposite":
+            draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=current_eyeball_rgb + (255,))
+            make_eyeball_sharp_corner(draw, ebx, eby, "BL", s, r2, current_eyeball_rgb + (255,))
+            make_eyeball_sharp_corner(draw, ebx, eby, "BR", s, r2, current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "left_rounded":
+            draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=current_eyeball_rgb + (255,))
+            make_eyeball_sharp_corner(draw, ebx, eby, "TR", s, r2, current_eyeball_rgb + (255,))
+            make_eyeball_sharp_corner(draw, ebx, eby, "BR", s, r2, current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "right_rounded":
+            draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=current_eyeball_rgb + (255,))
+            make_eyeball_sharp_corner(draw, ebx, eby, "TL", s, r2, current_eyeball_rgb + (255,))
+            make_eyeball_sharp_corner(draw, ebx, eby, "BL", s, r2, current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "top_rounded":
+            draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=current_eyeball_rgb + (255,))
+            make_eyeball_sharp_corner(draw, ebx, eby, "BL", s, r2, current_eyeball_rgb + (255,))
+            make_eyeball_sharp_corner(draw, ebx, eby, "BR", s, r2, current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "bottom_rounded":
+            draw.rounded_rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], radius=r2, fill=current_eyeball_rgb + (255,))
+            make_eyeball_sharp_corner(draw, ebx, eby, "TL", s, r2, current_eyeball_rgb + (255,))
+            make_eyeball_sharp_corner(draw, ebx, eby, "TR", s, r2, current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "hollow":
+            draw.rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], outline=current_eyeball_rgb + (255,), width=s)
+        elif current_eyeball_style == "sheared":
             offset = s // 2
             p1 = (ebx + offset, eby)
             p2 = (ebx + 3*s - 1, eby)
             p3 = (ebx + 3*s - 1 - offset, eby + 3*s - 1)
             p4 = (ebx, eby + 3*s - 1)
-            draw.polygon([p1, p2, p3, p4], fill=eyeball_rgb + (255,))
-        elif eyeball_style == "starburst" or eyeball_style == "gear":
+            draw.polygon([p1, p2, p3, p4], fill=current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "starburst" or current_eyeball_style == "gear":
             cx = ebx + 1.5 * s
             cy = eby + 1.5 * s
             r_sun = 1.5 * s
@@ -1729,9 +1797,9 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
                 angle = i * (2 * math.pi / num_points)
                 x2 = cx + r_sun * math.cos(angle)
                 y2 = cy + r_sun * math.sin(angle)
-                draw.line([(cx, cy), (x2, y2)], fill=eyeball_rgb + (255,), width=max(2, s // 2))
-            draw.ellipse([cx - s, cy - s, cx + s, cy + s], fill=eyeball_rgb + (255,))
-        elif eyeball_style == "star":
+                draw.line([(cx, cy), (x2, y2)], fill=current_eyeball_rgb + (255,), width=max(2, s // 2))
+            draw.ellipse([cx - s, cy - s, cx + s, cy + s], fill=current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "star":
             cx = ebx + 1.5 * s
             cy = eby + 1.5 * s
             R = 1.5 * s
@@ -1741,47 +1809,47 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
                 angle = i * math.pi / 5 - math.pi / 2
                 r_curr = R if i % 2 == 0 else r_inner
                 points.append((cx + r_curr * math.cos(angle), cy + r_curr * math.sin(angle)))
-            draw.polygon(points, fill=eyeball_rgb + (255,))
-        elif eyeball_style == "diamond":
+            draw.polygon(points, fill=current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "diamond":
             p1 = (ebx + 1.5*s, eby)
             p2 = (ebx + 3*s - 1, eby + 1.5*s)
             p3 = (ebx + 1.5*s, eby + 3*s - 1)
             p4 = (ebx, eby + 1.5*s)
-            draw.polygon([p1, p2, p3, p4], fill=eyeball_rgb + (255,))
-        elif eyeball_style == "flower_cut":
-            draw.rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], fill=eyeball_rgb + (255,))
+            draw.polygon([p1, p2, p3, p4], fill=current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "flower_cut":
+            draw.rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], fill=current_eyeball_rgb + (255,))
             cut_r = s // 2
             draw.ellipse([ebx + 1.5*s - cut_r, eby - cut_r, ebx + 1.5*s + cut_r, eby + cut_r], fill=bg + (255,))
             draw.ellipse([ebx + 1.5*s - cut_r, eby + 3*s - cut_r, ebx + 1.5*s + cut_r, eby + 3*s + cut_r], fill=bg + (255,))
             draw.ellipse([ebx - cut_r, eby + 1.5*s - cut_r, ebx + cut_r, eby + 1.5*s + cut_r], fill=bg + (255,))
             draw.ellipse([ebx + 3*s - cut_r, eby + 1.5*s - cut_r, ebx + 3*s + cut_r, eby + 1.5*s + cut_r], fill=bg + (255,))
-        elif eyeball_style == "clover":
+        elif current_eyeball_style == "clover":
             cx = ebx + 1.5 * s
             cy = eby + 1.5 * s
             cr = s // 2
-            draw.ellipse([cx - cr, cy - 1.2*s, cx + cr, cy - 0.2*s], fill=eyeball_rgb + (255,))
-            draw.ellipse([cx - cr, cy + 0.2*s, cx + cr, cy + 1.2*s], fill=eyeball_rgb + (255,))
-            draw.ellipse([cx - 1.2*s, cy - cr, cx - 0.2*s, cy + cr], fill=eyeball_rgb + (255,))
-            draw.ellipse([cx + 0.2*s, cy - cr, cx + 1.2*s, cy + cr], fill=eyeball_rgb + (255,))
-            draw.rectangle([cx - 0.5*s, cy - 0.5*s, cx + 0.5*s, cy + 0.5*s], fill=eyeball_rgb + (255,))
-        elif eyeball_style == "plus":
-            draw.rectangle([ebx, eby + s, ebx + 3*s - 1, eby + 2*s - 1], fill=eyeball_rgb + (255,))
-            draw.rectangle([ebx + s, eby, ebx + 2*s - 1, eby + 3*s - 1], fill=eyeball_rgb + (255,))
-        elif eyeball_style == "cross":
+            draw.ellipse([cx - cr, cy - 1.2*s, cx + cr, cy - 0.2*s], fill=current_eyeball_rgb + (255,))
+            draw.ellipse([cx - cr, cy + 0.2*s, cx + cr, cy + 1.2*s], fill=current_eyeball_rgb + (255,))
+            draw.ellipse([cx - 1.2*s, cy - cr, cx - 0.2*s, cy + cr], fill=current_eyeball_rgb + (255,))
+            draw.ellipse([cx + 0.2*s, cy - cr, cx + 1.2*s, cy + cr], fill=current_eyeball_rgb + (255,))
+            draw.rectangle([cx - 0.5*s, cy - 0.5*s, cx + 0.5*s, cy + 0.5*s], fill=current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "plus":
+            draw.rectangle([ebx, eby + s, ebx + 3*s - 1, eby + 2*s - 1], fill=current_eyeball_rgb + (255,))
+            draw.rectangle([ebx + s, eby, ebx + 2*s - 1, eby + 3*s - 1], fill=current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "cross":
             th = int(0.7 * s)
             draw.polygon([
                 (ebx + th, eby),
                 (ebx, eby + th),
                 (ebx + 3*s - 1 - th, eby + 3*s - 1),
                 (ebx + 3*s - 1, eby + 3*s - 1 - th)
-            ], fill=eyeball_rgb + (255,))
+            ], fill=current_eyeball_rgb + (255,))
             draw.polygon([
                 (ebx + 3*s - 1 - th, eby),
                 (ebx + 3*s - 1, eby + th),
                 (ebx + th, eby + 3*s - 1),
                 (ebx, eby + 3*s - 1 - th)
-            ], fill=eyeball_rgb + (255,))
-        elif eyeball_style == "flower":
+            ], fill=current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "flower":
             cx = ebx + 1.5 * s
             cy = eby + 1.5 * s
             cr = s // 2
@@ -1789,20 +1857,20 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
             for angle in [math.pi/4, 3*math.pi/4, 5*math.pi/4, 7*math.pi/4]:
                 px_petal = cx + d * math.cos(angle)
                 py_petal = cy + d * math.sin(angle)
-                draw.ellipse([px_petal - cr, py_petal - cr, px_petal + cr, py_petal + cr], fill=eyeball_rgb + (255,))
-            draw.ellipse([cx - 0.6*s, cy - 0.6*s, cx + 0.6*s, cy + 0.6*s], fill=eyeball_rgb + (255,))
-        elif eyeball_style == "heart":
+                draw.ellipse([px_petal - cr, py_petal - cr, px_petal + cr, py_petal + cr], fill=current_eyeball_rgb + (255,))
+            draw.ellipse([cx - 0.6*s, cy - 0.6*s, cx + 0.6*s, cy + 0.6*s], fill=current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "heart":
             cx = ebx + 1.5 * s
             cy = eby + 1.5 * s
             hr = 0.75 * s
-            draw.ellipse([ebx + 1.5*s - 2*hr, eby, ebx + 1.5*s, eby + 2*hr], fill=eyeball_rgb + (255,))
-            draw.ellipse([ebx + 1.5*s, eby, ebx + 1.5*s + 2*hr, eby + 2*hr], fill=eyeball_rgb + (255,))
-            draw.polygon([(ebx, eby + hr), (ebx + 3*s - 1, eby + hr), (ebx + 1.5*s, eby + 3*s - 1)], fill=eyeball_rgb + (255,))
-        elif eyeball_style == "rhombus":
+            draw.ellipse([ebx + 1.5*s - 2*hr, eby, ebx + 1.5*s, eby + 2*hr], fill=current_eyeball_rgb + (255,))
+            draw.ellipse([ebx + 1.5*s, eby, ebx + 1.5*s + 2*hr, eby + 2*hr], fill=current_eyeball_rgb + (255,))
+            draw.polygon([(ebx, eby + hr), (ebx + 3*s - 1, eby + hr), (ebx + 1.5*s, eby + 3*s - 1)], fill=current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "rhombus":
             # Standing diamond / rhombus (taller than wide)
             cx, cy = ebx + 1.5*s, eby + 1.5*s
-            draw.polygon([(cx, eby), (ebx + 3*s - 1, cy), (cx, eby + 3*s - 1), (ebx, cy)], fill=eyeball_rgb + (255,))
-        elif eyeball_style == "rounded_triangle":
+            draw.polygon([(cx, eby), (ebx + 3*s - 1, cy), (cx, eby + 3*s - 1), (ebx, cy)], fill=current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "rounded_triangle":
             # Smoothly rounded equilateral triangle
             cx, cy = ebx + 1.5*s, eby + 1.5*s
             R_t = 1.4 * s
@@ -1811,31 +1879,31 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
             for i in range(3):
                 angle = i * 2 * math.pi / 3 - math.pi / 2
                 pts.append((cx + R_t * math.cos(angle), cy + R_t * math.sin(angle)))
-            draw.polygon(pts, fill=eyeball_rgb + (255,))
+            draw.polygon(pts, fill=current_eyeball_rgb + (255,))
             # Soften corners with small circles
             for pt in pts:
-                draw.ellipse([pt[0]-rounding, pt[1]-rounding, pt[0]+rounding, pt[1]+rounding], fill=eyeball_rgb + (255,))
-        elif eyeball_style == "pinched_square":
+                draw.ellipse([pt[0]-rounding, pt[1]-rounding, pt[0]+rounding, pt[1]+rounding], fill=current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "pinched_square":
             # Square with concave sides — 4-pointed shuriken / pinch shape
             cx, cy = ebx + 1.5*s, eby + 1.5*s
             R_p = 1.5 * s
             # Draw 4 large circles at corners to cut into the square
-            draw.rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], fill=eyeball_rgb + (255,))
+            draw.rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], fill=current_eyeball_rgb + (255,))
             bite = 1.2 * s
             draw.ellipse([ebx - bite, eby - bite, ebx + bite, eby + bite], fill=bg + (255,))
             draw.ellipse([ebx + 3*s - 1 - bite, eby - bite, ebx + 3*s - 1 + bite, eby + bite], fill=bg + (255,))
             draw.ellipse([ebx - bite, eby + 3*s - 1 - bite, ebx + bite, eby + 3*s - 1 + bite], fill=bg + (255,))
             draw.ellipse([ebx + 3*s - 1 - bite, eby + 3*s - 1 - bite, ebx + 3*s - 1 + bite, eby + 3*s - 1 + bite], fill=bg + (255,))
-        elif eyeball_style == "dumbbell_eyeball":
+        elif current_eyeball_style == "dumbbell_eyeball":
             cx, cy = ebx + 1.5*s, eby + 1.5*s
             bar_w = s * 0.6
-            draw.rectangle([cx - 1.5*s, cy - bar_w//2, cx + 1.5*s, cy + bar_w//2], fill=eyeball_rgb + (255,))
-            draw.ellipse([cx - 1.5*s, cy - s, cx - 0.2*s, cy + s], fill=eyeball_rgb + (255,))
-            draw.ellipse([cx + 0.2*s, cy - s, cx + 1.5*s, cy + s], fill=eyeball_rgb + (255,))
-        elif eyeball_style == "none":
+            draw.rectangle([cx - 1.5*s, cy - bar_w//2, cx + 1.5*s, cy + bar_w//2], fill=current_eyeball_rgb + (255,))
+            draw.ellipse([cx - 1.5*s, cy - s, cx - 0.2*s, cy + s], fill=current_eyeball_rgb + (255,))
+            draw.ellipse([cx + 0.2*s, cy - s, cx + 1.5*s, cy + s], fill=current_eyeball_rgb + (255,))
+        elif current_eyeball_style == "none":
             pass
         else: # square
-            draw.rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], fill=eyeball_rgb + (255,))
+            draw.rectangle([ebx, eby, ebx + 3*s - 1, eby + 3*s - 1], fill=current_eyeball_rgb + (255,))
 
     if bg_transparent:
         img = remove_qr_background(img, back_color)

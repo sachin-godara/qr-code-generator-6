@@ -6,6 +6,9 @@ export interface QRSettings {
   contentData: string; // The raw data or JSON string containing specific fields
   
   // Design Options
+  bg_image?: string | null;
+  bg_blend_mode?: "normal" | "multiply" | "screen" | "overlay" | "soft_light";
+  bg_image_opacity?: number;
   dots_color: string;
   dots_color_end: string;
   bg_color: string;
@@ -14,10 +17,26 @@ export interface QRSettings {
   dots_style: string;
   
   // Markers
+  link_eyes: boolean;
   eye_color: string;
   eyeball_color: string;
   eye_frame_style: string;
   eyeball_style: string;
+  
+  eye_color_tl?: string;
+  eyeball_color_tl?: string;
+  eye_frame_style_tl?: string;
+  eyeball_style_tl?: string;
+
+  eye_color_tr?: string;
+  eyeball_color_tr?: string;
+  eye_frame_style_tr?: string;
+  eyeball_style_tr?: string;
+
+  eye_color_bl?: string;
+  eyeball_color_bl?: string;
+  eye_frame_style_bl?: string;
+  eyeball_style_bl?: string;
   
   // Logo
   logo_image?: string | null;
@@ -68,8 +87,12 @@ export const defaultSettings: QRSettings = {
   dots_color_end: "#000000",
   bg_color: "#ffffff",
   bg_transparent: false,
+  bg_image: null,
+  bg_blend_mode: "normal",
+  bg_image_opacity: 100,
   gradient_type: "Solid Color",
   dots_style: "square",
+  link_eyes: true,
   eye_color: "#000000",
   eyeball_color: "#000000",
   eye_frame_style: "square",

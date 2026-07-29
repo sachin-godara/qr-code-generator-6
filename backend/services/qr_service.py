@@ -159,10 +159,54 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
         logo_bg_tolerance=params.get("logo_bg_tolerance", 30),
         error_correction=params.get("error_correction", "H"),
         quiet_zone=params.get("quiet_zone", 4),
-        bg_transparent=params.get("bg_transparent", False),
+        bg_transparent=True if params.get("bg_image") else params.get("bg_transparent", False),
+        params=params,
     )
     
-    # 2. Apply Layout Frame
+    # 2. Apply Background Image Overlay (Option A - Pillow Blending)
+    if params.get("bg_image"):
+        try:
+            from PIL import ImageEnhance
+            
+            # Load background image
+            bg_data = base64.b64decode(params["bg_image"].split(",")[1]) if "," in params["bg_image"] else base64.b64decode(params["bg_image"])
+            bg_img = Image.open(io.BytesIO(bg_data)).convert("RGBA")
+            
+            # Resize bg image to match QR code size (or vice versa, usually QR matches bg)
+            bg_img = bg_img.resize(base_qr.size, Image.Resampling.LANCZOS)
+            
+            # Adjust opacity of background if provided (percentage 0-100)
+            opacity_val = params.get("bg_image_opacity", 100)
+            opacity = float(opacity_val) / 100.0
+            
+            if opacity < 1.0:
+                alpha = bg_img.split()[3]
+                alpha = ImageEnhance.Brightness(alpha).enhance(opacity)
+                bg_img.putalpha(alpha)
+            
+            # Blend mode handling
+            blend_mode = params.get("bg_image_blend_mode", "normal")
+            
+            if blend_mode == "normal":
+                # Create a new image to composite
+                comp = Image.new("RGBA", base_qr.size)
+                # Paste background
+                comp.paste(bg_img, (0, 0), bg_img)
+                # Paste QR over background (assuming QR has transparent background)
+                comp.paste(base_qr, (0, 0), base_qr)
+                base_qr = comp
+            else:
+                # Other blend modes could be added here later (multiply, screen, etc.)
+                # For now fallback to normal
+                comp = Image.new("RGBA", base_qr.size)
+                comp.paste(bg_img, (0, 0), bg_img)
+                comp.paste(base_qr, (0, 0), base_qr)
+                base_qr = comp
+                
+        except Exception as e:
+            print(f"Error applying background image: {e}")
+
+    # 3. Apply Layout Frame
     if params.get("frame_style") and params.get("frame_style") != "none":
         base_qr = apply_layout_frame(
             base_qr,

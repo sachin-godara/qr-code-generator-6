@@ -158,6 +158,7 @@ function App() {
   const [downloadFormat, setDownloadFormat] = useState<"PNG" | "SVG" | "PDF">("PNG");
   const [downloadSize, setDownloadSize] = useState<number>(1024);
   const [customFilename, setCustomFilename] = useState<string>("");
+  const [activeCorner, setActiveCorner] = useState<"all" | "tl" | "tr" | "bl">("all");
   const [copySuccess, setCopySuccess] = useState<boolean>(false);
   const [isDownloading, setIsDownloading] = useState<boolean>(false);
   const [downloadSuccess, setDownloadSuccess] = useState<boolean>(false);
@@ -1255,7 +1256,9 @@ function App() {
               </div>
             </div>
 
-            <div className="space-y-3">
+
+
+            <div className="space-y-3 border-t border-outline-variant/30 pt-4 mt-4">
               <label className="section-label block mb-1">Dot Style</label>
               <div className="relative group">
                 <button
@@ -1290,9 +1293,44 @@ function App() {
               </div>
             </div>
 
-            <div className="space-y-3">
-              <label className="section-label block mb-1">Eye Frame</label>
-              <div className="relative group">
+            <div className="space-y-3 border-t border-outline-variant/30 pt-4 mt-4">
+              <div className="flex justify-between items-center mb-1">
+                <label className="section-label block">Eyes Customization</label>
+                <label className="flex items-center gap-2 text-xs font-semibold cursor-pointer select-none px-2.5 py-1 rounded-full bg-surface-variant text-on-surface-variant hover:bg-outline-variant/30 transition-colors">
+                  <input
+                    type="checkbox"
+                    checked={settings.link_eyes !== false}
+                    onChange={(e) => {
+                      updateSettings({ link_eyes: e.target.checked });
+                      if (e.target.checked) setActiveCorner("all");
+                    }}
+                    className="w-3.5 h-3.5 rounded border-outline text-primary focus:ring-primary accent-primary cursor-pointer"
+                  />
+                  <span>Link Eyes</span>
+                </label>
+              </div>
+              
+              {settings.link_eyes === false && (
+                <div className="flex gap-2 mb-3">
+                  {['tl', 'tr', 'bl'].map(corner => (
+                    <button
+                      key={corner}
+                      type="button"
+                      onClick={() => setActiveCorner(corner as any)}
+                      className={`flex-1 py-1.5 px-2 text-xs rounded-lg border font-medium transition-colors ${
+                        activeCorner === corner 
+                          ? 'bg-primary text-on-primary border-primary' 
+                          : 'bg-surface border-outline-variant text-on-surface-variant hover:bg-surface-variant'
+                      }`}
+                    >
+                      {corner === 'tl' ? 'Top Left' : corner === 'tr' ? 'Top Right' : 'Bottom Left'}
+                    </button>
+                  ))}
+                </div>
+              )}
+
+              <label className="text-xs font-semibold text-on-surface-variant mb-1 block">Frame Style</label>
+              <div className="relative group mb-4">
                 <button
                   type="button"
                   onClick={() => handleScroll(eyeFrameScrollRef, "left")}
@@ -1302,17 +1340,29 @@ function App() {
                   <span className="material-symbols-outlined text-xs leading-none font-bold text-on-surface">arrow_back_ios_new</span>
                 </button>
                 <div ref={eyeFrameScrollRef} className="flex overflow-x-auto gap-3.5 px-3.5 pt-3.5 pb-5 custom-scrollbar snap-x scroll-smooth scroll-pl-3.5">
-                  {eyeFrameStyles.map((style) => (
-                    <div key={style} className="w-[88px] sm:w-[98px] shrink-0 snap-start p-0.5">
-                      <StylePreviewCard
-                        title={style}
-                        isSelected={settings.eye_frame_style === style}
-                        onClick={() => updateSettings({ eye_frame_style: style as any })}
-                      >
-                        <img src={`/previews/eye_frames/${style}.png?v=4`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
-                      </StylePreviewCard>
-                    </div>
-                  ))}
+                  {eyeFrameStyles.map((style) => {
+                    const isActiveStyle = (settings.link_eyes !== false || activeCorner === "all") 
+                      ? settings.eye_frame_style === style
+                      : settings[`eye_frame_style_${activeCorner}` as keyof typeof settings] === style || (!settings[`eye_frame_style_${activeCorner}` as keyof typeof settings] && settings.eye_frame_style === style);
+                      
+                    return (
+                      <div key={style} className="w-[88px] sm:w-[98px] shrink-0 snap-start p-0.5">
+                        <StylePreviewCard
+                          title={style}
+                          isSelected={isActiveStyle}
+                          onClick={() => {
+                            if (settings.link_eyes !== false || activeCorner === "all") {
+                              updateSettings({ eye_frame_style: style });
+                            } else {
+                              updateSettings({ [`eye_frame_style_${activeCorner}`]: style });
+                            }
+                          }}
+                        >
+                          <img src={`/previews/eye_frames/${style}.png?v=4`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
+                        </StylePreviewCard>
+                      </div>
+                    );
+                  })}
                 </div>
                 <button
                   type="button"
@@ -1323,11 +1373,9 @@ function App() {
                   <span className="material-symbols-outlined text-xs leading-none font-bold text-on-surface">arrow_forward_ios</span>
                 </button>
               </div>
-            </div>
 
-            <div className="space-y-3">
-              <label className="section-label block mb-1">Eyeball</label>
-              <div className="relative group">
+              <label className="text-xs font-semibold text-on-surface-variant mb-1 block">Eyeball Style</label>
+              <div className="relative group mb-4">
                 <button
                   type="button"
                   onClick={() => handleScroll(eyeballScrollRef, "left")}
@@ -1337,17 +1385,29 @@ function App() {
                   <span className="material-symbols-outlined text-xs leading-none font-bold text-on-surface">arrow_back_ios_new</span>
                 </button>
                 <div ref={eyeballScrollRef} className="flex overflow-x-auto gap-3.5 px-3.5 pt-3.5 pb-5 custom-scrollbar snap-x scroll-smooth scroll-pl-3.5">
-                  {eyeballStyles.map((style) => (
-                    <div key={style} className="w-[88px] sm:w-[98px] shrink-0 snap-start p-0.5">
-                      <StylePreviewCard
-                        title={style}
-                        isSelected={settings.eyeball_style === style}
-                        onClick={() => updateSettings({ eyeball_style: style as any })}
-                      >
-                        <img src={`/previews/eyeballs/${style}.png?v=4`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
-                      </StylePreviewCard>
-                    </div>
-                  ))}
+                  {eyeballStyles.map((style) => {
+                    const isActiveStyle = (settings.link_eyes !== false || activeCorner === "all") 
+                      ? settings.eyeball_style === style
+                      : settings[`eyeball_style_${activeCorner}` as keyof typeof settings] === style || (!settings[`eyeball_style_${activeCorner}` as keyof typeof settings] && settings.eyeball_style === style);
+                      
+                    return (
+                      <div key={style} className="w-[88px] sm:w-[98px] shrink-0 snap-start p-0.5">
+                        <StylePreviewCard
+                          title={style}
+                          isSelected={isActiveStyle}
+                          onClick={() => {
+                            if (settings.link_eyes !== false || activeCorner === "all") {
+                              updateSettings({ eyeball_style: style });
+                            } else {
+                              updateSettings({ [`eyeball_style_${activeCorner}`]: style });
+                            }
+                          }}
+                        >
+                          <img src={`/previews/eyeballs/${style}.png?v=4`} alt={style} className="w-[70%] h-[70%] object-contain" style={{ filter: "drop-shadow(0 2px 4px rgba(0,0,0,0.15))" }} />
+                        </StylePreviewCard>
+                      </div>
+                    );
+                  })}
                 </div>
                 <button
                   type="button"
@@ -1358,55 +1418,101 @@ function App() {
                   <span className="material-symbols-outlined text-xs leading-none font-bold text-on-surface">arrow_forward_ios</span>
                 </button>
               </div>
-            </div>
 
-            {/* Dual-Tone Marker Colors */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="space-y-2">
-                <label className="section-label flex items-center gap-1.5 mb-1">
-                  <span className="w-2 h-2 rounded-full border-2 border-primary inline-block"></span>
-                  Eye Frame (Outer)
-                </label>
-                <div className="flex items-center gap-2">
-                  <input
-                    type="color"
-                    value={settings.eye_color}
-                    onChange={(e) => {
-                      const newColor = e.target.value;
-                      updateSettings({
-                        eye_color: newColor,
-                        eyeball_color: settings.eyeball_color === settings.eye_color ? newColor : settings.eyeball_color
-                      });
-                    }}
-                    className="w-10 h-10 rounded-xl cursor-pointer border border-outline-variant p-0.5 bg-white"
-                  />
-                  <input
-                    type="text"
-                    value={settings.eye_color}
-                    onChange={(e) => updateSettings({ eye_color: e.target.value })}
-                    className="flex-1 p-2.5 border border-outline-variant rounded-xl bg-white text-xs font-mono"
-                  />
+              {/* Dual-Tone Marker Colors */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <label className="section-label flex items-center gap-1.5 mb-1">
+                    <span className="w-2 h-2 rounded-full border-2 border-primary inline-block"></span>
+                    Eye Frame Color
+                  </label>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="color"
+                      value={
+                        (settings.link_eyes !== false || activeCorner === "all")
+                          ? settings.eye_color
+                          : (settings[`eye_color_${activeCorner}` as keyof typeof settings] as string || settings.eye_color)
+                      }
+                      onChange={(e) => {
+                        const newColor = e.target.value;
+                        if (settings.link_eyes !== false || activeCorner === "all") {
+                           updateSettings({
+                             eye_color: newColor,
+                             eyeball_color: settings.eyeball_color === settings.eye_color ? newColor : settings.eyeball_color
+                           });
+                        } else {
+                           const currentEyeball = settings[`eyeball_color_${activeCorner}` as keyof typeof settings] as string || settings.eyeball_color;
+                           const currentEye = settings[`eye_color_${activeCorner}` as keyof typeof settings] as string || settings.eye_color;
+                           updateSettings({
+                             [`eye_color_${activeCorner}`]: newColor,
+                             [`eyeball_color_${activeCorner}`]: currentEyeball === currentEye ? newColor : currentEyeball
+                           });
+                        }
+                      }}
+                      className="w-10 h-10 rounded-xl cursor-pointer border border-outline-variant p-0.5 bg-white"
+                    />
+                    <input
+                      type="text"
+                      value={
+                        (settings.link_eyes !== false || activeCorner === "all")
+                          ? settings.eye_color
+                          : (settings[`eye_color_${activeCorner}` as keyof typeof settings] as string || settings.eye_color)
+                      }
+                      onChange={(e) => {
+                        const newColor = e.target.value;
+                        if (settings.link_eyes !== false || activeCorner === "all") {
+                           updateSettings({ eye_color: newColor });
+                        } else {
+                           updateSettings({ [`eye_color_${activeCorner}`]: newColor });
+                        }
+                      }}
+                      className="flex-1 p-2.5 border border-outline-variant rounded-xl bg-white text-xs font-mono"
+                    />
+                  </div>
                 </div>
-              </div>
 
-              <div className="space-y-2">
-                <label className="section-label flex items-center gap-1.5 mb-1">
-                  <span className="w-2 h-2 rounded-full bg-primary inline-block"></span>
-                  Eyeball (Inner Core)
-                </label>
-                <div className="flex items-center gap-2">
-                  <input
-                    type="color"
-                    value={settings.eyeball_color || settings.eye_color}
-                    onChange={(e) => updateSettings({ eyeball_color: e.target.value })}
-                    className="w-10 h-10 rounded-xl cursor-pointer border border-outline-variant p-0.5 bg-white"
-                  />
-                  <input
-                    type="text"
-                    value={settings.eyeball_color || settings.eye_color}
-                    onChange={(e) => updateSettings({ eyeball_color: e.target.value })}
-                    className="flex-1 p-2.5 border border-outline-variant rounded-xl bg-white text-xs font-mono"
-                  />
+                <div className="space-y-2">
+                  <label className="section-label flex items-center gap-1.5 mb-1">
+                    <span className="w-2 h-2 rounded-full bg-primary inline-block"></span>
+                    Eyeball Color
+                  </label>
+                  <div className="flex items-center gap-2">
+                    <input
+                      type="color"
+                      value={
+                        (settings.link_eyes !== false || activeCorner === "all")
+                          ? (settings.eyeball_color || settings.eye_color)
+                          : ((settings[`eyeball_color_${activeCorner}` as keyof typeof settings] as string) || (settings[`eye_color_${activeCorner}` as keyof typeof settings] as string) || settings.eyeball_color || settings.eye_color)
+                      }
+                      onChange={(e) => {
+                        const newColor = e.target.value;
+                        if (settings.link_eyes !== false || activeCorner === "all") {
+                           updateSettings({ eyeball_color: newColor });
+                        } else {
+                           updateSettings({ [`eyeball_color_${activeCorner}`]: newColor });
+                        }
+                      }}
+                      className="w-10 h-10 rounded-xl cursor-pointer border border-outline-variant p-0.5 bg-white"
+                    />
+                    <input
+                      type="text"
+                      value={
+                        (settings.link_eyes !== false || activeCorner === "all")
+                          ? (settings.eyeball_color || settings.eye_color)
+                          : ((settings[`eyeball_color_${activeCorner}` as keyof typeof settings] as string) || (settings[`eye_color_${activeCorner}` as keyof typeof settings] as string) || settings.eyeball_color || settings.eye_color)
+                      }
+                      onChange={(e) => {
+                        const newColor = e.target.value;
+                        if (settings.link_eyes !== false || activeCorner === "all") {
+                           updateSettings({ eyeball_color: newColor });
+                        } else {
+                           updateSettings({ [`eyeball_color_${activeCorner}`]: newColor });
+                        }
+                      }}
+                      className="flex-1 p-2.5 border border-outline-variant rounded-xl bg-white text-xs font-mono"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -2445,6 +2551,68 @@ function App() {
                 <span>4 (Standard)</span>
                 <span>10 (Spacious)</span>
               </div>
+            </div>
+
+            {/* Background Image Controls */}
+            <div className="space-y-3">
+              <div className="flex justify-between items-center">
+                <label className="text-sm font-semibold text-on-surface flex items-center gap-2">
+                  <span className="material-symbols-outlined text-primary text-[20px]">image</span>
+                  Background Image
+                </label>
+                {settings.bg_image && (
+                  <button 
+                    type="button"
+                    onClick={() => updateSettings({ bg_image: null, bg_image_opacity: 100 })}
+                    className="text-xs font-semibold text-error hover:bg-error/10 px-2 py-0.5 rounded transition-colors"
+                  >
+                    Remove
+                  </button>
+                )}
+              </div>
+              <p className="text-xs text-on-surface-variant">
+                Overlay your QR code onto a custom background image with adjustable transparency.
+              </p>
+              <div className="flex items-center gap-2">
+                <div className="flex-1 border border-outline-variant rounded-xl bg-surface hover:bg-surface-variant transition-colors relative h-12 flex items-center justify-center overflow-hidden">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => {
+                      const file = e.target.files?.[0];
+                      if (file) {
+                        const reader = new FileReader();
+                        reader.onload = (ev) => {
+                          updateSettings({ bg_image: ev.target?.result as string, bg_image_opacity: 100 });
+                        };
+                        reader.readAsDataURL(file);
+                      }
+                    }}
+                    className="absolute inset-0 opacity-0 cursor-pointer"
+                  />
+                  <span className="text-sm font-bold text-on-surface flex items-center gap-2">
+                    <span className="material-symbols-outlined text-[18px]">cloud_upload</span>
+                    {settings.bg_image ? "Change Background" : "Upload Background"}
+                  </span>
+                </div>
+              </div>
+              {settings.bg_image && (
+                <div className="mt-3 bg-surface-container rounded-xl p-3 border border-outline-variant/30 shadow-sm">
+                  <div className="flex justify-between items-center mb-2">
+                    <label className="text-xs font-semibold text-on-surface">Opacity</label>
+                    <span className="text-xs font-mono font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-md">{settings.bg_image_opacity ?? 100}%</span>
+                  </div>
+                  <input
+                    type="range"
+                    min="10"
+                    max="100"
+                    step="5"
+                    value={settings.bg_image_opacity ?? 100}
+                    onChange={(e) => updateSettings({ bg_image_opacity: parseInt(e.target.value) })}
+                    className="w-full accent-primary h-2 bg-surface-variant rounded-lg appearance-none cursor-pointer"
+                  />
+                </div>
+              )}
             </div>
           </div>
         )
