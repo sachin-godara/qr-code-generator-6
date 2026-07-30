@@ -9,6 +9,72 @@ export interface Template {
 
 export const PRESET_TEMPLATES: Template[] = [
   {
+    "name": "Special Delivery",
+    "category": "Premium",
+    "description": "A stylish open mail envelope with the QR code tucked inside.",
+    "settings": {
+      "dots_style": "rounded",
+      "eye_frame_style": "rounded",
+      "eyeball_style": "rounded",
+      "dots_color": "#2C3E50",
+      "dots_color_end": "#2C3E50",
+      "bg_color": "#3498DB",
+      "gradient_type": "None",
+      "eye_color": "#2C3E50",
+      "eyeball_color": "#2C3E50",
+      "frame_style": "none",
+      "text_style": "mail_envelope",
+      "frame_text": "OPEN ME",
+      "frame_color": "#2980B9",
+      "frame_text_color": "#ffffff",
+      "preset_logo": "None"
+    }
+  },
+  {
+    "name": "Video Link",
+    "category": "Premium",
+    "description": "A clean layout with a floating play button for video links.",
+    "settings": {
+      "dots_style": "classy",
+      "eye_frame_style": "rounded",
+      "eyeball_style": "circle",
+      "dots_color": "#000000",
+      "dots_color_end": "#000000",
+      "bg_color": "#ffffff",
+      "gradient_type": "None",
+      "eye_color": "#000000",
+      "eyeball_color": "#000000",
+      "frame_style": "none",
+      "text_style": "video_play_pill",
+      "frame_text": "WATCH VIDEO",
+      "frame_color": "#FF0000",
+      "frame_text_color": "#ffffff",
+      "preset_logo": "None"
+    }
+  },
+  {
+    "name": "At Your Service",
+    "category": "Premium",
+    "description": "A classic waiter serving tray holding your QR code.",
+    "settings": {
+      "dots_style": "diamond",
+      "eye_frame_style": "leaf",
+      "eyeball_style": "diamond",
+      "dots_color": "#111111",
+      "dots_color_end": "#111111",
+      "bg_color": "#f8f9fa",
+      "gradient_type": "None",
+      "eye_color": "#111111",
+      "eyeball_color": "#111111",
+      "frame_style": "none",
+      "text_style": "waiter_tray",
+      "frame_text": "SCAN TO ORDER",
+      "frame_color": "#333333",
+      "frame_text_color": "#333333",
+      "preset_logo": "None"
+    }
+  },
+  {
     "name": "Sunset Gradient Glow",
     "category": "Premium",
     "description": "A highly saturated, warm gradient code over a deep, dark background.",

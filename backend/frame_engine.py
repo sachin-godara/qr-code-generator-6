@@ -3560,6 +3560,171 @@ def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="
         draw.text((px + padding, py + padding//2), text, font=font, fill=bg_color)
         return new_img
 
+    elif text_template == "mail_envelope":
+        env_w = qr_w + padding * 4
+        
+        # Fit font for bottom flap
+        max_flap_w = env_w - padding * 4
+        f_lbl, tw_lbl, th_lbl = get_fitted_font(text, max_flap_w - 20, text_size)
+        label_h = th_lbl + padding * 2 if text else padding * 2
+        
+        env_h = qr_h + padding * 4 + label_h
+        
+        new_img = Image.new("RGBA", (env_w, env_h), color=(255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        
+        # Draw white card (letter)
+        card_x1 = padding * 1.5
+        card_y1 = padding
+        card_x2 = env_w - padding * 1.5
+        card_y2 = env_h - padding * 2
+        draw.rounded_rectangle([(card_x1, card_y1), (card_x2, card_y2)], radius=8, fill=(255, 255, 255, 255))
+        if border_thickness > 0:
+            draw.rounded_rectangle([(card_x1, card_y1), (card_x2, card_y2)], radius=8, outline=bg_color, width=max(1, border_thickness // 3))
+            
+        # Paste QR Code on the upper part of the letter
+        qr_x = (env_w - qr_w) // 2
+        qr_y = card_y1 + padding
+        new_img.paste(qr_img, (int(qr_x), int(qr_y)), qr_img)
+        
+        # Draw envelope back
+        env_y1 = qr_y + qr_h - padding
+        env_y2 = env_h - padding
+        draw.rectangle([(padding, env_y1), (env_w - padding, env_y2)], fill=(245, 245, 245, 255))
+        if border_thickness > 0:
+            draw.rectangle([(padding, env_y1), (env_w - padding, env_y2)], outline=bg_color, width=border_thickness)
+            
+        # Draw side flaps (triangles)
+        mid_y = (env_y1 + env_y2) // 2
+        draw.polygon([(padding, env_y1), (padding + padding * 2.5, mid_y), (padding, env_y2)], fill=(235, 235, 235, 255), outline=bg_color)
+        draw.polygon([(env_w - padding, env_y1), (env_w - padding - padding * 2.5, mid_y), (env_w - padding, env_y2)], fill=(235, 235, 235, 255), outline=bg_color)
+        
+        # Draw bottom flap
+        draw.polygon([(padding, env_y2), (env_w // 2, env_y1 + padding), (env_w - padding, env_y2)], fill=(255, 255, 255, 255), outline=bg_color)
+        
+        # Thicken outline of bottom flap
+        if border_thickness > 0:
+            draw.line([(padding, env_y2), (env_w // 2, env_y1 + padding), (env_w - padding, env_y2)], fill=bg_color, width=max(2, border_thickness // 2))
+            
+        # Draw text on the bottom flap
+        if text:
+            tx = (env_w - tw_lbl) // 2
+            ty = env_y2 - padding - th_lbl
+            draw.text((tx, ty), text, fill=hex_to_rgb(text_color), font=f_lbl)
+            
+        return new_img
+
+    elif text_template == "video_play_pill":
+        # Square outer frame around QR, and a detached pill below
+        new_w = qr_w + padding * 4
+        
+        # Fit font for pill
+        max_pill_w = new_w - padding * 4 - 30 # leave room for play button
+        f_lbl, tw_lbl, th_lbl = get_fitted_font(text, max_pill_w - 20, text_size)
+        pill_h = th_lbl + padding * 2 if text else padding * 2
+        
+        new_h = qr_h + padding * 5 + pill_h
+        
+        new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        
+        # Frame for QR
+        frame_x1 = padding
+        frame_y1 = padding
+        frame_x2 = new_w - padding
+        frame_y2 = padding * 3 + qr_h
+        draw.rectangle([(frame_x1, frame_y1), (frame_x2, frame_y2)], fill=(255, 255, 255, 255))
+        if border_thickness > 0:
+            draw.rectangle([(frame_x1, frame_y1), (frame_x2, frame_y2)], outline=bg_color, width=border_thickness)
+            
+        new_img.paste(qr_img, (padding * 2, padding * 2), qr_img)
+        
+        # Detached Pill
+        pill_w = tw_lbl + 40 + padding * 2
+        pill_x1 = (new_w - pill_w) // 2
+        pill_y1 = frame_y2 + padding
+        pill_x2 = pill_x1 + pill_w
+        pill_y2 = pill_y1 + pill_h
+        
+        draw.rounded_rectangle([(pill_x1, pill_y1), (pill_x2, pill_y2)], radius=pill_h // 2, fill=bg_color)
+        
+        # Play button icon (white triangle)
+        icon_size = 14
+        icon_x = pill_x1 + padding
+        icon_y = pill_y1 + pill_h // 2
+        draw.polygon([
+            (icon_x, icon_y - icon_size // 2), 
+            (icon_x + icon_size, icon_y), 
+            (icon_x, icon_y + icon_size // 2)
+        ], fill=(255, 255, 255, 255))
+        
+        # Text
+        if text:
+            tx = icon_x + icon_size + 10
+            ty = pill_y1 + (pill_h - th_lbl) // 2 - th_lbl // 4
+            draw.text((tx, ty), text, fill=hex_to_rgb(text_color), font=f_lbl)
+            
+        return new_img
+
+    elif text_template == "waiter_tray":
+        tray_h = 20
+        new_w = qr_w + padding * 6
+        
+        # Fit font for top floating text
+        max_txt_w = new_w - padding * 4
+        f_lbl, tw_lbl, th_lbl = get_fitted_font(text, max_txt_w - 20, text_size)
+        txt_h = th_lbl + padding * 2 if text else padding * 2
+        
+        new_h = txt_h + qr_h + padding * 4 + tray_h + padding * 2 # space for arm
+        
+        new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        
+        # Text floating top
+        if text:
+            tx = (new_w - tw_lbl) // 2
+            ty = padding
+            draw.text((tx, ty), text, fill=hex_to_rgb(text_color), font=f_lbl)
+            
+        qr_y = padding + txt_h + padding
+        qr_x = (new_w - qr_w) // 2
+        
+        # QR Code on white card (menu card)
+        card_p = 8
+        draw.rounded_rectangle([(qr_x - card_p, qr_y - card_p), (qr_x + qr_w + card_p, qr_y + qr_h + card_p)], radius=6, fill=(255, 255, 255, 255))
+        if border_thickness > 0:
+            draw.rounded_rectangle([(qr_x - card_p, qr_y - card_p), (qr_x + qr_w + card_p, qr_y + qr_h + card_p)], radius=6, outline=bg_color, width=max(1, border_thickness // 3))
+            
+        new_img.paste(qr_img, (int(qr_x), int(qr_y)), qr_img)
+        
+        tray_y = qr_y + qr_h + card_p
+        
+        # Draw Tray (grey/silver ellipse)
+        tray_color = (150, 150, 150, 255)
+        tray_w = qr_w + padding * 4
+        tray_x = (new_w - tray_w) // 2
+        draw.rounded_rectangle([(tray_x, tray_y), (tray_x + tray_w, tray_y + tray_h)], radius=tray_h // 2, fill=tray_color)
+        
+        # Draw arm and hand
+        arm_color = hex_to_rgb(frame_color)
+        skin_color = (240, 210, 180, 255)
+        
+        # Arm from left bottom
+        arm_x1 = 0
+        arm_y1 = tray_y + tray_h + padding * 2
+        arm_x2 = tray_x + tray_w // 2 - 20
+        arm_y2 = tray_y + tray_h + 10
+        draw.polygon([(arm_x1, arm_y1), (arm_x1, arm_y1 - 40), (arm_x2, arm_y2), (arm_x2 - 10, arm_y2 + 30)], fill=arm_color)
+        
+        # Hand holding tray
+        draw.ellipse([(arm_x2 - 15, tray_y + tray_h - 5), (arm_x2 + 25, tray_y + tray_h + 20)], fill=skin_color)
+        
+        # Fingers wrapping up (small ellipses)
+        draw.ellipse([(arm_x2 + 10, tray_y + tray_h - 10), (arm_x2 + 22, tray_y + tray_h + 5)], fill=skin_color)
+        draw.ellipse([(arm_x2 + 18, tray_y + tray_h - 8), (arm_x2 + 28, tray_y + tray_h + 8)], fill=skin_color)
+        
+        return new_img
+
     return qr_img
 
 
