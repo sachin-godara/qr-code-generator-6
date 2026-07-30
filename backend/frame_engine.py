@@ -3725,6 +3725,234 @@ def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="
         
         return new_img
 
+    elif text_template == "speed_lines_frame":
+        import random
+        # Base rectangle
+        new_w = qr_w + padding * 4
+        
+        f_lbl, tw_lbl, th_lbl = get_fitted_font(text, new_w - padding*2 - 20, text_size)
+        label_h = th_lbl + padding * 2 if text else padding * 2
+        
+        # Add space for speed lines outside the frame
+        sp = 40 # speed line margin
+        
+        new_h = qr_h + padding * 4 + label_h
+        full_w = new_w + sp * 2
+        full_h = new_h + sp * 2
+        
+        new_img = Image.new("RGBA", (full_w, full_h), color=(255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        
+        card_x1 = sp
+        card_y1 = sp
+        card_x2 = sp + new_w
+        card_y2 = sp + new_h
+        
+        # Outer Border
+        if border_thickness > 0:
+            draw.rounded_rectangle([(card_x1, card_y1), (card_x2, card_y2)], radius=15, fill=bg_color, outline=hex_to_rgb(frame_color), width=border_thickness)
+        else:
+            draw.rounded_rectangle([(card_x1, card_y1), (card_x2, card_y2)], radius=15, fill=bg_color)
+            
+        # Draw dynamic speed lines around the border
+        line_color = hex_to_rgb(frame_color)
+        import math
+        # Fixed set of lines for consistency
+        lines = [
+            # Top-left
+            (card_x1 - 20, card_y1 + 10, -30), (card_x1 - 10, card_y1 - 10, -30), (card_x1 + 30, card_y1 - 25, -30),
+            # Top-right
+            (card_x2 + 20, card_y1 + 20, -30), (card_x2 + 10, card_y1 - 15, -30), (card_x2 - 30, card_y1 - 25, -30),
+            # Bottom-left
+            (card_x1 - 25, card_y2 - 20, -30), (card_x1 - 10, card_y2 + 10, -30), (card_x1 + 20, card_y2 + 25, -30),
+            # Bottom-right
+            (card_x2 + 25, card_y2 - 10, -30), (card_x2 + 10, card_y2 + 15, -30), (card_x2 - 20, card_y2 + 25, -30),
+            # Sides
+            (card_x1 - 25, card_y1 + (card_y2-card_y1)//2, -30),
+            (card_x2 + 25, card_y1 + (card_y2-card_y1)//2, -30),
+        ]
+        for lx, ly, angle_deg in lines:
+            length = random.randint(15, 35)
+            rad = math.radians(angle_deg)
+            ex = lx + length * math.cos(rad)
+            ey = ly + length * math.sin(rad)
+            draw.line([(lx, ly), (ex, ey)], fill=line_color, width=4)
+            
+        # Paste QR Code
+        qr_x = card_x1 + padding * 2
+        qr_y = card_y1 + padding * 2
+        new_img.paste(qr_img, (int(qr_x), int(qr_y)), qr_img)
+        
+        # Text Block at bottom
+        lbl_y1 = card_y2 - label_h
+        lbl_y2 = card_y2
+        draw.rounded_rectangle([(card_x1, lbl_y1), (card_x2, lbl_y2)], radius=15, fill=hex_to_rgb(frame_color))
+        # Fill corners to attach squarely
+        draw.rectangle([(card_x1, lbl_y1), (card_x2, lbl_y1 + 15)], fill=hex_to_rgb(frame_color))
+        
+        if text:
+            tx = card_x1 + (new_w - tw_lbl) // 2
+            ty = lbl_y1 + (label_h - th_lbl) // 2 - th_lbl // 4
+            draw.text((tx, ty), text, fill=hex_to_rgb(text_color), font=f_lbl)
+            
+        return new_img
+
+    elif text_template == "beer_mug":
+        foam_h = 60
+        base_h = 50
+        mug_w = qr_w + padding * 4
+        mug_h = qr_h + padding * 2
+        
+        # Fit font for bottom base
+        f_lbl, tw_lbl, th_lbl = get_fitted_font(text, mug_w - 20, text_size)
+        label_h = th_lbl + padding * 2 if text else padding * 2
+        
+        full_w = mug_w + 100 # room for handle
+        full_h = foam_h + mug_h + label_h + 20
+        
+        new_img = Image.new("RGBA", (full_w, full_h), color=(255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        
+        mug_x = 20 # foam overhang left
+        mug_y = foam_h
+        
+        outline_c = hex_to_rgb(frame_color)
+        
+        # Handle (Right side)
+        handle_w = 60
+        handle_h = mug_h - 40
+        handle_x = mug_x + mug_w
+        handle_y = mug_y + 30
+        draw.rounded_rectangle([(handle_x - 20, handle_y), (handle_x + handle_w, handle_y + handle_h)], radius=20, outline=outline_c, width=12)
+        
+        # Mug Body
+        draw.rectangle([(mug_x, mug_y), (mug_x + mug_w, mug_y + mug_h)], fill=(255,255,255,255), outline=outline_c, width=8)
+        
+        # Base/Text Area
+        base_y1 = mug_y + mug_h
+        base_y2 = base_y1 + label_h
+        draw.rounded_rectangle([(mug_x, base_y1), (mug_x + mug_w, base_y2)], radius=10, fill=outline_c)
+        draw.rectangle([(mug_x, base_y1), (mug_x + mug_w, base_y1 + 10)], fill=outline_c) # square top
+        
+        # Paste QR
+        qr_x = mug_x + padding * 2
+        qr_y = mug_y + padding
+        new_img.paste(qr_img, (int(qr_x), int(qr_y)), qr_img)
+        
+        # Text
+        if text:
+            tx = mug_x + (mug_w - tw_lbl) // 2
+            ty = base_y1 + (label_h - th_lbl) // 2 - th_lbl // 4
+            draw.text((tx, ty), text, fill=hex_to_rgb(text_color), font=f_lbl)
+            
+        # Foam on top
+        foam_color = (255, 255, 255, 255)
+        foam_circles = [
+            (mug_x - 10, mug_y - 20, 50),
+            (mug_x + 20, mug_y - 40, 70),
+            (mug_x + 70, mug_y - 50, 90),
+            (mug_x + 130, mug_y - 40, 80),
+            (mug_x + mug_w - 50, mug_y - 30, 60),
+            (mug_x - 20, mug_y + 10, 40), # drip
+            (mug_x + mug_w - 20, mug_y + 10, 30) # right drip
+        ]
+        for fx, fy, fsize in foam_circles:
+            draw.ellipse([(fx, fy), (fx + fsize, fy + fsize)], fill=foam_color, outline=outline_c, width=6)
+            
+        # Remove inner overlapping foam lines by drawing slightly smaller fill-only ellipses
+        for fx, fy, fsize in foam_circles:
+            draw.ellipse([(fx+6, fy+6), (fx + fsize-6, fy + fsize-6)], fill=foam_color)
+            
+        return new_img
+
+    elif text_template == "delivery_scooter":
+        box_w = qr_w + padding * 4
+        
+        f_lbl, tw_lbl, th_lbl = get_fitted_font(text, box_w - 20, text_size)
+        label_h = th_lbl + padding * 2 if text else padding * 2
+        
+        box_h = qr_h + padding * 2 + label_h
+        
+        scooter_w = 200
+        scooter_offset_x = box_w - 30 # Overlap slightly
+        
+        full_w = scooter_offset_x + scooter_w + 30
+        full_h = box_h + 150 # wheels below
+        
+        new_img = Image.new("RGBA", (full_w, full_h), color=(255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        
+        scooter_color = hex_to_rgb(frame_color)
+        wheel_color = (50, 50, 50, 255)
+        
+        box_x = 20
+        box_y = 20
+        
+        # Delivery Box (Backpack/Trunk)
+        draw.rounded_rectangle([(box_x, box_y), (box_x + box_w, box_y + box_h)], radius=15, fill=bg_color, outline=scooter_color, width=8)
+        
+        # Label section
+        lbl_y1 = box_y + box_h - label_h
+        draw.rounded_rectangle([(box_x, lbl_y1), (box_x + box_w, box_y + box_h)], radius=15, fill=scooter_color)
+        draw.rectangle([(box_x, lbl_y1), (box_x + box_w, lbl_y1 + 15)], fill=scooter_color)
+        
+        # QR
+        qr_x = box_x + padding * 2
+        qr_y = box_y + padding
+        new_img.paste(qr_img, (int(qr_x), int(qr_y)), qr_img)
+        
+        # Text
+        if text:
+            tx = box_x + (box_w - tw_lbl) // 2
+            ty = lbl_y1 + (label_h - th_lbl) // 2 - th_lbl // 4
+            draw.text((tx, ty), text, fill=hex_to_rgb(text_color), font=f_lbl)
+            
+        # --- Scooter ---
+        ground_y = box_y + box_h + 80
+        wheel_r = 35
+        
+        rear_wheel_x = box_x + box_w // 2
+        front_wheel_x = rear_wheel_x + 180
+        
+        # Wheels
+        for wx in (rear_wheel_x, front_wheel_x):
+            draw.ellipse([(wx - wheel_r, ground_y - wheel_r*2), (wx + wheel_r, ground_y)], fill=wheel_color)
+            draw.ellipse([(wx - wheel_r//2, ground_y - wheel_r*1.5), (wx + wheel_r//2, ground_y - wheel_r*0.5)], fill=(200,200,200,255))
+            
+        # Chassis / Body
+        chassis_y = ground_y - wheel_r*2 + 10
+        # Curved scooter body
+        draw.polygon([
+            (rear_wheel_x - 20, chassis_y), 
+            (rear_wheel_x + 60, chassis_y), 
+            (rear_wheel_x + 80, chassis_y + 40), # floorboard
+            (front_wheel_x - 40, chassis_y + 40), 
+            (front_wheel_x - 10, chassis_y - 30), # front column
+            (front_wheel_x - 40, chassis_y - 40),
+            (rear_wheel_x + 40, chassis_y - 20)
+        ], fill=scooter_color)
+        
+        # Mudguards
+        draw.arc([(rear_wheel_x - wheel_r - 10, ground_y - wheel_r*2 - 10), (rear_wheel_x + wheel_r + 10, ground_y + 10)], start=180, end=360, fill=scooter_color, width=15)
+        draw.arc([(front_wheel_x - wheel_r - 10, ground_y - wheel_r*2 - 10), (front_wheel_x + wheel_r + 10, ground_y + 10)], start=180, end=300, fill=scooter_color, width=15)
+        
+        # Seat
+        seat_x = rear_wheel_x + 10
+        seat_y = chassis_y - 30
+        draw.rounded_rectangle([(seat_x, seat_y), (seat_x + 80, seat_y + 20)], radius=10, fill=(40,40,40,255))
+        
+        # Handlebars & column
+        head_x = front_wheel_x - 10
+        head_y = chassis_y - 80
+        draw.line([(front_wheel_x, ground_y - wheel_r), (head_x, head_y)], fill=(100,100,100,255), width=10)
+        # Handlebar
+        draw.line([(head_x - 20, head_y), (head_x + 10, head_y - 10)], fill=(50,50,50,255), width=12)
+        
+        # Headlight
+        draw.ellipse([(head_x + 5, head_y - 10), (head_x + 25, head_y + 10)], fill=(255,255,200,255), outline=(200,200,200,255), width=4)
+        
+        return new_img
+
     return qr_img
 
 

@@ -9,6 +9,72 @@ export interface Template {
 
 export const PRESET_TEMPLATES: Template[] = [
   {
+    "name": "Dynamic Pop",
+    "category": "Premium",
+    "description": "A vibrant, energetic frame with floating speed lines.",
+    "settings": {
+      "dots_style": "classy",
+      "eye_frame_style": "rounded",
+      "eyeball_style": "rounded",
+      "dots_color": "#2962FF",
+      "dots_color_end": "#2962FF",
+      "bg_color": "#F0F4FF",
+      "gradient_type": "None",
+      "eye_color": "#2962FF",
+      "eyeball_color": "#2962FF",
+      "frame_style": "none",
+      "text_style": "speed_lines_frame",
+      "frame_text": "¡Escaneame!",
+      "frame_color": "#2962FF",
+      "frame_text_color": "#ffffff",
+      "preset_logo": "None"
+    }
+  },
+  {
+    "name": "Cheers Pint",
+    "category": "Premium",
+    "description": "A classic beer mug overflowing with frothy foam.",
+    "settings": {
+      "dots_style": "rounded",
+      "eye_frame_style": "rounded",
+      "eyeball_style": "rounded",
+      "dots_color": "#8b8b8b",
+      "dots_color_end": "#8b8b8b",
+      "bg_color": "#e6e6fa",
+      "gradient_type": "None",
+      "eye_color": "#8b8b8b",
+      "eyeball_color": "#8b8b8b",
+      "frame_style": "none",
+      "text_style": "beer_mug",
+      "frame_text": "¡Escaneame!",
+      "frame_color": "#8b8b8b",
+      "frame_text_color": "#ffffff",
+      "preset_logo": "None"
+    }
+  },
+  {
+    "name": "Speedy Delivery",
+    "category": "Premium",
+    "description": "A delivery scooter carrying your QR code.",
+    "settings": {
+      "dots_style": "diamond",
+      "eye_frame_style": "rounded",
+      "eyeball_style": "diamond",
+      "dots_color": "#8b8b8b",
+      "dots_color_end": "#8b8b8b",
+      "bg_color": "#e6e6fa",
+      "gradient_type": "None",
+      "eye_color": "#8b8b8b",
+      "eyeball_color": "#8b8b8b",
+      "frame_style": "none",
+      "text_style": "delivery_scooter",
+      "frame_text": "¡Escaneame!",
+      "frame_color": "#8b8b8b",
+      "frame_text_color": "#ffffff",
+      "preset_logo": "None"
+    }
+  },
+  {
     "name": "Special Delivery",
     "category": "Premium",
     "description": "A stylish open mail envelope with the QR code tucked inside.",
