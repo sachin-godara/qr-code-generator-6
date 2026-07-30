@@ -614,6 +614,107 @@ def apply_layout_frame(qr_img, layout_template="none", frame_color="#000000", pa
         new_img.paste(qr_img, (padding, padding), qr_img)
         return new_img
 
+    elif layout_template == "pizza_box":
+        new_w, new_h = qr_w + padding*4, qr_h + padding*4
+        new_img = Image.new("RGBA", (new_w, new_h), (255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        box_c = (222, 184, 135, 255)
+        draw.rounded_rectangle([(0, 0), (new_w, new_h)], radius=10, fill=box_c)
+        draw.line([(padding, padding), (new_w-padding, padding)], fill=(200, 160, 110, 255), width=2)
+        draw.line([(padding, new_h-padding), (new_w-padding, new_h-padding)], fill=(200, 160, 110, 255), width=2)
+        draw.line([(padding, padding), (padding, new_h-padding)], fill=(200, 160, 110, 255), width=2)
+        draw.line([(new_w-padding, padding), (new_w-padding, new_h-padding)], fill=(200, 160, 110, 255), width=2)
+        new_img.paste(qr_img, (padding*2, padding*2), qr_img)
+        return new_img
+
+    elif layout_template == "takeout_box":
+        new_w, new_h = qr_w + padding*4, qr_h + padding*6
+        new_img = Image.new("RGBA", (new_w, new_h), (255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        pts = [(padding, padding*2), (new_w-padding, padding*2), (new_w-padding*1.5, new_h), (padding*1.5, new_h)]
+        draw.polygon(pts, fill=(250, 250, 250, 255))
+        draw.polygon([(padding, padding*2), (new_w//2, padding*1.5), (new_w-padding, padding*2)], fill=(240, 240, 240, 255))
+        draw.arc([(padding//2, padding), (new_w-padding//2, padding*3)], start=180, end=0, fill=(150, 150, 150, 255), width=3)
+        draw.line([(new_w//2 - padding, new_h - padding), (new_w//2 + padding, new_h - padding)], fill=(220, 50, 50, 255), width=4)
+        new_img.paste(qr_img, (padding*2, padding*2 + padding//2), qr_img)
+        return new_img
+
+    elif layout_template == "boba_cup":
+        new_w, new_h = qr_w + padding*4, qr_h + padding*8
+        new_img = Image.new("RGBA", (new_w, new_h), (255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        pts = [(padding, padding*2), (new_w-padding, padding*2), (new_w-padding*1.2, new_h-padding), (padding*1.2, new_h-padding)]
+        draw.polygon(pts, fill=(255, 255, 255, 200), outline=(200, 200, 200, 255), width=2)
+        draw.ellipse([(padding*1.2, new_h-padding*1.5), (new_w-padding*1.2, new_h-padding//2)], fill=(255, 255, 255, 200))
+        draw.rounded_rectangle([(padding*0.8, padding*1.5), (new_w-padding*0.8, padding*2+5)], radius=5, fill=(240, 240, 240, 255))
+        draw.line([(new_w//2, padding*2), (new_w//2+padding, padding//2)], fill=(50, 150, 255, 255), width=15)
+        import random
+        random.seed(42)
+        for _ in range(12):
+            bx = random.randint(int(padding*1.5), int(new_w-padding*1.5))
+            by = random.randint(int(new_h-padding*2.5), int(new_h-padding*1.2))
+            draw.ellipse([(bx-6, by-6), (bx+6, by+6)], fill=(40, 20, 10, 255))
+        new_img.paste(qr_img, (padding*2, padding*3), qr_img)
+        return new_img
+
+    elif layout_template == "wine_label":
+        new_w, new_h = qr_w + padding*3, qr_h + padding*6
+        new_img = Image.new("RGBA", (new_w, new_h), (255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        draw.rectangle([(0, 0), (new_w, new_h)], fill=(250, 245, 235, 255))
+        gold = (212, 175, 55, 255)
+        draw.rectangle([(padding//2, padding//2), (new_w-padding//2, new_h-padding//2)], outline=gold, width=3)
+        draw.rectangle([(padding//2+4, padding//2+4), (new_w-padding//2-4, new_h-padding//2-4)], outline=gold, width=1)
+        new_img.paste(qr_img, (int(padding*1.5), int(padding*2.5)), qr_img)
+        return new_img
+
+    elif layout_template == "beer_coaster":
+        new_w, new_h = qr_w + padding*5, qr_h + padding*5
+        new_img = Image.new("RGBA", (new_w, new_h), (255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        draw.ellipse([(4, 4), (new_w, new_h)], fill=(0, 0, 0, 50))
+        draw.ellipse([(0, 0), (new_w-4, new_h-4)], fill=(222, 190, 145, 255))
+        draw.ellipse([(padding, padding), (new_w-padding-4, new_h-padding-4)], outline=(190, 160, 120, 255), width=3)
+        new_img.paste(qr_img, (int(padding*2.5)-2, int(padding*2.5)-2), qr_img)
+        return new_img
+
+    elif layout_template == "wooden_peel":
+        new_w, new_h = qr_w + padding*6, qr_h + padding*10
+        new_img = Image.new("RGBA", (new_w, new_h), (255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        wood = (180, 130, 80, 255)
+        draw.rounded_rectangle([(new_w//2 - padding, new_h - padding*4), (new_w//2 + padding, new_h)], radius=padding//2, fill=wood)
+        draw.ellipse([(0, 0), (new_w, new_w)], fill=wood)
+        new_img.paste(qr_img, (padding*3, padding*3), qr_img)
+        return new_img
+
+    elif layout_template == "ramen_bowl":
+        new_w, new_h = qr_w + padding*4, qr_h + padding*5
+        new_img = Image.new("RGBA", (new_w, new_h), (255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        draw.line([(padding, padding), (new_w-padding*2, padding*3)], fill=(200, 170, 110, 255), width=8)
+        draw.line([(padding*2, padding), (new_w-padding, padding*3)], fill=(200, 170, 110, 255), width=8)
+        bowl_h = new_h - padding*3
+        draw.pieslice([(0, padding*2), (new_w, padding*2 + bowl_h*2)], start=180, end=360, fill=(30, 30, 30, 255))
+        draw.arc([(padding, padding*2 + 10), (new_w-padding, padding*2 + bowl_h*2 - 10)], start=180, end=360, fill=(220, 50, 50, 255), width=4)
+        new_img.paste(qr_img, (padding*2, int(padding*2.5)), qr_img)
+        return new_img
+
+    elif layout_template == "gold_foil_menu":
+        new_w, new_h = qr_w + padding*4, qr_h + padding*4
+        new_img = Image.new("RGBA", (new_w, new_h), (255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        draw.rectangle([(0, 0), (new_w, new_h)], fill=(20, 20, 20, 255))
+        gold = (212, 175, 55, 255)
+        draw.rectangle([(padding, padding), (new_w-padding, new_h-padding)], outline=gold, width=2)
+        cr = 6
+        draw.ellipse([(padding-cr, padding-cr), (padding+cr, padding+cr)], fill=gold)
+        draw.ellipse([(new_w-padding-cr, padding-cr), (new_w-padding+cr, padding+cr)], fill=gold)
+        draw.ellipse([(padding-cr, new_h-padding-cr), (padding+cr, new_h-padding+cr)], fill=gold)
+        draw.ellipse([(new_w-padding-cr, new_h-padding-cr), (new_w-padding+cr, new_h-padding+cr)], fill=gold)
+        new_img.paste(qr_img, (padding*2, padding*2), qr_img)
+        return new_img
+
     return qr_img
 
 def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="SCAN ME", text_color="#ffffff", text_size=40, padding=20, corner_radius=15, border_thickness=10, top_text="SCAN ME", font_name="Outfit-Bold.ttf"):

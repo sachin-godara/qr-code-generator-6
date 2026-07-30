@@ -8,7 +8,198 @@ export interface Template {
 }
 
 export const PRESET_TEMPLATES: Template[] = [
-
+  {
+    "name": "Sunset Gradient Glow",
+    "category": "Premium",
+    "description": "A highly saturated, warm gradient code over a deep, dark background.",
+    "settings": {
+      "dots_style": "liquid_drop",
+      "eye_frame_style": "squircle",
+      "eyeball_style": "circle",
+      "dots_color": "#FF007F",
+      "dots_color_end": "#FF8C00",
+      "bg_color": "#FFF0F5",
+      "gradient_type": "Diagonal (TL to BR)",
+      "eye_color": "#FF007F",
+      "eyeball_color": "#FF8C00",
+      "frame_style": "none",
+      "text_style": "none",
+      "preset_logo": "None"
+    }
+  },
+  {
+    "name": "Deep Ocean Bioluminescence",
+    "category": "Premium",
+    "description": "A rich, deep aquatic theme with glowing, saturated cyan highlights.",
+    "settings": {
+      "dots_style": "leaf_droplet",
+      "eye_frame_style": "droplet_tl",
+      "eyeball_style": "circle",
+      "dots_color": "#00E5FF",
+      "dots_color_end": "#2962FF",
+      "bg_color": "#F0F8FF",
+      "gradient_type": "Vertical",
+      "eye_color": "#00E5FF",
+      "eyeball_color": "#00E5FF",
+      "frame_style": "none",
+      "text_style": "none",
+      "preset_logo": "None"
+    }
+  },
+  {
+    "name": "Electric Amethyst",
+    "category": "Premium",
+    "description": "A luxurious and extremely saturated purple/violet theme.",
+    "settings": {
+      "dots_style": "diamond",
+      "eye_frame_style": "crystal_frame",
+      "eyeball_style": "diamond",
+      "dots_color": "#7000FF",
+      "dots_color_end": "#FF00FF",
+      "bg_color": "#F3E5F5",
+      "gradient_type": "Diagonal (TL to BR)",
+      "eye_color": "#7000FF",
+      "eyeball_color": "#FF00FF",
+      "frame_style": "none",
+      "text_style": "none",
+      "preset_logo": "None"
+    }
+  },
+  {
+    "name": "Tropical Mango",
+    "category": "Premium",
+    "description": "A bright, high-energy, sun-drenched palette with max saturation.",
+    "settings": {
+      "dots_style": "rounded",
+      "eye_frame_style": "leaf",
+      "eyeball_style": "sheared",
+      "dots_color": "#FFEA00",
+      "dots_color_end": "#FF3D00",
+      "bg_color": "#FFF8E1",
+      "gradient_type": "Diagonal (TL to BR)",
+      "eye_color": "#FF3D00",
+      "eyeball_color": "#FFEA00",
+      "frame_style": "none",
+      "text_style": "none",
+      "preset_logo": "None"
+    }
+  },
+  {
+    "name": "Vaporwave Dream",
+    "category": "Premium",
+    "description": "A highly saturated, retro-futuristic aesthetic.",
+    "settings": {
+      "dots_style": "pixel_art",
+      "eye_frame_style": "square",
+      "eyeball_style": "square",
+      "dots_color": "#FF00AA",
+      "dots_color_end": "#00FFFF",
+      "bg_color": "#F8F8FF",
+      "gradient_type": "Radial",
+      "eye_color": "#FF00AA",
+      "eyeball_color": "#00FFFF",
+      "frame_style": "none",
+      "text_style": "none",
+      "preset_logo": "None"
+    }
+  },
+  {
+    "name": "Soft Mint Wellness",
+    "category": "Retail",
+    "description": "A soothing, organic design perfect for health and wellness brands.",
+    "settings": {
+      "dots_style": "liquid_drop",
+      "eye_frame_style": "leaf",
+      "eyeball_style": "flower_cut",
+      "dots_color": "#2D6A4F",
+      "dots_color_end": "#40916C",
+      "bg_color": "#E8F5E9",
+      "gradient_type": "Vertical",
+      "eye_color": "#1B4332",
+      "eyeball_color": "#2D6A4F",
+      "frame_style": "none",
+      "text_style": "none",
+      "preset_logo": "None",
+      "canvas_radius": 24
+    }
+  },
+  {
+    "name": "Monochic Studio",
+    "category": "Business",
+    "description": "Ultra-minimalist dots with sleek camera lens frames.",
+    "settings": {
+      "dots_style": "minimal_dots",
+      "eye_frame_style": "camera_lens",
+      "eyeball_style": "circle",
+      "dots_color": "#111111",
+      "dots_color_end": "#333333",
+      "bg_color": "#FFFFFF",
+      "gradient_type": "Solid Color",
+      "eye_color": "#000000",
+      "eyeball_color": "#000000",
+      "frame_style": "none",
+      "text_style": "none",
+      "preset_logo": "None"
+    }
+  },
+  {
+    "name": "Sunset Bistro",
+    "category": "Restaurant",
+    "description": "Warm gradient flower cuts with soft squircle eyes.",
+    "settings": {
+      "dots_style": "flower_cut",
+      "eye_frame_style": "squircle",
+      "eyeball_style": "sheared",
+      "dots_color": "#FF512F",
+      "dots_color_end": "#DD2476",
+      "bg_color": "#FFF3E0",
+      "gradient_type": "Diagonal (TL to BR)",
+      "eye_color": "#DD2476",
+      "eyeball_color": "#FF512F",
+      "frame_style": "none",
+      "text_style": "none",
+      "preset_logo": "None"
+    }
+  },
+  {
+    "name": "Retro Console",
+    "category": "Social",
+    "description": "8-bit inspired pixel art within a monitor screen frame.",
+    "settings": {
+      "dots_style": "pixel_art",
+      "eye_frame_style": "square",
+      "eyeball_style": "square",
+      "dots_color": "#FFFFFF",
+      "dots_color_end": "#CCCCCC",
+      "bg_color": "#222222",
+      "gradient_type": "Solid Color",
+      "eye_color": "#FFFFFF",
+      "eyeball_color": "#FFFFFF",
+      "frame_style": "monitor_screen",
+      "text_style": "none",
+      "preset_logo": "None",
+      "frame_color": "#444444"
+    }
+  },
+  {
+    "name": "Organic Salad Bowl",
+    "category": "Restaurant",
+    "description": "Leaf droplet dots with matching opposite leaf frames.",
+    "settings": {
+      "dots_style": "leaf_droplet",
+      "eye_frame_style": "leaf_opposite",
+      "eyeball_style": "leaf_opposite",
+      "dots_color": "#4CAF50",
+      "dots_color_end": "#8BC34A",
+      "bg_color": "#F1F8E9",
+      "gradient_type": "Diagonal (TL to BR)",
+      "eye_color": "#388E3C",
+      "eyeball_color": "#4CAF50",
+      "frame_style": "none",
+      "text_style": "none",
+      "preset_logo": "None"
+    }
+  },
   {
     "name": "Gold Foil Luxury",
     "category": "Premium",
@@ -166,29 +357,6 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_color": "#ffffff",
       "effect_shadow": "none",
       "font_name": "Outfit (Modern)"
-    }
-  },
-  {
-    "name": "Elegant Wedding RSVP",
-    "category": "Events",
-    "description": "Soft, floral design for wedding invitations and gala RSVPs.",
-    "settings": {
-      "dots_style": "flower_cut",
-      "eye_frame_style": "crystal_frame",
-      "eyeball_style": "flower_cut",
-      "dots_color": "#B76E79",
-      "dots_color_end": "#E0BFB8",
-      "gradient_type": "Diagonal (TL to BR)",
-      "eye_color": "#B76E79",
-      "eyeball_color": "#B76E79",
-      "bg_color": "#ffffff",
-      "frame_style": "none",
-      "text_style": "rsvp_envelope",
-      "frame_text": "RSVP NOW",
-      "frame_color": "#B76E79",
-      "frame_text_color": "#ffffff",
-      "effect_shadow": "none",
-      "font_name": "Playfair Display (Elegant)"
     }
   },
   {
@@ -1504,6 +1672,144 @@ export const PRESET_TEMPLATES: Template[] = [
         "frame_text": "CLAIM OFFER",
         "frame_color": "#FF5722",
         "frame_text_color": "#ffffff"
+    }
+}, {
+    "name": "Pizza Delivery Box",
+    "category": "Restaurant",
+    "description": "A realistic pizza delivery box viewed from the top with the lid slightly open.",
+    "settings": {
+        "dots_style": "rounded",
+        "eye_frame_style": "rounded",
+        "eyeball_style": "circle",
+        "dots_color": "#D35400",
+        "bg_color": "#ffffff",
+        "frame_style": "pizza_box",
+        "text_style": "none"
+    }
+}, {
+    "name": "Chinese Takeout Box",
+    "category": "Restaurant",
+    "description": "A classic white Chinese takeout box with folded flaps.",
+    "settings": {
+        "dots_style": "square",
+        "eye_frame_style": "square",
+        "eyeball_style": "square",
+        "dots_color": "#C0392B",
+        "bg_color": "#ffffff",
+        "frame_style": "takeout_box",
+        "text_style": "none"
+    }
+}, {
+    "name": "Bubble Tea Cup",
+    "category": "Restaurant",
+    "description": "A transparent bubble tea cup filled with colorful pearls.",
+    "settings": {
+        "dots_style": "circle",
+        "eye_frame_style": "circle",
+        "eyeball_style": "circle",
+        "dots_color": "#8E44AD",
+        "bg_color": "#ffffff",
+        "frame_style": "boba_cup",
+        "text_style": "none",
+        "preset_logo": "Coffee",
+        "preset_logo_color": "#8E44AD"
+    }
+}, {
+    "name": "Wine Bottle Label",
+    "category": "Premium",
+    "description": "An elegant wine bottle with a premium paper label featuring gold details.",
+    "settings": {
+        "dots_style": "diamond",
+        "eye_frame_style": "diamond",
+        "eyeball_style": "diamond",
+        "dots_color": "#4A235A",
+        "bg_color": "#FAF5EB",
+        "frame_style": "wine_label",
+        "text_style": "none"
+    }
+}, {
+    "name": "Beer Mug Coaster",
+    "category": "Restaurant",
+    "description": "A frosted beer mug placed on a circular wooden coaster.",
+    "settings": {
+        "dots_style": "rounded",
+        "eye_frame_style": "rounded",
+        "eyeball_style": "rounded",
+        "dots_color": "#5D4037",
+        "bg_color": "#ffffff",
+        "frame_style": "beer_coaster",
+        "text_style": "none"
+    }
+}, {
+    "name": "Wooden Pizza Peel",
+    "category": "Restaurant",
+    "description": "A traditional wooden pizza paddle.",
+    "settings": {
+        "dots_style": "rounded",
+        "eye_frame_style": "rounded",
+        "eyeball_style": "rounded",
+        "dots_color": "#3E2723",
+        "bg_color": "#ffffff",
+        "bg_blend_mode": "multiply",
+        "bg_transparent": true,
+        "frame_style": "wooden_peel",
+        "text_style": "none"
+    }
+}, {
+    "name": "Ramen Bowl",
+    "category": "Restaurant",
+    "description": "A steaming ramen bowl with noodles and chopsticks.",
+    "settings": {
+        "dots_style": "rounded",
+        "eye_frame_style": "droplet_tl",
+        "eyeball_style": "circle",
+        "dots_color": "#E74C3C",
+        "bg_color": "#ffffff",
+        "frame_style": "ramen_bowl",
+        "text_style": "none"
+    }
+}, {
+    "name": "Gold Foil Menu",
+    "category": "Premium",
+    "description": "A premium black menu featuring metallic gold foil borders.",
+    "settings": {
+        "dots_style": "rounded",
+        "eye_frame_style": "rounded",
+        "eyeball_style": "circle",
+        "dots_color": "#D4AF37",
+        "bg_color": "#1A1A1A",
+        "frame_style": "gold_foil_menu",
+        "text_style": "none"
+    }
+}, {
+    "name": "Neon Restaurant Sign",
+    "category": "Signage",
+    "description": "A modern neon sign mounted on a dark brick wall.",
+    "settings": {
+        "dots_style": "rounded",
+        "eye_frame_style": "rounded",
+        "eyeball_style": "rounded",
+        "dots_color": "#00FFFF",
+        "bg_color": "#0a0a0a",
+        "frame_style": "neon_glow_frame",
+        "frame_color": "#00FFFF",
+        "text_style": "none",
+        "effect_shadow": "neon",
+        "effect_shadow_color": "#00FFFF"
+    }
+}, {
+    "name": "Hanging Wooden Sign",
+    "category": "Signage",
+    "description": "A rustic wooden sign suspended by metal chains.",
+    "settings": {
+        "dots_style": "square",
+        "eye_frame_style": "square",
+        "eyeball_style": "square",
+        "dots_color": "#3E2723",
+        "bg_color": "#ffffff",
+        "frame_style": "hanging_sign",
+        "frame_color": "#8B5A2B",
+        "text_style": "none"
     }
 }
 ];

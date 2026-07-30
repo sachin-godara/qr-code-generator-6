@@ -103,7 +103,11 @@ export function SettingsPanel() {
     "sheared", "flower_cut", "clover", "heart", "rounded_triangle", "pinched_square", 
     "dumbbell_eyeball"
   ]
-  const frameStyles = ["none", "border", "double_border", "circle", "phone_frame", "chalkboard"]
+  const frameStyles = [
+    "none", "border", "double_border", "circle", "phone_frame", "chalkboard",
+    "pizza_box", "takeout_box", "boba_cup", "wine_label", "beer_coaster", 
+    "wooden_peel", "ramen_bowl", "gold_foil_menu", "neon_glow_frame", "hanging_sign"
+  ]
   const textStyles = ["none", "top_text", "bottom_text", "speech_bubble", "floating_badge"]
   
   return (
@@ -342,14 +346,21 @@ export function SettingsPanel() {
 
         <div className="space-y-3">
           <label className="text-sm font-medium">Frame Style</label>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
             {frameStyles.map(style => (
               <button 
                 key={style}
                 onClick={() => updateSettings({ frame_style: style as any })}
-                className={`p-2 border rounded-lg text-xs capitalize transition-colors ${settings.frame_style === style ? 'bg-primary text-primary-foreground border-primary' : 'bg-background hover:bg-muted'}`}
+                className={`flex flex-col items-center p-2 border rounded-xl text-xs capitalize transition-all overflow-hidden ${settings.frame_style === style ? 'bg-primary/5 text-primary border-primary ring-1 ring-primary shadow-sm' : 'bg-background hover:bg-muted shadow-sm'}`}
               >
-                {style.replace('_', ' ')}
+                <div className="w-full aspect-square mb-2 bg-muted/20 rounded-lg overflow-hidden flex items-center justify-center p-1">
+                  {style === "none" ? (
+                    <div className="text-muted-foreground font-medium">None</div>
+                  ) : (
+                    <img src={`/api/generator/preview/frame/${style}`} alt={style} className="max-w-full max-h-full object-contain mix-blend-multiply" loading="lazy" />
+                  )}
+                </div>
+                <span className="text-[10px] sm:text-xs font-medium leading-tight text-center">{style.replace(/_/g, ' ')}</span>
               </button>
             ))}
           </div>
@@ -357,14 +368,21 @@ export function SettingsPanel() {
 
         <div className="space-y-3">
           <label className="text-sm font-medium">Text Template</label>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
             {textStyles.map(style => (
               <button 
                 key={style}
                 onClick={() => updateSettings({ text_style: style as any })}
-                className={`p-2 border rounded-lg text-xs capitalize transition-colors ${settings.text_style === style ? 'bg-primary text-primary-foreground border-primary' : 'bg-background hover:bg-muted'}`}
+                className={`flex flex-col items-center p-2 border rounded-xl text-xs capitalize transition-all overflow-hidden ${settings.text_style === style ? 'bg-primary/5 text-primary border-primary ring-1 ring-primary shadow-sm' : 'bg-background hover:bg-muted shadow-sm'}`}
               >
-                {style.replace('_', ' ')}
+                <div className="w-full aspect-square mb-2 bg-muted/20 rounded-lg overflow-hidden flex items-center justify-center p-1">
+                  {style === "none" ? (
+                    <div className="text-muted-foreground font-medium">None</div>
+                  ) : (
+                    <img src={`/api/generator/preview/text_frame/${style}`} alt={style} className="max-w-full max-h-full object-contain mix-blend-multiply" loading="lazy" />
+                  )}
+                </div>
+                <span className="text-[10px] sm:text-xs font-medium leading-tight text-center">{style.replace(/_/g, ' ')}</span>
               </button>
             ))}
           </div>
