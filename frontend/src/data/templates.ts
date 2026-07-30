@@ -10,6 +10,31 @@ export interface Template {
 export const PRESET_TEMPLATES: Template[] = [
 
   {
+    "name": "Gold Foil Luxury",
+    "category": "Premium",
+    "description": "A matte dark background with QR dots that have a metallic gold gradient and a faux-embossed texture.",
+    "settings": {
+      "dots_style": "rounded",
+      "eye_frame_style": "rounded",
+      "eyeball_style": "dot",
+      "dots_color": "#D4AF37",
+      "dots_color_end": "#AA8222",
+      "bg_color": "#1A1A1A",
+      "gradient_type": "Diagonal (TL to BR)",
+      "eye_color": "#D4AF37",
+      "eyeball_color": "#D4AF37",
+      "frame_style": "none",
+      "text_style": "none",
+      "preset_logo": "None",
+      "effect_shadow": "elevated",
+      "effect_shadow_color": "#00000088",
+      "effect_shadow_blur": 6,
+      "canvas_radius": 16,
+      "canvas_border_width": 0,
+      "canvas_border_color": "#18181b",
+      "canvas_border_radius": 16
+    }
+  },  {
     "name": "None",
     "category": "Business",
     "description": "Standard black and white square QR code with no decorations",

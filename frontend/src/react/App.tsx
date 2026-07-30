@@ -22,6 +22,7 @@ const TEMPLATE_CATEGORIES = [
   { id: "Social", name: "Social", icon: "share" },
   { id: "Retail", name: "Retail", icon: "storefront" },
   { id: "Education", name: "Education", icon: "school" },
+  { id: "Premium", name: "Premium", icon: "workspace_premium" },
 ];
 
 async function fetchQRCode(settings: any) {
