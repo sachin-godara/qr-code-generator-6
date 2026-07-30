@@ -7,6 +7,11 @@ import { PRESET_TEMPLATES } from "@/data/templates"
 import { DOT_STYLES, EYE_FRAME_STYLES, EYEBALL_STYLES, FRAME_STYLES, TEXT_STYLES } from "@/data/options"
 import { StylePreviewCard } from "@/components/previews/StylePreviewCard"
 import { PresetLogoPreview, getReactLogoPngDataUrl, PRESET_LOGO_BRAND_COLORS, LOGO_ITEMS, LOGO_CATEGORIES } from "@/components/previews/SvgIcons"
+import {
+  UrlForm, TextForm, PhoneForm, SmsForm, WhatsAppForm, EmailForm, VCardForm,
+  WifiForm, LocationForm, EventForm, UpiForm, CryptoForm, PaypalForm,
+  AppStoreForm, GooglePlayForm, SocialForm
+} from "@/components/generator/forms/ContentForms"
 
 const TEMPLATE_CATEGORIES = [
   { id: "All", name: "All", icon: "apps" },
@@ -41,7 +46,7 @@ async function fetchQRCode(settings: any) {
 
   const payload = {
     ...rest,
-    data: contentData,
+    data: contentData || "Your text here...",
     logo_image: finalLogo,
     preset_logo: isPresetLogo ? "None" : rest.preset_logo,
     logo_card_shape: rest.logo_card_shape,
@@ -111,15 +116,7 @@ function App() {
   const [activeLogoCategory, setActiveLogoCategory] = useState<string>("All")
   const [zoomLevel, setZoomLevel] = useState<number>(1)
 
-  const [vcard, setVcard] = useState({ fn: '', ln: '', org: '', title: '', tel: '', email: '', url: '' })
-  const [event, setEvent] = useState({ title: '', desc: '', loc: '', start: '', end: '' })
-  const [sms, setSms] = useState({ phone: '', msg: '' })
-  const [wifi, setWifi] = useState({ ssid: '', type: 'WPA/WPA2', pass: '' })
-  const [phone, setPhone] = useState({ number: '' })
-  const [crypto, setCrypto] = useState({ currency: 'bitcoin', address: '', amount: '' })
-  const [location, setLocation] = useState({ type: 'coords', lat: '', lng: '', query: '' })
-  const [paypal, setPaypal] = useState({ username: '', amount: '', currency: 'USD' })
-  const [appstore, setAppstore] = useState({ store: 'apple', url: '' })
+
 
   // Batch Generation State
   const [csvRows, setCsvRows] = useState<Record<string, string>[]>([])
@@ -133,6 +130,7 @@ function App() {
   // Mobile UI state
   const [mobileMainTab, setMobileMainTab] = useState<'content' | 'design' | 'download'>('content')
   const [mobileDesignSubTab, setMobileDesignSubTab] = useState<string>('Shape')
+  const [contentCategoryTab, setContentCategoryTab] = useState<string>('Basic')
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [showMiniPreview, setShowMiniPreview] = useState(false)
   const previewRef = useRef<HTMLDivElement>(null)
@@ -167,6 +165,14 @@ function App() {
       window.removeEventListener('offline', handleOffline);
     };
   }, []);
+
+  // Sync content category tab when contentType changes (e.g. from undo/redo)
+  useEffect(() => {
+    const activeCategory = contentCategories.find(c => c.items.some(i => i.id === settings.contentType));
+    if (activeCategory && contentCategoryTab !== activeCategory.title) {
+      setContentCategoryTab(activeCategory.title);
+    }
+  }, [settings.contentType]);
 
   // Prevent body scroll when modal is open
   useEffect(() => {
@@ -337,20 +343,54 @@ function App() {
     }
   }
 
-  const contentTypes: { id: ContentType; label: string; icon: string }[] = [
-    { id: "url", label: "URL", icon: "link" },
-    { id: "vcard", label: "V-Card", icon: "contact_page" },
-    { id: "text", label: "Text", icon: "subject" },
-    { id: "email", label: "Email", icon: "mail" },
-    { id: "wifi", label: "WiFi", icon: "wifi" },
-    { id: "sms", label: "SMS", icon: "sms" },
-    { id: "event", label: "Event", icon: "event" },
-    { id: "phone", label: "Phone", icon: "phone" },
-    { id: "crypto", label: "Crypto", icon: "currency_bitcoin" },
-    { id: "location", label: "Location", icon: "location_on" },
-    { id: "paypal", label: "PayPal", icon: "payments" },
-    { id: "appstore", label: "App Store", icon: "apps" },
-    { id: "batch", label: "Batch CSV", icon: "dataset" },
+  const contentCategories = [
+    {
+      title: "Basic",
+      items: [
+        { id: "url", label: "URL", icon: "link" },
+        { id: "text", label: "Text", icon: "subject" },
+        { id: "phone", label: "Phone", icon: "phone" },
+        { id: "sms", label: "SMS", icon: "sms" },
+        { id: "whatsapp", label: "WhatsApp", icon: "chat" },
+        { id: "email", label: "Email", icon: "mail" },
+        { id: "vcard", label: "vCard", icon: "contact_page" },
+      ]
+    },
+    {
+      title: "Network",
+      items: [
+        { id: "wifi", label: "Wi-Fi", icon: "wifi" },
+      ]
+    },
+    {
+      title: "Location & Events",
+      items: [
+        { id: "location", label: "Location", icon: "location_on" },
+        { id: "event", label: "Event", icon: "event" },
+      ]
+    },
+    {
+      title: "Payments",
+      items: [
+        { id: "upi", label: "UPI", icon: "account_balance" },
+        { id: "crypto", label: "Crypto", icon: "currency_bitcoin" },
+        { id: "paypal", label: "PayPal", icon: "payments" },
+      ]
+    },
+    {
+      title: "Apps & Social",
+      items: [
+        { id: "appstore", label: "App Store", icon: "apps" },
+        { id: "googleplay", label: "Google Play", icon: "play_arrow" },
+        { id: "social", label: "Social", icon: "share" },
+      ]
+    },
+    {
+      title: "Advanced",
+      items: [
+        { id: "batch", label: "Batch CSV", icon: "dataset" },
+      ]
+    }
   ]
 
   const dotStyles = DOT_STYLES
@@ -404,7 +444,7 @@ function App() {
         ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#000000")
         : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
 
-      const payload = { ...rest, data: contentData, logo_image: finalLogo, preset_logo: isPresetLogo ? "None" : rest.preset_logo, logo_card_shape: rest.logo_card_shape, preset_logo_color: color }
+      const payload = { ...rest, data: contentData || "Your text here...", logo_image: finalLogo, preset_logo: isPresetLogo ? "None" : rest.preset_logo, logo_card_shape: rest.logo_card_shape, preset_logo_color: color }
       const response = await fetch("/api/generator/generate/svg", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -441,7 +481,7 @@ function App() {
         ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#000000")
         : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
 
-      const payload = { ...rest, data: contentData, logo_image: finalLogo, preset_logo: isPresetLogo ? "None" : rest.preset_logo, logo_card_shape: rest.logo_card_shape, preset_logo_color: color }
+      const payload = { ...rest, data: contentData || "Your text here...", logo_image: finalLogo, preset_logo: isPresetLogo ? "None" : rest.preset_logo, logo_card_shape: rest.logo_card_shape, preset_logo_color: color }
       const response = await fetch("/api/generator/generate/pdf", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -486,7 +526,7 @@ function App() {
         ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#000000")
         : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
 
-      const payload = { ...rest, data: contentData, logo_image: finalLogo, preset_logo: isPresetLogo ? "None" : rest.preset_logo, logo_card_shape: rest.logo_card_shape, preset_logo_color: color, box_size: 20, target_size: downloadSize };
+      const payload = { ...rest, data: contentData || "Your text here...", logo_image: finalLogo, preset_logo: isPresetLogo ? "None" : rest.preset_logo, logo_card_shape: rest.logo_card_shape, preset_logo_color: color, box_size: 20, target_size: downloadSize };
 
       let endpoint = "/api/generator/generate";
       let ext = "png";
@@ -542,7 +582,7 @@ function App() {
         ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#000000")
         : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
 
-      const payload = { ...rest, data: contentData, logo_image: finalLogo, preset_logo: isPresetLogo ? "None" : rest.preset_logo, logo_card_shape: rest.logo_card_shape, preset_logo_color: color, box_size: 20, target_size: downloadSize };
+      const payload = { ...rest, data: contentData || "Your text here...", logo_image: finalLogo, preset_logo: isPresetLogo ? "None" : rest.preset_logo, logo_card_shape: rest.logo_card_shape, preset_logo_color: color, box_size: 20, target_size: downloadSize };
       const response = await fetch("/api/generator/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -595,459 +635,62 @@ function App() {
       case "Content":
         return (
           <div className="space-y-6">
-            {/* Type Tabs */}
+            {/* Category Tabs */}
+            <div className="flex overflow-x-auto gap-2 pb-1 custom-scrollbar scroll-smooth">
+              {contentCategories.map((category) => (
+                <button
+                  key={category.title}
+                  onClick={() => setContentCategoryTab(category.title)}
+                  className={`py-1.5 px-3 rounded-lg text-xs font-bold transition-all whitespace-nowrap touch-press ${
+                    contentCategoryTab === category.title
+                      ? 'bg-primary/10 text-primary shadow-2xs'
+                      : 'bg-transparent text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface'
+                  }`}
+                >
+                  {category.title}
+                </button>
+              ))}
+            </div>
+
+            {/* Type Grid for Active Category */}
             <div className="glass-panel p-1.5 sm:p-2 rounded-2xl grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-4 xl:grid-cols-6 gap-1 border border-outline-variant shadow-sm">
-              {contentTypes.map((type) => (
+              {contentCategories.find(c => c.title === contentCategoryTab)?.items.map((type) => (
                 <button
                   key={type.id}
-                  onClick={() => updateSettings({ contentType: type.id })}
+                  onClick={() => {
+                    if (settings.contentType !== type.id) {
+                      updateSettings({ contentType: type.id as any, contentData: "" })
+                    }
+                  }}
                   className={`flex flex-col items-center gap-1 sm:gap-1.5 p-2.5 sm:p-3 rounded-xl duration-200 border min-h-[44px] touch-press transition-all ${settings.contentType === type.id
                       ? "bg-primary text-white border-primary font-semibold shadow-sm"
                       : "text-on-surface-variant hover:bg-surface-container border-transparent active:scale-95"
                     }`}
                 >
                   <span className="material-symbols-outlined text-[18px] sm:text-[20px]">{type.icon}</span>
-                  <span className="text-[10px] sm:text-[11px] leading-tight font-medium">{type.label}</span>
+                  <span className="text-[10px] sm:text-[11px] leading-tight font-medium text-center">{type.label}</span>
                 </button>
               ))}
             </div>
 
             {/* Input Card */}
             <div className="bg-white rounded-xl border border-outline-variant space-y-6 p-6">
-              {settings.contentType === "url" && (
-                <div>
-                  <label className="block font-label-md text-label-md text-on-surface mb-2 font-semibold">Website URL</label>
-                  <div className="relative">
-                    <input
-                      type="text"
-                      placeholder="https://yourwebsite.com"
-                      value={settings.contentData}
-                      onChange={(e) => updateSettings({ contentData: e.target.value })}
-                      className="w-full p-4 pr-12 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md"
-                    />
-                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-outline material-symbols-outlined">captive_portal</span>
-                  </div>
-                  <p className="mt-2 text-on-surface-variant font-label-sm text-label-sm">
-                    Enter the destination where your QR code will redirect users.
-                  </p>
-                </div>
-              )}
-
-              {settings.contentType === "text" && (
-                <div>
-                  <label className="block font-label-md text-label-md text-on-surface mb-2 font-semibold">Plain Text</label>
-                  <textarea
-                    placeholder="Type your text content here..."
-                    value={settings.contentData}
-                    onChange={(e) => updateSettings({ contentData: e.target.value })}
-                    rows={4}
-                    className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md resize-none"
-                  />
-                  <p className="mt-2 text-on-surface-variant font-label-sm text-label-sm">
-                    Raw text embedded directly in the QR code. Keep it brief.
-                  </p>
-                </div>
-              )}
-
-              {settings.contentType === "wifi" && (
-                <div className="space-y-4">
-                  <label className="block font-label-md text-label-md text-on-surface font-semibold">WiFi Connection</label>
-                  <input
-                    type="text"
-                    placeholder="SSID / Network Name"
-                    className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md"
-                    value={wifi.ssid}
-                    onChange={(e) => {
-                      const newWifi = { ...wifi, ssid: e.target.value }
-                      setWifi(newWifi)
-                      updateSettings({ contentData: `WIFI:T:${newWifi.type};S:${newWifi.ssid};P:${newWifi.pass};;` })
-                    }}
-                  />
-                  <select
-                    className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md"
-                    value={wifi.type}
-                    onChange={(e) => {
-                      const newWifi = { ...wifi, type: e.target.value }
-                      setWifi(newWifi)
-                      updateSettings({ contentData: `WIFI:T:${newWifi.type};S:${newWifi.ssid};P:${newWifi.pass};;` })
-                    }}
-                  >
-                    <option value="WPA/WPA2">WPA/WPA2</option>
-                    <option value="WEP">WEP</option>
-                    <option value="nopass">Unsecured</option>
-                  </select>
-                  <input
-                    type="password"
-                    placeholder="Password"
-                    className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md"
-                    value={wifi.pass}
-                    onChange={(e) => {
-                      const newWifi = { ...wifi, pass: e.target.value }
-                      setWifi(newWifi)
-                      updateSettings({ contentData: `WIFI:T:${newWifi.type};S:${newWifi.ssid};P:${newWifi.pass};;` })
-                    }}
-                  />
-                </div>
-              )}
-
-              {settings.contentType === "vcard" && (
-                <div className="space-y-4">
-                  <label className="block font-label-md text-label-md text-on-surface font-semibold">V-Card Information</label>
-                  <div className="grid grid-cols-2 gap-4">
-                    <input
-                      type="text" placeholder="First Name" className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none"
-                      value={vcard.fn}
-                      onChange={(e) => {
-                        const newV = { ...vcard, fn: e.target.value }
-                        setVcard(newV)
-                        updateSettings({ contentData: `BEGIN:VCARD\nVERSION:3.0\nN:${newV.ln};${newV.fn};;;\nFN:${newV.fn} ${newV.ln}\nORG:${newV.org}\nTITLE:${newV.title}\nTEL:${newV.tel}\nEMAIL:${newV.email}\nURL:${newV.url}\nEND:VCARD` })
-                      }}
-                    />
-                    <input
-                      type="text" placeholder="Last Name" className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none"
-                      value={vcard.ln}
-                      onChange={(e) => {
-                        const newV = { ...vcard, ln: e.target.value }
-                        setVcard(newV)
-                        updateSettings({ contentData: `BEGIN:VCARD\nVERSION:3.0\nN:${newV.ln};${newV.fn};;;\nFN:${newV.fn} ${newV.ln}\nORG:${newV.org}\nTITLE:${newV.title}\nTEL:${newV.tel}\nEMAIL:${newV.email}\nURL:${newV.url}\nEND:VCARD` })
-                      }}
-                    />
-                  </div>
-                  <input
-                    type="text" placeholder="Company" className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none"
-                    value={vcard.org}
-                    onChange={(e) => {
-                      const newV = { ...vcard, org: e.target.value }
-                      setVcard(newV)
-                      updateSettings({ contentData: `BEGIN:VCARD\nVERSION:3.0\nN:${newV.ln};${newV.fn};;;\nFN:${newV.fn} ${newV.ln}\nORG:${newV.org}\nTITLE:${newV.title}\nTEL:${newV.tel}\nEMAIL:${newV.email}\nURL:${newV.url}\nEND:VCARD` })
-                    }}
-                  />
-                  <input
-                    type="text" placeholder="Job Title" className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none"
-                    value={vcard.title}
-                    onChange={(e) => {
-                      const newV = { ...vcard, title: e.target.value }
-                      setVcard(newV)
-                      updateSettings({ contentData: `BEGIN:VCARD\nVERSION:3.0\nN:${newV.ln};${newV.fn};;;\nFN:${newV.fn} ${newV.ln}\nORG:${newV.org}\nTITLE:${newV.title}\nTEL:${newV.tel}\nEMAIL:${newV.email}\nURL:${newV.url}\nEND:VCARD` })
-                    }}
-                  />
-                  <input
-                    type="tel" placeholder="Phone Number" className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none"
-                    value={vcard.tel}
-                    onChange={(e) => {
-                      const newV = { ...vcard, tel: e.target.value }
-                      setVcard(newV)
-                      updateSettings({ contentData: `BEGIN:VCARD\nVERSION:3.0\nN:${newV.ln};${newV.fn};;;\nFN:${newV.fn} ${newV.ln}\nORG:${newV.org}\nTITLE:${newV.title}\nTEL:${newV.tel}\nEMAIL:${newV.email}\nURL:${newV.url}\nEND:VCARD` })
-                    }}
-                  />
-                  <input
-                    type="email" placeholder="Email Address" className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none"
-                    value={vcard.email}
-                    onChange={(e) => {
-                      const newV = { ...vcard, email: e.target.value }
-                      setVcard(newV)
-                      updateSettings({ contentData: `BEGIN:VCARD\nVERSION:3.0\nN:${newV.ln};${newV.fn};;;\nFN:${newV.fn} ${newV.ln}\nORG:${newV.org}\nTITLE:${newV.title}\nTEL:${newV.tel}\nEMAIL:${newV.email}\nURL:${newV.url}\nEND:VCARD` })
-                    }}
-                  />
-                  <input
-                    type="url" placeholder="Website" className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none"
-                    value={vcard.url}
-                    onChange={(e) => {
-                      const newV = { ...vcard, url: e.target.value }
-                      setVcard(newV)
-                      updateSettings({ contentData: `BEGIN:VCARD\nVERSION:3.0\nN:${newV.ln};${newV.fn};;;\nFN:${newV.fn} ${newV.ln}\nORG:${newV.org}\nTITLE:${newV.title}\nTEL:${newV.tel}\nEMAIL:${newV.email}\nURL:${newV.url}\nEND:VCARD` })
-                    }}
-                  />
-                </div>
-              )}
-
-              {settings.contentType === "email" && (
-                <div className="space-y-4">
-                  <label className="block font-label-md text-label-md text-on-surface font-semibold">Email Address</label>
-                  <input
-                    type="email"
-                    placeholder="hello@example.com"
-                    className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md"
-                    onChange={(e) => updateSettings({ contentData: `mailto:${e.target.value}` })}
-                  />
-                </div>
-              )}
-
-              {settings.contentType === "sms" && (
-                <div className="space-y-4">
-                  <label className="block font-label-md text-label-md text-on-surface font-semibold">SMS Message</label>
-                  <input
-                    type="tel"
-                    placeholder="Phone Number"
-                    className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none"
-                    value={sms.phone}
-                    onChange={(e) => {
-                      const newSms = { ...sms, phone: e.target.value }
-                      setSms(newSms)
-                      updateSettings({ contentData: `SMSTO:${newSms.phone}:${newSms.msg}` })
-                    }}
-                  />
-                  <textarea
-                    placeholder="Message"
-                    rows={3}
-                    className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none resize-none"
-                    value={sms.msg}
-                    onChange={(e) => {
-                      const newSms = { ...sms, msg: e.target.value }
-                      setSms(newSms)
-                      updateSettings({ contentData: `SMSTO:${newSms.phone}:${newSms.msg}` })
-                    }}
-                  />
-                </div>
-              )}
-
-              {settings.contentType === "event" && (
-                <div className="space-y-4">
-                  <label className="block font-label-md text-label-md text-on-surface font-semibold">Event Information</label>
-                  <input
-                    type="text" placeholder="Event Title" className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none"
-                    value={event.title}
-                    onChange={(e) => {
-                      const newE = { ...event, title: e.target.value }
-                      setEvent(newE)
-                      updateSettings({ contentData: `BEGIN:VEVENT\nSUMMARY:${newE.title}\nDESCRIPTION:${newE.desc}\nLOCATION:${newE.loc}\nDTSTART:${newE.start.replace(/[-:]/g, '')}\nDTEND:${newE.end.replace(/[-:]/g, '')}\nEND:VEVENT` })
-                    }}
-                  />
-                  <textarea
-                    placeholder="Description" rows={2} className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none resize-none"
-                    value={event.desc}
-                    onChange={(e) => {
-                      const newE = { ...event, desc: e.target.value }
-                      setEvent(newE)
-                      updateSettings({ contentData: `BEGIN:VEVENT\nSUMMARY:${newE.title}\nDESCRIPTION:${newE.desc}\nLOCATION:${newE.loc}\nDTSTART:${newE.start.replace(/[-:]/g, '')}\nDTEND:${newE.end.replace(/[-:]/g, '')}\nEND:VEVENT` })
-                    }}
-                  />
-                  <input
-                    type="text" placeholder="Location" className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none"
-                    value={event.loc}
-                    onChange={(e) => {
-                      const newE = { ...event, loc: e.target.value }
-                      setEvent(newE)
-                      updateSettings({ contentData: `BEGIN:VEVENT\nSUMMARY:${newE.title}\nDESCRIPTION:${newE.desc}\nLOCATION:${newE.loc}\nDTSTART:${newE.start.replace(/[-:]/g, '')}\nDTEND:${newE.end.replace(/[-:]/g, '')}\nEND:VEVENT` })
-                    }}
-                  />
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <label className="block text-xs font-semibold mb-1 text-on-surface-variant">Start Time</label>
-                      <input type="datetime-local" className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none"
-                        value={event.start}
-                        onChange={(e) => {
-                          const newE = { ...event, start: e.target.value }
-                          setEvent(newE)
-                          updateSettings({ contentData: `BEGIN:VEVENT\nSUMMARY:${newE.title}\nDESCRIPTION:${newE.desc}\nLOCATION:${newE.loc}\nDTSTART:${newE.start.replace(/[-:]/g, '')}\nDTEND:${newE.end.replace(/[-:]/g, '')}\nEND:VEVENT` })
-                        }}
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-semibold mb-1 text-on-surface-variant">End Time</label>
-                      <input type="datetime-local" className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none"
-                        value={event.end}
-                        onChange={(e) => {
-                          const newE = { ...event, end: e.target.value }
-                          setEvent(newE)
-                          updateSettings({ contentData: `BEGIN:VEVENT\nSUMMARY:${newE.title}\nDESCRIPTION:${newE.desc}\nLOCATION:${newE.loc}\nDTSTART:${newE.start.replace(/[-:]/g, '')}\nDTEND:${newE.end.replace(/[-:]/g, '')}\nEND:VEVENT` })
-                        }}
-                      />
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {settings.contentType === "phone" && (
-                <div className="space-y-4">
-                  <label className="block font-label-md text-label-md text-on-surface font-semibold">Phone Number</label>
-                  <input
-                    type="tel"
-                    placeholder="+1 (234) 567-8900"
-                    className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md"
-                    value={phone.number}
-                    onChange={(e) => {
-                      const newPhone = { ...phone, number: e.target.value }
-                      setPhone(newPhone)
-                      updateSettings({ contentData: `tel:${newPhone.number.replace(/\s+/g, '')}` })
-                    }}
-                  />
-                </div>
-              )}
-
-              {settings.contentType === "crypto" && (
-                <div className="space-y-4">
-                  <label className="block font-label-md text-label-md text-on-surface font-semibold">Crypto Wallet</label>
-                  <select
-                    className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md"
-                    value={crypto.currency}
-                    onChange={(e) => {
-                      const newC = { ...crypto, currency: e.target.value }
-                      setCrypto(newC)
-                      updateSettings({ contentData: `${newC.currency}:${newC.address}${newC.amount ? '?amount='+newC.amount : ''}` })
-                    }}
-                  >
-                    <option value="bitcoin">Bitcoin (BTC)</option>
-                    <option value="ethereum">Ethereum (ETH)</option>
-                    <option value="bitcoincash">Bitcoin Cash (BCH)</option>
-                    <option value="litecoin">Litecoin (LTC)</option>
-                    <option value="dash">Dash (DASH)</option>
-                  </select>
-                  <input
-                    type="text"
-                    placeholder="Wallet Address"
-                    className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md"
-                    value={crypto.address}
-                    onChange={(e) => {
-                      const newC = { ...crypto, address: e.target.value }
-                      setCrypto(newC)
-                      updateSettings({ contentData: `${newC.currency}:${newC.address}${newC.amount ? '?amount='+newC.amount : ''}` })
-                    }}
-                  />
-                  <input
-                    type="text"
-                    placeholder="Amount (optional)"
-                    className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md"
-                    value={crypto.amount}
-                    onChange={(e) => {
-                      const newC = { ...crypto, amount: e.target.value }
-                      setCrypto(newC)
-                      updateSettings({ contentData: `${newC.currency}:${newC.address}${newC.amount ? '?amount='+newC.amount : ''}` })
-                    }}
-                  />
-                </div>
-              )}
-
-              {settings.contentType === "location" && (
-                <div className="space-y-4">
-                  <label className="block font-label-md text-label-md text-on-surface font-semibold">Location</label>
-                  <select
-                    className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md"
-                    value={location.type}
-                    onChange={(e) => {
-                      const newL = { ...location, type: e.target.value }
-                      setLocation(newL)
-                      if (newL.type === 'coords') {
-                        updateSettings({ contentData: `geo:${newL.lat},${newL.lng}` })
-                      } else {
-                        updateSettings({ contentData: `https://maps.google.com/maps?q=${encodeURIComponent(newL.query)}` })
-                      }
-                    }}
-                  >
-                    <option value="coords">Latitude / Longitude</option>
-                    <option value="query">Address / Place Name</option>
-                  </select>
-                  
-                  {location.type === 'coords' ? (
-                    <div className="grid grid-cols-2 gap-4">
-                      <input
-                        type="text" placeholder="Latitude (e.g. 40.7128)" className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none"
-                        value={location.lat}
-                        onChange={(e) => {
-                          const newL = { ...location, lat: e.target.value }
-                          setLocation(newL)
-                          updateSettings({ contentData: `geo:${newL.lat},${newL.lng}` })
-                        }}
-                      />
-                      <input
-                        type="text" placeholder="Longitude (e.g. -74.0060)" className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none"
-                        value={location.lng}
-                        onChange={(e) => {
-                          const newL = { ...location, lng: e.target.value }
-                          setLocation(newL)
-                          updateSettings({ contentData: `geo:${newL.lat},${newL.lng}` })
-                        }}
-                      />
-                    </div>
-                  ) : (
-                    <textarea
-                      placeholder="Enter full address or place name..."
-                      rows={3}
-                      className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary outline-none resize-none"
-                      value={location.query}
-                      onChange={(e) => {
-                        const newL = { ...location, query: e.target.value }
-                        setLocation(newL)
-                        updateSettings({ contentData: `https://maps.google.com/maps?q=${encodeURIComponent(newL.query)}` })
-                      }}
-                    />
-                  )}
-                </div>
-              )}
-
-              {settings.contentType === "paypal" && (
-                <div className="space-y-4">
-                  <label className="block font-label-md text-label-md text-on-surface font-semibold">PayPal Payment</label>
-                  <input
-                    type="text"
-                    placeholder="PayPal.Me Username"
-                    className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md"
-                    value={paypal.username}
-                    onChange={(e) => {
-                      const newP = { ...paypal, username: e.target.value }
-                      setPaypal(newP)
-                      updateSettings({ contentData: `https://paypal.me/${newP.username}${newP.amount ? '/'+newP.amount : ''}${newP.amount ? newP.currency : ''}` })
-                    }}
-                  />
-                  <div className="grid grid-cols-2 gap-4">
-                    <input
-                      type="number"
-                      placeholder="Amount (optional)"
-                      className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md"
-                      value={paypal.amount}
-                      onChange={(e) => {
-                        const newP = { ...paypal, amount: e.target.value }
-                        setPaypal(newP)
-                        updateSettings({ contentData: `https://paypal.me/${newP.username}${newP.amount ? '/'+newP.amount : ''}${newP.amount ? newP.currency : ''}` })
-                      }}
-                    />
-                    <select
-                      className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md"
-                      value={paypal.currency}
-                      onChange={(e) => {
-                        const newP = { ...paypal, currency: e.target.value }
-                        setPaypal(newP)
-                        updateSettings({ contentData: `https://paypal.me/${newP.username}${newP.amount ? '/'+newP.amount : ''}${newP.amount ? newP.currency : ''}` })
-                      }}
-                    >
-                      <option value="USD">USD</option>
-                      <option value="EUR">EUR</option>
-                      <option value="GBP">GBP</option>
-                      <option value="JPY">JPY</option>
-                      <option value="CAD">CAD</option>
-                      <option value="AUD">AUD</option>
-                    </select>
-                  </div>
-                </div>
-              )}
-
-              {settings.contentType === "appstore" && (
-                <div className="space-y-4">
-                  <label className="block font-label-md text-label-md text-on-surface font-semibold">App Store Link</label>
-                  <select
-                    className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md"
-                    value={appstore.store}
-                    onChange={(e) => {
-                      const newA = { ...appstore, store: e.target.value }
-                      setAppstore(newA)
-                    }}
-                  >
-                    <option value="apple">Apple App Store</option>
-                    <option value="google">Google Play Store</option>
-                  </select>
-                  <input
-                    type="url"
-                    placeholder={appstore.store === 'apple' ? "https://apps.apple.com/..." : "https://play.google.com/..."}
-                    className="w-full p-4 bg-white border border-outline-variant rounded-xl focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-body-md"
-                    value={appstore.url}
-                    onChange={(e) => {
-                      const newA = { ...appstore, url: e.target.value }
-                      setAppstore(newA)
-                      updateSettings({ contentData: newA.url })
-                    }}
-                  />
-                </div>
-              )}
+              {settings.contentType === "url" && <UrlForm />}
+              {settings.contentType === "text" && <TextForm />}
+              {settings.contentType === "phone" && <PhoneForm />}
+              {settings.contentType === "sms" && <SmsForm />}
+              {settings.contentType === "whatsapp" && <WhatsAppForm />}
+              {settings.contentType === "email" && <EmailForm />}
+              {settings.contentType === "vcard" && <VCardForm />}
+              {settings.contentType === "wifi" && <WifiForm />}
+              {settings.contentType === "location" && <LocationForm />}
+              {settings.contentType === "event" && <EventForm />}
+              {settings.contentType === "upi" && <UpiForm />}
+              {settings.contentType === "crypto" && <CryptoForm />}
+              {settings.contentType === "paypal" && <PaypalForm />}
+              {settings.contentType === "appstore" && <AppStoreForm />}
+              {settings.contentType === "googleplay" && <GooglePlayForm />}
+              {settings.contentType === "social" && <SocialForm />}
 
               {settings.contentType === "batch" && (
                 <div className="space-y-4">

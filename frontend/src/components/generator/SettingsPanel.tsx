@@ -1,17 +1,71 @@
 import { useState } from "react"
 import { useQRStore } from "@/store/useQRStore"
-import { Link2, Type, Wifi, Mail, Contact } from "lucide-react"
+import { 
+  Link2, Type, Phone, MessageSquare, MessageCircle, Mail, Contact, 
+  Wifi, MapPin, Calendar, Landmark, Bitcoin, CreditCard, Smartphone, PlayCircle, Share2 
+} from "lucide-react"
+import {
+  UrlForm, TextForm, PhoneForm, SmsForm, WhatsAppForm, EmailForm, VCardForm,
+  WifiForm, LocationForm, EventForm, UpiForm, CryptoForm, PaypalForm,
+  AppStoreForm, GooglePlayForm, SocialForm
+} from "./forms/ContentForms"
 
 export function SettingsPanel() {
   const { settings, updateSettings } = useQRStore()
   const [activeCorner, setActiveCorner] = useState<"all" | "tl" | "tr" | "bl">("all")
 
-  const contentTypes = [
-    { id: "url", label: "Link", icon: Link2 },
-    { id: "text", label: "Text", icon: Type },
-    { id: "wifi", label: "WiFi", icon: Wifi },
-    { id: "vcard", label: "V-Card", icon: Contact },
-    { id: "email", label: "Email", icon: Mail },
+  const contentCategories = [
+    {
+      title: "🌍 Basic",
+      items: [
+        { id: "url", label: "URL", icon: Link2 },
+        { id: "text", label: "Text", icon: Type },
+        { id: "phone", label: "Phone", icon: Phone },
+        { id: "sms", label: "SMS", icon: MessageSquare },
+        { id: "whatsapp", label: "WhatsApp", icon: MessageCircle },
+        { id: "email", label: "Email", icon: Mail },
+        { id: "vcard", label: "vCard", icon: Contact },
+      ]
+    },
+    {
+      title: "📶 Network",
+      items: [
+        { id: "wifi", label: "Wi-Fi", icon: Wifi },
+      ]
+    },
+    {
+      title: "📍 Location",
+      items: [
+        { id: "location", label: "Location", icon: MapPin },
+      ]
+    },
+    {
+      title: "📅 Events",
+      items: [
+        { id: "event", label: "Event", icon: Calendar },
+      ]
+    },
+    {
+      title: "💳 Payments",
+      items: [
+        { id: "upi", label: "UPI", icon: Landmark },
+        { id: "crypto", label: "Crypto", icon: Bitcoin },
+        { id: "paypal", label: "PayPal", icon: CreditCard },
+      ]
+    },
+    {
+      title: "📱 Apps",
+      items: [
+        { id: "appstore", label: "App Store", icon: Smartphone },
+        { id: "googleplay", label: "Google Play", icon: PlayCircle },
+      ]
+    },
+    {
+      title: "🌐 Social",
+      items: [
+        { id: "social", label: "Social Profiles", icon: Share2 },
+      ]
+    }
   ]
 
   const dotStyles = [
@@ -56,25 +110,32 @@ export function SettingsPanel() {
     <div className="space-y-8 pb-10">
       
       {/* Content Type Selector */}
-      <section className="space-y-4">
+      <section className="space-y-6">
         <h3 className="text-lg font-semibold flex items-center gap-2">
           <span className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm">1</span>
           Select Content Type
         </h3>
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3">
-          {contentTypes.map((type) => (
-            <button
-              key={type.id}
-              onClick={() => updateSettings({ contentType: type.id as any })}
-              className={`flex flex-col items-center justify-center p-4 rounded-xl border transition-all ${
-                settings.contentType === type.id 
-                  ? 'border-primary bg-primary/5 text-primary ring-1 ring-primary' 
-                  : 'border-border bg-card hover:bg-muted text-muted-foreground hover:text-foreground'
-              }`}
-            >
-              <type.icon className="w-6 h-6 mb-2" />
-              <span className="text-sm font-medium">{type.label}</span>
-            </button>
+        <div className="space-y-6">
+          {contentCategories.map((category) => (
+            <div key={category.title} className="space-y-3">
+              <h4 className="text-sm font-semibold text-muted-foreground">{category.title}</h4>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+                {category.items.map((type) => (
+                  <button
+                    key={type.id}
+                    onClick={() => updateSettings({ contentType: type.id as any })}
+                    className={`flex flex-col items-center justify-center p-4 rounded-xl border transition-all ${
+                      settings.contentType === type.id 
+                        ? 'border-primary bg-primary/5 text-primary ring-1 ring-primary shadow-sm' 
+                        : 'border-border bg-card hover:bg-muted text-muted-foreground hover:text-foreground shadow-sm'
+                    }`}
+                  >
+                    <type.icon className="w-6 h-6 mb-2" />
+                    <span className="text-sm font-medium">{type.label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </section>
@@ -82,41 +143,22 @@ export function SettingsPanel() {
       {/* Content Input */}
       <section className="space-y-4 bg-card border border-border p-5 rounded-2xl shadow-sm">
         <h3 className="text-lg font-semibold">Enter Content</h3>
-        {settings.contentType === "url" && (
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-muted-foreground">Website URL</label>
-            <input 
-              type="url" 
-              className="w-full p-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
-              placeholder="https://example.com"
-              value={settings.contentData}
-              onChange={(e) => updateSettings({ contentData: e.target.value })}
-            />
-          </div>
-        )}
-        {settings.contentType === "text" && (
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-muted-foreground">Plain Text</label>
-            <textarea 
-              className="w-full p-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow min-h-[100px]"
-              placeholder="Enter your message here..."
-              value={settings.contentData}
-              onChange={(e) => updateSettings({ contentData: e.target.value })}
-            />
-          </div>
-        )}
-        {/* We can expand other content types like WiFi and VCard later */}
-        {["wifi", "vcard", "email"].includes(settings.contentType) && (
-          <div className="p-4 bg-muted/50 rounded-lg text-muted-foreground text-sm border border-dashed border-border">
-            Advanced forms for {settings.contentType} will be rendered here. For now, enter raw string.
-            <input 
-              type="text" 
-              className="w-full p-3 mt-2 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50"
-              value={settings.contentData}
-              onChange={(e) => updateSettings({ contentData: e.target.value })}
-            />
-          </div>
-        )}
+        {settings.contentType === "url" && <UrlForm />}
+        {settings.contentType === "text" && <TextForm />}
+        {settings.contentType === "phone" && <PhoneForm />}
+        {settings.contentType === "sms" && <SmsForm />}
+        {settings.contentType === "whatsapp" && <WhatsAppForm />}
+        {settings.contentType === "email" && <EmailForm />}
+        {settings.contentType === "vcard" && <VCardForm />}
+        {settings.contentType === "wifi" && <WifiForm />}
+        {settings.contentType === "location" && <LocationForm />}
+        {settings.contentType === "event" && <EventForm />}
+        {settings.contentType === "upi" && <UpiForm />}
+        {settings.contentType === "crypto" && <CryptoForm />}
+        {settings.contentType === "paypal" && <PaypalForm />}
+        {settings.contentType === "appstore" && <AppStoreForm />}
+        {settings.contentType === "googleplay" && <GooglePlayForm />}
+        {settings.contentType === "social" && <SocialForm />}
       </section>
 
       {/* Design Customization */}
