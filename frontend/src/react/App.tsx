@@ -190,6 +190,7 @@ function App() {
 
   const [downloadFormat, setDownloadFormat] = useState<"PNG" | "SVG" | "PDF">("PNG");
   const [downloadSize, setDownloadSize] = useState<number>(1024);
+  const [noStretching, setNoStretching] = useState<boolean>(true);
   const [customFilename, setCustomFilename] = useState<string>("");
   const [activeCorner, setActiveCorner] = useState<"all" | "tl" | "tr" | "bl">("all");
   const [copySuccess, setCopySuccess] = useState<boolean>(false);
@@ -528,7 +529,7 @@ function App() {
         ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#000000")
         : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
 
-      const payload = { ...rest, data: contentData || "Your text here...", logo_image: finalLogo, preset_logo: isPresetLogo ? "None" : rest.preset_logo, logo_card_shape: rest.logo_card_shape, preset_logo_color: color, box_size: 20, target_size: downloadSize };
+      const payload = { ...rest, data: contentData || "Your text here...", logo_image: finalLogo, preset_logo: isPresetLogo ? "None" : rest.preset_logo, logo_card_shape: rest.logo_card_shape, preset_logo_color: color, box_size: 20, target_size: downloadSize, no_stretching: noStretching };
 
       let endpoint = "/api/generator/generate";
       let ext = "png";
@@ -584,7 +585,7 @@ function App() {
         ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#000000")
         : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
 
-      const payload = { ...rest, data: contentData || "Your text here...", logo_image: finalLogo, preset_logo: isPresetLogo ? "None" : rest.preset_logo, logo_card_shape: rest.logo_card_shape, preset_logo_color: color, box_size: 20, target_size: downloadSize };
+      const payload = { ...rest, data: contentData || "Your text here...", logo_image: finalLogo, preset_logo: isPresetLogo ? "None" : rest.preset_logo, logo_card_shape: rest.logo_card_shape, preset_logo_color: color, box_size: 20, target_size: downloadSize, no_stretching: noStretching };
       const response = await fetch("/api/generator/generate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -2412,16 +2413,24 @@ function App() {
                     </button>
                   ))}
                 </div>
-                {/* Engine pipeline status card */}
-                <div className="bg-primary/5 rounded-2xl p-4 border border-primary/20 flex items-start gap-3 mt-3">
-                  <span className="material-symbols-outlined text-primary mt-0.5">verified</span>
-                  <div className="space-y-1 text-xs text-left">
-                    <p className="font-bold text-on-surface">Lanczos Resampling Active ({downloadSize}px)</p>
-                    <p className="text-on-surface-variant leading-relaxed">
-                      To ensure ultra-sharp output, the QR matrix is generated at a high-resolution grid and downscaled to {downloadSize}px using premium Lanczos filtering. This guarantees zero pixelation, smooth gradients, and clear borders.
-                    </p>
+                {/* Scaling Options */}
+                  <div className="bg-primary/5 rounded-2xl p-4 border border-primary/20 flex flex-col gap-3 mt-3">
+                    <label className="flex items-start gap-3 cursor-pointer group">
+                      <div className="relative flex items-center justify-center mt-0.5">
+                        <input type="checkbox" checked={noStretching} onChange={(e) => setNoStretching(e.target.checked)} className="peer sr-only" />
+                        <div className="w-5 h-5 rounded-md border-2 border-primary/50 peer-checked:bg-primary peer-checked:border-primary transition-all flex items-center justify-center">
+                          <span className="material-symbols-outlined text-white text-[16px] opacity-0 peer-checked:opacity-100 scale-50 peer-checked:scale-100 transition-all">check</span>
+                        </div>
+                      </div>
+                      <div className="space-y-1 text-xs text-left select-none">
+                        <p className="font-bold text-on-surface group-hover:text-primary transition-colors">Native Resolution (No Stretching)</p>
+                        <p className="text-on-surface-variant leading-relaxed">
+                          Generates the exact target size natively. Perfect for sharp pixel-art squares, but may distort complex shapes. Uncheck to use Lanczos upscaling for smooth curves.
+                        </p>
+                      </div>
+                    </label>
                   </div>
-                </div>
+
               </div>
             )}
 

@@ -245,7 +245,8 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
         scalable_text = {"none", "top_text", "bottom_text", "top_bottom_text", "speech_bubble", "speech_bubble_top", "bottom_tab"}
         scalable_layout = {"none", "border", "double_border", "dotted_border", "brackets", "circle", "hexagon", "drop_shadow_card", "scalloped_edge"}
         
-        is_scalable = (
+        no_stretching = params.get("no_stretching", True)
+        is_scalable = no_stretching and (
             params.get("text_style", "none") in scalable_text and 
             params.get("frame_style", "none") in scalable_layout
         )
