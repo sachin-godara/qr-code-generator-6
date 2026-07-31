@@ -1,3 +1,4 @@
+import { useState } from "react"
 import { useQRStore } from "@/store/useQRStore"
 import { useQuery } from "@tanstack/react-query"
 import { Download, Loader2, Share2 } from "lucide-react"
@@ -21,6 +22,7 @@ async function fetchQRCode(settings: any) {
 
 export function LivePreview() {
   const { settings } = useQRStore()
+  const [isDownloading, setIsDownloading] = useState(false)
   
   const { data: imageUrl, isLoading, isError } = useQuery({
     queryKey: ["qr-code", settings],
@@ -65,18 +67,31 @@ export function LivePreview() {
       <div className="w-full p-6 bg-muted/20 border-t border-border grid grid-cols-2 gap-4">
         <button 
           className="flex items-center justify-center gap-2 py-2.5 px-4 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors shadow-sm disabled:opacity-50"
-          disabled={isLoading || isError}
-          onClick={() => {
-            if (imageUrl) {
+          disabled={isLoading || isError || isDownloading}
+          onClick={async () => {
+            if (!imageUrl) return;
+            try {
+              setIsDownloading(true);
+              const highResSettings = { ...settings, target_size: 1024 };
+              const url = await fetchQRCode(highResSettings);
               const a = document.createElement('a');
-              a.href = imageUrl;
+              a.href = url;
               a.download = 'QRStream-Code.png';
               a.click();
+              URL.revokeObjectURL(url);
+            } catch (error) {
+              console.error("Failed to download high-res QR:", error);
+              const a = document.createElement('a');
+              a.href = imageUrl;
+              a.download = 'QRStream-Code-preview.png';
+              a.click();
+            } finally {
+              setIsDownloading(false);
             }
           }}
         >
-          <Download className="w-4 h-4" />
-          Download
+          {isDownloading ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
+          {isDownloading ? 'Downloading...' : 'Download'}
         </button>
         <button 
           className="flex items-center justify-center gap-2 py-2.5 px-4 bg-card text-foreground border border-border rounded-lg font-medium hover:bg-muted transition-colors shadow-sm disabled:opacity-50"

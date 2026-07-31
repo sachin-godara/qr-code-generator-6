@@ -57,8 +57,9 @@ def apply_canvas_effects(img: Image.Image, params: dict) -> Image.Image:
     if effect_shadow == "none":
         return canvas_result
         
-    blur_r = 25 if effect_shadow == "soft" else (35 if effect_shadow == "elevated" else 30)
-    offset_y = 12 if effect_shadow == "elevated" else (6 if effect_shadow == "soft" else 0)
+    scale = w / 300.0
+    blur_r = int((25 if effect_shadow == "soft" else (35 if effect_shadow == "elevated" else 30)) * scale)
+    offset_y = int((12 if effect_shadow == "elevated" else (6 if effect_shadow == "soft" else 0)) * scale)
     margin = blur_r * 2
     
     full_w = inner_w + margin * 2
@@ -134,120 +135,162 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
         if eyeball_col == "#000000":
             eyeball_col = eye_col
 
-    # 1. Generate base styled QR
-    base_qr = generate_styled_qr(
-        data=data,
-        fill_color=fill_color,
-        back_color=back_color,
-        dot_style=params.get("dots_style", "square"),
-        logo_image=logo_pil,
-        box_size=params.get("box_size", 10),
-        eye_color=eye_col,
-        eyeball_color=eyeball_col,
-        eye_frame_style=params.get("eye_frame_style", "square"),
-        eyeball_style=params.get("eyeball_style", "square"),
-        remove_logo_bg=params.get("remove_logo_bg", False),
-        gradient_type=params.get("gradient_type", "Solid Color"),
-        fill_color_end=params.get("dots_color_end", fill_color),
-        preset_logo=params.get("preset_logo", "None"),
-        preset_logo_color=params.get("preset_logo_color"),
-        logo_card_shape=params.get("logo_card_shape", "None"),
-        logo_card_padding=params.get("logo_card_padding", 10),
-        logo_size_ratio=params.get("logo_size_ratio", 0.18),
-        logo_clear_size=params.get("logo_clear_size", 0.5),
-        logo_bg_color=params.get("logo_bg_color", "#ffffff"),
-        logo_bg_tolerance=params.get("logo_bg_tolerance", 30),
-        error_correction=params.get("error_correction", "H"),
-        quiet_zone=params.get("quiet_zone", 4),
-        bg_transparent=True if params.get("bg_image") else params.get("bg_transparent", False),
-        params=params,
-    )
-    
-    # 2. Apply Background Image Overlay (Option A - Pillow Blending)
-    if params.get("bg_image"):
-        try:
-            from PIL import ImageEnhance
-            
-            # Load background image
-            bg_data = base64.b64decode(params["bg_image"].split(",")[1]) if "," in params["bg_image"] else base64.b64decode(params["bg_image"])
-            bg_img = Image.open(io.BytesIO(bg_data)).convert("RGBA")
-            
-            # Resize bg image to match QR code size (or vice versa, usually QR matches bg)
-            bg_img = bg_img.resize(base_qr.size, Image.Resampling.LANCZOS)
-            
-            # Adjust opacity of background if provided (percentage 0-100)
-            opacity_val = params.get("bg_image_opacity", 100)
-            opacity = float(opacity_val) / 100.0
-            
-            if opacity < 1.0:
-                alpha = bg_img.split()[3]
-                alpha = ImageEnhance.Brightness(alpha).enhance(opacity)
-                bg_img.putalpha(alpha)
-            
-            # Blend mode handling
-            blend_mode = params.get("bg_image_blend_mode", "normal")
-            
-            if blend_mode == "normal":
-                # Create a new image to composite
-                comp = Image.new("RGBA", base_qr.size)
-                # Paste background
-                comp.paste(bg_img, (0, 0), bg_img)
-                # Paste QR over background (assuming QR has transparent background)
-                comp.paste(base_qr, (0, 0), base_qr)
-                base_qr = comp
-            else:
-                # Other blend modes could be added here later (multiply, screen, etc.)
-                # For now fallback to normal
-                comp = Image.new("RGBA", base_qr.size)
-                comp.paste(bg_img, (0, 0), bg_img)
-                comp.paste(base_qr, (0, 0), base_qr)
-                base_qr = comp
+    def _build_image(p: dict) -> Image.Image:
+        # 1. Generate base styled QR
+        base_qr = generate_styled_qr(
+            data=data,
+            fill_color=fill_color,
+            back_color=back_color,
+            dot_style=p.get("dots_style", "square"),
+            logo_image=logo_pil,
+            box_size=p.get("box_size", 10),
+            eye_color=eye_col,
+            eyeball_color=eyeball_col,
+            eye_frame_style=p.get("eye_frame_style", "square"),
+            eyeball_style=p.get("eyeball_style", "square"),
+            remove_logo_bg=p.get("remove_logo_bg", False),
+            gradient_type=p.get("gradient_type", "Solid Color"),
+            fill_color_end=p.get("dots_color_end", fill_color),
+            preset_logo=p.get("preset_logo", "None"),
+            preset_logo_color=p.get("preset_logo_color"),
+            logo_card_shape=p.get("logo_card_shape", "None"),
+            logo_card_padding=p.get("logo_card_padding", 10),
+            logo_size_ratio=p.get("logo_size_ratio", 0.18),
+            logo_clear_size=p.get("logo_clear_size", 0.5),
+            logo_bg_color=p.get("logo_bg_color", "#ffffff"),
+            logo_bg_tolerance=p.get("logo_bg_tolerance", 30),
+            error_correction=p.get("error_correction", "H"),
+            quiet_zone=p.get("quiet_zone", 4),
+            bg_transparent=True if p.get("bg_image") else p.get("bg_transparent", False),
+            params=p,
+        )
+        
+        # 2. Apply Background Image Overlay (Option A - Pillow Blending)
+        if p.get("bg_image"):
+            try:
+                from PIL import ImageEnhance
                 
-        except Exception as e:
-            print(f"Error applying background image: {e}")
+                # Load background image
+                bg_data = base64.b64decode(p["bg_image"].split(",")[1]) if "," in p["bg_image"] else base64.b64decode(p["bg_image"])
+                bg_img = Image.open(io.BytesIO(bg_data)).convert("RGBA")
+                
+                # Resize bg image to match QR code size (or vice versa, usually QR matches bg)
+                bg_img = bg_img.resize(base_qr.size, Image.Resampling.LANCZOS)
+                
+                # Adjust opacity of background if provided (percentage 0-100)
+                opacity_val = p.get("bg_image_opacity", 100)
+                opacity = float(opacity_val) / 100.0
+                
+                if opacity < 1.0:
+                    alpha = bg_img.split()[3]
+                    alpha = ImageEnhance.Brightness(alpha).enhance(opacity)
+                    bg_img.putalpha(alpha)
+                
+                # Blend mode handling
+                blend_mode = p.get("bg_image_blend_mode", "normal")
+                
+                if blend_mode == "normal":
+                    # Create a new image to composite
+                    comp = Image.new("RGBA", base_qr.size)
+                    # Paste background
+                    comp.paste(bg_img, (0, 0), bg_img)
+                    # Paste QR over background (assuming QR has transparent background)
+                    comp.paste(base_qr, (0, 0), base_qr)
+                    base_qr = comp
+                else:
+                    # Other blend modes could be added here later (multiply, screen, etc.)
+                    # For now fallback to normal
+                    comp = Image.new("RGBA", base_qr.size)
+                    comp.paste(bg_img, (0, 0), bg_img)
+                    comp.paste(base_qr, (0, 0), base_qr)
+                    base_qr = comp
+                    
+            except Exception as e:
+                print(f"Error applying background image: {e}")
 
-    # 3. Apply Layout Frame
-    if params.get("frame_style") and params.get("frame_style") != "none":
-        base_qr = apply_layout_frame(
-            base_qr,
-            layout_template=params.get("frame_style"),
-            frame_color=params.get("frame_color", "#000000"),
-            padding=params.get("frame_padding", 20),
-            corner_radius=params.get("frame_radius", 15),
-            border_thickness=params.get("frame_border", 10),
-        )
-        
-    # 3. Apply Text Frame
-    if params.get("text_style") and params.get("text_style") != "none":
-        base_qr = apply_text_frame(
-            base_qr,
-            text_template=params.get("text_style"),
-            frame_color=params.get("frame_color", "#000000"),
-            text=params.get("frame_text", "SCAN ME"),
-            text_color=params.get("frame_text_color", "#ffffff"),
-            text_size=params.get("frame_text_size", 40),
-            padding=params.get("frame_padding", 20),
-            corner_radius=params.get("frame_radius", 15),
-            border_thickness=params.get("frame_border", 10),
-            top_text=params.get("top_text", "SCAN ME"),
-            font_name=params.get("font_name", "Outfit-Bold.ttf"),
-        )
+        # 3. Apply Layout Frame
+        if p.get("frame_style") and p.get("frame_style") != "none":
+            base_qr = apply_layout_frame(
+                base_qr,
+                layout_template=p.get("frame_style"),
+                frame_color=p.get("frame_color", "#000000"),
+                padding=p.get("frame_padding", 20),
+                corner_radius=p.get("frame_radius", 15),
+                border_thickness=p.get("frame_border", 10),
+            )
+            
+        # 3. Apply Text Frame
+        if p.get("text_style") and p.get("text_style") != "none":
+            base_qr = apply_text_frame(
+                base_qr,
+                text_template=p.get("text_style"),
+                frame_color=p.get("frame_color", "#000000"),
+                text=p.get("frame_text", "SCAN ME"),
+                text_color=p.get("frame_text_color", "#ffffff"),
+                text_size=p.get("frame_text_size", 40),
+                padding=p.get("frame_padding", 20),
+                corner_radius=p.get("frame_radius", 15),
+                border_thickness=p.get("frame_border", 10),
+                top_text=p.get("top_text", "SCAN ME"),
+                font_name=p.get("font_name", "Outfit-Bold.ttf"),
+            )
 
-    # 4. Apply Canvas Effects (Shadow, Corner Radius, Outer Border)
-    base_qr = apply_canvas_effects(base_qr, params)
-        
-    # 5. Target Resolution Scaling (preserving aspect ratio)
+        # 4. Apply Canvas Effects (Shadow, Corner Radius, Outer Border)
+        base_qr = apply_canvas_effects(base_qr, p)
+        return base_qr
+
+    # Determine resolution strategy
     target_size = params.get("target_size")
     if target_size and isinstance(target_size, (int, float)) and target_size > 0:
-        w, h = base_qr.size
-        scale = float(target_size) / float(max(w, h))
-        if scale > 0 and abs(scale - 1.0) > 0.01:
-            new_w = max(1, int(round(w * scale)))
-            new_h = max(1, int(round(h * scale)))
-            base_qr = base_qr.resize((new_w, new_h), Image.Resampling.LANCZOS)
+        scalable_text = {"none", "top_text", "bottom_text", "top_bottom_text", "speech_bubble", "speech_bubble_top", "bottom_tab"}
+        scalable_layout = {"none", "border", "double_border", "dotted_border", "brackets", "circle", "hexagon", "drop_shadow_card", "scalloped_edge"}
         
-    # Convert PIL Image to BytesIO
+        is_scalable = (
+            params.get("text_style", "none") in scalable_text and 
+            params.get("frame_style", "none") in scalable_layout
+        )
+
+        if is_scalable:
+            import copy
+            # Pass 1: generate at original scale to determine exactly how many pixels the frame adds
+            dummy_params = copy.deepcopy(params)
+            dummy_params["target_size"] = 0 # Prevent infinite scaling logic
+            original_box_size = dummy_params.get("box_size", 10)
+            dummy_img = _build_image(dummy_params)
+            
+            orig_w = dummy_img.size[0]
+            if orig_w > 0:
+                scale_factor = float(target_size) / float(orig_w)
+                
+                # Scale box_size
+                params["box_size"] = max(1, int(round(original_box_size * scale_factor)))
+                
+                # Scale all other spatial parameters
+                for key in ["logo_card_padding", "canvas_border_width", "frame_padding", "frame_radius", "frame_border", "frame_text_size"]:
+                    if key in params and isinstance(params[key], (int, float)):
+                        params[key] = max(1, int(round(params[key] * scale_factor)))
+                        
+            base_qr = _build_image(params)
+        else:
+            # For complex templates (e.g. coffee_cup) we CANNOT scale the box_size natively 
+            # because the hardcoded integers in frame_engine.py would break (e.g. cup_w=90 would be tiny).
+            # Instead, we generate the image perfectly at its native proportions and then upscale it.
+            base_qr = _build_image(params)
+            
+            w, h = base_qr.size
+            if w > 0:
+                aspect = h / w
+                new_w = int(target_size)
+                new_h = int(new_w * aspect)
+                base_qr = base_qr.resize((new_w, new_h), Image.Resampling.LANCZOS)
+    else:
+        base_qr = _build_image(params)
+        
     img_byte_arr = io.BytesIO()
+    base_qr.save(img_byte_arr, format='PNG')
+    img_byte_arr.seek(0)
+    return img_byte_arr
+
     base_qr.save(img_byte_arr, format='PNG')
     img_byte_arr.seek(0)
     return img_byte_arr
