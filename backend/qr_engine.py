@@ -2389,7 +2389,7 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
     return img
 
 import qrcode.image.svg
-def generate_svg_qr(data, fill_color="#000000", back_color="#ffffff", box_size=30, bg_transparent=False, error_correction="H", quiet_zone=4):
+def generate_svg_qr(data, fill_color="#000000", back_color="#ffffff", box_size=30, bg_transparent=False, error_correction="H", quiet_zone=4, canvas_radius=0):
     """Generates a raw SVG QR code (without custom styled dots or frames)"""
     _ec_map = {
         "L": qrcode.constants.ERROR_CORRECT_L,
@@ -2423,11 +2423,15 @@ def generate_svg_qr(data, fill_color="#000000", back_color="#ffffff", box_size=3
     
     # 3. Add background color rect matching back_color if not transparent
     if not bg_transparent:
-        match = re.search(r'viewBox="0 0 (\d+) (\d+)"', svg_str)
+        match = re.search(r'viewBox="0 0 (\d+(?:\.\d+)?) (\d+(?:\.\d+)?)"', svg_str)
         if match:
-            v_w = match.group(1)
-            v_h = match.group(2)
-            rect_str = f'<rect width="{v_w}" height="{v_h}" fill="{back_color}"/>'
+            v_w = float(match.group(1))
+            v_h = float(match.group(2))
+            rx = v_w * (canvas_radius / 300.0) if canvas_radius > 0 else 0
+            if rx > 0:
+                rect_str = f'<rect width="{v_w}" height="{v_h}" fill="{back_color}" rx="{rx}" ry="{rx}"/>'
+            else:
+                rect_str = f'<rect width="{v_w}" height="{v_h}" fill="{back_color}"/>'
             tag_end = svg_str.find('>')
             if tag_end != -1:
                 svg_str = svg_str[:tag_end+1] + "\n  " + rect_str + svg_str[tag_end+1:]

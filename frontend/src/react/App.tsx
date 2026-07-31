@@ -249,7 +249,6 @@ function App() {
     settings.gradient_type !== "Solid Color" ||
     (settings.preset_logo && settings.preset_logo !== "None") ||
     settings.effect_shadow !== "none" ||
-    settings.canvas_radius > 0 ||
     settings.canvas_border_width > 0
   );
 

@@ -328,7 +328,6 @@ def generate_qr_svg(data: str, params: dict) -> bytes:
         params.get("gradient_type", "Solid Color") != "Solid Color" or
         params.get("preset_logo", "None") != "None" or
         params.get("effect_shadow", "none") != "none" or
-        params.get("canvas_radius", 0) > 0 or
         params.get("canvas_border_width", 0) > 0
     )
 
@@ -348,7 +347,8 @@ def generate_qr_svg(data: str, params: dict) -> bytes:
             box_size=params.get("box_size", 10),
             bg_transparent=params.get("bg_transparent", False),
             error_correction=params.get("error_correction", "H"),
-            quiet_zone=params.get("quiet_zone", 4)
+            quiet_zone=params.get("quiet_zone", 4),
+            canvas_radius=params.get("canvas_radius", 0)
         )
         return svg_data
 
