@@ -2390,54 +2390,53 @@ function App() {
               </div>
             </div>
 
-            {/* Resolution Selector (only for PNG) */}
-            {downloadFormat === "PNG" && (
-              <div className="space-y-3 border-t border-outline-variant pt-6">
-                <div className="flex justify-between items-center">
-                  <label className="text-sm font-semibold text-on-surface block">2. Output Resolution</label>
-                  <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-lg">
-                    {downloadSize} x {downloadSize} px
-                  </span>
-                </div>
-                <div className="grid grid-cols-4 gap-3">
-                  {[512, 1024, 2048, 4096].map((size) => (
-                    <button
-                      key={size}
-                      onClick={() => setDownloadSize(size)}
-                      className={`py-2.5 px-3 rounded-xl border text-xs font-bold transition-all ${downloadSize === size
-                          ? "bg-primary text-white border-primary shadow-sm"
-                          : "border-outline-variant bg-white text-on-surface hover:bg-surface-container-highest"
-                        }`}
-                    >
-                      {size}px
-                    </button>
-                  ))}
-                </div>
-                {/* Scaling Options */}
-                  <div className="bg-primary/5 rounded-2xl p-4 border border-primary/20 flex flex-col gap-3 mt-3">
-                    <label className="flex items-start gap-3 cursor-pointer group">
-                      <div className="relative flex items-center justify-center mt-0.5">
-                        <input type="checkbox" checked={noStretching} onChange={(e) => setNoStretching(e.target.checked)} className="peer sr-only" />
-                        <div className="w-5 h-5 rounded-md border-2 border-primary/50 peer-checked:bg-primary peer-checked:border-primary transition-all flex items-center justify-center">
-                          <span className="material-symbols-outlined text-white text-[16px] opacity-0 peer-checked:opacity-100 scale-50 peer-checked:scale-100 transition-all">check</span>
-                        </div>
-                      </div>
-                      <div className="space-y-1 text-xs text-left select-none">
-                        <p className="font-bold text-on-surface group-hover:text-primary transition-colors">Native Resolution (No Stretching)</p>
-                        <p className="text-on-surface-variant leading-relaxed">
-                          Generates the exact target size natively. Perfect for sharp pixel-art squares, but may distort complex shapes. Uncheck to use Lanczos upscaling for smooth curves.
-                        </p>
-                      </div>
-                    </label>
-                  </div>
-
+            {/* Resolution Selector (for all formats) */}
+            <div className="space-y-3 border-t border-outline-variant pt-6">
+              <div className="flex justify-between items-center">
+                <label className="text-sm font-semibold text-on-surface block">
+                  2. Output Resolution <span className="text-on-surface-variant font-normal">(applies to embedded graphics)</span>
+                </label>
+                <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-lg">
+                  {downloadSize} x {downloadSize} px
+                </span>
               </div>
-            )}
+              <div className="grid grid-cols-4 gap-3">
+                {[512, 1024, 2048, 4096].map((size) => (
+                  <button
+                    key={size}
+                    onClick={() => setDownloadSize(size)}
+                    className={`py-2.5 px-3 rounded-xl border text-xs font-bold transition-all ${downloadSize === size
+                        ? "bg-primary text-white border-primary shadow-sm"
+                        : "border-outline-variant bg-white text-on-surface hover:bg-surface-container-highest"
+                      }`}
+                  >
+                    {size}px
+                  </button>
+                ))}
+              </div>
+              {/* Scaling Options */}
+                <div className="bg-primary/5 rounded-2xl p-4 border border-primary/20 flex flex-col gap-3 mt-3">
+                  <label className="flex items-start gap-3 cursor-pointer group">
+                    <div className="relative flex items-center justify-center mt-0.5">
+                      <input type="checkbox" checked={noStretching} onChange={(e) => setNoStretching(e.target.checked)} className="peer sr-only" />
+                      <div className="w-5 h-5 rounded border-2 border-primary/50 peer-checked:bg-primary peer-checked:border-primary transition-all flex items-center justify-center">
+                        <span className="material-symbols-outlined text-white text-[16px] opacity-0 peer-checked:opacity-100 transition-opacity">check</span>
+                      </div>
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-sm font-bold text-on-surface">Native Resolution (No Stretching)</p>
+                      <p className="text-xs text-on-surface-variant mt-1 leading-relaxed">
+                        Generates the exact target size natively. Perfect for sharp pixel-art squares, but may distort complex shapes. Uncheck to use Lanczos upscaling for smooth curves.
+                      </p>
+                    </div>
+                  </label>
+                </div>
+            </div>
 
             {/* Custom Filename */}
             <div className="space-y-3 border-t border-outline-variant pt-6">
               <label className="text-sm font-semibold text-on-surface block">
-                {downloadFormat === "PNG" ? "3." : "2."} File Name
+                3. File Name
               </label>
               <div className="relative flex items-center">
                 <input
