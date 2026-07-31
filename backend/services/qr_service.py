@@ -246,7 +246,13 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
         scalable_layout = {"none", "border", "double_border", "dotted_border", "brackets", "circle", "hexagon", "drop_shadow_card", "scalloped_edge"}
         
         no_stretching = params.get("no_stretching", True)
-        is_scalable = (
+        
+        # The user wants "no_stretching" to act as a toggle for complex frames:
+        # If True: Force ALL frames into native scaling. This gives the "old project" sharp edges,
+        # but allows complex frames (like pizza) to change proportions (e.g. thin crust).
+        # If False: Complex frames fallback to the 'else' block (upscaling), preserving their 
+        # thick WYSIWYG preview proportions.
+        is_scalable = no_stretching or (
             params.get("text_style", "none") in scalable_text and 
             params.get("frame_style", "none") in scalable_layout
         )
@@ -261,9 +267,9 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
             
             orig_w = dummy_img.size[0]
             if orig_w > 0:
-                # If no_stretching is False (Lanczos mode), we supersample by 1.25x to generate a massive 
-                # base image, then downscale it to exactly target_size. This mimics the old project's SSAA quality.
-                multiplier = 1.0 if no_stretching else 1.25
+                # We always supersample slightly to generate a massive base image, 
+                # then downscale it to exactly target_size. This mimics the old project's perfectly sharp edges.
+                multiplier = 1.25
                 scale_factor = (float(target_size) * multiplier) / float(orig_w)
                 
                 # Scale box_size
@@ -276,14 +282,13 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
                         
             base_qr = _build_image(params)
             
-            # If they didn't ask for native raw pixels, we perfectly resize it to target_size using Lanczos SSAA
-            if not no_stretching:
-                w, h = base_qr.size
-                if w > 0 and w != target_size:
-                    aspect = h / w
-                    new_w = int(target_size)
-                    new_h = int(new_w * aspect)
-                    base_qr = base_qr.resize((new_w, new_h), Image.Resampling.LANCZOS)
+            # Always perfectly resize to target_size using Lanczos SSAA for maximum sharpness
+            w, h = base_qr.size
+            if w > 0 and w != target_size:
+                aspect = h / w
+                new_w = int(target_size)
+                new_h = int(new_w * aspect)
+                base_qr = base_qr.resize((new_w, new_h), Image.Resampling.LANCZOS)
         else:
             # For complex templates (e.g. coffee_cup) we CANNOT scale the box_size natively 
             # because the hardcoded integers in frame_engine.py would break (e.g. cup_w=90 would be tiny).
