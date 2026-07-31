@@ -190,7 +190,7 @@ function App() {
 
   const [downloadFormat, setDownloadFormat] = useState<"PNG" | "SVG" | "PDF">("PNG");
   const [downloadSize, setDownloadSize] = useState<number>(1024);
-  const [noStretching, setNoStretching] = useState<boolean>(false);
+  const [noStretching, setNoStretching] = useState<boolean>(true);
   const [customFilename, setCustomFilename] = useState<string>("");
   const [activeCorner, setActiveCorner] = useState<"all" | "tl" | "tr" | "bl">("all");
   const [copySuccess, setCopySuccess] = useState<boolean>(false);
@@ -2429,6 +2429,14 @@ function App() {
                   </button>
                 ))}
               </div>
+              {downloadSize >= 4096 && (
+                <div className="flex items-start gap-2 text-amber-700 bg-amber-50 px-3 py-2.5 rounded-lg border border-amber-200 mt-3">
+                  <span className="material-symbols-outlined text-[18px] shrink-0 mt-0.5">info</span>
+                  <span className="text-xs font-medium leading-relaxed">
+                    Generating at {downloadSize}px takes significantly more processing power. Please expect a {downloadSize === 8192 ? '10-20' : '3-5'} second delay.
+                  </span>
+                </div>
+              )}
               {/* Scaling Options */}
                 <div className="bg-primary/5 rounded-2xl p-4 border border-primary/20 flex flex-col gap-3 mt-3">
                   <label className="flex items-start gap-3 cursor-pointer group">
