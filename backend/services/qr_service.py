@@ -315,10 +315,6 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
     img_byte_arr.seek(0)
     return img_byte_arr
 
-    base_qr.save(img_byte_arr, format='PNG')
-    img_byte_arr.seek(0)
-    return img_byte_arr
-
 def generate_qr_svg(data: str, params: dict) -> bytes:
     """
     Generates a raw SVG QR code or embeds a rasterized version if advanced styling is used.
