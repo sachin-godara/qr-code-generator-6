@@ -81,7 +81,7 @@ async function fetchQRCode(settings: any) {
 
 const ScannabilityAlert = ({ show, message, compact = false }: { show: boolean, message: React.ReactNode, compact?: boolean }) => {
   if (!show) return null;
-  
+
   if (compact) {
     return (
       <div className="flex items-center gap-1 mt-1">
@@ -190,7 +190,7 @@ function App() {
 
   const [downloadFormat, setDownloadFormat] = useState<"PNG" | "SVG" | "PDF">("PNG");
   const [downloadSize, setDownloadSize] = useState<number>(1024);
-  const [noStretching, setNoStretching] = useState<boolean>(true);
+  const [noStretching, setNoStretching] = useState<boolean>(false);
   const [customFilename, setCustomFilename] = useState<string>("");
   const [activeCorner, setActiveCorner] = useState<"all" | "tl" | "tr" | "bl">("all");
   const [copySuccess, setCopySuccess] = useState<boolean>(false);
@@ -198,7 +198,7 @@ function App() {
   const [downloadSuccess, setDownloadSuccess] = useState<boolean>(false);
   const [isCopying, setIsCopying] = useState<boolean>(false);
   const [toast, setToast] = useState<{ message: string, icon: string } | null>(null);
-  
+
   const [previewBg, setPreviewBg] = useState<"white" | "light" | "dark" | "transparent">("white");
   const [touchDistance, setTouchDistance] = useState<number | null>(null);
   const [initialZoom, setInitialZoom] = useState<number>(1);
@@ -317,12 +317,12 @@ function App() {
       const color = rest.logo_color_mode === "custom"
         ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#000000")
         : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
-      
-      const payloadSettings = { 
-        ...rest, 
-        logo_image: finalLogo, 
-        preset_logo: isPresetLogo ? "None" : rest.preset_logo, 
-        preset_logo_color: color 
+
+      const payloadSettings = {
+        ...rest,
+        logo_image: finalLogo,
+        preset_logo: isPresetLogo ? "None" : rest.preset_logo,
+        preset_logo_color: color
       };
 
       const items = csvRows.map(row => ({
@@ -343,8 +343,8 @@ function App() {
         body: JSON.stringify(payload)
       });
       if (!response.ok) {
-         const errorText = await response.text();
-         throw new Error("Batch generation failed: " + errorText);
+        const errorText = await response.text();
+        throw new Error("Batch generation failed: " + errorText);
       }
       const blob = await response.blob();
       const url = URL.createObjectURL(blob);
@@ -426,8 +426,8 @@ function App() {
   const filteredLogos = LOGO_ITEMS.filter(item => {
     const matchesCategory = activeLogoCategory === "All" || item.category === activeLogoCategory;
     const searchLower = logoSearchQuery.toLowerCase().trim();
-    const matchesSearch = !searchLower || 
-      item.label.toLowerCase().includes(searchLower) || 
+    const matchesSearch = !searchLower ||
+      item.label.toLowerCase().includes(searchLower) ||
       item.tags.some(t => t.toLowerCase().includes(searchLower));
     return matchesCategory && matchesSearch;
   });
@@ -524,6 +524,12 @@ function App() {
   const handleDownloadCustom = async () => {
     try {
       setIsDownloading(true);
+      if (downloadSize >= 4096 && (downloadFormat === "PNG" || hasComplexStyling)) {
+        setToast({
+          message: `Rendering ${downloadSize === 8192 ? '8K (8192px)' : '4K (4096px)'} high-res output... Please wait a moment.`,
+          icon: "hourglass_top"
+        });
+      }
       const { contentData, ...rest } = settings;
 
       let finalLogo = rest.logo_image;
@@ -658,11 +664,10 @@ function App() {
                 <button
                   key={category.title}
                   onClick={() => setContentCategoryTab(category.title)}
-                  className={`py-1.5 px-3 rounded-lg text-xs font-bold transition-all whitespace-nowrap touch-press ${
-                    contentCategoryTab === category.title
+                  className={`py-1.5 px-3 rounded-lg text-xs font-bold transition-all whitespace-nowrap touch-press ${contentCategoryTab === category.title
                       ? 'bg-primary/10 text-primary shadow-2xs'
                       : 'bg-transparent text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface'
-                  }`}
+                    }`}
                 >
                   {category.title}
                 </button>
@@ -680,8 +685,8 @@ function App() {
                     }
                   }}
                   className={`flex flex-col items-center gap-1 sm:gap-1.5 p-2.5 sm:p-3 rounded-xl duration-200 border min-h-[44px] touch-press transition-all ${settings.contentType === type.id
-                      ? "bg-primary text-white border-primary font-semibold shadow-sm"
-                      : "text-on-surface-variant hover:bg-surface-container border-transparent active:scale-95"
+                    ? "bg-primary text-white border-primary font-semibold shadow-sm"
+                    : "text-on-surface-variant hover:bg-surface-container border-transparent active:scale-95"
                     }`}
                 >
                   <span className="material-symbols-outlined text-[18px] sm:text-[20px]">{type.icon}</span>
@@ -717,7 +722,7 @@ function App() {
                       Upload a CSV file to generate up to 500 QR codes in a single ZIP file.
                     </p>
                   </div>
-                  
+
                   <div className="space-y-3">
                     <label className="section-label flex justify-between items-center mb-1">
                       <span className="font-bold flex items-center gap-1.5"><span className="material-symbols-outlined text-primary text-sm">upload_file</span>Upload CSV</span>
@@ -801,7 +806,7 @@ function App() {
           </div>
         )
       case "Templates":
-        const filteredTemplates = PRESET_TEMPLATES.filter(t => 
+        const filteredTemplates = PRESET_TEMPLATES.filter(t =>
           activeTemplateCategory === "All" || t.category === activeTemplateCategory
         );
 
@@ -813,11 +818,10 @@ function App() {
                   key={cat.id}
                   type="button"
                   onClick={() => setActiveTemplateCategory(cat.id)}
-                  className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-200 flex items-center gap-1.5 tab-spring snap-start ${
-                    activeTemplateCategory === cat.id
+                  className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-200 flex items-center gap-1.5 tab-spring snap-start ${activeTemplateCategory === cat.id
                       ? "bg-primary text-white shadow-xs scale-[1.02]"
                       : "bg-surface-container-low hover:bg-surface-container-highest text-on-surface-variant border border-outline-variant/60"
-                  }`}
+                    }`}
                 >
                   <span className="material-symbols-outlined text-xs">{cat.icon}</span>
                   <span>{cat.name}</span>
@@ -1003,7 +1007,7 @@ function App() {
                   <span>Link Eyes</span>
                 </label>
               </div>
-              
+
               {settings.link_eyes === false && (
                 <div className="flex gap-2 mb-3">
                   {['tl', 'tr', 'bl'].map(corner => (
@@ -1011,11 +1015,10 @@ function App() {
                       key={corner}
                       type="button"
                       onClick={() => setActiveCorner(corner as any)}
-                      className={`flex-1 py-1.5 px-2 text-xs rounded-lg border font-medium transition-colors ${
-                        activeCorner === corner 
-                          ? 'bg-primary/10 border-primary text-primary font-bold shadow-sm' 
+                      className={`flex-1 py-1.5 px-2 text-xs rounded-lg border font-medium transition-colors ${activeCorner === corner
+                          ? 'bg-primary/10 border-primary text-primary font-bold shadow-sm'
                           : 'bg-surface border-outline-variant text-on-surface-variant hover:bg-surface-variant'
-                      }`}
+                        }`}
                     >
                       {corner === 'tl' ? 'Top Left' : corner === 'tr' ? 'Top Right' : 'Bottom Left'}
                     </button>
@@ -1035,10 +1038,10 @@ function App() {
                 </button>
                 <div ref={eyeFrameScrollRef} className="flex overflow-x-auto gap-3.5 px-3.5 pt-3.5 pb-5 custom-scrollbar snap-x scroll-smooth scroll-pl-3.5">
                   {eyeFrameStyles.map((style) => {
-                    const isActiveStyle = (settings.link_eyes !== false || activeCorner === "all") 
+                    const isActiveStyle = (settings.link_eyes !== false || activeCorner === "all")
                       ? settings.eye_frame_style === style
                       : settings[`eye_frame_style_${activeCorner}` as keyof typeof settings] === style || (!settings[`eye_frame_style_${activeCorner}` as keyof typeof settings] && settings.eye_frame_style === style);
-                      
+
                     return (
                       <div key={style} className="w-[88px] sm:w-[98px] shrink-0 snap-start p-0.5">
                         <StylePreviewCard
@@ -1080,10 +1083,10 @@ function App() {
                 </button>
                 <div ref={eyeballScrollRef} className="flex overflow-x-auto gap-3.5 px-3.5 pt-3.5 pb-5 custom-scrollbar snap-x scroll-smooth scroll-pl-3.5">
                   {eyeballStyles.map((style) => {
-                    const isActiveStyle = (settings.link_eyes !== false || activeCorner === "all") 
+                    const isActiveStyle = (settings.link_eyes !== false || activeCorner === "all")
                       ? settings.eyeball_style === style
                       : settings[`eyeball_style_${activeCorner}` as keyof typeof settings] === style || (!settings[`eyeball_style_${activeCorner}` as keyof typeof settings] && settings.eyeball_style === style);
-                      
+
                     return (
                       <div key={style} className="w-[88px] sm:w-[98px] shrink-0 snap-start p-0.5">
                         <StylePreviewCard
@@ -1131,17 +1134,17 @@ function App() {
                       onChange={(e) => {
                         const newColor = e.target.value;
                         if (settings.link_eyes !== false || activeCorner === "all") {
-                           updateSettings({
-                             eye_color: newColor,
-                             eyeball_color: settings.eyeball_color === settings.eye_color ? newColor : settings.eyeball_color
-                           });
+                          updateSettings({
+                            eye_color: newColor,
+                            eyeball_color: settings.eyeball_color === settings.eye_color ? newColor : settings.eyeball_color
+                          });
                         } else {
-                           const currentEyeball = settings[`eyeball_color_${activeCorner}` as keyof typeof settings] as string || settings.eyeball_color;
-                           const currentEye = settings[`eye_color_${activeCorner}` as keyof typeof settings] as string || settings.eye_color;
-                           updateSettings({
-                             [`eye_color_${activeCorner}`]: newColor,
-                             [`eyeball_color_${activeCorner}`]: currentEyeball === currentEye ? newColor : currentEyeball
-                           });
+                          const currentEyeball = settings[`eyeball_color_${activeCorner}` as keyof typeof settings] as string || settings.eyeball_color;
+                          const currentEye = settings[`eye_color_${activeCorner}` as keyof typeof settings] as string || settings.eye_color;
+                          updateSettings({
+                            [`eye_color_${activeCorner}`]: newColor,
+                            [`eyeball_color_${activeCorner}`]: currentEyeball === currentEye ? newColor : currentEyeball
+                          });
                         }
                       }}
                       className="w-10 h-10 rounded-xl cursor-pointer border border-outline-variant p-0.5 bg-white"
@@ -1156,9 +1159,9 @@ function App() {
                       onChange={(e) => {
                         const newColor = e.target.value;
                         if (settings.link_eyes !== false || activeCorner === "all") {
-                           updateSettings({ eye_color: newColor });
+                          updateSettings({ eye_color: newColor });
                         } else {
-                           updateSettings({ [`eye_color_${activeCorner}`]: newColor });
+                          updateSettings({ [`eye_color_${activeCorner}`]: newColor });
                         }
                       }}
                       className="flex-1 p-2.5 border border-outline-variant rounded-xl bg-white text-xs font-mono"
@@ -1182,9 +1185,9 @@ function App() {
                       onChange={(e) => {
                         const newColor = e.target.value;
                         if (settings.link_eyes !== false || activeCorner === "all") {
-                           updateSettings({ eyeball_color: newColor });
+                          updateSettings({ eyeball_color: newColor });
                         } else {
-                           updateSettings({ [`eyeball_color_${activeCorner}`]: newColor });
+                          updateSettings({ [`eyeball_color_${activeCorner}`]: newColor });
                         }
                       }}
                       className="w-10 h-10 rounded-xl cursor-pointer border border-outline-variant p-0.5 bg-white"
@@ -1199,9 +1202,9 @@ function App() {
                       onChange={(e) => {
                         const newColor = e.target.value;
                         if (settings.link_eyes !== false || activeCorner === "all") {
-                           updateSettings({ eyeball_color: newColor });
+                          updateSettings({ eyeball_color: newColor });
                         } else {
-                           updateSettings({ [`eyeball_color_${activeCorner}`]: newColor });
+                          updateSettings({ [`eyeball_color_${activeCorner}`]: newColor });
                         }
                       }}
                       className="flex-1 p-2.5 border border-outline-variant rounded-xl bg-white text-xs font-mono"
@@ -1341,11 +1344,10 @@ function App() {
                         }
                         updateSettings(updates);
                       }}
-                      className={`p-2.5 rounded-xl flex flex-col items-center justify-center text-center gap-1.5 transition-all duration-200 border relative ${
-                        isSelected
+                      className={`p-2.5 rounded-xl flex flex-col items-center justify-center text-center gap-1.5 transition-all duration-200 border relative ${isSelected
                           ? "bg-white border-primary ring-2 ring-primary/20 text-primary shadow-sm scale-[1.02]"
                           : "bg-surface-container-lowest/60 hover:bg-white border-outline-variant/60 hover:border-primary/40 text-on-surface hover:shadow-2xs"
-                      }`}
+                        }`}
                     >
                       {style.icon}
                       <div>
@@ -1396,11 +1398,10 @@ function App() {
                     key={category}
                     type="button"
                     onClick={() => setActiveLogoCategory(category)}
-                    className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-200 flex items-center gap-1.5 ${
-                      activeLogoCategory === category
+                    className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-200 flex items-center gap-1.5 ${activeLogoCategory === category
                         ? "bg-primary text-white shadow-xs scale-[1.02]"
                         : "bg-surface-container-low hover:bg-surface-container-highest text-on-surface-variant border border-outline-variant/60"
-                    }`}
+                      }`}
                   >
                     {category === "All" && <span className="material-symbols-outlined text-xs">apps</span>}
                     {category === "Social & Apps" && <span className="material-symbols-outlined text-xs">share</span>}
@@ -1422,11 +1423,10 @@ function App() {
                         key={item.id}
                         type="button"
                         onClick={() => updateSettings({ preset_logo: item.id as any, logo_image: null })}
-                        className={`p-2 sm:p-2.5 rounded-xl flex flex-col items-center justify-center gap-1.5 sm:gap-2 border transition-all duration-200 group relative ${
-                          isSelected
+                        className={`p-2 sm:p-2.5 rounded-xl flex flex-col items-center justify-center gap-1.5 sm:gap-2 border transition-all duration-200 group relative ${isSelected
                             ? "bg-primary/10 text-primary border-primary border-2 ring-2 ring-primary/15 shadow-sm font-semibold"
                             : "bg-white hover:bg-surface-container-lowest border-outline-variant hover:border-primary/40 text-on-surface shadow-2xs hover:shadow-md hover:-translate-y-0.5"
-                        }`}
+                          }`}
                       >
                         <PresetLogoPreview
                           name={item.id}
@@ -1475,8 +1475,8 @@ function App() {
                     type="button"
                     onClick={() => updateSettings({ logo_color_mode: "default" })}
                     className={`p-2.5 rounded-lg border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${settings.logo_color_mode === "default"
-                        ? "bg-primary text-white border-primary shadow-sm"
-                        : "bg-white text-on-surface border-outline-variant hover:bg-surface-container-highest"
+                      ? "bg-primary text-white border-primary shadow-sm"
+                      : "bg-white text-on-surface border-outline-variant hover:bg-surface-container-highest"
                       }`}
                   >
                     <span className="material-symbols-outlined text-sm">color_lens</span>
@@ -1487,8 +1487,8 @@ function App() {
                     type="button"
                     onClick={() => updateSettings({ logo_color_mode: "custom" })}
                     className={`p-2.5 rounded-lg border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${settings.logo_color_mode === "custom"
-                        ? "bg-primary text-white border-primary shadow-sm"
-                        : "bg-white text-on-surface border-outline-variant hover:bg-surface-container-highest"
+                      ? "bg-primary text-white border-primary shadow-sm"
+                      : "bg-white text-on-surface border-outline-variant hover:bg-surface-container-highest"
                       }`}
                   >
                     <span className="material-symbols-outlined text-sm">colorize</span>
@@ -1547,10 +1547,10 @@ function App() {
                     step="0.01"
                     value={settings.logo_size_ratio}
                     onChange={(val) => updateSettings({ logo_size_ratio: val })}
-                    
-                   />
-                  <ScannabilityAlert 
-                    show={settings.logo_size_ratio > 0.18} 
+
+                  />
+                  <ScannabilityAlert
+                    show={settings.logo_size_ratio > 0.18}
                     message="Test scan recommended"
                     compact={true}
                   />
@@ -1576,10 +1576,10 @@ function App() {
                     step="0.1"
                     value={settings.logo_clear_size}
                     onChange={(val) => updateSettings({ logo_clear_size: val })}
-                    
-                   />
-                  <ScannabilityAlert 
-                    show={settings.logo_clear_size > 0.5} 
+
+                  />
+                  <ScannabilityAlert
+                    show={settings.logo_clear_size > 0.5}
                     message="Test scan recommended"
                     compact={true}
                   />
@@ -1602,8 +1602,8 @@ function App() {
                           key={shape}
                           onClick={() => updateSettings({ logo_card_shape: shape as any })}
                           className={`py-2.5 px-1 sm:p-3 border rounded-xl text-xs flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 transition-all duration-200 overflow-hidden text-center touch-press ${isSelected
-                              ? "bg-primary text-white border-primary font-bold shadow-md ring-2 ring-primary/15"
-                              : "bg-white hover:bg-muted border-outline-variant text-on-surface"
+                            ? "bg-primary text-white border-primary font-bold shadow-md ring-2 ring-primary/15"
+                            : "bg-white hover:bg-muted border-outline-variant text-on-surface"
                             }`}
                         >
                           {shape === "None" && <span className="material-symbols-outlined text-base sm:text-sm shrink-0">block</span>}
@@ -1638,8 +1638,8 @@ function App() {
                       step="1"
                       value={settings.logo_card_padding}
                       onChange={(val) => updateSettings({ logo_card_padding: val })}
-                      
-                     />
+
+                    />
                   </div>
                 )}
 
@@ -1690,8 +1690,8 @@ function App() {
                             step="1"
                             value={settings.logo_bg_tolerance}
                             onChange={(val) => updateSettings({ logo_bg_tolerance: val })}
-                            
-                           />
+
+                          />
                         </div>
                       </div>
                     )}
@@ -1748,8 +1748,8 @@ function App() {
                     step="1"
                     value={settings.frame_padding}
                     onChange={(val) => updateSettings({ frame_padding: val })}
-                    
-                   />
+
+                  />
                 </div>
 
                 <div className="space-y-2">
@@ -1762,8 +1762,8 @@ function App() {
                     step="1"
                     value={settings.frame_radius}
                     onChange={(val) => updateSettings({ frame_radius: val })}
-                    
-                   />
+
+                  />
                 </div>
 
                 <div className="space-y-2">
@@ -1776,8 +1776,8 @@ function App() {
                     step="1"
                     value={settings.frame_border}
                     onChange={(val) => updateSettings({ frame_border: val })}
-                    
-                   />
+
+                  />
                 </div>
               </div>
             )}
@@ -1825,8 +1825,8 @@ function App() {
                         key={font}
                         onClick={() => updateSettings({ font_name: font as any })}
                         className={`p-3 border rounded-xl flex flex-col items-center justify-center gap-1 transition-colors ${settings.font_name === font
-                            ? "bg-primary text-white border-primary shadow-md"
-                            : "bg-white hover:bg-muted border-outline-variant text-on-surface"
+                          ? "bg-primary text-white border-primary shadow-md"
+                          : "bg-white hover:bg-muted border-outline-variant text-on-surface"
                           }`}
                       >
                         <span style={{ fontFamily: font.split(" (")[0] }} className="text-2xl leading-none">Ag</span>
@@ -1874,8 +1874,8 @@ function App() {
                       step="1"
                       value={settings.frame_text_size}
                       onChange={(val) => updateSettings({ frame_text_size: val })}
-                      
-                     />
+
+                    />
                   </div>
                 </div>
               </div>
@@ -1926,8 +1926,8 @@ function App() {
                         dots_color_end: opt.value !== "Solid Color" && settings.dots_color_end === "#000000" && settings.dots_color === "#000000" ? "#52525b" : settings.dots_color_end
                       })}
                       className={`flex flex-col items-center justify-center gap-1.5 p-2 sm:p-3 rounded-xl border text-[11px] sm:text-xs leading-tight font-bold transition-all duration-200 ${selected
-                          ? 'bg-primary/15 border-primary text-primary shadow-sm scale-[1.02]'
-                          : 'bg-white border-outline-variant text-on-surface-variant hover:bg-surface hover:border-outline'
+                        ? 'bg-primary/15 border-primary text-primary shadow-sm scale-[1.02]'
+                        : 'bg-white border-outline-variant text-on-surface-variant hover:bg-surface hover:border-outline'
                         }`}
                     >
                       <span className="material-symbols-outlined text-lg">{opt.icon}</span>
@@ -2056,8 +2056,8 @@ function App() {
                       updateSettings({ effect_shadow: newId, effect_shadow_color: newColor });
                     }}
                     className={`p-3 rounded-xl border flex flex-col items-center text-center tab-spring ${settings.effect_shadow === s.id
-                        ? "bg-primary/10 border-primary text-primary font-bold shadow-sm"
-                        : "border-outline-variant bg-white text-on-surface hover:bg-surface-container-highest"
+                      ? "bg-primary/10 border-primary text-primary font-bold shadow-sm"
+                      : "border-outline-variant bg-white text-on-surface hover:bg-surface-container-highest"
                       }`}
                   >
                     <span className="text-xs font-bold">{s.name}</span>
@@ -2108,8 +2108,8 @@ function App() {
                 max="40"
                 value={settings.canvas_radius}
                 onChange={(val) => updateSettings({ canvas_radius: val, canvas_border_radius: val })}
-                
-               />
+
+              />
               <div className="flex justify-between text-[11px] text-on-surface-variant font-semibold px-1">
                 <span>0px (Sharp)</span>
                 <span>16px (Standard)</span>
@@ -2132,8 +2132,8 @@ function App() {
                 max="10"
                 value={settings.canvas_border_width}
                 onChange={(val) => updateSettings({ canvas_border_width: val })}
-                
-               />
+
+              />
               {settings.canvas_border_width > 0 && (
                 <div className="space-y-3 pt-2">
                   <div className="flex items-center gap-3">
@@ -2199,8 +2199,8 @@ function App() {
                     key={level.id}
                     onClick={() => updateSettings({ error_correction: level.id as any })}
                     className={`p-3 sm:p-3.5 rounded-xl border flex flex-col items-center justify-center transition-all duration-200 ${settings.error_correction === level.id
-                        ? "bg-primary/10 border-primary text-primary font-bold shadow-sm"
-                        : "border-outline-variant bg-white text-on-surface hover:bg-surface-container-highest"
+                      ? "bg-primary/10 border-primary text-primary font-bold shadow-sm"
+                      : "border-outline-variant bg-white text-on-surface hover:bg-surface-container-highest"
                       }`}
                   >
                     <span className="text-xs sm:text-sm md:text-base font-bold whitespace-nowrap">{level.id} - {level.name}</span>
@@ -2233,8 +2233,8 @@ function App() {
                 max="10"
                 value={settings.quiet_zone}
                 onChange={(val) => updateSettings({ quiet_zone: val })}
-                
-               />
+
+              />
               <ScannabilityAlert
                 show={settings.quiet_zone > 4}
                 message="Test scan recommended"
@@ -2255,7 +2255,7 @@ function App() {
                   Background Image
                 </label>
                 {settings.bg_image && (
-                  <button 
+                  <button
                     type="button"
                     onClick={() => updateSettings({ bg_image: null, bg_image_opacity: 100 })}
                     className="text-xs font-semibold text-error hover:bg-error/10 px-2 py-0.5 rounded transition-colors"
@@ -2392,8 +2392,8 @@ function App() {
                     key={fmt.id}
                     onClick={() => setDownloadFormat(fmt.id as any)}
                     className={`p-4 rounded-xl border flex flex-col items-center text-center transition-all duration-200 ${downloadFormat === fmt.id
-                        ? "bg-primary/10 border-primary text-primary font-bold shadow-sm"
-                        : "border-outline-variant bg-white text-on-surface hover:bg-surface-container-highest"
+                      ? "bg-primary/10 border-primary text-primary font-bold shadow-sm"
+                      : "border-outline-variant bg-white text-on-surface hover:bg-surface-container-highest"
                       }`}
                   >
                     <span className="material-symbols-outlined text-2xl mb-1">{fmt.icon}</span>
@@ -2411,33 +2411,33 @@ function App() {
                   <label className="text-sm font-semibold text-on-surface block">
                     2. Output Resolution {downloadFormat !== "PNG" && <span className="text-on-surface-variant font-normal">(applies to embedded graphics)</span>}
                   </label>
-                <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-lg">
-                  {downloadSize} x {downloadSize} px
-                </span>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {[512, 1024, 2048, 4096, 8192].map((size) => (
-                  <button
-                    key={size}
-                    onClick={() => setDownloadSize(size)}
-                    className={`flex-1 min-w-[50px] py-2.5 px-1 rounded-xl border text-[11px] sm:text-xs font-bold transition-all ${downloadSize === size
-                        ? "bg-primary text-white border-primary shadow-sm"
-                        : "border-outline-variant bg-white text-on-surface hover:bg-surface-container-highest"
-                      }`}
-                  >
-                    {size}px
-                  </button>
-                ))}
-              </div>
-              {downloadSize >= 4096 && (
-                <div className="flex items-start gap-2 text-amber-700 bg-amber-50 px-3 py-2.5 rounded-lg border border-amber-200 mt-3">
-                  <span className="material-symbols-outlined text-[18px] shrink-0 mt-0.5">info</span>
-                  <span className="text-xs font-medium leading-relaxed">
-                    Generating at {downloadSize}px takes significantly more processing power. Please expect a {downloadSize === 8192 ? '10-20' : '3-5'} second delay.
+                  <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-lg">
+                    {downloadSize} x {downloadSize} px
                   </span>
                 </div>
-              )}
-              {/* Scaling Options */}
+                <div className="flex flex-wrap gap-2">
+                  {[512, 1024, 2048, 4096, 8192].map((size) => (
+                    <button
+                      key={size}
+                      onClick={() => setDownloadSize(size)}
+                      className={`flex-1 min-w-[50px] py-2.5 px-1 rounded-xl border text-[11px] sm:text-xs font-bold transition-all ${downloadSize === size
+                        ? "bg-primary text-white border-primary shadow-sm"
+                        : "border-outline-variant bg-white text-on-surface hover:bg-surface-container-highest"
+                        }`}
+                    >
+                      {size}px
+                    </button>
+                  ))}
+                </div>
+                {downloadSize >= 4096 && (
+                  <div className="flex items-start gap-2 text-amber-700 bg-amber-50 px-3 py-2.5 rounded-lg border border-amber-200 mt-3">
+                    <span className="material-symbols-outlined text-[18px] shrink-0 mt-0.5">info</span>
+                    <span className="text-xs font-medium leading-relaxed">
+                      Generating at {downloadSize}px takes significantly more processing power. Please expect a {downloadSize === 8192 ? '10-20' : '3-5'} second delay.
+                    </span>
+                  </div>
+                )}
+                {/* Scaling Options */}
                 <div className="bg-primary/5 rounded-2xl p-4 border border-primary/20 flex flex-col gap-3 mt-3">
                   <label className="flex items-start gap-3 cursor-pointer group">
                     <div className="relative flex items-center justify-center mt-0.5">
@@ -2488,16 +2488,21 @@ function App() {
                 onClick={handleDownloadCustom}
                 disabled={isLoading || isError || isDownloading || isCopying}
                 className={`flex-1 py-4 px-6 rounded-xl font-bold flex items-center justify-center gap-3 btn-spring shadow-lg text-base ${downloadSuccess
-                    ? "bg-emerald-600 text-white shadow-xl shadow-emerald-600/30 animate-celebrate"
-                    : isDownloading
-                      ? "bg-primary/80 text-white cursor-wait shadow-sm animate-pulse"
-                      : "bg-gradient-to-r from-primary to-primary-hover hover:from-primary-hover hover:to-primary text-white shadow-md hover:shadow-lg hover:scale-[1.015]"
+                  ? "bg-emerald-600 text-white shadow-xl shadow-emerald-600/30 animate-celebrate"
+                  : isDownloading
+                    ? "bg-primary/80 text-white cursor-wait shadow-sm animate-pulse"
+                    : "bg-gradient-to-r from-primary to-primary-hover hover:from-primary-hover hover:to-primary text-white shadow-md hover:shadow-lg hover:scale-[1.015]"
                   } disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100`}
               >
                 {isDownloading ? (
                   <>
                     <span className="material-symbols-outlined text-2xl animate-spin">progress_activity</span>
-                    <span>Rendering High-Res {downloadFormat}...</span>
+                    <span>
+                      {downloadSize >= 4096 && (downloadFormat === "PNG" || hasComplexStyling)
+                        ? `Rendering ${downloadSize === 8192 ? '8K' : '4K'} (${downloadSize}px)...`
+                        : `Rendering High-Res ${downloadFormat}...`
+                      }
+                    </span>
                   </>
                 ) : downloadSuccess ? (
                   <>
@@ -2518,10 +2523,10 @@ function App() {
                 onClick={handleCopyToClipboard}
                 disabled={isLoading || isError || isDownloading || isCopying}
                 className={`py-4 px-6 rounded-xl font-bold flex items-center justify-center gap-2 border btn-spring shadow-sm ${copySuccess
-                    ? "bg-emerald-600 text-white border-emerald-600 shadow-lg shadow-emerald-600/25 animate-celebrate"
-                    : isCopying
-                      ? "bg-surface-container-highest text-on-surface cursor-wait border-outline-variant"
-                      : "bg-white border-outline-variant text-on-surface hover:bg-surface-container-highest hover:border-zinc-300 hover:shadow-md hover:scale-[1.015]"
+                  ? "bg-emerald-600 text-white border-emerald-600 shadow-lg shadow-emerald-600/25 animate-celebrate"
+                  : isCopying
+                    ? "bg-surface-container-highest text-on-surface cursor-wait border-outline-variant"
+                    : "bg-white border-outline-variant text-on-surface hover:bg-surface-container-highest hover:border-zinc-300 hover:shadow-md hover:scale-[1.015]"
                   } disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:scale-100`}
               >
                 {isCopying ? (
@@ -2556,7 +2561,7 @@ function App() {
       if (activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA' || activeElement.isContentEditable)) {
         return;
       }
-      
+
       if (e.metaKey || e.ctrlKey) {
         if (e.key === 'z') {
           e.preventDefault();
@@ -2661,11 +2666,10 @@ function App() {
                 key={tab.name}
                 onClick={() => setActiveTab(tab.name)}
                 title={tab.name}
-                className={`w-full flex items-center justify-center xl:justify-start gap-3 px-0 xl:px-3 py-2.5 rounded-lg text-[13px] font-medium tab-spring relative sidebar-item ${
-                  activeTab === tab.name
+                className={`w-full flex items-center justify-center xl:justify-start gap-3 px-0 xl:px-3 py-2.5 rounded-lg text-[13px] font-medium tab-spring relative sidebar-item ${activeTab === tab.name
                     ? "sidebar-item-active"
                     : "text-on-surface-variant hover:bg-surface-container hover:text-on-surface"
-                }`}
+                  }`}
               >
                 <span className={`material-symbols-outlined text-[22px] xl:text-[18px] transition-colors ${activeTab === tab.name ? "text-primary" : "text-on-surface-variant"}`}>{tab.icon}</span>
                 <span className="hidden xl:inline whitespace-nowrap">{tab.name}</span>
@@ -2790,7 +2794,7 @@ function App() {
                           boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.08)"
                         } : {}}
                       />
-                      
+
                       {/* Offline / Error Overlay */}
                       {isError && (
                         <div className="absolute inset-0 rounded-xl overflow-hidden flex items-center justify-center pointer-events-none">
@@ -2808,7 +2812,7 @@ function App() {
                           <span className="material-symbols-outlined animate-spin text-primary text-3xl relative z-10">autorenew</span>
                         </div>
                       )}
-                      
+
                     </div>
                   </div>
 
@@ -2830,11 +2834,11 @@ function App() {
                         <span className="material-symbols-outlined text-[18px]">zoom_in</span>
                       </button>
                     </div>
-                    
+
                     <div className="w-[1px] h-5 bg-outline-variant/50 mx-1"></div>
-                    
+
                     <div className="flex items-center gap-1">
-                      
+
                       <button
                         onClick={handleFullscreen}
                         className="w-9 h-9 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all duration-200"
@@ -2883,7 +2887,7 @@ function App() {
 
                   {/* Compact Bar with Live QR Engine */}
                   <div className="px-3.5 py-2 flex items-center justify-between gap-2.5 border-b border-outline-variant/30">
-                    <div 
+                    <div
                       className="flex items-center gap-2.5 min-w-0 cursor-pointer active:scale-[0.98] transition-transform group touch-press"
                       onClick={handleFullscreen}
                       title="Tap to view fullscreen"
@@ -2899,7 +2903,7 @@ function App() {
                             <span className="material-symbols-outlined text-lg">wifi_off</span>
                           </div>
                         )}
-                        
+
                         <img src={imageUrl || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/%3E"} alt="QR Preview" className={`w-full h-full object-contain ${isError ? 'opacity-40 grayscale' : ''}`} />
                         <div className="absolute inset-0 bg-black/20 opacity-0 group-active:opacity-100 transition-opacity flex items-center justify-center pointer-events-none z-20">
                           <span className="material-symbols-outlined text-white drop-shadow-md text-[20px]">fullscreen</span>
@@ -2924,7 +2928,7 @@ function App() {
                         <span className="material-symbols-outlined text-[18px]">fullscreen</span>
                         <span className="hidden sm:inline text-xs">Expand</span>
                       </button>
-                      
+
                     </div>
                   </div>
 
@@ -2934,8 +2938,8 @@ function App() {
                       <button
                         onClick={() => setMobileMainTab('content')}
                         className={`flex items-center justify-center py-1.5 px-3 rounded-lg font-bold transition-all text-xs sm:text-[13px] touch-press ${mobileMainTab === 'content'
-                            ? 'bg-white text-on-surface border border-outline-variant/60 shadow-sm'
-                            : 'text-on-surface-variant hover:text-on-surface'
+                          ? 'bg-white text-on-surface border border-outline-variant/60 shadow-sm'
+                          : 'text-on-surface-variant hover:text-on-surface'
                           }`}
                       >
                         Content
@@ -2944,8 +2948,8 @@ function App() {
                       <button
                         onClick={() => setMobileMainTab('design')}
                         className={`flex items-center justify-center py-1.5 px-3 rounded-lg font-bold transition-all text-xs sm:text-[13px] touch-press ${mobileMainTab === 'design'
-                            ? 'bg-primary text-white shadow-md shadow-primary/20'
-                            : 'text-on-surface-variant hover:text-on-surface'
+                          ? 'bg-primary text-white shadow-md shadow-primary/20'
+                          : 'text-on-surface-variant hover:text-on-surface'
                           }`}
                       >
                         Design
@@ -2954,8 +2958,8 @@ function App() {
                       <button
                         onClick={() => setMobileMainTab('download')}
                         className={`flex items-center justify-center py-1.5 px-3 rounded-lg font-bold transition-all text-xs sm:text-[13px] touch-press ${mobileMainTab === 'download'
-                            ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20'
-                            : 'text-on-surface-variant hover:text-on-surface'
+                          ? 'bg-emerald-600 text-white shadow-md shadow-emerald-600/20'
+                          : 'text-on-surface-variant hover:text-on-surface'
                           }`}
                       >
                         Download
@@ -3008,8 +3012,8 @@ function App() {
                             key={tab.name}
                             onClick={() => setMobileDesignSubTab(tab.name)}
                             className={`py-1 px-2.5 sm:px-3 rounded-lg text-[11px] sm:text-xs font-bold transition-all whitespace-nowrap touch-press ${isSelected
-                                ? 'bg-primary/10 text-primary shadow-2xs'
-                                : 'bg-transparent text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface'
+                              ? 'bg-primary/10 text-primary shadow-2xs'
+                              : 'bg-transparent text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface'
                               }`}
                           >
                             {tab.label}
@@ -3026,8 +3030,8 @@ function App() {
                     {mobileMainTab === 'content'
                       ? renderPanelContent('Content')
                       : mobileMainTab === 'download'
-                      ? renderPanelContent('Download')
-                      : renderPanelContent(mobileDesignSubTab === 'Shape' ? 'Design' : mobileDesignSubTab)
+                        ? renderPanelContent('Download')
+                        : renderPanelContent(mobileDesignSubTab === 'Shape' ? 'Design' : mobileDesignSubTab)
                     }
                   </div>
                 </div>
@@ -3046,22 +3050,21 @@ function App() {
                       disabled={isLoading || isError || isDownloading || (settings.contentType === 'batch' && isBatchGenerating)}
                       className="flex-1 py-3.5 px-4 bg-primary text-white rounded-xl font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-primary/25 btn-spring min-h-[48px]"
                     >
-                      <span className={`material-symbols-outlined text-[20px] ${isDownloading || isBatchGenerating ? 'animate-spin' : ''}`}>
-                        {isDownloading || isBatchGenerating ? 'progress_activity' : 'download'}
-                      </span>
-                      {isDownloading || isBatchGenerating 
-                        ? 'Generating...' 
-                        : settings.contentType === 'batch' 
-                          ? 'Download ZIP' 
-                          : `Download ${downloadFormat}`
-                      }
-                    </button>
+                        <span className={`material-symbols-outlined text-[20px] ${isDownloading || isBatchGenerating ? 'animate-spin' : ''}`}>
+                          {isDownloading || isBatchGenerating ? 'progress_activity' : 'download'}
+                        </span>
+                        {isDownloading || isBatchGenerating
+                          ? (downloadSize >= 4096 && (downloadFormat === "PNG" || hasComplexStyling) ? `Rendering ${downloadSize === 8192 ? '8K' : '4K'}...` : 'Generating...')
+                          : settings.contentType === 'batch'
+                            ? 'Download ZIP'
+                            : `Download ${downloadFormat}`
+                        }
+                      </button>
                     <button
                       onClick={handleCopyToClipboard}
                       disabled={isLoading || isError || isCopying}
-                      className={`py-3.5 px-5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 border shadow-sm btn-spring min-h-[48px] ${
-                        copySuccess ? 'bg-emerald-600 text-white border-emerald-600 shadow-emerald-600/25 animate-celebrate' : 'bg-white border-outline-variant/80 text-on-surface hover:bg-surface-container-low'
-                      }`}
+                      className={`py-3.5 px-5 rounded-xl font-bold text-sm flex items-center justify-center gap-2 border shadow-sm btn-spring min-h-[48px] ${copySuccess ? 'bg-emerald-600 text-white border-emerald-600 shadow-emerald-600/25 animate-celebrate' : 'bg-white border-outline-variant/80 text-on-surface hover:bg-surface-container-low'
+                        }`}
                     >
                       <span className={`material-symbols-outlined text-[20px] ${copySuccess ? 'animate-[spin_350ms_ease-out_1]' : ''}`}>{copySuccess ? 'check' : 'content_copy'}</span>
                       {copySuccess ? 'Copied!' : 'Copy'}
@@ -3080,7 +3083,7 @@ function App() {
       {/* ── IN-APP FULLSCREEN / EXPANDED PREVIEW MODAL LIGHTBOX ── */}
       {isFullscreen && (
         <div className="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md flex flex-col items-center justify-center p-4 sm:p-8 animate-fadeIn" onClick={() => setIsFullscreen(false)}>
-          <div 
+          <div
             className={`relative rounded-3xl p-8 sm:p-12 max-w-[90vw] max-h-[80vh] flex items-center justify-center shadow-2xl border border-white/20 overflow-hidden touch-none transition-colors duration-300 ${previewBg === 'dark' ? 'bg-[#18181b]' : previewBg === 'transparent' ? 'bg-[#f3f4f6]' : previewBg === 'white' ? 'bg-[#f4f4f5]' : 'bg-[#f9fafb]'}`}
             style={previewBg === 'transparent' ? {
               backgroundImage: "linear-gradient(45deg, #e5e7eb 25%, transparent 25%), linear-gradient(-45deg, #e5e7eb 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e5e7eb 75%), linear-gradient(-45deg, transparent 75%, #e5e7eb 75%)",
@@ -3090,8 +3093,8 @@ function App() {
               backgroundImage: "linear-gradient(45deg, #f3f4f6 25%, transparent 25%), linear-gradient(-45deg, #f3f4f6 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f3f4f6 75%), linear-gradient(-45deg, transparent 75%, #f3f4f6 75%)",
               backgroundSize: "16px 16px",
               backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0px",
-            } : {}} 
-            onClick={(e) => e.stopPropagation()} 
+            } : {}}
+            onClick={(e) => e.stopPropagation()}
             onWheel={(e) => {
               const delta = e.deltaY * -0.003;
               setZoomLevel(prev => Math.min(5, Math.max(0.5, prev + delta)));
@@ -3162,7 +3165,7 @@ function App() {
                   boxShadow: "inset 0 0 0 1px rgba(0,0,0,0.08)"
                 } : {}}
               />
-              
+
               {isError && (
                 <div className="absolute inset-0 rounded-2xl overflow-hidden flex items-center justify-center pointer-events-none">
                   <div className="bg-error/90 text-white px-6 py-4 rounded-xl flex flex-col items-center shadow-2xl backdrop-blur-md">
@@ -3192,7 +3195,7 @@ function App() {
               <span className="material-symbols-outlined text-sm">add</span>
             </button>
             <div className="w-px h-7 bg-outline-variant/60 my-1 mx-0.5"></div>
-            
+
             <button onClick={() => setIsComparing(!isComparing)} className={`h-10 px-3 flex items-center justify-center gap-1.5 transition-colors rounded-xl duration-200 text-xs font-bold touch-press ${isComparing ? 'bg-primary text-white shadow-md' : 'hover:bg-black/5 text-on-surface'}`} title="Compare Raw">
               <span className="material-symbols-outlined text-[18px]">compare</span>
               <span className="hidden sm:inline">Compare</span>
