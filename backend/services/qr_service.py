@@ -278,12 +278,17 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
             # Instead, we generate the image perfectly at its native proportions and then upscale it.
             base_qr = _build_image(params)
             
-            if not no_stretching:
-                w, h = base_qr.size
-                if w > 0:
-                    aspect = h / w
-                    new_w = int(target_size)
-                    new_h = int(new_w * aspect)
+            w, h = base_qr.size
+            if w > 0:
+                aspect = h / w
+                new_w = int(target_size)
+                new_h = int(new_w * aspect)
+                
+                if no_stretching:
+                    # The user wants NO blurry stretching, but we MUST reach the target size.
+                    # We use Nearest Neighbor to upscale the pixels blockily without blurring.
+                    base_qr = base_qr.resize((new_w, new_h), Image.Resampling.NEAREST)
+                else:
                     base_qr = base_qr.resize((new_w, new_h), Image.Resampling.LANCZOS)
     else:
         base_qr = _build_image(params)
