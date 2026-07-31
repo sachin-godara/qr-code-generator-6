@@ -240,6 +240,21 @@ function App() {
   })
   const imageUrl = qrData?.url
 
+  const hasComplexStyling = (
+    settings.frame_style !== "none" ||
+    settings.text_style !== "none" ||
+    settings.dots_style !== "square" ||
+    settings.eye_frame_style !== "square" ||
+    settings.eyeball_style !== "square" ||
+    settings.gradient_type !== "Solid Color" ||
+    (settings.preset_logo && settings.preset_logo !== "None") ||
+    settings.effect_shadow !== "none" ||
+    settings.canvas_radius > 0 ||
+    settings.canvas_border_width > 0
+  );
+
+  const showResolutionSelector = downloadFormat === "PNG" || hasComplexStyling;
+
   const targetResolution = downloadFormat === "SVG" ? "Vector SVG" : (downloadFormat === "PDF" ? "300 DPI PDF" : `${downloadSize}×${downloadSize} px`);
 
   // List of sidebar tabs
@@ -2390,12 +2405,13 @@ function App() {
               </div>
             </div>
 
-            {/* Resolution Selector (for all formats) */}
-            <div className="space-y-3 border-t border-outline-variant pt-6">
-              <div className="flex justify-between items-center">
-                <label className="text-sm font-semibold text-on-surface block">
-                  2. Output Resolution <span className="text-on-surface-variant font-normal">(applies to embedded graphics)</span>
-                </label>
+            {/* Resolution Selector (for formats with raster elements) */}
+            {showResolutionSelector && (
+              <div className="space-y-3 border-t border-outline-variant pt-6">
+                <div className="flex justify-between items-center">
+                  <label className="text-sm font-semibold text-on-surface block">
+                    2. Output Resolution {downloadFormat !== "PNG" && <span className="text-on-surface-variant font-normal">(applies to embedded graphics)</span>}
+                  </label>
                 <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-lg">
                   {downloadSize} x {downloadSize} px
                 </span>
@@ -2431,12 +2447,13 @@ function App() {
                     </div>
                   </label>
                 </div>
-            </div>
+              </div>
+            )}
 
             {/* Custom Filename */}
             <div className="space-y-3 border-t border-outline-variant pt-6">
               <label className="text-sm font-semibold text-on-surface block">
-                3. File Name
+                {showResolutionSelector ? "3." : "2."} File Name
               </label>
               <div className="relative flex items-center">
                 <input
