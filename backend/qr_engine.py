@@ -2368,7 +2368,10 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
                 cy_img = img.size[1] // 2
                 card_box = [cx_img - card_w//2, cy_img - card_h//2, cx_img + card_w//2, cy_img + card_h//2]
                 
-                card_rgb = bg + (255,)
+                if logo_bg_color and str(logo_bg_color).startswith('#'):
+                    card_rgb = hex_to_rgb(logo_bg_color) + (255,)
+                else:
+                    card_rgb = bg + (255,)
                 if logo_card_shape == "Circle":
                     card_draw.ellipse(card_box, fill=card_rgb)
                 elif logo_card_shape == "Rounded Square":

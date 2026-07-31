@@ -15,6 +15,7 @@ import {
 
 const TEMPLATE_CATEGORIES = [
   { id: "All", name: "All", icon: "apps" },
+  { id: "WiFi", name: "WiFi", icon: "wifi" },
   { id: "Business", name: "Business", icon: "business_center" },
   { id: "Marketing", name: "Marketing", icon: "campaign" },
   { id: "Restaurant", name: "Restaurant", icon: "restaurant" },
@@ -825,7 +826,7 @@ function App() {
                   >
                     <div className="relative w-full h-full group/template">
                       <img
-                        src={`/previews/templates/${cleanName}.png?v=4`}
+                        src={`/previews/templates/${cleanName}.png?v=5`}
                         alt={`${template.name} QR code template`}
                         loading="lazy"
                         width={120}
