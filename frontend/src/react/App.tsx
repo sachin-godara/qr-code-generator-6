@@ -2415,12 +2415,12 @@ function App() {
                   {downloadSize} x {downloadSize} px
                 </span>
               </div>
-              <div className="grid grid-cols-4 gap-3">
-                {[512, 1024, 2048, 4096].map((size) => (
+              <div className="flex flex-wrap gap-2">
+                {[512, 1024, 2048, 4096, 8192].map((size) => (
                   <button
                     key={size}
                     onClick={() => setDownloadSize(size)}
-                    className={`py-2.5 px-3 rounded-xl border text-xs font-bold transition-all ${downloadSize === size
+                    className={`flex-1 min-w-[50px] py-2.5 px-1 rounded-xl border text-[11px] sm:text-xs font-bold transition-all ${downloadSize === size
                         ? "bg-primary text-white border-primary shadow-sm"
                         : "border-outline-variant bg-white text-on-surface hover:bg-surface-container-highest"
                       }`}
