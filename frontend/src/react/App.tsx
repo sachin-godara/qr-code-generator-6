@@ -190,7 +190,7 @@ function App() {
 
   const [downloadFormat, setDownloadFormat] = useState<"PNG" | "SVG" | "PDF">("PNG");
   const [downloadSize, setDownloadSize] = useState<number>(1024);
-  const [noStretching, setNoStretching] = useState<boolean>(true);
+  const [noStretching, setNoStretching] = useState<boolean>(false);
   const [customFilename, setCustomFilename] = useState<string>("");
   const [activeCorner, setActiveCorner] = useState<"all" | "tl" | "tr" | "bl">("all");
   const [copySuccess, setCopySuccess] = useState<boolean>(false);
