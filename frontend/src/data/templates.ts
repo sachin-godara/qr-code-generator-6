@@ -314,26 +314,6 @@ export const PRESET_TEMPLATES: Template[] = [
     }
   },
   {
-    "name": "Retro Console",
-    "category": "Social",
-    "description": "8-bit inspired pixel art within a monitor screen frame.",
-    "settings": {
-      "dots_style": "pixel_art",
-      "eye_frame_style": "square",
-      "eyeball_style": "square",
-      "dots_color": "#FFFFFF",
-      "dots_color_end": "#CCCCCC",
-      "bg_color": "#222222",
-      "gradient_type": "Solid Color",
-      "eye_color": "#FFFFFF",
-      "eyeball_color": "#FFFFFF",
-      "frame_style": "monitor_screen",
-      "text_style": "none",
-      "preset_logo": "None",
-      "frame_color": "#444444"
-    }
-  },
-  {
     "name": "Organic Salad Bowl",
     "category": "Restaurant",
     "description": "Leaf droplet dots with matching opposite leaf frames.",
