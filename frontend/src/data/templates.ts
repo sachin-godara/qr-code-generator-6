@@ -9,6 +9,26 @@ export interface Template {
 
 export const PRESET_TEMPLATES: Template[] = [
   {
+    "name": "None",
+    "category": "All",
+    "description": "Standard black and white square QR code with no decorations",
+    "settings": {
+      "dots_style": "square",
+      "eye_frame_style": "square",
+      "eyeball_style": "square",
+      "dots_color": "#000000",
+      "dots_color_end": "#000000",
+      "bg_color": "#ffffff",
+      "gradient_type": "Solid Color",
+      "eye_color": "#000000",
+      "eyeball_color": "#000000",
+      "frame_style": "none",
+      "text_style": "none",
+      "preset_logo": "None",
+      "logo_image": null
+    }
+  },
+  {
     "name": "Dynamic Pop",
     "category": "Premium",
     "description": "A vibrant, energetic frame with floating speed lines.",
@@ -357,26 +377,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "canvas_border_color": "#18181b",
       "canvas_border_radius": 16
     }
-  },  {
-    "name": "None",
-    "category": "Business",
-    "description": "Standard black and white square QR code with no decorations",
-    "settings": {
-      "dots_style": "square",
-      "eye_frame_style": "square",
-      "eyeball_style": "square",
-      "dots_color": "#000000",
-      "dots_color_end": "#000000",
-      "bg_color": "#ffffff",
-      "gradient_type": "Solid Color",
-      "eye_color": "#000000",
-      "eyeball_color": "#000000",
-      "frame_style": "none",
-      "text_style": "none",
-      "preset_logo": "None",
-      "logo_image": null
-    }
-  },  {
+  },
+  {
     "name": "Artisan Cafe Menu",
     "category": "Restaurant",
     "description": "Perfect for coffee shops and cafes featuring our unique coffee cup frame.",

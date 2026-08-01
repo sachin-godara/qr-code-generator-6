@@ -807,7 +807,7 @@ function App() {
         )
       case "Templates":
         const filteredTemplates = PRESET_TEMPLATES.filter(t =>
-          activeTemplateCategory === "All" || t.category === activeTemplateCategory
+          t.name === "None" || activeTemplateCategory === "All" || t.category === activeTemplateCategory
         );
 
         return (
