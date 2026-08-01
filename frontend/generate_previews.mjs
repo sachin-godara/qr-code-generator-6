@@ -10,7 +10,7 @@ import { PRESET_TEMPLATES } from './src/data/templates.ts';
 async function generate() {
     let count = 0;
     for (const tmpl of PRESET_TEMPLATES) {
-        if (tmpl.category !== "WiFi" && tmpl.name !== "Instagram Follow" && tmpl.name !== "Facebook Like" && tmpl.name !== "Snapchat Add" && tmpl.name !== "TikTok Follow" && tmpl.name !== "Spotify Listen") continue;
+        if (tmpl.category !== "WiFi") continue;
 
         const clean_name = tmpl.name.toLowerCase().replace(/ /g, "_");
         const filename = `${clean_name}.png`;
