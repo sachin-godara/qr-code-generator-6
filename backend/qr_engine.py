@@ -161,7 +161,10 @@ class DiagonalGradiantColorMask(QRColorMask):
         return self.interp_color(self.start_color, self.end_color, ratio)
 
 import os
-import fitz
+try:
+    import fitz
+except ImportError:
+    fitz = None
 
 PRESET_LOGO_BRAND_COLORS = {
     "link": "#6d28d9",

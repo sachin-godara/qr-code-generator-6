@@ -189,6 +189,57 @@ def apply_layout_frame(qr_img, layout_template="none", frame_color="#000000", pa
         new_img.paste(qr_img, (padding, padding), qr_img)
         return new_img
 
+    elif layout_template in ["phone_frame", "smartphone_mockup"]:
+        top_bar = 50
+        bottom_bar = 40
+        side_bar = 16
+        
+        new_w = qr_w + (padding + side_bar) * 2
+        new_h = qr_h + top_bar + bottom_bar + padding * 2
+        
+        new_img = Image.new("RGBA", (new_w, new_h), color=(0, 0, 0, 0))
+        draw = ImageDraw.Draw(new_img)
+        
+        chassis_radius = max(24, corner_radius + 10)
+        
+        # 1. Draw outer chassis body
+        draw.rounded_rectangle([(0, 0), (new_w - 1, new_h - 1)], radius=chassis_radius, fill=bg_color)
+        
+        # 2. Side Buttons
+        draw.rounded_rectangle([(0, top_bar + 30), (3, top_bar + 75)], radius=2, fill=bg_color)
+        draw.rounded_rectangle([(0, top_bar + 85), (3, top_bar + 130)], radius=2, fill=bg_color)
+        draw.rounded_rectangle([(new_w - 4, top_bar + 50), (new_w - 1, top_bar + 110)], radius=2, fill=bg_color)
+        
+        # 3. Inner White Screen area
+        screen_x1 = side_bar
+        screen_y1 = top_bar // 2
+        screen_x2 = new_w - side_bar
+        screen_y2 = new_h - (bottom_bar // 2)
+        draw.rounded_rectangle([(screen_x1, screen_y1), (screen_x2, screen_y2)], radius=max(12, corner_radius), fill=(255, 255, 255, 255))
+        
+        # 4. Dynamic Island / Top Notch
+        island_w = min(110, new_w // 3)
+        island_h = 20
+        island_x1 = (new_w - island_w) // 2
+        island_y1 = screen_y1 + 8
+        draw.rounded_rectangle([(island_x1, island_y1), (island_x1 + island_w, island_y1 + island_h)], radius=10, fill=bg_color)
+        lens_cx = island_x1 + island_w - 16
+        lens_cy = island_y1 + island_h // 2
+        draw.ellipse([(lens_cx - 4, lens_cy - 4), (lens_cx + 4, lens_cy + 4)], fill=(20, 20, 20, 255))
+        
+        # 5. Home Indicator Bar (Bottom)
+        bar_w = min(120, new_w // 2)
+        bar_h = 4
+        bar_x1 = (new_w - bar_w) // 2
+        bar_y1 = screen_y2 - 12
+        draw.rounded_rectangle([(bar_x1, bar_y1), (bar_x1 + bar_w, bar_y1 + bar_h)], radius=2, fill=bg_color)
+        
+        # 6. Paste QR code onto white screen area
+        qr_offset_x = (screen_x1 + screen_x2 - qr_w) // 2
+        qr_offset_y = (screen_y1 + screen_y2 - qr_h) // 2
+        new_img.paste(qr_img, (qr_offset_x, qr_offset_y), qr_img)
+        return new_img
+
     elif layout_template == "brackets":
         new_w = qr_w + padding * 2
         new_h = qr_h + padding * 2
