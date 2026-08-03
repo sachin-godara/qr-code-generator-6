@@ -5,17 +5,27 @@ interface QRState {
   settings: QRSettings;
   history: QRSettings[];
   historyIndex: number;
+  batchCsvRows: Record<string, string>[];
+  batchCsvHeaders: string[];
+  batchDataColumn: string;
+  batchFilenameColumn: string;
   updateSettings: (newSettings: Partial<QRSettings>) => void;
   resetSettings: () => void;
   applyTemplate: (templateSettings: Partial<QRSettings>) => void;
   undo: () => void;
   redo: () => void;
+  setBatchData: (rows: Record<string, string>[], headers: string[], dataCol: string, fileCol: string) => void;
+  updateBatchColumn: (type: 'data' | 'filename', column: string) => void;
 }
 
 export const useQRStore = create<QRState>((set) => ({
   settings: defaultSettings,
   history: [defaultSettings],
   historyIndex: 0,
+  batchCsvRows: [],
+  batchCsvHeaders: [],
+  batchDataColumn: "",
+  batchFilenameColumn: "",
 
   updateSettings: (newSettings) => set((state) => {
     const updated = { ...newSettings };
@@ -128,6 +138,18 @@ export const useQRStore = create<QRState>((set) => ({
       historyIndex: nextIndex,
       settings: state.history[nextIndex]
     };
+  }),
+
+  setBatchData: (rows, headers, dataCol, fileCol) => set({
+    batchCsvRows: rows,
+    batchCsvHeaders: headers,
+    batchDataColumn: dataCol,
+    batchFilenameColumn: fileCol
+  }),
+
+  updateBatchColumn: (type, column) => set((state) => {
+    if (type === 'data') return { batchDataColumn: column };
+    return { batchFilenameColumn: column };
   })
 }));
 

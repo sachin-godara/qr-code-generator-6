@@ -1,0 +1,512 @@
+import { useState, useMemo } from "react";
+import { useQRStore } from "@/store/useQRStore";
+import { Slider } from "@/components/ui/Slider";
+import { ScannabilityAlert } from "@/components/ui/ScannabilityAlert";
+import { PresetLogoPreview, LOGO_ITEMS, LOGO_CATEGORIES } from "@/components/previews/SvgIcons";
+
+const logoCardShapes = ["None", "Circle", "Rounded Square"];
+
+export function LogoPanel() {
+  const { settings, updateSettings } = useQRStore();
+  const [logoSearchQuery, setLogoSearchQuery] = useState("");
+  const [activeLogoCategory, setActiveLogoCategory] = useState("All");
+
+  const filteredLogos = useMemo(() => {
+    let result = LOGO_ITEMS.filter(l => l.id !== "None"); // Exclude "None" from grid
+    
+    if (activeLogoCategory !== "All") {
+      result = result.filter(l => l.category === activeLogoCategory);
+    }
+    
+    if (logoSearchQuery) {
+      const q = logoSearchQuery.toLowerCase();
+      result = result.filter(l => 
+        l.label.toLowerCase().includes(q) || 
+        l.keywords?.some(k => k.toLowerCase().includes(q))
+      );
+    }
+    return result;
+  }, [activeLogoCategory, logoSearchQuery]);
+
+  const hasLogo = settings.preset_logo !== "None" || !!settings.logo_image;
+
+  return (
+    <div className="bg-white rounded-xl border border-outline-variant space-y-6 p-6">
+      {/* Custom Premium Drag-and-Drop Zone */}
+      <div className="space-y-3">
+        <label className="section-label flex items-center justify-between mb-1">
+          <span className="flex items-center gap-1.5 font-bold text-on-surface">
+            <span className="material-symbols-outlined text-sm text-primary">upload_file</span>
+            Custom Brand Upload
+          </span>
+          <span className="text-[10px] uppercase font-mono text-on-surface-variant bg-surface-container-low px-2 py-0.5 rounded">PNG / JPG / WEBP</span>
+        </label>
+        <div className="flex flex-col items-center justify-center border-2 border-dashed border-outline-variant hover:border-primary/40 rounded-3xl p-8 bg-surface/40 hover:bg-primary/5 transition-all duration-300 cursor-pointer relative group overflow-hidden">
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              if (file) {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                  updateSettings({
+                    logo_image: reader.result as string,
+                    preset_logo: "None"
+                  });
+                };
+                reader.readAsDataURL(file);
+              }
+            }}
+            className="absolute inset-0 opacity-0 cursor-pointer z-10"
+          />
+
+          {settings.logo_image ? (
+            <div className="flex flex-col items-center gap-3">
+              <div className="w-20 h-20 rounded-2xl overflow-hidden border-2 border-outline-variant/60 shadow-md bg-white p-2 relative group/thumb transition-transform group-hover:scale-105">
+                <img src={settings.logo_image} alt="Uploaded logo preview" className="w-full h-full object-contain rounded-xl" />
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover/thumb:opacity-100 transition-opacity duration-200 flex items-center justify-center rounded-xl z-20 backdrop-blur-[2px]">
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      updateSettings({ logo_image: null });
+                    }}
+                    className="p-2 bg-error text-white rounded-full hover:bg-error/90 transition-transform hover:scale-110 shadow-lg"
+                  >
+                    <span className="material-symbols-outlined text-[18px] leading-none">delete_forever</span>
+                  </button>
+                </div>
+              </div>
+              <div className="text-center">
+                <p className="text-[13px] font-bold text-on-surface">Custom Logo Loaded</p>
+                <p className="text-[11px] text-on-surface-variant/80 font-medium mt-0.5">Hover to remove or click to replace</p>
+              </div>
+            </div>
+          ) : (
+            <div className="flex flex-col items-center gap-3 text-center z-0">
+              <div className="w-14 h-14 rounded-full bg-primary/10 text-primary flex items-center justify-center group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300 shadow-sm border border-primary/10">
+                <span className="material-symbols-outlined text-2xl">cloud_upload</span>
+              </div>
+              <div>
+                <p className="text-[14px] font-bold text-on-surface">Upload your logo</p>
+                <p className="text-[11px] text-on-surface-variant font-medium mt-1">Drag & drop or click to browse (PNG, JPG)</p>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="relative flex items-center py-1">
+        <div className="flex-grow border-t border-outline-variant/50"></div>
+        <span className="flex-shrink-0 mx-4 text-[10px] text-on-surface-variant uppercase font-bold tracking-wider">OR CHOOSE PRESET ICON</span>
+        <div className="flex-grow border-t border-outline-variant/50"></div>
+      </div>
+      
+      {/* Visual Theme Style Selector (Inspired by Phosphor Icons & iOS 18) */}
+      <div className="space-y-2 p-3.5 bg-gradient-to-br from-surface-container-lowest via-surface/60 to-surface-container-low rounded-2xl border border-outline-variant/60 shadow-2xs">
+        <label className="text-xs font-bold text-on-surface flex items-center justify-between">
+          <span className="flex items-center gap-1.5">
+            <span className="material-symbols-outlined text-sm text-primary">auto_awesome</span>
+            Icon Visual Style
+          </span>
+        </label>
+        <div className="grid grid-cols-3 gap-2">
+          {[
+            {
+              id: "badge",
+              label: "Brand Badge",
+              desc: "Vibrant solid cards",
+              icon: (
+                <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-primary to-blue-700 flex items-center justify-center text-white shadow-xs">
+                  <span className="material-symbols-outlined text-base">style</span>
+                </div>
+              ),
+            },
+            {
+              id: "duotone",
+              label: "Soft Glass",
+              desc: "Pastel translucent",
+              icon: (
+                <div className="w-8 h-8 rounded-xl bg-primary/15 border border-primary/20 flex items-center justify-center text-primary">
+                  <span className="material-symbols-outlined text-base">blur_on</span>
+                </div>
+              ),
+            },
+            {
+              id: "glyph",
+              label: "Pure Glyph",
+              desc: "Bare vector icon",
+              icon: (
+                <div className="w-8 h-8 rounded-xl bg-transparent flex items-center justify-center text-primary border border-dashed border-outline-variant">
+                  <span className="material-symbols-outlined text-base">token</span>
+                </div>
+              ),
+            },
+          ].map((style) => {
+            const isSelected = (settings.logo_icon_style || "badge") === style.id;
+            return (
+              <button
+                key={style.id}
+                type="button"
+                onClick={() => {
+                  const updates: any = { logo_icon_style: style.id };
+                  if (style.id === "glyph") {
+                    updates.logo_clear_size = 0;
+                  }
+                  updateSettings(updates);
+                }}
+                className={`p-2.5 rounded-xl flex flex-col items-center justify-center text-center gap-1.5 transition-all duration-200 border relative ${isSelected
+                    ? "bg-white border-primary ring-2 ring-primary/20 text-primary shadow-sm scale-[1.02]"
+                    : "bg-surface-container-lowest/60 hover:bg-white border-outline-variant/60 hover:border-primary/40 text-on-surface hover:shadow-2xs"
+                  }`}
+              >
+                {style.icon}
+                <div>
+                  <div className="text-[11px] font-bold tracking-tight">{style.label}</div>
+                  <div className="text-[9px] text-on-surface-variant/80 font-normal">{style.desc}</div>
+                </div>
+                {isSelected && (
+                  <div className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-primary ring-2 ring-white"></div>
+                )}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Icon Studio: Search & Category Filter Pills */}
+      <div className="space-y-3.5">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <label className="section-label flex items-center gap-1.5 font-bold text-on-surface">
+            <span className="material-symbols-outlined text-sm text-primary">grid_view</span>
+            Preset Icon Gallery ({filteredLogos.length})
+          </label>
+          <div className="relative flex-1 max-w-sm">
+            <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/70 text-base">search</span>
+            <input
+              type="text"
+              placeholder="Search icons..."
+              value={logoSearchQuery}
+              onChange={(e) => setLogoSearchQuery(e.target.value)}
+              className="w-full pl-9 pr-8 py-1.5 bg-surface/50 border border-outline-variant rounded-xl text-xs placeholder:text-on-surface-variant/70 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all"
+            />
+            {logoSearchQuery && (
+              <button
+                type="button"
+                onClick={() => setLogoSearchQuery("")}
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-on-surface-variant hover:text-on-surface p-0.5 rounded-full"
+              >
+                <span className="material-symbols-outlined text-sm leading-none">close</span>
+              </button>
+            )}
+          </div>
+        </div>
+
+        {/* Scrollable Category Filter Pills */}
+        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+          {LOGO_CATEGORIES.map((category) => (
+            <button
+              key={category}
+              type="button"
+              onClick={() => setActiveLogoCategory(category)}
+              className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-200 flex items-center gap-1.5 ${activeLogoCategory === category
+                  ? "bg-primary text-white shadow-xs scale-[1.02]"
+                  : "bg-surface-container-low hover:bg-surface-container-highest text-on-surface-variant border border-outline-variant/60"
+                }`}
+            >
+              {category === "All" && <span className="material-symbols-outlined text-xs">apps</span>}
+              {category === "Social & Apps" && <span className="material-symbols-outlined text-xs">share</span>}
+              {category === "Tech & Contact" && <span className="material-symbols-outlined text-xs">contact_page</span>}
+              {category === "Business & Pay" && <span className="material-symbols-outlined text-xs">payments</span>}
+              {category === "Media & More" && <span className="material-symbols-outlined text-xs">play_circle</span>}
+              {category}
+            </button>
+          ))}
+        </div>
+
+        {/* Reactive Icon Grid */}
+        <div className="grid grid-cols-3 sm:grid-cols-5 lg:grid-cols-4 xl:grid-cols-6 gap-2 sm:gap-2.5 max-h-[340px] overflow-y-auto p-2 sm:p-3.5 border border-outline-variant/40 rounded-2xl bg-surface/20">
+          {filteredLogos.length > 0 ? (
+            filteredLogos.map((item) => {
+              const isSelected = settings.preset_logo === item.id && !settings.logo_image;
+              return (
+                <button
+                  key={item.id}
+                  type="button"
+                  onClick={() => updateSettings({ preset_logo: item.id as any, logo_image: null })}
+                  className={`p-2 sm:p-2.5 rounded-xl flex flex-col items-center justify-center gap-1.5 sm:gap-2 border transition-all duration-200 group relative ${isSelected
+                      ? "bg-primary/10 text-primary border-primary border-2 ring-2 ring-primary/15 shadow-sm font-semibold"
+                      : "bg-white hover:bg-surface-container-lowest border-outline-variant hover:border-primary/40 text-on-surface shadow-2xs hover:shadow-md hover:-translate-y-0.5"
+                    }`}
+                >
+                  <PresetLogoPreview
+                    name={item.id}
+                    colorMode={settings.logo_color_mode || "default"}
+                    customColor={settings.logo_custom_color || "#000000"}
+                    cardShape={settings.logo_card_shape || "Rounded Square"}
+                    iconStyle={settings.logo_icon_style || "badge"}
+                  />
+                  <span className="text-[10px] sm:text-[11px] line-clamp-2 sm:truncate max-w-full font-medium tracking-tight text-center leading-tight">{item.label}</span>
+                  {isSelected && (
+                    <div className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-primary ring-2 ring-white"></div>
+                  )}
+                </button>
+              );
+            })
+          ) : (
+            <div className="col-span-full py-8 text-center text-on-surface-variant">
+              <span className="material-symbols-outlined text-3xl opacity-40 block mb-1">search_off</span>
+              <p className="text-xs font-semibold">No icons match "{logoSearchQuery}"</p>
+              <button
+                type="button"
+                onClick={() => { setLogoSearchQuery(""); setActiveLogoCategory("All"); }}
+                className="mt-2 text-[11px] text-primary hover:underline font-bold"
+              >
+                Clear all filters
+              </button>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Preset Logo Color Mode & Color Picker */}
+      {settings.preset_logo !== "None" && !settings.logo_image && (
+        <div className="space-y-3 p-3.5 bg-surface-container-low rounded-xl border border-outline-variant">
+          <label className="block text-xs font-bold text-on-surface flex items-center justify-between">
+            <span className="flex items-center gap-1.5">
+              <span className="material-symbols-outlined text-sm text-primary">palette</span>
+              Preset Logo Color
+            </span>
+            <span className="text-[10px] text-on-surface-variant font-mono uppercase">
+              {settings.logo_color_mode === "default" ? "Default Brand Color" : settings.logo_custom_color}
+            </span>
+          </label>
+          <div className="grid grid-cols-2 gap-2">
+            <button
+              type="button"
+              onClick={() => updateSettings({ logo_color_mode: "default" })}
+              className={`p-2.5 rounded-lg border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${settings.logo_color_mode === "default"
+                ? "bg-primary text-white border-primary shadow-sm"
+                : "bg-white text-on-surface border-outline-variant hover:bg-surface-container-highest"
+                }`}
+            >
+              <span className="material-symbols-outlined text-sm">color_lens</span>
+              Default Brand
+            </button>
+
+            <button
+              type="button"
+              onClick={() => updateSettings({ logo_color_mode: "custom" })}
+              className={`p-2.5 rounded-lg border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${settings.logo_color_mode === "custom"
+                ? "bg-primary text-white border-primary shadow-sm"
+                : "bg-white text-on-surface border-outline-variant hover:bg-surface-container-highest"
+                }`}
+            >
+              <span className="material-symbols-outlined text-sm">colorize</span>
+              Custom Color
+            </button>
+          </div>
+
+          {settings.logo_color_mode === "custom" && (
+            <div className="space-y-2 pt-2 border-t border-outline-variant/40">
+              <label className="text-[11px] font-semibold text-on-surface-variant block">Pick Custom Icon Color:</label>
+              <div className="flex items-center gap-3">
+                <input
+                  type="color"
+                  value={settings.logo_custom_color || "#000000"}
+                  onChange={(e) => updateSettings({ logo_custom_color: e.target.value })}
+                  className="w-9 h-9 rounded-lg cursor-pointer border border-outline-variant p-0.5 bg-white"
+                />
+                <input
+                  type="text"
+                  value={settings.logo_custom_color || "#000000"}
+                  onChange={(e) => updateSettings({ logo_custom_color: e.target.value })}
+                  className="flex-1 p-2 text-xs font-mono border border-outline-variant rounded-lg bg-white uppercase"
+                />
+              </div>
+              {/* Preset Color Swatches */}
+              <div className="flex flex-wrap gap-1.5 pt-1">
+                {["#000000", "#3b82f6", "#ef4444", "#10b981", "#f59e0b", "#8b5cf6", "#ec4899", "#ffffff"].map((c) => (
+                  <button
+                    key={c}
+                    type="button"
+                    onClick={() => updateSettings({ logo_custom_color: c })}
+                    className={`w-6 h-6 rounded-full border border-outline-variant/60 shadow-xs transition-transform hover:scale-110 ${(settings.logo_custom_color || "#000000").toLowerCase() === c ? "ring-2 ring-primary ring-offset-1" : ""
+                      }`}
+                    style={{ backgroundColor: c }}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {hasLogo && (
+        <div className="space-y-6 pt-4 border-t border-outline-variant/30">
+          {/* Logo Size */}
+          <div className="space-y-2">
+            <div className="flex justify-between items-center">
+              <label className="text-xs font-semibold flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-sm opacity-70">aspect_ratio</span>
+                Logo Size
+              </label>
+              <span className="text-xs text-on-surface-variant font-medium">{Math.round(settings.logo_size_ratio * 100)}%</span>
+            </div>
+            <Slider min="0.10"
+              max="0.30"
+              step="0.01"
+              value={settings.logo_size_ratio}
+              onChange={(val) => updateSettings({ logo_size_ratio: val })}
+            />
+            <ScannabilityAlert
+              show={settings.logo_size_ratio > 0.18}
+              message="Test scan recommended"
+              compact={true}
+            />
+          </div>
+
+          {/* Dot Clearance */}
+          <div className="space-y-2">
+            <div className="flex justify-between items-center">
+              <label className="text-xs font-semibold flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-sm opacity-70">grid_off</span>
+                Dot Clearance Around Logo
+              </label>
+              <span className="text-xs text-on-surface-variant font-medium">
+                {settings.logo_clear_size === -1
+                  ? "None (Overlap)"
+                  : settings.logo_clear_size === 0
+                    ? "Tight (0 dots)"
+                    : `${settings.logo_clear_size.toFixed(1)} dots`}
+              </span>
+            </div>
+            <Slider min="-1"
+              max="2"
+              step="0.1"
+              value={settings.logo_clear_size}
+              onChange={(val) => updateSettings({ logo_clear_size: val })}
+            />
+            <ScannabilityAlert
+              show={settings.logo_clear_size > 0.5}
+              message="Test scan recommended"
+              compact={true}
+            />
+            <p className="text-[10px] text-on-surface-variant/80">
+              Fine-tune the circular spacing around the logo to clear individual dots smoothly.
+            </p>
+          </div>
+
+          {/* Logo Card Shape */}
+          <div className="space-y-3">
+            <label className="block text-xs font-semibold flex items-center gap-1.5">
+              <span className="material-symbols-outlined text-sm opacity-70">layers</span>
+              Logo Card Shape
+            </label>
+            <div className="grid grid-cols-3 gap-2">
+              {logoCardShapes.map((shape) => {
+                const isSelected = settings.logo_card_shape === shape;
+                return (
+                  <button
+                    key={shape}
+                    onClick={() => updateSettings({ logo_card_shape: shape as any })}
+                    className={`py-2.5 px-1 sm:p-3 border rounded-xl text-xs flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2 transition-all duration-200 overflow-hidden text-center touch-press ${isSelected
+                      ? "bg-primary text-white border-primary font-bold shadow-md ring-2 ring-primary/15"
+                      : "bg-white hover:bg-muted border-outline-variant text-on-surface"
+                      }`}
+                  >
+                    {shape === "None" && <span className="material-symbols-outlined text-base sm:text-sm shrink-0">block</span>}
+                    {shape === "Circle" && <span className="material-symbols-outlined text-base sm:text-sm shrink-0">circle</span>}
+                    {shape === "Rounded Square" && <span className="material-symbols-outlined text-base sm:text-sm shrink-0">crop_square</span>}
+                    <span className="truncate max-w-full text-[11px] sm:text-xs leading-tight">
+                      {shape === "Rounded Square" ? (
+                        <>
+                          <span className="sm:hidden">Square</span>
+                          <span className="hidden sm:inline">Rounded Square</span>
+                        </>
+                      ) : shape}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Card Padding (only if Card Shape !== "None") */}
+          {settings.logo_card_shape !== "None" && (
+            <div className="space-y-2">
+              <div className="flex justify-between items-center">
+                <label className="text-xs font-semibold flex items-center gap-1.5">
+                  <span className="material-symbols-outlined text-sm opacity-70">space_bar</span>
+                  Card Padding
+                </label>
+                <span className="text-xs text-on-surface-variant">{settings.logo_card_padding}px</span>
+              </div>
+              <Slider min="0"
+                max="30"
+                step="1"
+                value={settings.logo_card_padding}
+                onChange={(val) => updateSettings({ logo_card_padding: val })}
+              />
+            </div>
+          )}
+
+          {/* Remove Logo Background Color (only for custom uploaded logo) */}
+          {!!settings.logo_image && (
+            <div className="space-y-4 pt-4 border-t border-outline-variant/30">
+              <div className="flex items-center gap-3">
+                <input
+                  type="checkbox"
+                  id="remove_logo_bg"
+                  checked={settings.remove_logo_bg}
+                  onChange={(e) => updateSettings({ remove_logo_bg: e.target.checked })}
+                  className="w-4 h-4 rounded text-primary focus:ring-primary border-outline-variant cursor-pointer"
+                />
+                <label htmlFor="remove_logo_bg" className="text-sm font-semibold cursor-pointer">
+                  Remove Logo Background Color
+                </label>
+              </div>
+
+              {settings.remove_logo_bg && (
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label className="block text-xs font-semibold flex items-center gap-1.5">
+                      <span className="material-symbols-outlined text-sm opacity-70">palette</span>
+                      Color to Remove
+                    </label>
+                    <div className="flex items-center gap-3">
+                      <input
+                        type="color"
+                        value={settings.logo_bg_color}
+                        onChange={(e) => updateSettings({ logo_bg_color: e.target.value })}
+                        className="w-10 h-10 rounded-lg cursor-pointer border border-outline-variant"
+                      />
+                      <span className="text-sm font-mono text-on-surface-variant uppercase">{settings.logo_bg_color}</span>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="flex justify-between items-center">
+                      <label className="text-xs font-semibold flex items-center gap-1.5">
+                        <span className="material-symbols-outlined text-sm opacity-70">tune</span>
+                        Color Tolerance
+                      </label>
+                      <span className="text-xs text-on-surface-variant">{settings.logo_bg_tolerance}</span>
+                    </div>
+                    <Slider min="0"
+                      max="150"
+                      step="1"
+                      value={settings.logo_bg_tolerance}
+                      onChange={(val) => updateSettings({ logo_bg_tolerance: val })}
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}

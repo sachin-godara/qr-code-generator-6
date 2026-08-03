@@ -1,4 +1,6 @@
-from fastapi import APIRouter, HTTPException, BackgroundTasks, Form, UploadFile, File
+from limiter import limiter
+from fastapi import APIRouter, HTTPException, BackgroundTasks, Form, UploadFile, File, Request
+from fastapi.concurrency import run_in_threadpool
 from fastapi.responses import StreamingResponse, Response
 from pydantic import BaseModel
 from typing import Optional, Any, List, Dict
@@ -91,41 +93,46 @@ class QRRequest(BaseModel):
     model_config = {"extra": "allow"}
 
 @router.post("/generate")
-async def generate_qr(request: QRRequest):
+@limiter.limit("120/minute")
+async def generate_qr(payload: QRRequest, request: Request):
     try:
-        img_bytes = generate_qr_image(request.data, request.model_dump())
+        img_bytes = await run_in_threadpool(generate_qr_image, payload.data, payload.model_dump())
         return StreamingResponse(img_bytes, media_type="image/png")
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.post("/generate/svg")
-async def generate_svg(request: QRRequest):
+@limiter.limit("60/minute")
+async def generate_svg(payload: QRRequest, request: Request):
     try:
-        svg_bytes = generate_qr_svg(request.data, request.model_dump())
+        svg_bytes = await run_in_threadpool(generate_qr_svg, payload.data, payload.model_dump())
         return Response(content=svg_bytes, media_type="image/svg+xml")
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.post("/generate/pdf")
-async def generate_pdf(request: QRRequest):
+@limiter.limit("60/minute")
+async def generate_pdf(payload: QRRequest, request: Request):
     try:
-        pdf_bytes = generate_qr_pdf(request.data, request.model_dump())
+        pdf_bytes = await run_in_threadpool(generate_qr_pdf, payload.data, payload.model_dump())
         return StreamingResponse(pdf_bytes, media_type="application/pdf")
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.get("/preview/frame/{style}")
-async def get_frame_thumbnail(style: str):
+@limiter.limit("200/minute")
+async def get_frame_thumbnail(style: str, request: Request):
     try:
-        img_bytes = get_frame_preview(style)
+        img_bytes = await run_in_threadpool(get_frame_preview, style)
         return Response(content=img_bytes, media_type="image/png")
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.get("/preview/text_frame/{style}")
-async def get_text_frame_thumbnail(style: str):
+@limiter.limit("200/minute")
+async def get_text_frame_thumbnail(style: str, request: Request):
     try:
-        img_bytes = get_text_frame_preview(style)
+        img_bytes = await run_in_threadpool(get_text_frame_preview, style)
         return Response(content=img_bytes, media_type="image/png")
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
@@ -147,41 +154,46 @@ def sanitize_filename(name: str) -> str:
     return name if name else "QR_Item"
 
 @router.post("/generate/batch")
-async def generate_batch(request: BatchQRRequest):
+@limiter.limit("10/minute")
+async def generate_batch(payload: BatchQRRequest, request: Request):
     try:
-        if len(request.items) > 500:
+        if len(payload.items) > 500:
             raise HTTPException(status_code=400, detail="Batch size limited to 500 items per request.")
 
         # Create an in-memory zip file
         zip_buffer = io.BytesIO()
         
         # Inject target size if requested
-        if request.target_size:
-            request.settings["target_size"] = request.target_size
+        if payload.target_size:
+            payload.settings["target_size"] = payload.target_size
 
-        with zipfile.ZipFile(zip_buffer, "a", zipfile.ZIP_DEFLATED, False) as zip_file:
-            for idx, item in enumerate(request.items):
-                # Generate base filename
-                base_name = sanitize_filename(item.filename) if item.filename else f"QR_Item_{idx+1:03d}"
-                ext = request.format.lower()
-                if ext not in ["png", "svg", "pdf"]:
-                    ext = "png"
-                file_name = f"{base_name}.{ext}"
-                
-                # Generate QR code
-                if ext == "svg":
-                    svg_bytes = generate_qr_svg(item.data, request.settings)
-                    zip_file.writestr(file_name, svg_bytes)
-                elif ext == "pdf":
-                    pdf_io = generate_qr_pdf(item.data, request.settings)
-                    zip_file.writestr(file_name, pdf_io.getvalue())
-                else:
-                    png_io = generate_qr_image(item.data, request.settings)
-                    zip_file.writestr(file_name, png_io.getvalue())
+        def process_batch():
+            with zipfile.ZipFile(zip_buffer, "a", zipfile.ZIP_DEFLATED, False) as zip_file:
+                for idx, item in enumerate(payload.items):
+                    # Generate base filename
+                    base_name = sanitize_filename(item.filename) if item.filename else f"QR_Item_{idx+1:03d}"
+                    ext = payload.format.lower()
+                    if ext not in ["png", "svg", "pdf"]:
+                        ext = "png"
+                    file_name = f"{base_name}.{ext}"
+                    
+                    # Generate QR code
+                    if ext == "svg":
+                        svg_bytes = generate_qr_svg(item.data, payload.settings)
+                        zip_file.writestr(file_name, svg_bytes)
+                    elif ext == "pdf":
+                        pdf_io = generate_qr_pdf(item.data, payload.settings)
+                        zip_file.writestr(file_name, pdf_io.getvalue())
+                    else:
+                        png_io = generate_qr_image(item.data, payload.settings)
+                        zip_file.writestr(file_name, png_io.getvalue())
+            zip_buffer.seek(0)
+            return zip_buffer
+            
+        final_buffer = await run_in_threadpool(process_batch)
 
-        zip_buffer.seek(0)
         return StreamingResponse(
-            zip_buffer,
+            final_buffer,
             media_type="application/zip",
             headers={"Content-Disposition": "attachment; filename=batch_qrcodes.zip"}
         )

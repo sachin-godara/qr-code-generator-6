@@ -8,15 +8,26 @@
  * All React logic, state management, and API calls remain identical
  * to the original Vite SPA.
  */
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import App from './App'
+import React from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import App from "./App";
+import { ErrorBoundary } from "./ErrorBoundary";
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 2,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 export default function QRGeneratorApp() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <App />
-    </QueryClientProvider>
-  )
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <App />
+      </QueryClientProvider>
+    </ErrorBoundary>
+  );
 }

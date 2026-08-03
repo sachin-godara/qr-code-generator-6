@@ -8,7 +8,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   // TODO: Replace with your actual production domain before deploying
   // This affects sitemap generation, canonical URLs, and OG meta tags
-  site: 'https://qrcodemaker.example.com',
+  site: 'https://qrcodemaker.com',
   
   integrations: [
     react(),
