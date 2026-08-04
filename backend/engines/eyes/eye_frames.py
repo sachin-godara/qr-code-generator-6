@@ -591,6 +591,42 @@ def draw_eye_frame(draw, px, py, s, eye_frame_style, eye_rgb, bg, img=None):
         
         draw.pieslice([in_x0, in_y0, in_x1, in_y1], 0, 360, fill=bg + (255,))
         draw.rectangle([in_cx, in_y0, in_x1, in_cy], fill=bg + (255,))
+    elif eye_frame_style == "cellular_automata" and img is not None:
+        import random
+        W = int(7 * s)
+        grid = np.zeros((W, W), dtype=np.uint8)
+        
+        inner = int(1.5 * s)
+        outer = int(5.5 * s)
+        thick = max(1, int(s))
+        
+        grid[inner:outer, inner:outer] = 1
+        grid[inner+thick:outer-thick, inner+thick:outer-thick] = 0
+        
+        # Deterministic seed based on eye position so it doesn't flicker on re-render
+        random.seed(hash(f"cell_{px}_{py}"))
+        for _ in range(int(10 * s)):
+            rx = random.randint(inner-int(s), outer+int(s)-1)
+            ry = random.randint(inner-int(s), outer+int(s)-1)
+            if 0 <= rx < W and 0 <= ry < W and grid[ry, rx] == 0:
+                grid[ry, rx] = random.choice([0, 1])
+                
+        for _ in range(5):
+            neighbors = sum(np.roll(np.roll(grid, i, 0), j, 1)
+                         for i in (-1, 0, 1) for j in (-1, 0, 1)
+                         if (i != 0 or j != 0))
+            grid = (neighbors == 3) | (grid & ((neighbors == 2) | (neighbors == 3) | (neighbors == 4)))
+            
+        center_start = int(2 * s)
+        center_end = int(5 * s)
+        grid[center_start:center_end, center_start:center_end] = 0
+        
+        mask_arr = (grid * 255).astype(np.uint8)
+        mask = Image.fromarray(mask_arr, mode='L')
+        
+        color_patch = Image.new("RGBA", (W, W), eye_rgb + (255,))
+        color_patch.putalpha(mask)
+        img.paste(color_patch, (int(px), int(py)), color_patch)
     elif eye_frame_style == "perspective_warped" and img is not None:
         W = 7 * s
         mask = Image.new("L", (int(W), int(W)), 0)

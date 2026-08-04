@@ -762,6 +762,106 @@ def apply_layout_frame(qr_img, layout_template="none", frame_color="#000000", pa
         new_img.paste(qr_img, (padding*2, padding*2), qr_img)
         return new_img
 
+    elif layout_template == "cellular_automata_frame":
+        import random
+        import numpy as np
+        
+        p = padding * 3
+        new_w = qr_w + p * 2
+        new_h = qr_h + p * 2
+        
+        new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        
+        scale = 2
+        gw = new_w // scale
+        gh = new_h // scale
+        grid = np.zeros((gh, gw), dtype=np.uint8)
+        
+        inner_x = p // scale
+        inner_y = p // scale
+        outer_x = (new_w - p) // scale
+        outer_y = (new_h - p) // scale
+        thick = max(1, (border_thickness or 10) // scale)
+        
+        grid[inner_y:outer_y, inner_x:outer_x] = 1
+        grid[inner_y+thick:outer_y-thick, inner_x+thick:outer_x-thick] = 0
+        
+        random.seed(42)
+        for _ in range(gw * 3):
+            rx = random.randint(0, gw - 1)
+            ry = random.randint(0, gh - 1)
+            if not (inner_y+thick <= ry <= outer_y-thick and inner_x+thick <= rx <= outer_x-thick):
+                grid[ry, rx] = random.choice([0, 1])
+                
+        for _ in range(5):
+            neighbors = sum(np.roll(np.roll(grid, i, 0), j, 1)
+                         for i in (-1, 0, 1) for j in (-1, 0, 1)
+                         if (i != 0 or j != 0))
+            grid = (neighbors == 3) | (grid & ((neighbors == 2) | (neighbors == 3) | (neighbors == 4)))
+            
+        grid[inner_y:outer_y, inner_x:outer_x] = 0
+        
+        mask_arr = (grid * 255).astype(np.uint8)
+        mask = Image.fromarray(mask_arr, mode='L').resize((new_w, new_h), Image.NEAREST)
+        
+        color_patch = Image.new("RGBA", (new_w, new_h), bg_color)
+        color_patch.putalpha(mask)
+        new_img.paste(color_patch, (0, 0), color_patch)
+        
+        draw.rectangle([p, p, new_w - p, new_h - p], fill=(255, 255, 255, 255))
+        new_img.paste(qr_img, (p, p), qr_img)
+        return new_img
+
+    elif layout_template == "sdf_metaball_frame":
+        import numpy as np
+        
+        p = padding * 3
+        new_w = qr_w + p * 2
+        new_h = qr_h + p * 2
+        
+        y, x = np.ogrid[0:new_h, 0:new_w]
+        cx, cy = new_w / 2.0, new_h / 2.0
+        box_w = qr_w / 2.0 + padding
+        box_h = qr_h / 2.0 + padding
+        
+        dx = np.abs(x - cx) - box_w
+        dy = np.abs(y - cy) - box_h
+        dist_box = np.sqrt(np.maximum(dx, 0)**2 + np.maximum(dy, 0)**2) + np.minimum(np.maximum(dx, dy), 0)
+        
+        r_circle = padding * 1.5
+        c1 = np.sqrt((x - (cx - box_w))**2 + (y - (cy - box_h))**2) - r_circle
+        c2 = np.sqrt((x - (cx + box_w))**2 + (y - (cy - box_h))**2) - r_circle
+        c3 = np.sqrt((x - (cx - box_w))**2 + (y - (cy + box_h))**2) - r_circle
+        c4 = np.sqrt((x - (cx + box_w))**2 + (y - (cy + box_h))**2) - r_circle
+        
+        def smin(a, b, k=20.0):
+            h = np.maximum(k - np.abs(a - b), 0.0) / k
+            return np.minimum(a, b) - h * h * k * (1.0 / 4.0)
+            
+        d = dist_box
+        d = smin(d, c1)
+        d = smin(d, c2)
+        d = smin(d, c3)
+        d = smin(d, c4)
+        
+        thick = max(1, border_thickness * 1.5)
+        frame_dist = np.abs(d) - thick/2.0
+        
+        mask = (frame_dist < 0).astype(np.uint8) * 255
+        mask_img = Image.fromarray(mask, mode='L')
+        
+        new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
+        color_patch = Image.new("RGBA", (new_w, new_h), bg_color)
+        color_patch.putalpha(mask_img)
+        new_img.paste(color_patch, (0, 0), color_patch)
+        
+        draw = ImageDraw.Draw(new_img)
+        draw.rectangle([p, p, new_w - p, new_h - p], fill=(255, 255, 255, 255))
+        
+        new_img.paste(qr_img, (p, p), qr_img)
+        return new_img
+
     return qr_img
 
 def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="SCAN ME", text_color="#ffffff", text_size=40, padding=20, corner_radius=15, border_thickness=10, top_text="SCAN ME", font_name="Outfit-Bold.ttf"):
