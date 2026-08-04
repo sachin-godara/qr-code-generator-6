@@ -591,6 +591,24 @@ def draw_eye_frame(draw, px, py, s, eye_frame_style, eye_rgb, bg, img=None):
         
         draw.pieslice([in_x0, in_y0, in_x1, in_y1], 0, 360, fill=bg + (255,))
         draw.rectangle([in_cx, in_y0, in_x1, in_cy], fill=bg + (255,))
+    elif eye_frame_style == "perspective_warped" and img is not None:
+        W = 7 * s
+        mask = Image.new("L", (int(W), int(W)), 0)
+        mdraw = ImageDraw.Draw(mask)
+        
+        mdraw.rounded_rectangle([0, 0, int(W)-1, int(W)-1], radius=int(1.5*s), fill=255)
+        mdraw.rounded_rectangle([s, s, int(W)-1-s, int(W)-1-s], radius=max(0, int(1.5*s-s)), fill=0)
+        
+        k = 1.0 * s
+        pa = [(0, 0), (W, k), (W, W), (k, W)]
+        pb = [(0, 0), (W, 0), (W, W), (0, W)]
+        
+        coeffs = find_coeffs(pa, pb)
+        warped = mask.transform((int(W), int(W)), Image.PERSPECTIVE, coeffs, Image.BICUBIC)
+        
+        color_patch = Image.new("RGBA", (int(W), int(W)), eye_rgb + (255,))
+        color_patch.putalpha(warped)
+        img.paste(color_patch, (px, py), color_patch)
     elif eye_frame_style == "none":
         pass
     else:

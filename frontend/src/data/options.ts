@@ -20,7 +20,7 @@ export const EYE_FRAME_STYLES = [
   "left_rounded", "right_rounded", "solid_square_circle_cut", "crystal_frame", 
   "arch_frame", "cross_notch_frame", "pointed_top_frame", "aztec_step_frame", 
   "camera_lens", "squircle", "notched_ring", "circuit_trace", "fluted_bezel", "cushion_cut", "hex_nut", "split_crosshairs", "aerodynamic_slant",
-  "geometric_deco", "superellipse_square", "flower_of_life", "fibonacci_flower"
+  "geometric_deco", "superellipse_square", "flower_of_life", "fibonacci_flower", "perspective_warped"
 ];
 export const EYEBALL_STYLES = [
   // Normal
