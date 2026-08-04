@@ -555,6 +555,42 @@ def draw_eye_frame(draw, px, py, s, eye_frame_style, eye_rgb, bg, img=None):
             dot_size = max(1, s//6)
             draw.ellipse([x - dot_size, y - dot_size, x + dot_size, y + dot_size], fill=bg + (255,))
         draw.ellipse([px + 1.2*s, py + 1.2*s, px + 5.8*s - 1, py + 5.8*s - 1], fill=bg + (255,))
+    elif eye_frame_style == "clean_teardrop":
+        r = 3.5 * s
+        cx, cy = px + r, py + r
+        draw.pieslice([px, py, px + 7*s - 1, py + 7*s - 1], 0, 360, fill=eye_rgb + (255,))
+        draw.rectangle([px, py, cx, cy], fill=eye_rgb + (255,))
+        
+        in_x0, in_y0 = px + s, py + s
+        in_x1, in_y1 = px + 6*s - 1, py + 6*s - 1
+        draw.pieslice([in_x0, in_y0, in_x1, in_y1], 0, 360, fill=bg + (255,))
+        draw.rectangle([in_x0, in_y0, cx, cy], fill=bg + (255,))
+    elif eye_frame_style == "crescent_drop":
+        r = 3.5 * s
+        cx, cy = px + r, py + r
+        draw.pieslice([px, py, px + 7*s - 1, py + 7*s - 1], 0, 360, fill=eye_rgb + (255,))
+        draw.rectangle([px, py, cx, cy], fill=eye_rgb + (255,))
+        
+        offset = int(0.5 * s)
+        in_x0, in_y0 = px + s + offset, py + s + offset
+        in_x1, in_y1 = px + 6*s - 1 + offset, py + 6*s - 1 + offset
+        in_cx, in_cy = cx + offset, cy + offset
+        
+        draw.pieslice([in_x0, in_y0, in_x1, in_y1], 0, 360, fill=bg + (255,))
+        draw.rectangle([in_x0, in_y0, in_cx, in_cy], fill=bg + (255,))
+    elif eye_frame_style == "reverse_crescent_drop":
+        r = 3.5 * s
+        cx, cy = px + r, py + r
+        draw.pieslice([px, py, px + 7*s - 1, py + 7*s - 1], 0, 360, fill=eye_rgb + (255,))
+        draw.rectangle([cx, py, px + 7*s - 1, cy], fill=eye_rgb + (255,)) # TR sharp
+        
+        offset = int(-0.5 * s)
+        in_x0, in_y0 = px + s - offset, py + s + offset
+        in_x1, in_y1 = px + 6*s - 1 - offset, py + 6*s - 1 + offset
+        in_cx, in_cy = cx - offset, cy + offset
+        
+        draw.pieslice([in_x0, in_y0, in_x1, in_y1], 0, 360, fill=bg + (255,))
+        draw.rectangle([in_cx, in_y0, in_x1, in_cy], fill=bg + (255,))
     elif eye_frame_style == "none":
         pass
     else:
