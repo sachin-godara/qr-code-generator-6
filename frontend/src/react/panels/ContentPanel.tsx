@@ -104,7 +104,9 @@ export function ContentPanel() {
     a.href = url;
     a.download = "sample_qr_batch.csv";
     a.click();
+    URL.revokeObjectURL(url);
   };
+
 
   return (
     <div className="space-y-6">
@@ -182,11 +184,16 @@ export function ContentPanel() {
                 <input type="file" accept=".csv" onChange={(e) => {
                   const file = e.target.files?.[0];
                   if (file) {
+                    if (file.size > 5 * 1024 * 1024) {
+                      alert("CSV file size exceeds 5MB limit.");
+                      return;
+                    }
                     const reader = new FileReader();
                     reader.onload = (e) => parseCSV(e.target?.result as string);
                     reader.readAsText(file);
                   }
                 }} className="absolute inset-0 opacity-0 cursor-pointer z-10" />
+
                 <div className="flex flex-col items-center gap-3 text-center">
                   <div className="w-14 h-14 rounded-full bg-primary/10 text-primary flex items-center justify-center shadow-sm">
                     <span className="material-symbols-outlined text-2xl">dataset</span>

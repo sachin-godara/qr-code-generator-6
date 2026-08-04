@@ -24,7 +24,7 @@ app.add_middleware(
     allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
     allow_methods=["GET", "POST", "OPTIONS"],
-    allow_headers=["*"],
+    allow_headers=["Content-Type", "Accept", "Authorization"],
 )
 
 # Include Routers
@@ -37,4 +37,6 @@ def health_check(request: Request):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    is_dev = os.getenv("ENV", "development").lower() == "development"
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=is_dev)
+

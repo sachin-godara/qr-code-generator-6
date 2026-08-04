@@ -236,7 +236,9 @@ export function useDownloadHandlers() {
       a.href = url;
       a.download = "batch_qrcodes.zip";
       a.click();
+      URL.revokeObjectURL(url);
     } catch (err) {
+
       console.error(err);
       alert("Error generating batch ZIP. Please check console for details.");
     } finally {

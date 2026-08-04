@@ -1,0 +1,404 @@
+/* ============================================================
+   HOW TO USE PAGE — Premium Animations & Glassmorphism Styles
+   ============================================================ */
+
+/* ── Scroll-triggered fade-slide-up ── */
+@keyframes fadeSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(32px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes floatA {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-18px) rotate(3deg); }
+  66% { transform: translateY(-8px) rotate(-2deg); }
+}
+
+@keyframes floatB {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-12px) rotate(-4deg); }
+  66% { transform: translateY(-22px) rotate(2deg); }
+}
+
+@keyframes floatC {
+  0%, 100% { transform: translateY(-6px) rotate(2deg); }
+  50% { transform: translateY(-20px) rotate(-3deg); }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(24,24,27,0.15); }
+  50% { box-shadow: 0 0 0 12px rgba(24,24,27,0); }
+}
+
+@keyframes drawLine {
+  from { stroke-dashoffset: 200; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes stepReveal {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ── Reveal classes (applied via IntersectionObserver) ── */
+.htu-reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.htu-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.htu-reveal-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.htu-reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.htu-reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.htu-reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Staggered delay classes */
+.delay-1 { transition-delay: 0.08s !important; }
+.delay-2 { transition-delay: 0.16s !important; }
+.delay-3 { transition-delay: 0.24s !important; }
+.delay-4 { transition-delay: 0.32s !important; }
+.delay-5 { transition-delay: 0.40s !important; }
+.delay-6 { transition-delay: 0.48s !important; }
+
+/* ── Gradient text ── */
+.htu-gradient-text {
+  background: linear-gradient(135deg, #18181b 0%, #52525b 50%, #18181b 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 5s ease infinite;
+}
+
+.htu-accent-text {
+  background: linear-gradient(135deg, #7c3aed 0%, #2563eb 50%, #0891b2 100%);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 4s ease infinite;
+}
+
+/* ── Hero floating QR silhouettes ── */
+.htu-float-a { animation: floatA 7s ease-in-out infinite; }
+.htu-float-b { animation: floatB 9s ease-in-out infinite; }
+.htu-float-c { animation: floatC 6s ease-in-out infinite; }
+
+/* ── Hero gradient background ── */
+.htu-hero-bg {
+  background: linear-gradient(135deg,
+    #f8fafc 0%,
+    #f0f4ff 25%,
+    #faf5ff 50%,
+    #f0fdf4 75%,
+    #f8fafc 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite;
+}
+
+/* ── Glassmorphism card ── */
+.htu-glass-card {
+  background: rgba(255,255,255,0.70);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255,255,255,0.55);
+  box-shadow:
+    0 4px 6px -1px rgba(0,0,0,0.06),
+    0 2px 4px -1px rgba(0,0,0,0.04),
+    inset 0 1px 0 rgba(255,255,255,0.8);
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1),
+              box-shadow 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+
+.htu-glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 20px 40px -8px rgba(0,0,0,0.12),
+    0 8px 16px -4px rgba(0,0,0,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.9);
+}
+
+/* ── Step timeline card ── */
+.htu-step-card {
+  position: relative;
+  background: #ffffff;
+  border: 1.5px solid #e4e4e7;
+  border-radius: 1.25rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  transition: border-color 0.25s ease, box-shadow 0.3s cubic-bezier(0.16,1,0.3,1), transform 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+
+.htu-step-card:hover {
+  border-color: #a1a1aa;
+  box-shadow: 0 8px 24px -4px rgba(0,0,0,0.10), 0 4px 8px -2px rgba(0,0,0,0.06);
+  transform: translateY(-2px);
+}
+
+/* ── Step number badge ── */
+.htu-step-badge {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background: #18181b;
+  color: #ffffff;
+  font-size: 0.875rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 4px rgba(24,24,27,0.08);
+  animation: pulseGlow 3s ease-in-out infinite;
+}
+
+/* ── Feature icon wrapper ── */
+.htu-feature-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.375rem;
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.16,1,0.3,1);
+}
+
+.htu-glass-card:hover .htu-feature-icon {
+  transform: scale(1.12) rotate(-4deg);
+}
+
+/* ── Pro tip cards ── */
+.htu-tip-do {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+  border: 1.5px solid #86efac;
+  border-radius: 1rem;
+  padding: 1rem 1.25rem;
+}
+
+.htu-tip-dont {
+  background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
+  border: 1.5px solid #fca5a5;
+  border-radius: 1rem;
+  padding: 1rem 1.25rem;
+}
+
+/* ── Export comparison table ── */
+.htu-table th {
+  background: #f4f4f5;
+  padding: 0.75rem 1.25rem;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  text-align: left;
+  color: #18181b;
+  border-bottom: 2px solid #e4e4e7;
+}
+
+.htu-table td {
+  padding: 0.875rem 1.25rem;
+  font-size: 0.875rem;
+  border-bottom: 1px solid #f4f4f5;
+  vertical-align: top;
+  color: #3f3f46;
+}
+
+.htu-table tr:last-child td { border-bottom: none; }
+
+.htu-table tr:hover td {
+  background: #fafafa;
+}
+
+/* ── FAQ Accordion ── */
+.htu-faq-item {
+  border: 1.5px solid #e4e4e7;
+  border-radius: 1rem;
+  overflow: hidden;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.htu-faq-item:hover {
+  border-color: #a1a1aa;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.htu-faq-trigger {
+  width: 100%;
+  padding: 1.125rem 1.25rem;
+  background: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #18181b;
+  border: none;
+  transition: background 0.2s ease;
+}
+
+.htu-faq-trigger:hover {
+  background: #fafafa;
+}
+
+.htu-faq-trigger .htu-chevron {
+  transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+  color: #71717a;
+  flex-shrink: 0;
+}
+
+.htu-faq-trigger.open .htu-chevron {
+  transform: rotate(180deg);
+}
+
+.htu-faq-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16,1,0.3,1);
+  background: #fafafa;
+  border-top: 1px solid transparent;
+}
+
+.htu-faq-body.open {
+  max-height: 400px;
+  border-top-color: #f4f4f5;
+}
+
+.htu-faq-body p {
+  padding: 1rem 1.25rem;
+  font-size: 0.9rem;
+  color: #52525b;
+  line-height: 1.7;
+}
+
+/* ── CTA section ── */
+.htu-cta-bg {
+  background: linear-gradient(135deg, #18181b 0%, #27272a 40%, #3f3f46 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.htu-cta-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 20% 50%, rgba(124,58,237,0.15) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 50%, rgba(37,99,235,0.12) 0%, transparent 60%);
+}
+
+.htu-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 1rem 2rem;
+  background: #ffffff;
+  color: #18181b;
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 0.875rem;
+  text-decoration: none;
+  transition: transform 0.25s cubic-bezier(0.16,1,0.3,1),
+              box-shadow 0.25s cubic-bezier(0.16,1,0.3,1);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.3);
+}
+
+.htu-cta-btn:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+}
+
+.htu-cta-btn:active {
+  transform: translateY(0) scale(0.99);
+}
+
+/* ── Keyboard shortcut badge ── */
+.htu-kbd {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  background: #f4f4f5;
+  border: 1px solid #d4d4d8;
+  border-radius: 0.375rem;
+  font-family: 'Geist Mono', 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #18181b;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08), inset 0 -1px 0 rgba(0,0,0,0.1);
+}
+
+/* ── Section divider ── */
+.htu-section-divider {
+  width: 3rem;
+  height: 3px;
+  background: linear-gradient(90deg, #18181b, transparent);
+  border-radius: 9999px;
+  margin: 1rem auto 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .htu-step-card { border-radius: 1rem; }
+  .htu-glass-card { backdrop-filter: none; background: rgba(255,255,255,0.95); }
+  .htu-hero-bg { background: #f8fafc; animation: none; }
+}
+
+/* ── Navbar "How to Use" active indicator ── */
+.htu-nav-active {
+  color: #18181b !important;
+  border-bottom: 2px solid #18181b;
+  padding-bottom: 4px;
+}

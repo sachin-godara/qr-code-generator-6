@@ -1,4 +1,4 @@
-name: CI/CD Quality Gate
+name: CI/CD Quality Gate & Security Audit
 
 on:
   push:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   backend-tests:
-    name: Backend Pytest Suite
+    name: Backend Pytest & Security Audit Gate
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -23,7 +23,12 @@ jobs:
           cd backend
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          pip install pytest httpx
+          pip install pytest httpx pip-audit
+
+      - name: Audit Backend Dependencies for Vulnerabilities
+        run: |
+          cd backend
+          pip-audit -r requirements.txt
 
       - name: Run Backend Pytest Suite
         run: |
@@ -31,7 +36,7 @@ jobs:
           pytest
 
   frontend-tests:
-    name: Frontend Vitest & Build Gate
+    name: Frontend Audit, Vitest & Build Gate
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -47,6 +52,11 @@ jobs:
         run: |
           cd frontend
           npm ci
+
+      - name: Audit Frontend Dependencies for Vulnerabilities
+        run: |
+          cd frontend
+          npm audit --audit-level=high
 
       - name: Run Vitest Unit Tests
         run: |

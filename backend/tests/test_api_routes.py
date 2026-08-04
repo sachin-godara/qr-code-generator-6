@@ -30,3 +30,18 @@ def test_generate_svg_endpoint_post():
     assert response.status_code == 200
     assert "image/svg+xml" in response.headers["content-type"]
     assert b"<svg" in response.content
+
+def test_generate_qr_max_length_validation():
+    long_data = "A" * 4001
+    payload = {"data": long_data}
+    response = client.post("/api/generator/generate", json=payload)
+    assert response.status_code == 422
+
+def test_generate_qr_target_size_bounds_validation():
+    payload_too_large = {"data": "test", "target_size": 9000}
+    response1 = client.post("/api/generator/generate", json=payload_too_large)
+    assert response1.status_code == 422
+
+    payload_too_small = {"data": "test", "target_size": 5}
+    response2 = client.post("/api/generator/generate", json=payload_too_small)
+    assert response2.status_code == 422

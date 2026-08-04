@@ -161,9 +161,34 @@ function App() {
               QRStream
             </span>
             <div className="hidden md:flex items-center gap-6">
-              <a href="#" className="text-on-surface font-semibold text-sm border-b-2 border-primary pb-1">Generator</a>
-              <a href="#" className="text-on-surface-variant font-medium text-sm hover:text-on-surface transition-colors duration-200">My Codes</a>
-              <a href="#" className="text-on-surface-variant font-medium text-sm hover:text-on-surface transition-colors duration-200">Resources</a>
+              <button
+                onClick={() => setActiveTab("Content")}
+                className={`text-sm font-semibold transition-colors duration-200 ${activeTab === "Content" && settings.contentType !== "batch" ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
+              >
+                Generator
+              </button>
+              <button
+                onClick={() => setActiveTab("Templates")}
+                className={`text-sm font-semibold transition-colors duration-200 ${activeTab === "Templates" ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
+              >
+                Templates
+              </button>
+              <button
+                onClick={() => {
+                  useQRStore.getState().updateSettings({ contentType: "batch" });
+                  setActiveTab("Content");
+                }}
+                className={`text-sm font-semibold transition-colors duration-200 ${settings.contentType === "batch" ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
+              >
+                Batch Generator
+              </button>
+              <a
+                href="/how-to-use"
+                className="text-sm font-semibold transition-colors duration-200 text-on-surface-variant hover:text-on-surface flex items-center gap-1.5"
+              >
+                <span className="material-symbols-outlined text-[16px]">help_outline</span>
+                How to Use
+              </a>
             </div>
           </div>
           <button
@@ -177,20 +202,42 @@ function App() {
         </div>
         {mobileMenuOpen && (
           <div className="md:hidden border-t border-outline-variant bg-surface-container-lowest px-4 py-3 space-y-1 shadow-lg">
-            <a href="#" className="flex items-center gap-3 p-3 rounded-xl bg-primary/10 text-primary font-bold min-h-[48px]">
+            <button
+              onClick={() => { setActiveTab("Content"); setMobileMenuOpen(false); }}
+              className={`w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold ${activeTab === "Content" && settings.contentType !== "batch" ? "bg-primary/10 text-primary" : "text-on-surface-variant hover:bg-surface-container"}`}
+            >
               <span className="material-symbols-outlined text-[20px]">qr_code_2</span>
               Generator
-            </a>
-            <a href="#" className="flex items-center gap-3 p-3 rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors min-h-[48px]">
-              <span className="material-symbols-outlined text-[20px]">folder</span>
-              My Codes
-            </a>
-            <a href="#" className="flex items-center gap-3 p-3 rounded-xl text-on-surface-variant hover:bg-surface-container transition-colors min-h-[48px]">
-              <span className="material-symbols-outlined text-[20px]">menu_book</span>
-              Resources
+            </button>
+            <button
+              onClick={() => { setActiveTab("Templates"); setMobileMenuOpen(false); }}
+              className={`w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold ${activeTab === "Templates" ? "bg-primary/10 text-primary" : "text-on-surface-variant hover:bg-surface-container"}`}
+            >
+              <span className="material-symbols-outlined text-[20px]">dashboard</span>
+              Templates
+            </button>
+            <button
+              onClick={() => {
+                useQRStore.getState().updateSettings({ contentType: "batch" });
+                setActiveTab("Content");
+                setMobileMenuOpen(false);
+              }}
+              className={`w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold ${settings.contentType === "batch" ? "bg-primary/10 text-primary" : "text-on-surface-variant hover:bg-surface-container"}`}
+            >
+              <span className="material-symbols-outlined text-[20px]">dataset</span>
+              Batch Generator
+            </button>
+            <a
+              href="/how-to-use"
+              className="w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold text-on-surface-variant hover:bg-surface-container"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <span className="material-symbols-outlined text-[20px]">help_outline</span>
+              How to Use
             </a>
           </div>
         )}
+
       </nav>
 
       {isOffline && (

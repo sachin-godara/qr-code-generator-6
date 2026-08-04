@@ -1,14 +1,25 @@
-from limiter import limiter
-from fastapi import APIRouter, HTTPException, BackgroundTasks, Form, UploadFile, File, Request
-from fastapi.concurrency import run_in_threadpool
-from fastapi.responses import StreamingResponse, Response
-from pydantic import BaseModel
-from typing import Optional, Any, List, Dict
-from services.qr_service import generate_qr_image, generate_qr_svg, generate_qr_pdf, get_frame_preview, get_text_frame_preview
+import logging
 import json
 import zipfile
 import io
 import re
+from typing import Optional, Any, List, Dict
+
+from limiter import limiter
+from fastapi import APIRouter, HTTPException, Request
+from fastapi.concurrency import run_in_threadpool
+from fastapi.responses import StreamingResponse, Response
+from pydantic import BaseModel, Field
+
+from services.qr_service import (
+    generate_qr_image,
+    generate_qr_svg,
+    generate_qr_pdf,
+    get_frame_preview,
+    get_text_frame_preview,
+)
+
+logger = logging.getLogger(__name__)
 
 router = APIRouter(
     prefix="/api/generator",
@@ -16,7 +27,7 @@ router = APIRouter(
 )
 
 class QRRequest(BaseModel):
-    data: str
+    data: str = Field(..., max_length=4000)
     dots_color: str = "#000000"
     bg_color: str = "#ffffff"
     bg_transparent: bool = False
@@ -89,8 +100,10 @@ class QRRequest(BaseModel):
     box_size: int = 10
     error_correction: str = "H"
     quiet_zone: int = 4
+    target_size: Optional[int] = Field(None, ge=10, le=8192)
+    no_stretching: bool = False
     
-    model_config = {"extra": "allow"}
+    model_config = {"extra": "ignore"}
 
 @router.post("/generate")
 @limiter.limit("120/minute")
@@ -99,7 +112,8 @@ async def generate_qr(payload: QRRequest, request: Request):
         img_bytes = await run_in_threadpool(generate_qr_image, payload.data, payload.model_dump())
         return StreamingResponse(img_bytes, media_type="image/png")
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.exception("Failed to generate QR PNG image")
+        raise HTTPException(status_code=500, detail="Failed to generate QR code")
 
 @router.post("/generate/svg")
 @limiter.limit("60/minute")
@@ -108,7 +122,8 @@ async def generate_svg(payload: QRRequest, request: Request):
         svg_bytes = await run_in_threadpool(generate_qr_svg, payload.data, payload.model_dump())
         return Response(content=svg_bytes, media_type="image/svg+xml")
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.exception("Failed to generate QR SVG")
+        raise HTTPException(status_code=500, detail="Failed to generate SVG QR code")
 
 @router.post("/generate/pdf")
 @limiter.limit("60/minute")
@@ -117,7 +132,8 @@ async def generate_pdf(payload: QRRequest, request: Request):
         pdf_bytes = await run_in_threadpool(generate_qr_pdf, payload.data, payload.model_dump())
         return StreamingResponse(pdf_bytes, media_type="application/pdf")
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.exception("Failed to generate QR PDF")
+        raise HTTPException(status_code=500, detail="Failed to generate PDF QR code")
 
 @router.get("/preview/frame/{style}")
 @limiter.limit("200/minute")
@@ -126,7 +142,8 @@ async def get_frame_thumbnail(style: str, request: Request):
         img_bytes = await run_in_threadpool(get_frame_preview, style)
         return Response(content=img_bytes, media_type="image/png")
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.exception(f"Failed to render frame thumbnail for style {style}")
+        raise HTTPException(status_code=500, detail="Failed to render frame preview")
 
 @router.get("/preview/text_frame/{style}")
 @limiter.limit("200/minute")
@@ -135,20 +152,20 @@ async def get_text_frame_thumbnail(style: str, request: Request):
         img_bytes = await run_in_threadpool(get_text_frame_preview, style)
         return Response(content=img_bytes, media_type="image/png")
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+        logger.exception(f"Failed to render text frame thumbnail for style {style}")
+        raise HTTPException(status_code=500, detail="Failed to render text frame preview")
 
 class BatchItem(BaseModel):
-    data: str
+    data: str = Field(..., max_length=4000)
     filename: Optional[str] = None
 
 class BatchQRRequest(BaseModel):
     items: List[BatchItem]
     settings: Dict[str, Any]
     format: str = "png"
-    target_size: Optional[int] = 1024
+    target_size: Optional[int] = Field(1024, ge=10, le=8192)
 
 def sanitize_filename(name: str) -> str:
-    # Remove invalid characters for filenames
     name = re.sub(r'[\\/*?:"<>|]', "", name)
     name = name.strip()
     return name if name else "QR_Item"
@@ -160,24 +177,20 @@ async def generate_batch(payload: BatchQRRequest, request: Request):
         if len(payload.items) > 500:
             raise HTTPException(status_code=400, detail="Batch size limited to 500 items per request.")
 
-        # Create an in-memory zip file
         zip_buffer = io.BytesIO()
         
-        # Inject target size if requested
         if payload.target_size:
             payload.settings["target_size"] = payload.target_size
 
         def process_batch():
             with zipfile.ZipFile(zip_buffer, "a", zipfile.ZIP_DEFLATED, False) as zip_file:
                 for idx, item in enumerate(payload.items):
-                    # Generate base filename
                     base_name = sanitize_filename(item.filename) if item.filename else f"QR_Item_{idx+1:03d}"
                     ext = payload.format.lower()
                     if ext not in ["png", "svg", "pdf"]:
                         ext = "png"
                     file_name = f"{base_name}.{ext}"
                     
-                    # Generate QR code
                     if ext == "svg":
                         svg_bytes = generate_qr_svg(item.data, payload.settings)
                         zip_file.writestr(file_name, svg_bytes)
@@ -197,9 +210,8 @@ async def generate_batch(payload: BatchQRRequest, request: Request):
             media_type="application/zip",
             headers={"Content-Disposition": "attachment; filename=batch_qrcodes.zip"}
         )
+    except HTTPException:
+        raise
     except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
-
-
-
-# debug
+        logger.exception("Batch QR generation failed")
+        raise HTTPException(status_code=500, detail="Batch generation failed due to internal error")
