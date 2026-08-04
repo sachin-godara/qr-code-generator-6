@@ -1,1 +1,1 @@
-# Core utility modules package
+# Core engine package

@@ -1748,5 +1748,20 @@
   "1746": "wayfinder-decision-tickets.md",
   "1747": "wayfinder-research-subagents.md",
   "1748": "yagni-scope-improve-architecture.md",
-  "1749": "dependency-cruiser.config.cjs"
+  "1749": "dependency-cruiser.config.cjs",
+  "1750": "StarModuleDrawer",
+  "1751": "TargetBullseyeModuleDrawer",
+  "1762": "test_hook_skips_head_on_exe",
+  "1763": "test_hook_check_no_additionalContext",
+  "1764": "test_hooks_use_cross_platform_detach",
+  "1765": "test_rebuild_bodies_with_graphify_root_are_valid_python",
+  "1766": "test_probes_use_find_spec_not_full_import",
+  "1767": "test_shebang_read_is_null_byte_safe",
+  "1768": "test_hooks_honor_skip_env",
+  "1771": "core/__init__.py",
+  "1772": "dots/__init__.py",
+  "1773": "eyes/__init__.py",
+  "1774": "frames/__init__.py",
+  "1775": "engines/__init__.py",
+  "1776": "logo/__init__.py"
 }

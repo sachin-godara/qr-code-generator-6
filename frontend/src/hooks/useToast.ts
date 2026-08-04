@@ -1,15 +1,20 @@
 import { useEffect } from "react";
-import { useToastStore } from "@/store/useToastStore";
+import { useToastStore, type ToastItem } from "@/store/useToastStore";
 
-export function useToast(duration = 3000) {
+
+export function useToast(defaultDuration = 4000) {
   const { toast, setToast } = useToastStore();
 
   useEffect(() => {
     if (toast) {
-      const timer = setTimeout(() => setToast(null), duration);
+      if (toast.persistent || toast.duration === 0) {
+        return; // Persistent toast does not auto-dismiss
+      }
+      const delay = toast.duration ?? defaultDuration;
+      const timer = setTimeout(() => setToast(null), delay);
       return () => clearTimeout(timer);
     }
-  }, [toast, duration, setToast]);
+  }, [toast, defaultDuration, setToast]);
 
   return { toast, setToast };
 }

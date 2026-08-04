@@ -19,14 +19,38 @@ export function useDownloadHandlers() {
   };
 
   const handleDownloadCustom = async () => {
+    let progressTimer: any = null;
     try {
       setIsDownloading(true);
-      if (downloadSize >= 4096 && (downloadFormat === "PNG" || hasComplexStyling)) {
+      const resLabel = downloadSize >= 8192 ? "8K (8192px)" : downloadSize >= 4096 ? "4K (4096px)" : downloadSize >= 2048 ? "2K (2048px)" : `${downloadSize}px`;
+      
+      if (downloadSize >= 2048) {
         setToast({
-          message: `Rendering ${downloadSize === 8192 ? '8K (8192px)' : '4K (4096px)'} high-res output... Please wait a moment.`,
-          icon: "hourglass_top"
+          message: `Preparing ${resLabel} output canvas (20%)...`,
+          icon: "hourglass_top",
+          persistent: true
         });
+
+        let currentProgress = 20;
+        progressTimer = setInterval(() => {
+          currentProgress += 15;
+          if (currentProgress < 85) {
+            const stageMsg = currentProgress < 45
+              ? `Building ${resLabel} module matrix (${currentProgress}%)...`
+              : currentProgress < 70
+              ? `Applying eye styling & custom frames (${currentProgress}%)...`
+              : `Rendering high-res canvas effects (${currentProgress}%)...`;
+            setToast({
+              message: stageMsg,
+              icon: "hourglass_top",
+              persistent: true
+            });
+          } else {
+            clearInterval(progressTimer);
+          }
+        }, 350);
       }
+
       const { contentData, ...rest } = settings;
 
       let finalLogo = rest.logo_image;
@@ -74,6 +98,15 @@ export function useDownloadHandlers() {
         body: JSON.stringify(payload),
       });
       if (!response.ok) throw new Error(`Failed to generate ${downloadFormat}`);
+      
+      if (progressTimer) clearInterval(progressTimer);
+      if (downloadSize >= 2048) {
+        setToast({
+          message: `Finalizing ${resLabel} file stream (95%)...`,
+          icon: "hourglass_bottom",
+          persistent: true
+        });
+      }
       const blob = await response.blob();
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
@@ -82,14 +115,16 @@ export function useDownloadHandlers() {
       a.click();
       URL.revokeObjectURL(url);
       setDownloadSuccess(true);
-      setToast({ message: `Downloaded as ${ext.toUpperCase()}`, icon: "download_done" });
+      setToast({ message: `Downloaded ${resLabel} as ${ext.toUpperCase()}`, icon: "download_done", duration: 5000 });
       setTimeout(() => setDownloadSuccess(false), 3000);
     } catch (e) {
       console.error(e);
       setToast({ message: "Download Failed", icon: "error" });
     } finally {
+      if (progressTimer) clearInterval(progressTimer);
       setIsDownloading(false);
     }
+
   };
 
   const handleCopyToClipboard = async () => {

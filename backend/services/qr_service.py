@@ -242,73 +242,50 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
     # Determine resolution strategy
     target_size = params.get("target_size")
     if target_size and isinstance(target_size, (int, float)) and target_size > 0:
-        scalable_text = {"none", "top_text", "bottom_text", "top_bottom_text", "speech_bubble", "speech_bubble_top", "bottom_tab"}
-        scalable_layout = {"none", "border", "double_border", "dotted_border", "brackets", "circle", "hexagon", "drop_shadow_card", "scalloped_edge"}
+        target_size = int(target_size)
+        no_stretching = params.get("no_stretching", False)
         
-        no_stretching = params.get("no_stretching", True)
-        
-        # The user wants "no_stretching" to act as a toggle for complex frames:
-        # If True: Force ALL frames into native scaling. This gives the "old project" sharp edges,
-        # but allows complex frames (like pizza) to change proportions (e.g. thin crust).
-        # If False: Complex frames fallback to the 'else' block (upscaling), preserving their 
-        # thick WYSIWYG preview proportions.
-        is_scalable = no_stretching or (
-            params.get("text_style", "none") in scalable_text and 
-            params.get("frame_style", "none") in scalable_layout
-        )
-
-        if is_scalable:
+        if no_stretching:
             import copy
-            # Pass 1: generate at original scale to determine exactly how many pixels the frame adds
+            # Calculate optimal integer box_size so QR modules are rendered natively
             dummy_params = copy.deepcopy(params)
-            dummy_params["target_size"] = 0 # Prevent infinite scaling logic
+            dummy_params["target_size"] = 0
             original_box_size = dummy_params.get("box_size", 10)
             dummy_img = _build_image(dummy_params)
             
             orig_w = dummy_img.size[0]
             if orig_w > 0:
-                # We always supersample slightly to generate a massive base image, 
-                # then downscale it to exactly target_size. This mimics the old project's perfectly sharp edges.
-                multiplier = 1.25
-                scale_factor = (float(target_size) * multiplier) / float(orig_w)
-                
-                # Scale box_size
+                scale_factor = float(target_size) / float(orig_w)
                 params["box_size"] = max(1, int(round(original_box_size * scale_factor)))
-                
-                # Scale all other spatial parameters
                 for key in ["logo_card_padding", "canvas_border_width", "frame_padding", "frame_radius", "frame_border", "frame_text_size"]:
                     if key in params and isinstance(params[key], (int, float)):
                         params[key] = max(1, int(round(params[key] * scale_factor)))
                         
             base_qr = _build_image(params)
             
-            # Always perfectly resize to target_size using Lanczos SSAA for maximum sharpness
+            # Place natively rendered QR onto target_size canvas without any Lanczos pixel stretching
             w, h = base_qr.size
-            if w > 0 and w != target_size:
-                aspect = h / w
-                new_w = int(target_size)
-                new_h = int(new_w * aspect)
-                base_qr = base_qr.resize((new_w, new_h), Image.Resampling.LANCZOS)
+            if w > 0 and (w != target_size or h != target_size):
+                bg_trans = params.get("bg_transparent", False)
+                bg_hex = params.get("bg_color", "#ffffff")
+                bg_color = (0, 0, 0, 0) if bg_trans else (hex_to_rgb(bg_hex) + (255,) if str(bg_hex).startswith('#') else (255, 255, 255, 255))
+                
+                canvas = Image.new("RGBA", (target_size, target_size), bg_color)
+                pos_x = (target_size - w) // 2
+                pos_y = (target_size - h) // 2
+                canvas.paste(base_qr, (pos_x, pos_y), base_qr if base_qr.mode == "RGBA" else None)
+                base_qr = canvas
         else:
-            # For complex templates (e.g. coffee_cup) we CANNOT scale the box_size natively 
-            # because the hardcoded integers in frame_engine.py would break (e.g. cup_w=90 would be tiny).
-            # Instead, we generate the image perfectly at its native proportions and then upscale it.
             base_qr = _build_image(params)
-            
             w, h = base_qr.size
             if w > 0:
                 aspect = h / w
-                new_w = int(target_size)
+                new_w = target_size
                 new_h = int(new_w * aspect)
-                
-                if no_stretching:
-                    # The user wants NO blurry stretching, but we MUST reach the target size.
-                    # We use Nearest Neighbor to upscale the pixels blockily without blurring.
-                    base_qr = base_qr.resize((new_w, new_h), Image.Resampling.NEAREST)
-                else:
-                    base_qr = base_qr.resize((new_w, new_h), Image.Resampling.LANCZOS)
+                base_qr = base_qr.resize((new_w, new_h), Image.Resampling.LANCZOS)
     else:
         base_qr = _build_image(params)
+
         
     img_byte_arr = io.BytesIO()
     base_qr.save(img_byte_arr, format='PNG')
