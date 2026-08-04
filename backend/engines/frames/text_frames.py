@@ -60,8 +60,9 @@ def apply_layout_frame(qr_img, layout_template="none", frame_color="#000000", pa
         return new_img
         
     elif layout_template == "circle":
-        new_w = qr_w + padding * 4
-        new_h = qr_h + padding * 4
+        diag = int(math.hypot(qr_w, qr_h))
+        new_w = diag + padding * 2
+        new_h = diag + padding * 2
         new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
         draw = ImageDraw.Draw(new_img)
         
@@ -74,30 +75,33 @@ def apply_layout_frame(qr_img, layout_template="none", frame_color="#000000", pa
                           (new_w - padding - border_thickness//2, new_h - padding - border_thickness//2)], 
                          outline=bg_color, width=border_thickness)
                          
-        new_img.paste(qr_img, (padding * 2, padding * 2), qr_img)
+        offset = (new_w - qr_w) // 2
+        new_img.paste(qr_img, (offset, offset), qr_img)
         return new_img
         
     elif layout_template == "circle_sunburst":
-        new_w = qr_w + padding * 4
-        new_h = qr_h + padding * 4
+        diag = int(math.hypot(qr_w, qr_h))
+        new_w = diag + padding * 4
+        new_h = diag + padding * 4
         new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
         draw = ImageDraw.Draw(new_img)
         
         # White circle background
-        draw.ellipse([(padding, padding), (new_w - padding, new_h - padding)], fill=(255, 255, 255, 255))
+        draw.ellipse([(padding*2, padding*2), (new_w - padding*2, new_h - padding*2)], fill=(255, 255, 255, 255))
         
         # Circle border
         if border_thickness > 0:
-            draw.ellipse([(padding + border_thickness//2, padding + border_thickness//2), 
-                          (new_w - padding - border_thickness//2, new_h - padding - border_thickness//2)], 
+            draw.ellipse([(padding*2 + border_thickness//2, padding*2 + border_thickness//2), 
+                          (new_w - padding*2 - border_thickness//2, new_h - padding*2 - border_thickness//2)], 
                          outline=bg_color, width=border_thickness)
                          
-        new_img.paste(qr_img, (padding * 2, padding * 2), qr_img)
+        offset = (new_w - qr_w) // 2
+        new_img.paste(qr_img, (offset, offset), qr_img)
         
         # Sunburst rays
         cx = new_w // 2
         cy = new_h // 2
-        r_orbit = (new_w - padding * 2) // 2
+        r_orbit = (new_w - padding * 4) // 2
         num_rays = 36
         for i in range(num_rays):
             angle = i * (2 * math.pi / num_rays)
@@ -111,26 +115,28 @@ def apply_layout_frame(qr_img, layout_template="none", frame_color="#000000", pa
         return new_img
         
     elif layout_template == "circle_sprinkles":
-        new_w = qr_w + padding * 4
-        new_h = qr_h + padding * 4
+        diag = int(math.hypot(qr_w, qr_h))
+        new_w = diag + padding * 4
+        new_h = diag + padding * 4
         new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
         draw = ImageDraw.Draw(new_img)
         
         # White circle background
-        draw.ellipse([(padding, padding), (new_w - padding, new_h - padding)], fill=(255, 255, 255, 255))
+        draw.ellipse([(padding*2, padding*2), (new_w - padding*2, new_h - padding*2)], fill=(255, 255, 255, 255))
         
         # Circle border
         if border_thickness > 0:
-            draw.ellipse([(padding + border_thickness//2, padding + border_thickness//2), 
-                          (new_w - padding - border_thickness//2, new_h - padding - border_thickness//2)], 
+            draw.ellipse([(padding*2 + border_thickness//2, padding*2 + border_thickness//2), 
+                          (new_w - padding*2 - border_thickness//2, new_h - padding*2 - border_thickness//2)], 
                          outline=bg_color, width=border_thickness)
                          
-        new_img.paste(qr_img, (padding * 2, padding * 2), qr_img)
+        offset = (new_w - qr_w) // 2
+        new_img.paste(qr_img, (offset, offset), qr_img)
         
         # Sprinkles
         cx = new_w // 2
         cy = new_h // 2
-        r_orbit = (new_w - padding * 2) // 2 + border_thickness
+        r_orbit = (new_w - padding * 4) // 2 + border_thickness
         sprinkle_r = max(4, border_thickness * 3 // 4)
         for i in range(8):
             angle = i * (2 * math.pi / 8)
@@ -141,6 +147,7 @@ def apply_layout_frame(qr_img, layout_template="none", frame_color="#000000", pa
         return new_img
         
     elif layout_template == "dotted_border":
+        padding = max(padding, border_thickness + 15)
         new_w = qr_w + padding * 2
         new_h = qr_h + padding * 2
         new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
@@ -858,6 +865,276 @@ def apply_layout_frame(qr_img, layout_template="none", frame_color="#000000", pa
         
         draw = ImageDraw.Draw(new_img)
         draw.rectangle([p, p, new_w - p, new_h - p], fill=(255, 255, 255, 255))
+        
+        new_img.paste(qr_img, (p, p), qr_img)
+        return new_img
+
+    elif layout_template == "modern_arch":
+        p = padding * 2
+        new_w = qr_w + p * 2
+        arch_radius = new_w // 2
+        new_h = qr_h + p * 2 + arch_radius - p
+        
+        new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        
+        draw.pieslice([0, 0, new_w, new_w], start=180, end=360, fill=(255, 255, 255, 255))
+        draw.rectangle([0, arch_radius, new_w, new_h], fill=(255, 255, 255, 255))
+        
+        if border_thickness > 0:
+            bw = max(1, border_thickness//2)
+            draw.arc([bw, bw, new_w - bw, new_w - bw], start=180, end=360, fill=bg_color, width=bw)
+            draw.line([bw, arch_radius, bw, new_h - bw], fill=bg_color, width=bw)
+            draw.line([new_w - bw, arch_radius, new_w - bw, new_h - bw], fill=bg_color, width=bw)
+            draw.line([bw, new_h - bw, new_w - bw, new_h - bw], fill=bg_color, width=bw)
+            
+        new_img.paste(qr_img, (p, arch_radius + p - padding), qr_img)
+        return new_img
+
+    elif layout_template == "chamfered_monolith":
+        p = padding * 2
+        new_w = qr_w + p * 2
+        new_h = qr_h + p * 2
+        new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        
+        chamfer = p
+        pts = [
+            (chamfer, 0), (new_w, 0),
+            (new_w, new_h - chamfer), (new_w - chamfer, new_h),
+            (0, new_h), (0, chamfer)
+        ]
+        
+        draw.polygon(pts, fill=(255, 255, 255, 255))
+        if border_thickness > 0:
+            bw = max(1, border_thickness // 2)
+            pts_inner = [
+                (chamfer, bw), (new_w - bw, bw),
+                (new_w - bw, new_h - chamfer), (new_w - chamfer, new_h - bw),
+                (bw, new_h - bw), (bw, chamfer)
+            ]
+            draw.line(pts_inner + [pts_inner[0]], fill=bg_color, width=bw, joint="curve")
+            
+        new_img.paste(qr_img, (p, p), qr_img)
+        return new_img
+
+    elif layout_template == "aperture_orbit":
+        p = padding * 3
+        size = max(qr_w, qr_h) + p * 2
+        new_img = Image.new("RGBA", (size, size), color=(255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        
+        draw.ellipse([p//2, p//2, size - p//2, size - p//2], fill=(255, 255, 255, 255))
+        
+        bw = max(2, border_thickness)
+        gap = 15 
+        for start_angle in [0, 90, 180, 270]:
+            draw.arc([p//2, p//2, size - p//2, size - p//2], start=start_angle + gap, end=start_angle + 90, fill=bg_color, width=bw)
+            
+            cx, cy = size / 2, size / 2
+            r = (size - p) / 2
+            
+            rad_start = math.radians(start_angle + gap)
+            rad_end = math.radians(start_angle + 90)
+            
+            sx, sy = cx + r * math.cos(rad_start), cy + r * math.sin(rad_start)
+            ex, ey = cx + r * math.cos(rad_end), cy + r * math.sin(rad_end)
+            
+            draw.ellipse([sx - bw/2, sy - bw/2, sx + bw/2, sy + bw/2], fill=bg_color)
+            draw.ellipse([ex - bw/2, ey - bw/2, ex + bw/2, ey + bw/2], fill=bg_color)
+            
+        offset_x = (size - qr_w) // 2
+        offset_y = (size - qr_h) // 2
+        new_img.paste(qr_img, (offset_x, offset_y), qr_img)
+        return new_img
+
+    elif layout_template == "single_droplet_plaque":
+        p = padding * 2
+        new_w = qr_w + p * 2
+        new_h = qr_h + p * 2
+        
+        new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        
+        r = p
+        draw.rectangle([r, 0, new_w, new_h - r], fill=(255, 255, 255, 255))
+        draw.rectangle([0, r, new_w - r, new_h], fill=(255, 255, 255, 255))
+        draw.pieslice([0, 0, r*2, r*2], 180, 270, fill=(255, 255, 255, 255))
+        draw.pieslice([0, new_h - r*2, r*2, new_h], 90, 180, fill=(255, 255, 255, 255))
+        draw.pieslice([new_w - r*2, new_h - r*2, new_w, new_h], 0, 90, fill=(255, 255, 255, 255))
+        
+        if border_thickness > 0:
+            bw = max(1, border_thickness // 2)
+            
+            draw.line([new_w - bw, r, new_w - bw, 0], fill=bg_color, width=bw)
+            draw.line([new_w - r, 0, new_w, 0], fill=bg_color, width=bw)
+            
+            draw.line([r, bw, new_w - r, bw], fill=bg_color, width=bw) 
+            draw.line([new_w - bw, r, new_w - bw, new_h - r], fill=bg_color, width=bw) 
+            draw.line([r, new_h - bw, new_w - r, new_h - bw], fill=bg_color, width=bw) 
+            draw.line([bw, r, bw, new_h - r], fill=bg_color, width=bw) 
+            
+            draw.arc([bw, bw, r*2, r*2], 180, 270, fill=bg_color, width=bw)
+            draw.arc([bw, new_h - r*2 - bw, r*2, new_h - bw], 90, 180, fill=bg_color, width=bw)
+            draw.arc([new_w - r*2 - bw, new_h - r*2 - bw, new_w - bw, new_h - bw], 0, 90, fill=bg_color, width=bw)
+            
+        new_img.paste(qr_img, (p, p), qr_img)
+        return new_img
+
+    elif layout_template == "floating_gallery_canvas":
+        p = padding * 3
+        new_w = qr_w + p * 2
+        new_h = qr_h + p * 2
+        
+        canvas_w = new_w + padding * 2
+        canvas_h = new_h + padding * 2
+        
+        new_img = Image.new("RGBA", (canvas_w, canvas_h), color=(255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        
+        shadow_layers = 8
+        shadow_offset_y = padding // 2
+        for i in range(shadow_layers):
+            spread = i * 4
+            alpha = int(45 / (i + 1.5))
+            draw.rounded_rectangle([
+                padding - spread, 
+                padding + shadow_offset_y - spread + (i*2), 
+                padding + new_w + spread, 
+                padding + new_h + shadow_offset_y + spread + (i*2)
+            ], radius=padding, fill=(0, 0, 0, alpha))
+            
+        draw.rounded_rectangle([padding, padding, padding + new_w, padding + new_h], radius=max(2, padding // 2), fill=(255, 255, 255, 255))
+        
+        new_img.paste(qr_img, (padding + p, padding + p), qr_img)
+        return new_img
+
+    elif layout_template == "guilloche_security":
+        p = padding * 3
+        new_w = qr_w + p * 2
+        new_h = qr_h + p * 2
+        new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        
+        draw.rectangle([padding, padding, new_w - padding, new_h - padding], fill=(255, 255, 255, 255))
+        
+        cx, cy = new_w / 2, new_h / 2
+        R_base = (max(qr_w, qr_h) // 2) + padding
+        num_waves = 12
+        amplitude = padding * 0.8
+        
+        for phase in range(0, 360, 15):
+            pts = []
+            phase_rad = math.radians(phase)
+            for angle in range(0, 361, 2):
+                rad = math.radians(angle)
+                r_vary = R_base + math.sin(rad * num_waves + phase_rad) * amplitude
+                x = cx + r_vary * math.cos(rad)
+                y = cy + r_vary * math.sin(rad)
+                pts.append((x, y))
+            draw.line(pts, fill=bg_color, width=1)
+            
+        new_img.paste(qr_img, (p, p), qr_img)
+        return new_img
+
+    elif layout_template == "topographic_map":
+        p = padding * 4
+        new_w = qr_w + p * 2
+        new_h = qr_h + p * 2
+        new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 255))
+        draw = ImageDraw.Draw(new_img)
+        
+        cx, cy = new_w / 2, new_h / 2
+        
+        for radius_step in range(0, p * 2, max(4, padding // 3)):
+            pts = []
+            R_base = (qr_w // 2) + padding + radius_step
+            for angle in range(0, 361, 2):
+                rad = math.radians(angle)
+                nx = math.cos(rad) * R_base * 0.02
+                ny = math.sin(rad) * R_base * 0.02
+                noise = math.sin(nx * 2.1 + ny * 1.5) * 0.5 + math.sin(nx * 3.4 - ny * 1.1) * 0.5
+                
+                r_vary = R_base + noise * (15 + radius_step * 0.1)
+                x = cx + r_vary * math.cos(rad)
+                y = cy + r_vary * math.sin(rad)
+                pts.append((x, y))
+            draw.line(pts, fill=bg_color, width=max(1, border_thickness // 3))
+            
+        draw.rectangle([p - padding//2, p - padding//2, new_w - p + padding//2, new_h - p + padding//2], fill=(255, 255, 255, 255))
+        
+        new_img.paste(qr_img, (p, p), qr_img)
+        return new_img
+
+    elif layout_template == "isometric_pedestal":
+        p = padding * 3
+        new_w = qr_w + p * 2
+        depth = padding * 2
+        new_h = qr_h + p * 2 + depth
+        new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
+        draw = ImageDraw.Draw(new_img)
+        
+        bx1, by1 = p - padding, p - padding
+        bx2, by2 = new_w - p + padding, new_h - depth - p + padding
+        
+        dx = padding
+        dy = padding * 1.5
+        
+        draw.polygon([
+            (bx1, by2), (bx1 + dx, by2 + dy), (bx2 + dx, by2 + dy), (bx2, by2)
+        ], fill=bg_color)
+        draw.polygon([
+            (bx2, by1), (bx2 + dx, by1 + dy), (bx2 + dx, by2 + dy), (bx2, by2)
+        ], fill=bg_color)
+        
+        draw.rectangle([bx1, by1, bx2, by2], fill=(255, 255, 255, 255), outline=bg_color, width=border_thickness)
+        
+        new_img.paste(qr_img, (p, p), qr_img)
+        return new_img
+
+    elif layout_template == "moire_interference":
+        p = padding * 4
+        new_w = qr_w + p * 2
+        new_h = qr_h + p * 2
+        new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 255))
+        draw = ImageDraw.Draw(new_img)
+        
+        cx1, cy1 = new_w / 2 - padding, new_h / 2
+        cx2, cy2 = new_w / 2 + padding, new_h / 2
+        
+        max_r = int(math.hypot(new_w, new_h) / 1.5)
+        step = max(4, padding // 2)
+        
+        for r in range(10, max_r, step):
+            draw.ellipse([cx1 - r, cy1 - r, cx1 + r, cy1 + r], outline=bg_color, width=1)
+            draw.ellipse([cx2 - r, cy2 - r, cx2 + r, cy2 + r], outline=bg_color, width=1)
+            
+        draw.rectangle([p - padding//2, p - padding//2, new_w - p + padding//2, new_h - p + padding//2], fill=(255, 255, 255, 255))
+        new_img.paste(qr_img, (p, p), qr_img)
+        return new_img
+
+    elif layout_template == "l_system_fractal":
+        p = padding * 3
+        new_w = qr_w + p * 2
+        new_h = qr_h + p * 2
+        new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 255))
+        draw = ImageDraw.Draw(new_img)
+        
+        def draw_branch(x, y, angle, depth, length):
+            if depth == 0:
+                return
+            x2 = x + length * math.cos(angle)
+            y2 = y + length * math.sin(angle)
+            draw.line([(x, y), (x2, y2)], fill=bg_color, width=max(1, depth))
+            draw_branch(x2, y2, angle - math.radians(25), depth - 1, length * 0.75)
+            draw_branch(x2, y2, angle + math.radians(15), depth - 1, length * 0.8)
+            
+        draw_branch(0, 0, math.radians(45), 6, padding * 1.5)
+        draw_branch(new_w, 0, math.radians(135), 6, padding * 1.5)
+        draw_branch(0, new_h, math.radians(-45), 6, padding * 1.5)
+        draw_branch(new_w, new_h, math.radians(-135), 6, padding * 1.5)
+        
+        draw.rectangle([p - padding//2, p - padding//2, new_w - p + padding//2, new_h - p + padding//2], fill=(255, 255, 255, 255), outline=bg_color, width=border_thickness)
         
         new_img.paste(qr_img, (p, p), qr_img)
         return new_img
