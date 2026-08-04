@@ -500,6 +500,61 @@ def draw_eye_frame(draw, px, py, s, eye_frame_style, eye_rgb, bg, img=None):
         draw.arc([px + 5*s, cy, px + 7*s, py + 7*s], start=270, end=90, fill=eye_rgb + (255,), width=w)
     elif eye_frame_style == "capsule_horizontal":
         draw.rounded_rectangle([px, py + 1.5*s, px + 7*s - 1, py + 5.5*s - 1], radius=2*s, outline=eye_rgb + (255,), width=s)
+    elif eye_frame_style == "geometric_deco":
+        x0, y0 = px, py
+        x1, y1 = px + 7*s - 1, py + 7*s - 1
+        pts = [
+            (x0, y0+s), (x0+s, y0), (x1-s, y0), (x1, y0+s),
+            (x1, y1-s), (x1-s, y1), (x0+s, y1), (x0, y1-s)
+        ]
+        draw.polygon(pts, fill=eye_rgb + (255,))
+        draw.rectangle([x0 + 1*s, y0 + 1*s, x1 - 1*s, y1 - 1*s], fill=bg + (255,))
+        for i in range(3):
+            d = i * s * 0.3
+            draw.line([x0+d, y0+s+d, x0+s+d, y0+d], fill=bg + (255,), width=max(1, s//8))
+    elif eye_frame_style == "superellipse_square":
+        cx, cy = px + 3.5*s, py + 3.5*s
+        pts = []
+        a, b = 3.5*s, 3.5*s
+        n = 5.0
+        for theta in range(0, 360, 2):
+            t = math.radians(theta)
+            cos_t = math.cos(t)
+            sin_t = math.sin(t)
+            x = cx + a * (abs(cos_t) ** (2/n)) * math.copysign(1, cos_t)
+            y = cy + b * (abs(sin_t) ** (2/n)) * math.copysign(1, sin_t)
+            mod = 1 + 0.05 * math.sin(16*t)
+            x = cx + (x - cx) * mod
+            y = cy + (y - cy) * mod
+            pts.append((x, y))
+        draw.polygon(pts, fill=eye_rgb + (255,))
+        draw.rectangle([px + 1.2*s, py + 1.2*s, px + 5.8*s - 1, py + 5.8*s - 1], fill=bg + (255,))
+    elif eye_frame_style == "flower_of_life":
+        cx, cy = px + 3.5*s, py + 3.5*s
+        R = 3.5*s
+        draw.ellipse([cx - R, cy - R, cx + R, cy + R], fill=eye_rgb + (255,))
+        r = R / 3
+        draw.ellipse([cx - r, cy - r, cx + r, cy + r], outline=bg + (255,), width=max(1, s//8))
+        for i in range(6):
+            rad = math.radians(i * 60)
+            x = cx + r * math.cos(rad)
+            y = cy + r * math.sin(rad)
+            draw.ellipse([x - r, y - r, x + r, y + r], outline=bg + (255,), width=max(1, s//8))
+        draw.ellipse([px + 1.2*s, py + 1.2*s, px + 5.8*s - 1, py + 5.8*s - 1], fill=bg + (255,))
+    elif eye_frame_style == "fibonacci_flower":
+        cx, cy = px + 3.5*s, py + 3.5*s
+        R = 3.5*s
+        draw.ellipse([cx - R, cy - R, cx + R, cy + R], fill=eye_rgb + (255,))
+        golden_angle = 137.508
+        num_seeds = 100
+        for i in range(num_seeds):
+            r = R * 0.9 * math.sqrt(i) / math.sqrt(num_seeds)
+            theta = math.radians(i * golden_angle)
+            x = cx + r * math.cos(theta)
+            y = cy + r * math.sin(theta)
+            dot_size = max(1, s//6)
+            draw.ellipse([x - dot_size, y - dot_size, x + dot_size, y + dot_size], fill=bg + (255,))
+        draw.ellipse([px + 1.2*s, py + 1.2*s, px + 5.8*s - 1, py + 5.8*s - 1], fill=bg + (255,))
     elif eye_frame_style == "none":
         pass
     else:
