@@ -40,6 +40,16 @@ export function DesktopPreviewPane({
   if (downloadFormat === "SVG") targetResolution = "Vector (SVG)";
   else if (downloadFormat === "PDF") targetResolution = "Print (PDF)";
 
+  // Compute approximate print size at 300 DPI
+  const printSizeCm = downloadFormat === "PNG" ? ((downloadSize / 300) * 2.54).toFixed(1) : null;
+
+  // Derive a subtle ambient glow color from the dots color
+  const dotsColor = settings.dots_color || "#18181b";
+  const r = parseInt(dotsColor.slice(1, 3), 16) || 24;
+  const g = parseInt(dotsColor.slice(3, 5), 16) || 24;
+  const b = parseInt(dotsColor.slice(5, 7), 16) || 27;
+  const glowColor = `rgba(${r}, ${g}, ${b}, 0.18)`;
+
   return (
     <div className="lg:col-span-5 lg:sticky lg:top-24 relative" ref={previewRef}>
       {/* Framer-style Ambient Hero Glow */}
@@ -49,17 +59,19 @@ export function DesktopPreviewPane({
 
         <div className="flex justify-between items-center">
           <h3 className="text-sm font-semibold text-on-surface">Live Preview</h3>
-          <span className="px-2 py-1 bg-surface-container text-on-surface-variant text-[10px] font-medium rounded-full flex items-center gap-1.5 tracking-wider uppercase">
-            <span className="pulse-dot"></span>
-            Live
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="px-2 py-1 bg-surface-container text-on-surface-variant text-[10px] font-medium rounded-full flex items-center gap-1.5 tracking-wider uppercase">
+              <span className="pulse-dot"></span>
+              Live
+            </span>
+          </div>
         </div>
 
         {/* QR Preview Surface */}
         <div
           id="qr-preview-container"
-          className={`aspect-square flex items-center justify-center relative overflow-hidden group p-8 rounded-2xl surface-ring-vercel transition-colors duration-300 ${previewBg === 'dark' ? 'bg-[#18181b]' : previewBg === 'transparent' ? 'bg-[#f3f4f6]' : previewBg === 'white' ? 'bg-[#f4f4f5]' : 'bg-[#f9fafb]'}`}
-          style={previewBg === 'transparent' ? {
+          className={`aspect-square flex items-center justify-center relative overflow-hidden group p-8 rounded-2xl surface-ring-vercel qr-ambient-ring transition-colors duration-300 ${previewBg === 'dark' ? 'bg-[#18181b]' : previewBg === 'transparent' ? 'bg-[#f3f4f6]' : previewBg === 'white' ? 'bg-[#f4f4f5]' : 'bg-[#f9fafb]'}`}
+          style={{ "--qr-glow-color": glowColor, ...(previewBg === 'transparent' ? {
             backgroundImage: "linear-gradient(45deg, #e5e7eb 25%, transparent 25%), linear-gradient(-45deg, #e5e7eb 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e5e7eb 75%), linear-gradient(-45deg, transparent 75%, #e5e7eb 75%)",
             backgroundSize: "16px 16px",
             backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0px",
@@ -67,7 +79,7 @@ export function DesktopPreviewPane({
             backgroundImage: "linear-gradient(45deg, #f3f4f6 25%, transparent 25%), linear-gradient(-45deg, #f3f4f6 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f3f4f6 75%), linear-gradient(-45deg, transparent 75%, #f3f4f6 75%)",
             backgroundSize: "16px 16px",
             backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0px",
-          } : {}}
+          } : {})} as React.CSSProperties}
         >
           {/* Background Tester Toggle */}
           <div className={`absolute top-3 left-3 z-30 flex backdrop-blur-md rounded-full p-1 shadow-sm border gap-0.5 ${previewBg === 'dark' ? 'bg-[#27272a]/90 border-white/10' : 'bg-white/90 border-outline-variant/30'}`}>
@@ -95,7 +107,7 @@ export function DesktopPreviewPane({
             <img
               src={imageUrl || "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/%3E"}
               alt="QR Code Preview"
-              className={`w-full aspect-square max-w-[240px] max-h-[240px] object-contain transition-all duration-350 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isComparing ? 'grayscale contrast-125 opacity-90' : ''} ${isError ? 'opacity-40 grayscale' : ''}`}
+              className={`w-full aspect-square max-w-[300px] max-h-[300px] xl:max-w-[320px] xl:max-h-[320px] object-contain transition-all duration-350 ease-[cubic-bezier(0.34,1.56,0.64,1)] ${isComparing ? 'grayscale contrast-125 opacity-90' : ''} ${isError ? 'opacity-40 grayscale' : ''}`}
               style={settings.bg_transparent ? {
                 backgroundImage: "linear-gradient(45deg, #e5e7eb 25%, transparent 25%), linear-gradient(-45deg, #e5e7eb 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e5e7eb 75%), linear-gradient(-45deg, transparent 75%, #e5e7eb 75%)",
                 backgroundSize: "16px 16px",
@@ -174,8 +186,8 @@ export function DesktopPreviewPane({
           </div>
         </div>
 
-        {/* Premium Metadata Badges */}
-        <div className="pt-5 border-t border-outline-variant/50 flex items-center justify-center gap-3">
+        {/* Premium Metadata Badges + Print Size */}
+        <div className="pt-5 border-t border-outline-variant/50 flex items-center justify-center gap-3 flex-wrap">
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/40 shadow-2xs hover:shadow-sm hover:border-primary/30 transition-all">
             <span className="material-symbols-outlined text-[14px] text-primary">aspect_ratio</span>
             <span className="text-xs font-bold text-on-surface">{targetResolution}</span>
@@ -184,6 +196,12 @@ export function DesktopPreviewPane({
             <span className="material-symbols-outlined text-[14px] text-primary">shield_locked</span>
             <span className="text-xs font-bold text-on-surface">Level {settings.error_correction}</span>
           </div>
+          {printSizeCm && (
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/40 shadow-2xs hover:shadow-sm hover:border-primary/30 transition-all" title="Approximate print size at 300 DPI">
+              <span className="material-symbols-outlined text-[14px] text-primary">print</span>
+              <span className="text-xs font-bold text-on-surface">~{printSizeCm}cm print</span>
+            </div>
+          )}
         </div>
       </div>
     </div>

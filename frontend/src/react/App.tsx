@@ -37,6 +37,25 @@ function App() {
     };
   }, []);
 
+  // Listen for custom content-type selection events from the lower landing section
+  useEffect(() => {
+    const handleSelectContentType = (e: CustomEvent<{ type: string }>) => {
+      if (e.detail?.type) {
+        useQRStore.getState().updateSettings({ contentType: e.detail.type as any, contentData: "" });
+        setActiveTab("Content");
+        setMobileMainTab("content");
+        const generatorEl = document.getElementById("generator");
+        if (generatorEl) {
+          generatorEl.scrollIntoView({ behavior: "smooth" });
+        }
+      }
+    };
+    window.addEventListener("select-qr-content-type", handleSelectContentType as EventListener);
+    return () => {
+      window.removeEventListener("select-qr-content-type", handleSelectContentType as EventListener);
+    };
+  }, []);
+
   useEffect(() => {
     if (isFullscreen) {
       document.body.style.overflow = "hidden";
@@ -150,16 +169,36 @@ function App() {
     { name: "Download", icon: "download" },
   ]
 
+  // Tab-aware context metadata for dynamic headlines
+  const TAB_META: Record<string, { headline: string; sub: string; step: number }> = {
+    Content:   { headline: "What would you like to encode?",  sub: "Choose a content type and enter your data.",              step: 1 },
+    Templates: { headline: "Pick a Style Template",            sub: "One-click presets for every use case.",                   step: 2 },
+    Design:    { headline: "Customize Your QR Design",         sub: "Dots, eyes, colors, gradients — make it yours.",          step: 3 },
+    Logo:      { headline: "Add Your Brand Logo",              sub: "Upload a custom logo or choose a preset icon.",           step: 4 },
+    Frames:    { headline: "Apply Text Frames",                sub: "Add a label or call-to-action around your QR code.",      step: 5 },
+    Effects:   { headline: "Add Visual Effects",               sub: "Shadows, glows, and canvas decorations.",                 step: 6 },
+    Advanced:  { headline: "Advanced Settings",                sub: "Error correction, quiet zone, and canvas fine-tuning.",   step: 7 },
+    Download:  { headline: "Export Your QR Code",              sub: "Choose format, resolution, and download.",                step: 8 },
+  }
+  const meta = TAB_META[activeTab] ?? TAB_META["Content"]
+
   return (
     <div className="lg:min-h-screen flex flex-col font-body-md text-on-surface bg-background antialiased pt-14 sm:pt-16">
       {/* TopNavBar with mobile hamburger */}
       <nav className="fixed w-full top-0 z-50 bg-surface-container-lowest border-b border-outline-variant shadow-sm backdrop-blur-md bg-opacity-95 safe-top">
         <div className="flex justify-between items-center h-14 sm:h-16 px-4 sm:px-gutter w-full">
           <div className="flex items-center gap-4 sm:gap-8">
-            <span className="text-sm font-semibold text-on-surface tracking-tight flex items-center gap-2.5">
-              <span className="w-7 h-7 rounded-lg bg-primary flex items-center justify-center text-white text-[11px] font-bold">QR</span>
-              QRStream
-            </span>
+            {/* Premium Brand Wordmark */}
+            <a href="/" className="flex items-center gap-2.5 group shrink-0" title="QR Code Maker — Home">
+              <div className="w-8 h-8 rounded-xl bg-primary flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow relative overflow-hidden">
+                <span className="text-white text-[11px] font-black tracking-tight">QR</span>
+                <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
+              </div>
+              <div className="flex flex-col leading-none">
+                <span className="text-[13px] font-bold text-on-surface tracking-tight">QRStream</span>
+                <span className="text-[9px] font-medium text-on-surface-variant tracking-wider hidden sm:block">40+ styles · 100% free</span>
+              </div>
+            </a>
             <div className="hidden md:flex items-center gap-6">
               <button
                 onClick={() => setActiveTab("Content")}
@@ -283,10 +322,30 @@ function App() {
               {/* Left Column: Desktop Config Forms */}
               <div className="lg:col-span-7 space-y-8 max-w-full">
                 <header className="flex flex-wrap items-center justify-between gap-4 pb-2 border-b border-outline-variant/30">
-                  <div>
-                    <h1 className="text-xl font-semibold text-on-surface tracking-tight">Generate New QR Code</h1>
-                    <p className="text-sm text-on-surface-variant mt-1">
-                      Choose your data type and customize the appearance.
+                  <div className="min-w-0">
+                    {/* Step progress pills */}
+                    <div className="flex items-center gap-1.5 mb-2 flex-wrap">
+                      {sidebarTabs.map((tab, i) => (
+                        <button
+                          key={tab.name}
+                          onClick={() => setActiveTab(tab.name)}
+                          title={tab.name}
+                          className={`h-1.5 rounded-full transition-all duration-300 ${
+                            tab.name === activeTab
+                              ? 'w-6 bg-primary'
+                              : i < sidebarTabs.findIndex(t => t.name === activeTab)
+                                ? 'w-3 bg-primary/40'
+                                : 'w-3 bg-outline-variant'
+                          }`}
+                        />
+                      ))}
+                      <span className="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest ml-1">
+                        Step {meta.step} / {sidebarTabs.length}
+                      </span>
+                    </div>
+                    <h1 className="text-xl font-semibold text-on-surface tracking-tight panel-enter" key={`h-${activeTab}`}>{meta.headline}</h1>
+                    <p className="text-sm text-on-surface-variant mt-1 panel-enter" key={`s-${activeTab}`}>
+                      {meta.sub}
                     </p>
                   </div>
                   <div className="flex items-center gap-1 bg-surface-container-low p-1.5 rounded-xl border border-outline-variant/50 shadow-2xs shrink-0 select-none">

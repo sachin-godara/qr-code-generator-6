@@ -9,49 +9,55 @@ import {
 const contentCategories = [
   {
     title: "Basic",
+    icon: "bolt",
     items: [
-      { id: "url", label: "URL", icon: "link" },
-      { id: "text", label: "Text", icon: "subject" },
-      { id: "phone", label: "Phone", icon: "phone" },
-      { id: "sms", label: "SMS", icon: "sms" },
-      { id: "whatsapp", label: "WhatsApp", icon: "chat" },
-      { id: "email", label: "Email", icon: "mail" },
-      { id: "vcard", label: "vCard", icon: "contact_page" },
+      { id: "url",      label: "URL",      icon: "link",         popular: true },
+      { id: "text",    label: "Text",     icon: "subject",      popular: false },
+      { id: "phone",   label: "Phone",    icon: "phone",        popular: false },
+      { id: "sms",     label: "SMS",      icon: "sms",          popular: false },
+      { id: "whatsapp",label: "WhatsApp", icon: "chat",         popular: false },
+      { id: "email",   label: "Email",    icon: "mail",         popular: false },
+      { id: "vcard",   label: "vCard",    icon: "contact_page", popular: true },
     ]
   },
   {
     title: "Network",
+    icon: "wifi",
     items: [
-      { id: "wifi", label: "Wi-Fi", icon: "wifi" },
+      { id: "wifi", label: "Wi-Fi", icon: "wifi", popular: true },
     ]
   },
   {
     title: "Location & Events",
+    icon: "location_on",
     items: [
-      { id: "location", label: "Location", icon: "location_on" },
-      { id: "event", label: "Event", icon: "event" },
+      { id: "location", label: "Location", icon: "location_on", popular: false },
+      { id: "event",    label: "Event",    icon: "event",        popular: false },
     ]
   },
   {
     title: "Payments",
+    icon: "payments",
     items: [
-      { id: "upi", label: "UPI", icon: "account_balance" },
-      { id: "crypto", label: "Crypto", icon: "currency_bitcoin" },
-      { id: "paypal", label: "PayPal", icon: "payments" },
+      { id: "upi",    label: "UPI",    icon: "account_balance",   popular: false },
+      { id: "crypto", label: "Crypto", icon: "currency_bitcoin", popular: false },
+      { id: "paypal", label: "PayPal", icon: "payments",         popular: false },
     ]
   },
   {
     title: "Apps & Social",
+    icon: "apps",
     items: [
-      { id: "appstore", label: "App Store", icon: "apps" },
-      { id: "googleplay", label: "Google Play", icon: "play_arrow" },
-      { id: "social", label: "Social", icon: "share" },
+      { id: "appstore",   label: "App Store",   icon: "apps",       popular: false },
+      { id: "googleplay", label: "Google Play", icon: "play_arrow", popular: false },
+      { id: "social",     label: "Social",      icon: "share",      popular: false },
     ]
   },
   {
     title: "Advanced",
+    icon: "dataset",
     items: [
-      { id: "batch", label: "Batch CSV", icon: "dataset" },
+      { id: "batch", label: "Batch CSV", icon: "dataset", popular: false },
     ]
   }
 ];
@@ -110,17 +116,19 @@ export function ContentPanel() {
 
   return (
     <div className="space-y-6">
-      {/* Category Tabs */}
+      {/* Category Tabs with icons */}
       <div className="flex overflow-x-auto gap-2 pb-1 custom-scrollbar scroll-smooth">
         {contentCategories.map((category) => (
           <button
             key={category.title}
             onClick={() => setContentCategoryTab(category.title)}
-            className={`py-1.5 px-3 rounded-lg text-xs font-bold transition-all whitespace-nowrap touch-press ${contentCategoryTab === category.title
-                ? 'bg-primary/10 text-primary shadow-2xs'
+            className={`py-1.5 px-3 rounded-lg text-xs font-bold transition-all whitespace-nowrap touch-press flex items-center gap-1.5 ${
+              contentCategoryTab === category.title
+                ? 'bg-primary text-white shadow-sm'
                 : 'bg-transparent text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface'
-              }`}
+            }`}
           >
+            <span className="material-symbols-outlined text-[13px]">{category.icon}</span>
             {category.title}
           </button>
         ))}
@@ -136,11 +144,17 @@ export function ContentPanel() {
                 updateSettings({ contentType: type.id as any, contentData: "" });
               }
             }}
-            className={`flex flex-col items-center gap-1 sm:gap-1.5 p-2.5 sm:p-3 rounded-xl duration-200 border min-h-[44px] touch-press transition-all ${settings.contentType === type.id
-              ? "bg-primary text-white border-primary font-semibold shadow-sm"
-              : "text-on-surface-variant hover:bg-surface-container border-transparent active:scale-95"
-              }`}
+            className={`flex flex-col items-center gap-1 sm:gap-1.5 p-2.5 sm:p-3 rounded-xl duration-200 border min-h-[44px] touch-press transition-all relative ${
+              settings.contentType === type.id
+                ? "bg-primary text-white border-primary font-semibold shadow-sm"
+                : "text-on-surface-variant hover:bg-surface-container border-transparent active:scale-95"
+            }`}
           >
+            {type.popular && (
+              <span className={`absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-black shadow-sm ${
+                settings.contentType === type.id ? 'bg-white text-primary' : 'bg-amber-400 text-white'
+              }`} title="Popular">★</span>
+            )}
             <span className="material-symbols-outlined text-[18px] sm:text-[20px]">{type.icon}</span>
             <span className="text-[10px] sm:text-[11px] leading-tight font-medium text-center">{type.label}</span>
           </button>

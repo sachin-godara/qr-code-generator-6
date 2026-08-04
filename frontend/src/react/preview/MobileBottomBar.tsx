@@ -144,6 +144,36 @@ export function MobileBottomBar({
           </div>
         </div>
       </div>
+
+      {/* Floating Save QR FAB — appears when preview is scrolled out of view */}
+      <div
+        className={`fixed bottom-6 right-4 z-50 transition-all duration-300 ${
+          showMiniPreview && mobileMainTab !== 'download'
+            ? 'opacity-100 translate-y-0 pointer-events-auto'
+            : 'opacity-0 translate-y-4 pointer-events-none'
+        }`}
+        style={{ filter: 'drop-shadow(0 4px 16px rgba(5,150,105,0.35))' }}
+      >
+        <button
+          onClick={handleDownloadCustom}
+          disabled={isDownloading || isError || !imageUrl}
+          className={`flex items-center gap-2.5 px-5 py-3 rounded-full font-bold text-sm text-white transition-all touch-press disabled:opacity-50 ${
+            downloadSuccess
+              ? 'bg-emerald-600'
+              : 'bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 active:scale-95'
+          }`}
+          title="Quick download PNG"
+        >
+          {isDownloading ? (
+            <span className="material-symbols-outlined text-[20px] animate-spin">progress_activity</span>
+          ) : downloadSuccess ? (
+            <span className="material-symbols-outlined text-[20px]">check_circle</span>
+          ) : (
+            <span className="material-symbols-outlined text-[20px]">download</span>
+          )}
+          <span>{downloadSuccess ? 'Saved!' : 'Save QR'}</span>
+        </button>
+      </div>
     </div>
   );
 }

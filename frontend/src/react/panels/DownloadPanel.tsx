@@ -269,6 +269,20 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
           )}
         </button>
       </div>
+
+      {/* Trust Badge */}
+      <div className="flex items-center justify-center gap-3 pt-2 flex-wrap">
+        {[
+          { icon: "block", label: "No watermarks" },
+          { icon: "person_off", label: "No sign-up" },
+          { icon: "lock", label: "Files stay private" },
+        ].map(({ icon, label }) => (
+          <div key={label} className="flex items-center gap-1.5 text-[11px] text-on-surface-variant font-medium">
+            <span className="material-symbols-outlined text-[14px] text-emerald-600">{icon}</span>
+            {label}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
