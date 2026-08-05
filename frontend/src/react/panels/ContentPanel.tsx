@@ -57,7 +57,7 @@ const contentCategories = [
     title: "Advanced",
     icon: "dataset",
     items: [
-      { id: "batch", label: "Batch CSV", icon: "dataset", popular: false },
+      { id: "batch", label: "Batch CSV", icon: "dataset", popular: false, comingSoon: true },
     ]
   }
 ];
@@ -140,20 +140,27 @@ export function ContentPanel() {
           <button
             key={type.id}
             onClick={() => {
+              if (type.comingSoon) return;
               if (settings.contentType !== type.id) {
                 updateSettings({ contentType: type.id as any, contentData: "" });
               }
             }}
+            disabled={type.comingSoon}
             className={`flex flex-col items-center gap-1 sm:gap-1.5 p-2.5 sm:p-3 rounded-xl duration-200 border min-h-[44px] touch-press transition-all relative ${
-              settings.contentType === type.id
-                ? "bg-primary text-white border-primary font-semibold shadow-sm"
-                : "text-on-surface-variant hover:bg-surface-container border-transparent active:scale-95"
+              type.comingSoon
+                ? "opacity-50 cursor-not-allowed bg-surface-container-low border-outline-variant/30 text-on-surface-variant/40"
+                : settings.contentType === type.id
+                  ? "bg-primary text-white border-primary font-semibold shadow-sm"
+                  : "text-on-surface-variant hover:bg-surface-container border-transparent active:scale-95"
             }`}
           >
-            {type.popular && (
+            {type.popular && !type.comingSoon && (
               <span className={`absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-black shadow-sm ${
                 settings.contentType === type.id ? 'bg-white text-primary' : 'bg-amber-400 text-white'
               }`} title="Popular">★</span>
+            )}
+            {type.comingSoon && (
+              <span className="absolute -top-1.5 -right-1.5 bg-primary/20 text-primary border border-primary/30 rounded px-1 py-0.5 text-[8px] font-black scale-90 select-none">SOON</span>
             )}
             <span className="material-symbols-outlined text-[18px] sm:text-[20px]">{type.icon}</span>
             <span className="text-[10px] sm:text-[11px] leading-tight font-medium text-center">{type.label}</span>

@@ -141,16 +141,26 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
             </span>
           </div>
           <div className="flex flex-wrap gap-2">
-            {[512, 1024, 2048, 4096, 8192].map((size) => (
+            {[
+              { size: 512, label: "512px" },
+              { size: 1024, label: "1024px" },
+              { size: 2048, label: "2048px" },
+              { size: 4096, label: "4K", comingSoon: true },
+              { size: 8192, label: "8K", comingSoon: true },
+            ].map((opt) => (
               <button
-                key={size}
-                onClick={() => setDownloadSize(size)}
-                className={`flex-1 min-w-[50px] py-2.5 px-1 rounded-xl border text-[11px] sm:text-xs font-bold transition-all ${downloadSize === size
-                  ? "bg-primary text-white border-primary shadow-sm"
-                  : "border-outline-variant bg-white text-on-surface hover:bg-surface-container-highest"
-                  }`}
+                key={opt.size}
+                disabled={opt.comingSoon}
+                onClick={() => setDownloadSize(opt.size)}
+                className={`flex-1 min-w-[60px] py-2.5 px-1 rounded-xl border text-[10px] sm:text-xs font-bold transition-all ${
+                  opt.comingSoon 
+                    ? "opacity-50 cursor-not-allowed bg-surface-container-low border-outline-variant/30 text-on-surface-variant/40" 
+                    : downloadSize === opt.size
+                      ? "bg-primary text-white border-primary shadow-sm"
+                      : "border-outline-variant bg-white text-on-surface hover:bg-surface-container-highest"
+                }`}
               >
-                {size}px
+                {opt.label} {opt.comingSoon && <span className="block text-[8px] opacity-70 font-normal">Soon</span>}
               </button>
             ))}
           </div>
