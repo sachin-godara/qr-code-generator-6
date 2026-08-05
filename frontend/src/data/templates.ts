@@ -47,7 +47,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text": "SCAN TO ORDER",
       "frame_color": "#333333",
       "frame_text_color": "#333333",
-      "preset_logo": "None"
+      "preset_logo": "None",
+      "font_name": "Playfair Display (Elegant)"
     }
   },
   {
@@ -69,7 +70,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text": "SCAN ME!",
       "frame_color": "#8b8b8b",
       "frame_text_color": "#ffffff",
-      "preset_logo": "None"
+      "preset_logo": "None",
+      "font_name": "Playfair Display (Elegant)"
     }
   },
   {
@@ -88,7 +90,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "eyeball_color": "#00E5FF",
       "frame_style": "none",
       "text_style": "none",
-      "preset_logo": "None"
+      "preset_logo": "None",
+      "font_name": "Montserrat (Geometric)"
     }
   },
   {
@@ -110,7 +113,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text": "SCAN ME!",
       "frame_color": "#2962FF",
       "frame_text_color": "#ffffff",
-      "preset_logo": "None"
+      "preset_logo": "None",
+      "font_name": "Playfair Display (Elegant)"
     }
   },
   {
@@ -129,7 +133,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "eyeball_color": "#FF00FF",
       "frame_style": "none",
       "text_style": "none",
-      "preset_logo": "None"
+      "preset_logo": "None",
+      "font_name": "Playfair Display (Elegant)"
     }
   },
   {
@@ -155,7 +160,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "canvas_radius": 16,
       "canvas_border_width": 0,
       "canvas_border_color": "#18181b",
-      "canvas_border_radius": 16
+      "canvas_border_radius": 16,
+      "font_name": "Playfair Display (Elegant)"
     }
   },
   {
@@ -169,7 +175,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "dots_color": "#D4AF37",
       "bg_color": "#1A1A1A",
       "frame_style": "gold_foil_menu",
-      "text_style": "none"
+      "text_style": "none",
+      "font_name": "Playfair Display (Elegant)"
     }
   },
   {
@@ -191,7 +198,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text": "OPEN ME",
       "frame_color": "#2980B9",
       "frame_text_color": "#ffffff",
-      "preset_logo": "None"
+      "preset_logo": "None",
+      "font_name": "Playfair Display (Elegant)"
     }
   },
   {
@@ -213,7 +221,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text": "SCAN ME!",
       "frame_color": "#8b8b8b",
       "frame_text_color": "#ffffff",
-      "preset_logo": "None"
+      "preset_logo": "None",
+      "font_name": "Montserrat (Geometric)"
     }
   },
   {
@@ -232,7 +241,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "eyeball_color": "#FF8C00",
       "frame_style": "none",
       "text_style": "none",
-      "preset_logo": "None"
+      "preset_logo": "None",
+      "font_name": "Playfair Display (Elegant)"
     }
   },
   {
@@ -251,7 +261,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "eyeball_color": "#FFEA00",
       "frame_style": "none",
       "text_style": "none",
-      "preset_logo": "None"
+      "preset_logo": "None",
+      "font_name": "Playfair Display (Elegant)"
     }
   },
   {
@@ -260,7 +271,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "description": "A highly saturated, retro-futuristic aesthetic.",
     "settings": {
       "dots_style": "pixel_art",
-      "eye_frame_style": "square",
+      "eye_frame_style": "cushion_cut",
       "eyeball_style": "square",
       "dots_color": "#FF00AA",
       "dots_color_end": "#00FFFF",
@@ -270,7 +281,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "eyeball_color": "#00FFFF",
       "frame_style": "none",
       "text_style": "none",
-      "preset_logo": "None"
+      "preset_logo": "None",
+      "font_name": "Playfair Display (Elegant)"
     }
   },
   {
@@ -292,7 +304,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text": "WATCH VIDEO",
       "frame_color": "#FF0000",
       "frame_text_color": "#ffffff",
-      "preset_logo": "None"
+      "preset_logo": "None",
+      "font_name": "Playfair Display (Elegant)"
     }
   },
   {
@@ -306,7 +319,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "dots_color": "#4A235A",
       "bg_color": "#FAF5EB",
       "frame_style": "wine_label",
-      "text_style": "none"
+      "text_style": "none",
+      "font_name": "Playfair Display (Elegant)"
     }
   },
   {
@@ -327,7 +341,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "canvas_border_color": "#222222",
       "canvas_border_radius": 20,
       "preset_logo": "Link",
-      "preset_logo_color": "#ffffff"
+      "preset_logo_color": "#ffffff",
+      "font_name": "Outfit (Modern)"
     }
   },
   {
@@ -348,7 +363,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_size": 40,
       "frame_padding": 40,
       "frame_radius": 15,
-      "frame_border": 15
+      "frame_border": 15,
+      "font_name": "Roboto (Clean)"
     }
   },
   {
@@ -356,9 +372,9 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "Social",
     "description": "Discord dark mode theme with brand logo",
     "settings": {
-      "dots_style": "square",
-      "eye_frame_style": "square",
-      "eyeball_style": "square",
+      "dots_style": "minimal_dots",
+      "eye_frame_style": "squircle",
+      "eyeball_style": "rounded",
       "dots_color": "#ffffff",
       "dots_color_end": "#ffffff",
       "gradient_type": "Solid Color",
@@ -366,7 +382,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "eye_color": "#ffffff",
       "eyeball_color": "#5865F2",
       "preset_logo": "Discord",
-      "preset_logo_color": "#5865F2"
+      "preset_logo_color": "#5865F2",
+      "font_name": "Outfit (Modern)"
     }
   },
   {
@@ -385,7 +402,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "canvas_border_color": "#5865F2",
       "canvas_border_radius": 20,
       "preset_logo": "Discord",
-      "preset_logo_color": "#5865F2"
+      "preset_logo_color": "#5865F2",
+      "font_name": "Outfit (Modern)"
     }
   },
   {
@@ -393,9 +411,9 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "Social",
     "description": "Official Facebook banner card with Follow Us On CTA",
     "settings": {
-      "dots_style": "square",
-      "eye_frame_style": "square",
-      "eyeball_style": "square",
+      "dots_style": "minimal_dots",
+      "eye_frame_style": "squircle",
+      "eyeball_style": "rounded",
       "dots_color": "#1877f2",
       "eye_color": "#1877f2",
       "frame_style": "border",
@@ -404,7 +422,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_color": "#1877f2",
       "frame_text_color": "#ffffff",
       "preset_logo": "Facebook",
-      "preset_logo_color": "#1877f2"
+      "preset_logo_color": "#1877f2",
+      "font_name": "Outfit (Modern)"
     }
   },
   {
@@ -422,7 +441,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "canvas_border_color": "#1877f2",
       "canvas_border_radius": 20,
       "preset_logo": "Facebook",
-      "preset_logo_color": "#1877f2"
+      "preset_logo_color": "#1877f2",
+      "font_name": "Roboto (Clean)"
     }
   },
   {
@@ -439,7 +459,10 @@ export const PRESET_TEMPLATES: Template[] = [
       "canvas_border_color": "#4285f4",
       "canvas_border_radius": 16,
       "preset_logo": "Globe",
-      "preset_logo_color": "#4285f4"
+      "preset_logo_color": "#4285f4",
+      "font_name": "Outfit (Modern)",
+      "eye_frame_style": "left_rounded",
+      "eyeball_style": "rounded"
     }
   },
   {
@@ -458,7 +481,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_color": "#e1306c",
       "frame_text_color": "#ffffff",
       "preset_logo": "Instagram",
-      "preset_logo_color": "#e1306c"
+      "preset_logo_color": "#e1306c",
+      "font_name": "Roboto (Clean)"
     }
   },
   {
@@ -479,7 +503,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "canvas_border_color": "#f09433",
       "canvas_border_radius": 24,
       "preset_logo": "Instagram",
-      "preset_logo_color": "#e1306c"
+      "preset_logo_color": "#e1306c",
+      "font_name": "Outfit (Modern)"
     }
   },
   {
@@ -497,7 +522,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "eyeball_color": "#e1306c",
       "bg_color": "#ffffff",
       "preset_logo": "Instagram",
-      "preset_logo_color": "#e1306c"
+      "preset_logo_color": "#e1306c",
+      "font_name": "Outfit (Modern)"
     }
   },
   {
@@ -505,16 +531,17 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "Social",
     "description": "Professional LinkedIn blue brand card",
     "settings": {
-      "dots_style": "square",
-      "eye_frame_style": "square",
-      "eyeball_style": "square",
+      "dots_style": "rounded",
+      "eye_frame_style": "squircle",
+      "eyeball_style": "rounded",
       "dots_color": "#0a66c2",
       "eye_color": "#0a66c2",
       "canvas_border_width": 8,
       "canvas_border_color": "#0a66c2",
       "canvas_border_radius": 16,
       "preset_logo": "App",
-      "preset_logo_color": "#0a66c2"
+      "preset_logo_color": "#0a66c2",
+      "font_name": "Roboto (Clean)"
     }
   },
   {
@@ -535,13 +562,14 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_size": 60,
       "frame_padding": 25,
       "frame_radius": 20,
-      "frame_border": 12
+      "frame_border": 12,
+      "font_name": "Roboto (Clean)"
     }
   },
   {
     "name": "Pink Heart Header Pill Card",
     "category": "Social",
-    "description": "Cute pink pill header card with ♥ SCAN ME banner",
+    "description": "Cute pink pill header card with \u2665 SCAN ME banner",
     "settings": {
       "dots_style": "rounded",
       "eye_frame_style": "rounded",
@@ -552,10 +580,11 @@ export const PRESET_TEMPLATES: Template[] = [
       "eyeball_color": "#ec4899",
       "frame_style": "card",
       "text_style": "top_pill",
-      "frame_text": "♥ SCAN ME",
+      "frame_text": "\u2665 SCAN ME",
       "frame_color": "#f472b6",
       "frame_text_color": "#ffffff",
-      "frame_radius": 20
+      "frame_radius": 20,
+      "font_name": "Roboto (Clean)"
     }
   },
   {
@@ -571,7 +600,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "bg_color": "#ffffff",
       "gradient_type": "Solid Color",
       "eye_color": "#e91e63",
-      "eyeball_color": "#e91e63"
+      "eyeball_color": "#e91e63",
+      "font_name": "Outfit (Modern)"
     }
   },
   {
@@ -599,9 +629,9 @@ export const PRESET_TEMPLATES: Template[] = [
     "name": "Retro Console",
     "category": "Social",
     "settings": {
-      "dots_style": "square",
-      "eye_frame_style": "square",
-      "eyeball_style": "square",
+      "dots_style": "rounded",
+      "eye_frame_style": "camera_lens",
+      "eyeball_style": "rounded",
       "dots_color": "#4A4A4A",
       "bg_color": "#FFFFFF",
       "eye_color": "#4A4A4A",
@@ -613,7 +643,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_size": 45,
       "frame_padding": 20,
       "frame_radius": 15,
-      "frame_border": 8
+      "frame_border": 8,
+      "font_name": "Roboto (Clean)"
     }
   },
   {
@@ -634,7 +665,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "text_style": "none",
       "frame_text": "FOLLOW US",
       "frame_color": "#E1306C",
-      "frame_text_color": "#ffffff"
+      "frame_text_color": "#ffffff",
+      "font_name": "Outfit (Modern)"
     }
   },
   {
@@ -652,7 +684,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "eye_color": "#ffffff",
       "eyeball_color": "#ffffff",
       "preset_logo": "Chat",
-      "preset_logo_color": "#ffffff"
+      "preset_logo_color": "#ffffff",
+      "font_name": "Roboto (Clean)"
     }
   },
   {
@@ -673,7 +706,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_size": 45,
       "frame_padding": 20,
       "frame_radius": 15,
-      "frame_border": 8
+      "frame_border": 8,
+      "font_name": "Roboto (Clean)"
     }
   },
   {
@@ -694,13 +728,14 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_size": 45,
       "frame_padding": 20,
       "frame_radius": 15,
-      "frame_border": 8
+      "frame_border": 8,
+      "font_name": "Outfit (Modern)"
     }
   },
   {
-    "name": "Café WiFi Warm",
+    "name": "Caf\u00e9 WiFi Warm",
     "category": "WiFi",
-    "description": "Warm coffee-brown tones with pillow dots — cozy café and bakery aesthetic.",
+    "description": "Warm coffee-brown tones with pillow dots \u2014 cozy caf\u00e9 and bakery aesthetic.",
     "settings": {
       "dots_style": "pillow",
       "eye_frame_style": "leaf",
@@ -718,13 +753,14 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_color": "#FFF8DC",
       "preset_logo": "WiFi",
       "preset_logo_color": "#5C4033",
-      "logo_icon_style": "badge"
+      "logo_icon_style": "badge",
+      "font_name": "Roboto (Clean)"
     }
   },
   {
     "name": "Dark Minimal WiFi",
     "category": "WiFi",
-    "description": "Ultra-dark minimal design with white elements — sleek and sophisticated.",
+    "description": "Ultra-dark minimal design with white elements \u2014 sleek and sophisticated.",
     "settings": {
       "dots_style": "rounded",
       "eye_frame_style": "rounded",
@@ -742,13 +778,14 @@ export const PRESET_TEMPLATES: Template[] = [
       "logo_icon_style": "glyph",
       "canvas_border_width": 4,
       "canvas_border_color": "#222222",
-      "canvas_border_radius": 16
+      "canvas_border_radius": 16,
+      "font_name": "Roboto (Clean)"
     }
   },
   {
     "name": "Free WiFi Blue",
     "category": "WiFi",
-    "description": "Bright blue welcoming card — ideal for hotel lobbies and guest areas.",
+    "description": "Bright blue welcoming card \u2014 ideal for hotel lobbies and guest areas.",
     "settings": {
       "dots_style": "rounded",
       "eye_frame_style": "rounded",
@@ -767,13 +804,14 @@ export const PRESET_TEMPLATES: Template[] = [
       "preset_logo": "WiFi",
       "preset_logo_color": "#0288D1",
       "logo_icon_style": "badge",
-      "canvas_border_radius": 20
+      "canvas_border_radius": 20,
+      "font_name": "Roboto (Clean)"
     }
   },
   {
     "name": "Gold Signal WiFi",
     "category": "WiFi",
-    "description": "Luxurious gold on deep black with neon glow — premium nightclub and lounge vibes.",
+    "description": "Luxurious gold on deep black with neon glow \u2014 premium nightclub and lounge vibes.",
     "settings": {
       "dots_style": "diamond",
       "eye_frame_style": "diamond",
@@ -791,13 +829,14 @@ export const PRESET_TEMPLATES: Template[] = [
       "logo_icon_style": "glyph",
       "effect_shadow": "neon",
       "effect_shadow_color": "#D4AF3755",
-      "canvas_radius": 16
+      "canvas_radius": 16,
+      "font_name": "Outfit (Modern)"
     }
   },
   {
     "name": "Green Circle WiFi",
     "category": "WiFi",
-    "description": "Organic green circular border with centered WiFi icon — fresh and natural.",
+    "description": "Organic green circular border with centered WiFi icon \u2014 fresh and natural.",
     "settings": {
       "dots_style": "rounded",
       "eye_frame_style": "leaf",
@@ -815,13 +854,14 @@ export const PRESET_TEMPLATES: Template[] = [
       "logo_icon_style": "duotone",
       "canvas_border_width": 10,
       "canvas_border_color": "#66BB6A",
-      "canvas_border_radius": 999
+      "canvas_border_radius": 999,
+      "font_name": "Roboto (Clean)"
     }
   },
   {
     "name": "Mint WiFi Card",
     "category": "WiFi",
-    "description": "Fresh mint-teal card with clean bottom label — great for restaurants and cafés.",
+    "description": "Fresh mint-teal card with clean bottom label \u2014 great for restaurants and caf\u00e9s.",
     "settings": {
       "dots_style": "rounded",
       "eye_frame_style": "rounded",
@@ -839,13 +879,14 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_color": "#ffffff",
       "preset_logo": "WiFi",
       "preset_logo_color": "#00897B",
-      "logo_icon_style": "badge"
+      "logo_icon_style": "badge",
+      "font_name": "Roboto (Clean)"
     }
   },
   {
     "name": "Pastel WiFi Dots",
     "category": "WiFi",
-    "description": "Soft pastel pink dots with baby-blue border — friendly and approachable.",
+    "description": "Soft pastel pink dots with baby-blue border \u2014 friendly and approachable.",
     "settings": {
       "dots_style": "circle",
       "eye_frame_style": "rounded",
@@ -863,13 +904,14 @@ export const PRESET_TEMPLATES: Template[] = [
       "logo_icon_style": "duotone",
       "canvas_border_width": 8,
       "canvas_border_color": "#64B5F6",
-      "canvas_border_radius": 20
+      "canvas_border_radius": 20,
+      "font_name": "Roboto (Clean)"
     }
   },
   {
     "name": "Purple WiFi Signal",
     "category": "WiFi",
-    "description": "Vibrant purple-to-blue radial gradient — modern and energetic.",
+    "description": "Vibrant purple-to-blue radial gradient \u2014 modern and energetic.",
     "settings": {
       "dots_style": "circle",
       "eye_frame_style": "squircle",
@@ -887,7 +929,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "logo_icon_style": "duotone",
       "canvas_border_width": 6,
       "canvas_border_color": "#B388FF",
-      "canvas_border_radius": 20
+      "canvas_border_radius": 20,
+      "font_name": "Outfit (Modern)"
     }
   },
   {
@@ -895,8 +938,8 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "WiFi",
     "description": "Deep teal scan-to-connect card with inverted contrast for maximum visibility.",
     "settings": {
-      "dots_style": "square",
-      "eye_frame_style": "square",
+      "dots_style": "sleek_dash",
+      "eye_frame_style": "hex_nut",
       "eyeball_style": "square",
       "dots_color": "#E0F2F1",
       "dots_color_end": "#B2DFDB",
@@ -911,15 +954,16 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_color": "#E0F2F1",
       "preset_logo": "WiFi",
       "preset_logo_color": "#E0F2F1",
-      "logo_icon_style": "glyph"
+      "logo_icon_style": "glyph",
+      "font_name": "Outfit (Modern)"
     }
   },
   {
     "name": "WiFi Clipboard",
     "category": "WiFi",
-    "description": "Professional clipboard-style frame with WiFi header — office and enterprise ready.",
+    "description": "Professional clipboard-style frame with WiFi header \u2014 office and enterprise ready.",
     "settings": {
-      "dots_style": "square",
+      "dots_style": "plus",
       "eye_frame_style": "rounded",
       "eyeball_style": "rounded",
       "dots_color": "#263238",
@@ -938,13 +982,14 @@ export const PRESET_TEMPLATES: Template[] = [
       "logo_icon_style": "glyph",
       "canvas_border_width": 4,
       "canvas_border_color": "#263238",
-      "canvas_border_radius": 12
+      "canvas_border_radius": 12,
+      "font_name": "Roboto (Clean)"
     }
   },
   {
     "name": "WiFi Cloud Badge",
     "category": "WiFi",
-    "description": "Cloud-inspired badge with red accent eye markers — playful and eye-catching.",
+    "description": "Cloud-inspired badge with red accent eye markers \u2014 playful and eye-catching.",
     "settings": {
       "dots_style": "rounded",
       "eye_frame_style": "rounded",
@@ -962,13 +1007,14 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_color": "#ffffff",
       "preset_logo": "WiFi",
       "preset_logo_color": "#37474F",
-      "logo_icon_style": "duotone"
+      "logo_icon_style": "duotone",
+      "font_name": "Outfit (Modern)"
     }
   },
   {
     "name": "WiFi Dark Banner",
     "category": "WiFi",
-    "description": "Bold dark card with WiFi branding — perfect for modern cafés and co-working spaces.",
+    "description": "Bold dark card with WiFi branding \u2014 perfect for modern caf\u00e9s and co-working spaces.",
     "settings": {
       "dots_style": "rounded",
       "eye_frame_style": "rounded",
@@ -989,13 +1035,14 @@ export const PRESET_TEMPLATES: Template[] = [
       "logo_icon_style": "duotone",
       "canvas_border_width": 6,
       "canvas_border_color": "#2d2d5e",
-      "canvas_border_radius": 16
+      "canvas_border_radius": 16,
+      "font_name": "Roboto (Clean)"
     }
   },
   {
     "name": "WiFi Home Router",
     "category": "WiFi",
-    "description": "House-shaped eye frames with warm gold border — ideal for sharing home network.",
+    "description": "House-shaped eye frames with warm gold border \u2014 ideal for sharing home network.",
     "settings": {
       "dots_style": "rounded",
       "eye_frame_style": "pointed_top_frame",
@@ -1016,13 +1063,14 @@ export const PRESET_TEMPLATES: Template[] = [
       "canvas_border_radius": 16,
       "preset_logo": "WiFi",
       "preset_logo_color": "#3E2723",
-      "logo_icon_style": "glyph"
+      "logo_icon_style": "glyph",
+      "font_name": "Outfit (Modern)"
     }
   },
   {
     "name": "WiFi QR Poster",
     "category": "WiFi",
-    "description": "Bold poster-style with prominent CONNECT call-to-action — ideal for signage.",
+    "description": "Bold poster-style with prominent CONNECT call-to-action \u2014 ideal for signage.",
     "settings": {
       "dots_style": "rounded",
       "eye_frame_style": "rounded",
@@ -1041,7 +1089,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "preset_logo": "WiFi",
       "preset_logo_color": "#1565C0",
       "logo_icon_style": "badge",
-      "canvas_border_radius": 16
+      "canvas_border_radius": 16,
+      "font_name": "Roboto (Clean)"
     }
   },
   {
@@ -1049,8 +1098,8 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "WiFi",
     "description": "Clean bold header card with 'SCAN TO CONNECT' call-to-action.",
     "settings": {
-      "dots_style": "square",
-      "eye_frame_style": "square",
+      "dots_style": "crossstitch",
+      "eye_frame_style": "cyberpunk_glitch",
       "eyeball_style": "square",
       "dots_color": "#212121",
       "dots_color_end": "#212121",
@@ -1068,13 +1117,14 @@ export const PRESET_TEMPLATES: Template[] = [
       "logo_icon_style": "glyph",
       "canvas_border_width": 4,
       "canvas_border_color": "#212121",
-      "canvas_border_radius": 12
+      "canvas_border_radius": 12,
+      "font_name": "Roboto (Clean)"
     }
   },
   {
     "name": "WiFi Sunset Swirl",
     "category": "WiFi",
-    "description": "Vibrant pink-to-orange gradient — artistic and attention-grabbing.",
+    "description": "Vibrant pink-to-orange gradient \u2014 artistic and attention-grabbing.",
     "settings": {
       "dots_style": "liquid_drop",
       "eye_frame_style": "squircle",
@@ -1089,7 +1139,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "text_style": "none",
       "preset_logo": "WiFi",
       "preset_logo_color": "#E91E63",
-      "logo_icon_style": "duotone"
+      "logo_icon_style": "duotone",
+      "font_name": "Outfit (Modern)"
     }
   },
   {
@@ -1110,7 +1161,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "text_style": "none",
       "frame_text": "SAVE CONTACT",
       "frame_color": "#1565C0",
-      "frame_text_color": "#ffffff"
+      "frame_text_color": "#ffffff",
+      "font_name": "Montserrat (Geometric)"
     }
   },
   {
@@ -1119,7 +1171,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "description": "Aggressive styling for gyms and personal trainers with dumbbell markers.",
     "settings": {
       "dots_style": "medical_cross",
-      "eye_frame_style": "square",
+      "eye_frame_style": "cushion_cut",
       "eyeball_style": "rounded",
       "dots_color": "#dc2626",
       "dots_color_end": "#991b1b",
@@ -1133,7 +1185,7 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_color": "#000000",
       "frame_text_color": "#dc2626",
       "effect_shadow": "none",
-      "font_name": "Outfit (Modern)"
+      "font_name": "Montserrat (Geometric)"
     }
   },
   {
@@ -1152,7 +1204,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "eyeball_color": "#000000",
       "frame_style": "none",
       "text_style": "none",
-      "preset_logo": "None"
+      "preset_logo": "None",
+      "font_name": "Montserrat (Geometric)"
     }
   },
   {
@@ -1173,7 +1226,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "text_style": "floating_pill",
       "frame_text": "PATIENT PORTAL",
       "frame_color": "#0277BD",
-      "frame_text_color": "#ffffff"
+      "frame_text_color": "#ffffff",
+      "font_name": "Playfair Display (Elegant)"
     }
   },
   {
@@ -1217,7 +1271,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "text_style": "floating_pill",
       "frame_text": "REFILL INFO",
       "frame_color": "#000000",
-      "frame_text_color": "#ffffff"
+      "frame_text_color": "#ffffff",
+      "font_name": "Playfair Display (Elegant)"
     }
   },
   {
@@ -1238,7 +1293,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_size": 45,
       "frame_padding": 20,
       "frame_radius": 15,
-      "frame_border": 8
+      "frame_border": 8,
+      "font_name": "Playfair Display (Elegant)"
     }
   },
   {
@@ -1259,7 +1315,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_size": 45,
       "frame_padding": 20,
       "frame_radius": 15,
-      "frame_border": 8
+      "frame_border": 8,
+      "font_name": "Montserrat (Geometric)"
     }
   },
   {
@@ -1280,7 +1337,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "text_style": "none",
       "frame_text": "JOIN CALL",
       "frame_color": "#00897B",
-      "frame_text_color": "#ffffff"
+      "frame_text_color": "#ffffff",
+      "font_name": "Montserrat (Geometric)"
     }
   },
   {
@@ -1301,7 +1359,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "text_style": "floating_pill",
       "frame_text": "START TOUR",
       "frame_color": "#2E7D32",
-      "frame_text_color": "#ffffff"
+      "frame_text_color": "#ffffff",
+      "font_name": "Montserrat (Geometric)"
     }
   },
   {
@@ -1322,7 +1381,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "text_style": "none",
       "frame_text": "DOWNLOAD APP",
       "frame_color": "#2962FF",
-      "frame_text_color": "#ffffff"
+      "frame_text_color": "#ffffff",
+      "font_name": "Outfit (Modern)"
     }
   },
   {
@@ -1330,9 +1390,9 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "Marketing",
     "description": "Extreme contrast thick bracket eyes for outdoor advertising.",
     "settings": {
-      "dots_style": "square",
-      "eye_frame_style": "square",
-      "eyeball_style": "square",
+      "dots_style": "squircle",
+      "eye_frame_style": "left_rounded",
+      "eyeball_style": "rounded",
       "dots_color": "#000000",
       "dots_color_end": "#000000",
       "gradient_type": "Solid Color",
@@ -1343,7 +1403,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "text_style": "floating_pill",
       "frame_text": "SCAN TO WIN",
       "frame_color": "#FFEB3B",
-      "frame_text_color": "#000000"
+      "frame_text_color": "#000000",
+      "font_name": "Outfit (Modern)"
     }
   },
   {
@@ -1351,9 +1412,9 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "Marketing",
     "description": "Monochrome glossy card with top SCAN ME header",
     "settings": {
-      "dots_style": "square",
-      "eye_frame_style": "square",
-      "eyeball_style": "square",
+      "dots_style": "minimal_dots",
+      "eye_frame_style": "camera_lens",
+      "eyeball_style": "rounded",
       "dots_color": "#000000",
       "eye_color": "#000000",
       "canvas_border_width": 4,
@@ -1362,7 +1423,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "text_style": "speech_bubble_top",
       "frame_text": "SCAN ME",
       "frame_color": "#000000",
-      "frame_text_color": "#ffffff"
+      "frame_text_color": "#ffffff",
+      "font_name": "Roboto (Clean)"
     }
   },
   {
@@ -1370,7 +1432,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "Marketing",
     "description": "Sleek black frame with solid SCAN ME pill badge",
     "settings": {
-      "dots_style": "square",
+      "dots_style": "squircle",
       "eye_frame_style": "rounded",
       "eyeball_style": "rounded",
       "dots_color": "#000000",
@@ -1380,7 +1442,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text": "SCAN ME",
       "frame_color": "#000000",
       "frame_text_color": "#ffffff",
-      "frame_radius": 15
+      "frame_radius": 15,
+      "font_name": "Outfit (Modern)"
     }
   },
   {
@@ -1388,25 +1451,26 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "Marketing",
     "description": "Blue accent card with top SCAN ME tab",
     "settings": {
-      "dots_style": "square",
-      "eye_frame_style": "square",
-      "eyeball_style": "square",
+      "dots_style": "circle",
+      "eye_frame_style": "squircle",
+      "eyeball_style": "rounded",
       "dots_color": "#1d4ed8",
       "eye_color": "#1d4ed8",
       "frame_style": "border",
       "text_style": "speech_bubble_top",
       "frame_text": "SCAN ME",
       "frame_color": "#1d4ed8",
-      "frame_text_color": "#ffffff"
+      "frame_text_color": "#ffffff",
+      "font_name": "Outfit (Modern)"
     }
   },
   {
     "name": "Blue Speech Bubble",
     "category": "Marketing",
     "settings": {
-      "dots_style": "square",
-      "eye_frame_style": "square",
-      "eyeball_style": "square",
+      "dots_style": "minimal_dots",
+      "eye_frame_style": "squircle",
+      "eyeball_style": "rounded",
       "dots_color": "#0F52BA",
       "bg_color": "#FFFFFF",
       "eye_color": "#0F52BA",
@@ -1418,7 +1482,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_size": 70,
       "frame_padding": 20,
       "frame_radius": 20,
-      "frame_border": 10
+      "frame_border": 10,
+      "font_name": "Roboto (Clean)"
     }
   },
   {
@@ -1439,7 +1504,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "text_style": "none",
       "frame_text": "CLAIM OFFER",
       "frame_color": "#FF5722",
-      "frame_text_color": "#ffffff"
+      "frame_text_color": "#ffffff",
+      "font_name": "Outfit (Modern)"
     }
   },
   {
@@ -1447,7 +1513,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "Marketing",
     "description": "Bright orange outline border with bottom text label",
     "settings": {
-      "dots_style": "square",
+      "dots_style": "minimal_dots",
       "eye_frame_style": "rounded",
       "eyeball_style": "rounded",
       "dots_color": "#000000",
@@ -1457,16 +1523,17 @@ export const PRESET_TEMPLATES: Template[] = [
       "canvas_border_radius": 16,
       "text_style": "bottom_text",
       "frame_text": "SCAN ME",
-      "frame_text_color": "#ff7a00"
+      "frame_text_color": "#ff7a00",
+      "font_name": "Outfit (Modern)"
     }
   },
   {
     "name": "Postage Stamp",
     "category": "Marketing",
     "settings": {
-      "dots_style": "square",
-      "eye_frame_style": "square",
-      "eyeball_style": "square",
+      "dots_style": "rounded",
+      "eye_frame_style": "rounded",
+      "eyeball_style": "rounded",
       "dots_color": "#8E44AD",
       "bg_color": "#FFFFFF",
       "eye_color": "#8E44AD",
@@ -1478,7 +1545,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_size": 50,
       "frame_padding": 20,
       "frame_radius": 15,
-      "frame_border": 8
+      "frame_border": 8,
+      "font_name": "Outfit (Modern)"
     }
   },
   {
@@ -1499,7 +1567,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_size": 65,
       "frame_padding": 30,
       "frame_radius": 25,
-      "frame_border": 15
+      "frame_border": 15,
+      "font_name": "Outfit (Modern)"
     }
   },
   {
@@ -1507,7 +1576,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "Marketing",
     "description": "Bold red hexagon eyes template with SCAN ME badge",
     "settings": {
-      "dots_style": "square",
+      "dots_style": "minimal_dots",
       "eye_frame_style": "octagon",
       "eyeball_style": "octagon",
       "dots_color": "#000000",
@@ -1519,7 +1588,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text": "SCAN ME",
       "frame_color": "#e50914",
       "frame_text_color": "#ffffff",
-      "frame_radius": 20
+      "frame_radius": 20,
+      "font_name": "Outfit (Modern)"
     }
   },
   {
@@ -1527,7 +1597,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "Marketing",
     "description": "Red phone contact card with bottom action badge",
     "settings": {
-      "dots_style": "square",
+      "dots_style": "minimal_dots",
       "eye_frame_style": "rounded",
       "eyeball_style": "rounded",
       "dots_color": "#000000",
@@ -1538,7 +1608,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_color": "#dc2626",
       "frame_text_color": "#ffffff",
       "preset_logo": "Phone",
-      "preset_logo_color": "#dc2626"
+      "preset_logo_color": "#dc2626",
+      "font_name": "Outfit (Modern)"
     }
   },
   {
@@ -1582,7 +1653,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_size": 50,
       "frame_padding": 20,
       "frame_radius": 15,
-      "frame_border": 8
+      "frame_border": 8,
+      "font_name": "Roboto (Clean)"
     }
   },
   {
@@ -1626,7 +1698,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "text_style": "coffee_cup",
       "frame_text": "VIEW MENU",
       "frame_color": "#3E2723",
-      "frame_text_color": "#ffffff"
+      "frame_text_color": "#ffffff",
+      "font_name": "Lora (Serif)"
     }
   },
   {
@@ -1640,7 +1713,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "dots_color": "#5D4037",
       "bg_color": "#ffffff",
       "frame_style": "beer_coaster",
-      "text_style": "none"
+      "text_style": "none",
+      "font_name": "Lora (Serif)"
     }
   },
   {
@@ -1661,7 +1735,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_size": 55,
       "frame_padding": 20,
       "frame_radius": 15,
-      "frame_border": 8
+      "frame_border": 8,
+      "font_name": "Montserrat (Geometric)"
     }
   },
   {
@@ -1677,7 +1752,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_style": "boba_cup",
       "text_style": "none",
       "preset_logo": "Coffee",
-      "preset_logo_color": "#8E44AD"
+      "preset_logo_color": "#8E44AD",
+      "font_name": "Montserrat (Geometric)"
     }
   },
   {
@@ -1685,13 +1761,14 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "Restaurant",
     "description": "A classic white Chinese takeout box with folded flaps.",
     "settings": {
-      "dots_style": "square",
-      "eye_frame_style": "square",
+      "dots_style": "leaf_droplet",
+      "eye_frame_style": "leaf",
       "eyeball_style": "square",
       "dots_color": "#C0392B",
       "bg_color": "#ffffff",
       "frame_style": "takeout_box",
-      "text_style": "none"
+      "text_style": "none",
+      "font_name": "Lora (Serif)"
     }
   },
   {
@@ -1712,7 +1789,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "text_style": "floating_pill",
       "frame_text": "DRINKS",
       "frame_color": "#FFD700",
-      "frame_text_color": "#121212"
+      "frame_text_color": "#121212",
+      "font_name": "Lora (Serif)"
     }
   },
   {
@@ -1733,7 +1811,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_size": 50,
       "frame_padding": 20,
       "frame_radius": 15,
-      "frame_border": 8
+      "frame_border": 8,
+      "font_name": "Lora (Serif)"
     }
   },
   {
@@ -1754,7 +1833,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_size": 55,
       "frame_padding": 20,
       "frame_radius": 15,
-      "frame_border": 8
+      "frame_border": 8,
+      "font_name": "Montserrat (Geometric)"
     }
   },
   {
@@ -1775,7 +1855,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "text_style": "none",
       "frame_text": "ORDER NOW",
       "frame_color": "#E53935",
-      "frame_text_color": "#ffffff"
+      "frame_text_color": "#ffffff",
+      "font_name": "Lora (Serif)"
     }
   },
   {
@@ -1794,7 +1875,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "eyeball_color": "#4CAF50",
       "frame_style": "none",
       "text_style": "none",
-      "preset_logo": "None"
+      "preset_logo": "None",
+      "font_name": "Montserrat (Geometric)"
     }
   },
   {
@@ -1808,7 +1890,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "dots_color": "#D35400",
       "bg_color": "#ffffff",
       "frame_style": "pizza_box",
-      "text_style": "none"
+      "text_style": "none",
+      "font_name": "Lora (Serif)"
     }
   },
   {
@@ -1822,7 +1905,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "dots_color": "#E74C3C",
       "bg_color": "#ffffff",
       "frame_style": "ramen_bowl",
-      "text_style": "none"
+      "text_style": "none",
+      "font_name": "Montserrat (Geometric)"
     }
   },
   {
@@ -1843,7 +1927,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_size": 45,
       "frame_padding": 20,
       "frame_radius": 15,
-      "frame_border": 8
+      "frame_border": 8,
+      "font_name": "Montserrat (Geometric)"
     }
   },
   {
@@ -1866,7 +1951,7 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_color": "#E74C3C",
       "frame_text_color": "#ffffff",
       "effect_shadow": "none",
-      "font_name": "Outfit (Modern)"
+      "font_name": "Lora (Serif)"
     }
   },
   {
@@ -1885,7 +1970,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "eyeball_color": "#FF512F",
       "frame_style": "none",
       "text_style": "none",
-      "preset_logo": "None"
+      "preset_logo": "None",
+      "font_name": "Montserrat (Geometric)"
     }
   },
   {
@@ -1906,7 +1992,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "text_style": "none",
       "frame_text": "PAY BILL",
       "frame_color": "#212121",
-      "frame_text_color": "#ffffff"
+      "frame_text_color": "#ffffff",
+      "font_name": "Montserrat (Geometric)"
     }
   },
   {
@@ -1927,7 +2014,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_size": 48,
       "frame_padding": 20,
       "frame_radius": 15,
-      "frame_border": 8
+      "frame_border": 8,
+      "font_name": "Lora (Serif)"
     }
   },
   {
@@ -1943,7 +2031,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "bg_blend_mode": "multiply",
       "bg_transparent": true,
       "frame_style": "wooden_peel",
-      "text_style": "none"
+      "text_style": "none",
+      "font_name": "Montserrat (Geometric)"
     }
   },
   {
@@ -1951,8 +2040,8 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "Events",
     "description": "Lanyard style monitor screen frame for conferences.",
     "settings": {
-      "dots_style": "square",
-      "eye_frame_style": "square",
+      "dots_style": "pixel_art",
+      "eye_frame_style": "arch_frame",
       "eyeball_style": "square",
       "dots_color": "#424242",
       "dots_color_end": "#424242",
@@ -1964,7 +2053,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "text_style": "none",
       "frame_text": "ATTENDEE",
       "frame_color": "#424242",
-      "frame_text_color": "#ffffff"
+      "frame_text_color": "#ffffff",
+      "font_name": "Courier Prime (Retro)"
     }
   },
   {
@@ -1985,7 +2075,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_size": 45,
       "frame_padding": 20,
       "frame_radius": 15,
-      "frame_border": 8
+      "frame_border": 8,
+      "font_name": "Courier Prime (Retro)"
     }
   },
   {
@@ -2006,7 +2097,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_size": 45,
       "frame_padding": 20,
       "frame_radius": 15,
-      "frame_border": 8
+      "frame_border": 8,
+      "font_name": "Courier Prime (Retro)"
     }
   },
   {
@@ -2014,7 +2106,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "Events",
     "settings": {
       "dots_style": "rounded",
-      "eye_frame_style": "square",
+      "eye_frame_style": "geometric_deco",
       "eyeball_style": "square",
       "dots_color": "#B22222",
       "bg_color": "#FFFFFF",
@@ -2027,15 +2119,16 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_size": 50,
       "frame_padding": 20,
       "frame_radius": 20,
-      "frame_border": 8
+      "frame_border": 8,
+      "font_name": "Playfair Display (Elegant)"
     }
   },
   {
     "name": "VIP Ticket Stub",
     "category": "Events",
     "settings": {
-      "dots_style": "square",
-      "eye_frame_style": "square",
+      "dots_style": "star",
+      "eye_frame_style": "ticket",
       "eyeball_style": "square",
       "dots_color": "#D4AF37",
       "bg_color": "#FFFFFF",
@@ -2048,7 +2141,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_size": 55,
       "frame_padding": 20,
       "frame_radius": 15,
-      "frame_border": 8
+      "frame_border": 8,
+      "font_name": "Courier Prime (Retro)"
     }
   },
   {
@@ -2069,7 +2163,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "text_style": "rsvp_envelope",
       "frame_text": "RSVP",
       "frame_color": "#B76E79",
-      "frame_text_color": "#ffffff"
+      "frame_text_color": "#ffffff",
+      "font_name": "Courier Prime (Retro)"
     }
   },
   {
@@ -2077,7 +2172,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "Retail",
     "description": "Official Amazon brand template with gold leaf corner eyes",
     "settings": {
-      "dots_style": "square",
+      "dots_style": "circle",
       "eye_frame_style": "leaf",
       "eyeball_style": "leaf",
       "dots_color": "#000000",
@@ -2087,7 +2182,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "eye_color": "#FF9900",
       "eyeball_color": "#FF9900",
       "preset_logo": "Amazon",
-      "preset_logo_color": "#FF9900"
+      "preset_logo_color": "#FF9900",
+      "font_name": "Montserrat (Geometric)"
     }
   },
   {
@@ -2108,7 +2204,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_size": 45,
       "frame_padding": 20,
       "frame_radius": 15,
-      "frame_border": 8
+      "frame_border": 8,
+      "font_name": "Montserrat (Geometric)"
     }
   },
   {
@@ -2129,7 +2226,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "text_style": "shopping_bag",
       "frame_text": "SHOP NOW",
       "frame_color": "#AB47BC",
-      "frame_text_color": "#ffffff"
+      "frame_text_color": "#ffffff",
+      "font_name": "Montserrat (Geometric)"
     }
   },
   {
@@ -2150,7 +2248,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "text_style": "none",
       "frame_text": "SALE 50% OFF",
       "frame_color": "#D50000",
-      "frame_text_color": "#ffffff"
+      "frame_text_color": "#ffffff",
+      "font_name": "Montserrat (Geometric)"
     }
   },
   {
@@ -2171,7 +2270,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_size": 60,
       "frame_padding": 30,
       "frame_radius": 25,
-      "frame_border": 15
+      "frame_border": 15,
+      "font_name": "Lora (Serif)"
     }
   },
   {
@@ -2192,7 +2292,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_size": 55,
       "frame_padding": 20,
       "frame_radius": 15,
-      "frame_border": 8
+      "frame_border": 8,
+      "font_name": "Montserrat (Geometric)"
     }
   },
   {
@@ -2213,7 +2314,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "text_style": "floating_pill",
       "frame_text": "VERIFY",
       "frame_color": "#000000",
-      "frame_text_color": "#D4AF37"
+      "frame_text_color": "#D4AF37",
+      "font_name": "Lora (Serif)"
     }
   },
   {
@@ -2233,7 +2335,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_style": "none",
       "text_style": "none",
       "preset_logo": "None",
-      "canvas_radius": 24
+      "canvas_radius": 24,
+      "font_name": "Lora (Serif)"
     }
   },
   {
@@ -2254,7 +2357,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_size": 60,
       "frame_padding": 20,
       "frame_radius": 15,
-      "frame_border": 8
+      "frame_border": 8,
+      "font_name": "Montserrat (Geometric)"
     }
   },
   {
@@ -2275,7 +2379,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_size": 40,
       "frame_padding": 20,
       "frame_radius": 15,
-      "frame_border": 8
+      "frame_border": 8,
+      "font_name": "Roboto (Clean)"
     }
   },
   {
@@ -2296,7 +2401,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_text_size": 45,
       "frame_padding": 20,
       "frame_radius": 15,
-      "frame_border": 8
+      "frame_border": 8,
+      "font_name": "Lora (Serif)"
     }
   },
   {
@@ -2304,14 +2410,15 @@ export const PRESET_TEMPLATES: Template[] = [
     "category": "Signage",
     "description": "A rustic wooden sign suspended by metal chains.",
     "settings": {
-      "dots_style": "square",
-      "eye_frame_style": "square",
+      "dots_style": "vertical_slash",
+      "eye_frame_style": "aerodynamic_slant",
       "eyeball_style": "square",
       "dots_color": "#3E2723",
       "bg_color": "#ffffff",
       "frame_style": "hanging_sign",
       "frame_color": "#8B5A2B",
-      "text_style": "none"
+      "text_style": "none",
+      "font_name": "Montserrat (Geometric)"
     }
   },
   {
@@ -2328,7 +2435,8 @@ export const PRESET_TEMPLATES: Template[] = [
       "frame_color": "#00FFFF",
       "text_style": "none",
       "effect_shadow": "neon",
-      "effect_shadow_color": "#00FFFF"
+      "effect_shadow_color": "#00FFFF",
+      "font_name": "Montserrat (Geometric)"
     }
   }
 ];
