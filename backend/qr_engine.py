@@ -8,7 +8,6 @@ from engines.core.noise import (
     value_noise_1d,
     fractal_noise_1d,
     generate_deckled_rect,
-    draw_topographic_frame_func,
     draw_crystal_frame_func
 )
         

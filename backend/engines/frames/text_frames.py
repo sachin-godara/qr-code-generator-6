@@ -1037,34 +1037,6 @@ def apply_layout_frame(qr_img, layout_template="none", frame_color="#000000", pa
         new_img.paste(qr_img, (p, p), qr_img)
         return new_img
 
-    elif layout_template == "topographic_map":
-        p = padding * 4
-        new_w = qr_w + p * 2
-        new_h = qr_h + p * 2
-        new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 255))
-        draw = ImageDraw.Draw(new_img)
-        
-        cx, cy = new_w / 2, new_h / 2
-        
-        for radius_step in range(0, p * 2, max(4, padding // 3)):
-            pts = []
-            R_base = (qr_w // 2) + padding + radius_step
-            for angle in range(0, 361, 2):
-                rad = math.radians(angle)
-                nx = math.cos(rad) * R_base * 0.02
-                ny = math.sin(rad) * R_base * 0.02
-                noise = math.sin(nx * 2.1 + ny * 1.5) * 0.5 + math.sin(nx * 3.4 - ny * 1.1) * 0.5
-                
-                r_vary = R_base + noise * (15 + radius_step * 0.1)
-                x = cx + r_vary * math.cos(rad)
-                y = cy + r_vary * math.sin(rad)
-                pts.append((x, y))
-            draw.line(pts, fill=bg_color, width=max(1, border_thickness // 3))
-            
-        draw.rectangle([p - padding//2, p - padding//2, new_w - p + padding//2, new_h - p + padding//2], fill=(255, 255, 255, 255))
-        
-        new_img.paste(qr_img, (p, p), qr_img)
-        return new_img
 
     elif layout_template == "isometric_pedestal":
         p = padding * 3

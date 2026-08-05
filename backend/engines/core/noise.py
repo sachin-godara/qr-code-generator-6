@@ -48,27 +48,6 @@ def generate_deckled_rect(x0, y0, x1, y1, segments, freq1, amp1, freq2, amp2, se
     add_edge(x0, y1, x0, y0, noise_left)
     return points
 
-def draw_topographic_frame_func(draw, px, py, s, color):
-    cx, cy = px + 3.5*s, py + 3.5*s
-    for y in range(int(py - 2*s), int(py + 9*s)):
-        for x in range(int(px - 2*s), int(px + 9*s)):
-            dx_dist = abs(x - cx) - 3.0*s
-            dy_dist = abs(y - cy) - 3.0*s
-            if dx_dist > 0 and dy_dist > 0:
-                d = math.sqrt(dx_dist*dx_dist + dy_dist*dy_dist)
-            elif dx_dist > 0:
-                d = dx_dist
-            elif dy_dist > 0:
-                d = dy_dist
-            else:
-                d = max(dx_dist, dy_dist)
-            
-            noise = math.sin(x*0.1) + math.sin(y*0.1) + math.sin((x+y)*0.07) + math.cos((x-y)*0.05)
-            height = d * 0.5 + noise * 5.0
-            
-            if height % 10 < 3:
-                draw.point((x, y), fill=color)
-
 def draw_crystal_frame_func(draw, px, py, s, color):
     for _ in range(40):
         side = random.randint(0, 3)

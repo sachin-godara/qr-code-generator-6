@@ -109,7 +109,7 @@ def draw_eyeball(draw, ebx, eby, px, py, s, eyeball_style, eyeball_rgb, bg, img=
     elif eyeball_style == "aerodynamic_slant":
         pts = [(px + 2.6*s, py + 2*s), (px + 5*s, py + 2*s), (px + 4.4*s, py + 5*s), (px + 2*s, py + 5*s)]
         draw.polygon(pts, fill=eyeball_rgb + (255,))
-    elif eyeball_style in ("starburst", "gear"):
+    elif eyeball_style == "starburst":
         cx = ebx + 1.5 * s
         cy = eby + 1.5 * s
         r_sun = 1.5 * s
@@ -120,6 +120,37 @@ def draw_eyeball(draw, ebx, eby, px, py, s, eyeball_style, eyeball_rgb, bg, img=
             y2 = cy + r_sun * math.sin(angle)
             draw.line([(cx, cy), (x2, y2)], fill=eyeball_rgb + (255,), width=max(2, s // 2))
         draw.ellipse([cx - s, cy - s, cx + s, cy + s], fill=eyeball_rgb + (255,))
+    elif eyeball_style == "gear":
+        cx = ebx + 1.5 * s
+        cy = eby + 1.5 * s
+        
+        pts = [
+            (cx - 1.167 * s, cy - 1.646 * s), (cx - 1.167 * s, cy - 0.646 * s),
+            (cx - 0.792 * s, cy - 0.646 * s), (cx - 0.771 * s, cy - 0.625 * s),
+            (cx - 0.833 * s, cy - 0.562 * s), (cx - 0.833 * s, cy - 0.542 * s),
+            (cx - 0.875 * s, cy - 0.5 * s), (cx - 1.812 * s, cy - 0.5 * s),
+            (cx - 1.812 * s, cy + 0.5 * s), (cx - 0.875 * s, cy + 0.5 * s),
+            (cx - 0.833 * s, cy + 0.542 * s), (cx - 0.833 * s, cy + 0.562 * s),
+            (cx - 0.792 * s, cy + 0.604 * s), (cx - 0.812 * s, cy + 0.625 * s),
+            (cx - 1.167 * s, cy + 0.625 * s), (cx - 1.167 * s, cy + 1.625 * s),
+            (cx - 0.167 * s, cy + 1.625 * s), (cx - 0.167 * s, cy + 1.0 * s),
+            (cx - 0.146 * s, cy + 0.979 * s), (cx - 0.125 * s, cy + 1.0 * s),
+            (cx + 0.125 * s, cy + 1.0 * s), (cx + 0.146 * s, cy + 1.021 * s),
+            (cx + 0.146 * s, cy + 1.625 * s), (cx + 1.146 * s, cy + 1.625 * s),
+            (cx + 1.146 * s, cy + 0.625 * s), (cx + 0.812 * s, cy + 0.625 * s),
+            (cx + 0.792 * s, cy + 0.604 * s), (cx + 0.833 * s, cy + 0.562 * s),
+            (cx + 0.833 * s, cy + 0.542 * s), (cx + 0.875 * s, cy + 0.5 * s),
+            (cx + 1.792 * s, cy + 0.5 * s), (cx + 1.792 * s, cy - 0.5 * s),
+            (cx + 0.875 * s, cy - 0.5 * s), (cx + 0.833 * s, cy - 0.542 * s),
+            (cx + 0.833 * s, cy - 0.562 * s), (cx + 0.771 * s, cy - 0.625 * s),
+            (cx + 0.792 * s, cy - 0.646 * s), (cx + 1.146 * s, cy - 0.646 * s),
+            (cx + 1.146 * s, cy - 1.646 * s), (cx + 0.146 * s, cy - 1.646 * s),
+            (cx + 0.146 * s, cy - 1.021 * s), (cx + 0.125 * s, cy - 1.0 * s),
+            (cx - 0.125 * s, cy - 1.0 * s), (cx - 0.146 * s, cy - 0.979 * s),
+            (cx - 0.167 * s, cy - 1.0 * s), (cx - 0.167 * s, cy - 1.646 * s)
+        ]
+        
+        draw.polygon(pts, fill=eyeball_rgb + (255,))
     elif eyeball_style == "star":
         cx = ebx + 1.5 * s
         cy = eby + 1.5 * s

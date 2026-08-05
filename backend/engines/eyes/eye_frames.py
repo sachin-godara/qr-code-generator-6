@@ -3,7 +3,6 @@ import numpy as np
 from PIL import Image, ImageDraw
 from engines.core.noise import (
     generate_deckled_rect,
-    draw_topographic_frame_func,
     draw_crystal_frame_func
 )
 
@@ -342,10 +341,6 @@ def draw_eye_frame(draw, px, py, s, eye_frame_style, eye_rgb, bg, img=None):
         draw.rectangle([px, py, px + 7*s - 1, py + 7*s - 1], fill=eye_rgb + (255,))
         draw.rectangle([px + s, py + s, px + 6*s - 1, py + 6*s - 1], fill=bg + (255,))
         draw_crystal_frame_func(draw, px, py, s, eye_rgb + (255,))
-    elif eye_frame_style == "topographic":
-        draw.rectangle([px, py, px + 7*s - 1, py + 7*s - 1], fill=eye_rgb + (255,))
-        draw.rectangle([px + s, py + s, px + 6*s - 1, py + 6*s - 1], fill=bg + (255,))
-        draw_topographic_frame_func(draw, px, py, s, eye_rgb + (255,))
     elif eye_frame_style == "squircle":
         draw.rounded_rectangle([px, py, px + 7*s - 1, py + 7*s - 1], radius=int(2.5*s), fill=eye_rgb)
         draw.rounded_rectangle([px + s, py + s, px + 6*s - 1, py + 6*s - 1], radius=int(1.5*s), fill=(255,255,255))
@@ -647,6 +642,26 @@ def draw_eye_frame(draw, px, py, s, eye_frame_style, eye_rgb, bg, img=None):
         img.paste(color_patch, (px, py), color_patch)
     elif eye_frame_style == "none":
         pass
+    elif eye_frame_style == "cyberpunk_glitch":
+        import random
+        random.seed(px + py)
+        W = int(7 * s)
+        t = int(s)
+        slice_height = max(1, W // 7)
+        shift = 0
+        
+        for curr_y in range(int(py), int(py + W)):
+            if (curr_y - int(py)) % slice_height == 0:
+                shift = random.choice([-t, -t//2, 0, 0, 0, 0, t//2, t])
+                
+            curr_x = px + shift
+            
+            if curr_y < py + t or curr_y >= py + W - t:
+                draw.line([(curr_x, curr_y), (curr_x + W - 1, curr_y)], fill=eye_rgb + (255,), width=1)
+            else:
+                draw.line([(curr_x, curr_y), (curr_x + t - 1, curr_y)], fill=eye_rgb + (255,), width=1)
+                draw.line([(curr_x + W - t, curr_y), (curr_x + W - 1, curr_y)], fill=eye_rgb + (255,), width=1)
+                
     else:
         # Default square
         draw.rectangle([px, py, px + 7*s - 1, py + 7*s - 1], outline=eye_rgb + (255,), width=s)
