@@ -1,0 +1,80 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Footer from '../components/layout/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  breadcrumbs: { name: string; url: string }[];
+  heading: string;
+  lastUpdated?: string;
+  icon?: string;
+}
+
+const { title, description, breadcrumbs, heading, lastUpdated, icon } = Astro.props;
+---
+<BaseLayout
+  title={title}
+  description={description}
+  breadcrumbs={breadcrumbs}
+>
+  <style is:global>
+    @import '../styles/global.css';
+    @import '../styles/legal.css';
+  </style>
+
+  <div class="min-h-screen flex flex-col bg-surface">
+    <!-- Navbar placeholder/spacer since the app's navbar is in React -->
+    <div class="h-16 border-b border-outline-variant/30 bg-surface-container-lowest flex items-center px-4 sm:px-6 sticky top-0 z-50">
+       <a href="/" class="flex items-center gap-2 group">
+          <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white text-xs font-black shadow-md group-hover:bg-primary-hover transition-colors">
+            QR
+          </div>
+          <span class="text-xl font-black tracking-tight text-on-surface">QRStream</span>
+        </a>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow">
+      
+      <!-- Page Header -->
+      <header class="bg-surface-container py-12 md:py-16 border-b border-outline-variant/50">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 text-center legal-reveal">
+          {icon && (
+            <div class="w-16 h-16 mx-auto bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-6">
+              <span class="material-symbols-outlined text-3xl">{icon}</span>
+            </div>
+          )}
+          <h1 class="text-3xl md:text-5xl font-black text-on-surface tracking-tight mb-4">{heading}</h1>
+          {lastUpdated && (
+            <p class="text-sm font-medium text-on-surface-variant">
+              Last Updated: <time>{lastUpdated}</time>
+            </p>
+          )}
+        </div>
+      </header>
+
+      <!-- Prose Content -->
+      <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-16 legal-prose legal-reveal-up">
+        <slot />
+      </article>
+
+    </main>
+
+    <Footer />
+  </div>
+
+  <script>
+    // Scroll reveal animation for legal pages
+    const revealEls = document.querySelectorAll('.legal-reveal, .legal-reveal-up');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -20px 0px' });
+    revealEls.forEach(el => revealObserver.observe(el));
+  </script>
+</BaseLayout>

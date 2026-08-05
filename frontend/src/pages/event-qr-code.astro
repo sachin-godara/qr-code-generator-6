@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import QRGeneratorApp from '../react/QRGeneratorApp';
+import Footer from '../components/layout/Footer.astro';
 
 const breadcrumbs = [
   { name: "Home", url: "/" },
@@ -99,8 +100,6 @@ const howTo = {
     </div>
   </section>
 
-  <footer class="border-t border-outline-variant py-8 pb-28 lg:pb-8 text-center text-sm text-on-surface-variant">
-    <p><a href="/" class="hover:text-primary transition-colors">← Back to QR Code Maker</a></p>
-    <p class="mt-2">&copy; {new Date().getFullYear()} QR Code Maker. Free custom QR code generator.</p>
-  </footer>
+  <Footer />
 </BaseLayout>
+

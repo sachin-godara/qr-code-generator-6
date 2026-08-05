@@ -1,0 +1,93 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "About Us", url: "/about" }
+];
+---
+
+<LegalLayout
+  title="About Us — QR Code Maker"
+  description="Learn more about QRStream, the free, privacy-first custom QR code generator built for creators, designers, and developers."
+  breadcrumbs={breadcrumbs}
+  heading="About QRStream"
+  icon="info"
+>
+  <div class="text-center mb-12">
+    <p class="text-xl md:text-2xl font-medium text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
+      Built for Creators, Designers, and Developers. We believe generating professional, fully-customized QR codes should be free, fast, and secure.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+    <div class="bg-surface-container p-6 rounded-2xl text-center border border-outline-variant/30">
+      <span class="block text-3xl font-black text-primary mb-1">40+</span>
+      <span class="text-sm font-semibold text-on-surface-variant">Dot Styles</span>
+    </div>
+    <div class="bg-surface-container p-6 rounded-2xl text-center border border-outline-variant/30">
+      <span class="block text-3xl font-black text-primary mb-1">51</span>
+      <span class="text-sm font-semibold text-on-surface-variant">Text Frames</span>
+    </div>
+    <div class="bg-surface-container p-6 rounded-2xl text-center border border-outline-variant/30">
+      <span class="block text-3xl font-black text-primary mb-1">48</span>
+      <span class="text-sm font-semibold text-on-surface-variant">Presets</span>
+    </div>
+    <div class="bg-surface-container p-6 rounded-2xl text-center border border-outline-variant/30">
+      <span class="block text-3xl font-black text-emerald-600 mb-1">100%</span>
+      <span class="text-sm font-semibold text-on-surface-variant">Free</span>
+    </div>
+  </div>
+
+  <h2>Our Mission</h2>
+  <p>QR codes have become an essential bridge between the physical and digital worlds. However, finding a reliable generator that doesn't hide core features behind a paywall, force you to create an account, or secretly track your users via dynamic links has become increasingly difficult.</p>
+  <p>We built QRStream to solve this problem. Our mission is to provide the most powerful, design-focused QR code generator on the web, completely free of charge. We empower businesses, event organizers, and everyday users to create stunning QR codes that match their brand identity.</p>
+
+  <h2>What Makes Us Different?</h2>
+  <div class="space-y-6 mt-6">
+    <div class="flex gap-4 items-start">
+      <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+        <span class="material-symbols-outlined">money_off</span>
+      </div>
+      <div>
+        <h3 class="!mt-0 text-lg font-bold">Truly Free, No Subscriptions</h3>
+        <p class="text-on-surface-variant text-sm">We don't do bait-and-switch. You won't spend 10 minutes designing a QR code only to be hit with a paywall when you click download.</p>
+      </div>
+    </div>
+    <div class="flex gap-4 items-start">
+      <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+        <span class="material-symbols-outlined">no_accounts</span>
+      </div>
+      <div>
+        <h3 class="!mt-0 text-lg font-bold">No Account Required</h3>
+        <p class="text-on-surface-variant text-sm">Jump straight into creating. We don't harvest your email address or force you to sign up to use our tools.</p>
+      </div>
+    </div>
+    <div class="flex gap-4 items-start">
+      <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+        <span class="material-symbols-outlined">shield_lock</span>
+      </div>
+      <div>
+        <h3 class="!mt-0 text-lg font-bold">Privacy First</h3>
+        <p class="text-on-surface-variant text-sm">We generate static QR codes. This means the data is encoded directly into the image. We don't use intermediary tracking links, and we don't store your data.</p>
+      </div>
+    </div>
+    <div class="flex gap-4 items-start">
+      <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+        <span class="material-symbols-outlined">palette</span>
+      </div>
+      <div>
+        <h3 class="!mt-0 text-lg font-bold">Unmatched Customization</h3>
+        <p class="text-on-surface-variant text-sm">With granular control over dots, eyes, frames, gradients, and logo placement, you can create a QR code that perfectly aligns with your design system.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mt-16 text-center">
+    <a href="/" class="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-xl font-bold hover:bg-primary-hover transition-colors shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+      Start Creating Now
+      <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+    </a>
+  </div>
+
+</LegalLayout>

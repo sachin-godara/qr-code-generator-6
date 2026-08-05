@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import QRGeneratorApp from '../react/QRGeneratorApp';
+import Footer from '../components/layout/Footer.astro';
 ---
 <BaseLayout
   title="QR Code Maker — Free Custom QR Code Generator | 40+ Styles, Logo, Batch"
@@ -319,36 +320,5 @@ import QRGeneratorApp from '../react/QRGeneratorApp';
 
   </div>
 
-  <!-- 6. PREMIUM SEO FOOTER -->
-  <footer class="border-t border-outline-variant/60 bg-surface-container-lowest">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-8">
-
-      {/* Navigation Pills */}
-      <div>
-        <h3 class="text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-3">Popular QR Categories</h3>
-        <div class="flex flex-wrap gap-2">
-          <a href="/wifi-qr-code" class="text-xs font-semibold text-on-surface-variant hover:text-primary transition-colors px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high border border-outline-variant/40">WiFi QR Code</a>
-          <a href="/vcard-qr-code" class="text-xs font-semibold text-on-surface-variant hover:text-primary transition-colors px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high border border-outline-variant/40">vCard QR Code</a>
-          <a href="/qr-code-with-logo" class="text-xs font-semibold text-on-surface-variant hover:text-primary transition-colors px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high border border-outline-variant/40">QR Code with Logo</a>
-          <a href="/event-qr-code" class="text-xs font-semibold text-on-surface-variant hover:text-primary transition-colors px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high border border-outline-variant/40">Event QR Code</a>
-          <a href="/email-qr-code" class="text-xs font-semibold text-on-surface-variant hover:text-primary transition-colors px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high border border-outline-variant/40">Email QR Code</a>
-          <a href="/free-qr-code-generator" class="text-xs font-semibold text-on-surface-variant hover:text-primary transition-colors px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high border border-outline-variant/40">Free QR Code Generator</a>
-          <a href="/how-to-use" class="text-xs font-semibold text-on-surface-variant hover:text-primary transition-colors px-3 py-1.5 rounded-lg bg-surface-container hover:bg-surface-container-high border border-outline-variant/40">How to Use</a>
-        </div>
-      </div>
-
-      {/* Copyright & Standards Badge */}
-      <div class="border-t border-outline-variant/40 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div class="flex items-center gap-2">
-          <div class="w-6 h-6 rounded-md bg-primary flex items-center justify-center text-white text-[10px] font-black">QR</div>
-          <p class="text-xs text-on-surface-variant font-medium">&copy; {new Date().getFullYear()} QRStream. 100% Free Custom QR Code Maker.</p>
-        </div>
-
-        <div class="flex items-center gap-2 text-[11px] font-bold text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200">
-          <span class="material-symbols-outlined text-[14px]">verified</span>
-          <span>ISO/IEC 18004 Standard Compliant</span>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <Footer />
 </BaseLayout>

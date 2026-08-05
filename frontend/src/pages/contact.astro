@@ -1,0 +1,192 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "Contact Us", url: "/contact" }
+];
+---
+
+<LegalLayout
+  title="Contact Us — QR Code Maker"
+  description="Get in touch with the QRStream team. We're here to help with bug reports, feature requests, or general inquiries."
+  breadcrumbs={breadcrumbs}
+  heading="Get in Touch"
+  icon="mail"
+>
+  <p class="text-center text-lg text-on-surface-variant mb-12">
+    Have a question, found a bug, or want to request a new feature? We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible.
+  </p>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    
+    <!-- Contact Form -->
+    <div class="md:col-span-2 bg-surface-container p-6 md:p-8 rounded-2xl border border-outline-variant/40">
+      <form id="contact-form" class="space-y-6">
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div>
+            <label for="name" class="contact-label">Name</label>
+            <input type="text" id="name" name="name" required class="contact-input" placeholder="Jane Doe" />
+          </div>
+          <div>
+            <label for="email" class="contact-label">Email Address</label>
+            <input type="email" id="email" name="email" required class="contact-input" placeholder="jane@example.com" />
+          </div>
+        </div>
+
+        <div>
+          <label for="subject" class="contact-label">Subject</label>
+          <select id="subject" name="subject" required class="contact-input appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM3MTcxN2EiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj48cG9seWxpbmUgcG9pbnRzPSI2IDkgMTIgMTUgMTggOSI+PC9wb2x5bGluZT48L3N2Zz4=')] bg-no-repeat bg-[length:20px] bg-[right_1rem_center]">
+            <option value="" disabled selected>Select a topic...</option>
+            <option value="general">General Inquiry</option>
+            <option value="bug">Bug Report</option>
+            <option value="feature">Feature Request</option>
+            <option value="partnership">Partnership / API</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="message" class="contact-label">Message</label>
+          <textarea id="message" name="message" required rows="5" class="contact-input resize-y" placeholder="How can we help you today?"></textarea>
+        </div>
+
+        <button type="submit" id="submit-btn" class="w-full bg-primary text-white font-bold py-3 px-4 rounded-lg hover:bg-primary-hover transition-colors flex items-center justify-center gap-2">
+          <span>Send Message</span>
+          <span class="material-symbols-outlined text-[20px]" id="submit-icon">send</span>
+        </button>
+
+        <div id="form-status" class="hidden rounded-lg p-4 text-sm font-medium"></div>
+      </form>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="space-y-6">
+      <div class="bg-surface-container p-6 rounded-2xl border border-outline-variant/40">
+        <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
+          <span class="material-symbols-outlined">email</span>
+        </div>
+        <h3 class="!mt-0 text-lg font-bold">Email Us</h3>
+        <p class="text-sm text-on-surface-variant mb-2">For direct inquiries, you can email us at:</p>
+        <a href="mailto:support@qrstream.com" class="font-bold text-primary hover:underline">support@qrstream.com</a>
+      </div>
+
+      <div class="bg-surface-container p-6 rounded-2xl border border-outline-variant/40">
+        <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
+          <span class="material-symbols-outlined">schedule</span>
+        </div>
+        <h3 class="!mt-0 text-lg font-bold">Response Time</h3>
+        <p class="text-sm text-on-surface-variant">We typically reply to all inquiries within <strong>24-48 hours</strong> during standard business days.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQs -->
+  <div class="mt-16">
+    <h2 class="text-center mb-8">Frequently Asked Questions</h2>
+    <div class="space-y-4 max-w-2xl mx-auto">
+      
+      <details class="group bg-surface-container border border-outline-variant/40 rounded-xl overflow-hidden">
+        <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-on-surface hover:text-primary transition-colors">
+          <span>Is QRStream really free for commercial use?</span>
+          <span class="transition group-open:rotate-180">
+            <span class="material-symbols-outlined">expand_more</span>
+          </span>
+        </summary>
+        <div class="text-on-surface-variant text-sm p-5 pt-0 border-t border-outline-variant/20 mt-2">
+          Yes! All QR codes generated on our platform are completely free for both personal and commercial use. We do not place watermarks on your designs or require payment to download high-resolution files.
+        </div>
+      </details>
+
+      <details class="group bg-surface-container border border-outline-variant/40 rounded-xl overflow-hidden">
+        <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-on-surface hover:text-primary transition-colors">
+          <span>Do my QR codes expire?</span>
+          <span class="transition group-open:rotate-180">
+            <span class="material-symbols-outlined">expand_more</span>
+          </span>
+        </summary>
+        <div class="text-on-surface-variant text-sm p-5 pt-0 border-t border-outline-variant/20 mt-2">
+          No, they never expire. We generate static QR codes, which means the data (like your website URL) is encoded directly into the pattern itself. As long as your website remains active, the QR code will work forever.
+        </div>
+      </details>
+
+      <details class="group bg-surface-container border border-outline-variant/40 rounded-xl overflow-hidden">
+        <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-on-surface hover:text-primary transition-colors">
+          <span>Can you help me track scans?</span>
+          <span class="transition group-open:rotate-180">
+            <span class="material-symbols-outlined">expand_more</span>
+          </span>
+        </summary>
+        <div class="text-on-surface-variant text-sm p-5 pt-0 border-t border-outline-variant/20 mt-2">
+          Because we prioritize privacy and generate static codes, we do not track scans. If you need to track analytics, we recommend adding UTM parameters to your URL (e.g., ?utm_source=qr) before generating the code, and tracking it via your own Google Analytics or similar tool.
+        </div>
+      </details>
+
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('contact-form') as HTMLFormElement;
+    const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+    const submitIcon = document.getElementById('submit-icon') as HTMLElement;
+    const statusDiv = document.getElementById('form-status') as HTMLDivElement;
+
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // UI Loading state
+        const originalText = submitBtn.querySelector('span:first-child')?.textContent || 'Send Message';
+        submitBtn.disabled = true;
+        submitBtn.classList.add('opacity-70', 'cursor-not-allowed');
+        (submitBtn.querySelector('span:first-child') as HTMLElement).textContent = 'Sending...';
+        submitIcon.textContent = 'hourglass_empty';
+        submitIcon.classList.add('animate-spin');
+
+        // Hide previous status
+        statusDiv.classList.add('hidden');
+        statusDiv.className = 'hidden rounded-lg p-4 text-sm font-medium mt-4';
+
+        // Gather data
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+
+        try {
+          const response = await fetch('/api/contact', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data),
+          });
+
+          if (response.ok) {
+            // Success
+            statusDiv.textContent = 'Thank you! Your message has been sent successfully. We will be in touch soon.';
+            statusDiv.classList.add('bg-emerald-50', 'text-emerald-700', 'border', 'border-emerald-200');
+            statusDiv.classList.remove('hidden');
+            form.reset();
+          } else {
+            // Server error
+            const errorData = await response.json().catch(() => ({}));
+            throw new Error(errorData.detail || 'Failed to send message. Please try again later.');
+          }
+        } catch (error) {
+          // Network or parsing error
+          statusDiv.textContent = error instanceof Error ? error.message : 'An unexpected error occurred.';
+          statusDiv.classList.add('bg-error-container', 'text-on-error-container', 'border', 'border-red-200');
+          statusDiv.classList.remove('hidden');
+        } finally {
+          // Reset UI
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('opacity-70', 'cursor-not-allowed');
+          (submitBtn.querySelector('span:first-child') as HTMLElement).textContent = originalText;
+          submitIcon.textContent = 'send';
+          submitIcon.classList.remove('animate-spin');
+        }
+      });
+    }
+  </script>
+
+</LegalLayout>

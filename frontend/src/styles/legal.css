@@ -1,0 +1,132 @@
+/* Scoped styles for legal and informational pages (prose) */
+
+.legal-prose {
+  color: var(--color-on-surface);
+  line-height: 1.75;
+  font-size: 1.05rem;
+}
+
+.legal-prose h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--color-on-surface);
+  letter-spacing: -0.025em;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-outline-variant);
+}
+
+.legal-prose h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--color-on-surface);
+}
+
+.legal-prose p {
+  margin-bottom: 1.25rem;
+  color: var(--color-on-surface-variant);
+}
+
+.legal-prose ul, .legal-prose ol {
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+  color: var(--color-on-surface-variant);
+}
+
+.legal-prose ul {
+  list-style-type: disc;
+}
+
+.legal-prose ol {
+  list-style-type: decimal;
+}
+
+.legal-prose li {
+  margin-bottom: 0.5rem;
+  padding-left: 0.25rem;
+}
+
+.legal-prose li::marker {
+  color: var(--color-primary);
+}
+
+.legal-prose a {
+  color: var(--color-primary);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--color-primary);
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.legal-prose a:hover {
+  background-color: var(--color-primary);
+  color: white;
+  text-decoration-color: transparent;
+}
+
+.legal-prose strong {
+  font-weight: 600;
+  color: var(--color-on-surface);
+}
+
+/* Info Callout Box */
+.legal-callout {
+  background-color: var(--color-surface-container);
+  border-left: 4px solid var(--color-primary);
+  padding: 1.25rem;
+  margin: 1.5rem 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.legal-callout p:last-child {
+  margin-bottom: 0;
+}
+
+/* Animations */
+.legal-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.legal-reveal-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.1s;
+}
+
+.legal-reveal.visible, .legal-reveal-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Contact form specific styles */
+.contact-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background-color: var(--color-surface-container-lowest);
+  border: 1px solid var(--color-outline);
+  border-radius: 8px;
+  color: var(--color-on-surface);
+  font-family: var(--font-body-md);
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.contact-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(24, 24, 27, 0.1);
+}
+
+.contact-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-on-surface);
+}

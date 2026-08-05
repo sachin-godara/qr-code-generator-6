@@ -2,7 +2,7 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
-from routers import generator
+from routers import generator, contact
 from limiter import limiter
 
 app = FastAPI(
@@ -29,6 +29,7 @@ app.add_middleware(
 
 # Include Routers
 app.include_router(generator.router)
+app.include_router(contact.router)
 
 @app.get("/api/health")
 @limiter.limit("60/minute")
