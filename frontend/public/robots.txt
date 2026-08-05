@@ -6,4 +6,4 @@ Allow: /
 Disallow: /api/
 
 # Sitemap — update domain before deployment
-Sitemap: https://qrcodemaker.example.com/sitemap-index.xml
+Sitemap: https://qrcodemakerapp.com/sitemap-index.xml
