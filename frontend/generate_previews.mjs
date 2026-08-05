@@ -10,15 +10,13 @@ import { PRESET_TEMPLATES } from './src/data/templates.ts';
 async function generate() {
     let count = 0;
     for (const tmpl of PRESET_TEMPLATES) {
-        if (tmpl.category !== "WiFi") continue;
-
         const clean_name = tmpl.name.toLowerCase().replace(/ /g, "_");
         const filename = `${clean_name}.png`;
         const filepath = path.join(OUTPUT_DIR, filename);
 
         const payload = {
-            data: "WIFI:T:WPA;S:MyNetwork;P:password123;;",
-            error_correction: "H",
+            data: "https://qrstream.com",
+            error_correction: "Q",
             quiet_zone: 4,
             box_size: 10,
             ...tmpl.settings
@@ -49,6 +47,7 @@ async function generate() {
                 fs.writeFileSync(filepath, Buffer.from(buffer));
                 console.log(`[OK] ${filename}`);
                 count++;
+                await new Promise(r => setTimeout(r, 100)); // Prevent 429 Rate Limit
             } else {
                 console.error(`[FAIL] ${filename} - ${resp.status}`);
             }

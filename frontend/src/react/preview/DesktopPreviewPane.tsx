@@ -71,15 +71,18 @@ export function DesktopPreviewPane({
         <div
           id="qr-preview-container"
           className={`aspect-square flex items-center justify-center relative overflow-hidden group p-8 rounded-2xl surface-ring-vercel qr-ambient-ring transition-colors duration-300 ${previewBg === 'dark' ? 'bg-[#18181b]' : previewBg === 'transparent' ? 'bg-[#f3f4f6]' : previewBg === 'white' ? 'bg-[#f4f4f5]' : 'bg-[#f9fafb]'}`}
-          style={{ "--qr-glow-color": glowColor, ...(previewBg === 'transparent' ? {
-            backgroundImage: "linear-gradient(45deg, #e5e7eb 25%, transparent 25%), linear-gradient(-45deg, #e5e7eb 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e5e7eb 75%), linear-gradient(-45deg, transparent 75%, #e5e7eb 75%)",
-            backgroundSize: "16px 16px",
-            backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0px",
-          } : previewBg === 'light' ? {
-            backgroundImage: "linear-gradient(45deg, #f3f4f6 25%, transparent 25%), linear-gradient(-45deg, #f3f4f6 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f3f4f6 75%), linear-gradient(-45deg, transparent 75%, #f3f4f6 75%)",
-            backgroundSize: "16px 16px",
-            backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0px",
-          } : {})} as React.CSSProperties}
+          style={{ 
+            "--qr-glow-color": glowColor,
+            ...(previewBg === 'transparent' ? {
+              backgroundImage: "linear-gradient(45deg, #e5e7eb 25%, transparent 25%), linear-gradient(-45deg, #e5e7eb 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e5e7eb 75%), linear-gradient(-45deg, transparent 75%, #e5e7eb 75%)",
+              backgroundSize: "16px 16px",
+              backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0px",
+            } : previewBg === 'light' ? {
+              backgroundImage: "linear-gradient(45deg, #f3f4f6 25%, transparent 25%), linear-gradient(-45deg, #f3f4f6 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f3f4f6 75%), linear-gradient(-45deg, transparent 75%, #f3f4f6 75%)",
+              backgroundSize: "16px 16px",
+              backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0px",
+            } : {})
+          } as any}
         >
           {/* Background Tester Toggle */}
           <div className={`absolute top-3 left-3 z-30 flex backdrop-blur-md rounded-full p-1 shadow-sm border gap-0.5 ${previewBg === 'dark' ? 'bg-[#27272a]/90 border-white/10' : 'bg-white/90 border-outline-variant/30'}`}>

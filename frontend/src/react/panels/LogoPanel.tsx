@@ -22,7 +22,7 @@ export function LogoPanel() {
       const q = logoSearchQuery.toLowerCase();
       result = result.filter(l => 
         l.label.toLowerCase().includes(q) || 
-        l.keywords?.some(k => k.toLowerCase().includes(q))
+        l.keywords?.some((k: string) => k.toLowerCase().includes(q))
       );
     }
     return result;

@@ -28,11 +28,10 @@ export function MobileBottomBar({
   const { handleDownloadCustom, handleCopyToClipboard, hasComplexStyling } = useDownloadHandlers();
 
   return (
-    <div className="lg:hidden w-full max-w-[100vw] bg-surface z-40">
-      <div className="bg-white flex flex-col max-w-full relative">
-
+    <>
+      <div className="lg:hidden w-full max-w-[100vw] z-40 sticky top-14 sm:top-16">
         {/* ── STICKY ULTRA-COMPACT HEADER: Mini-Preview + Navigation ── */}
-        <div className={`sticky top-14 sm:top-16 z-40 bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant/50 shadow-sm transition-all duration-200 ${!showMiniPreview ? '-translate-y-full opacity-0 pointer-events-none absolute' : 'translate-y-0 opacity-100 relative'}`}>
+        <div className={`w-full flex flex-col bg-surface-container-lowest/95 backdrop-blur-md border-b border-outline-variant/50 shadow-sm transition-all duration-200 ${!showMiniPreview ? '-translate-y-full opacity-0 pointer-events-none absolute' : 'translate-y-0 opacity-100'}`}>
 
           {/* Compact Bar with Live QR Engine */}
           <div className="px-3.5 py-2 flex items-center justify-between gap-2.5 border-b border-outline-variant/30">
@@ -174,6 +173,6 @@ export function MobileBottomBar({
           <span>{downloadSuccess ? 'Saved!' : 'Save QR'}</span>
         </button>
       </div>
-    </div>
+    </>
   );
 }

@@ -164,6 +164,7 @@ export interface LogoMetadata {
   category: string;
   tags: string[];
   gradient: string;
+  keywords?: string[];
 }
 
 export const LOGO_CATEGORIES = ["All", "Social & Apps", "Tech & Contact", "Business & Pay", "Media & More"];
