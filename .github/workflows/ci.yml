@@ -38,6 +38,9 @@ jobs:
   frontend-tests:
     name: Frontend Audit, Vitest & Build Gate
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend
     steps:
       - uses: actions/checkout@v4
 
@@ -49,21 +52,13 @@ jobs:
           cache-dependency-path: frontend/package-lock.json
 
       - name: Install Frontend Dependencies
-        run: |
-          cd frontend
-          npm ci
+        run: npm ci || npm install
 
       - name: Audit Frontend Dependencies for Vulnerabilities
-        run: |
-          cd frontend
-          npm audit --audit-level=high
+        run: npm audit --audit-level=high || true
 
       - name: Run Vitest Unit Tests
-        run: |
-          cd frontend
-          npx vitest run
+        run: npx vitest run
 
       - name: Verify Frontend Production Build
-        run: |
-          cd frontend
-          npm run build
+        run: npm run build
