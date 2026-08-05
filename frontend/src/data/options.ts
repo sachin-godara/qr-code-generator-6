@@ -13,21 +13,19 @@ export const EYE_FRAME_STYLES = [
   // Normal
   "square", "rounded", "octagon",
   // Intermediate
-  "leaf", "perfect_leaf_tl", "perfect_leaf_tr", "dynamic_swept", "dynamic_swept_opposite", "shield", "droplet_tl", "droplet_tr", "droplet_bl", "droplet_br",
+  "leaf", "perfect_leaf_tl", "perfect_leaf_tr", "dynamic_swept", "shield", "droplet_tl", "droplet_tr", "droplet_bl", "droplet_br",
   // Advanced
-  "deckled", "crystal",
   "leaf_opposite", "shield_opposite", 
   "left_rounded", "right_rounded", "solid_square_circle_cut", "crystal_frame", 
   "arch_frame", "cross_notch_frame", "pointed_top_frame", "aztec_step_frame", 
-  "camera_lens", "squircle", "notched_ring", "circuit_trace", "fluted_bezel", "cushion_cut", "hex_nut", "split_crosshairs", "aerodynamic_slant",
-  "geometric_deco", "superellipse_square", "flower_of_life", "fibonacci_flower", "perspective_warped", "cellular_automata",
-  "cyberpunk_glitch"
+  "camera_lens", "squircle", "notched_ring", "circuit_trace", "cushion_cut", "hex_nut", "split_crosshairs",
+  "geometric_deco", "superellipse_square", "flower_of_life", "perspective_warped"
 ];
 export const EYEBALL_STYLES = [
   // Normal
   "square", "rounded", "circle", "diamond", "hexagon", "octagon",
   // Intermediate
-  "leaf", "perfect_leaf", "dynamic_swept", "dynamic_swept_opposite", "shield", "gear", "plus", "rhombus", "squircle", "notched_ring", "circuit_trace", "fluted_bezel", "cushion_cut", "hex_nut", "split_crosshairs", "aerodynamic_slant",
+  "leaf", "perfect_leaf", "shield", "gear", "plus", "rhombus", "squircle", "circuit_trace", "fluted_bezel", "cushion_cut", "hex_nut", "split_crosshairs", "aerodynamic_slant",
   // Advanced
   "deckled",
   "leaf_opposite", "shield_opposite", 

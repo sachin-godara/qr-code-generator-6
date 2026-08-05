@@ -610,7 +610,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "description": "Romantic red card with double interlocking hearts header",
     "settings": {
       "dots_style": "heart",
-      "eye_frame_style": "deckled",
+      "eye_frame_style": "arch_frame",
       "eyeball_style": "heart",
       "dots_color": "#e50914",
       "bg_color": "#ffffff",
@@ -1099,7 +1099,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "description": "Clean bold header card with 'SCAN TO CONNECT' call-to-action.",
     "settings": {
       "dots_style": "crossstitch",
-      "eye_frame_style": "cyberpunk_glitch",
+      "eye_frame_style": "circuit_trace",
       "eyeball_style": "square",
       "dots_color": "#212121",
       "dots_color_end": "#212121",
@@ -2411,7 +2411,7 @@ export const PRESET_TEMPLATES: Template[] = [
     "description": "A rustic wooden sign suspended by metal chains.",
     "settings": {
       "dots_style": "vertical_slash",
-      "eye_frame_style": "aerodynamic_slant",
+      "eye_frame_style": "squircle",
       "eyeball_style": "square",
       "dots_color": "#3E2723",
       "bg_color": "#ffffff",
