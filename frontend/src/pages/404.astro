@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+---
+<BaseLayout
+  title="Page Not Found (404) — QR Code Maker"
+  description="The page you are looking for does not exist. Return to the homepage to generate a free QR code."
+>
+  <style is:global>
+    @import '../styles/global.css';
+  </style>
+
+  <div class="min-h-screen bg-surface flex flex-col relative selection:bg-primary/20 selection:text-primary">
+    <Header />
+    
+    <!-- Decorative Background Elements -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+      <div class="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] rounded-full bg-primary/5 blur-[80px]"></div>
+      <div class="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-secondary/5 blur-[100px]"></div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow flex items-center justify-center p-6 relative z-10 min-h-[70vh]">
+      <div class="max-w-2xl w-full text-center">
+        <!-- Giant 404 Graphic -->
+        <div class="relative inline-block mb-8">
+          <h1 class="text-[120px] sm:text-[180px] font-black leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-primary/80 to-secondary/80 select-none">
+            404
+          </h1>
+          <div class="absolute inset-0 flex items-center justify-center backdrop-blur-[2px] bg-white/10 rounded-[3rem] -z-10 transform scale-110"></div>
+          <div class="absolute -bottom-4 right-0 w-24 h-24 bg-surface-container rounded-2xl shadow-xl flex items-center justify-center transform rotate-12 border border-outline-variant/50">
+            <span class="material-symbols-outlined text-[48px] text-primary">broken_image</span>
+          </div>
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl font-bold text-on-surface mb-4 tracking-tight">
+          Looks like you're lost.
+        </h2>
+        
+        <p class="text-lg text-on-surface-variant max-w-lg mx-auto mb-12">
+          The page you are looking for has vanished, moved, or never existed in the first place. Let's get you back on track.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a
+            href="/"
+            class="w-full sm:w-auto px-8 py-4 bg-primary text-white font-bold rounded-2xl hover:bg-primary-hover hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg hover:shadow-primary/25 flex items-center justify-center gap-2"
+          >
+            <span class="material-symbols-outlined">qr_code_2</span>
+            Make a QR Code
+          </a>
+          <a
+            href="/qr-code-scanner"
+            class="w-full sm:w-auto px-8 py-4 bg-surface-container-high text-on-surface font-bold rounded-2xl hover:bg-surface-container-highest hover:scale-105 active:scale-95 transition-all duration-300 border border-outline-variant/50 shadow-sm hover:shadow-md flex items-center justify-center gap-2"
+          >
+            <span class="material-symbols-outlined">qr_code_scanner</span>
+            Scan a QR Code
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <Footer />
+  </div>
+</BaseLayout>

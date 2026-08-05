@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+---
+<BaseLayout
+  title="Internal Server Error (500) — QR Code Maker"
+  description="An unexpected error occurred. Please try again."
+>
+  <style is:global>
+    @import '../styles/global.css';
+  </style>
+
+  <div class="min-h-screen bg-surface flex flex-col relative selection:bg-primary/20 selection:text-primary">
+    <Header />
+    
+    <!-- Decorative Background Elements -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
+      <div class="absolute top-[20%] left-[-5%] w-[600px] h-[600px] rounded-full bg-error/5 blur-[100px]"></div>
+      <div class="absolute bottom-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-primary/5 blur-[80px]"></div>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow flex items-center justify-center p-6 relative z-10 min-h-[70vh]">
+      <div class="max-w-2xl w-full text-center">
+        <!-- Giant 500 Graphic -->
+        <div class="relative inline-block mb-8">
+          <h1 class="text-[120px] sm:text-[180px] font-black leading-none tracking-tighter text-transparent bg-clip-text bg-gradient-to-br from-error/80 to-error/50 select-none">
+            500
+          </h1>
+          <div class="absolute inset-0 flex items-center justify-center backdrop-blur-[2px] bg-white/10 rounded-[3rem] -z-10 transform scale-110"></div>
+          <div class="absolute -bottom-4 right-0 w-24 h-24 bg-surface-container rounded-2xl shadow-xl flex items-center justify-center transform rotate-12 border border-outline-variant/50">
+            <span class="material-symbols-outlined text-[48px] text-error">warning</span>
+          </div>
+        </div>
+
+        <h2 class="text-3xl sm:text-4xl font-bold text-on-surface mb-4 tracking-tight">
+          Something went wrong.
+        </h2>
+        
+        <p class="text-lg text-on-surface-variant max-w-lg mx-auto mb-12">
+          We experienced an unexpected internal server error. Don't worry, it's not your fault. Please try reloading the page.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button
+            onclick="window.location.reload()"
+            class="w-full sm:w-auto px-8 py-4 bg-primary text-white font-bold rounded-2xl hover:bg-primary-hover hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg hover:shadow-primary/25 flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <span class="material-symbols-outlined">refresh</span>
+            Reload Page
+          </button>
+          <a
+            href="/"
+            class="w-full sm:w-auto px-8 py-4 bg-surface-container-high text-on-surface font-bold rounded-2xl hover:bg-surface-container-highest hover:scale-105 active:scale-95 transition-all duration-300 border border-outline-variant/50 shadow-sm hover:shadow-md flex items-center justify-center gap-2"
+          >
+            <span class="material-symbols-outlined">home</span>
+            Return Home
+          </a>
+        </div>
+      </div>
+    </main>
+
+    <Footer />
+  </div>
+</BaseLayout>
