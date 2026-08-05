@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
 
 const breadcrumbs = [
@@ -122,15 +123,17 @@ const faqs = [
 ];
 ---
 <BaseLayout
-  title="How to Use QR Code Maker — Complete Guide to Custom QR Codes"
-  description="Complete guide to creating stunning custom QR codes. Learn 5 simple steps, pro tips for scannability, feature walkthroughs, export formats, and FAQ. Master QR Code Maker in minutes."
-  keywords="how to use QR code maker, QR code guide, create custom QR code tutorial, QR code best practices, QR code design tips, QR code scanner tips"
+  title="How to Make a QR Code — Create a QR Code for Free"
+  description="Learn how to make a QR code for free in 5 simple steps. Complete guide to creating stunning custom QR codes, adding logos, and ensuring scannability."
+  keywords="how to make a qr code, create a qr code, make a qr code, create qr code, how to use QR code maker, QR code guide"
   breadcrumbs={breadcrumbs}
 >
   <style is:global>
     @import '../styles/global.css';
     @import '../styles/how-to-use.css';
   </style>
+  
+  <Header />
 
   <!-- ╔══════════════════════════════════════════╗ -->
   <!-- ║  SECTION 1: CINEMATIC HERO               ║ -->

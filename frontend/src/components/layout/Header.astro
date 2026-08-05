@@ -1,0 +1,91 @@
+---
+const currentPath = Astro.url.pathname;
+---
+<nav class="w-full top-0 z-50 bg-surface-container-lowest border-b border-outline-variant shadow-sm backdrop-blur-md bg-opacity-95 safe-top sticky">
+  <div class="flex justify-between items-center h-14 sm:h-16 px-4 sm:px-6 max-w-[1400px] mx-auto w-full">
+    <div class="flex items-center gap-4 sm:gap-8">
+      <!-- Premium Brand Wordmark -->
+      <a href="/" class="flex items-center gap-2.5 group shrink-0" title="QR Code Maker — Home">
+        <div class="w-8 h-8 rounded-xl bg-primary flex items-center justify-center shadow-sm group-hover:shadow-md transition-shadow relative overflow-hidden">
+          <span class="text-white text-[11px] font-black tracking-tight">QR</span>
+          <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent"></div>
+        </div>
+        <div class="flex flex-col leading-none">
+          <span class="text-[13px] font-bold text-on-surface tracking-tight">QRStream</span>
+          <span class="text-[9px] font-medium text-on-surface-variant tracking-wider hidden sm:block">40+ styles · 100% free</span>
+        </div>
+      </a>
+      <div class="hidden md:flex items-center gap-6">
+        <a
+          href="/"
+          class={`text-sm font-semibold transition-colors duration-200 ${currentPath === "/" ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
+        >
+          Generator
+        </a>
+        <a
+          href="/how-to-use"
+          class={`text-sm font-semibold transition-colors duration-200 flex items-center gap-1.5 ${currentPath === "/how-to-use" ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
+        >
+          <span class="material-symbols-outlined text-[16px]">help_outline</span>
+          How to Use
+        </a>
+        <a
+          href="/qr-code-scanner"
+          class={`text-sm font-bold transition-colors flex items-center gap-1.5 px-4 py-2 rounded-full border ${currentPath === "/qr-code-scanner" ? "text-primary bg-primary/10 border-primary/30" : "text-on-surface hover:text-primary bg-surface-container hover:bg-surface-container-high border-outline-variant/30"}`}
+        >
+          <span class="material-symbols-outlined text-[16px]">qr_code_scanner</span>
+          Scan
+        </a>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu Button (requires client-side JS) -->
+    <button
+      id="mobile-menu-btn"
+      class="md:hidden w-10 h-10 flex items-center justify-center rounded-xl hover:bg-surface-container transition-colors touch-press"
+    >
+      <span class="material-symbols-outlined text-on-surface" id="menu-icon">menu</span>
+    </button>
+  </div>
+  
+  <!-- Mobile Menu Dropdown -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-outline-variant bg-surface-container-lowest px-4 py-3 space-y-1 shadow-lg">
+    <a
+      href="/"
+      class={`w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold ${currentPath === "/" ? "bg-primary/10 text-primary" : "text-on-surface-variant hover:bg-surface-container"}`}
+    >
+      <span class="material-symbols-outlined text-[20px]">qr_code_2</span>
+      Generator
+    </a>
+    <a
+      href="/how-to-use"
+      class={`w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold ${currentPath === "/how-to-use" ? "bg-primary/10 text-primary" : "text-on-surface-variant hover:bg-surface-container"}`}
+    >
+      <span class="material-symbols-outlined text-[20px]">help_outline</span>
+      How to Use
+    </a>
+    <a
+      href="/qr-code-scanner"
+      class={`w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold ${currentPath === "/qr-code-scanner" ? "text-primary bg-primary/5 border border-primary/20" : "text-on-surface-variant hover:bg-surface-container"}`}
+    >
+      <span class="material-symbols-outlined text-[20px]">qr_code_scanner</span>
+      Scan QR Code
+    </a>
+  </div>
+</nav>
+
+<script>
+  // Simple mobile menu toggle script for static pages
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    const icon = document.getElementById('menu-icon');
+    
+    if (btn && menu && icon) {
+      btn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+        icon.textContent = menu.classList.contains('hidden') ? 'menu' : 'close';
+      });
+    }
+  });
+</script>

@@ -36,6 +36,19 @@ function App() {
       window.removeEventListener('offline', handleOffline);
     };
   }, []);
+  useEffect(() => {
+    // Automatically select the correct content type based on the landing page URL
+    const path = window.location.pathname;
+    let expectedType = null;
+    if (path.includes("wifi")) expectedType = "wifi";
+    else if (path.includes("vcard") || path.includes("contact")) expectedType = "vcard";
+    else if (path.includes("event") || path.includes("calendar")) expectedType = "event";
+    else if (path.includes("email")) expectedType = "email";
+    
+    if (expectedType && useQRStore.getState().settings.contentType !== expectedType) {
+      useQRStore.getState().updateSettings({ contentType: expectedType as any, contentData: "" });
+    }
+  }, []);
 
   // Listen for custom content-type selection events from the lower landing section
   useEffect(() => {
@@ -206,27 +219,19 @@ function App() {
               >
                 Generator
               </button>
-              <button
-                onClick={() => setActiveTab("Templates")}
-                className={`text-sm font-semibold transition-colors duration-200 ${activeTab === "Templates" ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
-              >
-                Templates
-              </button>
-              <button
-                onClick={() => {
-                  useQRStore.getState().updateSettings({ contentType: "batch" });
-                  setActiveTab("Content");
-                }}
-                className={`text-sm font-semibold transition-colors duration-200 ${settings.contentType === "batch" ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
-              >
-                Batch Generator
-              </button>
               <a
                 href="/how-to-use"
                 className="text-sm font-semibold transition-colors duration-200 text-on-surface-variant hover:text-on-surface flex items-center gap-1.5"
               >
                 <span className="material-symbols-outlined text-[16px]">help_outline</span>
                 How to Use
+              </a>
+              <a
+                href="/qr-code-scanner"
+                className="text-sm font-bold text-on-surface hover:text-primary transition-colors flex items-center gap-1.5 bg-surface-container hover:bg-surface-container-high px-4 py-2 rounded-full border border-outline-variant/30"
+              >
+                <span className="material-symbols-outlined text-[16px]">qr_code_scanner</span>
+                Scan
               </a>
             </div>
           </div>
@@ -248,24 +253,6 @@ function App() {
               <span className="material-symbols-outlined text-[20px]">qr_code_2</span>
               Generator
             </button>
-            <button
-              onClick={() => { setActiveTab("Templates"); setMobileMenuOpen(false); }}
-              className={`w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold ${activeTab === "Templates" ? "bg-primary/10 text-primary" : "text-on-surface-variant hover:bg-surface-container"}`}
-            >
-              <span className="material-symbols-outlined text-[20px]">dashboard</span>
-              Templates
-            </button>
-            <button
-              onClick={() => {
-                useQRStore.getState().updateSettings({ contentType: "batch" });
-                setActiveTab("Content");
-                setMobileMenuOpen(false);
-              }}
-              className={`w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold ${settings.contentType === "batch" ? "bg-primary/10 text-primary" : "text-on-surface-variant hover:bg-surface-container"}`}
-            >
-              <span className="material-symbols-outlined text-[20px]">dataset</span>
-              Batch Generator
-            </button>
             <a
               href="/how-to-use"
               className="w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold text-on-surface-variant hover:bg-surface-container"
@@ -273,6 +260,14 @@ function App() {
             >
               <span className="material-symbols-outlined text-[20px]">help_outline</span>
               How to Use
+            </a>
+            <a
+              href="/qr-code-scanner"
+              className="w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold text-primary bg-primary/5 border border-primary/20"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <span className="material-symbols-outlined text-[20px]">qr_code_scanner</span>
+              Scan QR Code
             </a>
           </div>
         )}
