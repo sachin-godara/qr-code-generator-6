@@ -11,6 +11,7 @@ interface Props {
     description: string;
     steps: { name: string; text: string }[];
   };
+  faqs?: { q: string; a: string }[];
 }
 
 const {
@@ -21,6 +22,7 @@ const {
   keywords,
   breadcrumbs,
   howTo,
+  faqs,
 } = Astro.props;
 
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') || '';
@@ -182,6 +184,22 @@ const resolvedOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogIm
       "position": index + 1,
       "name": step.name,
       "text": step.text
+    }))
+  })} />
+)}
+
+<!-- FAQPage Structured Data (if faqs provided) -->
+{faqs && faqs.length > 0 && (
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.a
+      }
     }))
   })} />
 )}
