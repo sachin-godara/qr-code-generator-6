@@ -1,0 +1,3 @@
+# Cloudflare Pages API Proxy
+# Replace the URL below with your actual Render backend URL once deployed.
+/api/*  https://YOUR_BACKEND_NAME.onrender.com/api/:splat  200

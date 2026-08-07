@@ -6,7 +6,6 @@ import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
-  // TODO: Replace with your actual production domain before deploying
   // This affects sitemap generation, canonical URLs, and OG meta tags
   site: 'https://qrcodemakerapp.com',
   
