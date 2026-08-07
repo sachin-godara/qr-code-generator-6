@@ -338,7 +338,7 @@ function App() {
                         Step {meta.step} / {sidebarTabs.length}
                       </span>
                     </div>
-                    <h1 className="text-xl font-semibold text-on-surface tracking-tight panel-enter" key={`h-${activeTab}`}>{meta.headline}</h1>
+                    <h2 className="text-xl font-semibold text-on-surface tracking-tight panel-enter" key={`h-${activeTab}`}>{meta.headline}</h2>
                     <p className="text-sm text-on-surface-variant mt-1 panel-enter" key={`s-${activeTab}`}>
                       {meta.sub}
                     </p>

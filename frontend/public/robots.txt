@@ -1,9 +1,7 @@
 # QR Code Maker — Robots.txt
-# TODO: Replace example.com with your actual production domain before deploying
 
 User-agent: *
 Allow: /
 Disallow: /api/
 
-# Sitemap — update domain before deployment
-Sitemap: https://qrcodemakerapp.com/sitemap-index.xml
+Sitemap: https://generatecustomqr.com/sitemap-index.xml

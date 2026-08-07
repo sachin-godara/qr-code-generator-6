@@ -9,7 +9,7 @@ services:
     restart: always
     environment:
       - ENV=production
-      - CORS_ORIGINS=http://localhost,http://localhost:80,https://qrcodemakerapp.com,https://www.qrcodemakerapp.com
+      - CORS_ORIGINS=http://localhost,http://localhost:80,https://generatecustomqr.com,https://www.generatecustomqr.com
     ports:
       - "8000:8000"
     healthcheck:

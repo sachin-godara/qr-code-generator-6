@@ -54,6 +54,6 @@ You can deploy this project using any of the following modern hosting providers:
 ## Phase 3: Launch Verification Checklist
 
 - [ ] `git push` triggers automated GitHub Actions CI/CD (Pytest, Vitest, `pip-audit`, `npm audit`, build check).
-- [ ] Container/Server health check returns `{"status": "ok"}` on `https://qrcodemakerapp.com/api/health`.
+- [ ] Container/Server health check returns `{"status": "ok"}` on `https://generatecustomqr.com/api/health`.
 - [ ] Cloudflare SSL certificate displays valid lock icon in browser.
 - [ ] Test generating single QR code, custom logo overlay, and 500-item batch ZIP download.
