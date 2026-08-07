@@ -1,0 +1,369 @@
+{
+  "communities": {
+    "0": [
+      "components_layout_footer",
+      "components_layout_header",
+      "components_seohead",
+      "f_project_001_qr_code_generator_6_frontend_src_react_qrgeneratorapp",
+      "f_project_001_qr_code_generator_6_frontend_src_react_scanner_qrscannerapp",
+      "layouts_baselayout",
+      "layouts_legallayout",
+      "layouts_legallayout_revealobserver",
+      "pages_404",
+      "pages_500",
+      "pages_about",
+      "pages_contact",
+      "pages_contact_breadcrumbs",
+      "pages_email_qr_code",
+      "pages_email_qr_code_breadcrumbs",
+      "pages_email_qr_code_howto",
+      "pages_event_qr_code",
+      "pages_event_qr_code_breadcrumbs",
+      "pages_event_qr_code_howto",
+      "pages_free_qr_code_generator",
+      "pages_free_qr_code_generator_breadcrumbs",
+      "pages_free_qr_code_generator_howto",
+      "pages_how_to_use",
+      "pages_index",
+      "pages_privacy_policy",
+      "pages_privacy_policy_breadcrumbs",
+      "pages_qr_code_scanner",
+      "pages_qr_code_with_logo",
+      "pages_qr_code_with_logo_breadcrumbs",
+      "pages_qr_code_with_logo_howto",
+      "pages_terms",
+      "pages_terms_breadcrumbs",
+      "pages_vcard_qr_code",
+      "pages_wifi_qr_code",
+      "react_qrgeneratorapp",
+      "react_qrgeneratorapp_qrgeneratorapp",
+      "react_qrgeneratorapp_queryclient",
+      "react_scanner_qrscannerapp",
+      "react_scanner_qrscannerapp_qrscannerapp"
+    ],
+    "1": [
+      "components_previews_stylepreviewcard",
+      "components_previews_stylepreviewcard_stylepreviewcard",
+      "components_previews_stylepreviewcard_stylepreviewcardprops",
+      "components_previews_svgicons_logo_categories",
+      "components_ui_scannabilityalert",
+      "components_ui_scannabilityalert_scannabilityalert",
+      "components_ui_slider",
+      "components_ui_slider_slider",
+      "components_ui_slider_sliderprops",
+      "data_options",
+      "data_options_dot_styles",
+      "data_options_eye_frame_styles",
+      "data_options_eyeball_styles",
+      "data_options_frame_styles",
+      "data_options_text_styles",
+      "react_panels_advancedpanel",
+      "react_panels_advancedpanel_advancedpanel",
+      "react_panels_designpanel",
+      "react_panels_designpanel_designpanel",
+      "react_panels_effectspanel",
+      "react_panels_effectspanel_effectspanel",
+      "react_panels_framespanel",
+      "react_panels_framespanel_fontstyles",
+      "react_panels_framespanel_framespanel",
+      "react_panels_index",
+      "react_panels_logopanel",
+      "react_panels_logopanel_logocardshapes",
+      "react_panels_logopanel_logopanel",
+      "react_panels_templatespanel_templatespanel"
+    ],
+    "2": [
+      "hooks_usedownloadhandlers",
+      "hooks_usedownloadhandlers_usedownloadhandlers",
+      "hooks_usetoast",
+      "hooks_usetoast_usetoast",
+      "react_app",
+      "react_app_app",
+      "react_panels_downloadpanel",
+      "react_panels_downloadpanel_downloadpanel",
+      "react_panels_downloadpanel_downloadpanelprops",
+      "react_preview_desktoppreviewpane",
+      "react_preview_desktoppreviewpane_desktoppreviewpane",
+      "react_preview_desktoppreviewpane_desktoppreviewpaneprops",
+      "react_preview_fullscreenlightbox",
+      "react_preview_fullscreenlightbox_fullscreenlightbox",
+      "react_preview_fullscreenlightbox_fullscreenlightboxprops",
+      "react_preview_index",
+      "react_preview_mobilebottombar",
+      "react_preview_mobilebottombar_mobilebottombar",
+      "react_preview_mobilebottombar_mobilebottombarprops",
+      "store_usedownloadstore",
+      "store_usedownloadstore_downloadstate",
+      "store_usedownloadstore_usedownloadstore",
+      "store_usetoaststore",
+      "store_usetoaststore_toastitem",
+      "store_usetoaststore_toaststate",
+      "store_usetoaststore_usetoaststore",
+      "tests_app_test",
+      "tests_app_test_queryclient"
+    ],
+    "3": [
+      "components_generator_forms_contentforms",
+      "components_generator_forms_contentforms_appstoreform",
+      "components_generator_forms_contentforms_cryptoform",
+      "components_generator_forms_contentforms_emailform",
+      "components_generator_forms_contentforms_eventform",
+      "components_generator_forms_contentforms_googleplayform",
+      "components_generator_forms_contentforms_input",
+      "components_generator_forms_contentforms_locationform",
+      "components_generator_forms_contentforms_paypalform",
+      "components_generator_forms_contentforms_phoneform",
+      "components_generator_forms_contentforms_select",
+      "components_generator_forms_contentforms_smsform",
+      "components_generator_forms_contentforms_socialform",
+      "components_generator_forms_contentforms_textarea",
+      "components_generator_forms_contentforms_textform",
+      "components_generator_forms_contentforms_upiform",
+      "components_generator_forms_contentforms_urlform",
+      "components_generator_forms_contentforms_vcardform",
+      "components_generator_forms_contentforms_whatsappform",
+      "components_generator_forms_contentforms_wifiform",
+      "react_panels_contentpanel",
+      "react_panels_contentpanel_contentcategories",
+      "react_panels_contentpanel_contentpanel",
+      "store_useqrstore_useqrstore"
+    ],
+    "4": [
+      "components_previews_svgicons",
+      "components_previews_svgicons_dotpreview",
+      "components_previews_svgicons_eyepreview",
+      "components_previews_svgicons_getreactlogopngdataurl",
+      "components_previews_svgicons_logo_items",
+      "components_previews_svgicons_logometadata",
+      "components_previews_svgicons_preset_logo_brand_colors",
+      "components_previews_svgicons_presetlogopreview",
+      "components_previews_svgicons_presetlogopreviewprops",
+      "services_qrapi",
+      "services_qrapi_batchitem",
+      "services_qrapi_copyqrtoclipboard",
+      "services_qrapi_downloadqr",
+      "services_qrapi_fetchqrpreview",
+      "services_qrapi_generatebatch",
+      "services_qrapi_resolvelogopayload"
+    ],
+    "5": [
+      "data_templates",
+      "data_templates_preset_templates",
+      "data_templates_template",
+      "react_panels_templatespanel",
+      "react_panels_templatespanel_template_categories",
+      "store_useqrstore",
+      "store_useqrstore_qrstate",
+      "tests_useqrstore_test",
+      "types_qr",
+      "types_qr_contenttype",
+      "types_qr_defaultsettings",
+      "types_qr_qrsettings"
+    ],
+    "6": [
+      "react_errorboundary",
+      "react_errorboundary_errorboundary",
+      "react_errorboundary_errorboundary_componentdidcatch",
+      "react_errorboundary_errorboundary_getderivedstatefromerror",
+      "react_errorboundary_errorboundary_render",
+      "react_errorboundary_props",
+      "react_errorboundary_state"
+    ],
+    "7": [
+      "hooks_usekeyboardshortcuts",
+      "hooks_usekeyboardshortcuts_keyboardshortcuthandlers",
+      "hooks_usekeyboardshortcuts_usekeyboardshortcuts"
+    ],
+    "8": [
+      "components_icons_brandicons",
+      "components_icons_brandicons_preset_logo_brand_colors"
+    ],
+    "9": [
+      "components_layout_navbar",
+      "components_layout_navbar_navbar"
+    ],
+    "10": [
+      "components_layout_sidebar",
+      "components_layout_sidebar_sidebar"
+    ],
+    "11": [
+      "hooks_useminipreview",
+      "hooks_useminipreview_useminipreview"
+    ],
+    "12": [
+      "hooks_useonlinestatus",
+      "hooks_useonlinestatus_useonlinestatus"
+    ],
+    "13": [
+      "lib_utils",
+      "lib_utils_cn"
+    ],
+    "14": [
+      "tests_setuptests",
+      "tests_setuptests_intersectionobservermock"
+    ],
+    "15": [
+      "workers_qrrenderworker",
+      "workers_qrrenderworker_qrrenderworkermessage"
+    ]
+  },
+  "cohesion": {
+    "0": 0.08771929824561403,
+    "1": 0.12807881773399016,
+    "2": 0.17195767195767195,
+    "3": 0.20652173913043478,
+    "4": 0.19166666666666668,
+    "5": 0.30303030303030304,
+    "6": 0.2857142857142857,
+    "7": 0.6666666666666666,
+    "8": 1.0,
+    "9": 1.0,
+    "10": 1.0,
+    "11": 1.0,
+    "12": 1.0,
+    "13": 1.0,
+    "14": 1.0,
+    "15": 1.0
+  },
+  "gods": [
+    {
+      "id": "store_useqrstore_useqrstore",
+      "label": "useQRStore",
+      "degree": 45
+    },
+    {
+      "id": "hooks_usedownloadhandlers_usedownloadhandlers",
+      "label": "useDownloadHandlers()",
+      "degree": 12
+    },
+    {
+      "id": "store_usedownloadstore_usedownloadstore",
+      "label": "useDownloadStore",
+      "degree": 11
+    },
+    {
+      "id": "types_qr_qrsettings",
+      "label": "QRSettings",
+      "degree": 7
+    },
+    {
+      "id": "hooks_usetoast_usetoast",
+      "label": "useToast()",
+      "degree": 6
+    },
+    {
+      "id": "react_app_app",
+      "label": "App()",
+      "degree": 6
+    },
+    {
+      "id": "react_panels_downloadpanel_downloadpanel",
+      "label": "DownloadPanel()",
+      "degree": 6
+    },
+    {
+      "id": "react_preview_mobilebottombar_mobilebottombar",
+      "label": "MobileBottomBar()",
+      "degree": 6
+    },
+    {
+      "id": "services_qrapi_resolvelogopayload",
+      "label": "resolveLogoPayload()",
+      "degree": 6
+    },
+    {
+      "id": "components_previews_svgicons_getreactlogopngdataurl",
+      "label": "getReactLogoPngDataUrl()",
+      "degree": 5
+    }
+  ],
+  "surprises": [
+    {
+      "source": "useDownloadHandlers()",
+      "target": "getReactLogoPngDataUrl()",
+      "source_files": [
+        "hooks/useDownloadHandlers.ts",
+        "components/previews/SvgIcons.tsx"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "Template",
+      "target": "QRSettings",
+      "source_files": [
+        "data/templates.ts",
+        "types/qr.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "references",
+      "why": "connects across different repos/directories; peripheral node `Template` unexpectedly reaches hub `QRSettings`"
+    },
+    {
+      "source": "useDownloadHandlers()",
+      "target": "useQRStore",
+      "source_files": [
+        "hooks/useDownloadHandlers.ts",
+        "store/useQRStore.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "App()",
+      "target": "fetchQRPreview()",
+      "source_files": [
+        "react/App.tsx",
+        "services/qrApi.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "App()",
+      "target": "useQRStore",
+      "source_files": [
+        "react/App.tsx",
+        "store/useQRStore.ts"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; bridges separate communities"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `useQRStore` connect `useQRStore` to `panels/index.ts`, `App.tsx`, `useQRStore.ts`?",
+      "why": "High betweenness centrality (0.243) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `ErrorBoundary` connect `ErrorBoundary` to `BaseLayout.astro`?",
+      "why": "High betweenness centrality (0.031) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `QRSettings` connect `useQRStore.ts` to `panels/index.ts`, `SvgIcons.tsx`?",
+      "why": "High betweenness centrality (0.015) - this node is a cross-community bridge."
+    },
+    {
+      "type": "isolated_nodes",
+      "question": "What connects `PRESET_LOGO_BRAND_COLORS`, `StylePreviewCardProps`, `LogoMetadata` to the rest of the system?",
+      "why": "36 weakly-connected nodes found - possible documentation gaps or missing edges."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `BaseLayout.astro` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.08771929824561403 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `panels/index.ts` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.12807881773399016 - nodes in this community are weakly interconnected."
+    }
+  ]
+}

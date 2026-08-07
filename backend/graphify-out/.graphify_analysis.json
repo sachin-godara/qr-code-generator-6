@@ -1,0 +1,485 @@
+{
+  "communities": {
+    "0": [
+      "bytesio",
+      "frame_engine",
+      "qr_engine",
+      "qr_engine_generate_styled_qr",
+      "qr_engine_generate_svg_qr",
+      "qr_engine_rationale_279",
+      "routers_generator",
+      "routers_generator_batchitem",
+      "routers_generator_batchqrrequest",
+      "routers_generator_generate_batch",
+      "routers_generator_generate_pdf",
+      "routers_generator_generate_qr",
+      "routers_generator_generate_svg",
+      "routers_generator_get_frame_thumbnail",
+      "routers_generator_get_text_frame_thumbnail",
+      "routers_generator_py_basemodel",
+      "routers_generator_py_request",
+      "routers_generator_qrrequest",
+      "routers_generator_sanitize_filename",
+      "services_qr_service",
+      "services_qr_service_generate_qr_image",
+      "services_qr_service_generate_qr_pdf",
+      "services_qr_service_generate_qr_svg",
+      "services_qr_service_get_frame_preview",
+      "services_qr_service_get_text_frame_preview",
+      "services_qr_service_rationale_101",
+      "services_qr_service_rationale_296",
+      "services_qr_service_rationale_333",
+      "services_qr_service_rationale_353",
+      "tests_test_qr_service",
+      "tests_test_qr_service_test_generate_qr_image_default",
+      "tests_test_qr_service_test_generate_qr_image_styled",
+      "tests_test_qr_service_test_generate_qr_svg",
+      "tests_test_qr_service_test_no_stretching_resolution_strategy"
+    ],
+    "1": [
+      "engines_core_noise_fractal_noise_1d",
+      "engines_core_noise_value_noise_1d",
+      "engines_core_utils",
+      "engines_core_utils_hex_to_rgb",
+      "engines_core_utils_rationale_2",
+      "engines_frames_init",
+      "engines_frames_text_frames",
+      "engines_frames_text_frames_apply_frame",
+      "engines_frames_text_frames_apply_layout_frame",
+      "engines_frames_text_frames_apply_text_frame",
+      "engines_logo_init",
+      "engines_logo_processor",
+      "engines_logo_processor_apply_logo_overlay",
+      "engines_logo_processor_generate_preset_logo",
+      "engines_logo_processor_make_color_transparent",
+      "engines_logo_processor_remove_qr_background",
+      "image",
+      "services_qr_service_apply_canvas_effects",
+      "tests_test_engines",
+      "tests_test_engines_test_hex_to_rgb",
+      "tests_test_engines_test_layout_frames",
+      "tests_test_engines_test_logo_utilities",
+      "tests_test_engines_test_module_drawers_registry",
+      "tests_test_engines_test_noise_functions"
+    ],
+    "2": [
+      "limiter",
+      "main",
+      "main_health_check",
+      "main_py_request",
+      "routers_contact",
+      "routers_contact_contactform",
+      "routers_contact_py_basemodel",
+      "routers_contact_py_request",
+      "routers_contact_rationale_19",
+      "routers_contact_submit_contact_form",
+      "tests_test_api_routes",
+      "tests_test_api_routes_test_generate_qr_endpoint_post",
+      "tests_test_api_routes_test_generate_qr_max_length_validation",
+      "tests_test_api_routes_test_generate_qr_target_size_bounds_validation",
+      "tests_test_api_routes_test_generate_svg_endpoint_post",
+      "tests_test_api_routes_test_health_check_endpoint"
+    ],
+    "3": [
+      "engines_core_noise",
+      "engines_core_noise_draw_crystal_frame_func",
+      "engines_core_noise_generate_deckled_rect",
+      "engines_eyes_eye_frames",
+      "engines_eyes_eye_frames_draw_eye_frame",
+      "engines_eyes_eye_frames_find_coeffs",
+      "engines_eyes_eye_frames_make_sharp_corner",
+      "engines_eyes_eye_frames_rationale_34",
+      "engines_eyes_eyeballs",
+      "engines_eyes_eyeballs_draw_eyeball",
+      "engines_eyes_eyeballs_make_eyeball_sharp_corner",
+      "engines_eyes_eyeballs_rationale_18",
+      "engines_eyes_init",
+      "tests_test_engines_test_eye_frames_and_eyeballs_rendering"
+    ],
+    "4": [
+      "engines_dots_custom_drawers_clovermoduledrawer",
+      "engines_dots_custom_drawers_clovermoduledrawer_drawrect",
+      "engines_dots_custom_drawers_clovermoduledrawer_initialize",
+      "engines_dots_custom_drawers_diamondtargetmoduledrawer_initialize",
+      "engines_dots_custom_drawers_geardotmoduledrawer_initialize",
+      "engines_dots_custom_drawers_liquiddropmoduledrawer",
+      "engines_dots_custom_drawers_liquiddropmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_liquiddropmoduledrawer_initialize",
+      "engines_dots_custom_drawers_networknodesmoduledrawer",
+      "engines_dots_custom_drawers_networknodesmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_networknodesmoduledrawer_initialize"
+    ],
+    "5": [
+      "engines_dots_gradient",
+      "engines_dots_gradient_customstyledpilimage",
+      "engines_dots_gradient_customstyledpilimage_init_new_image",
+      "engines_dots_gradient_diagonalgradiantcolormask",
+      "engines_dots_gradient_diagonalgradiantcolormask_get_fg_pixel",
+      "engines_dots_gradient_diagonalgradiantcolormask_init",
+      "engines_dots_gradient_rationale_19",
+      "engines_dots_gradient_rationale_5",
+      "qrcolormask",
+      "styledpilimage"
+    ],
+    "6": [
+      "engines_dots_custom_drawers",
+      "engines_dots_custom_drawers_diamondmoduledrawer",
+      "engines_dots_custom_drawers_diamondmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_diamondmoduledrawer_initialize",
+      "engines_dots_custom_drawers_geardotmoduledrawer",
+      "engines_dots_custom_drawers_geardotmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_trianglemosaicmoduledrawer",
+      "engines_dots_custom_drawers_trianglemosaicmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_trianglemosaicmoduledrawer_initialize"
+    ],
+    "7": [
+      "engines_dots_custom_drawers_fishtailmoduledrawer",
+      "engines_dots_custom_drawers_fishtailmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_pixelartmoduledrawer",
+      "engines_dots_custom_drawers_pixelartmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_pixelartmoduledrawer_initialize",
+      "engines_dots_custom_drawers_quaddotsmoduledrawer",
+      "engines_dots_custom_drawers_quaddotsmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_quaddotsmoduledrawer_initialize",
+      "engines_dots_init"
+    ],
+    "8": [
+      "engines_dots_custom_drawers_crossstitchmoduledrawer",
+      "engines_dots_custom_drawers_crossstitchmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_crossstitchmoduledrawer_initialize",
+      "engines_dots_custom_drawers_diamondtargetmoduledrawer",
+      "engines_dots_custom_drawers_diamondtargetmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_flowercutmoduledrawer",
+      "engines_dots_custom_drawers_flowercutmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_flowercutmoduledrawer_initialize",
+      "styledpilqrmoduledrawer"
+    ],
+    "9": [
+      "engines_dots_custom_drawers_heartmoduledrawer",
+      "engines_dots_custom_drawers_heartmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_heartmoduledrawer_initialize",
+      "engines_dots_custom_drawers_pinwheelmoduledrawer",
+      "engines_dots_custom_drawers_pinwheelmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_pinwheelmoduledrawer_initialize",
+      "engines_dots_custom_drawers_squirclemoduledrawer",
+      "engines_dots_custom_drawers_squirclemoduledrawer_drawrect",
+      "engines_dots_custom_drawers_squirclemoduledrawer_initialize"
+    ],
+    "10": [
+      "engines_dots_custom_drawers_bevelmoduledrawer",
+      "engines_dots_custom_drawers_bevelmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_bevelmoduledrawer_initialize",
+      "engines_dots_custom_drawers_bevelmoduledrawer_setup_corners"
+    ],
+    "11": [
+      "engines_dots_custom_drawers_arrowmoduledrawer",
+      "engines_dots_custom_drawers_arrowmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_arrowmoduledrawer_initialize"
+    ],
+    "12": [
+      "engines_dots_custom_drawers_diagonalstripemoduledrawer",
+      "engines_dots_custom_drawers_diagonalstripemoduledrawer_drawrect",
+      "engines_dots_custom_drawers_diagonalstripemoduledrawer_initialize"
+    ],
+    "13": [
+      "engines_dots_custom_drawers_dottedcrossmoduledrawer",
+      "engines_dots_custom_drawers_dottedcrossmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_dottedcrossmoduledrawer_initialize"
+    ],
+    "14": [
+      "engines_dots_custom_drawers_hexagonmoduledrawer",
+      "engines_dots_custom_drawers_hexagonmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_hexagonmoduledrawer_initialize"
+    ],
+    "15": [
+      "engines_dots_custom_drawers_hollowdotsmoduledrawer",
+      "engines_dots_custom_drawers_hollowdotsmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_hollowdotsmoduledrawer_initialize"
+    ],
+    "16": [
+      "engines_dots_custom_drawers_horizontalslashmoduledrawer",
+      "engines_dots_custom_drawers_horizontalslashmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_horizontalslashmoduledrawer_initialize"
+    ],
+    "17": [
+      "engines_dots_custom_drawers_hourglassmoduledrawer",
+      "engines_dots_custom_drawers_hourglassmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_hourglassmoduledrawer_initialize"
+    ],
+    "18": [
+      "engines_dots_custom_drawers_leafdropletmoduledrawer",
+      "engines_dots_custom_drawers_leafdropletmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_leafdropletmoduledrawer_initialize"
+    ],
+    "19": [
+      "engines_dots_custom_drawers_lotuspetalmoduledrawer",
+      "engines_dots_custom_drawers_lotuspetalmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_lotuspetalmoduledrawer_initialize"
+    ],
+    "20": [
+      "engines_dots_custom_drawers_medicalcrossmoduledrawer",
+      "engines_dots_custom_drawers_medicalcrossmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_medicalcrossmoduledrawer_initialize"
+    ],
+    "21": [
+      "engines_dots_custom_drawers_minimaldotsmoduledrawer",
+      "engines_dots_custom_drawers_minimaldotsmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_minimaldotsmoduledrawer_initialize"
+    ],
+    "22": [
+      "engines_dots_custom_drawers_mooncrescentmoduledrawer",
+      "engines_dots_custom_drawers_mooncrescentmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_mooncrescentmoduledrawer_initialize"
+    ],
+    "23": [
+      "engines_dots_custom_drawers_octagonmoduledrawer",
+      "engines_dots_custom_drawers_octagonmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_octagonmoduledrawer_initialize"
+    ],
+    "24": [
+      "engines_dots_custom_drawers_pillowmoduledrawer",
+      "engines_dots_custom_drawers_pillowmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_pillowmoduledrawer_initialize"
+    ],
+    "25": [
+      "engines_dots_custom_drawers_plusmoduledrawer",
+      "engines_dots_custom_drawers_plusmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_plusmoduledrawer_initialize"
+    ],
+    "26": [
+      "engines_dots_custom_drawers_ringmoduledrawer",
+      "engines_dots_custom_drawers_ringmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_ringmoduledrawer_initialize"
+    ],
+    "27": [
+      "engines_dots_custom_drawers_roundedplusmoduledrawer",
+      "engines_dots_custom_drawers_roundedplusmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_roundedplusmoduledrawer_initialize"
+    ],
+    "28": [
+      "engines_dots_custom_drawers_shearedmoduledrawer",
+      "engines_dots_custom_drawers_shearedmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_shearedmoduledrawer_initialize"
+    ],
+    "29": [
+      "engines_dots_custom_drawers_sleekdashmoduledrawer",
+      "engines_dots_custom_drawers_sleekdashmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_sleekdashmoduledrawer_initialize"
+    ],
+    "30": [
+      "engines_dots_custom_drawers_sparklemoduledrawer",
+      "engines_dots_custom_drawers_sparklemoduledrawer_drawrect",
+      "engines_dots_custom_drawers_sparklemoduledrawer_initialize"
+    ],
+    "31": [
+      "engines_dots_custom_drawers_starmoduledrawer",
+      "engines_dots_custom_drawers_starmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_starmoduledrawer_initialize"
+    ],
+    "32": [
+      "engines_dots_custom_drawers_targetbullseyemoduledrawer",
+      "engines_dots_custom_drawers_targetbullseyemoduledrawer_drawrect",
+      "engines_dots_custom_drawers_targetbullseyemoduledrawer_initialize"
+    ],
+    "33": [
+      "engines_dots_custom_drawers_techchevronmoduledrawer",
+      "engines_dots_custom_drawers_techchevronmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_techchevronmoduledrawer_initialize"
+    ],
+    "34": [
+      "engines_dots_custom_drawers_verticalslashmoduledrawer",
+      "engines_dots_custom_drawers_verticalslashmoduledrawer_drawrect",
+      "engines_dots_custom_drawers_verticalslashmoduledrawer_initialize"
+    ],
+    "35": [
+      "conftest"
+    ],
+    "36": [
+      "engines_core_init"
+    ],
+    "37": [
+      "engines_init"
+    ]
+  },
+  "cohesion": {
+    "0": 0.12477718360071301,
+    "1": 0.17391304347826086,
+    "2": 0.13333333333333333,
+    "3": 0.31868131868131866,
+    "4": 0.18181818181818182,
+    "5": 0.2,
+    "6": 0.2222222222222222,
+    "7": 0.2222222222222222,
+    "8": 0.2222222222222222,
+    "9": 0.16666666666666666,
+    "10": 0.6666666666666666,
+    "11": 0.6666666666666666,
+    "12": 0.6666666666666666,
+    "13": 0.6666666666666666,
+    "14": 0.6666666666666666,
+    "15": 0.6666666666666666,
+    "16": 0.6666666666666666,
+    "17": 0.6666666666666666,
+    "18": 0.6666666666666666,
+    "19": 0.6666666666666666,
+    "20": 0.6666666666666666,
+    "21": 0.6666666666666666,
+    "22": 0.6666666666666666,
+    "23": 0.6666666666666666,
+    "24": 0.6666666666666666,
+    "25": 0.6666666666666666,
+    "26": 0.6666666666666666,
+    "27": 0.6666666666666666,
+    "28": 0.6666666666666666,
+    "29": 0.6666666666666666,
+    "30": 0.6666666666666666,
+    "31": 0.6666666666666666,
+    "32": 0.6666666666666666,
+    "33": 0.6666666666666666,
+    "34": 0.6666666666666666,
+    "35": 1.0,
+    "36": 1.0,
+    "37": 1.0
+  },
+  "gods": [
+    {
+      "id": "services_qr_service_generate_qr_image",
+      "label": "generate_qr_image()",
+      "degree": 15
+    },
+    {
+      "id": "engines_core_utils_hex_to_rgb",
+      "label": "hex_to_rgb()",
+      "degree": 12
+    },
+    {
+      "id": "engines_eyes_eye_frames_draw_eye_frame",
+      "label": "draw_eye_frame()",
+      "degree": 9
+    },
+    {
+      "id": "engines_eyes_eyeballs_draw_eyeball",
+      "label": "draw_eyeball()",
+      "degree": 8
+    },
+    {
+      "id": "services_qr_service_generate_qr_svg",
+      "label": "generate_qr_svg()",
+      "degree": 8
+    },
+    {
+      "id": "engines_core_noise_generate_deckled_rect",
+      "label": "generate_deckled_rect()",
+      "degree": 6
+    },
+    {
+      "id": "engines_dots_custom_drawers_bevelmoduledrawer",
+      "label": "BevelModuleDrawer",
+      "degree": 6
+    },
+    {
+      "id": "engines_frames_text_frames_apply_layout_frame",
+      "label": "apply_layout_frame()",
+      "degree": 6
+    },
+    {
+      "id": "engines_logo_processor_make_color_transparent",
+      "label": "make_color_transparent()",
+      "degree": 6
+    },
+    {
+      "id": "services_qr_service_generate_qr_pdf",
+      "label": "generate_qr_pdf()",
+      "degree": 6
+    }
+  ],
+  "surprises": [
+    {
+      "source": "generate_qr_image()",
+      "target": "hex_to_rgb()",
+      "source_files": [
+        "services/qr_service.py",
+        "engines/core/utils.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories; bridges separate communities"
+    },
+    {
+      "source": "apply_canvas_effects()",
+      "target": "hex_to_rgb()",
+      "source_files": [
+        "services/qr_service.py",
+        "engines/core/utils.py"
+      ],
+      "confidence": "INFERRED",
+      "relation": "calls",
+      "why": "inferred connection - not explicitly stated in source; connects across different repos/directories"
+    },
+    {
+      "source": "test_hex_to_rgb()",
+      "target": "hex_to_rgb()",
+      "source_files": [
+        "tests/test_engines.py",
+        "engines/core/utils.py"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `test_hex_to_rgb()` unexpectedly reaches hub `hex_to_rgb()`"
+    },
+    {
+      "source": "test_layout_frames()",
+      "target": "apply_layout_frame()",
+      "source_files": [
+        "tests/test_engines.py",
+        "engines/frames/text_frames.py"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `test_layout_frames()` unexpectedly reaches hub `apply_layout_frame()`"
+    },
+    {
+      "source": "test_logo_utilities()",
+      "target": "make_color_transparent()",
+      "source_files": [
+        "tests/test_engines.py",
+        "engines/logo/processor.py"
+      ],
+      "confidence": "EXTRACTED",
+      "relation": "calls",
+      "why": "connects across different repos/directories; peripheral node `test_logo_utilities()` unexpectedly reaches hub `make_color_transparent()`"
+    }
+  ],
+  "questions": [
+    {
+      "type": "bridge_node",
+      "question": "Why does `generate_qr_image()` connect `generator.py` to `test_engines.py`?",
+      "why": "High betweenness centrality (0.083) - this node is a cross-community bridge."
+    },
+    {
+      "type": "bridge_node",
+      "question": "Why does `hex_to_rgb()` connect `test_engines.py` to `generator.py`?",
+      "why": "High betweenness centrality (0.072) - this node is a cross-community bridge."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 2 inferred relationships involving `generate_qr_image()` (e.g. with `generate_qr()` and `hex_to_rgb()`) actually correct?",
+      "why": "`generate_qr_image()` has 2 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "verify_inferred",
+      "question": "Are the 2 inferred relationships involving `hex_to_rgb()` (e.g. with `apply_canvas_effects()` and `generate_qr_image()`) actually correct?",
+      "why": "`hex_to_rgb()` has 2 INFERRED edges - model-reasoned connections that need verification."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `generator.py` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.12477718360071301 - nodes in this community are weakly interconnected."
+    },
+    {
+      "type": "low_cohesion",
+      "question": "Should `test_api_routes.py` be split into smaller, more focused modules?",
+      "why": "Cohesion score 0.13333333333333333 - nodes in this community are weakly interconnected."
+    }
+  ]
+}
