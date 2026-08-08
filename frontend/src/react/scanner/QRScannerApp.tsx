@@ -90,6 +90,75 @@ export default function QRScannerApp() {
     setScanResult(decodedText);
   };
 
+  const scanWithFallback = async (file: File): Promise<string> => {
+    if (!scannerRef.current) throw new Error("Scanner not initialized");
+    
+    // 1. Standard scan
+    try {
+      const decodedText = await scannerRef.current.scanFile(file, true);
+      return decodedText;
+    } catch (err) {
+      console.log("Standard scan failed, trying inverted/enhanced scan...");
+    }
+
+    // 2. Inverted scan fallback (for dark mode or transparent QR codes)
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      const url = URL.createObjectURL(file);
+      
+      img.onload = async () => {
+        URL.revokeObjectURL(url);
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return reject("Canvas not supported");
+
+        // Scale down huge images to improve scanning performance and reliability
+        const MAX_DIM = 1200;
+        let w = img.width;
+        let h = img.height;
+        if (w > MAX_DIM || h > MAX_DIM) {
+          const ratio = Math.min(MAX_DIM / w, MAX_DIM / h);
+          w = Math.round(w * ratio);
+          h = Math.round(h * ratio);
+        }
+
+        canvas.width = w;
+        canvas.height = h;
+
+        // Fill white background in case of transparency
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, w, h);
+        ctx.drawImage(img, 0, 0, w, h);
+
+        const imageData = ctx.getImageData(0, 0, w, h);
+        const data = imageData.data;
+        
+        // Invert colors to turn white-on-black into black-on-white
+        for (let i = 0; i < data.length; i += 4) {
+          data[i] = 255 - data[i];         // R
+          data[i + 1] = 255 - data[i + 1]; // G
+          data[i + 2] = 255 - data[i + 2]; // B
+        }
+        ctx.putImageData(imageData, 0, 0);
+
+        canvas.toBlob(async (blob) => {
+          if (!blob) return reject("Blob creation failed");
+          const invertedFile = new File([blob], "inverted.png", { type: "image/png" });
+          
+          try {
+            const decodedText = await scannerRef.current!.scanFile(invertedFile, true);
+            resolve(decodedText);
+          } catch (invertErr) {
+            reject(invertErr);
+          }
+        }, 'image/png');
+      };
+      
+      img.onerror = () => reject("Image load failed");
+      img.src = url;
+    });
+  };
+
   const handleFileUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -106,7 +175,7 @@ export default function QRScannerApp() {
         });
       }
       
-      const decodedText = await scannerRef.current.scanFile(file, true);
+      const decodedText = await scanWithFallback(file);
       handleScanSuccess(decodedText);
     } catch (err) {
       setError("Could not find a valid QR code in that image. Please try another one.");
