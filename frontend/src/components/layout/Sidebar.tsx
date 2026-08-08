@@ -23,19 +23,19 @@ export function Sidebar() {
                     <rect x="21" y="65" width="14" height="14" rx="4" fill="black"/>
                   </mask>
                 </defs>
-                <g mask="url(#sidebar-logo-mask)" fill="#7316f5">
+                <g mask="url(#sidebar-logo-mask)" fill="#18181b">
                   <rect x="8" y="8" width="40" height="40" rx="12"/>
                   <rect x="52" y="8" width="40" height="40" rx="12"/>
                   <rect x="8" y="52" width="40" height="40" rx="12"/>
                 </g>
                 <g>
-                  <rect x="54" y="54" width="18" height="18" rx="6" fill="#7316f5"/>
-                  <rect x="54" y="76" width="12" height="12" rx="4" fill="#a471ff"/>
-                  <rect x="70" y="76" width="12" height="12" rx="4" fill="#7316f5"/>
+                  <rect x="54" y="54" width="18" height="18" rx="6" fill="#18181b"/>
+                  <rect x="54" y="76" width="12" height="12" rx="4" fill="#71717a"/>
+                  <rect x="70" y="76" width="12" height="12" rx="4" fill="#18181b"/>
                 </g>
               </svg>
             </div>
-            <span className="font-bold text-lg tracking-tight bg-gradient-to-r from-primary to-[#df00ff] bg-clip-text text-transparent">GenerateCustomQR</span>
+            <span className="font-bold text-lg tracking-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">GenerateCustomQR</span>
           </div>
         </div>
         

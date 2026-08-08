@@ -213,20 +213,20 @@ function App() {
                       <rect x="21" y="65" width="14" height="14" rx="4" fill="black"/>
                     </mask>
                   </defs>
-                  <g mask="url(#app-logo-mask)" fill="#7316f5">
+                  <g mask="url(#app-logo-mask)" fill="#18181b">
                     <rect x="8" y="8" width="40" height="40" rx="12"/>
                     <rect x="52" y="8" width="40" height="40" rx="12"/>
                     <rect x="8" y="52" width="40" height="40" rx="12"/>
                   </g>
                   <g>
-                    <rect x="54" y="54" width="18" height="18" rx="6" fill="#7316f5"/>
-                    <rect x="54" y="76" width="12" height="12" rx="4" fill="#a471ff"/>
-                    <rect x="70" y="76" width="12" height="12" rx="4" fill="#7316f5"/>
+                    <rect x="54" y="54" width="18" height="18" rx="6" fill="#18181b"/>
+                    <rect x="54" y="76" width="12" height="12" rx="4" fill="#71717a"/>
+                    <rect x="70" y="76" width="12" height="12" rx="4" fill="#18181b"/>
                   </g>
                 </svg>
               </div>
               <div className="flex flex-col leading-none">
-                <span className="text-[14px] font-bold tracking-tight bg-gradient-to-r from-primary to-[#df00ff] bg-clip-text text-transparent whitespace-nowrap">GenerateCustomQR</span>
+                <span className="text-[14px] font-bold tracking-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent whitespace-nowrap">GenerateCustomQR</span>
                 <span className="text-[9px] font-medium text-on-surface-variant tracking-wider hidden sm:block whitespace-nowrap">40+ styles · 100% free</span>
               </div>
             </a>
