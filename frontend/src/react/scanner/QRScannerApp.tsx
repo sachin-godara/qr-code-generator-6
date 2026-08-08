@@ -176,22 +176,49 @@ export default function QRScannerApp() {
             </div>
 
             {activeTab === 'file' && (
-              <div 
-                className="w-full max-w-[400px] aspect-square border-2 border-dashed border-outline hover:border-primary transition-colors rounded-2xl flex flex-col items-center justify-center cursor-pointer bg-surface-container/50"
-                onClick={() => fileInputRef.current?.click()}
-              >
-                <div className="w-16 h-16 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
-                  <ImageIcon size={32} />
+              <div className="w-full flex flex-col items-center">
+                {uploadedImagePreview && (
+                  <div className="w-full max-w-[250px] mb-6 rounded-2xl overflow-hidden border border-outline-variant shadow-sm relative bg-surface-container-highest">
+                    <img 
+                      src={uploadedImagePreview} 
+                      alt="Uploaded preview" 
+                      className="w-full h-auto object-contain" 
+                    />
+                    <button 
+                      onClick={(e) => { e.stopPropagation(); resetScanner(); }}
+                      className="absolute top-2 right-2 bg-surface/90 backdrop-blur p-2 rounded-full shadow hover:bg-surface-container transition-colors text-on-surface-variant hover:text-error"
+                      title="Remove image"
+                    >
+                      <span className="material-symbols-outlined text-sm font-bold">close</span>
+                    </button>
+                  </div>
+                )}
+                
+                <div 
+                  className={`w-full max-w-[400px] border-2 border-dashed border-outline hover:border-primary transition-colors rounded-2xl flex flex-col items-center justify-center cursor-pointer bg-surface-container/50 ${uploadedImagePreview ? 'py-4' : 'aspect-square'}`}
+                  onClick={() => fileInputRef.current?.click()}
+                >
+                  {!uploadedImagePreview ? (
+                    <>
+                      <div className="w-16 h-16 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
+                        <ImageIcon size={32} />
+                      </div>
+                      <p className="text-on-surface font-semibold">Click to upload QR image</p>
+                      <p className="text-on-surface-variant text-sm mt-2">PNG, JPG, WebP supported</p>
+                    </>
+                  ) : (
+                    <p className="text-on-surface font-semibold flex items-center gap-2">
+                      <ImageIcon size={18} /> Try a different image
+                    </p>
+                  )}
+                  <input 
+                    type="file" 
+                    accept="image/*" 
+                    ref={fileInputRef} 
+                    className="hidden" 
+                    onChange={handleFileUpload}
+                  />
                 </div>
-                <p className="text-on-surface font-semibold">Click to upload QR image</p>
-                <p className="text-on-surface-variant text-sm mt-2">PNG, JPG, WebP supported</p>
-                <input 
-                  type="file" 
-                  accept="image/*" 
-                  ref={fileInputRef} 
-                  className="hidden" 
-                  onChange={handleFileUpload}
-                />
               </div>
             )}
             
