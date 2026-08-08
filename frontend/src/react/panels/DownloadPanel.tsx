@@ -134,7 +134,7 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
         <div className="space-y-3 border-t border-outline-variant pt-6">
           <div className="flex justify-between items-center">
             <label className="text-sm font-semibold text-on-surface block">
-              2. Output Resolution {downloadFormat !== "PNG" && <span className="text-on-surface-variant font-normal">(applies to embedded graphics)</span>}
+              2. Output Resolution
             </label>
             <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-lg">
               {downloadSize} x {downloadSize} px
@@ -188,6 +188,30 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
               </div>
             </label>
           </div>
+        </div>
+      )}
+
+      {downloadFormat === "SVG" && (
+        <div className="bg-primary/5 rounded-2xl p-4 border border-primary/20 space-y-2 text-xs text-on-surface-variant leading-relaxed">
+          <div className="flex items-center gap-2 font-bold text-primary text-sm">
+            <span className="material-symbols-outlined text-[18px]">polyline</span>
+            SVG Vector Generation Details
+          </div>
+          <p>
+            Standard QR designs output as <strong>native XML vector paths</strong>. When using custom dot module shapes, text frames, logos, or drop shadows, a high-resolution 300 DPI graphic is embedded inside a scalable <code className="bg-surface-container px-1 py-0.5 rounded font-mono text-[11px]">&lt;svg&gt;</code> container. This guarantees 100% visual fidelity without missing fonts or broken filters in Adobe Illustrator or Figma.
+          </p>
+        </div>
+      )}
+
+      {downloadFormat === "PDF" && (
+        <div className="bg-primary/5 rounded-2xl p-4 border border-primary/20 space-y-2 text-xs text-on-surface-variant leading-relaxed">
+          <div className="flex items-center gap-2 font-bold text-primary text-sm">
+            <span className="material-symbols-outlined text-[18px]">picture_as_pdf</span>
+            PDF Document Generation Details
+          </div>
+          <p>
+            PDF files are compiled directly into <strong>300 DPI print-ready document streams</strong>. Alpha transparency is composited onto a clean background canvas, making your QR code ready for professional print shops, brochures, flyers, and billboards.
+          </p>
         </div>
       )}
 
