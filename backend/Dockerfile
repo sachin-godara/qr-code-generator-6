@@ -9,7 +9,6 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
-    libmupdf-dev \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
@@ -24,9 +23,9 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     ENV=production
 
-# Install minimal runtime libraries for MuPDF / Pillow
+# Install minimal runtime utilities
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    libmupdf1.24 \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Create non-root user for security
