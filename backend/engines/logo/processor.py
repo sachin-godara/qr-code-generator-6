@@ -52,13 +52,15 @@ PRESET_LOGO_BRAND_COLORS = {
     "docs": "#4285F4"
 }
 
-def make_color_transparent(image, target_rgb, tolerance=30):
-    if image is None:
+def make_color_transparent(img: Image.Image, color_rgb: tuple, tolerance: int = 0) -> Image.Image:
+    """Make a specific color (or close to it) transparent in a PIL Image."""
+    import numpy as np
+    if img is None:
         return None
-    img = image.convert("RGBA")
+    img = img.convert("RGBA")
     data = np.array(img)
     r, g, b, a = data.T
-    tr, tg, tb = target_rgb
+    tr, tg, tb = color_rgb
     distance = np.sqrt((r.astype(int) - tr)**2 + (g.astype(int) - tg)**2 + (b.astype(int) - tb)**2)
     transparent_mask = distance <= tolerance
     data[..., 3][transparent_mask.T] = 0

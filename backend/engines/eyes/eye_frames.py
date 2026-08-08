@@ -6,6 +6,7 @@ from engines.core.noise import (
 )
 
 def find_coeffs(pa, pb):
+    import numpy as np
     matrix = []
     for p1, p2 in zip(pa, pb):
         matrix.append([p1[0], p1[1], 1, 0, 0, 0, -p2[0]*p1[0], -p2[0]*p1[1]])
@@ -587,6 +588,7 @@ def draw_eye_frame(draw, px, py, s, eye_frame_style, eye_rgb, bg, img=None):
         draw.rectangle([in_cx, in_y0, in_x1, in_cy], fill=bg + (255,))
     elif eye_frame_style == "cellular_automata" and img is not None:
         import random
+        import numpy as np
         W = int(7 * s)
         grid = np.zeros((W, W), dtype=np.uint8)
         
