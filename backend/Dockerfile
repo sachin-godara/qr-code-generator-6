@@ -21,6 +21,7 @@ WORKDIR /app
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
+    HOME=/app \
     ENV=production
 
 # Install minimal runtime utilities
@@ -28,16 +29,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
-# Create non-root user for security
+# Create non-root user for security with home directory
 RUN groupadd -g 1001 appgroup && \
-    useradd -u 1001 -g appgroup -s /bin/sh appuser
+    useradd -u 1001 -g appgroup -m -s /bin/sh appuser
 
 COPY --from=builder /usr/local/lib/python3.12/site-packages /usr/local/lib/python3.12/site-packages
 COPY --from=builder /usr/local/bin /usr/local/bin
 COPY . .
 
-# Change ownership to non-root user
-RUN chown -R appuser:appgroup /app
+# Change ownership to non-root user for working directory and home
+RUN chown -R appuser:appgroup /app /home/appuser
 
 USER appuser
 
