@@ -13,10 +13,29 @@ export function Sidebar() {
       <div>
         <div className="h-16 flex items-center px-6 border-b border-border">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <QrCode className="w-5 h-5 text-primary-foreground" />
+            <div className="w-8 h-8 flex-shrink-0">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" className="w-full h-full drop-shadow-sm">
+                <defs>
+                  <mask id="sidebar-logo-mask">
+                    <rect width="100" height="100" fill="white"/>
+                    <rect x="21" y="21" width="14" height="14" rx="4" fill="black"/>
+                    <rect x="65" y="21" width="14" height="14" rx="4" fill="black"/>
+                    <rect x="21" y="65" width="14" height="14" rx="4" fill="black"/>
+                  </mask>
+                </defs>
+                <g mask="url(#sidebar-logo-mask)" fill="#7316f5">
+                  <rect x="8" y="8" width="40" height="40" rx="12"/>
+                  <rect x="52" y="8" width="40" height="40" rx="12"/>
+                  <rect x="8" y="52" width="40" height="40" rx="12"/>
+                </g>
+                <g>
+                  <rect x="54" y="54" width="18" height="18" rx="6" fill="#7316f5"/>
+                  <rect x="54" y="76" width="12" height="12" rx="4" fill="#a471ff"/>
+                  <rect x="70" y="76" width="12" height="12" rx="4" fill="#7316f5"/>
+                </g>
+              </svg>
             </div>
-            <span className="font-bold text-lg tracking-tight">QRStream</span>
+            <span className="font-bold text-lg tracking-tight bg-gradient-to-r from-primary to-[#df00ff] bg-clip-text text-transparent">GenerateCustomQR</span>
           </div>
         </div>
         

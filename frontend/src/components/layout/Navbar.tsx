@@ -3,8 +3,33 @@ import { Bell, User } from "lucide-react"
 export function Navbar() {
   return (
     <header className="h-16 border-b border-border bg-card flex items-center justify-between px-6">
-      <h1 className="text-xl font-semibold tracking-tight">Create QR Code</h1>
-      
+      <a href="/" className="flex items-center gap-3 hover:opacity-90 transition-opacity">
+        <div className="w-10 h-10 flex-shrink-0">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" className="w-full h-full drop-shadow-sm">
+            <defs>
+              <mask id="navbar-logo-mask">
+                <rect width="100" height="100" fill="white"/>
+                <rect x="21" y="21" width="14" height="14" rx="4" fill="black"/>
+                <rect x="65" y="21" width="14" height="14" rx="4" fill="black"/>
+                <rect x="21" y="65" width="14" height="14" rx="4" fill="black"/>
+              </mask>
+            </defs>
+            <g mask="url(#navbar-logo-mask)" fill="#7316f5">
+              <rect x="8" y="8" width="40" height="40" rx="12"/>
+              <rect x="52" y="8" width="40" height="40" rx="12"/>
+              <rect x="8" y="52" width="40" height="40" rx="12"/>
+            </g>
+            <g>
+              <rect x="54" y="54" width="18" height="18" rx="6" fill="#7316f5"/>
+              <rect x="54" y="76" width="12" height="12" rx="4" fill="#a471ff"/>
+              <rect x="70" y="76" width="12" height="12" rx="4" fill="#7316f5"/>
+            </g>
+          </svg>
+        </div>
+        <h1 className="text-xl font-bold tracking-tight bg-gradient-to-r from-primary to-[#df00ff] bg-clip-text text-transparent">
+          QR Code Maker
+        </h1>
+      </a>      
       <div className="flex items-center gap-4">
         <a 
           href="/qr-code-scanner" 

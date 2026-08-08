@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Brush Concepts</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            background-color: #111;
+            color: #fff;
+            padding: 40px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            align-items: center;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+        }
+        .card {
+            background: #222;
+            padding: 20px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            width: 300px;
+        }
+        .icon-container {
+            width: 256px;
+            height: 256px;
+            background: #fff; /* White background to see the vivid colors */
+            border-radius: 56px; /* Rounded square */
+            margin: 0 auto 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Clip to rounded square */
+            position: relative;
+        }
+        .transparent-bg {
+            background: #fff; /* Could use checkerboard, but white makes colors pop like the original */
+        }
+        h2 { margin: 0 0 10px 0; font-size: 1.2rem; }
+        p { margin: 0; font-size: 0.9rem; color: #aaa; }
+        
+        /* Checkerboard pattern for one variant to show transparency */
+        .checkerboard {
+            background-image: 
+                linear-gradient(45deg, #ccc 25%, transparent 25%), 
+                linear-gradient(135deg, #ccc 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, #ccc 75%),
+                linear-gradient(135deg, transparent 75%, #ccc 75%);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 0, 10px -10px, 0px 10px;
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pure SVG Vector Recreations</h1>
+    <p>These are 100% code-based (HTML/SVG) recreations of the AI brush-stroke logo. They are infinitely scalable, lightweight, and perfect for favicons or web logos.</p>
+    
+    <div class="gallery">
+        <!-- Variant 1: Clean Geometric Strokes -->
+        <div class="card">
+            <h2>Variant 1: Clean Geometric</h2>
+            <p>Using perfectly round-capped lines for a modern, tech-focused brush look.</p>
+            <div class="icon-container transparent-bg">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+                    <!-- Base QR Code Elements (Purple: #7316f5) -->
+                    <!-- Top Left Finder -->
+                    <rect x="15" y="15" width="28" height="28" rx="8" fill="#7316f5"/>
+                    <rect x="22" y="22" width="14" height="14" rx="4" fill="#fff"/>
+                    
+                    <!-- Top Right Finder -->
+                    <rect x="57" y="15" width="28" height="28" rx="8" fill="#7316f5"/>
+                    <rect x="64" y="22" width="14" height="14" rx="4" fill="#fff"/>
+                    
+                    <!-- Bottom Left Finder -->
+                    <rect x="15" y="57" width="28" height="28" rx="8" fill="#7316f5"/>
+                    <rect x="22" y="64" width="14" height="14" rx="4" fill="#fff"/>
+                    
+                    <!-- Bottom Right Data Dots -->
+                    <rect x="55" y="55" width="12" height="12" rx="4" fill="#7316f5"/>
+                    <rect x="55" y="73" width="12" height="12" rx="4" fill="#b989ff"/>
+                    <rect x="73" y="73" width="12" height="12" rx="4" fill="#7316f5"/>
+                    
+                    <!-- Magenta Brush Stroke (#df00ff) -->
+                    <line x1="20" y1="90" x2="85" y2="25" stroke="#df00ff" stroke-width="14" stroke-linecap="round" opacity="0.9"/>
+                    
+                    <!-- Cyan Brush Stroke (#00f0ff) -->
+                    <line x1="10" y1="80" x2="70" y2="10" stroke="#00f0ff" stroke-width="12" stroke-linecap="round" opacity="0.9"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Variant 2: Tapered Dynamic Brush -->
+        <div class="card">
+            <h2>Variant 2: Tapered Brush</h2>
+            <p>Using custom SVG paths to simulate the tapering effect of a real paint brush.</p>
+            <div class="icon-container transparent-bg">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+                    <!-- Base QR Elements -->
+                    <rect x="15" y="15" width="28" height="28" rx="8" fill="#7316f5"/>
+                    <rect x="22" y="22" width="14" height="14" rx="4" fill="#fff"/>
+                    <rect x="57" y="15" width="28" height="28" rx="8" fill="#7316f5"/>
+                    <rect x="64" y="22" width="14" height="14" rx="4" fill="#fff"/>
+                    <rect x="15" y="57" width="28" height="28" rx="8" fill="#7316f5"/>
+                    <rect x="22" y="64" width="14" height="14" rx="4" fill="#fff"/>
+                    <rect x="53" y="55" width="14" height="14" rx="4" fill="#7316f5"/>
+                    <rect x="53" y="73" width="14" height="14" rx="4" fill="#b989ff"/>
+                    <rect x="73" y="73" width="14" height="14" rx="4" fill="#7316f5"/>
+                    
+                    <!-- Magenta Brush Path -->
+                    <path d="M 15 88 Q 40 85 85 20 Q 90 25 80 40 Q 50 85 25 95 Z" fill="#df00ff" opacity="0.95"/>
+                    
+                    <!-- Cyan Brush Path -->
+                    <path d="M 5 80 Q 25 75 75 10 Q 80 10 65 25 Q 25 75 10 85 Z" fill="#00f0ff" opacity="0.95"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Variant 3: Blend Modes & Splatters -->
+        <div class="card">
+            <h2>Variant 3: Blend & Splatter</h2>
+            <p>Simulating the chaotic ink splatters and overlapping colors from the AI version.</p>
+            <div class="icon-container transparent-bg" style="mix-blend-mode: normal;">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+                    <!-- Base QR Elements -->
+                    <rect x="15" y="15" width="28" height="28" rx="8" fill="#7316f5"/>
+                    <rect x="22" y="22" width="14" height="14" rx="4" fill="#fff"/>
+                    <rect x="57" y="15" width="28" height="28" rx="8" fill="#7316f5"/>
+                    <rect x="64" y="22" width="14" height="14" rx="4" fill="#fff"/>
+                    <rect x="15" y="57" width="28" height="28" rx="8" fill="#7316f5"/>
+                    <rect x="22" y="64" width="14" height="14" rx="4" fill="#fff"/>
+                    <rect x="55" y="55" width="12" height="12" rx="4" fill="#7316f5"/>
+                    <rect x="55" y="73" width="12" height="12" rx="4" fill="#b989ff"/>
+                    <rect x="73" y="73" width="12" height="12" rx="4" fill="#7316f5"/>
+                    
+                    <g style="mix-blend-mode: multiply;">
+                        <!-- Magenta Strokes & Splatters -->
+                        <path d="M 12 92 Q 40 85 85 20 Q 90 25 80 40 Q 50 85 25 95 Z" fill="#df00ff"/>
+                        <circle cx="85" cy="45" r="3" fill="#df00ff"/>
+                        <circle cx="35" cy="92" r="2" fill="#df00ff"/>
+                        <circle cx="20" cy="97" r="1.5" fill="#df00ff"/>
+                        
+                        <!-- Cyan Strokes & Splatters -->
+                        <path d="M 5 80 Q 25 75 70 10 Q 75 10 60 25 Q 25 75 10 85 Z" fill="#00f0ff"/>
+                        <path d="M 2 85 Q 15 80 35 60 Q 30 65 5 88 Z" fill="#00f0ff"/>
+                        <circle cx="20" cy="70" r="2" fill="#00f0ff"/>
+                        <circle cx="70" cy="15" r="1.5" fill="#00f0ff"/>
+                    </g>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Variant 4: Fully Transparent Backing -->
+        <div class="card">
+            <h2>Variant 4: True Transparency</h2>
+            <p>The tapered design shown over a checkerboard to prove the rounded corners and edges are fully transparent.</p>
+            <div class="icon-container checkerboard" style="border-radius: 0;">
+                <!-- We apply border-radius via SVG mask/clip-path this time -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+                    <defs>
+                        <!-- A rounded square clip mask matching the iOS style -->
+                        <clipPath id="appIconMask">
+                            <rect x="0" y="0" width="100" height="100" rx="22" />
+                        </clipPath>
+                    </defs>
+                    <g clip-path="url(#appIconMask)">
+                        <!-- Fill the background of the app icon white -->
+                        <rect x="0" y="0" width="100" height="100" fill="#fff" />
+                        
+                        <!-- Base QR Elements -->
+                        <rect x="15" y="15" width="28" height="28" rx="8" fill="#7316f5"/>
+                        <rect x="22" y="22" width="14" height="14" rx="4" fill="#fff"/>
+                        <rect x="57" y="15" width="28" height="28" rx="8" fill="#7316f5"/>
+                        <rect x="64" y="22" width="14" height="14" rx="4" fill="#fff"/>
+                        <rect x="15" y="57" width="28" height="28" rx="8" fill="#7316f5"/>
+                        <rect x="22" y="64" width="14" height="14" rx="4" fill="#fff"/>
+                        <rect x="53" y="55" width="14" height="14" rx="4" fill="#7316f5"/>
+                        <rect x="53" y="73" width="14" height="14" rx="4" fill="#b989ff"/>
+                        <rect x="73" y="73" width="14" height="14" rx="4" fill="#7316f5"/>
+                        
+                        <!-- Magenta Brush Path -->
+                        <path d="M 15 88 Q 40 85 85 20 Q 90 25 80 40 Q 50 85 25 95 Z" fill="#df00ff" opacity="0.95"/>
+                        
+                        <!-- Cyan Brush Path -->
+                        <path d="M 5 80 Q 25 75 75 10 Q 80 10 65 25 Q 25 75 10 85 Z" fill="#00f0ff" opacity="0.95"/>
+                    </g>
+                </svg>
+            </div>
+        </div>
+        <!-- Variant 5: Minimalist (favicon-512.png style) -->
+        <div class="card">
+            <h2>Variant 5: Minimalist (Favicon-512)</h2>
+            <p>The clean, high-contrast, geometric version (no brush strokes) that scales perfectly for tiny favicons.</p>
+            <div class="icon-container transparent-bg">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+                    <defs>
+                        <mask id="cutout-v5">
+                            <rect width="100" height="100" fill="white"/>
+                            <!-- Top Left Cutout -->
+                            <rect x="21" y="21" width="14" height="14" rx="4" fill="black"/>
+                            <!-- Top Right Cutout -->
+                            <rect x="65" y="21" width="14" height="14" rx="4" fill="black"/>
+                            <!-- Bottom Left Cutout -->
+                            <rect x="21" y="65" width="14" height="14" rx="4" fill="black"/>
+                        </mask>
+                    </defs>
+                    <!-- Outer rings -->
+                    <g mask="url(#cutout-v5)" fill="#7316f5">
+                        <rect x="8" y="8" width="40" height="40" rx="12"/>
+                        <rect x="52" y="8" width="40" height="40" rx="12"/>
+                        <rect x="8" y="52" width="40" height="40" rx="12"/>
+                    </g>
+                    <!-- Bottom Right Data Dots -->
+                    <g>
+                        <rect x="54" y="54" width="18" height="18" rx="6" fill="#7316f5"/>
+                        <rect x="54" y="76" width="12" height="12" rx="4" fill="#a471ff"/>
+                        <rect x="70" y="76" width="12" height="12" rx="4" fill="#7316f5"/>
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
