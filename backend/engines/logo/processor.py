@@ -4,9 +4,12 @@ from PIL import Image, ImageDraw
 from engines.core.utils import hex_to_rgb
 
 try:
-    import fitz
+    import pymupdf as fitz
 except ImportError:
-    fitz = None
+    try:
+        import fitz
+    except ImportError:
+        fitz = None
 
 PRESET_LOGO_BRAND_COLORS = {
     "link": "#6d28d9",
