@@ -6,10 +6,12 @@ import re
 from typing import Optional, Any, List, Dict
 
 from limiter import limiter
-from fastapi import APIRouter, HTTPException, Request
+from fastapi import APIRouter, HTTPException, Request, UploadFile, File
 from fastapi.concurrency import run_in_threadpool
 from fastapi.responses import StreamingResponse, Response
 from pydantic import BaseModel, Field
+
+from services.scan_service import deep_scan_qr
 
 from services.qr_service import (
     generate_qr_image,
@@ -214,3 +216,18 @@ async def generate_batch(payload: BatchQRRequest, request: Request):
     except Exception as e:
         logger.exception("Batch QR generation failed")
         raise HTTPException(status_code=500, detail="Batch generation failed due to internal error")
+
+@router.post("/scan")
+@limiter.limit("60/minute")
+async def scan_qr_file(request: Request, file: UploadFile = File(...)):
+    try:
+        file_bytes = await file.read()
+        # Run computer vision processing in threadpool so it doesn't block async event loop
+        decoded_text = await run_in_threadpool(deep_scan_qr, file_bytes)
+        
+        return {"success": True, "text": decoded_text}
+    except ValueError as ve:
+        raise HTTPException(status_code=400, detail=str(ve))
+    except Exception as e:
+        logger.exception("Failed to deep scan QR image")
+        raise HTTPException(status_code=500, detail="Failed to analyze image for QR code")

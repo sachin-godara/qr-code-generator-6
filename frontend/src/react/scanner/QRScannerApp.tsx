@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Html5Qrcode, Html5QrcodeSupportedFormats } from 'html5-qrcode';
-import { Camera, Image as ImageIcon, Copy, ExternalLink, RefreshCw, AlertCircle } from 'lucide-react';
+import { Camera, Image as ImageIcon, Copy, ExternalLink, RefreshCw, AlertCircle, Loader2 } from 'lucide-react';
+import { scanQRImageBackend } from '../../services/qrApi';
 
 export default function QRScannerApp() {
   const [scanResult, setScanResult] = useState<string | null>(null);
@@ -8,6 +9,7 @@ export default function QRScannerApp() {
   const [isScanning, setIsScanning] = useState(false);
   const [activeTab, setActiveTab] = useState<'file' | 'camera'>('file');
   const [uploadedImagePreview, setUploadedImagePreview] = useState<string | null>(null);
+  const [isDeepScanning, setIsDeepScanning] = useState(false);
   
   const scannerRef = useRef<Html5Qrcode | null>(null);
   const isStartingRef = useRef(false);
@@ -178,7 +180,18 @@ export default function QRScannerApp() {
       const decodedText = await scanWithFallback(file);
       handleScanSuccess(decodedText);
     } catch (err) {
-      setError("Could not find a valid QR code in that image. Please try another one.");
+      // 3. Ultimate Fallback: Deep Scan on Backend
+      console.log("Frontend scanning failed, initiating backend deep scan...");
+      setIsDeepScanning(true);
+      setError(null);
+      try {
+        const decodedText = await scanQRImageBackend(file);
+        handleScanSuccess(decodedText);
+      } catch (backendErr: any) {
+        setError(backendErr.message || "Could not find a valid QR code in that image. Please try another one.");
+      } finally {
+        setIsDeepScanning(false);
+      }
     }
     
     // Reset file input
@@ -275,6 +288,12 @@ export default function QRScannerApp() {
                       <p className="text-on-surface font-semibold">Click to upload QR image</p>
                       <p className="text-on-surface-variant text-sm mt-2">PNG, JPG, WebP supported</p>
                     </>
+                  ) : isDeepScanning ? (
+                    <div className="flex flex-col items-center justify-center py-6">
+                      <Loader2 className="w-12 h-12 text-primary animate-spin mb-4" />
+                      <p className="text-on-surface font-semibold">Performing Deep Scan...</p>
+                      <p className="text-on-surface-variant text-sm mt-2 text-center max-w-[250px]">Using server-side computer vision to extract stubbon QR codes</p>
+                    </div>
                   ) : (
                     <p className="text-on-surface font-semibold flex items-center gap-2">
                       <ImageIcon size={18} /> Try a different image
@@ -286,6 +305,7 @@ export default function QRScannerApp() {
                     ref={fileInputRef} 
                     className="hidden" 
                     onChange={handleFileUpload}
+                    disabled={isDeepScanning}
                   />
                 </div>
               </div>

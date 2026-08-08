@@ -151,3 +151,32 @@ export async function generateBatch(settings: QRSettings, items: BatchItem[], fo
   
   return await response.blob();
 }
+
+/** Fallback Deep Scan via Backend */
+export async function scanQRImageBackend(file: File): Promise<string> {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  const response = await fetch(`${API_BASE}/api/generator/scan`, {
+    method: "POST",
+    body: formData,
+  });
+
+  if (!response.ok) {
+    let errMessage = "Backend scan failed.";
+    try {
+      const data = await response.json();
+      if (data.detail) errMessage = data.detail;
+    } catch (e) {
+      // Ignore
+    }
+    throw new Error(errMessage);
+  }
+
+  const data = await response.json();
+  if (!data.success || !data.text) {
+    throw new Error("Backend could not find a valid QR code");
+  }
+
+  return data.text;
+}
