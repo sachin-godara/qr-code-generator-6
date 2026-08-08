@@ -1,4 +1,5 @@
 import io
+import gc
 import base64
 from PIL import Image, ImageDraw, ImageFilter
 from qr_engine import generate_styled_qr, generate_svg_qr, hex_to_rgb
@@ -260,6 +261,10 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
                 for key in ["logo_card_padding", "canvas_border_width", "frame_padding", "frame_radius", "frame_border", "frame_text_size"]:
                     if key in params and isinstance(params[key], (int, float)):
                         params[key] = max(1, int(round(params[key] * scale_factor)))
+            
+            # Free the dummy image immediately
+            dummy_img.close()
+            del dummy_img
                         
             base_qr = _build_image(params)
             
@@ -277,6 +282,7 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
                 pos_x = (canvas_w - w) // 2
                 pos_y = (canvas_h - h) // 2
                 canvas.paste(base_qr, (pos_x, pos_y), base_qr if base_qr.mode == "RGBA" else None)
+                base_qr.close()
                 base_qr = canvas
         else:
             base_qr = _build_image(params)
@@ -285,13 +291,22 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
                 aspect = h / w
                 new_w = target_size
                 new_h = int(new_w * aspect)
-                base_qr = base_qr.resize((new_w, new_h), Image.Resampling.LANCZOS)
+                resized = base_qr.resize((new_w, new_h), Image.Resampling.LANCZOS)
+                base_qr.close()
+                base_qr = resized
     else:
         base_qr = _build_image(params)
 
+    # Free logo PIL image
+    if logo_pil is not None:
+        logo_pil.close()
+        del logo_pil
         
     img_byte_arr = io.BytesIO()
-    base_qr.save(img_byte_arr, format='PNG')
+    base_qr.save(img_byte_arr, format='PNG', optimize=True)
+    base_qr.close()
+    del base_qr
+    gc.collect()
     img_byte_arr.seek(0)
     return img_byte_arr
 
@@ -351,7 +366,7 @@ def generate_qr_pdf(data: str, params: dict) -> io.BytesIO:
 
 from functools import lru_cache
 
-@lru_cache(maxsize=128)
+@lru_cache(maxsize=16)
 def get_frame_preview(frame_style: str) -> bytes:
     """Generates a cached preview image for a frame style."""
     params = {
@@ -366,7 +381,7 @@ def get_frame_preview(frame_style: str) -> bytes:
     png_io = generate_qr_image("PREVIEW", params)
     return png_io.getvalue()
 
-@lru_cache(maxsize=128)
+@lru_cache(maxsize=16)
 def get_text_frame_preview(text_style: str) -> bytes:
     """Generates a cached preview image for a text frame style."""
     params = {

@@ -1,6 +1,6 @@
 import qrcode
 import math
-import numpy as np
+# numpy is imported lazily inside functions that need it to save ~30MB at startup
 import random
 
 from engines.core.utils import hex_to_rgb
@@ -32,10 +32,6 @@ from qrcode.image.styles.colormasks import (
 from PIL import Image, ImageDraw
 
 import os
-try:
-    import fitz
-except ImportError:
-    fitz = None
 
 
 from engines.dots.custom_drawers import *

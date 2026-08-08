@@ -1,9 +1,24 @@
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
+from starlette.middleware.base import BaseHTTPMiddleware
 from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 from routers import generator, contact
 from limiter import limiter
+
+# --- Request Body Size Limit Middleware ---
+MAX_BODY_SIZE = 5 * 1024 * 1024  # 5 MB
+
+class LimitRequestBodyMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        content_length = request.headers.get("content-length")
+        if content_length and int(content_length) > MAX_BODY_SIZE:
+            return JSONResponse(
+                status_code=413,
+                content={"detail": f"Request body too large. Maximum is {MAX_BODY_SIZE // (1024*1024)} MB."}
+            )
+        return await call_next(request)
 
 app = FastAPI(
     title="Custom QR Studio API",
@@ -13,6 +28,7 @@ app = FastAPI(
 
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+app.add_middleware(LimitRequestBodyMiddleware)
 
 import os
 

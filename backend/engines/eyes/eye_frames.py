@@ -1,5 +1,4 @@
 import math
-import numpy as np
 from PIL import Image, ImageDraw
 from engines.core.noise import (
     generate_deckled_rect,

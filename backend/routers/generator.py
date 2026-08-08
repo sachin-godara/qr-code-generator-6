@@ -96,11 +96,10 @@ class QRRequest(BaseModel):
     canvas_border_radius: int = 16
     invert_colors: bool = False
 
-    # Other configs
-    box_size: int = 10
+    box_size: int = Field(10, ge=1, le=30)
     error_correction: str = "H"
     quiet_zone: int = 4
-    target_size: Optional[int] = Field(None, ge=10, le=8192)
+    target_size: Optional[int] = Field(None, ge=10, le=4096)
     no_stretching: bool = False
     
     model_config = {"extra": "ignore"}
@@ -163,7 +162,7 @@ class BatchQRRequest(BaseModel):
     items: List[BatchItem]
     settings: Dict[str, Any]
     format: str = "png"
-    target_size: Optional[int] = Field(1024, ge=10, le=8192)
+    target_size: Optional[int] = Field(1024, ge=10, le=4096)
 
 def sanitize_filename(name: str) -> str:
     name = re.sub(r'[\\/*?:"<>|]', "", name)
@@ -174,8 +173,8 @@ def sanitize_filename(name: str) -> str:
 @limiter.limit("10/minute")
 async def generate_batch(payload: BatchQRRequest, request: Request):
     try:
-        if len(payload.items) > 500:
-            raise HTTPException(status_code=400, detail="Batch size limited to 500 items per request.")
+        if len(payload.items) > 50:
+            raise HTTPException(status_code=400, detail="Batch size limited to 50 items per request.")
 
         zip_buffer = io.BytesIO()
         

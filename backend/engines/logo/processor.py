@@ -1,5 +1,4 @@
 import os
-import numpy as np
 from PIL import Image, ImageDraw
 from engines.core.utils import hex_to_rgb
 
