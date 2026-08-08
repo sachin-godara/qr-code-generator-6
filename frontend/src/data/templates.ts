@@ -266,26 +266,6 @@ export const PRESET_TEMPLATES: Template[] = [
     }
   },
   {
-    "name": "Vaporwave Dream",
-    "category": "Premium",
-    "description": "A highly saturated, retro-futuristic aesthetic.",
-    "settings": {
-      "dots_style": "pixel_art",
-      "eye_frame_style": "cushion_cut",
-      "eyeball_style": "square",
-      "dots_color": "#FF00AA",
-      "dots_color_end": "#00FFFF",
-      "bg_color": "#F8F8FF",
-      "gradient_type": "Radial Gradient",
-      "eye_color": "#FF00AA",
-      "eyeball_color": "#00FFFF",
-      "frame_style": "none",
-      "text_style": "none",
-      "preset_logo": "None",
-      "font_name": "Playfair Display (Elegant)"
-    }
-  },
-  {
     "name": "Video Link",
     "category": "Premium",
     "description": "A clean layout with a floating play button for video links.",
