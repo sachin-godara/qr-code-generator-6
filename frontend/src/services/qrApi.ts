@@ -1,6 +1,9 @@
 import { type QRSettings } from "@/types/qr";
 import { getReactLogoPngDataUrl, PRESET_LOGO_BRAND_COLORS } from "@/components/previews/SvgIcons";
 
+export const API_BASE = import.meta.env.DEV ? "http://localhost:8000" : "https://qr-code-generator-6-shry.onrender.com";
+
+
 export interface BatchItem {
   data: string;
   filename?: string;
@@ -42,7 +45,7 @@ export async function fetchQRPreview(settings: QRSettings) {
   const payload = await resolveLogoPayload(settings);
   const finalPayload = { ...payload, box_size: 10 };
 
-  const response = await fetch("/api/generator/generate", {
+  const response = await fetch(`${API_BASE}/api/generator/generate`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -73,14 +76,14 @@ export async function downloadQR(settings: QRSettings, format: string, size: num
     no_stretching: noStretching 
   };
 
-  let endpoint = "/api/generator/generate";
+  let endpoint = `${API_BASE}/api/generator/generate`;
   let ext = "png";
   
   if (format === "SVG") {
-    endpoint = "/api/generator/generate/svg";
+    endpoint = `${API_BASE}/api/generator/generate/svg`;
     ext = "svg";
   } else if (format === "PDF") {
-    endpoint = "/api/generator/generate/pdf";
+    endpoint = `${API_BASE}/api/generator/generate/pdf`;
     ext = "pdf";
   }
 
@@ -106,7 +109,7 @@ export async function copyQRToClipboard(settings: QRSettings, size: number, noSt
     no_stretching: noStretching 
   };
 
-  const response = await fetch("/api/generator/generate", {
+  const response = await fetch(`${API_BASE}/api/generator/generate`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(finalPayload),
@@ -135,7 +138,7 @@ export async function generateBatch(settings: QRSettings, items: BatchItem[], fo
     target_size: size
   };
 
-  const response = await fetch("/api/generator/generate/batch", {
+  const response = await fetch(`${API_BASE}/api/generator/generate/batch`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload)

@@ -2,6 +2,7 @@ import { useQRStore } from "@/store/useQRStore";
 import { useDownloadStore } from "@/store/useDownloadStore";
 import { useToast } from "@/hooks/useToast";
 import { getReactLogoPngDataUrl, PRESET_LOGO_BRAND_COLORS } from "@/components/previews/SvgIcons";
+import { resolveLogoPayload, API_BASE } from "@/services/qrApi";
 
 export function useDownloadHandlers() {
   const { settings, batchCsvRows, batchDataColumn, batchFilenameColumn } = useQRStore();
@@ -82,13 +83,13 @@ export function useDownloadHandlers() {
         no_stretching: noStretching 
       };
 
-      let endpoint = "/api/generator/generate";
+      let endpoint = `${API_BASE}/api/generator/generate`;
       let ext = "png";
       if (downloadFormat === "SVG") {
-        endpoint = "/api/generator/generate/svg";
+        endpoint = `${API_BASE}/api/generator/generate/svg`;
         ext = "svg";
       } else if (downloadFormat === "PDF") {
-        endpoint = "/api/generator/generate/pdf";
+        endpoint = `${API_BASE}/api/generator/generate/pdf`;
         ext = "pdf";
       }
 
@@ -158,7 +159,7 @@ export function useDownloadHandlers() {
         target_size: downloadSize, 
         no_stretching: noStretching 
       };
-      const response = await fetch("/api/generator/generate", {
+      const response = await fetch(`${API_BASE}/api/generator/generate`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
@@ -221,7 +222,7 @@ export function useDownloadHandlers() {
         target_size: parseInt(batchSize)
       };
 
-      const response = await fetch("/api/generator/generate/batch", {
+      const response = await fetch(`${API_BASE}/api/generator/generate/batch`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
