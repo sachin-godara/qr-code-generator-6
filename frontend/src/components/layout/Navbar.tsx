@@ -27,9 +27,10 @@ export function Navbar() {
           </svg>
         </div>
         <h1 className="text-xl font-bold tracking-tight bg-gradient-to-r from-primary to-[#df00ff] bg-clip-text text-transparent">
-          QR Code Maker
+          GenerateCustomQR
         </h1>
-      </a>      
+      </a>
+
       <div className="flex items-center gap-4">
         <a 
           href="/qr-code-scanner" 

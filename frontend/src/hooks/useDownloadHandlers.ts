@@ -14,7 +14,7 @@ export function useDownloadHandlers() {
   const hasComplexStyling = settings.gradient_type !== "Solid Color" || settings.effect_shadow !== "none";
 
   const getEffectiveFilename = (ext: string) => {
-    const base = customFilename.trim() || `QRStream-${settings.contentType}`;
+    const base = customFilename.trim() || `GenerateCustomQR-${settings.contentType}`;
     return base.endsWith(`.${ext.toLowerCase()}`) ? base : `${base}.${ext.toLowerCase()}`;
   };
 

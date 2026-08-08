@@ -198,7 +198,7 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
         <div className="relative flex items-center">
           <input
             type="text"
-            placeholder={`QRStream-${settings.contentType}`}
+            placeholder={`GenerateCustomQR-${settings.contentType}`}
             value={customFilename}
             onChange={(e) => setCustomFilename(e.target.value)}
             className="w-full px-4 py-3 bg-white border border-outline-variant rounded-xl text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 font-medium text-sm transition-all"

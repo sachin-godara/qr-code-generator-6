@@ -16,6 +16,6 @@ describe('App Component', () => {
         <App />
       </QueryClientProvider>
     )
-    expect(screen.getByText(/QRStream/i)).toBeInTheDocument()
+    expect(screen.getByText(/GenerateCustomQR/i)).toBeInTheDocument()
   })
 })

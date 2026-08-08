@@ -202,7 +202,7 @@ function App() {
         <div className="flex justify-between items-center h-14 sm:h-16 px-4 sm:px-gutter w-full">
           <div className="flex items-center gap-4 sm:gap-8">
             {/* Premium Brand Wordmark */}
-            <a href="/" className="flex items-center gap-2.5 group shrink-0" title="QR Code Maker — Home">
+            <a href="/" className="flex items-center gap-2.5 group shrink-0" title="GenerateCustomQR — Home">
               <div className="w-8 h-8 flex-shrink-0">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" className="w-full h-full drop-shadow-sm group-hover:drop-shadow-md transition-all">
                   <defs>
@@ -226,8 +226,8 @@ function App() {
                 </svg>
               </div>
               <div className="flex flex-col leading-none">
-                <span className="text-[14px] font-bold tracking-tight bg-gradient-to-r from-primary to-[#df00ff] bg-clip-text text-transparent">GenerateCustomQR</span>
-                <span className="text-[9px] font-medium text-on-surface-variant tracking-wider hidden sm:block">40+ styles · 100% free</span>
+                <span className="text-[14px] font-bold tracking-tight bg-gradient-to-r from-primary to-[#df00ff] bg-clip-text text-transparent whitespace-nowrap">GenerateCustomQR</span>
+                <span className="text-[9px] font-medium text-on-surface-variant tracking-wider hidden sm:block whitespace-nowrap">40+ styles · 100% free</span>
               </div>
             </a>
             <div className="hidden md:flex items-center gap-6">

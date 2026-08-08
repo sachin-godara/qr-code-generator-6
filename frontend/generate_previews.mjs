@@ -15,7 +15,7 @@ async function generate() {
         const filepath = path.join(OUTPUT_DIR, filename);
 
         const payload = {
-            data: "https://qrstream.com",
+            data: "https://generatecustomqr.com",
             error_correction: "Q",
             quiet_zone: 4,
             box_size: 10,
