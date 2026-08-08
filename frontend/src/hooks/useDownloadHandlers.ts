@@ -77,7 +77,7 @@ export function useDownloadHandlers() {
         preset_logo: isPresetLogo ? "None" : rest.preset_logo, 
         logo_card_shape: rest.logo_card_shape, 
         preset_logo_color: color, 
-        box_size: 20, 
+        box_size: 10, 
         target_size: downloadSize, 
         no_stretching: noStretching 
       };
@@ -154,7 +154,7 @@ export function useDownloadHandlers() {
         preset_logo: isPresetLogo ? "None" : rest.preset_logo, 
         logo_card_shape: rest.logo_card_shape, 
         preset_logo_color: color, 
-        box_size: 20, 
+        box_size: 10, 
         target_size: downloadSize, 
         no_stretching: noStretching 
       };

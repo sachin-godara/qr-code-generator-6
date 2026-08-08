@@ -68,7 +68,7 @@ export async function downloadQR(settings: QRSettings, format: string, size: num
   const payload = await resolveLogoPayload(settings);
   const finalPayload = { 
     ...payload, 
-    box_size: 20, 
+    box_size: 10, 
     target_size: size, 
     no_stretching: noStretching 
   };
@@ -101,7 +101,7 @@ export async function copyQRToClipboard(settings: QRSettings, size: number, noSt
   const payload = await resolveLogoPayload(settings);
   const finalPayload = { 
     ...payload, 
-    box_size: 20, 
+    box_size: 10, 
     target_size: size, 
     no_stretching: noStretching 
   };

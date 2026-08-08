@@ -267,12 +267,15 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
             w, h = base_qr.size
             if w > 0 and (w != target_size or h != target_size):
                 bg_trans = params.get("bg_transparent", False)
+                has_canvas_effects = (params.get("canvas_radius", 0) > 0 or params.get("canvas_border_width", 0) > 0 or params.get("effect_shadow", "none") != "none")
                 bg_hex = params.get("bg_color", "#ffffff")
-                bg_color = (0, 0, 0, 0) if bg_trans else (hex_to_rgb(bg_hex) + (255,) if str(bg_hex).startswith('#') else (255, 255, 255, 255))
+                bg_color = (0, 0, 0, 0) if (bg_trans or has_canvas_effects) else (hex_to_rgb(bg_hex) + (255,) if str(bg_hex).startswith('#') else (255, 255, 255, 255))
                 
-                canvas = Image.new("RGBA", (target_size, target_size), bg_color)
-                pos_x = (target_size - w) // 2
-                pos_y = (target_size - h) // 2
+                canvas_w = max(target_size, w)
+                canvas_h = max(target_size, h)
+                canvas = Image.new("RGBA", (canvas_w, canvas_h), bg_color)
+                pos_x = (canvas_w - w) // 2
+                pos_y = (canvas_h - h) // 2
                 canvas.paste(base_qr, (pos_x, pos_y), base_qr if base_qr.mode == "RGBA" else None)
                 base_qr = canvas
         else:
