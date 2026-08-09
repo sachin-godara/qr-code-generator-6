@@ -303,10 +303,9 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
         del logo_pil
         
     img_byte_arr = io.BytesIO()
-    base_qr.save(img_byte_arr, format='PNG', optimize=True)
+    base_qr.save(img_byte_arr, format='PNG')
     base_qr.close()
     del base_qr
-    gc.collect()
     img_byte_arr.seek(0)
     return img_byte_arr
 
@@ -366,7 +365,7 @@ def generate_qr_pdf(data: str, params: dict) -> io.BytesIO:
 
 from functools import lru_cache
 
-@lru_cache(maxsize=16)
+@lru_cache(maxsize=128)
 def get_frame_preview(frame_style: str) -> bytes:
     """Generates a cached preview image for a frame style."""
     params = {
@@ -381,7 +380,7 @@ def get_frame_preview(frame_style: str) -> bytes:
     png_io = generate_qr_image("PREVIEW", params)
     return png_io.getvalue()
 
-@lru_cache(maxsize=16)
+@lru_cache(maxsize=128)
 def get_text_frame_preview(text_style: str) -> bytes:
     """Generates a cached preview image for a text frame style."""
     params = {
