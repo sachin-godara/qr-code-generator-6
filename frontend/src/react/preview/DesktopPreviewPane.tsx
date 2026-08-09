@@ -1,7 +1,6 @@
 import { useQRStore } from "@/store/useQRStore";
 import { useDownloadStore } from "@/store/useDownloadStore";
 import { useDownloadHandlers } from "@/hooks/useDownloadHandlers";
-import { calculateScannability } from "@/utils/scannability";
 
 interface DesktopPreviewPaneProps {
   previewRef: React.RefObject<HTMLDivElement | null>;
@@ -43,8 +42,6 @@ export function DesktopPreviewPane({
 
   // Compute approximate print size at 300 DPI
   const printSizeCm = downloadFormat === "PNG" ? ((downloadSize / 300) * 2.54).toFixed(1) : null;
-
-  const scannability = calculateScannability(settings);
 
   // Derive a subtle ambient glow color from the dots color
   const dotsColor = settings.dots_color || "#18181b";

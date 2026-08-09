@@ -1,7 +1,6 @@
 import { useQRStore } from "@/store/useQRStore";
 import { useDownloadStore } from "@/store/useDownloadStore";
 import { useDownloadHandlers } from "@/hooks/useDownloadHandlers";
-import { calculateScannability } from "@/utils/scannability";
 
 interface MobileBottomBarProps {
   isLoading: boolean;
@@ -27,8 +26,6 @@ export function MobileBottomBar({
   const { settings, undo, redo, resetSettings, history, historyIndex } = useQRStore();
   const { downloadFormat, isDownloading, downloadSuccess, copySuccess, isCopying } = useDownloadStore();
   const { handleDownloadCustom, handleCopyToClipboard, hasComplexStyling } = useDownloadHandlers();
-
-  const scannability = calculateScannability(settings);
 
   return (
     <>
