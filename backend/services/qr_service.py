@@ -251,16 +251,6 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
             # Calculate optimal integer box_size so QR modules are rendered natively
             dummy_params = copy.deepcopy(params)
             dummy_params["target_size"] = 0
-            
-            # OPTIMIZATION: Strip heavy rendering effects for the measurement pass
-            dummy_params["gradient_type"] = "Solid Color"
-            dummy_params["logo_image"] = None
-            dummy_params["preset_logo"] = "None"
-            dummy_params["bg_image"] = None
-            dummy_params["dots_style"] = "square"
-            dummy_params["eye_frame_style"] = "square"
-            dummy_params["eyeball_style"] = "square"
-            
             original_box_size = dummy_params.get("box_size", 10)
             dummy_img = _build_image(dummy_params)
             
