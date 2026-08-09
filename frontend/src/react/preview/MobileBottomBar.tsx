@@ -75,13 +75,7 @@ export function MobileBottomBar({
 
             {/* Compact Quick Tools */}
             <div className="flex gap-1.5 shrink-0 items-center">
-              <div 
-                className="flex items-center gap-1 px-2 py-1.5 rounded-xl border border-outline-variant/40 bg-surface-container shadow-2xs touch-press"
-                onClick={() => alert(`Scannability: ${scannability.label}\n\n${scannability.issues.join('\n')}`)}
-              >
-                <span className={`material-symbols-outlined text-[16px] ${scannability.color}`}>qr_code_scanner</span>
-                <span className={`text-xs font-bold ${scannability.color}`}>{scannability.score}%</span>
-              </div>
+
               <button onClick={handleFullscreen} className="p-2 bg-surface hover:bg-surface-container-high transition-colors text-on-surface-variant rounded-xl border border-outline-variant/40 flex items-center justify-center text-xs font-bold gap-1 shadow-2xs min-w-[36px] min-h-[36px] touch-press" title="View Fullscreen">
                 <span className="material-symbols-outlined text-[18px]">fullscreen</span>
                 <span className="hidden sm:inline text-xs">Expand</span>

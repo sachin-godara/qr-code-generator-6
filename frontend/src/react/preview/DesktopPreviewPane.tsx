@@ -199,27 +199,6 @@ export function DesktopPreviewPane({
             <span className="text-xs font-bold text-on-surface">{targetResolution}</span>
           </div>
 
-          <div className="group relative flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/40 shadow-2xs hover:shadow-sm transition-all cursor-help">
-            <span className={`material-symbols-outlined text-[14px] ${scannability.color}`}>qr_code_scanner</span>
-            <span className={`text-xs font-bold ${scannability.color}`}>{scannability.score}%</span>
-            
-            {/* Tooltip on hover */}
-            <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 p-2.5 bg-surface-container-highest text-on-surface text-[11px] rounded-lg shadow-xl border border-outline-variant opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 pointer-events-none">
-              <div className="font-bold mb-1 text-[12px]">{scannability.label} Scannability</div>
-              {scannability.issues.length > 0 ? (
-                <ul className="list-disc pl-3 space-y-1 text-on-surface-variant mt-1.5">
-                  {scannability.issues.map((issue, idx) => (
-                    <li key={idx} className="leading-tight">{issue}</li>
-                  ))}
-                </ul>
-              ) : (
-                <div className="text-on-surface-variant mt-1">This QR code is highly optimized and should scan easily on all devices.</div>
-              )}
-              {/* Tooltip arrow */}
-              <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-[1px] border-4 border-transparent border-t-outline-variant"></div>
-              <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-[2px] border-4 border-transparent border-t-surface-container-highest"></div>
-            </div>
-          </div>
 
           <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/40 shadow-2xs hover:shadow-sm hover:border-primary/30 transition-all">
             <span className="material-symbols-outlined text-[14px] text-primary">shield_locked</span>
