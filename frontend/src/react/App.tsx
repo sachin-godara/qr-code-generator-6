@@ -227,7 +227,7 @@ function App() {
               </div>
               <div className="flex flex-col leading-none">
                 <span className="text-[14px] font-bold tracking-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent whitespace-nowrap">GenerateCustomQR</span>
-                <span className="text-[9px] font-medium text-on-surface-variant tracking-wider hidden sm:block whitespace-nowrap">40+ styles · 100% free</span>
+                <span className="text-[9px] font-medium text-on-surface-variant tracking-wider hidden sm:block whitespace-nowrap">39 styles · 100% free</span>
               </div>
             </a>
             <div className="hidden md:flex items-center gap-6">
