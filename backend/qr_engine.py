@@ -76,16 +76,17 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
         # The logo is scaled to logo_size_ratio of the total image width
         logo_module_width = (modules_count + 8) * logo_size_ratio
         
-        # We clear a circular area based on L2 distance
+        # We clear a circular area based on L2 distance squared
         clear_radius = (logo_module_width / 2.0) + logo_clear_size
+        clear_radius_sq = clear_radius * clear_radius
         
         for y in range(modules_count):
+            dy = y - cy
+            dy_sq = dy * dy
             for x in range(modules_count):
                 dx = x - cx
-                dy = y - cy
-                dist = math.sqrt(dx*dx + dy*dy)
                 
-                if dist < clear_radius:
+                if dx*dx + dy_sq < clear_radius_sq:
                     # Do not clear the corner eyes
                     if not (x < 8 and y < 8) and not (x > modules_count - 9 and y < 8) and not (x < 8 and y > modules_count - 9):
                         qr.modules[y][x] = False
