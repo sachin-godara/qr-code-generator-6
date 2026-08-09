@@ -31,7 +31,7 @@ export function AdvancedPanel() {
         <p className="text-xs text-on-surface-variant">
           Determines how much data can be damaged or hidden (by logos) while retaining scannability.
         </p>
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3">
+        <div className="grid grid-cols-2 xl:grid-cols-4 gap-2 sm:gap-3">
           {[
             { id: "L", name: "Low", desc: "~7%" },
             { id: "M", name: "Medium", desc: "~15%" },
@@ -46,7 +46,7 @@ export function AdvancedPanel() {
                 : "border-outline-variant bg-white text-on-surface hover:bg-surface-container-highest"
                 }`}
             >
-              <span className="text-xs sm:text-sm md:text-base font-bold whitespace-nowrap">{level.id} - {level.name}</span>
+              <span className="text-xs sm:text-sm font-bold text-center">{level.id} - {level.name}</span>
               <span className="text-[10px] sm:text-[11px] text-on-surface-variant mt-0.5">{level.desc}</span>
             </button>
           ))}

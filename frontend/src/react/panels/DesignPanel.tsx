@@ -70,9 +70,9 @@ export function DesignPanel() {
         )}
 
         <div className="flex flex-col h-full">
-          <div className="flex justify-between items-center mb-2">
-            <label className="section-label block">Background Color</label>
-            <label className="flex items-center gap-2 text-xs font-semibold cursor-pointer select-none px-2.5 py-1 rounded-full bg-surface-variant text-on-surface-variant hover:bg-outline-variant/30 transition-colors">
+          <div className="flex justify-between items-center gap-1 mb-2">
+            <label className="section-label block truncate">Background</label>
+            <label className="flex items-center gap-1.5 text-xs font-semibold cursor-pointer select-none px-2 py-1 rounded-full bg-surface-variant text-on-surface-variant hover:bg-outline-variant/30 transition-colors shrink-0">
               <input
                 type="checkbox"
                 checked={settings.bg_transparent || false}
