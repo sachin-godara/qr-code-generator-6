@@ -24,6 +24,10 @@ const breadcrumbs = [
     <div class="md:col-span-2 bg-surface-container p-6 md:p-8 rounded-2xl border border-outline-variant/40">
       <form id="contact-form" class="space-y-6">
         
+        <!-- Honeypot Spam Protection -->
+        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+        
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <div>
             <label for="name" class="contact-label">Name</label>
@@ -65,11 +69,10 @@ const breadcrumbs = [
     <div class="space-y-6">
       <div class="bg-surface-container p-6 rounded-2xl border border-outline-variant/40">
         <div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-4">
-          <span class="material-symbols-outlined">email</span>
+          <span class="material-symbols-outlined">shield</span>
         </div>
-        <h3 class="!mt-0 text-lg font-bold">Email Us</h3>
-        <p class="text-sm text-on-surface-variant mb-2">For direct inquiries, you can email us at:</p>
-        <a href="mailto:support@generatecustomqr.com" class="font-bold text-primary hover:underline">support@generatecustomqr.com</a>
+        <h3 class="!mt-0 text-lg font-bold">Secure & Private</h3>
+        <p class="text-sm text-on-surface-variant">Your message is securely forwarded to our team. We respect your privacy and never share your details.</p>
       </div>
 
       <div class="bg-surface-container p-6 rounded-2xl border border-outline-variant/40">
@@ -150,18 +153,25 @@ const breadcrumbs = [
 
         // Gather data
         const formData = new FormData(form);
+        
+        // Add Web3Forms access key
+        formData.append("access_key", "30fc18a9-ae6c-478d-8f30-d3c56fd1da21");
+
         const data = Object.fromEntries(formData.entries());
 
         try {
-          const response = await fetch('/api/contact', {
+          const response = await fetch('https://api.web3forms.com/submit', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
+              'Accept': 'application/json'
             },
             body: JSON.stringify(data),
           });
 
-          if (response.ok) {
+          const result = await response.json();
+
+          if (response.ok && result.success) {
             // Success
             statusDiv.textContent = 'Thank you! Your message has been sent successfully. We will be in touch soon.';
             statusDiv.classList.add('bg-emerald-50', 'text-emerald-700', 'border', 'border-emerald-200');
@@ -169,8 +179,7 @@ const breadcrumbs = [
             form.reset();
           } else {
             // Server error
-            const errorData = await response.json().catch(() => ({}));
-            throw new Error(errorData.detail || 'Failed to send message. Please try again later.');
+            throw new Error(result.message || 'Failed to send message. Please try again later.');
           }
         } catch (error) {
           // Network or parsing error
