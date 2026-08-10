@@ -1,37 +1,58 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useId } from 'react';
 import { useQRStore } from '@/store/useQRStore';
 
-const Input = ({ label, ...props }: any) => (
-  <div className="space-y-1">
-    {label && <label className="text-xs font-medium text-muted-foreground">{label}</label>}
-    <input 
-      className="w-full p-2.5 text-sm rounded-lg border border-input bg-background placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
-      {...props}
-    />
-  </div>
-);
+const Input = ({ label, id: propId, name: propName, ...props }: any) => {
+  const generatedId = useId();
+  const id = propId || generatedId;
+  const name = propName || id;
+  return (
+    <div className="space-y-1">
+      {label && <label htmlFor={id} className="text-xs font-medium text-muted-foreground">{label}</label>}
+      <input 
+        id={id}
+        name={name}
+        className="w-full p-2.5 text-sm rounded-lg border border-input bg-background placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
+        {...props}
+      />
+    </div>
+  );
+};
 
-const Textarea = ({ label, ...props }: any) => (
-  <div className="space-y-1">
-    {label && <label className="text-xs font-medium text-muted-foreground">{label}</label>}
-    <textarea 
-      className="w-full p-2.5 text-sm rounded-lg border border-input bg-background placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow min-h-[80px]"
-      {...props}
-    />
-  </div>
-);
+const Textarea = ({ label, id: propId, name: propName, ...props }: any) => {
+  const generatedId = useId();
+  const id = propId || generatedId;
+  const name = propName || id;
+  return (
+    <div className="space-y-1">
+      {label && <label htmlFor={id} className="text-xs font-medium text-muted-foreground">{label}</label>}
+      <textarea 
+        id={id}
+        name={name}
+        className="w-full p-2.5 text-sm rounded-lg border border-input bg-background placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow min-h-[80px]"
+        {...props}
+      />
+    </div>
+  );
+};
 
-const Select = ({ label, children, ...props }: any) => (
-  <div className="space-y-1">
-    {label && <label className="text-xs font-medium text-muted-foreground">{label}</label>}
-    <select 
-      className="w-full p-2.5 text-sm rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
-      {...props}
-    >
-      {children}
-    </select>
-  </div>
-);
+const Select = ({ label, children, id: propId, name: propName, ...props }: any) => {
+  const generatedId = useId();
+  const id = propId || generatedId;
+  const name = propName || id;
+  return (
+    <div className="space-y-1">
+      {label && <label htmlFor={id} className="text-xs font-medium text-muted-foreground">{label}</label>}
+      <select 
+        id={id}
+        name={name}
+        className="w-full p-2.5 text-sm rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
+        {...props}
+      >
+        {children}
+      </select>
+    </div>
+  );
+};
 
 export const UrlForm = () => {
   const { settings, updateSettings } = useQRStore();
