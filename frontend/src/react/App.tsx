@@ -16,7 +16,20 @@ function App() {
 
   const [activeTab, setActiveTab] = useState<string>("Content")
   const [zoomLevel, setZoomLevel] = useState<number>(1)
-  const [mobileMainTab, setMobileMainTab] = useState<'content' | 'design' | 'download'>('content')
+  const [mobileMainTab, setMobileMainTab] = useState<'content' | 'design' | 'logo' | 'more' | 'download'>('content')
+
+  const handleMobileTabChange = (tab: 'content' | 'design' | 'logo' | 'more' | 'download') => {
+    setMobileMainTab(tab)
+    if (tab === 'content') setActiveTab('Content')
+    else if (tab === 'design') {
+       if (!['Templates', 'Design', 'Frames'].includes(activeTab)) setActiveTab('Design')
+    }
+    else if (tab === 'logo') setActiveTab('Logo')
+    else if (tab === 'more') {
+       if (!['Effects', 'Advanced'].includes(activeTab)) setActiveTab('Effects')
+    }
+    else if (tab === 'download') setActiveTab('Download')
+  }
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [showMiniPreview, setShowMiniPreview] = useState(false)
   const previewRef = useRef<HTMLDivElement>(null)
@@ -56,7 +69,7 @@ function App() {
       if (e.detail?.type) {
         useQRStore.getState().updateSettings({ contentType: e.detail.type as any, contentData: "" });
         setActiveTab("Content");
-        setMobileMainTab("content");
+        handleMobileTabChange("content");
         const generatorEl = document.getElementById("generator");
         if (generatorEl) {
           generatorEl.scrollIntoView({ behavior: "smooth" });
@@ -413,47 +426,115 @@ function App() {
               />
             </div>
             
-            <MobileBottomBar
+            <MobileBottomBar 
               isLoading={isLoading}
               isFetching={isFetching}
               isError={isError}
               imageUrl={imageUrl}
-              handleFullscreen={handleFullscreen}
+              handleFullscreen={() => setIsFullscreen(true)}
               mobileMainTab={mobileMainTab}
-              setMobileMainTab={setMobileMainTab}
+              setMobileMainTab={handleMobileTabChange}
               showMiniPreview={showMiniPreview}
             />
             {/* The Mobile Content area follows underneath the sticky header */}
-            <div className="lg:hidden p-4 sm:p-5 bg-surface-container-lowest min-h-[50vh] relative z-0">
+            <div className="lg:hidden p-4 sm:p-5 pb-24 sm:pb-28 bg-surface-container-lowest min-h-[50vh] relative z-0">
               <div className="panel-enter" key={mobileMainTab}>
-                {mobileMainTab === 'content'
-                  ? renderPanelContent('Content')
-                  : mobileMainTab === 'download'
-                    ? renderPanelContent('Download')
-                    : (
-                        <div className="flex flex-col gap-4">
-                          <div className="flex items-center gap-2 overflow-x-auto pb-2 custom-scrollbar -mx-2 px-2">
-                            {["Templates", "Design", "Logo", "Frames", "Effects", "Advanced"].map(tab => {
-                              const isActive = (activeTab === 'Content' || activeTab === 'Download') ? tab === 'Design' : activeTab === tab;
-                              return (
-                                <button
-                                  key={tab}
-                                  onClick={() => setActiveTab(tab)}
-                                  className={`px-4 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-colors ${
-                                    isActive
-                                      ? 'bg-primary text-white shadow-md'
-                                      : 'bg-surface border border-outline-variant/60 text-on-surface-variant hover:bg-surface-container'
-                                  }`}
-                                >
-                                  {tab}
-                                </button>
-                              );
-                            })}
-                          </div>
-                          {renderPanelContent((activeTab === 'Content' || activeTab === 'Download') ? 'Design' : activeTab)}
-                        </div>
-                      )
-                }
+                {mobileMainTab === 'content' ? (
+                  <div className="flex flex-col gap-4">
+                    <div className="flex items-center gap-2 pb-1">
+                      <div className="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-xs font-black shrink-0">1</div>
+                      <div>
+                        <p className="text-sm font-bold text-on-surface">Enter your content</p>
+                        <p className="text-[11px] text-on-surface-variant">Pick a type below, then fill in your data</p>
+                      </div>
+                    </div>
+                    {renderPanelContent('Content')}
+                  </div>
+                ) : mobileMainTab === 'download' ? (
+                  <div className="flex flex-col gap-4">
+                    {/* Step indicator */}
+                    <div className="flex items-center gap-2 pb-1">
+                      <div className="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs font-black shrink-0">3</div>
+                      <div>
+                        <p className="text-sm font-bold text-on-surface">Save your QR code</p>
+                        <p className="text-[11px] text-on-surface-variant">Choose a format and download</p>
+                      </div>
+                    </div>
+                    {renderPanelContent('Download')}
+                  </div>
+                ) : mobileMainTab === 'logo' ? (
+                  <div className="flex flex-col gap-4">
+                    <div className="flex items-center gap-2 pb-1">
+                      <div className="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-xs font-black shrink-0">2</div>
+                      <div>
+                        <p className="text-sm font-bold text-on-surface">Add a Logo</p>
+                        <p className="text-[11px] text-on-surface-variant">Upload an image or pick a preset</p>
+                      </div>
+                    </div>
+                    {renderPanelContent('Logo')}
+                  </div>
+                ) : mobileMainTab === 'design' ? (
+                  <div className="flex flex-col gap-4">
+                    <div className="flex items-center gap-2 pb-1">
+                      <div className="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-xs font-black shrink-0">2</div>
+                      <div>
+                        <p className="text-sm font-bold text-on-surface">Customize the look</p>
+                        <p className="text-[11px] text-on-surface-variant">Templates, colors, and frames</p>
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap items-center justify-center gap-2 pb-1">
+                      {([
+                        { name: "Templates", icon: "dashboard" },
+                        { name: "Design",    icon: "palette" },
+                        { name: "Frames",    icon: "crop_free" }
+                      ] as const).map(tab => (
+                        <button
+                          key={tab.name}
+                          onClick={() => setActiveTab(tab.name)}
+                          className={`flex items-center gap-1.5 px-3.5 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-colors ${
+                            activeTab === tab.name
+                              ? 'bg-primary text-white shadow-md'
+                              : 'bg-surface border border-outline-variant/60 text-on-surface-variant hover:bg-surface-container'
+                          }`}
+                        >
+                          <span className="material-symbols-outlined text-[16px]">{tab.icon}</span>
+                          {tab.name === "Design" ? "Style" : tab.name}
+                        </button>
+                      ))}
+                    </div>
+                    {renderPanelContent(activeTab)}
+                  </div>
+                ) : (
+                  <div className="flex flex-col gap-4">
+                    <div className="flex items-center gap-2 pb-1">
+                      <div className="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-xs font-black shrink-0">2</div>
+                      <div>
+                        <p className="text-sm font-bold text-on-surface">More Options</p>
+                        <p className="text-[11px] text-on-surface-variant">Advanced effects and settings</p>
+                      </div>
+                    </div>
+                    <div className="flex flex-wrap items-center justify-center gap-2 pb-1">
+                      {([
+                        { name: "Effects",   icon: "auto_awesome" },
+                        { name: "Advanced",  icon: "tune" },
+                      ] as const).map(tab => (
+                        <button
+                          key={tab.name}
+                          onClick={() => setActiveTab(tab.name)}
+                          className={`flex items-center gap-1.5 px-3.5 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-colors ${
+                            activeTab === tab.name
+                              ? 'bg-primary text-white shadow-md'
+                              : 'bg-surface border border-outline-variant/60 text-on-surface-variant hover:bg-surface-container'
+                          }`}
+                        >
+                          <span className="material-symbols-outlined text-[16px]">{tab.icon}</span>
+                          {tab.name}
+                        </button>
+                      ))}
+                    </div>
+                    {renderPanelContent(activeTab)}
+                  </div>
+                )}
               </div>
             </div>
 

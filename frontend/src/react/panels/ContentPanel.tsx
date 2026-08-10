@@ -168,8 +168,22 @@ export function ContentPanel() {
         ))}
       </div>
 
+      {/* Beginner hint */}
+      {!settings.contentData && (
+        <div className="flex items-start gap-2.5 p-3 rounded-xl bg-primary/5 border border-primary/15 text-sm">
+          <span className="material-symbols-outlined text-primary text-lg mt-0.5 shrink-0">lightbulb</span>
+          <p className="text-on-surface-variant leading-relaxed">
+            {settings.contentType === 'url' && 'Paste a website link below and your QR code will update instantly!'}
+            {settings.contentType === 'text' && 'Type any message below — it will be encoded into your QR code.'}
+            {settings.contentType === 'wifi' && 'Enter your Wi-Fi network details. Anyone who scans can connect instantly!'}
+            {settings.contentType === 'vcard' && 'Fill in contact details. Scanning this QR will save the contact to a phone.'}
+            {!['url', 'text', 'wifi', 'vcard'].includes(settings.contentType) && 'Fill in the details below. Your QR code updates live as you type!'}
+          </p>
+        </div>
+      )}
+
       {/* Input Card */}
-      <div className="bg-white rounded-xl border border-outline-variant space-y-6 p-6">
+      <div className="bg-white rounded-xl border border-outline-variant space-y-6 p-4 sm:p-6">
         {settings.contentType === "url" && <UrlForm />}
         {settings.contentType === "text" && <TextForm />}
         {settings.contentType === "phone" && <PhoneForm />}

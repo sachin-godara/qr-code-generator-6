@@ -11,7 +11,7 @@ const Input = ({ label, id: propId, name: propName, ...props }: any) => {
       <input 
         id={id}
         name={name}
-        className="w-full p-2.5 text-sm rounded-lg border border-input bg-background placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
+        className="w-full p-3 sm:p-2.5 text-base sm:text-sm rounded-lg border border-input bg-background placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-shadow"
         {...props}
       />
     </div>
