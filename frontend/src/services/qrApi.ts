@@ -1,7 +1,7 @@
 import { type QRSettings } from "@/types/qr";
 import { getReactLogoPngDataUrl, PRESET_LOGO_BRAND_COLORS } from "@/components/previews/SvgIcons";
 
-export const API_BASE = import.meta.env.DEV ? "http://localhost:8000" : "";
+export const API_BASE = import.meta.env.DEV ? "http://localhost:8000" : "https://qr-code-generator-6-shry.onrender.com";
 
 
 export interface BatchItem {
