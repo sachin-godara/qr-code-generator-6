@@ -1,5 +1,8 @@
 import os
+import logging
 from PIL import Image, ImageDraw
+
+logger = logging.getLogger(__name__)
 from engines.core.utils import hex_to_rgb
 
 try:
@@ -101,7 +104,7 @@ def generate_preset_logo(name, color=(0, 0, 0)):
         out_img.paste(img, offset, img)
         return out_img
     except Exception as e:
-        print(f"Error generating preset logo: {e}")
+        logger.warning(f"Error generating preset logo: {e}")
         return None
 
 def apply_logo_overlay(img, logo_image, remove_logo_bg=False, logo_bg_color="#ffffff", logo_bg_tolerance=30, logo_size_ratio=0.18, logo_card_shape="None", logo_card_padding=10, bg=(255,255,255)):
@@ -147,5 +150,5 @@ def apply_logo_overlay(img, logo_image, remove_logo_bg=False, logo_bg_color="#ff
         else:
             img.paste(logo, pos)
     except Exception as e:
-        print(f"Error applying logo: {e}")
+        logger.warning(f"Error applying logo: {e}")
     return img

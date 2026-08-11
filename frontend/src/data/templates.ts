@@ -298,9 +298,9 @@ export const PRESET_TEMPLATES: Template[] = [
     description:
       "An elegant wine bottle with a premium paper label featuring gold details.",
     settings: {
-      dots_style: "diamond",
-      eye_frame_style: "diamond",
-      eyeball_style: "diamond",
+      dots_style: "rounded",
+      eye_frame_style: "rounded",
+      eyeball_style: "rounded",
       dots_color: "#4A235A",
       bg_color: "#FAF5EB",
       frame_style: "wine_label",

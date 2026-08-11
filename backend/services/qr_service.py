@@ -1,6 +1,9 @@
 import io
 import gc
 import base64
+import logging
+
+logger = logging.getLogger(__name__)
 from PIL import Image, ImageDraw, ImageFilter
 from qr_engine import generate_styled_qr, generate_svg_qr, hex_to_rgb
 from frame_engine import apply_layout_frame, apply_text_frame
@@ -111,13 +114,13 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
                 image_data = base64.b64decode(encoded)
                 logo_pil = Image.open(io.BytesIO(image_data))
             except Exception as e:
-                print(f"Error decoding base64 logo: {e}")
+                logger.warning(f"Error decoding base64 logo: {e}")
         elif isinstance(logo_image, str):
             try:
                 image_data = base64.b64decode(logo_image)
                 logo_pil = Image.open(io.BytesIO(image_data))
             except Exception as e:
-                print(f"Error decoding raw base64 logo: {e}")
+                logger.warning(f"Error decoding raw base64 logo: {e}")
         elif isinstance(logo_image, Image.Image):
             logo_pil = logo_image
 
@@ -207,7 +210,7 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
                     base_qr = comp
                     
             except Exception as e:
-                print(f"Error applying background image: {e}")
+                logger.warning(f"Error applying background image: {e}")
 
         # 3. Apply Layout Frame
         if p.get("frame_style") and p.get("frame_style") != "none":

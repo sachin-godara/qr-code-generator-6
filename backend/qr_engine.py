@@ -1,5 +1,7 @@
 import qrcode
+import qrcode.image.svg
 import math
+import re
 # numpy is imported lazily inside functions that need it to save ~30MB at startup
 import random
 
@@ -34,7 +36,6 @@ from PIL import Image, ImageDraw
 import os
 
 
-from engines.dots.custom_drawers import *
 from engines.dots import MODULE_DRAWER_REGISTRY
 
 def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_style="square", logo_image=None, box_size=30, eye_color=None, eyeball_color=None, eye_frame_style=None, eyeball_style=None, remove_logo_bg=False, logo_bg_color="#ffffff", logo_bg_tolerance=30, logo_clear_size=0.5, gradient_type="Solid Color", fill_color_end="#000000", preset_logo="None", preset_logo_color=None, logo_card_shape="None", logo_card_padding=10, logo_size_ratio=0.18, error_correction="H", quiet_zone=4, bg_transparent=False, params=None):
@@ -91,57 +92,7 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
                     if not (x < 8 and y < 8) and not (x > modules_count - 9 and y < 8) and not (x < 8 and y > modules_count - 9):
                         qr.modules[y][x] = False
 
-    module_drawers = {
-        "sleek_dash": SleekDashModuleDrawer,
-        "square": SquareModuleDrawer,
-        "gapped": GappedSquareModuleDrawer,
-        "circle": CircleModuleDrawer,
-        "rounded": RoundedModuleDrawer,
-        "vertical_bars": VerticalBarsDrawer,
-        "horizontal_bars": HorizontalBarsDrawer,
-        "diamond": DiamondModuleDrawer,
-        "ring": RingModuleDrawer,
-        "star": StarModuleDrawer,
-        "flower_cut": FlowerCutModuleDrawer,
-        "clover": CloverModuleDrawer,
-        "plus": PlusModuleDrawer,
-        "rounded_plus": RoundedPlusModuleDrawer,
-        "heart": HeartModuleDrawer,
-        "sheared": ShearedModuleDrawer,
-        "bevel": BevelModuleDrawer,
-        "fishtail": FishtailModuleDrawer,
-        "squircle": SquircleModuleDrawer,
-        "hexagon": HexagonModuleDrawer,
-        "target_bullseye": TargetBullseyeModuleDrawer,
-        "diamond_target": DiamondTargetModuleDrawer,
-        "octagon": OctagonModuleDrawer,
-        "dotted_cross": DottedCrossModuleDrawer,
-        "arrow": ArrowModuleDrawer,
-        "gear_dot": GearDotModuleDrawer,
-        "hourglass": HourglassModuleDrawer,
-        "pinwheel": PinwheelModuleDrawer,
-        "leaf_droplet": LeafDropletModuleDrawer,
-        "pillow": PillowModuleDrawer,
-        "quad_dots": QuadDotsModuleDrawer,
-        "tech_chevron": TechChevronModuleDrawer,
-        "sparkle": SparkleModuleDrawer,
-        "medical_cross": MedicalCrossModuleDrawer,
-        "lotus_petal": LotusPetalModuleDrawer,
-        "network_nodes": NetworkNodesModuleDrawer,
-
-        "minimal_dots": MinimalDotsModuleDrawer,
-        "hollow_dots": HollowDotsModuleDrawer,
-        "crossstitch": CrossstitchModuleDrawer,
-        "pixel_art": PixelArtModuleDrawer,
-        "diagonal_stripe": DiagonalStripeModuleDrawer,
-        "horizontal_slash": HorizontalSlashModuleDrawer,
-        "vertical_slash": VerticalSlashModuleDrawer,
-        "triangle_mosaic": TriangleMosaicModuleDrawer,
-        "moon_crescent": MoonCrescentModuleDrawer,
-        "liquid_drop": LiquidDropModuleDrawer,
-
-    }
-    drawer_class = module_drawers.get(dot_style, SquareModuleDrawer)
+    drawer_class = MODULE_DRAWER_REGISTRY.get(dot_style, SquareModuleDrawer)
     drawer = drawer_class()
     
     fg = hex_to_rgb(fill_color) if str(fill_color).startswith('#') else (0, 0, 0)
@@ -271,7 +222,6 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
 
     return img
 
-import qrcode.image.svg
 def generate_svg_qr(data, fill_color="#000000", back_color="#ffffff", box_size=30, bg_transparent=False, error_correction="H", quiet_zone=4, canvas_radius=0):
     """Generates a raw SVG QR code (without custom styled dots or frames)"""
     _ec_map = {
@@ -294,7 +244,6 @@ def generate_svg_qr(data, fill_color="#000000", back_color="#ffffff", box_size=3
     img = qr.make_image()
     svg_str = img.to_string().decode('utf-8')
     
-    import re
     # 1. Replace width and height to be 100% and responsive with aspect-ratio constraint
     svg_str = re.sub(r'width="[^"]+"', 'width="100%"', svg_str, count=1)
     svg_str = re.sub(r'height="[^"]+"', 'height="100%"', svg_str, count=1)

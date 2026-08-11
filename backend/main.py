@@ -1,3 +1,4 @@
+import os
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
@@ -29,8 +30,6 @@ app = FastAPI(
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 app.add_middleware(LimitRequestBodyMiddleware)
-
-import os
 
 # Configure CORS
 ALLOWED_ORIGINS = os.getenv("CORS_ORIGINS", "*").split(",")

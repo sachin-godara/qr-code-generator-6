@@ -1,5 +1,8 @@
 from fastapi import APIRouter, Request, HTTPException
 from pydantic import BaseModel, EmailStr
+import logging
+
+logger = logging.getLogger(__name__)
 from limiter import limiter
 
 router = APIRouter(
@@ -22,12 +25,14 @@ async def submit_contact_form(request: Request, form: ContactForm):
     and returning a success response. In a production environment, this would
     integrate with an email service like SendGrid, AWS SES, etc.
     """
-    print(f"--- New Contact Form Submission ---")
-    print(f"Name: {form.name}")
-    print(f"Email: {form.email}")
-    print(f"Subject: {form.subject}")
-    print(f"Message: {form.message}")
-    print(f"-----------------------------------")
+    logger.info(
+        f"--- New Contact Form Submission ---\n"
+        f"Name: {form.name}\n"
+        f"Email: {form.email}\n"
+        f"Subject: {form.subject}\n"
+        f"Message: {form.message}\n"
+        f"-----------------------------------"
+    )
     
     # Simulate a small delay as if sending an email
     import asyncio
