@@ -26,18 +26,18 @@ export function TemplatesPanel() {
 
   return (
     <div className="bg-surface-container-lowest p-gutter rounded-2xl border border-outline-variant shadow-sm space-y-4">
-      <div className="hidden sm:flex overflow-x-auto gap-1.5 px-3 pb-3 mb-1 custom-scrollbar snap-x">
+      <div className="hidden sm:flex overflow-x-auto gap-1 p-1 bg-surface-container-low rounded-xl custom-scrollbar snap-x mb-2 border border-outline-variant/30">
         {TEMPLATE_CATEGORIES.map(cat => (
           <button
             key={cat.id}
             type="button"
             onClick={() => setActiveTemplateCategory(cat.id)}
-            className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-200 flex items-center gap-1.5 tab-spring snap-start ${activeTemplateCategory === cat.id
-                ? "bg-primary/10 text-primary shadow-xs border border-primary"
-                : "bg-surface-container-low hover:bg-surface-container-highest text-on-surface-variant border border-outline-variant/60"
+            className={`px-4 py-2 rounded-lg text-[13px] font-semibold whitespace-nowrap transition-all duration-200 flex items-center gap-1.5 tab-spring snap-start outline-none ${activeTemplateCategory === cat.id
+                ? "bg-white text-primary shadow-sm ring-1 ring-black/5"
+                : "text-on-surface-variant hover:text-on-surface hover:bg-black/5"
               }`}
           >
-            <span className="material-symbols-outlined text-xs">{cat.icon}</span>
+            <span className="material-symbols-outlined text-[16px]">{cat.icon}</span>
             <span>{cat.name}</span>
           </button>
         ))}

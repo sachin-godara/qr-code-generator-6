@@ -162,22 +162,22 @@ export function LogoPanel() {
         </div>
 
         {/* Scrollable Category Filter Pills */}
-        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+        <div className="flex overflow-x-auto gap-1 p-1 bg-surface-container-low rounded-xl custom-scrollbar snap-x mb-2 border border-outline-variant/30">
           {LOGO_CATEGORIES.map((category) => (
             <button
               key={category}
               type="button"
               onClick={() => setActiveLogoCategory(category)}
-              className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-200 flex items-center gap-1.5 ${activeLogoCategory === category
-                  ? "bg-primary/10 text-primary shadow-xs border border-primary"
-                  : "bg-surface-container-low hover:bg-surface-container-highest text-on-surface-variant border border-outline-variant/60"
+              className={`px-4 py-2 rounded-lg text-[13px] font-semibold whitespace-nowrap transition-all duration-200 flex items-center gap-1.5 snap-start outline-none ${activeLogoCategory === category
+                  ? "bg-white text-primary shadow-sm ring-1 ring-black/5"
+                  : "text-on-surface-variant hover:text-on-surface hover:bg-black/5"
                 }`}
             >
-              {category === "All" && <span className="material-symbols-outlined text-xs">apps</span>}
-              {category === "Social & Apps" && <span className="material-symbols-outlined text-xs">share</span>}
-              {category === "Tech & Contact" && <span className="material-symbols-outlined text-xs">contact_page</span>}
-              {category === "Business & Pay" && <span className="material-symbols-outlined text-xs">payments</span>}
-              {category === "Media & More" && <span className="material-symbols-outlined text-xs">play_circle</span>}
+              {category === "All" && <span className="material-symbols-outlined text-[16px]">apps</span>}
+              {category === "Social & Apps" && <span className="material-symbols-outlined text-[16px]">share</span>}
+              {category === "Tech & Contact" && <span className="material-symbols-outlined text-[16px]">contact_page</span>}
+              {category === "Business & Pay" && <span className="material-symbols-outlined text-[16px]">payments</span>}
+              {category === "Media & More" && <span className="material-symbols-outlined text-[16px]">play_circle</span>}
               {category}
             </button>
           ))}
@@ -240,28 +240,28 @@ export function LogoPanel() {
               {settings.logo_color_mode === "default" ? "Default Brand Color" : settings.logo_custom_color}
             </span>
           </label>
-          <div className="grid grid-cols-2 gap-2">
+          <div className="flex p-1 bg-surface-container-low rounded-xl border border-outline-variant/30 mb-2">
             <button
               type="button"
               onClick={() => updateSettings({ logo_color_mode: "default" })}
-              className={`p-2.5 rounded-lg border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${settings.logo_color_mode === "default"
-                ? "bg-primary/10 text-primary border-primary shadow-sm"
-                : "bg-white text-on-surface border-outline-variant hover:bg-surface-container-highest"
+              className={`flex-1 py-2 px-3 rounded-lg text-[13px] font-semibold flex items-center justify-center gap-1.5 transition-all outline-none ${settings.logo_color_mode === "default"
+                ? "bg-white text-primary shadow-sm ring-1 ring-black/5"
+                : "text-on-surface-variant hover:text-on-surface hover:bg-black/5"
                 }`}
             >
-              <span className="material-symbols-outlined text-sm">color_lens</span>
+              <span className="material-symbols-outlined text-[16px]">color_lens</span>
               Default Brand
             </button>
 
             <button
               type="button"
               onClick={() => updateSettings({ logo_color_mode: "custom" })}
-              className={`p-2.5 rounded-lg border text-xs font-semibold flex items-center justify-center gap-1.5 transition-all ${settings.logo_color_mode === "custom"
-                ? "bg-primary/10 text-primary border-primary shadow-sm"
-                : "bg-white text-on-surface border-outline-variant hover:bg-surface-container-highest"
+              className={`flex-1 py-2 px-3 rounded-lg text-[13px] font-semibold flex items-center justify-center gap-1.5 transition-all outline-none ${settings.logo_color_mode === "custom"
+                ? "bg-white text-primary shadow-sm ring-1 ring-black/5"
+                : "text-on-surface-variant hover:text-on-surface hover:bg-black/5"
                 }`}
             >
-              <span className="material-symbols-outlined text-sm">colorize</span>
+              <span className="material-symbols-outlined text-[16px]">colorize</span>
               Custom Color
             </button>
           </div>
