@@ -547,7 +547,9 @@ function App() {
                         </button>
                       ))}
                     </div>
-                    {renderPanelContent(activeTab)}
+                    <div className="panel-enter" key={activeTab}>
+                      {renderPanelContent(activeTab)}
+                    </div>
                   </motion.div>
                 ) : (
                   <motion.div 
@@ -557,7 +559,7 @@ function App() {
                     transition={{ duration: 0.15, ease: "easeOut" }}
                     className="flex flex-col gap-4"
                   >
-                    <div className="flex bg-surface-container rounded-lg p-1 border border-outline-variant/50">
+                    <div className="flex bg-surface-container rounded-lg p-1 border border-outline-variant/50 relative">
                       {([
                         { name: "Effects",   icon: "auto_awesome" },
                         { name: "Advanced",  icon: "tune" },
@@ -565,18 +567,28 @@ function App() {
                         <button
                           key={tab.name}
                           onClick={() => setActiveTab(tab.name)}
-                          className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-md font-bold transition-all text-xs ${
+                          className={`relative flex-1 flex items-center justify-center gap-1.5 py-2 rounded-md font-bold transition-colors text-xs z-10 ${
                             activeTab === tab.name
-                              ? 'bg-white shadow-sm text-primary'
+                              ? 'text-primary'
                               : 'text-on-surface-variant hover:text-on-surface'
                           }`}
                         >
+                          {activeTab === tab.name && (
+                            <motion.div
+                              layoutId="activeSubTabIndicator"
+                              className="absolute inset-0 bg-white shadow-sm rounded-md"
+                              style={{ zIndex: -1 }}
+                              transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                            />
+                          )}
                           <span className="material-symbols-outlined text-[14px]">{tab.icon}</span>
-                          {tab.name}
+                          <span>{tab.name}</span>
                         </button>
                       ))}
                     </div>
-                    {renderPanelContent(activeTab)}
+                    <div className="panel-enter" key={activeTab}>
+                      {renderPanelContent(activeTab)}
+                    </div>
                   </motion.div>
                 )}
             </div>
