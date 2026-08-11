@@ -48,7 +48,8 @@ export default function QRScannerApp() {
       setError(null);
       if (!scannerRef.current) {
         scannerRef.current = new Html5Qrcode(readerElementId, {
-          formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE]
+          formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
+          verbose: false
         });
       }
 
@@ -174,7 +175,8 @@ export default function QRScannerApp() {
     try {
       if (!scannerRef.current) {
         scannerRef.current = new Html5Qrcode(readerElementId, {
-          formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE]
+          formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
+          verbose: false
         });
       }
       
