@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { motion } from "framer-motion";
 import { useQRStore } from "@/store/useQRStore";
 import { Slider } from "@/components/ui/Slider";
 import { ScannabilityAlert } from "@/components/ui/ScannabilityAlert";
@@ -122,11 +123,18 @@ export function LogoPanel() {
                   }
                   updateSettings(updates);
                 }}
-                className={`flex-1 py-1.5 px-2 rounded-md font-bold transition-all text-xs ${
-                  isSelected ? "bg-white shadow-sm text-primary" : "text-on-surface-variant hover:text-on-surface"
+                className={`relative flex-1 py-1.5 px-2 rounded-md font-bold transition-colors text-xs outline-none ${
+                  isSelected ? "text-primary" : "text-on-surface-variant hover:text-on-surface"
                 }`}
               >
-                {style.label}
+                {isSelected && (
+                  <motion.div
+                    layoutId="logo-icon-style-tab"
+                    className="absolute inset-0 bg-white shadow-sm ring-1 ring-black/5 rounded-md"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
+                <span className="relative z-10">{style.label}</span>
               </button>
             );
           })}
@@ -168,17 +176,26 @@ export function LogoPanel() {
               key={category}
               type="button"
               onClick={() => setActiveLogoCategory(category)}
-              className={`px-4 py-2 rounded-lg text-[13px] font-semibold whitespace-nowrap transition-all duration-200 flex items-center gap-1.5 snap-start outline-none ${activeLogoCategory === category
-                  ? "bg-white text-primary shadow-sm ring-1 ring-black/5"
+              className={`relative px-4 py-2 rounded-lg text-[13px] font-semibold whitespace-nowrap transition-colors duration-200 flex items-center justify-center snap-start outline-none ${activeLogoCategory === category
+                  ? "text-primary"
                   : "text-on-surface-variant hover:text-on-surface hover:bg-black/5"
                 }`}
             >
-              {category === "All" && <span className="material-symbols-outlined text-[16px]">apps</span>}
-              {category === "Social & Apps" && <span className="material-symbols-outlined text-[16px]">share</span>}
-              {category === "Tech & Contact" && <span className="material-symbols-outlined text-[16px]">contact_page</span>}
-              {category === "Business & Pay" && <span className="material-symbols-outlined text-[16px]">payments</span>}
-              {category === "Media & More" && <span className="material-symbols-outlined text-[16px]">play_circle</span>}
-              {category}
+              {activeLogoCategory === category && (
+                <motion.div
+                  layoutId="logo-category-active-tab"
+                  className="absolute inset-0 bg-white shadow-sm ring-1 ring-black/5 rounded-lg"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+              <div className="relative z-10 flex items-center gap-1.5">
+                {category === "All" && <span className="material-symbols-outlined text-[16px]">apps</span>}
+                {category === "Social & Apps" && <span className="material-symbols-outlined text-[16px]">share</span>}
+                {category === "Tech & Contact" && <span className="material-symbols-outlined text-[16px]">contact_page</span>}
+                {category === "Business & Pay" && <span className="material-symbols-outlined text-[16px]">payments</span>}
+                {category === "Media & More" && <span className="material-symbols-outlined text-[16px]">play_circle</span>}
+                {category}
+              </div>
             </button>
           ))}
         </div>
@@ -244,25 +261,43 @@ export function LogoPanel() {
             <button
               type="button"
               onClick={() => updateSettings({ logo_color_mode: "default" })}
-              className={`flex-1 py-2 px-3 rounded-lg text-[13px] font-semibold flex items-center justify-center gap-1.5 transition-all outline-none ${settings.logo_color_mode === "default"
-                ? "bg-white text-primary shadow-sm ring-1 ring-black/5"
+              className={`relative flex-1 py-2 px-3 rounded-lg text-[13px] font-semibold flex items-center justify-center transition-colors outline-none ${settings.logo_color_mode === "default"
+                ? "text-primary"
                 : "text-on-surface-variant hover:text-on-surface hover:bg-black/5"
                 }`}
             >
-              <span className="material-symbols-outlined text-[16px]">color_lens</span>
-              Default Brand
+              {settings.logo_color_mode === "default" && (
+                <motion.div
+                  layoutId="logo-color-mode-active-tab"
+                  className="absolute inset-0 bg-white shadow-sm ring-1 ring-black/5 rounded-lg"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+              <div className="relative z-10 flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-[16px]">color_lens</span>
+                Default Brand
+              </div>
             </button>
 
             <button
               type="button"
               onClick={() => updateSettings({ logo_color_mode: "custom" })}
-              className={`flex-1 py-2 px-3 rounded-lg text-[13px] font-semibold flex items-center justify-center gap-1.5 transition-all outline-none ${settings.logo_color_mode === "custom"
-                ? "bg-white text-primary shadow-sm ring-1 ring-black/5"
+              className={`relative flex-1 py-2 px-3 rounded-lg text-[13px] font-semibold flex items-center justify-center transition-colors outline-none ${settings.logo_color_mode === "custom"
+                ? "text-primary"
                 : "text-on-surface-variant hover:text-on-surface hover:bg-black/5"
                 }`}
             >
-              <span className="material-symbols-outlined text-[16px]">colorize</span>
-              Custom Color
+              {settings.logo_color_mode === "custom" && (
+                <motion.div
+                  layoutId="logo-color-mode-active-tab"
+                  className="absolute inset-0 bg-white shadow-sm ring-1 ring-black/5 rounded-lg"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+              <div className="relative z-10 flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-[16px]">colorize</span>
+                Custom Color
+              </div>
             </button>
           </div>
 

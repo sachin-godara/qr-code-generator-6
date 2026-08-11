@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { useQRStore } from "@/store/useQRStore";
 import { useDownloadStore } from "@/store/useDownloadStore";
 import { useDownloadHandlers } from "@/hooks/useDownloadHandlers";
@@ -143,8 +144,15 @@ export function MobileBottomBar({
               mobileMainTab === 'content' ? 'text-primary' : 'text-on-surface-variant hover:text-on-surface'
             }`}
           >
-            <div className={`px-3 py-1 rounded-full transition-colors ${mobileMainTab === 'content' ? 'bg-primary/15' : 'bg-transparent'}`}>
-              <span className={`material-symbols-outlined text-[20px] ${mobileMainTab === 'content' ? 'text-primary font-bold' : ''}`}>qr_code_scanner</span>
+            <div className="relative px-3 py-1 rounded-full flex items-center justify-center">
+              {mobileMainTab === 'content' && (
+                <motion.div
+                  layoutId="mobile-nav-pill"
+                  className="absolute inset-0 bg-primary/15 rounded-full"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+              <span className={`relative z-10 material-symbols-outlined text-[20px] ${mobileMainTab === 'content' ? 'text-primary font-bold' : ''}`}>edit_document</span>
             </div>
             <span className="text-[10px] font-bold">Content</span>
           </button>
@@ -155,8 +163,15 @@ export function MobileBottomBar({
               mobileMainTab === 'design' ? 'text-primary' : 'text-on-surface-variant hover:text-on-surface'
             }`}
           >
-            <div className={`px-3 py-1 rounded-full transition-colors ${mobileMainTab === 'design' ? 'bg-primary/15' : 'bg-transparent'}`}>
-              <span className={`material-symbols-outlined text-[20px] ${mobileMainTab === 'design' ? 'text-primary font-bold' : ''}`}>palette</span>
+            <div className="relative px-3 py-1 rounded-full flex items-center justify-center">
+              {mobileMainTab === 'design' && (
+                <motion.div
+                  layoutId="mobile-nav-pill"
+                  className="absolute inset-0 bg-primary/15 rounded-full"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+              <span className={`relative z-10 material-symbols-outlined text-[20px] ${mobileMainTab === 'design' ? 'text-primary font-bold' : ''}`}>palette</span>
             </div>
             <span className="text-[10px] font-bold">Design</span>
           </button>
@@ -167,8 +182,15 @@ export function MobileBottomBar({
               mobileMainTab === 'logo' ? 'text-primary' : 'text-on-surface-variant hover:text-on-surface'
             }`}
           >
-            <div className={`px-3 py-1 rounded-full transition-colors ${mobileMainTab === 'logo' ? 'bg-primary/15' : 'bg-transparent'}`}>
-              <span className={`material-symbols-outlined text-[20px] ${mobileMainTab === 'logo' ? 'text-primary font-bold' : ''}`}>add_photo_alternate</span>
+            <div className="relative px-3 py-1 rounded-full flex items-center justify-center">
+              {mobileMainTab === 'logo' && (
+                <motion.div
+                  layoutId="mobile-nav-pill"
+                  className="absolute inset-0 bg-primary/15 rounded-full"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+              <span className={`relative z-10 material-symbols-outlined text-[20px] ${mobileMainTab === 'logo' ? 'text-primary font-bold' : ''}`}>add_photo_alternate</span>
             </div>
             <span className="text-[10px] font-bold">Logo</span>
           </button>
@@ -179,8 +201,15 @@ export function MobileBottomBar({
               mobileMainTab === 'more' ? 'text-primary' : 'text-on-surface-variant hover:text-on-surface'
             }`}
           >
-            <div className={`px-3 py-1 rounded-full transition-colors ${mobileMainTab === 'more' ? 'bg-primary/15' : 'bg-transparent'}`}>
-              <span className={`material-symbols-outlined text-[20px] ${mobileMainTab === 'more' ? 'text-primary font-bold' : ''}`}>more_horiz</span>
+            <div className="relative px-3 py-1 rounded-full flex items-center justify-center">
+              {mobileMainTab === 'more' && (
+                <motion.div
+                  layoutId="mobile-nav-pill"
+                  className="absolute inset-0 bg-primary/15 rounded-full"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+              <span className={`relative z-10 material-symbols-outlined text-[20px] ${mobileMainTab === 'more' ? 'text-primary font-bold' : ''}`}>more_horiz</span>
             </div>
             <span className="text-[10px] font-bold">More</span>
           </button>
@@ -191,8 +220,15 @@ export function MobileBottomBar({
               mobileMainTab === 'download' ? 'text-emerald-600' : 'text-on-surface-variant hover:text-on-surface'
             }`}
           >
-             <div className={`px-3 py-1 rounded-full transition-colors ${mobileMainTab === 'download' ? 'bg-emerald-600/15' : 'bg-transparent'}`}>
-              <span className={`material-symbols-outlined text-[20px] ${mobileMainTab === 'download' ? 'text-emerald-600 font-bold' : ''}`}>download</span>
+             <div className="relative px-3 py-1 rounded-full flex items-center justify-center">
+              {mobileMainTab === 'download' && (
+                <motion.div
+                  layoutId="mobile-nav-pill"
+                  className="absolute inset-0 bg-emerald-600/15 rounded-full"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+              <span className={`relative z-10 material-symbols-outlined text-[20px] ${mobileMainTab === 'download' ? 'text-emerald-600 font-bold' : ''}`}>download</span>
             </div>
             <span className="text-[10px] font-bold">Download</span>
           </button>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { useQRStore } from "@/store/useQRStore";
 import {
   UrlForm, TextForm, PhoneForm, SmsForm, WhatsAppForm, EmailForm, VCardForm,
@@ -119,22 +120,36 @@ export function ContentPanel() {
       {/* Content Type Selector */}
       <div className="space-y-1.5">
         <label className="text-xs font-semibold text-on-surface-variant">Type</label>
-        <select
-          value={settings.contentType}
-          onChange={(e) => updateSettings({ contentType: e.target.value as any, contentData: "" })}
-          className="w-full p-3 bg-white border border-outline-variant rounded-xl text-sm font-medium text-on-surface outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all appearance-none"
-          style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='%23666' d='m7 10 5 5 5-5z'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center' }}
-        >
-          {contentCategories.filter(c => !c.items.every(i => i.comingSoon)).map((category) => (
-            <optgroup key={category.title} label={category.title}>
-              {category.items.map((type) => (
-                <option key={type.id} value={type.id} disabled={type.comingSoon}>
-                  {type.label}{type.comingSoon ? ' (Coming Soon)' : ''}
-                </option>
-              ))}
-            </optgroup>
-          ))}
-        </select>
+        <div className="flex overflow-x-auto gap-1.5 p-1.5 bg-surface-container-low rounded-xl custom-scrollbar snap-x border border-outline-variant/30">
+          {contentCategories
+            .flatMap(c => c.items)
+            .filter(i => !i.comingSoon)
+            .map(type => {
+              const isSelected = settings.contentType === type.id;
+              return (
+                <button
+                  key={type.id}
+                  type="button"
+                  onClick={() => updateSettings({ contentType: type.id as any, contentData: "" })}
+                  className={`relative flex items-center gap-2 px-4 py-2 rounded-lg font-bold transition-colors text-sm whitespace-nowrap snap-start outline-none ${
+                    isSelected ? "text-primary" : "text-on-surface-variant hover:text-on-surface hover:bg-black/5"
+                  }`}
+                >
+                  {isSelected && (
+                    <motion.div
+                      layoutId="content-type-tab"
+                      className="absolute inset-0 bg-white shadow-sm ring-1 ring-black/5 rounded-lg"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                  <span className="relative z-10 flex items-center gap-1.5">
+                    <span className="material-symbols-outlined text-[16px]">{type.icon}</span>
+                    {type.label}
+                  </span>
+                </button>
+              );
+            })}
+        </div>
       </div>
 
       {/* Beginner hint */}

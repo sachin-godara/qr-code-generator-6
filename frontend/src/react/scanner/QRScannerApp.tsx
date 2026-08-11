@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { motion } from 'framer-motion';
 import { Html5Qrcode, Html5QrcodeSupportedFormats } from 'html5-qrcode';
 import { Camera, Image as ImageIcon, Copy, ExternalLink, RefreshCw, AlertCircle, Loader2 } from 'lucide-react';
 import { scanQRImageBackend } from '../../services/qrApi';
@@ -222,21 +223,35 @@ export default function QRScannerApp() {
     <div className="w-full max-w-2xl mx-auto bg-surface-container-lowest rounded-3xl border border-outline-variant/50 shadow-xl overflow-hidden">
       
       {/* Tabs */}
-      <div className="flex border-b border-outline-variant/30">
-        <button
-          onClick={() => setActiveTab('file')}
-          className={`flex-1 py-4 flex items-center justify-center gap-2 font-semibold transition-colors ${activeTab === 'file' ? 'text-primary border-b-2 border-primary bg-primary/5' : 'text-on-surface-variant hover:bg-surface-container'}`}
-        >
-          <ImageIcon size={18} />
-          Upload Image
-        </button>
-        <button
-          onClick={() => setActiveTab('camera')}
-          className={`flex-1 py-4 flex items-center justify-center gap-2 font-semibold transition-colors ${activeTab === 'camera' ? 'text-primary border-b-2 border-primary bg-primary/5' : 'text-on-surface-variant hover:bg-surface-container'}`}
-        >
-          <Camera size={18} />
-          Scan with Camera
-        </button>
+      <div className="p-4 sm:p-6 border-b border-outline-variant/30">
+        <div className="flex bg-surface-container rounded-lg p-1 border border-outline-variant/50 max-w-sm mx-auto">
+          <button
+            onClick={() => setActiveTab('file')}
+            className={`relative flex-1 py-2.5 flex items-center justify-center gap-2 rounded-md font-bold transition-colors text-sm outline-none ${activeTab === 'file' ? 'text-primary' : 'text-on-surface-variant hover:text-on-surface'}`}
+          >
+            {activeTab === 'file' && (
+              <motion.div
+                layoutId="scanner-mode-tab"
+                className="absolute inset-0 bg-white shadow-sm ring-1 ring-black/5 rounded-md"
+                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+              />
+            )}
+            <span className="relative z-10 flex items-center gap-2"><ImageIcon size={18} /> Upload Image</span>
+          </button>
+          <button
+            onClick={() => setActiveTab('camera')}
+            className={`relative flex-1 py-2.5 flex items-center justify-center gap-2 rounded-md font-bold transition-colors text-sm outline-none ${activeTab === 'camera' ? 'text-primary' : 'text-on-surface-variant hover:text-on-surface'}`}
+          >
+            {activeTab === 'camera' && (
+              <motion.div
+                layoutId="scanner-mode-tab"
+                className="absolute inset-0 bg-white shadow-sm ring-1 ring-black/5 rounded-md"
+                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+              />
+            )}
+            <span className="relative z-10 flex items-center gap-2"><Camera size={18} /> Scan with Camera</span>
+          </button>
+        </div>
       </div>
 
       <div className="p-6 md:p-8">

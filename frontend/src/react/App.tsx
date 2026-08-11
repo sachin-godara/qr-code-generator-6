@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react"
+import { motion } from "framer-motion"
 import { useQuery, keepPreviousData } from "@tanstack/react-query"
 import { useQRStore } from "@/store/useQRStore"
 import { useToast } from "@/hooks/useToast"
@@ -110,10 +111,8 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (window.innerWidth >= 1024) {
-      window.scrollTo({ top: 0, behavior: "auto" });
-    }
-  }, [activeTab]);
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }, [activeTab, mobileMainTab]);
 
   const { data: qrData, isLoading, isError, isFetching } = useQuery({
     queryKey: ["qr-code", settings],
@@ -438,9 +437,14 @@ function App() {
             />
             {/* The Mobile Content area follows underneath the sticky header */}
             <div className="lg:hidden p-4 sm:p-5 pb-24 sm:pb-28 bg-surface-container-lowest min-h-[50vh] relative z-0">
-              <div className="panel-enter" key={mobileMainTab}>
                 {mobileMainTab === 'content' ? (
-                  <div className="flex flex-col gap-4">
+                  <motion.div 
+                    key="content"
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.15, ease: "easeOut" }}
+                    className="flex flex-col gap-4"
+                  >
                     <div className="flex items-center gap-2 pb-1">
                       <div className="w-6 h-6 rounded-full bg-primary/10 text-primary border border-primary flex items-center justify-center text-xs font-black shrink-0">1</div>
                       <div>
@@ -449,9 +453,15 @@ function App() {
                       </div>
                     </div>
                     {renderPanelContent('Content')}
-                  </div>
+                  </motion.div>
                 ) : mobileMainTab === 'download' ? (
-                  <div className="flex flex-col gap-4">
+                  <motion.div 
+                    key="download"
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.15, ease: "easeOut" }}
+                    className="flex flex-col gap-4"
+                  >
                     {/* Step indicator */}
                     <div className="flex items-center gap-2 pb-1">
                       <div className="w-6 h-6 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-400 flex items-center justify-center text-xs font-black shrink-0">✓</div>
@@ -461,13 +471,25 @@ function App() {
                       </div>
                     </div>
                     {renderPanelContent('Download')}
-                  </div>
+                  </motion.div>
                 ) : mobileMainTab === 'logo' ? (
-                  <div className="flex flex-col gap-4">
+                  <motion.div 
+                    key="logo"
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.15, ease: "easeOut" }}
+                    className="flex flex-col gap-4"
+                  >
                     {renderPanelContent('Logo')}
-                  </div>
+                  </motion.div>
                 ) : mobileMainTab === 'design' ? (
-                  <div className="flex flex-col gap-4">
+                  <motion.div 
+                    key="design"
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.15, ease: "easeOut" }}
+                    className="flex flex-col gap-4"
+                  >
                     <div className="flex bg-surface-container rounded-lg p-1 border border-outline-variant/50">
                       {([
                         { name: "Templates", icon: "dashboard" },
@@ -477,21 +499,36 @@ function App() {
                         <button
                           key={tab.name}
                           onClick={() => setActiveTab(tab.name)}
-                          className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-md font-bold transition-all text-xs ${
+                          className={`relative flex-1 flex items-center justify-center gap-1.5 py-2 rounded-md font-bold transition-colors text-xs outline-none ${
                             activeTab === tab.name
-                              ? 'bg-white shadow-sm text-primary'
+                              ? 'text-primary'
                               : 'text-on-surface-variant hover:text-on-surface'
                           }`}
                         >
-                          <span className="material-symbols-outlined text-[14px]">{tab.icon}</span>
-                          {tab.name === "Design" ? "Style" : tab.name}
+                          {activeTab === tab.name && (
+                            <motion.div
+                              layoutId="mobile-design-subnav"
+                              className="absolute inset-0 bg-white shadow-sm ring-1 ring-black/5 rounded-md"
+                              transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                            />
+                          )}
+                          <div className="relative z-10 flex items-center gap-1.5">
+                            <span className="material-symbols-outlined text-[14px]">{tab.icon}</span>
+                            {tab.name === "Design" ? "Style" : tab.name}
+                          </div>
                         </button>
                       ))}
                     </div>
                     {renderPanelContent(activeTab)}
-                  </div>
+                  </motion.div>
                 ) : (
-                  <div className="flex flex-col gap-4">
+                  <motion.div 
+                    key="more"
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.15, ease: "easeOut" }}
+                    className="flex flex-col gap-4"
+                  >
                     <div className="flex bg-surface-container rounded-lg p-1 border border-outline-variant/50">
                       {([
                         { name: "Effects",   icon: "auto_awesome" },
@@ -512,9 +549,8 @@ function App() {
                       ))}
                     </div>
                     {renderPanelContent(activeTab)}
-                  </div>
+                  </motion.div>
                 )}
-              </div>
             </div>
 
           </div>

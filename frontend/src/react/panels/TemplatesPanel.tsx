@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { useQRStore } from "@/store/useQRStore";
 import { PRESET_TEMPLATES } from "@/data/templates";
 import { StylePreviewCard } from "@/components/previews/StylePreviewCard";
@@ -32,13 +33,22 @@ export function TemplatesPanel() {
             key={cat.id}
             type="button"
             onClick={() => setActiveTemplateCategory(cat.id)}
-            className={`px-4 py-2 rounded-lg text-[13px] font-semibold whitespace-nowrap transition-all duration-200 flex items-center gap-1.5 tab-spring snap-start outline-none ${activeTemplateCategory === cat.id
-                ? "bg-white text-primary shadow-sm ring-1 ring-black/5"
+            className={`relative px-4 py-2 rounded-lg text-[13px] font-semibold whitespace-nowrap transition-colors duration-200 flex items-center justify-center snap-start outline-none ${activeTemplateCategory === cat.id
+                ? "text-primary"
                 : "text-on-surface-variant hover:text-on-surface hover:bg-black/5"
               }`}
           >
-            <span className="material-symbols-outlined text-[16px]">{cat.icon}</span>
-            <span>{cat.name}</span>
+            {activeTemplateCategory === cat.id && (
+              <motion.div
+                layoutId="templates-active-tab"
+                className="absolute inset-0 bg-white shadow-sm ring-1 ring-black/5 rounded-lg"
+                transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+              />
+            )}
+            <div className="relative z-10 flex items-center gap-1.5">
+              <span className="material-symbols-outlined text-[16px]">{cat.icon}</span>
+              <span>{cat.name}</span>
+            </div>
           </button>
         ))}
       </div>

@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useQRStore } from "@/store/useQRStore";
 import { useDownloadStore } from "@/store/useDownloadStore";
 import { useDownloadHandlers } from "@/hooks/useDownloadHandlers";
@@ -50,9 +51,16 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
                       key={fmt} 
                       type="button" 
                       onClick={() => setBatchFormat(fmt as any)} 
-                      className={`flex-1 py-2.5 rounded-md font-bold transition-all text-sm ${batchFormat === fmt ? "bg-white shadow-sm text-primary" : "text-on-surface-variant hover:text-on-surface"}`}
+                      className={`relative flex-1 py-2.5 rounded-md font-bold transition-colors text-sm outline-none ${batchFormat === fmt ? "text-primary" : "text-on-surface-variant hover:text-on-surface"}`}
                     >
-                      {fmt}
+                      {batchFormat === fmt && (
+                        <motion.div
+                          layoutId="batch-format-tab"
+                          className="absolute inset-0 bg-white shadow-sm ring-1 ring-black/5 rounded-md"
+                          transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                        />
+                      )}
+                      <span className="relative z-10">{fmt}</span>
                     </button>
                   ))}
                 </div>
@@ -66,9 +74,16 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
                         key={s} 
                         type="button" 
                         onClick={() => setBatchSize(s)} 
-                        className={`flex-1 py-2.5 rounded-md font-bold transition-all text-sm ${batchSize === s ? "bg-white shadow-sm text-primary" : "text-on-surface-variant hover:text-on-surface"}`}
+                        className={`relative flex-1 py-2.5 rounded-md font-bold transition-colors text-sm outline-none ${batchSize === s ? "text-primary" : "text-on-surface-variant hover:text-on-surface"}`}
                       >
-                        {s}
+                        {batchSize === s && (
+                          <motion.div
+                            layoutId="batch-size-tab"
+                            className="absolute inset-0 bg-white shadow-sm ring-1 ring-black/5 rounded-md"
+                            transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                          />
+                        )}
+                        <span className="relative z-10">{s}</span>
                       </button>
                     ))}
                   </div>
