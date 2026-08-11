@@ -154,11 +154,7 @@ export function ContentPanel() {
                   : "text-on-surface-variant hover:bg-surface-container border-transparent active:scale-95"
             }`}
           >
-            {type.popular && !type.comingSoon && (
-              <span className={`absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-black shadow-sm ${
-                settings.contentType === type.id ? 'bg-white text-primary' : 'bg-amber-400 text-white'
-              }`} title="Popular">★</span>
-            )}
+
             {type.comingSoon && (
               <span className="absolute -top-1.5 -right-1.5 bg-primary/20 text-primary border border-primary/30 rounded px-1 py-0.5 text-[8px] font-black scale-90 select-none">SOON</span>
             )}

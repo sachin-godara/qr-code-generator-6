@@ -26,7 +26,7 @@ export function TemplatesPanel() {
 
   return (
     <div className="bg-surface-container-lowest p-gutter rounded-2xl border border-outline-variant shadow-sm space-y-4">
-      <div className="flex overflow-x-auto gap-1.5 px-3 pb-3 mb-1 custom-scrollbar snap-x">
+      <div className="hidden sm:flex overflow-x-auto gap-1.5 px-3 pb-3 mb-1 custom-scrollbar snap-x">
         {TEMPLATE_CATEGORIES.map(cat => (
           <button
             key={cat.id}
