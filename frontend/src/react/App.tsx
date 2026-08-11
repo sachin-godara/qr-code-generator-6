@@ -547,9 +547,7 @@ function App() {
                         </button>
                       ))}
                     </div>
-                    <div className="panel-enter" key={activeTab}>
-                      {renderPanelContent(activeTab)}
-                    </div>
+                    {renderPanelContent(activeTab)}
                   </motion.div>
                 ) : (
                   <motion.div 
@@ -586,9 +584,7 @@ function App() {
                         </button>
                       ))}
                     </div>
-                    <div className="panel-enter" key={activeTab}>
-                      {renderPanelContent(activeTab)}
-                    </div>
+                    {renderPanelContent(activeTab)}
                   </motion.div>
                 )}
             </div>
