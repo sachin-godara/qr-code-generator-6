@@ -4,8 +4,30 @@ from pyzbar.pyzbar import decode, ZBarSymbol
 import io
 import logging
 
+import logging
+import os
+
 logger = logging.getLogger(__name__)
 
+# Global WeChat QR Detector
+wechat_detector = None
+def get_wechat_detector():
+    global wechat_detector
+    if wechat_detector is None:
+        try:
+            models_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "models", "wechat_qr"))
+            detect_prototxt = os.path.join(models_dir, "detect.prototxt")
+            detect_caffe = os.path.join(models_dir, "detect.caffemodel")
+            sr_prototxt = os.path.join(models_dir, "sr.prototxt")
+            sr_caffe = os.path.join(models_dir, "sr.caffemodel")
+            
+            if os.path.exists(detect_prototxt) and os.path.exists(detect_caffe):
+                wechat_detector = cv2.wechat_qrcode_WeChatQRCode(
+                    detect_prototxt, detect_caffe, sr_prototxt, sr_caffe
+                )
+        except Exception as e:
+            logger.error(f"Failed to initialize WeChat QR Detector: {e}")
+    return wechat_detector
 def attempt_decode(image_matrix) -> str:
     """Helper to try pyzbar decode on a given matrix"""
     # Try just QR codes first to avoid false positives and speed up
@@ -27,6 +49,47 @@ def deep_scan_qr(file_bytes: bytes) -> str:
         if img is None:
             raise ValueError("Could not decode image bytes into a valid image matrix.")
             
+        # 0. AI CNN Pass (WeChat QR) - Most robust against styling
+        detector = get_wechat_detector()
+        if detector:
+            # Pass 0a: Original RGB
+            try:
+                res, _ = detector.detectAndDecode(img)
+                if res and len(res) > 0 and res[0]:
+                    return res[0]
+            except:
+                pass
+            
+            # Pass 0b: Grayscale
+            gray_for_wechat = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+            try:
+                res, _ = detector.detectAndDecode(gray_for_wechat)
+                if res and len(res) > 0 and res[0]:
+                    return res[0]
+            except:
+                pass
+                
+            # Pass 0c: Inverted
+            gray_inv_for_wechat = cv2.bitwise_not(gray_for_wechat)
+            try:
+                res, _ = detector.detectAndDecode(gray_inv_for_wechat)
+                if res and len(res) > 0 and res[0]:
+                    return res[0]
+            except:
+                pass
+            
+            # Pass 0d: Multi-scale for tiny QR in large image
+            h_img, w_img = img.shape[:2]
+            if max(h_img, w_img) > 800:
+                for scale in [0.75, 0.5, 0.33, 0.25]:
+                    small_img = cv2.resize(img, (int(w_img * scale), int(h_img * scale)), interpolation=cv2.INTER_AREA)
+                    try:
+                        res, _ = detector.detectAndDecode(small_img)
+                        if res and len(res) > 0 and res[0]:
+                            return res[0]
+                    except:
+                        pass
+                
         # 1. Clean Pristine Pass (RGB)
         result = attempt_decode(img)
         if result: return result

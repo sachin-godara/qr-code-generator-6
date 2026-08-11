@@ -118,34 +118,65 @@ export function ContentPanel() {
   return (
     <div className="space-y-6">
       {/* Content Type Selector */}
-      <div className="space-y-1.5">
-        <div className="text-xs font-semibold text-on-surface-variant">Type</div>
-        <div className="flex overflow-x-auto gap-1.5 p-1.5 bg-surface-container-low rounded-xl custom-scrollbar snap-x border border-outline-variant/30">
+      <div className="space-y-4">
+        {/* Category Tabs */}
+        <div className="flex gap-2 p-1.5 bg-surface-container-low rounded-xl overflow-x-auto custom-scrollbar">
+          {contentCategories.map((cat) => (
+            <button
+              key={cat.title}
+              type="button"
+              onClick={() => setContentCategoryTab(cat.title)}
+              className={`relative flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-bold transition-colors whitespace-nowrap outline-none ${
+                contentCategoryTab === cat.title
+                  ? "text-primary"
+                  : "text-on-surface-variant hover:text-on-surface hover:bg-black/5"
+              }`}
+            >
+              {contentCategoryTab === cat.title && (
+                <motion.div
+                  layoutId="content-category-tab"
+                  className="absolute inset-0 bg-white shadow-sm ring-1 ring-black/5 rounded-lg"
+                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                />
+              )}
+              <span className="relative z-10 flex items-center gap-1.5">
+                <span className="material-symbols-outlined text-[16px]">{cat.icon}</span>
+                {cat.title}
+              </span>
+            </button>
+          ))}
+        </div>
+
+        {/* Category Items */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
           {contentCategories
-            .flatMap(c => c.items)
-            .filter(i => !(i as any).comingSoon)
+            .find(c => c.title === contentCategoryTab)
+            ?.items
             .map(type => {
               const isSelected = settings.contentType === type.id;
               return (
                 <button
                   key={type.id}
                   type="button"
+                  disabled={(type as any).comingSoon}
                   onClick={() => updateSettings({ contentType: type.id as any, contentData: "" })}
-                  className={`relative flex items-center gap-2 px-4 py-2 rounded-lg font-bold transition-colors text-sm whitespace-nowrap snap-start outline-none ${
-                    isSelected ? "text-primary" : "text-on-surface-variant hover:text-on-surface hover:bg-black/5"
+                  className={`flex items-center justify-between gap-2 px-4 py-3 rounded-xl border transition-colors outline-none font-bold text-sm ${
+                    (type as any).comingSoon
+                      ? "opacity-60 cursor-not-allowed bg-surface-container-low border-outline-variant/30 text-on-surface-variant/50"
+                      : isSelected
+                        ? "border-primary bg-primary/5 text-primary"
+                        : "border-outline-variant/50 bg-white text-on-surface-variant hover:border-outline hover:bg-surface-container-lowest"
                   }`}
                 >
-                  {isSelected && (
-                    <motion.div
-                      layoutId="content-type-tab"
-                      className="absolute inset-0 bg-white shadow-sm ring-1 ring-black/5 rounded-lg"
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                    />
-                  )}
-                  <span className="relative z-10 flex items-center gap-1.5">
-                    <span className="material-symbols-outlined text-[16px]">{type.icon}</span>
+                  <div className="flex items-center gap-2">
+                    <span className="material-symbols-outlined text-lg">{type.icon}</span>
                     {type.label}
-                  </span>
+                  </div>
+                  {(type as any).comingSoon && (
+                    <span className="text-[9px] font-bold bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded-md uppercase tracking-wider">
+                      Soon
+                    </span>
+                  )}
                 </button>
               );
             })}

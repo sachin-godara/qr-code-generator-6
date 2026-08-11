@@ -154,6 +154,45 @@ function App() {
     }
   }
 
+  const goToNextTab = (currentTabName: string) => {
+    const currentIndex = sidebarTabs.findIndex(t => t.name === currentTabName);
+    if (currentIndex >= 0 && currentIndex < sidebarTabs.length - 1) {
+      const nextTab = sidebarTabs[currentIndex + 1];
+      setActiveTab(nextTab.name);
+      
+      // Sync mobile main tab if on mobile
+      if (['Templates', 'Design', 'Frames'].includes(nextTab.name)) setMobileMainTab('design');
+      else if (['Effects', 'Advanced'].includes(nextTab.name)) setMobileMainTab('more');
+      else if (nextTab.name === 'Logo') setMobileMainTab('logo');
+      else if (nextTab.name === 'Download') setMobileMainTab('download');
+      
+      // Scroll to top
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
+  const renderNextStepButton = (currentTabName: string) => {
+    const currentIndex = sidebarTabs.findIndex(t => t.name === currentTabName);
+    if (currentIndex >= 0 && currentIndex < sidebarTabs.length - 1) {
+      const nextTab = sidebarTabs[currentIndex + 1];
+      return (
+        <div className="mt-8 pt-6 border-t border-outline-variant/30 flex justify-between items-center animate-in fade-in duration-500">
+          <div className="text-sm text-on-surface-variant font-medium hidden sm:block">
+            Done with {currentTabName}?
+          </div>
+          <button
+            onClick={() => goToNextTab(currentTabName)}
+            className="w-full sm:w-auto flex items-center justify-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-xl font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all"
+          >
+            <span>Continue to {nextTab.name}</span>
+            <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+          </button>
+        </div>
+      );
+    }
+    return null;
+  };
+
   const renderPanelContent = (tabName: string) => {
     let PanelComponent;
     switch (tabName) {
@@ -164,7 +203,13 @@ function App() {
       case "Frames": PanelComponent = <FramesPanel />; break;
       case "Effects": PanelComponent = <EffectsPanel />; break;
       case "Advanced": PanelComponent = <AdvancedPanel />; break;
-      case "Download": PanelComponent = <DownloadPanel />; break;
+      case "Download": 
+        PanelComponent = <DownloadPanel onNavigateToContent={() => {
+          setActiveTab("Content");
+          setMobileMainTab("content");
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }} />; 
+        break;
       default: PanelComponent = null;
     }
     return (
@@ -432,6 +477,7 @@ function App() {
 
                 <div className="bg-white rounded-2xl p-6 md:p-8 surface-ring-vercel max-w-full panel-enter" key={activeTab}>
                   {renderPanelContent(activeTab)}
+                  {renderNextStepButton(activeTab)}
                 </div>
               </div>
 
@@ -481,6 +527,7 @@ function App() {
                       </div>
                     </div>
                     {renderPanelContent('Content')}
+                    {renderNextStepButton('Content')}
                   </motion.div>
                 ) : mobileMainTab === 'download' ? (
                   <motion.div 
@@ -499,6 +546,7 @@ function App() {
                       </div>
                     </div>
                     {renderPanelContent('Download')}
+                    {renderNextStepButton('Download')}
                   </motion.div>
                 ) : mobileMainTab === 'logo' ? (
                   <motion.div 
@@ -509,6 +557,7 @@ function App() {
                     className="flex flex-col gap-4"
                   >
                     {renderPanelContent('Logo')}
+                    {renderNextStepButton('Logo')}
                   </motion.div>
                 ) : mobileMainTab === 'design' ? (
                   <motion.div 
@@ -548,6 +597,7 @@ function App() {
                       ))}
                     </div>
                     {renderPanelContent(activeTab)}
+                    {renderNextStepButton(activeTab)}
                   </motion.div>
                 ) : (
                   <motion.div 
@@ -585,6 +635,7 @@ function App() {
                       ))}
                     </div>
                     {renderPanelContent(activeTab)}
+                    {renderNextStepButton(activeTab)}
                   </motion.div>
                 )}
             </div>
