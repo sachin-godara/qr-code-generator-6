@@ -442,7 +442,7 @@ function App() {
                 {mobileMainTab === 'content' ? (
                   <div className="flex flex-col gap-4">
                     <div className="flex items-center gap-2 pb-1">
-                      <div className="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-xs font-black shrink-0">1</div>
+                      <div className="w-6 h-6 rounded-full bg-primary/10 text-primary border border-primary flex items-center justify-center text-xs font-black shrink-0">1</div>
                       <div>
                         <p className="text-sm font-bold text-on-surface">Enter your content</p>
                         <p className="text-[11px] text-on-surface-variant">Pick a type below, then fill in your data</p>
@@ -454,7 +454,7 @@ function App() {
                   <div className="flex flex-col gap-4">
                     {/* Step indicator */}
                     <div className="flex items-center gap-2 pb-1">
-                      <div className="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs font-black shrink-0">3</div>
+                      <div className="w-6 h-6 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-400 flex items-center justify-center text-xs font-black shrink-0">✓</div>
                       <div>
                         <p className="text-sm font-bold text-on-surface">Save your QR code</p>
                         <p className="text-[11px] text-on-surface-variant">Choose a format and download</p>
@@ -464,25 +464,11 @@ function App() {
                   </div>
                 ) : mobileMainTab === 'logo' ? (
                   <div className="flex flex-col gap-4">
-                    <div className="flex items-center gap-2 pb-1">
-                      <div className="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-xs font-black shrink-0">2</div>
-                      <div>
-                        <p className="text-sm font-bold text-on-surface">Add a Logo</p>
-                        <p className="text-[11px] text-on-surface-variant">Upload an image or pick a preset</p>
-                      </div>
-                    </div>
                     {renderPanelContent('Logo')}
                   </div>
                 ) : mobileMainTab === 'design' ? (
                   <div className="flex flex-col gap-4">
-                    <div className="flex items-center gap-2 pb-1">
-                      <div className="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-xs font-black shrink-0">2</div>
-                      <div>
-                        <p className="text-sm font-bold text-on-surface">Customize the look</p>
-                        <p className="text-[11px] text-on-surface-variant">Templates, colors, and frames</p>
-                      </div>
-                    </div>
-                    <div className="flex flex-wrap items-center justify-center gap-2 pb-1">
+                    <div className="flex bg-surface-container rounded-lg p-1 border border-outline-variant/50">
                       {([
                         { name: "Templates", icon: "dashboard" },
                         { name: "Design",    icon: "palette" },
@@ -491,13 +477,13 @@ function App() {
                         <button
                           key={tab.name}
                           onClick={() => setActiveTab(tab.name)}
-                          className={`flex items-center gap-1.5 px-3.5 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-colors ${
+                          className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-md font-bold transition-all text-xs ${
                             activeTab === tab.name
-                              ? 'bg-primary text-white shadow-md'
-                              : 'bg-surface border border-outline-variant/60 text-on-surface-variant hover:bg-surface-container'
+                              ? 'bg-white shadow-sm text-primary'
+                              : 'text-on-surface-variant hover:text-on-surface'
                           }`}
                         >
-                          <span className="material-symbols-outlined text-[16px]">{tab.icon}</span>
+                          <span className="material-symbols-outlined text-[14px]">{tab.icon}</span>
                           {tab.name === "Design" ? "Style" : tab.name}
                         </button>
                       ))}
@@ -506,14 +492,7 @@ function App() {
                   </div>
                 ) : (
                   <div className="flex flex-col gap-4">
-                    <div className="flex items-center gap-2 pb-1">
-                      <div className="w-6 h-6 rounded-full bg-primary text-white flex items-center justify-center text-xs font-black shrink-0">2</div>
-                      <div>
-                        <p className="text-sm font-bold text-on-surface">More Options</p>
-                        <p className="text-[11px] text-on-surface-variant">Advanced effects and settings</p>
-                      </div>
-                    </div>
-                    <div className="flex flex-wrap items-center justify-center gap-2 pb-1">
+                    <div className="flex bg-surface-container rounded-lg p-1 border border-outline-variant/50">
                       {([
                         { name: "Effects",   icon: "auto_awesome" },
                         { name: "Advanced",  icon: "tune" },
@@ -521,13 +500,13 @@ function App() {
                         <button
                           key={tab.name}
                           onClick={() => setActiveTab(tab.name)}
-                          className={`flex items-center gap-1.5 px-3.5 py-2 rounded-full text-sm font-bold whitespace-nowrap transition-colors ${
+                          className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-md font-bold transition-all text-xs ${
                             activeTab === tab.name
-                              ? 'bg-primary text-white shadow-md'
-                              : 'bg-surface border border-outline-variant/60 text-on-surface-variant hover:bg-surface-container'
+                              ? 'bg-white shadow-sm text-primary'
+                              : 'text-on-surface-variant hover:text-on-surface'
                           }`}
                         >
-                          <span className="material-symbols-outlined text-[16px]">{tab.icon}</span>
+                          <span className="material-symbols-outlined text-[14px]">{tab.icon}</span>
                           {tab.name}
                         </button>
                       ))}

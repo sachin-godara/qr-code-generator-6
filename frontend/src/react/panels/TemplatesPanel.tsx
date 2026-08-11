@@ -33,7 +33,7 @@ export function TemplatesPanel() {
             type="button"
             onClick={() => setActiveTemplateCategory(cat.id)}
             className={`px-3 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all duration-200 flex items-center gap-1.5 tab-spring snap-start ${activeTemplateCategory === cat.id
-                ? "bg-primary text-white shadow-xs scale-[1.02]"
+                ? "bg-primary/10 text-primary shadow-xs border border-primary"
                 : "bg-surface-container-low hover:bg-surface-container-highest text-on-surface-variant border border-outline-variant/60"
               }`}
           >

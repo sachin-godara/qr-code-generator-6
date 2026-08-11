@@ -116,52 +116,25 @@ export function ContentPanel() {
 
   return (
     <div className="space-y-6">
-      {/* Category Tabs with icons */}
-      <div className="flex overflow-x-auto gap-2 pb-1 custom-scrollbar scroll-smooth">
-        {contentCategories.map((category) => (
-          <button
-            key={category.title}
-            onClick={() => setContentCategoryTab(category.title)}
-            className={`py-1.5 px-3 rounded-lg text-xs font-bold transition-all whitespace-nowrap touch-press flex items-center gap-1.5 ${
-              contentCategoryTab === category.title
-                ? 'bg-primary text-white shadow-sm'
-                : 'bg-transparent text-on-surface-variant hover:bg-surface-container-low hover:text-on-surface'
-            }`}
-          >
-            <span className="material-symbols-outlined text-[13px]">{category.icon}</span>
-            {category.title}
-          </button>
-        ))}
-      </div>
-
-      {/* Type Grid for Active Category */}
-      <div className="glass-panel p-1.5 sm:p-2 rounded-2xl grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-4 xl:grid-cols-6 gap-1 border border-outline-variant shadow-sm">
-        {contentCategories.find(c => c.title === contentCategoryTab)?.items.map((type) => (
-          <button
-            key={type.id}
-            onClick={() => {
-              if (type.comingSoon) return;
-              if (settings.contentType !== type.id) {
-                updateSettings({ contentType: type.id as any, contentData: "" });
-              }
-            }}
-            disabled={type.comingSoon}
-            className={`flex flex-col items-center gap-1 sm:gap-1.5 p-2.5 sm:p-3 rounded-xl duration-200 border min-h-[44px] touch-press transition-all relative ${
-              type.comingSoon
-                ? "opacity-50 cursor-not-allowed bg-surface-container-low border-outline-variant/30 text-on-surface-variant/40"
-                : settings.contentType === type.id
-                  ? "bg-primary text-white border-primary font-semibold shadow-sm"
-                  : "text-on-surface-variant hover:bg-surface-container border-transparent active:scale-95"
-            }`}
-          >
-
-            {type.comingSoon && (
-              <span className="absolute -top-1.5 -right-1.5 bg-primary/20 text-primary border border-primary/30 rounded px-1 py-0.5 text-[8px] font-black scale-90 select-none">SOON</span>
-            )}
-            <span className="material-symbols-outlined text-[18px] sm:text-[20px]">{type.icon}</span>
-            <span className="text-[10px] sm:text-[11px] leading-tight font-medium text-center">{type.label}</span>
-          </button>
-        ))}
+      {/* Content Type Selector */}
+      <div className="space-y-1.5">
+        <label className="text-xs font-semibold text-on-surface-variant">Type</label>
+        <select
+          value={settings.contentType}
+          onChange={(e) => updateSettings({ contentType: e.target.value as any, contentData: "" })}
+          className="w-full p-3 bg-white border border-outline-variant rounded-xl text-sm font-medium text-on-surface outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all appearance-none"
+          style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='%23666' d='m7 10 5 5 5-5z'/%3E%3C/svg%3E")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center' }}
+        >
+          {contentCategories.filter(c => !c.items.every(i => i.comingSoon)).map((category) => (
+            <optgroup key={category.title} label={category.title}>
+              {category.items.map((type) => (
+                <option key={type.id} value={type.id} disabled={type.comingSoon}>
+                  {type.label}{type.comingSoon ? ' (Coming Soon)' : ''}
+                </option>
+              ))}
+            </optgroup>
+          ))}
+        </select>
       </div>
 
       {/* Beginner hint */}

@@ -9,9 +9,6 @@ export function AdvancedPanel() {
     <div className="bg-surface-container-lowest p-gutter rounded-2xl border border-outline-variant shadow-sm space-y-8">
       <div>
         <h3 className="font-headline-sm text-on-surface font-bold">Advanced QR Engine Controls</h3>
-        <p className="text-on-surface-variant font-label-md text-label-md mt-1">
-          Fine-tune redundancy, error recovery, and structural spacing for precision scanning.
-        </p>
       </div>
 
       {/* Error Correction Level */}
@@ -19,24 +16,22 @@ export function AdvancedPanel() {
         <div className="flex justify-between items-center">
           <label className="text-sm font-semibold text-on-surface flex items-center gap-2">
             <span className="material-symbols-outlined text-primary text-[20px]">shield</span>
-            Error Correction Level
+            Damage Resistance
           </label>
           <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-lg">
-            {settings.error_correction === "L" && "Low (7% Recovery)"}
-            {settings.error_correction === "M" && "Medium (15% Recovery)"}
-            {settings.error_correction === "Q" && "Quartile (25% Recovery)"}
-            {settings.error_correction === "H" && "High (30% Recovery)"}
+            {settings.error_correction === "L" && "Low (Small QR)"}
+            {settings.error_correction === "M" && "Medium (Standard)"}
+            {settings.error_correction === "Q" && "High (Good)"}
+            {settings.error_correction === "H" && "Max (Best for Logos)"}
           </span>
         </div>
-        <p className="text-xs text-on-surface-variant">
-          Determines how much data can be damaged or hidden (by logos) while retaining scannability.
-        </p>
+
         <div className="grid grid-cols-2 xl:grid-cols-4 gap-2 sm:gap-3">
           {[
-            { id: "L", name: "Low", desc: "~7%" },
-            { id: "M", name: "Medium", desc: "~15%" },
-            { id: "Q", name: "Quartile", desc: "~25%" },
-            { id: "H", name: "High", desc: "~30%" },
+            { id: "L", name: "Low", desc: "Small QR" },
+            { id: "M", name: "Medium", desc: "Standard" },
+            { id: "Q", name: "High", desc: "Good" },
+            { id: "H", name: "Max", desc: "Best for Logos" },
           ].map((level) => (
             <button
               key={level.id}
@@ -63,15 +58,13 @@ export function AdvancedPanel() {
         <div className="flex justify-between items-center">
           <label className="text-sm font-semibold text-on-surface flex items-center gap-2">
             <span className="material-symbols-outlined text-primary text-[20px]">margin</span>
-            Quiet Zone (Border Width)
+            White Padding (Safe Zone)
           </label>
           <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-lg">
-            {settings.quiet_zone} Modules
+            {settings.quiet_zone}
           </span>
         </div>
-        <p className="text-xs text-on-surface-variant">
-          The blank padding around the QR matrix. Standard specification requires at least 4 modules.
-        </p>
+
         <Slider min="0"
           max="10"
           value={settings.quiet_zone}
@@ -106,9 +99,7 @@ export function AdvancedPanel() {
             </button>
           )}
         </div>
-        <p className="text-xs text-on-surface-variant">
-          Overlay your QR code onto a custom background image with adjustable transparency.
-        </p>
+
         <div className="flex items-center gap-2">
           <div className="flex-1 border border-outline-variant rounded-xl bg-surface hover:bg-surface-variant transition-colors relative h-12 flex items-center justify-center overflow-hidden">
             <input

@@ -135,7 +135,7 @@ export function FramesPanel() {
                   key={font}
                   onClick={() => updateSettings({ font_name: font as any })}
                   className={`p-3 border rounded-xl flex flex-col items-center justify-center gap-1 transition-colors ${settings.font_name === font
-                    ? "bg-primary text-white border-primary shadow-md"
+                    ? "bg-primary/10 text-primary border-primary shadow-sm"
                     : "bg-white hover:bg-muted border-outline-variant text-on-surface"
                     }`}
                 >

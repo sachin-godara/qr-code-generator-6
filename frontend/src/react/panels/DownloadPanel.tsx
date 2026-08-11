@@ -25,9 +25,6 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
       <div className="bg-surface-container-lowest p-gutter rounded-2xl border border-outline-variant shadow-sm space-y-8">
         <div>
           <h3 className="font-headline-sm text-on-surface font-bold">Batch ZIP Export</h3>
-          <p className="text-on-surface-variant font-label-md text-label-md mt-1">
-            Choose your preferred file format, custom resolution, and generate your ZIP archive.
-          </p>
         </div>
 
         {batchCsvRows.length === 0 ? (
@@ -101,9 +98,6 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
     <div className="bg-surface-container-lowest p-gutter rounded-2xl border border-outline-variant shadow-sm space-y-8">
       <div>
         <h3 className="font-headline-sm text-on-surface font-bold">Export & Download</h3>
-        <p className="text-on-surface-variant font-label-md text-label-md mt-1">
-          Choose your preferred file format, custom resolution, and filename before exporting.
-        </p>
       </div>
 
       <div className="space-y-3">
@@ -156,7 +150,7 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
                   opt.comingSoon 
                     ? "opacity-50 cursor-not-allowed bg-surface-container-low border-outline-variant/30 text-on-surface-variant/40" 
                     : downloadSize === opt.size
-                      ? "bg-primary text-white border-primary shadow-sm"
+                      ? "bg-primary/10 text-primary border-primary shadow-sm"
                       : "border-outline-variant bg-white text-on-surface hover:bg-surface-container-highest"
                 }`}
               >
@@ -183,7 +177,7 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
               <div className="flex-1">
                 <p className="text-sm font-bold text-on-surface">Native Resolution (No Stretching)</p>
                 <p className="text-xs text-on-surface-variant mt-1 leading-relaxed">
-                  Generates the exact target size natively. Perfect for sharp pixel-art squares, but may distort complex shapes. Uncheck to use Lanczos upscaling for smooth curves.
+                  Generates exact target size natively. Uncheck to use smooth upscaling for complex shapes.
                 </p>
               </div>
             </label>
@@ -198,7 +192,7 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
             SVG Vector Generation Details
           </div>
           <p>
-            Standard QR designs output as <strong>native XML vector paths</strong>. When using custom dot module shapes, text frames, logos, or drop shadows, a high-resolution 300 DPI graphic is embedded inside a scalable <code className="bg-surface-container px-1 py-0.5 rounded font-mono text-[11px]">&lt;svg&gt;</code> container. This guarantees 100% visual fidelity without missing fonts or broken filters in Adobe Illustrator or Figma.
+            Outputs as a scalable vector graphic or 300 DPI container for maximum print quality.
           </p>
         </div>
       )}
@@ -210,7 +204,7 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
             PDF Document Generation Details
           </div>
           <p>
-            PDF files are compiled directly into <strong>300 DPI print-ready document streams</strong>. Alpha transparency is composited onto a clean background canvas, making your QR code ready for professional print shops, brochures, flyers, and billboards.
+            Outputs as a 300 DPI print-ready document with a clean background canvas.
           </p>
         </div>
       )}
