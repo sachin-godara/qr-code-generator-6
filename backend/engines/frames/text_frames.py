@@ -4,6 +4,29 @@ from PIL import Image, ImageDraw, ImageFont
 
 from engines.core.utils import hex_to_rgb
 
+FONT_REGISTRY = {
+    "Outfit (Modern)": "Outfit-Bold.ttf",
+    "Playfair Display (Elegant)": "PlayfairDisplay-Bold.ttf",
+    "Courier Prime (Retro)": "CourierPrime-Bold.ttf",
+    "Montserrat (Geometric)": "Montserrat-Bold.ttf",
+    "Roboto (Clean)": "Roboto-Bold.ttf",
+    "Lora (Serif)": "Lora-Bold.ttf",
+    "Poppins (Friendly)": "Poppins-Bold.ttf",
+    "Space Grotesk (Tech)": "SpaceGrotesk-Bold.ttf",
+    "Cinzel (Classic)": "Cinzel-Bold.ttf",
+    "Dancing Script (Cursive)": "DancingScript-Bold.ttf",
+    "Fira Code (Monospace)": "FiraCode-Bold.ttf",
+    "Oswald (Bold Condensed)": "Oswald-Bold.ttf",
+}
+
+def resolve_font_path(frontend_name):
+    # backend is root
+    base_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "assets", "fonts")
+    if frontend_name in FONT_REGISTRY:
+        return os.path.join(base_dir, FONT_REGISTRY[frontend_name])
+    return frontend_name
+
+
 def apply_layout_frame(qr_img, layout_template="none", frame_color="#000000", padding=20, corner_radius=15, border_thickness=10):
     if layout_template == "none":
         return qr_img
@@ -1141,9 +1164,11 @@ def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="
         if os.path.exists(parent_path):
             font_name = parent_path
 
+    resolved_font = resolve_font_path(font_name)
+
     # Try loading selected font, fallback to arialbd, then default
     try:
-        font = ImageFont.truetype(font_name, text_size)
+        font = ImageFont.truetype(resolved_font, text_size)
     except:
         try:
             font = ImageFont.truetype("arialbd.ttf", text_size)
@@ -1156,7 +1181,7 @@ def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="
     def get_fitted_font(txt, max_w, initial_size):
         if not txt:
             try:
-                f = ImageFont.truetype(font_name, initial_size)
+                f = ImageFont.truetype(resolved_font, initial_size)
             except:
                 try:
                     f = ImageFont.truetype("arialbd.ttf", initial_size)
@@ -1167,7 +1192,7 @@ def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="
         f = font
         while curr_size > 12:
             try:
-                f = ImageFont.truetype(font_name, curr_size)
+                f = ImageFont.truetype(resolved_font, curr_size)
             except:
                 try:
                     f = ImageFont.truetype("arialbd.ttf", curr_size)
@@ -1179,7 +1204,7 @@ def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="
                 return f, w, bbox[3] - bbox[1]
             curr_size -= 2
         try:
-            f = ImageFont.truetype(font_name, max(12, curr_size))
+            f = ImageFont.truetype(resolved_font, max(12, curr_size))
         except:
             try:
                 f = ImageFont.truetype("arialbd.ttf", max(12, curr_size))
@@ -1240,6 +1265,35 @@ def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="
         text_x = pill_x + (pill_w - tw_lbl) // 2
         text_y = pill_y + (pill_h - text_size) // 2 - 2
         draw.text((text_x, text_y), text, fill=text_rgba, font=f_lbl)
+        return new_img
+
+    elif text_template == "top_pill":
+        new_w = qr_w
+        new_h = qr_h + text_size * 2 + padding * 2
+        new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
+        # Paste QR lower, leaving room for pill at the top
+        new_img.paste(qr_img, (0, text_size * 2 + padding * 2), qr_img)
+        draw = ImageDraw.Draw(new_img)
+        
+        # Calculate text width
+        f_lbl, tw_lbl, th_lbl = get_fitted_font(text, qr_w, text_size) if text else (None, 0, 0)
+        pill_w = max(qr_w // 2, tw_lbl + padding * 4)
+        pill_h = text_size * 2
+        pill_x = (new_w - pill_w) // 2
+        pill_y = padding // 2
+        
+        # Draw shadow
+        for i in range(4):
+            alpha = int(30 / (i + 1))
+            draw.rounded_rectangle([pill_x - i, pill_y + 4 - i, pill_x + pill_w + i, pill_y + pill_h + 4 + i], radius=pill_h // 2, fill=(0, 0, 0, alpha))
+            
+        # Draw pill
+        draw.rounded_rectangle([pill_x, pill_y, pill_x + pill_w, pill_y + pill_h], radius=pill_h // 2, fill=bg_color)
+        
+        if text:
+            text_x = pill_x + (pill_w - tw_lbl) // 2
+            text_y = pill_y + (pill_h - th_lbl) // 2 - th_lbl // 4
+            draw.text((text_x, text_y), text, fill=text_rgba, font=f_lbl)
         return new_img
 
     elif text_template == "top_text":
@@ -3677,50 +3731,6 @@ def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="
             
         return new_img
 
-    elif text_template == "beer_mug":
-        f_lbl, tw_lbl, th_lbl = get_fitted_font(text, qr_w, text_size) if text else (None, 0, 0)
-        lbl_h = th_lbl + padding * 2 if th_lbl > 0 else padding * 2
-        
-        mug_w = qr_w + padding * 4
-        mug_h = qr_h + padding * 4 + lbl_h
-        handle_w = padding * 3
-        
-        new_w = mug_w + handle_w
-        new_h = mug_h + padding * 2 # For foam
-        
-        new_img = Image.new("RGBA", (new_w, new_h), color=(255, 255, 255, 0))
-        draw = ImageDraw.Draw(new_img)
-        
-        # Handle
-        hx1 = mug_w - padding
-        hy1 = padding * 4
-        hx2 = hx1 + handle_w * 2
-        hy2 = mug_h - padding * 4
-        draw.ellipse([(hx1, hy1), (hx2, hy2)], outline=bg_color, width=padding)
-        
-        # Mug Body
-        draw.rounded_rectangle([(0, padding * 2), (mug_w, new_h)], radius=corner_radius, fill=(255, 255, 255, 255), outline=bg_color, width=border_thickness or 8)
-        
-        # Foam (circles on top)
-        for i in range(5):
-            fx = i * (mug_w // 5) - padding
-            fy = 0
-            fs = padding * 3
-            draw.ellipse([(fx, fy), (fx + fs, fy + fs)], fill=(255, 255, 255, 255), outline=bg_color, width=4)
-            
-        # Paste QR
-        new_img.paste(qr_img, ((mug_w - qr_w) // 2, padding * 4), qr_img)
-        
-        # Mug Label (Text)
-        if text:
-            lbl_y1 = padding * 4 + qr_h + padding
-            lbl_y2 = lbl_y1 + lbl_h
-            draw.rectangle([(padding, lbl_y1), (mug_w - padding, lbl_y2)], fill=bg_color)
-            tx = (mug_w - tw_lbl) // 2
-            ty = lbl_y1 + (lbl_h - th_lbl) // 2 - th_lbl // 4
-            draw.text((tx, ty), text, fill=hex_to_rgb(text_color), font=f_lbl)
-            
-        return new_img
 
     elif text_template == "ice_cream_cone":
         f_lbl, tw_lbl, th_lbl = get_fitted_font(text, qr_w, text_size) if text else (None, 0, 0)

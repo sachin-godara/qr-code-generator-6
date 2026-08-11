@@ -239,6 +239,13 @@ def draw_eye_frame(draw, px, py, s, eye_frame_style, eye_rgb, bg, img=None):
         draw.rounded_rectangle([px, py, px + 7*s - 1, py + 7*s - 1], radius=r, outline=eye_rgb + (255,), width=s)
         make_sharp_corner(draw, px, py, "BL", s, r, eye_rgb + (255,))
         make_sharp_corner(draw, px, py, "BR", s, r, eye_rgb + (255,))
+    elif eye_frame_style == "ticket":
+        draw.rounded_rectangle([px, py, px + 7*s - 1, py + 7*s - 1], radius=0, outline=eye_rgb + (255,), width=s)
+        cut_r = int(s * 1.5)
+        draw.ellipse([px - cut_r, py - cut_r, px + cut_r, py + cut_r], fill=(255,255,255,0), outline=eye_rgb+(255,), width=s)
+        draw.ellipse([px + 7*s - 1 - cut_r, py - cut_r, px + 7*s - 1 + cut_r, py + cut_r], fill=(255,255,255,0), outline=eye_rgb+(255,), width=s)
+        draw.ellipse([px - cut_r, py + 7*s - 1 - cut_r, px + cut_r, py + 7*s - 1 + cut_r], fill=(255,255,255,0), outline=eye_rgb+(255,), width=s)
+        draw.ellipse([px + 7*s - 1 - cut_r, py + 7*s - 1 - cut_r, px + 7*s - 1 + cut_r, py + 7*s - 1 + cut_r], fill=(255,255,255,0), outline=eye_rgb+(255,), width=s)
     elif eye_frame_style == "left_rounded":
         draw.rounded_rectangle([px, py, px + 7*s - 1, py + 7*s - 1], radius=r, outline=eye_rgb + (255,), width=s)
         make_sharp_corner(draw, px, py, "TR", s, r, eye_rgb + (255,))

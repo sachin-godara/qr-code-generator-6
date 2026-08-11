@@ -2,6 +2,7 @@ import { useQRStore } from "@/store/useQRStore";
 import { Slider } from "@/components/ui/Slider";
 import { StylePreviewCard } from "@/components/previews/StylePreviewCard";
 import { FRAME_STYLES, TEXT_STYLES } from "@/data/options";
+import { PremiumFontSelect } from "@/components/ui/PremiumFontSelect";
 
 const fontStyles = [
   "Outfit (Modern)",
@@ -9,7 +10,13 @@ const fontStyles = [
   "Courier Prime (Retro)",
   "Montserrat (Geometric)",
   "Roboto (Clean)",
-  "Lora (Serif)"
+  "Lora (Serif)",
+  "Poppins (Friendly)",
+  "Space Grotesk (Tech)",
+  "Cinzel (Classic)",
+  "Dancing Script (Cursive)",
+  "Fira Code (Monospace)",
+  "Oswald (Bold Condensed)"
 ];
 
 export function FramesPanel() {
@@ -129,21 +136,11 @@ export function FramesPanel() {
 
           <div className="space-y-3">
             <div className="section-label block mb-1">Font Style</div>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
-              {fontStyles.map((font) => (
-                <button
-                  key={font}
-                  onClick={() => updateSettings({ font_name: font as any })}
-                  className={`p-3 border rounded-xl flex flex-col items-center justify-center gap-1 transition-colors ${settings.font_name === font
-                    ? "bg-primary/10 text-primary border-primary shadow-sm"
-                    : "bg-white hover:bg-muted border-outline-variant text-on-surface"
-                    }`}
-                >
-                  <span style={{ fontFamily: font.split(" (")[0] }} className="text-2xl leading-none">Ag</span>
-                  <span className="text-[10px] font-body-md opacity-80">{font.split(" (")[0]}</span>
-                </button>
-              ))}
-            </div>
+            <PremiumFontSelect
+              value={settings.font_name}
+              onChange={(font) => updateSettings({ font_name: font as any })}
+              fonts={fontStyles}
+            />
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
