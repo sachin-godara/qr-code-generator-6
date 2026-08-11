@@ -1,3 +1,4 @@
+import { Loader2 } from "lucide-react";
 import { useQRStore } from "@/store/useQRStore";
 
 interface FullscreenLightboxProps {
@@ -142,7 +143,7 @@ export function FullscreenLightbox({
 
           {((isLoading || isFetching) && !isError) && (
             <div className="absolute inset-0 rounded-2xl overflow-hidden backdrop-blur-[4px] bg-white/40 flex flex-col items-center justify-center transition-opacity duration-300 delay-150">
-              <span className="material-symbols-outlined animate-spin text-primary text-5xl relative z-10 mb-3">autorenew</span>
+              <Loader2 className="animate-spin text-primary w-12 h-12 relative z-10 mb-3" />
               <span className="text-sm font-semibold text-primary">Generating...</span>
             </div>
           )}

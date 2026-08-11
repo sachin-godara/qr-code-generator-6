@@ -1,3 +1,4 @@
+import { Loader2 } from "lucide-react";
 import { useQRStore } from "@/store/useQRStore";
 import { useDownloadStore } from "@/store/useDownloadStore";
 import { useDownloadHandlers } from "@/hooks/useDownloadHandlers";
@@ -135,7 +136,7 @@ export function DesktopPreviewPane({
             {((isLoading || isFetching) && !isError) && (
               <div className="absolute inset-0 rounded-xl overflow-hidden backdrop-blur-[4px] bg-white/40 flex items-center justify-center transition-opacity duration-300 delay-150">
                 <div className="absolute inset-0 skeleton-shimmer"></div>
-                <span className="material-symbols-outlined animate-spin text-primary text-3xl relative z-10">autorenew</span>
+                <Loader2 className="animate-spin text-primary w-8 h-8 relative z-10" />
               </div>
             )}
 

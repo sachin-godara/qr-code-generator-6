@@ -51,6 +51,7 @@ export async function fetchQRPreview(settings: QRSettings) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(finalPayload),
+    signal: typeof AbortSignal !== 'undefined' && AbortSignal.timeout ? AbortSignal.timeout(15000) : undefined,
   });
 
   if (!response.ok) {
@@ -91,6 +92,7 @@ export async function downloadQR(settings: QRSettings, format: string, size: num
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(finalPayload),
+    signal: typeof AbortSignal !== 'undefined' && AbortSignal.timeout ? AbortSignal.timeout(60000) : undefined,
   });
 
   if (!response.ok) throw new Error(`Failed to generate ${format}`);

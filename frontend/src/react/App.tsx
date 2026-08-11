@@ -1,12 +1,21 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, lazy, Suspense } from "react"
 import { motion } from "framer-motion"
+import { Loader2 } from "lucide-react"
 import { useQuery, keepPreviousData } from "@tanstack/react-query"
 import { useQRStore } from "@/store/useQRStore"
 import { useToast } from "@/hooks/useToast"
 import { useDownloadHandlers } from "@/hooks/useDownloadHandlers"
 import { useDownloadStore } from "@/store/useDownloadStore"
 import { fetchQRPreview } from "@/services/qrApi"
-import { ContentPanel, TemplatesPanel, DesignPanel, LogoPanel, FramesPanel, EffectsPanel, AdvancedPanel, DownloadPanel } from "./panels"
+import { ContentPanel } from "./panels"
+
+const TemplatesPanel = lazy(() => import("./panels").then(module => ({ default: module.TemplatesPanel })));
+const DesignPanel = lazy(() => import("./panels").then(module => ({ default: module.DesignPanel })));
+const LogoPanel = lazy(() => import("./panels").then(module => ({ default: module.LogoPanel })));
+const FramesPanel = lazy(() => import("./panels").then(module => ({ default: module.FramesPanel })));
+const EffectsPanel = lazy(() => import("./panels").then(module => ({ default: module.EffectsPanel })));
+const AdvancedPanel = lazy(() => import("./panels").then(module => ({ default: module.AdvancedPanel })));
+const DownloadPanel = lazy(() => import("./panels").then(module => ({ default: module.DownloadPanel })));
 import { DesktopPreviewPane, MobileBottomBar, FullscreenLightbox } from "./preview"
 
 function App() {
@@ -146,18 +155,28 @@ function App() {
   }
 
   const renderPanelContent = (tabName: string) => {
+    let PanelComponent;
     switch (tabName) {
-      case "Content": return <ContentPanel />;
-      case "Templates": return <TemplatesPanel />;
-      case "Design": return <DesignPanel />;
-      case "Logo": return <LogoPanel />;
-      case "Frames": return <FramesPanel />;
-      case "Effects": return <EffectsPanel />;
-      case "Advanced": return <AdvancedPanel />;
-      case "Download": return <DownloadPanel onNavigateToContent={() => setActiveTab("Content")} />;
-      default: return null;
+      case "Content": PanelComponent = <ContentPanel />; break;
+      case "Templates": PanelComponent = <TemplatesPanel />; break;
+      case "Design": PanelComponent = <DesignPanel />; break;
+      case "Logo": PanelComponent = <LogoPanel />; break;
+      case "Frames": PanelComponent = <FramesPanel />; break;
+      case "Effects": PanelComponent = <EffectsPanel />; break;
+      case "Advanced": PanelComponent = <AdvancedPanel />; break;
+      case "Download": PanelComponent = <DownloadPanel />; break;
+      default: PanelComponent = null;
     }
-  };
+    return (
+      <Suspense fallback={
+        <div className="flex items-center justify-center p-12 text-outline-variant">
+          <Loader2 className="animate-spin w-8 h-8" />
+        </div>
+      }>
+        {PanelComponent}
+      </Suspense>
+    );
+  }
 
   // Global Keyboard Shortcuts
   useEffect(() => {
@@ -209,6 +228,15 @@ function App() {
 
   return (
     <div className="lg:min-h-screen flex flex-col font-body-md text-on-surface bg-background antialiased pt-14 sm:pt-16">
+      
+      {/* Offline Banner */}
+      {isOffline && (
+        <div className="fixed w-full top-14 sm:top-16 z-[45] bg-red-600 text-white text-center py-2 px-4 shadow-md flex items-center justify-center gap-2 text-sm font-semibold animate-in slide-in-from-top-2">
+          <span className="material-symbols-outlined text-lg">wifi_off</span>
+          You are currently offline. Features that require the server are disabled.
+        </div>
+      )}
+
       {/* TopNavBar with mobile hamburger */}
       <nav className="fixed w-full top-0 z-50 bg-surface-container-lowest border-b border-outline-variant shadow-sm backdrop-blur-md bg-opacity-95 safe-top">
         <div className="flex justify-between items-center h-14 sm:h-16 px-4 sm:px-gutter w-full">

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Loader2 } from "lucide-react";
 import { motion } from "framer-motion";
 import { useQRStore } from "@/store/useQRStore";
 import { useDownloadStore } from "@/store/useDownloadStore";
@@ -63,7 +64,7 @@ export function MobileBottomBar({
               >
                 {(isLoading || isFetching) && !isError && (
                   <div className="absolute inset-0 flex items-center justify-center bg-white/60 backdrop-blur-[2px] z-10 rounded-2xl">
-                    <span className="material-symbols-outlined animate-spin text-primary text-2xl">autorenew</span>
+                    <Loader2 className="animate-spin text-primary w-6 h-6" />
                   </div>
                 )}
                 {isError && (
@@ -116,7 +117,7 @@ export function MobileBottomBar({
             <div className="w-10 h-10 shrink-0 bg-white rounded-lg border border-outline-variant/60 p-0.5 flex items-center justify-center shadow-sm overflow-hidden relative">
               {(isLoading || isFetching) && !isError && (
                 <div className="absolute inset-0 flex items-center justify-center bg-white/60 z-10">
-                  <span className="material-symbols-outlined animate-spin text-primary text-sm">autorenew</span>
+                  <Loader2 className="animate-spin text-primary w-4 h-4" />
                 </div>
               )}
               <img 

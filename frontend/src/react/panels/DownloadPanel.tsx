@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Loader2 } from "lucide-react";
 import { useQRStore } from "@/store/useQRStore";
 import { useDownloadStore } from "@/store/useDownloadStore";
 import { useDownloadHandlers } from "@/hooks/useDownloadHandlers";
@@ -98,7 +99,7 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
               className="flex w-full py-4 rounded-xl font-bold items-center justify-center gap-2 bg-gradient-to-r from-primary to-primary-hover text-white shadow-md hover:shadow-lg disabled:opacity-50 transition-all text-base"
             >
               {isBatchGenerating ? (
-                <><span className="material-symbols-outlined animate-spin text-[24px]">progress_activity</span> Generating Batch Archive...</>
+                <><Loader2 className="animate-spin w-6 h-6" /> Generating Batch Archive...</>
               ) : (
                 <><span className="material-symbols-outlined text-[24px]">bolt</span> Generate & Download ZIP ({batchCsvRows.length > 500 ? 500 : batchCsvRows.length} items)</>
               )}
@@ -261,7 +262,7 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
         >
           {isDownloading ? (
             <>
-              <span className="material-symbols-outlined text-2xl animate-spin">progress_activity</span>
+              <Loader2 className="w-6 h-6 animate-spin" />
               <span>
                 {downloadSize >= 4096 && (downloadFormat === "PNG" || hasComplexStyling)
                   ? `Rendering ${downloadSize === 8192 ? '8K' : '4K'} (${downloadSize}px)...`
@@ -296,7 +297,7 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
         >
           {isCopying ? (
             <>
-              <span className="material-symbols-outlined text-xl animate-spin">progress_activity</span>
+              <Loader2 className="w-5 h-5 animate-spin" />
               <span>Copying...</span>
             </>
           ) : copySuccess ? (
