@@ -147,6 +147,15 @@ export function LogoPanel() {
           <div className="section-label flex items-center gap-1.5 font-bold text-on-surface">
             <span className="material-symbols-outlined text-sm text-primary">grid_view</span>
             Preset Icon Gallery ({filteredLogos.length})
+            {settings.preset_logo !== "None" && !settings.logo_image && (
+              <button
+                type="button"
+                onClick={() => updateSettings({ preset_logo: "None" })}
+                className="ml-1 text-[10px] bg-error/10 text-error px-2 py-0.5 rounded-full hover:bg-error/20 transition-colors"
+              >
+                Clear Selection
+              </button>
+            )}
           </div>
           <div className="relative flex-1 max-w-sm">
             <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/70 text-base">search</span>
