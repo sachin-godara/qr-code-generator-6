@@ -36,16 +36,16 @@ export function EffectsPanel() {
       {/* Module Color Gradient Effect */}
       <div className="space-y-4 p-5 bg-surface-container-low/60 rounded-2xl border border-outline-variant/80 shadow-inner-sm">
         <div className="flex items-center justify-between">
-          <label className="text-sm font-bold text-on-surface flex items-center gap-2">
+          <div className="text-sm font-bold text-on-surface flex items-center gap-2">
             <span className="material-symbols-outlined text-primary text-[20px]">gradient</span>
             Module Color Gradient Effect
-          </label>
+          </div>
           <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-primary/10 text-primary">
             {isEffectsGradient ? "Active Gradient" : "Solid Fill"}
           </span>
         </div>
 
-        <select
+        <select name="input_field_73355cd0" aria-label="Input Field"
           value={settings.gradient_type}
           onChange={(e) => updateSettings({
             gradient_type: e.target.value as any,
@@ -66,7 +66,7 @@ export function EffectsPanel() {
           <div className="space-y-4 pt-3 border-t border-outline-variant/60">
             {/* Presets */}
             <div>
-              <label className="text-xs font-bold text-on-surface-variant mb-2 block">Quick Blends</label>
+              <div className="text-xs font-bold text-on-surface-variant mb-2 block">Quick Blends</div>
               <div className="flex flex-wrap gap-2">
                 {GRADIENT_PRESETS.map(preset => {
                   const isSelected = settings.dots_color === preset.start && settings.dots_color_end === preset.end;
@@ -116,15 +116,15 @@ export function EffectsPanel() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-on-surface-variant">Start Color</label>
+                    <div className="text-xs font-bold text-on-surface-variant">Start Color</div>
                     <div className="flex items-center gap-2.5">
-                      <input
+                      <input name="input_field_1a5c92e3" aria-label="Input Field"
                         type="color"
                         value={settings.dots_color}
                         onChange={(e) => updateSettings({ dots_color: e.target.value })}
                         className="w-10 h-10 rounded-xl cursor-pointer border border-outline-variant p-0.5 bg-surface"
                       />
-                      <input
+                      <input name="input_field_deb3720a" aria-label="Input Field"
                         type="text"
                         value={settings.dots_color}
                         onChange={(e) => updateSettings({ dots_color: e.target.value })}
@@ -134,15 +134,15 @@ export function EffectsPanel() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-on-surface-variant">End Color</label>
+                    <div className="text-xs font-bold text-on-surface-variant">End Color</div>
                     <div className="flex items-center gap-2.5">
-                      <input
+                      <input name="input_field_405045f2" aria-label="Input Field"
                         type="color"
                         value={settings.dots_color_end}
                         onChange={(e) => updateSettings({ dots_color_end: e.target.value })}
                         className="w-10 h-10 rounded-xl cursor-pointer border border-outline-variant p-0.5 bg-surface"
                       />
-                      <input
+                      <input name="input_field_ad5c7082" aria-label="Input Field"
                         type="text"
                         value={settings.dots_color_end}
                         onChange={(e) => updateSettings({ dots_color_end: e.target.value })}
@@ -160,7 +160,7 @@ export function EffectsPanel() {
       {/* Invert Colors Toggle */}
       <div className="flex items-center justify-between p-4 bg-surface-container-low rounded-xl border border-outline-variant">
         <div>
-          <label className="text-sm font-bold text-on-surface block">Invert Colors</label>
+          <div className="text-sm font-bold text-on-surface block">Invert Colors</div>
         </div>
         <button
           type="button"
@@ -177,10 +177,10 @@ export function EffectsPanel() {
 
       {/* Drop Shadow & Glow */}
       <div className="space-y-4">
-        <label className="text-sm font-semibold text-on-surface flex items-center gap-2">
+        <div className="text-sm font-semibold text-on-surface flex items-center gap-2">
           <span className="material-symbols-outlined text-primary text-[20px]">auto_fix_high</span>
           Drop Shadow & Glow Effect
-        </label>
+        </div>
         {settings.bg_transparent && (
           <div className="flex items-center gap-2.5 p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs">
             <span className="material-symbols-outlined text-amber-600 text-[18px] shrink-0">info</span>
@@ -228,16 +228,16 @@ export function EffectsPanel() {
             </button>
             {showCustomShadow && (
               <div className="flex items-center gap-3 p-3 bg-surface rounded-xl border border-outline-variant">
-                <label className="text-xs font-semibold text-on-surface-variant w-24">
+                <div className="text-xs font-semibold text-on-surface-variant w-24">
                   {settings.effect_shadow === "neon" ? "Glow Color:" : "Shadow Color:"}
-                </label>
-                <input
+                </div>
+                <input name="input_field_e1179904" aria-label="Input Field"
                   type="color"
                   value={settings.effect_shadow_color.slice(0, 7)}
                   onChange={(e) => updateSettings({ effect_shadow_color: e.target.value })}
                   className="w-10 h-10 rounded-lg cursor-pointer border border-outline-variant p-0.5 bg-white"
                 />
-                <input
+                <input name="input_field_7b78d95e" aria-label="Input Field"
                   type="text"
                   value={settings.effect_shadow_color}
                   onChange={(e) => updateSettings({ effect_shadow_color: e.target.value })}
@@ -252,7 +252,7 @@ export function EffectsPanel() {
       {/* Canvas Outer Corner Radius */}
       <div className="space-y-3 border-t border-outline-variant pt-6">
         <div className="flex justify-between items-center">
-          <label className="text-sm font-semibold text-on-surface flex items-center gap-2 flex-wrap">
+          <div className="text-sm font-semibold text-on-surface flex items-center gap-2 flex-wrap">
             <span className="material-symbols-outlined text-primary text-[20px]">rounded_corner</span>
             <span>Canvas Corner Rounding</span>
             {settings.canvas_border_width > 0 && (
@@ -260,7 +260,7 @@ export function EffectsPanel() {
                 Syncs with Accent Border
               </span>
             )}
-          </label>
+          </div>
           <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-lg shrink-0">
             {settings.canvas_radius}px
           </span>
@@ -280,10 +280,10 @@ export function EffectsPanel() {
       {/* Canvas Outer Border */}
       <div className="space-y-4 border-t border-outline-variant pt-6">
         <div className="flex justify-between items-center">
-          <label className="text-sm font-semibold text-on-surface flex items-center gap-2">
+          <div className="text-sm font-semibold text-on-surface flex items-center gap-2">
             <span className="material-symbols-outlined text-primary text-[20px]">crop_free</span>
             Outer Accent Border
-          </label>
+          </div>
           <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-lg">
             {settings.canvas_border_width}px Width
           </span>
@@ -296,14 +296,14 @@ export function EffectsPanel() {
         {settings.canvas_border_width > 0 && (
           <div className="space-y-3 pt-2">
             <div className="flex items-center gap-3">
-              <label className="text-xs font-semibold text-on-surface-variant w-24">Border Color:</label>
-              <input
+              <div className="text-xs font-semibold text-on-surface-variant w-24">Border Color:</div>
+              <input name="input_field_1d4677bf" aria-label="Input Field"
                 type="color"
                 value={settings.canvas_border_color}
                 onChange={(e) => updateSettings({ canvas_border_color: e.target.value })}
                 className="w-10 h-10 rounded-lg cursor-pointer border border-outline-variant p-0.5 bg-white shrink-0"
               />
-              <input
+              <input name="input_field_e493e74d" aria-label="Input Field"
                 type="text"
                 value={settings.canvas_border_color}
                 onChange={(e) => updateSettings({ canvas_border_color: e.target.value })}

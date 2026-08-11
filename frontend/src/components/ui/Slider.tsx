@@ -24,7 +24,7 @@ export const Slider: React.FC<SliderProps> = ({
   const percentage = Math.min(Math.max(((value - numericMin) / (numericMax - numericMin)) * 100, 0), 100);
   
   return (
-    <input
+    <input name="input_field_4a6db732" aria-label="Input Field"
       type="range"
       min={min}
       max={max}

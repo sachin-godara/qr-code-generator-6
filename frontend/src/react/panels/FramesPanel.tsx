@@ -18,7 +18,7 @@ export function FramesPanel() {
   return (
     <div className="bg-white rounded-xl border border-outline-variant space-y-6 p-6">
       <div className="space-y-3">
-        <label className="section-label block mb-1">Layout Frame Style</label>
+        <div className="section-label block mb-1">Layout Frame Style</div>
         <div className="flex overflow-x-auto gap-3.5 px-3.5 pt-3.5 pb-5 custom-scrollbar snap-x scroll-smooth scroll-pl-3.5">
           {FRAME_STYLES.map((style) => (
             <div key={style} className="w-[88px] sm:w-[98px] shrink-0 snap-start p-0.5">
@@ -38,9 +38,9 @@ export function FramesPanel() {
         <div className="space-y-4 pt-4 border-t border-outline-variant/30">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label className="block text-xs font-semibold">Frame Color</label>
+              <div className="block text-xs font-semibold">Frame Color</div>
               <div className="flex items-center gap-3">
-                <input
+                <input name="input_field_9af21930" aria-label="Input Field"
                   type="color"
                   value={settings.frame_color}
                   onChange={(e) => updateSettings({ frame_color: e.target.value })}
@@ -53,7 +53,7 @@ export function FramesPanel() {
 
           <div className="space-y-2">
             <div className="flex justify-between items-center">
-              <label className="text-xs font-semibold">Frame Padding</label>
+              <div className="text-xs font-semibold">Frame Padding</div>
               <span className="text-xs text-on-surface-variant">{settings.frame_padding}px</span>
             </div>
             <Slider min="0"
@@ -66,7 +66,7 @@ export function FramesPanel() {
 
           <div className="space-y-2">
             <div className="flex justify-between items-center">
-              <label className="text-xs font-semibold">Corner Radius</label>
+              <div className="text-xs font-semibold">Corner Radius</div>
               <span className="text-xs text-on-surface-variant">{settings.frame_radius}px</span>
             </div>
             <Slider min="0"
@@ -79,7 +79,7 @@ export function FramesPanel() {
 
           <div className="space-y-2">
             <div className="flex justify-between items-center">
-              <label className="text-xs font-semibold">Border Thickness</label>
+              <div className="text-xs font-semibold">Border Thickness</div>
               <span className="text-xs text-on-surface-variant">{settings.frame_border}px</span>
             </div>
             <Slider min="0"
@@ -93,7 +93,7 @@ export function FramesPanel() {
       )}
 
       <div className="space-y-3 pt-4 border-t border-outline-variant/30">
-        <label className="section-label block mb-1">Text Style</label>
+        <div className="section-label block mb-1">Text Style</div>
         <div className="flex overflow-x-auto gap-3.5 px-3.5 pt-3.5 pb-5 custom-scrollbar snap-x scroll-smooth scroll-pl-3.5">
           {TEXT_STYLES.map((style) => (
             <div key={style} className="w-[88px] sm:w-[98px] shrink-0 snap-start p-0.5">
@@ -113,12 +113,12 @@ export function FramesPanel() {
         <div className="space-y-6">
           <div className="space-y-3 bg-primary/5 p-4 rounded-xl border border-primary/20 relative overflow-hidden">
             <div className="absolute top-0 left-0 w-1 h-full bg-primary"></div>
-            <label className="block text-sm font-bold text-primary flex items-center gap-2">
+            <div className="block text-sm font-bold text-primary flex items-center gap-2">
               <span className="material-symbols-outlined text-[18px]">edit_note</span>
               Customize Frame Text
-            </label>
+            </div>
             <p className="text-xs text-on-surface-variant mb-2">This text appears directly on your selected custom frame shape.</p>
-            <input
+            <input name="input_field_0013c25a" aria-label="Input Field"
               type="text"
               value={settings.frame_text}
               onChange={(e) => updateSettings({ frame_text: e.target.value })}
@@ -128,7 +128,7 @@ export function FramesPanel() {
           </div>
 
           <div className="space-y-3">
-            <label className="section-label block mb-1">Font Style</label>
+            <div className="section-label block mb-1">Font Style</div>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
               {fontStyles.map((font) => (
                 <button
@@ -148,9 +148,9 @@ export function FramesPanel() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label className="block text-xs font-semibold">Frame Color</label>
+              <div className="block text-xs font-semibold">Frame Color</div>
               <div className="flex items-center gap-3">
-                <input
+                <input name="input_field_367550c4" aria-label="Input Field"
                   type="color"
                   value={settings.frame_color}
                   onChange={(e) => updateSettings({ frame_color: e.target.value })}
@@ -160,9 +160,9 @@ export function FramesPanel() {
               </div>
             </div>
             <div className="space-y-2">
-              <label className="block text-xs font-semibold">Text Color</label>
+              <div className="block text-xs font-semibold">Text Color</div>
               <div className="flex items-center gap-3">
-                <input
+                <input name="input_field_265dbdf4" aria-label="Input Field"
                   type="color"
                   value={settings.frame_text_color}
                   onChange={(e) => updateSettings({ frame_text_color: e.target.value })}
@@ -176,7 +176,7 @@ export function FramesPanel() {
           <div className="space-y-4 pt-4 border-t border-outline-variant/30">
             <div className="space-y-2">
               <div className="flex justify-between items-center">
-                <label className="text-xs font-semibold">Text Size</label>
+                <div className="text-xs font-semibold">Text Size</div>
                 <span className="text-xs text-on-surface-variant">{settings.frame_text_size}px</span>
               </div>
               <Slider min="20"

@@ -75662,46 +75662,6 @@
       "_origin": "ast"
     },
     {
-      "id": "backend_engines_logo_processor",
-      "label": "processor.py",
-      "file_type": "code",
-      "source_file": "backend/engines/logo/processor.py",
-      "source_location": "L1",
-      "_origin": "ast"
-    },
-    {
-      "id": "backend_engines_logo_processor_make_color_transparent",
-      "label": "make_color_transparent()",
-      "file_type": "code",
-      "source_file": "backend/engines/logo/processor.py",
-      "source_location": "L53",
-      "_origin": "ast"
-    },
-    {
-      "id": "backend_engines_logo_processor_remove_qr_background",
-      "label": "remove_qr_background()",
-      "file_type": "code",
-      "source_file": "backend/engines/logo/processor.py",
-      "source_location": "L65",
-      "_origin": "ast"
-    },
-    {
-      "id": "backend_engines_logo_processor_generate_preset_logo",
-      "label": "generate_preset_logo()",
-      "file_type": "code",
-      "source_file": "backend/engines/logo/processor.py",
-      "source_location": "L71",
-      "_origin": "ast"
-    },
-    {
-      "id": "backend_engines_logo_processor_apply_logo_overlay",
-      "label": "apply_logo_overlay()",
-      "file_type": "code",
-      "source_file": "backend/engines/logo/processor.py",
-      "source_location": "L103",
-      "_origin": "ast"
-    },
-    {
       "id": "backend_frame_engine",
       "label": "frame_engine.py",
       "file_type": "code",
@@ -77170,7 +77130,7 @@
       "label": "useDownloadHandlers",
       "file_type": "code",
       "source_file": "frontend/src/hooks/useDownloadHandlers.ts",
-      "source_location": "L6",
+      "source_location": "L7",
       "_origin": "ast"
     },
     {
@@ -77218,7 +77178,7 @@
       "label": "QRGeneratorApp",
       "file_type": "code",
       "source_file": "frontend/src/react/QRGeneratorApp.tsx",
-      "source_location": "L25",
+      "source_location": "L26",
       "_origin": "ast"
     },
     {
@@ -77226,7 +77186,7 @@
       "label": "LogoPanel",
       "file_type": "code",
       "source_file": "frontend/src/react/panels/LogoPanel.tsx",
-      "source_location": "L9",
+      "source_location": "L10",
       "_origin": "ast"
     },
     {
@@ -77234,7 +77194,7 @@
       "label": "BatchItem",
       "file_type": "code",
       "source_file": "frontend/src/services/qrApi.ts",
-      "source_location": "L4",
+      "source_location": "L7",
       "_origin": "ast"
     },
     {
@@ -77242,7 +77202,7 @@
       "label": "resolveLogoPayload",
       "file_type": "code",
       "source_file": "frontend/src/services/qrApi.ts",
-      "source_location": "L10",
+      "source_location": "L13",
       "_origin": "ast"
     },
     {
@@ -77250,7 +77210,7 @@
       "label": "fetchQRPreview",
       "file_type": "code",
       "source_file": "frontend/src/services/qrApi.ts",
-      "source_location": "L41",
+      "source_location": "L44",
       "_origin": "ast"
     },
     {
@@ -77258,7 +77218,7 @@
       "label": "downloadQR",
       "file_type": "code",
       "source_file": "frontend/src/services/qrApi.ts",
-      "source_location": "L67",
+      "source_location": "L71",
       "_origin": "ast"
     },
     {
@@ -77266,7 +77226,7 @@
       "label": "copyQRToClipboard",
       "file_type": "code",
       "source_file": "frontend/src/services/qrApi.ts",
-      "source_location": "L100",
+      "source_location": "L105",
       "_origin": "ast"
     },
     {
@@ -77274,7 +77234,15 @@
       "label": "generateBatch",
       "file_type": "code",
       "source_file": "frontend/src/services/qrApi.ts",
-      "source_location": "L128",
+      "source_location": "L133",
+      "_origin": "ast"
+    },
+    {
+      "id": "frontend_src_services_qrapi_scanqrimagebackend",
+      "label": "scanQRImageBackend",
+      "file_type": "code",
+      "source_file": "frontend/src/services/qrApi.ts",
+      "source_location": "L158",
       "_origin": "ast"
     },
     {
@@ -77299,6 +77267,22 @@
       "file_type": "code",
       "source_file": "frontend/src/types/qr.ts",
       "source_location": "L6",
+      "_origin": "ast"
+    },
+    {
+      "id": "frontend_src_utils_scannability_scannabilityresult",
+      "label": "ScannabilityResult",
+      "file_type": "code",
+      "source_file": "frontend/src/utils/scannability.ts",
+      "source_location": "L43",
+      "_origin": "ast"
+    },
+    {
+      "id": "frontend_src_utils_scannability_calculatescannability",
+      "label": "calculateScannability",
+      "file_type": "code",
+      "source_file": "frontend/src/utils/scannability.ts",
+      "source_location": "L50",
       "_origin": "ast"
     },
     {
@@ -238900,123 +238884,6 @@
       "_origin": "ast"
     },
     {
-      "source": "backend_engines_logo_processor",
-      "target": "os",
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/engines/logo/processor.py",
-      "source_location": "L1",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "backend_engines_logo_processor",
-      "target": "numpy",
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/engines/logo/processor.py",
-      "source_location": "L2",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "backend_engines_logo_processor",
-      "target": "pil",
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/engines/logo/processor.py",
-      "source_location": "L3",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "backend_engines_logo_processor",
-      "target": "engines_core_utils",
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/engines/logo/processor.py",
-      "source_location": "L4",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "backend_engines_logo_processor",
-      "target": "fitz",
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/engines/logo/processor.py",
-      "source_location": "L7",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "backend_engines_logo_processor",
-      "target": "backend_engines_logo_processor_make_color_transparent",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/engines/logo/processor.py",
-      "source_location": "L53",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "backend_engines_logo_processor",
-      "target": "backend_engines_logo_processor_remove_qr_background",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/engines/logo/processor.py",
-      "source_location": "L65",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "backend_engines_logo_processor",
-      "target": "backend_engines_logo_processor_generate_preset_logo",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/engines/logo/processor.py",
-      "source_location": "L71",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "backend_engines_logo_processor",
-      "target": "backend_engines_logo_processor_apply_logo_overlay",
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/engines/logo/processor.py",
-      "source_location": "L103",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "backend_engines_logo_processor_remove_qr_background",
-      "target": "backend_engines_logo_processor_make_color_transparent",
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/engines/logo/processor.py",
-      "source_location": "L69",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "backend_engines_logo_processor_apply_logo_overlay",
-      "target": "backend_engines_logo_processor_make_color_transparent",
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "backend/engines/logo/processor.py",
-      "source_location": "L114",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
       "source": "backend_frame_engine",
       "target": "engines_frames_text_frames",
       "relation": "imports_from",
@@ -241115,6 +240982,17 @@
       "_origin": "ast"
     },
     {
+      "source": "frontend_src_hooks_usedownloadhandlers",
+      "target": "frontend_src_services_qrapi_resolvelogopayload",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/hooks/useDownloadHandlers.ts",
+      "source_location": "L5",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
       "source": "frontend_src_hooks_usetoast",
       "target": "frontend_src_store_usetoaststore_toastitem",
       "relation": "imports",
@@ -241132,24 +241010,13 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/react/App.tsx",
-      "source_location": "L4",
+      "source_location": "L6",
       "weight": 1.0,
       "_origin": "ast"
     },
     {
       "source": "frontend_src_react_app",
       "target": "frontend_src_hooks_usedownloadhandlers_usedownloadhandlers",
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "frontend/src/react/App.tsx",
-      "source_location": "L5",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "frontend_src_react_app",
-      "target": "frontend_src_services_qrapi_fetchqrpreview",
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
@@ -241160,12 +241027,12 @@
     },
     {
       "source": "frontend_src_react_app",
-      "target": "frontend_src_react_panels_logopanel_logopanel",
+      "target": "frontend_src_services_qrapi_fetchqrpreview",
       "relation": "imports",
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/react/App.tsx",
-      "source_location": "L8",
+      "source_location": "L9",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -241176,7 +241043,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/react/panels/DownloadPanel.tsx",
-      "source_location": "L3",
+      "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -241187,7 +241054,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/react/panels/EffectsPanel.tsx",
-      "source_location": "L3",
+      "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -241198,7 +241065,7 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/react/preview/DesktopPreviewPane.tsx",
-      "source_location": "L3",
+      "source_location": "L4",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -241209,7 +241076,18 @@
       "context": "import",
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/react/preview/MobileBottomBar.tsx",
-      "source_location": "L3",
+      "source_location": "L6",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "frontend_src_react_scanner_qrscannerapp",
+      "target": "frontend_src_services_qrapi_scanqrimagebackend",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/react/scanner/QRScannerApp.tsx",
+      "source_location": "L5",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -241232,6 +241110,17 @@
       "confidence": "EXTRACTED",
       "source_file": "frontend/src/store/useQRStore.ts",
       "source_location": "L2",
+      "weight": 1.0,
+      "_origin": "ast"
+    },
+    {
+      "source": "frontend_src_utils_scannability",
+      "target": "frontend_src_types_qr_qrsettings",
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "frontend/src/utils/scannability.ts",
+      "source_location": "L1",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -241643,35 +241532,13 @@
       "_origin": "ast"
     },
     {
-      "source": "f_project_001_qr_code_generator_6_frontend_src_react_app_app",
-      "target": "frontend_src_hooks_usedownloadhandlers_usedownloadhandlers",
+      "source": "f_project_001_qr_code_generator_6_frontend_src_react_scanner_qrscannerapp_handlefileupload",
+      "target": "frontend_src_services_qrapi_scanqrimagebackend",
       "relation": "calls",
       "context": "call",
       "confidence": "EXTRACTED",
-      "source_file": "frontend/src/react/App.tsx",
-      "source_location": "L13",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "f_project_001_qr_code_generator_6_frontend_src_react_app_app",
-      "target": "frontend_src_hooks_usetoast_usetoast",
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "frontend/src/react/App.tsx",
-      "source_location": "L15",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "f_project_001_qr_code_generator_6_frontend_src_react_app_app",
-      "target": "frontend_src_services_qrapi_fetchqrpreview",
-      "relation": "calls",
-      "context": "call",
-      "confidence": "EXTRACTED",
-      "source_file": "frontend/src/react/App.tsx",
-      "source_location": "L107",
+      "source_file": "frontend/src/react/scanner/QRScannerApp.tsx",
+      "source_location": "L189",
       "weight": 1.0,
       "_origin": "ast"
     },
@@ -279326,30 +279193,6 @@
       "_origin": "ast"
     },
     {
-      "source": "backend_engines_logo_processor_remove_qr_background",
-      "target": "backend_engines_core_utils_hex_to_rgb",
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "backend/engines/logo/processor.py",
-      "source_location": "L68",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "backend_engines_logo_processor_apply_logo_overlay",
-      "target": "backend_engines_core_utils_hex_to_rgb",
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "backend/engines/logo/processor.py",
-      "source_location": "L113",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
       "source": "backend_tests_test_engines_test_hex_to_rgb",
       "target": "backend_engines_core_utils_hex_to_rgb",
       "relation": "calls",
@@ -279358,18 +279201,6 @@
       "confidence_score": 0.8,
       "source_file": "backend/tests/test_engines.py",
       "source_location": "L11",
-      "weight": 1.0,
-      "_origin": "ast"
-    },
-    {
-      "source": "backend_tests_test_engines_test_logo_utilities",
-      "target": "backend_engines_logo_processor_make_color_transparent",
-      "relation": "calls",
-      "context": "call",
-      "confidence": "INFERRED",
-      "confidence_score": 0.8,
-      "source_file": "backend/tests/test_engines.py",
-      "source_location": "L47",
       "weight": 1.0,
       "_origin": "ast"
     },

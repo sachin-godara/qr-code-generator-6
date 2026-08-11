@@ -14,10 +14,10 @@ export function AdvancedPanel() {
       {/* Error Correction Level */}
       <div className="space-y-3">
         <div className="flex justify-between items-center">
-          <label className="text-sm font-semibold text-on-surface flex items-center gap-2">
+          <div className="text-sm font-semibold text-on-surface flex items-center gap-2">
             <span className="material-symbols-outlined text-primary text-[20px]">shield</span>
             Damage Resistance
-          </label>
+          </div>
           <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-lg">
             {settings.error_correction === "L" && "Low (Small QR)"}
             {settings.error_correction === "M" && "Medium (Standard)"}
@@ -56,10 +56,10 @@ export function AdvancedPanel() {
       {/* Quiet Zone (Border Width) */}
       <div className="space-y-3 border-t border-outline-variant pt-6">
         <div className="flex justify-between items-center">
-          <label className="text-sm font-semibold text-on-surface flex items-center gap-2">
+          <div className="text-sm font-semibold text-on-surface flex items-center gap-2">
             <span className="material-symbols-outlined text-primary text-[20px]">margin</span>
             White Padding (Safe Zone)
-          </label>
+          </div>
           <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-lg">
             {settings.quiet_zone}
           </span>
@@ -85,10 +85,10 @@ export function AdvancedPanel() {
       {/* Background Image Controls */}
       <div className="space-y-3 border-t border-outline-variant pt-6">
         <div className="flex justify-between items-center">
-          <label className="text-sm font-semibold text-on-surface flex items-center gap-2">
+          <div className="text-sm font-semibold text-on-surface flex items-center gap-2">
             <span className="material-symbols-outlined text-primary text-[20px]">image</span>
             Background Image
-          </label>
+          </div>
           {settings.bg_image && (
             <button
               type="button"
@@ -102,7 +102,7 @@ export function AdvancedPanel() {
 
         <div className="flex items-center gap-2">
           <div className="flex-1 border border-outline-variant rounded-xl bg-surface hover:bg-surface-variant transition-colors relative h-12 flex items-center justify-center overflow-hidden">
-            <input
+            <input name="input_field_31fcdcb5" aria-label="Input Field"
               type="file"
               accept="image/*"
               onChange={(e) => {
@@ -126,10 +126,10 @@ export function AdvancedPanel() {
         {settings.bg_image && (
           <div className="mt-3 bg-surface-container rounded-xl p-3 border border-outline-variant/30 shadow-sm">
             <div className="flex justify-between items-center mb-2">
-              <label className="text-xs font-semibold text-on-surface">Opacity</label>
+              <div className="text-xs font-semibold text-on-surface">Opacity</div>
               <span className="text-xs font-mono font-bold text-primary bg-primary/10 px-2 py-0.5 rounded-md">{settings.bg_image_opacity ?? 100}%</span>
             </div>
-            <input
+            <input name="input_field_561c5cfb" aria-label="Input Field"
               type="range"
               min="10"
               max="100"

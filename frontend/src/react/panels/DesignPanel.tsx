@@ -30,17 +30,17 @@ export function DesignPanel() {
       )}
       <div className={`grid grid-cols-1 ${isGradientActive ? 'sm:grid-cols-2 xl:grid-cols-3' : 'sm:grid-cols-2'} gap-6`}>
         <div className="flex flex-col h-full">
-          <label className="section-label block mb-2">
+          <div className="section-label block mb-2">
             {isGradientActive ? "Foreground (Start)" : "Foreground Color"}
-          </label>
+          </div>
           <div className="flex items-center gap-2 h-11 px-1 mt-auto border border-outline-variant rounded-lg bg-white focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-shadow">
-            <input
+            <input name="input_field_d14b1075" aria-label="Input Field"
               type="color"
               value={settings.dots_color}
               onChange={(e) => updateSettings({ dots_color: e.target.value })}
               className="w-9 h-9 shrink-0 rounded-md cursor-pointer border border-outline-variant/30 bg-white p-0"
             />
-            <input
+            <input name="input_field_105dc5a1" aria-label="Input Field"
               type="text"
               value={settings.dots_color}
               onChange={(e) => updateSettings({ dots_color: e.target.value })}
@@ -51,15 +51,15 @@ export function DesignPanel() {
 
         {isGradientActive && (
           <div className="flex flex-col h-full">
-            <label className="section-label block mb-2">Foreground (End)</label>
+            <div className="section-label block mb-2">Foreground (End)</div>
             <div className="flex items-center gap-2 h-11 px-1 mt-auto border border-outline-variant rounded-lg bg-white focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-shadow">
-              <input
+              <input name="input_field_1441b836" aria-label="Input Field"
                 type="color"
                 value={settings.dots_color_end || "#52525b"}
                 onChange={(e) => updateSettings({ dots_color_end: e.target.value })}
                 className="w-9 h-9 shrink-0 rounded-md cursor-pointer border border-outline-variant/30 bg-white p-0"
               />
-              <input
+              <input name="input_field_6a0a90b1" aria-label="Input Field"
                 type="text"
                 value={settings.dots_color_end || "#52525b"}
                 onChange={(e) => updateSettings({ dots_color_end: e.target.value })}
@@ -71,9 +71,9 @@ export function DesignPanel() {
 
         <div className="flex flex-col h-full">
           <div className="flex justify-between items-center gap-1 mb-2">
-            <label className="section-label block truncate">Background</label>
+            <div className="section-label block truncate">Background</div>
             <label className="flex items-center gap-1.5 text-xs font-semibold cursor-pointer select-none px-2 py-1 rounded-full bg-surface-variant text-on-surface-variant hover:bg-outline-variant/30 transition-colors shrink-0">
-              <input
+              <input name="input_field_f5329e44" aria-label="Input Field"
                 type="checkbox"
                 checked={settings.bg_transparent || false}
                 onChange={(e) => updateSettings({ bg_transparent: e.target.checked, ...(e.target.checked ? { effect_shadow: "none" } as any : {}) })}
@@ -83,13 +83,13 @@ export function DesignPanel() {
             </label>
           </div>
           <div className={`flex items-center gap-2 h-11 px-1 mt-auto border border-outline-variant rounded-lg bg-white focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-shadow ${settings.bg_transparent ? 'opacity-40 pointer-events-none' : ''}`}>
-            <input
+            <input name="input_field_34191f8c" aria-label="Input Field"
               type="color"
               value={settings.bg_color}
               onChange={(e) => updateSettings({ bg_color: e.target.value })}
               className="w-9 h-9 shrink-0 rounded-md cursor-pointer border border-outline-variant/30 bg-white p-0"
             />
-            <input
+            <input name="input_field_e03fd4bb" aria-label="Input Field"
               type="text"
               value={settings.bg_color}
               onChange={(e) => updateSettings({ bg_color: e.target.value })}
@@ -100,7 +100,7 @@ export function DesignPanel() {
       </div>
 
       <div className="space-y-3 border-t border-outline-variant/30 pt-4 mt-4">
-        <label className="section-label block mb-1">Dot Style</label>
+        <div className="section-label block mb-1">Dot Style</div>
         <div className="relative group">
           <button
             type="button"
@@ -136,9 +136,9 @@ export function DesignPanel() {
 
       <div className="space-y-3 border-t border-outline-variant/30 pt-4 mt-4">
         <div className="flex justify-between items-center mb-1">
-          <label className="section-label block">Eyes Customization</label>
+          <div className="section-label block">Eyes Customization</div>
           <label className="flex items-center gap-2 text-xs font-semibold cursor-pointer select-none px-2.5 py-1 rounded-full bg-surface-variant text-on-surface-variant hover:bg-outline-variant/30 transition-colors">
-            <input
+            <input name="input_field_dfafa1b6" aria-label="Input Field"
               type="checkbox"
               checked={settings.link_eyes !== false}
               onChange={(e) => {
@@ -169,7 +169,7 @@ export function DesignPanel() {
           </div>
         )}
 
-        <label className="text-xs font-semibold text-on-surface-variant mb-1 block">Frame Style</label>
+        <div className="text-xs font-semibold text-on-surface-variant mb-1 block">Frame Style</div>
         <div className="relative group mb-4">
           <button
             type="button"
@@ -214,7 +214,7 @@ export function DesignPanel() {
           </button>
         </div>
 
-        <label className="text-xs font-semibold text-on-surface-variant mb-1 block">Eyeball Style</label>
+        <div className="text-xs font-semibold text-on-surface-variant mb-1 block">Eyeball Style</div>
         <div className="relative group mb-4">
           <button
             type="button"
@@ -262,12 +262,12 @@ export function DesignPanel() {
         {/* Dual-Tone Marker Colors */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div className="space-y-2">
-            <label className="section-label flex items-center gap-1.5 mb-1">
+            <div className="section-label flex items-center gap-1.5 mb-1">
               <span className="w-2 h-2 rounded-full border-2 border-primary inline-block"></span>
               Eye Frame Color
-            </label>
+            </div>
             <div className="flex items-center gap-2">
-              <input
+              <input name="input_field_3890e682" aria-label="Input Field"
                 type="color"
                 value={
                   (settings.link_eyes !== false || activeCorner === "all")
@@ -292,7 +292,7 @@ export function DesignPanel() {
                 }}
                 className="w-10 h-10 rounded-xl cursor-pointer border border-outline-variant p-0.5 bg-white"
               />
-              <input
+              <input name="input_field_8f818c0c" aria-label="Input Field"
                 type="text"
                 value={
                   (settings.link_eyes !== false || activeCorner === "all")
@@ -313,12 +313,12 @@ export function DesignPanel() {
           </div>
 
           <div className="space-y-2">
-            <label className="section-label flex items-center gap-1.5 mb-1">
+            <div className="section-label flex items-center gap-1.5 mb-1">
               <span className="w-2 h-2 rounded-full bg-primary inline-block"></span>
               Eyeball Color
-            </label>
+            </div>
             <div className="flex items-center gap-2">
-              <input
+              <input name="input_field_697bbf88" aria-label="Input Field"
                 type="color"
                 value={
                   (settings.link_eyes !== false || activeCorner === "all")
@@ -335,7 +335,7 @@ export function DesignPanel() {
                 }}
                 className="w-10 h-10 rounded-xl cursor-pointer border border-outline-variant p-0.5 bg-white"
               />
-              <input
+              <input name="input_field_4806d1ca" aria-label="Input Field"
                 type="text"
                 value={
                   (settings.link_eyes !== false || activeCorner === "all")

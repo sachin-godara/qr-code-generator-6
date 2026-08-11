@@ -36,7 +36,7 @@ export function LogoPanel() {
       {/* Custom Premium Drag-and-Drop Zone */}
       <div className="space-y-3">
         <div className="flex flex-col sm:flex-row items-center justify-center border-2 border-dashed border-outline-variant hover:border-primary/40 rounded-2xl p-4 sm:p-5 bg-surface/40 hover:bg-primary/5 transition-all duration-300 cursor-pointer relative group overflow-hidden gap-3">
-          <input
+          <input name="input_field_795cd72c" aria-label="Input Field"
             type="file"
             accept="image/*"
             onChange={(e) => {
@@ -99,12 +99,12 @@ export function LogoPanel() {
       
       {/* Visual Theme Style Selector (Inspired by Phosphor Icons & iOS 18) */}
       <div className="space-y-2 p-3.5 bg-gradient-to-br from-surface-container-lowest via-surface/60 to-surface-container-low rounded-2xl border border-outline-variant/60 shadow-2xs">
-        <label className="text-xs font-bold text-on-surface flex items-center justify-between">
+        <div className="text-xs font-bold text-on-surface flex items-center justify-between">
           <span className="flex items-center gap-1.5">
             <span className="material-symbols-outlined text-sm text-primary">auto_awesome</span>
             Icon Visual Style
           </span>
-        </label>
+        </div>
         <div className="flex bg-surface-container rounded-lg p-1 border border-outline-variant/50">
           {[
             { id: "badge", label: "Brand Badge" },
@@ -144,13 +144,13 @@ export function LogoPanel() {
       {/* Icon Studio: Search & Category Filter Pills */}
       <div className="space-y-3.5">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-          <label className="section-label flex items-center gap-1.5 font-bold text-on-surface">
+          <div className="section-label flex items-center gap-1.5 font-bold text-on-surface">
             <span className="material-symbols-outlined text-sm text-primary">grid_view</span>
             Preset Icon Gallery ({filteredLogos.length})
-          </label>
+          </div>
           <div className="relative flex-1 max-w-sm">
             <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/70 text-base">search</span>
-            <input
+            <input name="input_field_b532f4d3" aria-label="Search icons..."
               type="text"
               placeholder="Search icons..."
               value={logoSearchQuery}
@@ -248,7 +248,7 @@ export function LogoPanel() {
       {/* Preset Logo Color Mode & Color Picker */}
       {settings.preset_logo !== "None" && !settings.logo_image && (
         <div className="space-y-3 p-3.5 bg-surface-container-low rounded-xl border border-outline-variant">
-          <label className="block text-xs font-bold text-on-surface flex items-center justify-between">
+          <div className="block text-xs font-bold text-on-surface flex items-center justify-between">
             <span className="flex items-center gap-1.5">
               <span className="material-symbols-outlined text-sm text-primary">palette</span>
               Preset Logo Color
@@ -256,7 +256,7 @@ export function LogoPanel() {
             <span className="text-[10px] text-on-surface-variant font-mono uppercase">
               {settings.logo_color_mode === "default" ? "Default Brand Color" : settings.logo_custom_color}
             </span>
-          </label>
+          </div>
           <div className="flex p-1 bg-surface-container-low rounded-xl border border-outline-variant/30 mb-2">
             <button
               type="button"
@@ -303,15 +303,15 @@ export function LogoPanel() {
 
           {settings.logo_color_mode === "custom" && (
             <div className="space-y-2 pt-2 border-t border-outline-variant/40">
-              <label className="text-[11px] font-semibold text-on-surface-variant block">Pick Custom Icon Color:</label>
+              <div className="text-[11px] font-semibold text-on-surface-variant block">Pick Custom Icon Color:</div>
               <div className="flex items-center gap-3">
-                <input
+                <input name="input_field_eb60c408" aria-label="Input Field"
                   type="color"
                   value={settings.logo_custom_color || "#000000"}
                   onChange={(e) => updateSettings({ logo_custom_color: e.target.value })}
                   className="w-9 h-9 rounded-lg cursor-pointer border border-outline-variant p-0.5 bg-white"
                 />
-                <input
+                <input name="input_field_5aff6080" aria-label="Input Field"
                   type="text"
                   value={settings.logo_custom_color || "#000000"}
                   onChange={(e) => updateSettings({ logo_custom_color: e.target.value })}
@@ -341,10 +341,10 @@ export function LogoPanel() {
           {/* Logo Size */}
           <div className="space-y-2">
             <div className="flex justify-between items-center">
-              <label className="text-xs font-semibold flex items-center gap-1.5">
+              <div className="text-xs font-semibold flex items-center gap-1.5">
                 <span className="material-symbols-outlined text-sm opacity-70">aspect_ratio</span>
                 Logo Size
-              </label>
+              </div>
               <span className="text-xs text-on-surface-variant font-medium">{Math.round(settings.logo_size_ratio * 100)}%</span>
             </div>
             <Slider min="0.10"
@@ -363,10 +363,10 @@ export function LogoPanel() {
           {/* Dot Clearance */}
           <div className="space-y-2">
             <div className="flex justify-between items-center">
-              <label className="text-xs font-semibold flex items-center gap-1.5">
+              <div className="text-xs font-semibold flex items-center gap-1.5">
                 <span className="material-symbols-outlined text-sm opacity-70">grid_off</span>
                 Dot Clearance Around Logo
-              </label>
+              </div>
               <span className="text-xs text-on-surface-variant font-medium">
                 {settings.logo_clear_size === -1
                   ? "None (Overlap)"
@@ -393,10 +393,10 @@ export function LogoPanel() {
 
           {/* Logo Card Shape */}
           <div className="space-y-3">
-            <label className="block text-xs font-semibold flex items-center gap-1.5">
+            <div className="block text-xs font-semibold flex items-center gap-1.5">
               <span className="material-symbols-outlined text-sm opacity-70">layers</span>
               Logo Card Shape
-            </label>
+            </div>
             <div className="grid grid-cols-3 gap-2">
               {logoCardShapes.map((shape) => {
                 const isSelected = settings.logo_card_shape === shape;
@@ -430,10 +430,10 @@ export function LogoPanel() {
           {settings.logo_card_shape !== "None" && (
             <div className="space-y-2">
               <div className="flex justify-between items-center">
-                <label className="text-xs font-semibold flex items-center gap-1.5">
+                <div className="text-xs font-semibold flex items-center gap-1.5">
                   <span className="material-symbols-outlined text-sm opacity-70">space_bar</span>
                   Card Padding
-                </label>
+                </div>
                 <span className="text-xs text-on-surface-variant">{settings.logo_card_padding}px</span>
               </div>
               <Slider min="0"
@@ -464,12 +464,12 @@ export function LogoPanel() {
               {settings.remove_logo_bg && (
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label className="block text-xs font-semibold flex items-center gap-1.5">
+                    <div className="block text-xs font-semibold flex items-center gap-1.5">
                       <span className="material-symbols-outlined text-sm opacity-70">palette</span>
                       Color to Remove
-                    </label>
+                    </div>
                     <div className="flex items-center gap-3">
-                      <input
+                      <input name="input_field_0e4aa9f5" aria-label="Input Field"
                         type="color"
                         value={settings.logo_bg_color}
                         onChange={(e) => updateSettings({ logo_bg_color: e.target.value })}
@@ -481,10 +481,10 @@ export function LogoPanel() {
 
                   <div className="space-y-2">
                     <div className="flex justify-between items-center">
-                      <label className="text-xs font-semibold flex items-center gap-1.5">
+                      <div className="text-xs font-semibold flex items-center gap-1.5">
                         <span className="material-symbols-outlined text-sm opacity-70">tune</span>
                         Color Tolerance
-                      </label>
+                      </div>
                       <span className="text-xs text-on-surface-variant">{settings.logo_bg_tolerance}</span>
                     </div>
                     <Slider min="0"

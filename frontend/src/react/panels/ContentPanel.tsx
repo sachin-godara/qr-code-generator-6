@@ -119,7 +119,7 @@ export function ContentPanel() {
     <div className="space-y-6">
       {/* Content Type Selector */}
       <div className="space-y-1.5">
-        <label className="text-xs font-semibold text-on-surface-variant">Type</label>
+        <div className="text-xs font-semibold text-on-surface-variant">Type</div>
         <div className="flex overflow-x-auto gap-1.5 p-1.5 bg-surface-container-low rounded-xl custom-scrollbar snap-x border border-outline-variant/30">
           {contentCategories
             .flatMap(c => c.items)
@@ -195,12 +195,12 @@ export function ContentPanel() {
             </div>
 
             <div className="space-y-3">
-              <label className="section-label flex justify-between items-center mb-1">
+              <div className="section-label flex justify-between items-center mb-1">
                 <span className="font-bold flex items-center gap-1.5"><span className="material-symbols-outlined text-primary text-sm">upload_file</span>Upload CSV</span>
                 <button type="button" onClick={downloadSampleCSV} className="text-xs text-primary font-bold hover:underline">Download Sample CSV</button>
-              </label>
+              </div>
               <div className="flex flex-col items-center justify-center border-2 border-dashed border-outline-variant hover:border-primary/40 rounded-3xl p-8 bg-surface/40 hover:bg-primary/5 transition-all cursor-pointer relative group overflow-hidden">
-                <input type="file" accept=".csv" onChange={(e) => {
+                <input name="input_field_dd0ea10a" aria-label="Input Field" type="file" accept=".csv" onChange={(e) => {
                   const file = e.target.files?.[0];
                   if (file) {
                     if (file.size > 5 * 1024 * 1024) {
@@ -229,15 +229,15 @@ export function ContentPanel() {
               <div className="space-y-4 pt-4 border-t border-outline-variant">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-on-surface-variant">QR Data Column (Required)</label>
-                    <select value={batchDataColumn} onChange={(e) => updateBatchColumn('data', e.target.value)} className="w-full p-2.5 bg-white border border-outline-variant rounded-xl text-sm outline-none focus:border-primary">
+                    <div className="text-xs font-bold text-on-surface-variant">QR Data Column (Required)</div>
+                    <select name="input_field_f7330c0b" aria-label="Input Field" value={batchDataColumn} onChange={(e) => updateBatchColumn('data', e.target.value)} className="w-full p-2.5 bg-white border border-outline-variant rounded-xl text-sm outline-none focus:border-primary">
                       <option value="">Select column...</option>
                       {batchCsvHeaders.map(h => <option key={h} value={h}>{h}</option>)}
                     </select>
                   </div>
                   <div className="space-y-1.5">
-                    <label className="text-xs font-bold text-on-surface-variant">File Name Column (Optional)</label>
-                    <select value={batchFilenameColumn} onChange={(e) => updateBatchColumn('filename', e.target.value)} className="w-full p-2.5 bg-white border border-outline-variant rounded-xl text-sm outline-none focus:border-primary">
+                    <div className="text-xs font-bold text-on-surface-variant">File Name Column (Optional)</div>
+                    <select name="input_field_7d95655f" aria-label="Input Field" value={batchFilenameColumn} onChange={(e) => updateBatchColumn('filename', e.target.value)} className="w-full p-2.5 bg-white border border-outline-variant rounded-xl text-sm outline-none focus:border-primary">
                       <option value="">Auto-generate names (QR_Item_001)</option>
                       {batchCsvHeaders.map(h => <option key={h} value={h}>{h}</option>)}
                     </select>

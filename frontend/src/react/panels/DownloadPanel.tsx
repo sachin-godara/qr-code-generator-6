@@ -45,7 +45,7 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
           <div className="space-y-6">
             <div className="grid grid-cols-2 gap-4 border-t border-outline-variant pt-6">
               <div className="space-y-3">
-                <label className="text-sm font-semibold text-on-surface">Export Format</label>
+                <div className="text-sm font-semibold text-on-surface">Export Format</div>
                 <div className="flex bg-surface-container rounded-lg p-1 border border-outline-variant/50">
                   {["PNG", "SVG", "PDF"].map(fmt => (
                     <button 
@@ -68,7 +68,7 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
               </div>
               {batchFormat === "PNG" && (
                 <div className="space-y-3">
-                  <label className="text-sm font-semibold text-on-surface">Size (px)</label>
+                  <div className="text-sm font-semibold text-on-surface">Size (px)</div>
                   <div className="flex bg-surface-container rounded-lg p-1 border border-outline-variant/50">
                     {["512", "1024", "2048"].map(s => (
                       <button 
@@ -117,7 +117,7 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
       </div>
 
       <div className="space-y-3">
-        <label className="text-sm font-semibold text-on-surface block">1. Select Format</label>
+        <div className="text-sm font-semibold text-on-surface block">1. Select Format</div>
         <div className="grid grid-cols-3 gap-4">
           {[
             { id: "PNG", icon: "image", desc: "Best for web, social & apps" },
@@ -143,9 +143,9 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
       {showResolutionSelector && (
         <div className="space-y-3 border-t border-outline-variant pt-6">
           <div className="flex justify-between items-center">
-            <label className="text-sm font-semibold text-on-surface block">
+            <div className="text-sm font-semibold text-on-surface block">
               2. Output Resolution
-            </label>
+            </div>
             <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-lg">
               {downloadSize} x {downloadSize} px
             </span>
@@ -185,7 +185,7 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
           <div className="bg-primary/5 rounded-2xl p-4 border border-primary/20 flex flex-col gap-3 mt-3">
             <label className="flex items-start gap-3 cursor-pointer group">
               <div className="relative flex items-center justify-center mt-0.5">
-                <input type="checkbox" checked={noStretching} onChange={(e) => setNoStretching(e.target.checked)} className="peer sr-only" />
+                <input name="input_field_e53a09c9" aria-label="Input Field" type="checkbox" checked={noStretching} onChange={(e) => setNoStretching(e.target.checked)} className="peer sr-only" />
                 <div className="w-5 h-5 rounded border-2 border-primary/50 peer-checked:bg-primary peer-checked:border-primary transition-all flex items-center justify-center">
                   <span className="material-symbols-outlined text-white text-[16px] opacity-0 peer-checked:opacity-100 transition-opacity">check</span>
                 </div>
@@ -226,11 +226,11 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
       )}
 
       <div className="space-y-3 border-t border-outline-variant pt-6">
-        <label className="text-sm font-semibold text-on-surface block">
+        <div className="text-sm font-semibold text-on-surface block">
           {showResolutionSelector ? "3." : "2."} File Name
-        </label>
+        </div>
         <div className="relative flex items-center">
-          <input
+          <input name="input_field_ef2df2ae" aria-label="Input Field"
             type="text"
             placeholder={`GenerateCustomQR-${settings.contentType}`}
             value={customFilename}

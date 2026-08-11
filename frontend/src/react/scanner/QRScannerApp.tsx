@@ -314,7 +314,7 @@ export default function QRScannerApp() {
                       <ImageIcon size={18} /> Try a different image
                     </p>
                   )}
-                  <input 
+                  <input name="input_field_4115423d" aria-label="Input Field" 
                     type="file" 
                     accept="image/*" 
                     ref={fileInputRef} 
