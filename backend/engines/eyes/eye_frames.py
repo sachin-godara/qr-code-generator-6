@@ -412,13 +412,6 @@ def draw_eye_frame(draw, px, py, s, eye_frame_style, eye_rgb, bg, img=None):
         draw.rectangle([cx - gap, py + 5.8*s, cx + gap, py + 7*s], fill=(255,255,255))
         draw.rectangle([px, cy - gap, px + 1.2*s, cy + gap], fill=(255,255,255))
         draw.rectangle([px + 5.8*s, cy - gap, px + 7*s, cy + gap], fill=(255,255,255))
-    elif eye_frame_style == "aerodynamic_slant":
-        out_pts = [
-            (px, py + 2.2*s), (px + 3.8*s, py), (px + 7*s, py),
-            (px + 7*s, py + 4.8*s), (px + 3.2*s, py + 7*s), (px, py + 7*s)
-        ]
-        draw.polygon(out_pts, fill=eye_rgb)
-        draw.rectangle([px + s, py + s, px + 6*s - 1, py + 6*s - 1], fill=(255,255,255))
     elif eye_frame_style == "camera_lens":
         draw.ellipse([px, py, px + 7*s - 1, py + 7*s - 1], fill=eye_rgb + (255,))
         draw.ellipse([px + s, py + s, px + 6*s - 1, py + 6*s - 1], fill=bg + (255,))

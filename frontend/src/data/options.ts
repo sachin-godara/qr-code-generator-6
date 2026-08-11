@@ -92,7 +92,6 @@ export const EYEBALL_STYLES = [
   "fluted_bezel",
   "cushion_cut",
   "split_crosshairs",
-  "aerodynamic_slant",
   // Advanced
   "deckled",
   "leaf_opposite",

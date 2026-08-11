@@ -18,7 +18,7 @@ from engines.dots.custom_drawers import (
 
 MODULE_DRAWER_REGISTRY = {
     "square": SquareModuleDrawer,
-    "gapped_square": GappedSquareModuleDrawer,
+    "gapped": GappedSquareModuleDrawer,
     "circle": CircleModuleDrawer,
     "rounded": RoundedModuleDrawer,
     "vertical_bars": VerticalBarsDrawer,

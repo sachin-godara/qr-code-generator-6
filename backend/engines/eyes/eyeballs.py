@@ -105,9 +105,6 @@ def draw_eyeball(draw, ebx, eby, px, py, s, eyeball_style, eyeball_rgb, bg, img=
         draw.rectangle([cx - gap, py + 4.6*s, cx + gap, py + 5.2*s], fill=bg + (255,))
         draw.rectangle([px + 1.8*s, cy - gap, px + 2.4*s, cy + gap], fill=bg + (255,))
         draw.rectangle([px + 4.6*s, cy - gap, px + 5.2*s, cy + gap], fill=bg + (255,))
-    elif eyeball_style == "aerodynamic_slant":
-        pts = [(px + 2.6*s, py + 2*s), (px + 5*s, py + 2*s), (px + 4.4*s, py + 5*s), (px + 2*s, py + 5*s)]
-        draw.polygon(pts, fill=eyeball_rgb + (255,))
     elif eyeball_style == "starburst":
         cx = ebx + 1.5 * s
         cy = eby + 1.5 * s
