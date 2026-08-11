@@ -123,7 +123,7 @@ export function ContentPanel() {
         <div className="flex overflow-x-auto gap-1.5 p-1.5 bg-surface-container-low rounded-xl custom-scrollbar snap-x border border-outline-variant/30">
           {contentCategories
             .flatMap(c => c.items)
-            .filter(i => !i.comingSoon)
+            .filter(i => !(i as any).comingSoon)
             .map(type => {
               const isSelected = settings.contentType === type.id;
               return (
