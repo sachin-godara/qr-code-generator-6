@@ -1147,16 +1147,7 @@ def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="
     bg_color = hex_to_rgb(frame_color)
     text_rgba = hex_to_rgb(text_color)
     
-    # Map and resolve font path
-    font_mapping = {
-        "Outfit (Modern)": "trebucbd.ttf",
-        "Playfair Display (Elegant)": "georgiab.ttf",
-        "Courier Prime (Retro)": "courbd.ttf",
-        "Montserrat (Geometric)": "tahomabd.ttf",
-        "Roboto (Clean)": "arialbd.ttf",
-        "Lora (Serif)": "timesbd.ttf"
-    }
-    font_name = font_mapping.get(font_name, font_name)
+    # font_name is resolved directly below
     
     # Check parent directory as well
     if not os.path.exists(font_name):
