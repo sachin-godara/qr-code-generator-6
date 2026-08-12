@@ -43,7 +43,7 @@ export const DOT_STYLES = [
   "shield_connect",
   "leaf_connect",
   "circuit_bridge",
-  "capsule_bridge",
+  "block_bridge",
 ];
 export const EYE_FRAME_STYLES = [
   // Normal

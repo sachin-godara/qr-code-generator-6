@@ -15,7 +15,7 @@ from engines.dots.custom_drawers import (
     HorizontalSlashModuleDrawer, VerticalSlashModuleDrawer, TriangleMosaicModuleDrawer,
     MoonCrescentModuleDrawer, LiquidDropModuleDrawer, ScallopedModuleDrawer, SteppedModuleDrawer,
     SwallowtailModuleDrawer, ShieldConnectModuleDrawer, LeafConnectModuleDrawer,
-    CircuitBridgeModuleDrawer, CapsuleBridgeModuleDrawer
+    CircuitBridgeModuleDrawer, BlockBridgeModuleDrawer
 )
 
 MODULE_DRAWER_REGISTRY = {
@@ -71,5 +71,5 @@ MODULE_DRAWER_REGISTRY = {
     "shield_connect": ShieldConnectModuleDrawer,
     "leaf_connect": LeafConnectModuleDrawer,
     "circuit_bridge": CircuitBridgeModuleDrawer,
-    "capsule_bridge": CapsuleBridgeModuleDrawer,
+    "block_bridge": BlockBridgeModuleDrawer,
 }

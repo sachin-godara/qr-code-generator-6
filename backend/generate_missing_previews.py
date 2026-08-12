@@ -37,7 +37,7 @@ class MockImg:
 
 styles_to_generate = [
     "scalloped", "stepped", "swallowtail", "shield_connect", 
-    "leaf_connect", "circuit_bridge", "capsule_bridge"
+    "leaf_connect", "circuit_bridge", "block_bridge"
 ]
 
 output_dir = r"f:\Project 001\qr code generator 6\frontend\public\previews\dots"

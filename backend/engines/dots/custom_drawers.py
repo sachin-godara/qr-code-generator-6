@@ -1196,7 +1196,7 @@ class CircuitBridgeModuleDrawer(StyledPilQRModuleDrawer):
         img = self.images[(bool(is_active.N), bool(is_active.E), bool(is_active.S), bool(is_active.W))]
         self.img._img.paste(img, (box[0][0], box[0][1]))
 
-class CapsuleBridgeModuleDrawer(StyledPilQRModuleDrawer):
+class BlockBridgeModuleDrawer(StyledPilQRModuleDrawer):
     needs_neighbors = True
     def initialize(self, *args, **kwargs):
         super().initialize(*args, **kwargs)
@@ -1213,19 +1213,19 @@ class CapsuleBridgeModuleDrawer(StyledPilQRModuleDrawer):
         base = Image.new(self.img.mode, (self.fake_size, self.fake_size), self.img.color_mask.back_color)
         draw = ImageDraw.Draw(base)
         
-        # Center circle (60% size)
-        c_min = self.fake_size * 0.2
-        c_max = self.fake_size * 0.8
-        draw.ellipse([c_min, c_min, c_max, c_max], fill=self.img.paint_color)
+        # Center square (80% size)
+        c_min = self.fake_size * 0.1
+        c_max = self.fake_size * 0.9
+        draw.rectangle([c_min, c_min, c_max, c_max], fill=self.img.paint_color)
         
-        # Bridges (40% width)
-        b_min = self.fake_size * 0.3
-        b_max = self.fake_size * 0.7
+        # Bridges (60% width)
+        b_min = self.fake_size * 0.2
+        b_max = self.fake_size * 0.8
         
-        if n: draw.rectangle([b_min, 0, b_max, self.fake_size/2], fill=self.img.paint_color)
-        if s: draw.rectangle([b_min, self.fake_size/2, b_max, self.fake_size], fill=self.img.paint_color)
-        if e: draw.rectangle([self.fake_size/2, b_min, self.fake_size, b_max], fill=self.img.paint_color)
-        if w: draw.rectangle([0, b_min, self.fake_size/2, b_max], fill=self.img.paint_color)
+        if n: draw.rectangle([b_min, 0, b_max, c_min], fill=self.img.paint_color)
+        if s: draw.rectangle([b_min, c_max, b_max, self.fake_size], fill=self.img.paint_color)
+        if e: draw.rectangle([c_max, b_min, self.fake_size, b_max], fill=self.img.paint_color)
+        if w: draw.rectangle([0, b_min, c_min, b_max], fill=self.img.paint_color)
         
         return base.resize((self.box_size, self.box_size), Image.Resampling.LANCZOS)
         
