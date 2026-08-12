@@ -19,7 +19,7 @@ export const PRESET_LOGO_BRAND_COLORS: Record<string, string> = {
   Crypto: "#F7931A",
   Twitter: "#1DA1F2",
   LinkedIn: "#0A66C2",
-  Github: "#181717",
+  GitHub: "#181717",
   Discord: "#5865F2",
   TikTok: "#000000",
   Spotify: "#1DB954",
@@ -27,5 +27,8 @@ export const PRESET_LOGO_BRAND_COLORS: Record<string, string> = {
   Telegram: "#26A5E4",
   Pinterest: "#E60023",
   Amazon: "#FF9900",
+  Netflix: "#E50914",
+  Twitch: "#9146FF",
+  Reddit: "#FF4500",
   None: "#000000",
 };
