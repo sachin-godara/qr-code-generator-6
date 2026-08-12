@@ -252,10 +252,103 @@ class BevelModuleDrawer(StyledPilQRModuleDrawer):
         se = self.SE_BEVEL if se_beveled else self.SQUARE
         sw = self.SW_BEVEL if sw_beveled else self.SQUARE
         
-        self.img._img.paste(nw, (box[0][0], box[0][1]))
-        self.img._img.paste(ne, (box[0][0] + self.corner_width, box[0][1]))
-        self.img._img.paste(se, (box[0][0] + self.corner_width, box[0][1] + self.corner_width))
-        self.img._img.paste(sw, (box[0][0], box[0][1] + self.corner_width))
+        x, y = box[0]
+        self.img._img.paste(nw, (x, y))
+        self.img._img.paste(ne, (x + self.corner_width, y))
+        self.img._img.paste(se, (x + self.corner_width, y + self.corner_width))
+        self.img._img.paste(sw, (x, y + self.corner_width))
+
+class ScallopedModuleDrawer(StyledPilQRModuleDrawer):
+    needs_neighbors = True
+    
+    def initialize(self, *args, **kwargs):
+        super().initialize(*args, **kwargs)
+        self.corner_width = int(self.img.box_size / 2)
+        self.setup_corners()
+        
+    def setup_corners(self):
+        mode = self.img.mode
+        back_color = self.img.color_mask.back_color
+        front_color = self.img.paint_color
+        self.SQUARE = Image.new(mode, (self.corner_width, self.corner_width), front_color)
+        
+        fake_width = self.corner_width * ANTIALIASING_FACTOR
+        base = Image.new(mode, (fake_width, fake_width), front_color)
+        base_draw = ImageDraw.Draw(base)
+        
+        # Draw a circle (pie slice) using back_color at the top-left (0,0) corner
+        radius = int(fake_width * 0.9) # Slightly smaller than the full corner for a nice edge
+        base_draw.pieslice([-radius, -radius, radius, radius], 0, 360, fill=back_color)
+        
+        self.NW_CORNER = base.resize((self.corner_width, self.corner_width), Image.Resampling.LANCZOS)
+        self.SW_CORNER = self.NW_CORNER.transpose(Image.Transpose.FLIP_TOP_BOTTOM)
+        self.SE_CORNER = self.NW_CORNER.transpose(Image.Transpose.ROTATE_180)
+        self.NE_CORNER = self.NW_CORNER.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+        
+    def drawrect(self, box, is_active: "ActiveWithNeighbors"):
+        if not is_active:
+            return
+        nw_exposed = not is_active.W and not is_active.N
+        ne_exposed = not is_active.N and not is_active.E
+        se_exposed = not is_active.E and not is_active.S
+        sw_exposed = not is_active.S and not is_active.W
+        
+        nw = self.NW_CORNER if nw_exposed else self.SQUARE
+        ne = self.NE_CORNER if ne_exposed else self.SQUARE
+        se = self.SE_CORNER if se_exposed else self.SQUARE
+        sw = self.SW_CORNER if sw_exposed else self.SQUARE
+        
+        x, y = box[0]
+        self.img._img.paste(nw, (x, y))
+        self.img._img.paste(ne, (x + self.corner_width, y))
+        self.img._img.paste(se, (x + self.corner_width, y + self.corner_width))
+        self.img._img.paste(sw, (x, y + self.corner_width))
+
+class SteppedModuleDrawer(StyledPilQRModuleDrawer):
+    needs_neighbors = True
+    
+    def initialize(self, *args, **kwargs):
+        super().initialize(*args, **kwargs)
+        self.corner_width = int(self.img.box_size / 2)
+        self.setup_corners()
+        
+    def setup_corners(self):
+        mode = self.img.mode
+        back_color = self.img.color_mask.back_color
+        front_color = self.img.paint_color
+        self.SQUARE = Image.new(mode, (self.corner_width, self.corner_width), front_color)
+        
+        fake_width = self.corner_width * ANTIALIASING_FACTOR
+        base = Image.new(mode, (fake_width, fake_width), front_color)
+        base_draw = ImageDraw.Draw(base)
+        
+        # Cutout a small square at the top-left (0,0) corner
+        step_size = int(fake_width * 0.5)
+        base_draw.rectangle([0, 0, step_size, step_size], fill=back_color)
+        
+        self.NW_CORNER = base.resize((self.corner_width, self.corner_width), Image.Resampling.LANCZOS)
+        self.SW_CORNER = self.NW_CORNER.transpose(Image.Transpose.FLIP_TOP_BOTTOM)
+        self.SE_CORNER = self.NW_CORNER.transpose(Image.Transpose.ROTATE_180)
+        self.NE_CORNER = self.NW_CORNER.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+        
+    def drawrect(self, box, is_active: "ActiveWithNeighbors"):
+        if not is_active:
+            return
+        nw_exposed = not is_active.W and not is_active.N
+        ne_exposed = not is_active.N and not is_active.E
+        se_exposed = not is_active.E and not is_active.S
+        sw_exposed = not is_active.S and not is_active.W
+        
+        nw = self.NW_CORNER if nw_exposed else self.SQUARE
+        ne = self.NE_CORNER if ne_exposed else self.SQUARE
+        se = self.SE_CORNER if se_exposed else self.SQUARE
+        sw = self.SW_CORNER if sw_exposed else self.SQUARE
+        
+        x, y = box[0]
+        self.img._img.paste(nw, (x, y))
+        self.img._img.paste(ne, (x + self.corner_width, y))
+        self.img._img.paste(se, (x + self.corner_width, y + self.corner_width))
+        self.img._img.paste(sw, (x, y + self.corner_width))
 
 class FishtailModuleDrawer(StyledPilQRModuleDrawer):
     needs_neighbors = True
@@ -915,3 +1008,228 @@ class LiquidDropModuleDrawer(StyledPilQRModuleDrawer):
     def drawrect(self, box, is_active: bool):
         if is_active:
             self.img._img.paste(self.shape, (box[0][0], box[0][1]))
+
+class SwallowtailModuleDrawer(StyledPilQRModuleDrawer):
+    needs_neighbors = True
+    def initialize(self, *args, **kwargs):
+        super().initialize(*args, **kwargs)
+        self.corner_width = int(self.img.box_size / 2)
+        self.setup_corners()
+        
+    def setup_corners(self):
+        mode = self.img.mode
+        back_color = self.img.color_mask.back_color
+        front_color = self.img.paint_color
+        self.SQUARE = Image.new(mode, (self.corner_width, self.corner_width), front_color)
+        
+        fake_width = self.corner_width * ANTIALIASING_FACTOR
+        base = Image.new(mode, (fake_width, fake_width), front_color)
+        base_draw = ImageDraw.Draw(base)
+        
+        fw2 = fake_width // 2
+        fw4 = fake_width // 4
+        # Subtract an inward V-shape at the top-left corner
+        base_draw.polygon([(0, 0), (fw2, 0), (fw4, fw4), (0, fw2)], fill=back_color)
+        
+        self.NW_CORNER = base.resize((self.corner_width, self.corner_width), Image.Resampling.LANCZOS)
+        self.SW_CORNER = self.NW_CORNER.transpose(Image.Transpose.FLIP_TOP_BOTTOM)
+        self.SE_CORNER = self.NW_CORNER.transpose(Image.Transpose.ROTATE_180)
+        self.NE_CORNER = self.NW_CORNER.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+        
+    def drawrect(self, box, is_active: "ActiveWithNeighbors"):
+        if not is_active: return
+        nw_exposed = not is_active.W and not is_active.N
+        ne_exposed = not is_active.N and not is_active.E
+        se_exposed = not is_active.E and not is_active.S
+        sw_exposed = not is_active.S and not is_active.W
+        
+        nw = self.NW_CORNER if nw_exposed else self.SQUARE
+        ne = self.NE_CORNER if ne_exposed else self.SQUARE
+        se = self.SE_CORNER if se_exposed else self.SQUARE
+        sw = self.SW_CORNER if sw_exposed else self.SQUARE
+        
+        x, y = box[0]
+        self.img._img.paste(nw, (x, y))
+        self.img._img.paste(ne, (x + self.corner_width, y))
+        self.img._img.paste(se, (x + self.corner_width, y + self.corner_width))
+        self.img._img.paste(sw, (x, y + self.corner_width))
+
+class ShieldConnectModuleDrawer(StyledPilQRModuleDrawer):
+    needs_neighbors = True
+    def initialize(self, *args, **kwargs):
+        super().initialize(*args, **kwargs)
+        self.corner_width = int(self.img.box_size / 2)
+        self.setup_corners()
+        
+    def setup_corners(self):
+        mode = self.img.mode
+        back_color = self.img.color_mask.back_color
+        front_color = self.img.paint_color
+        self.SQUARE = Image.new(mode, (self.corner_width, self.corner_width), front_color)
+        
+        fake_width = self.corner_width * ANTIALIASING_FACTOR
+        
+        # Rounded Corner Base (Top)
+        rnd_base = Image.new(mode, (fake_width, fake_width), back_color)
+        rnd_draw = ImageDraw.Draw(rnd_base)
+        rnd_draw.pieslice([0, 0, fake_width*2, fake_width*2], 180, 270, fill=front_color)
+        rnd_corner = rnd_base.resize((self.corner_width, self.corner_width), Image.Resampling.LANCZOS)
+        
+        # Bevel Corner Base (Bottom)
+        bvl_base = Image.new(mode, (fake_width, fake_width), back_color)
+        bvl_draw = ImageDraw.Draw(bvl_base)
+        bvl_draw.polygon([(fake_width-1, 0), (fake_width-1, fake_width-1), (0, fake_width-1)], fill=front_color)
+        bvl_corner = bvl_base.resize((self.corner_width, self.corner_width), Image.Resampling.LANCZOS)
+        
+        self.NW_CORNER = rnd_corner
+        self.NE_CORNER = rnd_corner.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+        self.SW_CORNER = bvl_corner.transpose(Image.Transpose.FLIP_TOP_BOTTOM)
+        self.SE_CORNER = bvl_corner.transpose(Image.Transpose.ROTATE_180)
+        
+    def drawrect(self, box, is_active: "ActiveWithNeighbors"):
+        if not is_active: return
+        nw_exposed = not is_active.W and not is_active.N
+        ne_exposed = not is_active.N and not is_active.E
+        se_exposed = not is_active.E and not is_active.S
+        sw_exposed = not is_active.S and not is_active.W
+        
+        nw = self.NW_CORNER if nw_exposed else self.SQUARE
+        ne = self.NE_CORNER if ne_exposed else self.SQUARE
+        se = self.SE_CORNER if se_exposed else self.SQUARE
+        sw = self.SW_CORNER if sw_exposed else self.SQUARE
+        
+        x, y = box[0]
+        self.img._img.paste(nw, (x, y))
+        self.img._img.paste(ne, (x + self.corner_width, y))
+        self.img._img.paste(se, (x + self.corner_width, y + self.corner_width))
+        self.img._img.paste(sw, (x, y + self.corner_width))
+
+class LeafConnectModuleDrawer(StyledPilQRModuleDrawer):
+    needs_neighbors = True
+    def initialize(self, *args, **kwargs):
+        super().initialize(*args, **kwargs)
+        self.corner_width = int(self.img.box_size / 2)
+        self.setup_corners()
+        
+    def setup_corners(self):
+        mode = self.img.mode
+        back_color = self.img.color_mask.back_color
+        front_color = self.img.paint_color
+        self.SQUARE = Image.new(mode, (self.corner_width, self.corner_width), front_color)
+        
+        fake_width = self.corner_width * ANTIALIASING_FACTOR
+        
+        # Rounded Corner Base
+        rnd_base = Image.new(mode, (fake_width, fake_width), back_color)
+        rnd_draw = ImageDraw.Draw(rnd_base)
+        rnd_draw.pieslice([0, 0, fake_width*2, fake_width*2], 180, 270, fill=front_color)
+        rnd_corner = rnd_base.resize((self.corner_width, self.corner_width), Image.Resampling.LANCZOS)
+        
+        # Scalloped Corner Base
+        scl_base = Image.new(mode, (fake_width, fake_width), front_color)
+        scl_draw = ImageDraw.Draw(scl_base)
+        
+        # We need to subtract a circle exactly like Scalloped does
+        radius = int(fake_width * 0.9)
+        scl_draw.pieslice([-radius, -radius, radius, radius], 0, 360, fill=back_color)
+        scl_corner = scl_base.resize((self.corner_width, self.corner_width), Image.Resampling.LANCZOS)
+        
+        # TL/BR = Rounded, TR/BL = Scalloped
+        self.NW_CORNER = rnd_corner
+        self.SE_CORNER = rnd_corner.transpose(Image.Transpose.ROTATE_180)
+        self.NE_CORNER = scl_corner.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+        self.SW_CORNER = scl_corner.transpose(Image.Transpose.FLIP_TOP_BOTTOM)
+        
+    def drawrect(self, box, is_active: "ActiveWithNeighbors"):
+        if not is_active: return
+        nw_exposed = not is_active.W and not is_active.N
+        ne_exposed = not is_active.N and not is_active.E
+        se_exposed = not is_active.E and not is_active.S
+        sw_exposed = not is_active.S and not is_active.W
+        
+        nw = self.NW_CORNER if nw_exposed else self.SQUARE
+        ne = self.NE_CORNER if ne_exposed else self.SQUARE
+        se = self.SE_CORNER if se_exposed else self.SQUARE
+        sw = self.SW_CORNER if sw_exposed else self.SQUARE
+        
+        x, y = box[0]
+        self.img._img.paste(nw, (x, y))
+        self.img._img.paste(ne, (x + self.corner_width, y))
+        self.img._img.paste(se, (x + self.corner_width, y + self.corner_width))
+        self.img._img.paste(sw, (x, y + self.corner_width))
+
+class CircuitBridgeModuleDrawer(StyledPilQRModuleDrawer):
+    needs_neighbors = True
+    def initialize(self, *args, **kwargs):
+        super().initialize(*args, **kwargs)
+        self.box_size = self.img.box_size
+        self.fake_size = self.box_size * ANTIALIASING_FACTOR
+        self.images = {}
+        for n in [False, True]:
+            for e in [False, True]:
+                for s in [False, True]:
+                    for w in [False, True]:
+                        self.images[(n, e, s, w)] = self._create_module(n, e, s, w)
+
+    def _create_module(self, n, e, s, w):
+        base = Image.new(self.img.mode, (self.fake_size, self.fake_size), self.img.color_mask.back_color)
+        draw = ImageDraw.Draw(base)
+        
+        # Center square (60% size)
+        c_min = self.fake_size * 0.2
+        c_max = self.fake_size * 0.8
+        draw.rectangle([c_min, c_min, c_max, c_max], fill=self.img.paint_color)
+        
+        # Bridges (40% width)
+        b_min = self.fake_size * 0.3
+        b_max = self.fake_size * 0.7
+        
+        if n: draw.rectangle([b_min, 0, b_max, c_min], fill=self.img.paint_color)
+        if s: draw.rectangle([b_min, c_max, b_max, self.fake_size], fill=self.img.paint_color)
+        if e: draw.rectangle([c_max, b_min, self.fake_size, b_max], fill=self.img.paint_color)
+        if w: draw.rectangle([0, b_min, c_min, b_max], fill=self.img.paint_color)
+        
+        return base.resize((self.box_size, self.box_size), Image.Resampling.LANCZOS)
+        
+    def drawrect(self, box, is_active: "ActiveWithNeighbors"):
+        if not is_active: return
+        img = self.images[(bool(is_active.N), bool(is_active.E), bool(is_active.S), bool(is_active.W))]
+        self.img._img.paste(img, (box[0][0], box[0][1]))
+
+class CapsuleBridgeModuleDrawer(StyledPilQRModuleDrawer):
+    needs_neighbors = True
+    def initialize(self, *args, **kwargs):
+        super().initialize(*args, **kwargs)
+        self.box_size = self.img.box_size
+        self.fake_size = self.box_size * ANTIALIASING_FACTOR
+        self.images = {}
+        for n in [False, True]:
+            for e in [False, True]:
+                for s in [False, True]:
+                    for w in [False, True]:
+                        self.images[(n, e, s, w)] = self._create_module(n, e, s, w)
+
+    def _create_module(self, n, e, s, w):
+        base = Image.new(self.img.mode, (self.fake_size, self.fake_size), self.img.color_mask.back_color)
+        draw = ImageDraw.Draw(base)
+        
+        # Center circle (60% size)
+        c_min = self.fake_size * 0.2
+        c_max = self.fake_size * 0.8
+        draw.ellipse([c_min, c_min, c_max, c_max], fill=self.img.paint_color)
+        
+        # Bridges (40% width)
+        b_min = self.fake_size * 0.3
+        b_max = self.fake_size * 0.7
+        
+        if n: draw.rectangle([b_min, 0, b_max, self.fake_size/2], fill=self.img.paint_color)
+        if s: draw.rectangle([b_min, self.fake_size/2, b_max, self.fake_size], fill=self.img.paint_color)
+        if e: draw.rectangle([self.fake_size/2, b_min, self.fake_size, b_max], fill=self.img.paint_color)
+        if w: draw.rectangle([0, b_min, self.fake_size/2, b_max], fill=self.img.paint_color)
+        
+        return base.resize((self.box_size, self.box_size), Image.Resampling.LANCZOS)
+        
+    def drawrect(self, box, is_active: "ActiveWithNeighbors"):
+        if not is_active: return
+        img = self.images[(bool(is_active.N), bool(is_active.E), bool(is_active.S), bool(is_active.W))]
+        self.img._img.paste(img, (box[0][0], box[0][1]))

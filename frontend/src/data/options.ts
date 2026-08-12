@@ -17,6 +17,8 @@ export const DOT_STYLES = [
   "rounded_plus",
   "sheared",
   "bevel",
+  "scalloped",
+  "stepped",
   "squircle",
   "target_bullseye",
   "diamond_target",
@@ -37,6 +39,11 @@ export const DOT_STYLES = [
   "horizontal_slash",
   "vertical_slash",
   "triangle_mosaic",
+  "swallowtail",
+  "shield_connect",
+  "leaf_connect",
+  "circuit_bridge",
+  "capsule_bridge",
 ];
 export const EYE_FRAME_STYLES = [
   // Normal

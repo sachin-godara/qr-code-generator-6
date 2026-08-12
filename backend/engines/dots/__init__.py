@@ -13,7 +13,9 @@ from engines.dots.custom_drawers import (
     LotusPetalModuleDrawer, NetworkNodesModuleDrawer, SleekDashModuleDrawer, MinimalDotsModuleDrawer,
     HollowDotsModuleDrawer, CrossstitchModuleDrawer, PixelArtModuleDrawer, DiagonalStripeModuleDrawer,
     HorizontalSlashModuleDrawer, VerticalSlashModuleDrawer, TriangleMosaicModuleDrawer,
-    MoonCrescentModuleDrawer, LiquidDropModuleDrawer
+    MoonCrescentModuleDrawer, LiquidDropModuleDrawer, ScallopedModuleDrawer, SteppedModuleDrawer,
+    SwallowtailModuleDrawer, ShieldConnectModuleDrawer, LeafConnectModuleDrawer,
+    CircuitBridgeModuleDrawer, CapsuleBridgeModuleDrawer
 )
 
 MODULE_DRAWER_REGISTRY = {
@@ -63,4 +65,11 @@ MODULE_DRAWER_REGISTRY = {
     "triangle_mosaic": TriangleMosaicModuleDrawer,
     "moon_crescent": MoonCrescentModuleDrawer,
     "liquid_drop": LiquidDropModuleDrawer,
+    "scalloped": ScallopedModuleDrawer,
+    "stepped": SteppedModuleDrawer,
+    "swallowtail": SwallowtailModuleDrawer,
+    "shield_connect": ShieldConnectModuleDrawer,
+    "leaf_connect": LeafConnectModuleDrawer,
+    "circuit_bridge": CircuitBridgeModuleDrawer,
+    "capsule_bridge": CapsuleBridgeModuleDrawer,
 }
