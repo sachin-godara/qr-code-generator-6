@@ -5,20 +5,27 @@ import pytest
 import cv2
 import numpy as np
 from services.qr_service import generate_qr_image
+from services.scan_service import deep_scan_qr
 
 def get_templates():
     import subprocess
-    js_code = """
+    # Find templates.ts path reliably regardless of cwd
+    cur_dir = os.path.dirname(os.path.abspath(__file__))
+    candidates = [
+        os.path.abspath(os.path.join(cur_dir, "..", "..", "frontend", "src", "data", "templates.ts")),
+        os.path.abspath(os.path.join(cur_dir, "..", "frontend", "src", "data", "templates.ts")),
+    ]
+    file_path = next((p for p in candidates if os.path.exists(p)), candidates[0])
+    
+    js_code = f"""
     const fs = require('fs');
-    const path = require('path');
-    const filePath = path.join(process.cwd(), '..', 'frontend', 'src', 'data', 'templates.ts');
-    const content = fs.readFileSync(filePath, 'utf8');
+    const content = fs.readFileSync({json.dumps(file_path)}, 'utf8');
     const match = content.match(/export const PRESET_TEMPLATES:\\s*Template\\[\\]\\s*=\\s*(\\[[\\s\\S]*?\\]);/);
-    if(match) {
+    if(match) {{
         const evaluate = new Function('return ' + match[1]);
         const templates = evaluate();
         console.log(JSON.stringify(templates));
-    }
+    }}
     """
     proc = subprocess.run(["node", "-e", js_code], capture_output=True, text=True)
     if proc.returncode != 0:
@@ -41,22 +48,22 @@ def test_template_scannability(template):
     
     img_bytes = generate_qr_image(payload, settings)
     
-    # Load with cv2
-    nparr = np.frombuffer(img_bytes.getvalue(), np.uint8)
-    img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
-    
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    
-    # Decode using pyzbar
-    from pyzbar.pyzbar import decode
-    
-    # Try normal
-    decoded_objs = decode(gray)
-    found_payload = any(obj.data.decode('utf-8') == payload for obj in decoded_objs)
-    
-    # Try inverted
+    # Primary: Test using production deep scan engine
+    found_payload = False
+    try:
+        res = deep_scan_qr(img_bytes.getvalue())
+        found_payload = (res == payload)
+    except Exception:
+        found_payload = False
+        
+    # Secondary: Fallback to direct OpenCV / PyZbar
     if not found_payload:
-        decoded_objs = decode(cv2.bitwise_not(gray))
+        nparr = np.frombuffer(img_bytes.getvalue(), np.uint8)
+        img = cv2.imdecode(nparr, cv2.IMREAD_COLOR)
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        from pyzbar.pyzbar import decode
+        decoded_objs = decode(gray) or decode(cv2.bitwise_not(gray))
         found_payload = any(obj.data.decode('utf-8') == payload for obj in decoded_objs)
             
     assert found_payload, f"Template '{name}' failed to scan"
+

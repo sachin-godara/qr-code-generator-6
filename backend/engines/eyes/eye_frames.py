@@ -11,10 +11,10 @@ def find_coeffs(pa, pb):
     for p1, p2 in zip(pa, pb):
         matrix.append([p1[0], p1[1], 1, 0, 0, 0, -p2[0]*p1[0], -p2[0]*p1[1]])
         matrix.append([0, 0, 0, p1[0], p1[1], 1, -p2[1]*p1[0], -p2[1]*p1[1]])
-    A = np.matrix(matrix, dtype=np.float32)
-    B = np.array(pb).reshape(8)
-    res = np.dot(np.linalg.inv(A.T * A) * A.T, B)
-    return np.array(res).reshape(8)
+    A = np.array(matrix, dtype=np.float32)
+    B = np.array(pb, dtype=np.float32).reshape(8)
+    res, _, _, _ = np.linalg.lstsq(A, B, rcond=None)
+    return res.reshape(8)
 
 def make_sharp_corner(draw, px, py, corner, s, r, color):
     if corner == "TL":
