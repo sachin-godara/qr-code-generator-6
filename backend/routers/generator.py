@@ -111,7 +111,12 @@ class QRRequest(BaseModel):
 async def generate_qr(payload: QRRequest, request: Request):
     try:
         img_bytes = await run_in_threadpool(generate_qr_image, payload.data, payload.model_dump())
-        return StreamingResponse(img_bytes, media_type="image/png")
+        content = img_bytes.getvalue() if hasattr(img_bytes, 'getvalue') else img_bytes
+        return Response(
+            content=content,
+            media_type="image/png",
+            headers={"Cache-Control": "public, max-age=86400, stale-while-revalidate=3600"}
+        )
     except Exception as e:
         logger.exception("Failed to generate QR PNG image")
         raise HTTPException(status_code=500, detail="Failed to generate QR code")
@@ -121,7 +126,11 @@ async def generate_qr(payload: QRRequest, request: Request):
 async def generate_svg(payload: QRRequest, request: Request):
     try:
         svg_bytes = await run_in_threadpool(generate_qr_svg, payload.data, payload.model_dump())
-        return Response(content=svg_bytes, media_type="image/svg+xml")
+        return Response(
+            content=svg_bytes,
+            media_type="image/svg+xml",
+            headers={"Cache-Control": "public, max-age=86400, stale-while-revalidate=3600"}
+        )
     except Exception as e:
         logger.exception("Failed to generate QR SVG")
         raise HTTPException(status_code=500, detail="Failed to generate SVG QR code")
@@ -131,7 +140,12 @@ async def generate_svg(payload: QRRequest, request: Request):
 async def generate_pdf(payload: QRRequest, request: Request):
     try:
         pdf_bytes = await run_in_threadpool(generate_qr_pdf, payload.data, payload.model_dump())
-        return StreamingResponse(pdf_bytes, media_type="application/pdf")
+        content = pdf_bytes.getvalue() if hasattr(pdf_bytes, 'getvalue') else pdf_bytes
+        return Response(
+            content=content,
+            media_type="application/pdf",
+            headers={"Cache-Control": "public, max-age=86400, stale-while-revalidate=3600"}
+        )
     except Exception as e:
         logger.exception("Failed to generate QR PDF")
         raise HTTPException(status_code=500, detail="Failed to generate PDF QR code")
@@ -141,7 +155,11 @@ async def generate_pdf(payload: QRRequest, request: Request):
 async def get_frame_thumbnail(style: str, request: Request):
     try:
         img_bytes = await run_in_threadpool(get_frame_preview, style)
-        return Response(content=img_bytes, media_type="image/png")
+        return Response(
+            content=img_bytes,
+            media_type="image/png",
+            headers={"Cache-Control": "public, max-age=604800, immutable"}
+        )
     except Exception as e:
         logger.exception(f"Failed to render frame thumbnail for style {style}")
         raise HTTPException(status_code=500, detail="Failed to render frame preview")
@@ -151,7 +169,11 @@ async def get_frame_thumbnail(style: str, request: Request):
 async def get_text_frame_thumbnail(style: str, request: Request):
     try:
         img_bytes = await run_in_threadpool(get_text_frame_preview, style)
-        return Response(content=img_bytes, media_type="image/png")
+        return Response(
+            content=img_bytes,
+            media_type="image/png",
+            headers={"Cache-Control": "public, max-age=604800, immutable"}
+        )
     except Exception as e:
         logger.exception(f"Failed to render text frame thumbnail for style {style}")
         raise HTTPException(status_code=500, detail="Failed to render text frame preview")

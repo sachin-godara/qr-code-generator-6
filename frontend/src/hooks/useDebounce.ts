@@ -1,0 +1,21 @@
+import { useState, useEffect } from "react";
+
+/**
+ * Custom hook to debounce any rapidly changing value.
+ * Perfect for throttling server preview requests during user typing and slider adjustments.
+ */
+export function useDebounce<T>(value: T, delay: number = 200): T {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+}

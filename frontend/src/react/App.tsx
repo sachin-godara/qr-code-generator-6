@@ -4,6 +4,7 @@ import { Loader2 } from "lucide-react"
 import { useQuery, keepPreviousData } from "@tanstack/react-query"
 import { useQRStore } from "@/store/useQRStore"
 import { useToast } from "@/hooks/useToast"
+import { useDebounce } from "@/hooks/useDebounce"
 import { useDownloadHandlers } from "@/hooks/useDownloadHandlers"
 import { useDownloadStore } from "@/store/useDownloadStore"
 import { fetchQRPreview } from "@/services/qrApi"
@@ -123,10 +124,13 @@ function App() {
     window.scrollTo({ top: 0, behavior: "auto" });
   }, [activeTab, mobileMainTab]);
 
+  // Debounce rapid input typing & continuous slider changes by 250ms to dramatically reduce backend requests
+  const debouncedSettings = useDebounce(settings, 250);
+
   const { data: qrData, isLoading, isError, isFetching } = useQuery({
-    queryKey: ["qr-code", settings],
-    queryFn: () => fetchQRPreview(settings),
-    staleTime: 1000 * 60,
+    queryKey: ["qr-code", debouncedSettings],
+    queryFn: ({ signal }) => fetchQRPreview(debouncedSettings, signal),
+    staleTime: 1000 * 60 * 5, // 5 minutes cache
     placeholderData: keepPreviousData,
   })
   const imageUrl = qrData?.url

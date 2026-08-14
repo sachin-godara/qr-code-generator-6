@@ -2,11 +2,64 @@ import io
 import gc
 import base64
 import logging
+import hashlib
+import json
+import threading
+from collections import OrderedDict
+from functools import lru_cache
 
 logger = logging.getLogger(__name__)
 from PIL import Image, ImageDraw, ImageFilter
 from qr_engine import generate_styled_qr, generate_svg_qr, hex_to_rgb
 from frame_engine import apply_layout_frame, apply_text_frame
+
+class SimpleLRUCache:
+    """Thread-safe in-memory LRU cache for rendered QR binaries."""
+    def __init__(self, maxsize: int = 1024):
+        self.maxsize = maxsize
+        self.cache = OrderedDict()
+        self.lock = threading.Lock()
+
+    def get(self, key: str):
+        with self.lock:
+            if key in self.cache:
+                self.cache.move_to_end(key)
+                return self.cache[key]
+            return None
+
+    def set(self, key: str, value: bytes):
+        with self.lock:
+            if key in self.cache:
+                self.cache.move_to_end(key)
+            self.cache[key] = value
+            if len(self.cache) > self.maxsize:
+                self.cache.popitem(last=False)
+
+    def clear(self):
+        with self.lock:
+            self.cache.clear()
+
+_qr_image_cache = SimpleLRUCache(maxsize=1024)
+_qr_svg_cache = SimpleLRUCache(maxsize=1024)
+
+def _compute_cache_key(data: str, params: dict, prefix: str = "img") -> str:
+    clean_params = {}
+    for k, v in params.items():
+        if k == "logo_image":
+            if isinstance(v, Image.Image):
+                clean_params[k] = f"pil_{v.size}_{v.mode}"
+            elif isinstance(v, str):
+                clean_params[k] = hashlib.md5(v.encode('utf-8')).hexdigest() if len(v) > 64 else v
+            else:
+                clean_params[k] = str(v)
+        elif isinstance(v, (str, int, float, bool)) or v is None:
+            clean_params[k] = v
+        elif isinstance(v, (list, tuple)):
+            clean_params[k] = list(v)
+        elif isinstance(v, dict):
+            clean_params[k] = {str(dk): str(dv) for dk, dv in sorted(v.items())}
+    serialized = json.dumps({"d": data, "p": clean_params}, sort_keys=True)
+    return f"{prefix}:{hashlib.md5(serialized.encode('utf-8')).hexdigest()}"
 
 def apply_canvas_effects(img: Image.Image, params: dict) -> Image.Image:
     canvas_radius = params.get("canvas_radius", 0)
@@ -69,8 +122,6 @@ def apply_canvas_effects(img: Image.Image, params: dict) -> Image.Image:
     full_w = inner_w + margin * 2
     full_h = inner_h + margin * 2 + offset_y
     
-    shadow_canvas = Image.new("RGBA", (full_w, full_h), (0, 0, 0, 0))
-    
     s_color = str(effect_shadow_color).strip()
     if s_color.startswith("#"):
         clean_hex = s_color.lstrip("#")[:6]
@@ -95,8 +146,27 @@ def apply_canvas_effects(img: Image.Image, params: dict) -> Image.Image:
     
     s_block = Image.new("RGBA", (inner_w, inner_h), shadow_rgb + (255,))
     
-    shadow_canvas.paste(s_block, (margin, margin + offset_y), s_mask)
-    shadow_canvas = shadow_canvas.filter(ImageFilter.GaussianBlur(blur_r))
+    # Fast shadow optimization: for large canvases, downscale the shadow block before Gaussian blur
+    down_factor = max(1, min(4, int(scale)))
+    if down_factor > 1 and blur_r >= 8:
+        small_w = max(1, full_w // down_factor)
+        small_h = max(1, full_h // down_factor)
+        small_inner_w = max(1, inner_w // down_factor)
+        small_inner_h = max(1, inner_h // down_factor)
+        small_margin = margin // down_factor
+        small_offset_y = offset_y // down_factor
+        small_blur_r = max(1, blur_r // down_factor)
+
+        small_s_mask = s_mask.resize((small_inner_w, small_inner_h), Image.Resampling.BILINEAR)
+        small_s_block = Image.new("RGBA", (small_inner_w, small_inner_h), shadow_rgb + (255,))
+        small_shadow_canvas = Image.new("RGBA", (small_w, small_h), (0, 0, 0, 0))
+        small_shadow_canvas.paste(small_s_block, (small_margin, small_margin + small_offset_y), small_s_mask)
+        small_shadow_canvas = small_shadow_canvas.filter(ImageFilter.GaussianBlur(small_blur_r))
+        shadow_canvas = small_shadow_canvas.resize((full_w, full_h), Image.Resampling.BILINEAR)
+    else:
+        shadow_canvas = Image.new("RGBA", (full_w, full_h), (0, 0, 0, 0))
+        shadow_canvas.paste(s_block, (margin, margin + offset_y), s_mask)
+        shadow_canvas = shadow_canvas.filter(ImageFilter.GaussianBlur(blur_r))
     
     shadow_canvas.paste(canvas_result, (margin, margin), canvas_result)
     return shadow_canvas
@@ -104,7 +174,13 @@ def apply_canvas_effects(img: Image.Image, params: dict) -> Image.Image:
 def generate_qr_image(data: str, params: dict) -> io.BytesIO:
     """
     Generates a QR code image based on the provided parameters.
+    Utilizes an in-memory LRU cache to return cached byte buffers instantly.
     """
+    cache_key = _compute_cache_key(data, params, prefix="img")
+    cached_bytes = _qr_image_cache.get(cache_key)
+    if cached_bytes is not None:
+        return io.BytesIO(cached_bytes)
+
     logo_image = params.get("logo_image")
     logo_pil = None
     if logo_image:
@@ -178,7 +254,7 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
                 bg_data = base64.b64decode(p["bg_image"].split(",")[1]) if "," in p["bg_image"] else base64.b64decode(p["bg_image"])
                 bg_img = Image.open(io.BytesIO(bg_data)).convert("RGBA")
                 
-                # Resize bg image to match QR code size (or vice versa, usually QR matches bg)
+                # Resize bg image to match QR code size
                 bg_img = bg_img.resize(base_qr.size, Image.Resampling.LANCZOS)
                 
                 # Adjust opacity of background if provided (percentage 0-100)
@@ -193,21 +269,10 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
                 # Blend mode handling
                 blend_mode = p.get("bg_image_blend_mode", "normal")
                 
-                if blend_mode == "normal":
-                    # Create a new image to composite
-                    comp = Image.new("RGBA", base_qr.size)
-                    # Paste background
-                    comp.paste(bg_img, (0, 0), bg_img)
-                    # Paste QR over background (assuming QR has transparent background)
-                    comp.paste(base_qr, (0, 0), base_qr)
-                    base_qr = comp
-                else:
-                    # Other blend modes could be added here later (multiply, screen, etc.)
-                    # For now fallback to normal
-                    comp = Image.new("RGBA", base_qr.size)
-                    comp.paste(bg_img, (0, 0), bg_img)
-                    comp.paste(base_qr, (0, 0), base_qr)
-                    base_qr = comp
+                comp = Image.new("RGBA", base_qr.size)
+                comp.paste(bg_img, (0, 0), bg_img)
+                comp.paste(base_qr, (0, 0), base_qr)
+                base_qr = comp
                     
             except Exception as e:
                 logger.warning(f"Error applying background image: {e}")
@@ -251,23 +316,48 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
         
         if no_stretching:
             import copy
-            # Calculate optimal integer box_size so QR modules are rendered natively
-            dummy_params = copy.deepcopy(params)
-            dummy_params["target_size"] = 0
-            original_box_size = dummy_params.get("box_size", 10)
-            dummy_img = _build_image(dummy_params)
+            import qrcode
             
-            orig_w = dummy_img.size[0]
+            # Fast width calculation to avoid expensive dummy image build if no complex frames
+            has_complex_frames = (
+                (params.get("frame_style") and params.get("frame_style") != "none") or
+                (params.get("text_style") and params.get("text_style") != "none") or
+                params.get("canvas_border_width", 0) > 0 or
+                params.get("effect_shadow", "none") != "none"
+            )
+
+            original_box_size = params.get("box_size", 10)
+
+            if not has_complex_frames:
+                _ec_map = {
+                    "L": qrcode.constants.ERROR_CORRECT_L,
+                    "M": qrcode.constants.ERROR_CORRECT_M,
+                    "Q": qrcode.constants.ERROR_CORRECT_Q,
+                    "H": qrcode.constants.ERROR_CORRECT_H,
+                }
+                ec_level = _ec_map.get(params.get("error_correction", "H"), qrcode.constants.ERROR_CORRECT_H)
+                q_est = qrcode.QRCode(
+                    error_correction=ec_level,
+                    box_size=original_box_size,
+                    border=params.get("quiet_zone", 4),
+                )
+                q_est.add_data(data)
+                q_est.make(fit=True)
+                orig_w = (len(q_est.modules) + 2 * params.get("quiet_zone", 4)) * original_box_size
+            else:
+                dummy_params = copy.deepcopy(params)
+                dummy_params["target_size"] = 0
+                dummy_img = _build_image(dummy_params)
+                orig_w = dummy_img.size[0]
+                dummy_img.close()
+                del dummy_img
+            
             if orig_w > 0:
                 scale_factor = float(target_size) / float(orig_w)
                 params["box_size"] = max(1, int(round(original_box_size * scale_factor)))
                 for key in ["logo_card_padding", "canvas_border_width", "frame_padding", "frame_radius", "frame_border", "frame_text_size"]:
                     if key in params and isinstance(params[key], (int, float)):
                         params[key] = max(1, int(round(params[key] * scale_factor)))
-            
-            # Free the dummy image immediately
-            dummy_img.close()
-            del dummy_img
                         
             base_qr = _build_image(params)
             
@@ -309,13 +399,23 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
     base_qr.save(img_byte_arr, format='PNG')
     base_qr.close()
     del base_qr
+
+    raw_bytes = img_byte_arr.getvalue()
+    _qr_image_cache.set(cache_key, raw_bytes)
+
     img_byte_arr.seek(0)
     return img_byte_arr
 
 def generate_qr_svg(data: str, params: dict) -> bytes:
     """
     Generates a raw SVG QR code or embeds a rasterized version if advanced styling is used.
+    Utilizes an in-memory LRU cache to return cached SVG byte buffers instantly.
     """
+    cache_key = _compute_cache_key(data, params, prefix="svg")
+    cached_svg = _qr_svg_cache.get(cache_key)
+    if cached_svg is not None:
+        return cached_svg
+
     has_complex_styling = (
         params.get("frame_style", "none") != "none" or
         params.get("text_style", "none") != "none" or
@@ -335,9 +435,9 @@ def generate_qr_svg(data: str, params: dict) -> bytes:
         w, h = img.size
         b64_str = base64.b64encode(png_io.getvalue()).decode('utf-8')
         svg_str = f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="100%" height="100%" style="max-width: 100%; max-height: 100vh; height: auto;"><image href="data:image/png;base64,{b64_str}" width="{w}" height="{h}" /></svg>'
-        return svg_str.encode('utf-8')
+        svg_bytes = svg_str.encode('utf-8')
     else:
-        svg_data = generate_svg_qr(
+        svg_bytes = generate_svg_qr(
             data=data,
             fill_color=params.get("dots_color", "#000000"),
             back_color=params.get("bg_color", "#ffffff"),
@@ -347,7 +447,9 @@ def generate_qr_svg(data: str, params: dict) -> bytes:
             quiet_zone=params.get("quiet_zone", 4),
             canvas_radius=params.get("canvas_radius", 0)
         )
-        return svg_data
+        
+    _qr_svg_cache.set(cache_key, svg_bytes)
+    return svg_bytes
 
 def generate_qr_pdf(data: str, params: dict) -> io.BytesIO:
     """
@@ -365,8 +467,6 @@ def generate_qr_pdf(data: str, params: dict) -> io.BytesIO:
     img.save(pdf_io, format="PDF", resolution=300.0)
     pdf_io.seek(0)
     return pdf_io
-
-from functools import lru_cache
 
 @lru_cache(maxsize=128)
 def get_frame_preview(frame_style: str) -> bytes:
@@ -400,4 +500,3 @@ def get_text_frame_preview(text_style: str) -> bytes:
     }
     png_io = generate_qr_image("PREVIEW", params)
     return png_io.getvalue()
-

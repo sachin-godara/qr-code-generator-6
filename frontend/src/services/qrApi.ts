@@ -40,10 +40,16 @@ export async function resolveLogoPayload(settings: QRSettings) {
   };
 }
 
-/** Fetch QR code preview image */
-export async function fetchQRPreview(settings: QRSettings) {
+/** Fetch QR code preview image with optional AbortSignal */
+export async function fetchQRPreview(settings: QRSettings, signal?: AbortSignal) {
   const payload = await resolveLogoPayload(settings);
   const finalPayload = { ...payload, box_size: 10 };
+
+  // Combine caller signal with timeout if available
+  let fetchSignal: AbortSignal | undefined = signal;
+  if (!fetchSignal && typeof AbortSignal !== 'undefined' && 'timeout' in AbortSignal) {
+    fetchSignal = AbortSignal.timeout(15000);
+  }
 
   const response = await fetch(`${API_BASE}/api/generator/generate`, {
     method: "POST",
@@ -51,7 +57,7 @@ export async function fetchQRPreview(settings: QRSettings) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(finalPayload),
-    signal: typeof AbortSignal !== 'undefined' && AbortSignal.timeout ? AbortSignal.timeout(15000) : undefined,
+    signal: fetchSignal,
   });
 
   if (!response.ok) {
