@@ -118,23 +118,22 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
 
       <div className="space-y-3">
         <div className="text-sm font-semibold text-on-surface block">1. Select Format</div>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-3 sm:gap-4">
           {[
-            { id: "PNG", icon: "image", desc: "Best for web, social & apps" },
-            { id: "SVG", icon: "polyline", desc: "Infinite scaling for print & vectors" },
-            { id: "PDF", icon: "picture_as_pdf", desc: "Print-ready document format" },
+            { id: "PNG", icon: "image" },
+            { id: "SVG", icon: "polyline" },
+            { id: "PDF", icon: "picture_as_pdf" },
           ].map((fmt) => (
             <button
               key={fmt.id}
               onClick={() => setDownloadFormat(fmt.id as any)}
-              className={`p-4 rounded-xl border flex flex-col items-center text-center transition-all duration-200 ${downloadFormat === fmt.id
+              className={`p-3 sm:p-4 rounded-xl border flex flex-col items-center text-center transition-all duration-200 ${downloadFormat === fmt.id
                 ? "bg-primary/10 border-primary text-primary font-bold shadow-sm"
                 : "border-outline-variant bg-white text-on-surface hover:bg-surface-container-highest"
                 }`}
             >
               <span className="material-symbols-outlined text-2xl mb-1">{fmt.icon}</span>
-              <span className="text-base font-bold">{fmt.id}</span>
-              <span className="text-[11px] text-on-surface-variant mt-1 leading-tight">{fmt.desc}</span>
+              <span className="text-sm sm:text-base font-bold">{fmt.id}</span>
             </button>
           ))}
         </div>

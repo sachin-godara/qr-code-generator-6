@@ -331,7 +331,7 @@ function App() {
               </a>
               <a
                 href="/qr-code-scanner"
-                className="text-sm font-bold text-on-surface hover:text-primary transition-colors flex items-center gap-1.5 bg-surface-container hover:bg-surface-container-high px-4 py-2 rounded-full border border-outline-variant/30"
+                className="text-sm font-semibold transition-colors duration-200 text-on-surface-variant hover:text-on-surface flex items-center gap-1.5"
               >
                 <span className="material-symbols-outlined text-[16px]">qr_code_scanner</span>
                 Scan
