@@ -21,6 +21,16 @@ class LimitRequestBodyMiddleware(BaseHTTPMiddleware):
             )
         return await call_next(request)
 
+class SecurityHeadersMiddleware(BaseHTTPMiddleware):
+    async def dispatch(self, request: Request, call_next):
+        response = await call_next(request)
+        response.headers["X-Content-Type-Options"] = "nosniff"
+        response.headers["X-Frame-Options"] = "SAMEORIGIN"
+        response.headers["X-XSS-Protection"] = "1; mode=block"
+        response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+        response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
+        return response
+
 app = FastAPI(
     title="Custom QR Studio API",
     description="Backend API for generating highly customized QR Codes.",
@@ -29,6 +39,7 @@ app = FastAPI(
 
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+app.add_middleware(SecurityHeadersMiddleware)
 app.add_middleware(LimitRequestBodyMiddleware)
 
 # Configure CORS

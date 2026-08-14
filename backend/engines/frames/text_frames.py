@@ -20,11 +20,19 @@ FONT_REGISTRY = {
 }
 
 def resolve_font_path(frontend_name):
-    # backend is root
-    base_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "assets", "fonts")
+    base_dir = os.path.abspath(os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "assets", "fonts"))
+    if not frontend_name or not isinstance(frontend_name, str):
+        return os.path.join(base_dir, "Outfit-Bold.ttf")
     if frontend_name in FONT_REGISTRY:
         return os.path.join(base_dir, FONT_REGISTRY[frontend_name])
-    return frontend_name
+    for font_file in FONT_REGISTRY.values():
+        if frontend_name == font_file or frontend_name.endswith(font_file):
+            return os.path.join(base_dir, font_file)
+    safe_basename = os.path.basename(frontend_name).strip()
+    candidate = os.path.abspath(os.path.join(base_dir, safe_basename))
+    if candidate.startswith(base_dir) and os.path.isfile(candidate):
+        return candidate
+    return os.path.join(base_dir, "Outfit-Bold.ttf")
 
 
 def apply_layout_frame(qr_img, layout_template="none", frame_color="#000000", padding=20, corner_radius=15, border_thickness=10):
@@ -1149,12 +1157,6 @@ def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="
     
     # font_name is resolved directly below
     
-    # Check parent directory as well
-    if not os.path.exists(font_name):
-        parent_path = os.path.join("..", font_name)
-        if os.path.exists(parent_path):
-            font_name = parent_path
-
     resolved_font = resolve_font_path(font_name)
 
     # Try loading selected font, fallback to arialbd, then default

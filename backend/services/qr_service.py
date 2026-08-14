@@ -10,6 +10,8 @@ from functools import lru_cache
 
 logger = logging.getLogger(__name__)
 from PIL import Image, ImageDraw, ImageFilter
+# Guard against Decompression Bomb Denial of Service (limit to safe max pixel count)
+Image.MAX_IMAGE_PIXELS = 10_000_000
 from qr_engine import generate_styled_qr, generate_svg_qr, hex_to_rgb
 from frame_engine import apply_layout_frame, apply_text_frame
 
@@ -200,6 +202,10 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
         elif isinstance(logo_image, Image.Image):
             logo_pil = logo_image
 
+    if logo_pil is not None:
+        if logo_pil.width > 2048 or logo_pil.height > 2048:
+            logo_pil.thumbnail((2048, 2048), Image.Resampling.LANCZOS)
+
     fill_color = params.get("dots_color", "#000000")
     back_color = params.get("bg_color", "#ffffff")
     if params.get("invert_colors", False):
@@ -253,6 +259,8 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
                 # Load background image
                 bg_data = base64.b64decode(p["bg_image"].split(",")[1]) if "," in p["bg_image"] else base64.b64decode(p["bg_image"])
                 bg_img = Image.open(io.BytesIO(bg_data)).convert("RGBA")
+                if bg_img.width > 2048 or bg_img.height > 2048:
+                    bg_img.thumbnail((2048, 2048), Image.Resampling.LANCZOS)
                 
                 # Resize bg image to match QR code size
                 bg_img = bg_img.resize(base_qr.size, Image.Resampling.LANCZOS)

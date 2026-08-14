@@ -222,6 +222,24 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
 
     return img
 
+def sanitize_svg_color(color_str: str, default: str = "#000000") -> str:
+    """Sanitizes color strings to prevent XML/SVG injection (XSS)."""
+    if not color_str or not isinstance(color_str, str):
+        return default
+    color_str = color_str.strip()
+    # Check if valid hex color (#fff, #ffffff, #ffffffaa)
+    if re.match(r"^#[0-9a-fA-F]{3,8}$", color_str):
+        return color_str
+    # Check if valid rgb / rgba color
+    if re.match(r"^rgba?\(\s*\d+\s*,\s*\d+\s*,\s*\d+\s*(?:,\s*[\d.]+\s*)?\)$", color_str):
+        return color_str
+    # Check if standard safe CSS color name (alphanumeric only)
+    if re.match(r"^[a-zA-Z]{3,20}$", color_str) and color_str.lower() in [
+        "black", "white", "red", "green", "blue", "yellow", "orange", "purple", "gray", "grey", "transparent"
+    ]:
+        return color_str
+    return default
+
 def generate_svg_qr(data, fill_color="#000000", back_color="#ffffff", box_size=30, bg_transparent=False, error_correction="H", quiet_zone=4, canvas_radius=0):
     """Generates a raw SVG QR code (without custom styled dots or frames)"""
     _ec_map = {
@@ -250,8 +268,11 @@ def generate_svg_qr(data, fill_color="#000000", back_color="#ffffff", box_size=3
     if 'style=' not in svg_str:
         svg_str = svg_str.replace('<svg ', '<svg style="max-width: 100%; max-height: 100vh; height: auto;" ', 1)
     
+    safe_fill = sanitize_svg_color(fill_color, "#000000")
+    safe_back = sanitize_svg_color(back_color, "#ffffff")
+
     # 2. Add custom fill color to paths (replacing standard black style="fill:#000000;...")
-    svg_str = svg_str.replace("fill:#000000", f"fill:{fill_color}")
+    svg_str = svg_str.replace("fill:#000000", f"fill:{safe_fill}")
     
     # 3. Add background color rect matching back_color if not transparent
     if not bg_transparent:
@@ -261,9 +282,9 @@ def generate_svg_qr(data, fill_color="#000000", back_color="#ffffff", box_size=3
             v_h = float(match.group(2))
             rx = v_w * (canvas_radius / 300.0) if canvas_radius > 0 else 0
             if rx > 0:
-                rect_str = f'<rect width="{v_w}" height="{v_h}" fill="{back_color}" rx="{rx}" ry="{rx}"/>'
+                rect_str = f'<rect width="{v_w}" height="{v_h}" fill="{safe_back}" rx="{rx}" ry="{rx}"/>'
             else:
-                rect_str = f'<rect width="{v_w}" height="{v_h}" fill="{back_color}"/>'
+                rect_str = f'<rect width="{v_w}" height="{v_h}" fill="{safe_back}"/>'
             tag_end = svg_str.find('>')
             if tag_end != -1:
                 svg_str = svg_str[:tag_end+1] + "\n  " + rect_str + svg_str[tag_end+1:]

@@ -30,77 +30,77 @@ router = APIRouter(
 
 class QRRequest(BaseModel):
     data: str = Field(..., max_length=4000)
-    dots_color: str = "#000000"
-    bg_color: str = "#ffffff"
+    dots_color: str = Field("#000000", max_length=50)
+    bg_color: str = Field("#ffffff", max_length=50)
     bg_transparent: bool = False
     bg_image: Optional[str] = None
-    bg_blend_mode: str = "normal"
-    bg_image_opacity: int = 100
-    dots_style: str = "square"
+    bg_blend_mode: str = Field("normal", max_length=30)
+    bg_image_opacity: int = Field(100, ge=0, le=100)
+    dots_style: str = Field("square", max_length=50)
     
     # Eye styling
     link_eyes: bool = True
-    eye_color: str = "#000000"
-    eyeball_color: str = "#000000"
-    eye_frame_style: str = "square"
-    eyeball_style: str = "square"
+    eye_color: str = Field("#000000", max_length=50)
+    eyeball_color: str = Field("#000000", max_length=50)
+    eye_frame_style: str = Field("square", max_length=50)
+    eyeball_style: str = Field("square", max_length=50)
     
-    eye_color_tl: Optional[str] = None
-    eyeball_color_tl: Optional[str] = None
-    eye_frame_style_tl: Optional[str] = None
-    eyeball_style_tl: Optional[str] = None
+    eye_color_tl: Optional[str] = Field(None, max_length=50)
+    eyeball_color_tl: Optional[str] = Field(None, max_length=50)
+    eye_frame_style_tl: Optional[str] = Field(None, max_length=50)
+    eyeball_style_tl: Optional[str] = Field(None, max_length=50)
 
-    eye_color_tr: Optional[str] = None
-    eyeball_color_tr: Optional[str] = None
-    eye_frame_style_tr: Optional[str] = None
-    eyeball_style_tr: Optional[str] = None
+    eye_color_tr: Optional[str] = Field(None, max_length=50)
+    eyeball_color_tr: Optional[str] = Field(None, max_length=50)
+    eye_frame_style_tr: Optional[str] = Field(None, max_length=50)
+    eyeball_style_tr: Optional[str] = Field(None, max_length=50)
 
-    eye_color_bl: Optional[str] = None
-    eyeball_color_bl: Optional[str] = None
-    eye_frame_style_bl: Optional[str] = None
-    eyeball_style_bl: Optional[str] = None
+    eye_color_bl: Optional[str] = Field(None, max_length=50)
+    eyeball_color_bl: Optional[str] = Field(None, max_length=50)
+    eye_frame_style_bl: Optional[str] = Field(None, max_length=50)
+    eyeball_style_bl: Optional[str] = Field(None, max_length=50)
     
     # Frame styling
-    frame_style: str = "none"
-    frame_color: str = "#000000"
-    text_style: str = "none"
-    frame_text: str = "SCAN ME"
-    frame_text_color: str = "#ffffff"
-    frame_text_size: int = 60
-    frame_padding: int = 30
-    frame_radius: int = 25
-    frame_border: int = 15
-    top_text: str = "SCAN ME"
-    font_name: str = "Outfit-Bold.ttf"
+    frame_style: str = Field("none", max_length=50)
+    frame_color: str = Field("#000000", max_length=50)
+    text_style: str = Field("none", max_length=50)
+    frame_text: str = Field("SCAN ME", max_length=100)
+    frame_text_color: str = Field("#ffffff", max_length=50)
+    frame_text_size: int = Field(60, ge=10, le=200)
+    frame_padding: int = Field(30, ge=0, le=200)
+    frame_radius: int = Field(25, ge=0, le=100)
+    frame_border: int = Field(15, ge=0, le=100)
+    top_text: str = Field("SCAN ME", max_length=100)
+    font_name: str = Field("Outfit-Bold.ttf", max_length=100)
     
     # Gradient styling
-    gradient_type: str = "Solid Color"
-    dots_color_end: str = "#000000"
+    gradient_type: str = Field("Solid Color", max_length=50)
+    dots_color_end: str = Field("#000000", max_length=50)
     
     # Logo embedding
     logo_image: Optional[str] = None
-    preset_logo: str = "None"
-    preset_logo_color: Optional[str] = None
-    logo_card_shape: str = "None"
+    preset_logo: str = Field("None", max_length=50)
+    preset_logo_color: Optional[str] = Field(None, max_length=50)
+    logo_card_shape: str = Field("None", max_length=50)
     remove_logo_bg: bool = False
-    logo_size_ratio: float = 0.18
-    logo_card_padding: int = 10
-    logo_clear_size: float = 0.5
-    logo_bg_color: str = "#ffffff"
-    logo_bg_tolerance: int = 30
+    logo_size_ratio: float = Field(0.18, ge=0.05, le=0.5)
+    logo_card_padding: int = Field(10, ge=0, le=100)
+    logo_clear_size: float = Field(0.5, ge=0.0, le=5.0)
+    logo_bg_color: str = Field("#ffffff", max_length=50)
+    logo_bg_tolerance: int = Field(30, ge=0, le=255)
     
     # Effects
-    effect_shadow: str = "none"
-    effect_shadow_color: str = "rgba(0,0,0,0.15)"
-    canvas_radius: int = 0
-    canvas_border_width: int = 0
-    canvas_border_color: str = "#000000"
-    canvas_border_radius: int = 16
+    effect_shadow: str = Field("none", max_length=50)
+    effect_shadow_color: str = Field("rgba(0,0,0,0.15)", max_length=50)
+    canvas_radius: int = Field(0, ge=0, le=200)
+    canvas_border_width: int = Field(0, ge=0, le=100)
+    canvas_border_color: str = Field("#000000", max_length=50)
+    canvas_border_radius: int = Field(16, ge=0, le=200)
     invert_colors: bool = False
 
     box_size: int = Field(10, ge=1, le=30)
-    error_correction: str = "H"
-    quiet_zone: int = 4
+    error_correction: str = Field("H", max_length=5)
+    quiet_zone: int = Field(4, ge=0, le=20)
     target_size: Optional[int] = Field(None, ge=10, le=4096)
     no_stretching: bool = False
     
@@ -189,8 +189,9 @@ class BatchQRRequest(BaseModel):
     target_size: Optional[int] = Field(1024, ge=10, le=4096)
 
 def sanitize_filename(name: str) -> str:
-    name = re.sub(r'[\\/*?:"<>|]', "", name)
-    name = name.strip()
+    name = re.sub(r'[\\/*?:"<>|\x00-\x1f]', "", name)
+    name = name.replace("..", "").strip().strip(".")
+    name = name[:64]
     return name if name else "QR_Item"
 
 @router.post("/generate/batch")
@@ -239,15 +240,33 @@ async def generate_batch(payload: BatchQRRequest, request: Request):
         logger.exception("Batch QR generation failed")
         raise HTTPException(status_code=500, detail="Batch generation failed due to internal error")
 
+ALLOWED_IMAGE_MIMES = {
+    "image/png", "image/jpeg", "image/jpg", "image/webp",
+    "image/gif", "image/bmp", "image/tiff", "application/octet-stream"
+}
+
 @router.post("/scan")
 @limiter.limit("60/minute")
 async def scan_qr_file(request: Request, file: UploadFile = File(...)):
     try:
+        if file.content_type and file.content_type.lower() not in ALLOWED_IMAGE_MIMES:
+            raise HTTPException(
+                status_code=400,
+                detail="Invalid file type. Please upload a valid image file (PNG, JPEG, WebP, GIF, BMP)."
+            )
+
         file_bytes = await file.read()
+        if len(file_bytes) == 0:
+            raise HTTPException(status_code=400, detail="Uploaded file is empty.")
+        if len(file_bytes) > 10 * 1024 * 1024:
+            raise HTTPException(status_code=413, detail="File too large. Maximum scan image size is 10 MB.")
+
         # Run computer vision processing in threadpool so it doesn't block async event loop
         decoded_text = await run_in_threadpool(deep_scan_qr, file_bytes)
         
         return {"success": True, "text": decoded_text}
+    except HTTPException:
+        raise
     except ValueError as ve:
         raise HTTPException(status_code=400, detail=str(ve))
     except Exception as e:

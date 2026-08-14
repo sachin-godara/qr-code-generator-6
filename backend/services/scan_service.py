@@ -49,6 +49,12 @@ def deep_scan_qr(file_bytes: bytes) -> str:
         if img is None:
             raise ValueError("Could not decode image bytes into a valid image matrix.")
             
+        # Prevent memory exhaustion from oversized scanned images
+        h_img, w_img = img.shape[:2]
+        if max(h_img, w_img) > 2048:
+            scale = 2048.0 / float(max(h_img, w_img))
+            img = cv2.resize(img, (int(w_img * scale), int(h_img * scale)), interpolation=cv2.INTER_AREA)
+
         # 0. AI CNN Pass (WeChat QR) - Most robust against styling
         detector = get_wechat_detector()
         if detector:
