@@ -9,6 +9,10 @@ export default defineConfig({
   // This affects sitemap generation, canonical URLs, and OG meta tags
   site: 'https://generatecustomqr.com',
   
+  devToolbar: {
+    enabled: false,
+  },
+  
   integrations: [
     react(),
     sitemap(),

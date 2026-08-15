@@ -120,6 +120,8 @@ export function LogoPanel() {
                   const updates: any = { logo_icon_style: style.id };
                   if (style.id === "glyph") {
                     updates.logo_clear_size = 0;
+                  } else if (settings.logo_clear_size === 0) {
+                    updates.logo_clear_size = 0.5;
                   }
                   updateSettings(updates);
                 }}
