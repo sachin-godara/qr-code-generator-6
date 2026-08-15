@@ -72,9 +72,12 @@ export function useDownloadHandlers() {
       setDownloadSuccess(true);
       setToast({ message: `Downloaded ${resLabel} as ${ext.toUpperCase()}`, icon: "download_done", duration: 5000 });
       setTimeout(() => setDownloadSuccess(false), 3000);
-    } catch (e) {
+    } catch (e: any) {
       console.error(e);
-      setToast({ message: "Download Failed", icon: "error" });
+      const errorMsg = e?.name === "TimeoutError"
+        ? "Download timed out — try a smaller resolution"
+        : e?.message || "Download Failed";
+      setToast({ message: errorMsg, icon: "error" });
     } finally {
       if (progressTimer) clearInterval(progressTimer);
       setIsDownloading(false);

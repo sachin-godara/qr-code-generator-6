@@ -11,7 +11,8 @@ from functools import lru_cache
 logger = logging.getLogger(__name__)
 from PIL import Image, ImageDraw, ImageFilter
 # Guard against Decompression Bomb Denial of Service (limit to safe max pixel count)
-Image.MAX_IMAGE_PIXELS = 10_000_000
+# 25M allows up to ~5000x5000 images (needed for 4K + shadow margins)
+Image.MAX_IMAGE_PIXELS = 25_000_000
 from qr_engine import generate_styled_qr, generate_svg_qr, hex_to_rgb
 from frame_engine import apply_layout_frame, apply_text_frame
 
@@ -29,7 +30,10 @@ class SimpleLRUCache:
                 return self.cache[key]
             return None
 
-    def set(self, key: str, value: bytes):
+    def set(self, key: str, value: bytes, max_entry_bytes: int = 0):
+        """Store value in cache. If max_entry_bytes > 0, skip entries larger than that."""
+        if max_entry_bytes > 0 and len(value) > max_entry_bytes:
+            return  # Don't cache oversized entries to protect RAM
         with self.lock:
             if key in self.cache:
                 self.cache.move_to_end(key)
@@ -41,8 +45,9 @@ class SimpleLRUCache:
         with self.lock:
             self.cache.clear()
 
-_qr_image_cache = SimpleLRUCache(maxsize=1024)
-_qr_svg_cache = SimpleLRUCache(maxsize=1024)
+# Keep cache small to avoid OOM on limited-RAM hosts (Render Free = 512MB)
+_qr_image_cache = SimpleLRUCache(maxsize=64)
+_qr_svg_cache = SimpleLRUCache(maxsize=64)
 
 def _compute_cache_key(data: str, params: dict, prefix: str = "img") -> str:
     clean_params = {}
@@ -410,7 +415,13 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
     del base_qr
 
     raw_bytes = img_byte_arr.getvalue()
-    _qr_image_cache.set(cache_key, raw_bytes)
+    # Skip caching entries > 1MB to protect RAM on limited-memory hosts
+    _qr_image_cache.set(cache_key, raw_bytes, max_entry_bytes=1_000_000)
+
+    # Force garbage collection after large renders to free PIL buffers immediately
+    effective_target = params.get("target_size") or 0
+    if effective_target >= 1024:
+        gc.collect()
 
     img_byte_arr.seek(0)
     return img_byte_arr
