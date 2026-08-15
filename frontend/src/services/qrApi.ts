@@ -94,24 +94,14 @@ export async function downloadQR(settings: QRSettings, format: string, size: num
     ext = "pdf";
   }
 
-  // Scale timeout with resolution: 30s base, +15ms per pixel dimension
-  const timeoutMs = Math.min(180000, Math.max(30000, size * 30));
-
   const response = await fetch(endpoint, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(finalPayload),
-    signal: typeof AbortSignal !== 'undefined' && AbortSignal.timeout ? AbortSignal.timeout(timeoutMs) : undefined,
+    signal: typeof AbortSignal !== 'undefined' && AbortSignal.timeout ? AbortSignal.timeout(60000) : undefined,
   });
 
-  if (!response.ok) {
-    let detail = `Failed to generate ${format}`;
-    try {
-      const errBody = await response.json();
-      if (errBody.detail) detail = errBody.detail;
-    } catch { /* ignore parse errors */ }
-    throw new Error(detail);
-  }
+  if (!response.ok) throw new Error(`Failed to generate ${format}`);
   
   const blob = await response.blob();
   return { blob, ext };

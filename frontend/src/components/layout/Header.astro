@@ -1,8 +1,5 @@
 ---
-const pathname = Astro.url.pathname.replace(/\/+$/, '') || '/';
-const isGenerator = pathname === '/';
-const isHowToUse = pathname === '/how-to-use';
-const isScanner = pathname === '/qr-code-scanner';
+const currentPath = Astro.url.pathname;
 ---
 <nav class="w-full top-0 z-50 bg-surface-container-lowest border-b border-outline-variant shadow-sm backdrop-blur-md bg-opacity-95 safe-top sticky">
   <div class="flex justify-between items-center h-14 sm:h-16 px-4 sm:px-6 max-w-[1400px] mx-auto w-full">
@@ -39,20 +36,20 @@ const isScanner = pathname === '/qr-code-scanner';
       <div class="hidden md:flex items-center gap-6">
         <a
           href="/"
-          class={`text-sm font-semibold transition-colors duration-200 ${isGenerator ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
+          class={`text-sm font-semibold transition-colors duration-200 ${currentPath === "/" ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
         >
           Generator
         </a>
         <a
           href="/how-to-use"
-          class={`text-sm font-semibold transition-colors duration-200 flex items-center gap-1.5 ${isHowToUse ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
+          class={`text-sm font-semibold transition-colors duration-200 flex items-center gap-1.5 ${currentPath === "/how-to-use" ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
         >
           <span class="material-symbols-outlined text-[16px]">help_outline</span>
           How to Use
         </a>
         <a
           href="/qr-code-scanner"
-          class={`text-sm font-semibold transition-colors duration-200 flex items-center gap-1.5 ${isScanner ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
+          class={`text-sm font-bold transition-colors flex items-center gap-1.5 px-4 py-2 rounded-full border ${currentPath === "/qr-code-scanner" ? "text-primary bg-primary/10 border-primary/30" : "text-on-surface hover:text-primary bg-surface-container hover:bg-surface-container-high border-outline-variant/30"}`}
         >
           <span class="material-symbols-outlined text-[16px]">qr_code_scanner</span>
           Scan
@@ -73,21 +70,21 @@ const isScanner = pathname === '/qr-code-scanner';
   <div id="mobile-menu" class="hidden md:hidden border-t border-outline-variant bg-surface-container-lowest px-4 py-3 space-y-1 shadow-lg">
     <a
       href="/"
-      class={`w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold ${isGenerator ? "bg-primary/10 text-primary" : "text-on-surface-variant hover:bg-surface-container"}`}
+      class={`w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold ${currentPath === "/" ? "bg-primary/10 text-primary" : "text-on-surface-variant hover:bg-surface-container"}`}
     >
       <span class="material-symbols-outlined text-[20px]">qr_code_2</span>
       Generator
     </a>
     <a
       href="/how-to-use"
-      class={`w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold ${isHowToUse ? "bg-primary/10 text-primary" : "text-on-surface-variant hover:bg-surface-container"}`}
+      class={`w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold ${currentPath === "/how-to-use" ? "bg-primary/10 text-primary" : "text-on-surface-variant hover:bg-surface-container"}`}
     >
       <span class="material-symbols-outlined text-[20px]">help_outline</span>
       How to Use
     </a>
     <a
       href="/qr-code-scanner"
-      class={`w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold ${isScanner ? "bg-primary/10 text-primary" : "text-on-surface-variant hover:bg-surface-container"}`}
+      class={`w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold ${currentPath === "/qr-code-scanner" ? "text-primary bg-primary/5 border border-primary/20" : "text-on-surface-variant hover:bg-surface-container"}`}
     >
       <span class="material-symbols-outlined text-[20px]">qr_code_scanner</span>
       Scan QR Code

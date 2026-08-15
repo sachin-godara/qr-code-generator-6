@@ -1,7 +1,8 @@
 import { useQRStore } from "@/store/useQRStore";
 import { useDownloadStore } from "@/store/useDownloadStore";
 import { useToast } from "@/hooks/useToast";
-import { downloadQR, copyQRToClipboard, generateBatch } from "@/services/qrApi";
+import { getReactLogoPngDataUrl, PRESET_LOGO_BRAND_COLORS } from "@/components/previews/SvgIcons";
+import { resolveLogoPayload, API_BASE } from "@/services/qrApi";
 
 export function useDownloadHandlers() {
   const { settings, batchCsvRows, batchDataColumn, batchFilenameColumn } = useQRStore();
@@ -51,7 +52,53 @@ export function useDownloadHandlers() {
         }, 350);
       }
 
-      const { blob, ext } = await downloadQR(settings, downloadFormat, downloadSize, noStretching);
+      const { contentData, ...rest } = settings;
+
+      let finalLogo = rest.logo_image;
+      const isPresetLogo = !finalLogo && rest.preset_logo && rest.preset_logo !== "None";
+      if (isPresetLogo) {
+        finalLogo = await getReactLogoPngDataUrl(
+          rest.preset_logo,
+          rest.logo_color_mode || "default",
+          rest.logo_custom_color || "#000000",
+          rest.dots_color || "#000000",
+          rest.logo_icon_style || "badge",
+          rest.logo_card_shape || "Rounded Square"
+        );
+      }
+
+      const color = rest.logo_color_mode === "custom"
+        ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#000000")
+        : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
+
+      const payload = { 
+        ...rest, 
+        data: contentData || "Your text here...", 
+        logo_image: finalLogo, 
+        preset_logo: isPresetLogo ? "None" : rest.preset_logo, 
+        logo_card_shape: rest.logo_card_shape, 
+        preset_logo_color: color, 
+        box_size: 10, 
+        target_size: downloadSize, 
+        no_stretching: noStretching 
+      };
+
+      let endpoint = `${API_BASE}/api/generator/generate`;
+      let ext = "png";
+      if (downloadFormat === "SVG") {
+        endpoint = `${API_BASE}/api/generator/generate/svg`;
+        ext = "svg";
+      } else if (downloadFormat === "PDF") {
+        endpoint = `${API_BASE}/api/generator/generate/pdf`;
+        ext = "pdf";
+      }
+
+      const response = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) throw new Error(`Failed to generate ${downloadFormat}`);
       
       if (progressTimer) clearInterval(progressTimer);
       if (downloadSize >= 2048) {
@@ -61,33 +108,69 @@ export function useDownloadHandlers() {
           persistent: true
         });
       }
-
+      const blob = await response.blob();
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
       a.download = getEffectiveFilename(ext);
       a.click();
       URL.revokeObjectURL(url);
-
       setDownloadSuccess(true);
       setToast({ message: `Downloaded ${resLabel} as ${ext.toUpperCase()}`, icon: "download_done", duration: 5000 });
       setTimeout(() => setDownloadSuccess(false), 3000);
-    } catch (e: any) {
+    } catch (e) {
       console.error(e);
-      const errorMsg = e?.name === "TimeoutError"
-        ? "Download timed out — try a smaller resolution"
-        : e?.message || "Download Failed";
-      setToast({ message: errorMsg, icon: "error" });
+      setToast({ message: "Download Failed", icon: "error" });
     } finally {
       if (progressTimer) clearInterval(progressTimer);
       setIsDownloading(false);
     }
+
   };
 
   const handleCopyToClipboard = async () => {
     try {
       setIsCopying(true);
-      await copyQRToClipboard(settings, downloadSize, noStretching);
+      const { contentData, ...rest } = settings;
+      let finalLogo = rest.logo_image;
+      const isPresetLogo = !finalLogo && rest.preset_logo && rest.preset_logo !== "None";
+      if (isPresetLogo) {
+        finalLogo = await getReactLogoPngDataUrl(
+          rest.preset_logo,
+          rest.logo_color_mode || "default",
+          rest.logo_custom_color || "#000000",
+          rest.dots_color || "#000000",
+          rest.logo_icon_style || "badge",
+          rest.logo_card_shape || "Rounded Square"
+        );
+      }
+      const color = rest.logo_color_mode === "custom"
+        ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#000000")
+        : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
+
+      const payload = { 
+        ...rest, 
+        data: contentData || "Your text here...", 
+        logo_image: finalLogo, 
+        preset_logo: isPresetLogo ? "None" : rest.preset_logo, 
+        logo_card_shape: rest.logo_card_shape, 
+        preset_logo_color: color, 
+        box_size: 10, 
+        target_size: downloadSize, 
+        no_stretching: noStretching 
+      };
+      const response = await fetch(`${API_BASE}/api/generator/generate`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!response.ok) throw new Error("Failed to generate PNG for clipboard");
+      const blob = await response.blob();
+      await navigator.clipboard.write([
+        new ClipboardItem({
+          [blob.type]: blob
+        })
+      ]);
       setCopySuccess(true);
       setToast({ message: "Copied to Clipboard!", icon: "content_copy" });
       setTimeout(() => setCopySuccess(false), 2500);
@@ -103,34 +186,62 @@ export function useDownloadHandlers() {
     if (!batchDataColumn || batchCsvRows.length === 0) return;
     setIsBatchGenerating(true);
     try {
+      const { contentData, ...rest } = settings;
+      let finalLogo = rest.logo_image;
+      const isPresetLogo = !finalLogo && rest.preset_logo && rest.preset_logo !== "None";
+      if (isPresetLogo) {
+        finalLogo = await getReactLogoPngDataUrl(
+          rest.preset_logo,
+          rest.logo_color_mode || "default",
+          rest.logo_custom_color || "#000000",
+          rest.dots_color || "#000000",
+          rest.logo_icon_style || "badge",
+          rest.logo_card_shape || "Rounded Square"
+        );
+      }
+      const color = rest.logo_color_mode === "custom"
+        ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#000000")
+        : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
+
+      const payloadSettings = {
+        ...rest,
+        logo_image: finalLogo,
+        preset_logo: isPresetLogo ? "None" : rest.preset_logo,
+        preset_logo_color: color
+      };
+
       const items = batchCsvRows.map(row => ({
         data: row[batchDataColumn],
         filename: batchFilenameColumn ? row[batchFilenameColumn] : undefined
-      })).filter(item => item.data && item.data.trim().length > 0);
+      }));
 
-      if (items.length === 0) {
-        setToast({ message: "No valid data rows found in selected column", icon: "warning" });
-        return;
+      const payload = {
+        items: items.slice(0, 500),
+        settings: payloadSettings,
+        format: batchFormat.toLowerCase(),
+        target_size: parseInt(batchSize)
+      };
+
+      const response = await fetch(`${API_BASE}/api/generator/generate/batch`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error("Batch generation failed: " + errorText);
       }
-
-      const maxBatchLimit = 50;
-      const batchItems = items.slice(0, maxBatchLimit);
-      if (items.length > maxBatchLimit) {
-        setToast({ message: `Exporting first ${maxBatchLimit} items (batch limit)`, icon: "info" });
-      }
-
-      const blob = await generateBatch(settings, batchItems, batchFormat, parseInt(batchSize) || 1024);
+      const blob = await response.blob();
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
       a.download = "batch_qrcodes.zip";
       a.click();
       URL.revokeObjectURL(url);
+    } catch (err) {
 
-      setToast({ message: `Batch ZIP generated (${batchItems.length} QR codes)`, icon: "download_done" });
-    } catch (err: any) {
       console.error(err);
-      setToast({ message: err?.message || "Error generating batch ZIP", icon: "error" });
+      alert("Error generating batch ZIP. Please check console for details.");
     } finally {
       setIsBatchGenerating(false);
     }

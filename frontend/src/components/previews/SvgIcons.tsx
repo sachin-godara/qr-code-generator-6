@@ -667,7 +667,6 @@ export const PRESET_LOGO_BRAND_COLORS: Record<string, string> = {
   WeChat: "#07C160",
   Yelp: "#FF1A1A",
   PDF: "#F40F02",
-  Netflix: "#E50914",
   Docs: "#4285F4"
 };
 

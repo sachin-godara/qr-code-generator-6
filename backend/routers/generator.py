@@ -101,7 +101,7 @@ class QRRequest(BaseModel):
     box_size: int = Field(10, ge=1, le=30)
     error_correction: str = Field("H", max_length=5)
     quiet_zone: int = Field(4, ge=0, le=20)
-    target_size: Optional[int] = Field(None, ge=10, le=8192)
+    target_size: Optional[int] = Field(None, ge=10, le=4096)
     no_stretching: bool = False
     
     model_config = {"extra": "ignore"}
@@ -111,8 +111,9 @@ class QRRequest(BaseModel):
 async def generate_qr(payload: QRRequest, request: Request):
     try:
         img_bytes = await run_in_threadpool(generate_qr_image, payload.data, payload.model_dump())
-        return StreamingResponse(
-            img_bytes,
+        content = img_bytes.getvalue() if hasattr(img_bytes, 'getvalue') else img_bytes
+        return Response(
+            content=content,
             media_type="image/png",
             headers={"Cache-Control": "public, max-age=86400, stale-while-revalidate=3600"}
         )
@@ -139,8 +140,9 @@ async def generate_svg(payload: QRRequest, request: Request):
 async def generate_pdf(payload: QRRequest, request: Request):
     try:
         pdf_bytes = await run_in_threadpool(generate_qr_pdf, payload.data, payload.model_dump())
-        return StreamingResponse(
-            pdf_bytes,
+        content = pdf_bytes.getvalue() if hasattr(pdf_bytes, 'getvalue') else pdf_bytes
+        return Response(
+            content=content,
             media_type="application/pdf",
             headers={"Cache-Control": "public, max-age=86400, stale-while-revalidate=3600"}
         )
