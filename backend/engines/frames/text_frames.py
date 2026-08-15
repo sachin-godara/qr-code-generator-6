@@ -1,8 +1,19 @@
 import math
 import os
+from functools import lru_cache
 from PIL import Image, ImageDraw, ImageFont
 
 from engines.core.utils import hex_to_rgb
+
+@lru_cache(maxsize=512)
+def get_cached_font(font_path: str, size: int):
+    try:
+        return ImageFont.truetype(font_path, size)
+    except Exception:
+        try:
+            return ImageFont.truetype("arialbd.ttf", size)
+        except Exception:
+            return ImageFont.load_default()
 
 FONT_REGISTRY = {
     "Outfit (Modern)": "Outfit-Bold.ttf",
@@ -1159,50 +1170,25 @@ def apply_text_frame(qr_img, text_template="none", frame_color="#000000", text="
     
     resolved_font = resolve_font_path(font_name)
 
-    # Try loading selected font, fallback to arialbd, then default
-    try:
-        font = ImageFont.truetype(resolved_font, text_size)
-    except:
-        try:
-            font = ImageFont.truetype("arialbd.ttf", text_size)
-        except:
-            font = ImageFont.load_default()
+    font = get_cached_font(resolved_font, text_size)
         
     # Calculate text dimensions dynamically
     dummy_draw = ImageDraw.Draw(Image.new("RGBA", (1,1)))
     
     def get_fitted_font(txt, max_w, initial_size):
         if not txt:
-            try:
-                f = ImageFont.truetype(resolved_font, initial_size)
-            except:
-                try:
-                    f = ImageFont.truetype("arialbd.ttf", initial_size)
-                except:
-                    f = ImageFont.load_default()
+            f = get_cached_font(resolved_font, initial_size)
             return f, 0, 0
         curr_size = initial_size
         f = font
         while curr_size > 12:
-            try:
-                f = ImageFont.truetype(resolved_font, curr_size)
-            except:
-                try:
-                    f = ImageFont.truetype("arialbd.ttf", curr_size)
-                except:
-                    break
+            f = get_cached_font(resolved_font, curr_size)
             bbox = dummy_draw.textbbox((0, 0), txt, font=f)
             w = bbox[2] - bbox[0]
             if w <= max_w:
                 return f, w, bbox[3] - bbox[1]
             curr_size -= 2
-        try:
-            f = ImageFont.truetype(resolved_font, max(12, curr_size))
-        except:
-            try:
-                f = ImageFont.truetype("arialbd.ttf", max(12, curr_size))
-            except:
-                f = ImageFont.load_default()
+        f = get_cached_font(resolved_font, max(12, curr_size))
         bbox = dummy_draw.textbbox((0, 0), txt, font=f)
         return f, bbox[2] - bbox[0], bbox[3] - bbox[1]
 

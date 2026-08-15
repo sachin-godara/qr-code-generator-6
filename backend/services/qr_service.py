@@ -404,7 +404,8 @@ def generate_qr_image(data: str, params: dict) -> io.BytesIO:
         del logo_pil
         
     img_byte_arr = io.BytesIO()
-    base_qr.save(img_byte_arr, format='PNG')
+    compress = 6 if params.get("target_size") else 1
+    base_qr.save(img_byte_arr, format='PNG', compress_level=compress)
     base_qr.close()
     del base_qr
 

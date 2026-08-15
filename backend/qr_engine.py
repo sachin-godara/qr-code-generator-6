@@ -14,7 +14,14 @@ from engines.core.noise import (
 )
         
 
-from engines.dots.gradient import CustomStyledPilImage, DiagonalGradiantColorMask
+from engines.dots.gradient import (
+    CustomStyledPilImage,
+    DiagonalGradiantColorMask,
+    FastSolidFillColorMask,
+    FastVerticalGradientColorMask,
+    FastHorizontalGradientColorMask,
+    FastRadialGradientColorMask,
+)
 from engines.eyes import draw_eye_frame, draw_eyeball
 from engines.logo import (
     PRESET_LOGO_BRAND_COLORS,
@@ -26,10 +33,6 @@ from engines.logo import (
 from qrcode.image.styles.moduledrawers import (
     SquareModuleDrawer, GappedSquareModuleDrawer, CircleModuleDrawer,
     RoundedModuleDrawer, VerticalBarsDrawer, HorizontalBarsDrawer
-)
-from qrcode.image.styles.colormasks import (
-    SolidFillColorMask, VerticalGradiantColorMask, HorizontalGradiantColorMask, 
-    RadialGradiantColorMask, QRColorMask
 )
 from PIL import Image, ImageDraw
 
@@ -106,17 +109,17 @@ def generate_styled_qr(data, fill_color="#000000", back_color="#ffffff", dot_sty
         fg_end = hex_to_rgb(fill_color_end) if str(fill_color_end).startswith('#') else fg
 
     if gradient_type in ["Vertical Gradient", "Linear Vertical"]:
-        color_mask = VerticalGradiantColorMask(back_color=bg, top_color=fg, bottom_color=fg_end)
+        color_mask = FastVerticalGradientColorMask(back_color=bg, top_color=fg, bottom_color=fg_end)
     elif gradient_type in ["Horizontal Gradient", "Linear Horizontal"]:
-        color_mask = HorizontalGradiantColorMask(back_color=bg, left_color=fg, right_color=fg_end)
+        color_mask = FastHorizontalGradientColorMask(back_color=bg, left_color=fg, right_color=fg_end)
     elif gradient_type in ["Radial Gradient", "Radial Center"]:
-        color_mask = RadialGradiantColorMask(back_color=bg, center_color=fg, edge_color=fg_end)
+        color_mask = FastRadialGradientColorMask(back_color=bg, center_color=fg, edge_color=fg_end)
     elif gradient_type in ["Diagonal (TL to BR)", "Diagonal Gradient"]:
         color_mask = DiagonalGradiantColorMask(back_color=bg, start_color=fg, end_color=fg_end, direction="TL_BR")
     elif gradient_type in ["Diagonal (TR to BL)"]:
         color_mask = DiagonalGradiantColorMask(back_color=bg, start_color=fg, end_color=fg_end, direction="TR_BL")
     else:
-        color_mask = SolidFillColorMask(back_color=bg, front_color=fg)
+        color_mask = FastSolidFillColorMask(back_color=bg, front_color=fg)
 
     img = qr.make_image(
         image_factory=CustomStyledPilImage,

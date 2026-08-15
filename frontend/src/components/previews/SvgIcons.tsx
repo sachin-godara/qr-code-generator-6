@@ -667,27 +667,34 @@ export const PRESET_LOGO_BRAND_COLORS: Record<string, string> = {
   WeChat: "#07C160",
   Yelp: "#FF1A1A",
   PDF: "#F40F02",
-  Docs: "#4285F4",
   Netflix: "#E50914",
-  Twitch: "#9146FF",
-  GitHub: "#181717",
-  Reddit: "#FF4500"
+  Docs: "#4285F4"
 };
 
-/** Generates crisp PNG data URLs directly in React for preset logos via HTML5 Canvas */
+const logoDataUrlCache = new Map<string, string>();
+
+/** Generates crisp PNG data URLs directly in React for preset logos via HTML5 Canvas (memoized) */
 export function getReactLogoPngDataUrl(
   name: string, 
-  colorMode: "default" | "custom" = "default", 
+  colorMode: "default" | "custom" | "match_dots" | string = "default", 
   customColorHex: string = "#000000", 
   fallbackDotsColor: string = "#000000",
-  iconStyle: "badge" | "duotone" | "glyph" = "badge",
-  cardShape: "None" | "Circle" | "Rounded Square" = "Rounded Square"
+  iconStyle: "badge" | "duotone" | "glyph" | string = "badge",
+  cardShape: "None" | "Circle" | "Rounded Square" | string = "Rounded Square"
 ): Promise<string | null> {
   if (!name || name === "None") return Promise.resolve(null);
 
+  const cacheKey = `${name}:${colorMode}:${customColorHex}:${fallbackDotsColor}:${iconStyle}:${cardShape}`;
+  const cached = logoDataUrlCache.get(cacheKey);
+  if (cached) {
+    return Promise.resolve(cached);
+  }
+
   const brandOrCustomColor = colorMode === "custom" 
     ? (customColorHex.startsWith("#") ? customColorHex : "#000000")
-    : (PRESET_LOGO_BRAND_COLORS[name] || (fallbackDotsColor.startsWith("#") ? fallbackDotsColor : "#000000"));
+    : (colorMode === "match_dots" 
+        ? (fallbackDotsColor.startsWith("#") ? fallbackDotsColor : "#000000")
+        : (PRESET_LOGO_BRAND_COLORS[name] || (fallbackDotsColor.startsWith("#") ? fallbackDotsColor : "#000000")));
   
   const isGlyph = iconStyle === "glyph" || (!iconStyle && cardShape === "None");
   const color = (iconStyle === "badge" && !isGlyph) ? "#ffffff" : brandOrCustomColor;
@@ -787,6 +794,7 @@ export function getReactLogoPngDataUrl(
         }
         const pngUrl = canvas.toDataURL('image/png');
         URL.revokeObjectURL(url);
+        logoDataUrlCache.set(cacheKey, pngUrl);
         resolve(pngUrl);
       } else {
         URL.revokeObjectURL(url);

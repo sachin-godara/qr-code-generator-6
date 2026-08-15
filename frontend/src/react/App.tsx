@@ -4,7 +4,7 @@ import { Loader2 } from "lucide-react"
 import { useQuery, keepPreviousData } from "@tanstack/react-query"
 import { useQRStore } from "@/store/useQRStore"
 import { useToast } from "@/hooks/useToast"
-import { useDebounce } from "@/hooks/useDebounce"
+import { useDebounce, useSmartQRSettingsDebounce } from "@/hooks/useDebounce"
 import { useDownloadHandlers } from "@/hooks/useDownloadHandlers"
 import { useDownloadStore } from "@/store/useDownloadStore"
 import { fetchQRPreview } from "@/services/qrApi"
@@ -124,8 +124,9 @@ function App() {
     window.scrollTo({ top: 0, behavior: "auto" });
   }, [activeTab, mobileMainTab]);
 
-  // Debounce rapid input typing & continuous slider changes by 250ms to dramatically reduce backend requests
-  const debouncedSettings = useDebounce(settings, 250);
+  // Smart debounce: discrete clicks (styles, colors, templates, toggles) update instantly (0ms),
+  // while continuous typing (URLs/text) and continuous sliders are smoothly throttled (150ms)
+  const debouncedSettings = useSmartQRSettingsDebounce(settings, 150);
 
   const { data: qrData, isLoading, isError, isFetching } = useQuery({
     queryKey: ["qr-code", debouncedSettings],
