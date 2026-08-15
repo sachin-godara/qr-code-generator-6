@@ -370,7 +370,7 @@ function App() {
             </a>
             <a
               href="/qr-code-scanner"
-              className="w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold text-primary bg-primary/5 border border-primary/20"
+              className="w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold text-on-surface-variant hover:bg-surface-container"
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className="material-symbols-outlined text-[20px]">qr_code_scanner</span>
