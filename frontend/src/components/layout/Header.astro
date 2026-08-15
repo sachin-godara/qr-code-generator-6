@@ -37,12 +37,14 @@ const currentPath = Astro.url.pathname;
         <a
           href="/"
           class={`text-sm font-semibold transition-colors duration-200 ${currentPath === "/" ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
+          {...(currentPath === "/" ? { "aria-current": "page" } : {})}
         >
           Generator
         </a>
         <a
           href="/how-to-use"
           class={`text-sm font-semibold transition-colors duration-200 flex items-center gap-1.5 ${currentPath === "/how-to-use" ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
+          {...(currentPath === "/how-to-use" ? { "aria-current": "page" } : {})}
         >
           <span class="material-symbols-outlined text-[16px]">help_outline</span>
           How to Use
@@ -50,6 +52,7 @@ const currentPath = Astro.url.pathname;
         <a
           href="/qr-code-scanner"
           class={`text-sm font-bold transition-colors flex items-center gap-1.5 px-4 py-2 rounded-full border ${currentPath === "/qr-code-scanner" ? "text-primary bg-primary/10 border-primary/30" : "text-on-surface hover:text-primary bg-surface-container hover:bg-surface-container-high border-outline-variant/30"}`}
+          {...(currentPath === "/qr-code-scanner" ? { "aria-current": "page" } : {})}
         >
           <span class="material-symbols-outlined text-[16px]">qr_code_scanner</span>
           Scan
@@ -61,6 +64,9 @@ const currentPath = Astro.url.pathname;
     <button
       id="mobile-menu-btn"
       class="md:hidden w-10 h-10 flex items-center justify-center rounded-xl hover:bg-surface-container transition-colors touch-press"
+      aria-label="Toggle navigation menu"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
     >
       <span class="material-symbols-outlined text-on-surface" id="menu-icon">menu</span>
     </button>
@@ -101,8 +107,9 @@ const currentPath = Astro.url.pathname;
     
     if (btn && menu && icon) {
       btn.addEventListener('click', () => {
-        menu.classList.toggle('hidden');
-        icon.textContent = menu.classList.contains('hidden') ? 'menu' : 'close';
+        const isHidden = menu.classList.toggle('hidden');
+        icon.textContent = isHidden ? 'menu' : 'close';
+        btn.setAttribute('aria-expanded', isHidden ? 'false' : 'true');
       });
     }
   });

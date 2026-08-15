@@ -40,6 +40,8 @@ function App() {
        if (!['Effects', 'Advanced'].includes(activeTab)) setActiveTab('Effects')
     }
     else if (tab === 'download') setActiveTab('Download')
+    
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [showMiniPreview, setShowMiniPreview] = useState(false)
@@ -275,7 +277,7 @@ function App() {
 
       {/* TopNavBar with mobile hamburger */}
       <nav className="fixed w-full top-0 z-50 bg-surface-container-lowest border-b border-outline-variant shadow-sm backdrop-blur-md bg-opacity-95 safe-top">
-        <div className="flex justify-between items-center h-14 sm:h-16 px-4 sm:px-gutter w-full">
+        <div className="flex justify-between items-center h-14 sm:h-16 px-4 sm:px-6 max-w-[1400px] mx-auto w-full">
           <div className="flex items-center gap-4 sm:gap-8">
             {/* Premium Brand Wordmark */}
             <a href="/" className="flex items-center gap-2.5 group shrink-0" title="GenerateCustomQR — Home">
@@ -303,13 +305,14 @@ function App() {
               </div>
               <div className="flex flex-col leading-none">
                 <span className="text-[14px] font-bold tracking-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent whitespace-nowrap">GenerateCustomQR</span>
-                <span className="text-[9px] font-medium text-on-surface-variant tracking-wider hidden sm:block whitespace-nowrap">39 styles · 100% free</span>
+                <span className="text-[9px] font-medium text-on-surface-variant tracking-wider hidden sm:block whitespace-nowrap">40+ styles · 100% free</span>
               </div>
             </a>
             <div className="hidden md:flex items-center gap-6">
               <button
                 onClick={() => setActiveTab("Content")}
                 className={`text-sm font-semibold transition-colors duration-200 ${activeTab === "Content" && settings.contentType !== "batch" ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
+                aria-current="page"
               >
                 Generator
               </button>
@@ -332,6 +335,9 @@ function App() {
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl hover:bg-surface-container transition-colors touch-press"
+            aria-label="Toggle navigation menu"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu-react"
           >
             <span className="material-symbols-outlined text-on-surface">
               {mobileMenuOpen ? 'close' : 'menu'}
@@ -339,10 +345,11 @@ function App() {
           </button>
         </div>
         {mobileMenuOpen && (
-          <div className="md:hidden border-t border-outline-variant bg-surface-container-lowest px-4 py-3 space-y-1 shadow-lg">
+          <div id="mobile-menu-react" className="md:hidden border-t border-outline-variant bg-surface-container-lowest px-4 py-3 space-y-1 shadow-lg">
             <button
               onClick={() => { setActiveTab("Content"); setMobileMenuOpen(false); }}
               className={`w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold ${activeTab === "Content" && settings.contentType !== "batch" ? "bg-primary/10 text-primary" : "text-on-surface-variant hover:bg-surface-container"}`}
+              aria-current="page"
             >
               <span className="material-symbols-outlined text-[20px]">qr_code_2</span>
               Generator
@@ -566,7 +573,10 @@ function App() {
                       ] as const).map(tab => (
                         <button
                           key={tab.name}
-                          onClick={() => setActiveTab(tab.name)}
+                          onClick={() => {
+                            setActiveTab(tab.name);
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                          }}
                           className={`relative flex-1 flex items-center justify-center gap-1.5 py-2 rounded-md font-bold transition-colors text-xs outline-none ${
                             activeTab === tab.name
                               ? 'text-primary'
@@ -605,7 +615,10 @@ function App() {
                       ] as const).map(tab => (
                         <button
                           key={tab.name}
-                          onClick={() => setActiveTab(tab.name)}
+                          onClick={() => {
+                            setActiveTab(tab.name);
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                          }}
                           className={`relative flex-1 flex items-center justify-center gap-1.5 py-2 rounded-md font-bold transition-colors text-xs z-10 ${
                             activeTab === tab.name
                               ? 'text-primary'
