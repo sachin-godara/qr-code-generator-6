@@ -396,7 +396,10 @@ function App() {
             {sidebarTabs.map((tab) => (
               <button
                 key={tab.name}
-                onClick={() => setActiveTab(tab.name)}
+                onClick={() => {
+                  setActiveTab(tab.name);
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
                 title={tab.name}
                 className={`w-full flex items-center justify-center xl:justify-start gap-3 px-0 xl:px-3 py-2.5 rounded-lg text-[13px] font-medium tab-spring relative sidebar-item ${activeTab === tab.name
                     ? "sidebar-item-active"
@@ -424,7 +427,10 @@ function App() {
                       {sidebarTabs.map((tab, i) => (
                         <button
                           key={tab.name}
-                          onClick={() => setActiveTab(tab.name)}
+                          onClick={() => {
+                            setActiveTab(tab.name);
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                          }}
                           title={tab.name}
                           className={`h-1.5 rounded-full transition-all duration-300 ${
                             tab.name === activeTab
@@ -575,7 +581,6 @@ function App() {
                           key={tab.name}
                           onClick={() => {
                             setActiveTab(tab.name);
-                            window.scrollTo({ top: 0, behavior: 'smooth' });
                           }}
                           className={`relative flex-1 flex items-center justify-center gap-1.5 py-2 rounded-md font-bold transition-colors text-xs outline-none ${
                             activeTab === tab.name
@@ -587,7 +592,7 @@ function App() {
                             <motion.div
                               layoutId="mobile-design-subnav"
                               className="absolute inset-0 bg-white shadow-sm ring-1 ring-black/5 rounded-md"
-                              transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                              transition={{ type: "spring", stiffness: 500, damping: 30 }}
                             />
                           )}
                           <div className="relative z-10 flex items-center gap-1.5">
@@ -597,8 +602,10 @@ function App() {
                         </button>
                       ))}
                     </div>
-                    {renderPanelContent(activeTab)}
-                    {renderNextStepButton(activeTab)}
+                    <div key={activeTab} className="panel-enter flex flex-col gap-4">
+                      {renderPanelContent(activeTab)}
+                      {renderNextStepButton(activeTab)}
+                    </div>
                   </motion.div>
                 ) : (
                   <motion.div 
@@ -617,7 +624,6 @@ function App() {
                           key={tab.name}
                           onClick={() => {
                             setActiveTab(tab.name);
-                            window.scrollTo({ top: 0, behavior: 'smooth' });
                           }}
                           className={`relative flex-1 flex items-center justify-center gap-1.5 py-2 rounded-md font-bold transition-colors text-xs z-10 ${
                             activeTab === tab.name
@@ -630,7 +636,7 @@ function App() {
                               layoutId="activeSubTabIndicator"
                               className="absolute inset-0 bg-white shadow-sm rounded-md"
                               style={{ zIndex: -1 }}
-                              transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                              transition={{ type: "spring", stiffness: 500, damping: 30 }}
                             />
                           )}
                           <span className="material-symbols-outlined text-[14px]">{tab.icon}</span>
@@ -638,8 +644,10 @@ function App() {
                         </button>
                       ))}
                     </div>
-                    {renderPanelContent(activeTab)}
-                    {renderNextStepButton(activeTab)}
+                    <div key={activeTab} className="panel-enter flex flex-col gap-4">
+                      {renderPanelContent(activeTab)}
+                      {renderNextStepButton(activeTab)}
+                    </div>
                   </motion.div>
                 )}
             </div>
