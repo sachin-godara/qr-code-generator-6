@@ -1,6 +1,5 @@
-import { useState, useEffect, useRef, lazy, Suspense } from "react"
+import { useState, useEffect, useRef } from "react"
 import { motion } from "framer-motion"
-import { Loader2 } from "lucide-react"
 import { useQuery, keepPreviousData } from "@tanstack/react-query"
 import { useQRStore } from "@/store/useQRStore"
 import { useToast } from "@/hooks/useToast"
@@ -8,15 +7,16 @@ import { useDebounce, useSmartQRSettingsDebounce } from "@/hooks/useDebounce"
 import { useDownloadHandlers } from "@/hooks/useDownloadHandlers"
 import { useDownloadStore } from "@/store/useDownloadStore"
 import { fetchQRPreview } from "@/services/qrApi"
-import { ContentPanel } from "./panels"
-
-const TemplatesPanel = lazy(() => import("./panels").then(module => ({ default: module.TemplatesPanel })));
-const DesignPanel = lazy(() => import("./panels").then(module => ({ default: module.DesignPanel })));
-const LogoPanel = lazy(() => import("./panels").then(module => ({ default: module.LogoPanel })));
-const FramesPanel = lazy(() => import("./panels").then(module => ({ default: module.FramesPanel })));
-const EffectsPanel = lazy(() => import("./panels").then(module => ({ default: module.EffectsPanel })));
-const AdvancedPanel = lazy(() => import("./panels").then(module => ({ default: module.AdvancedPanel })));
-const DownloadPanel = lazy(() => import("./panels").then(module => ({ default: module.DownloadPanel })));
+import { 
+  ContentPanel, 
+  TemplatesPanel, 
+  DesignPanel, 
+  LogoPanel, 
+  FramesPanel, 
+  EffectsPanel, 
+  AdvancedPanel, 
+  DownloadPanel 
+} from "./panels"
 import { DesktopPreviewPane, MobileBottomBar, FullscreenLightbox } from "./preview"
 
 function App() {
@@ -120,10 +120,6 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "auto" });
-  }, [activeTab, mobileMainTab]);
-
   // Smart debounce: discrete clicks (styles, colors, templates, toggles) update instantly (0ms),
   // while continuous typing (URLs/text) and continuous sliders are smoothly throttled (150ms)
   const debouncedSettings = useSmartQRSettingsDebounce(settings, 150);
@@ -199,34 +195,24 @@ function App() {
   };
 
   const renderPanelContent = (tabName: string) => {
-    let PanelComponent;
     switch (tabName) {
-      case "Content": PanelComponent = <ContentPanel />; break;
-      case "Templates": PanelComponent = <TemplatesPanel />; break;
-      case "Design": PanelComponent = <DesignPanel />; break;
-      case "Logo": PanelComponent = <LogoPanel />; break;
-      case "Frames": PanelComponent = <FramesPanel />; break;
-      case "Effects": PanelComponent = <EffectsPanel />; break;
-      case "Advanced": PanelComponent = <AdvancedPanel />; break;
+      case "Content": return <ContentPanel />;
+      case "Templates": return <TemplatesPanel />;
+      case "Design": return <DesignPanel />;
+      case "Logo": return <LogoPanel />;
+      case "Frames": return <FramesPanel />;
+      case "Effects": return <EffectsPanel />;
+      case "Advanced": return <AdvancedPanel />;
       case "Download": 
-        PanelComponent = <DownloadPanel onNavigateToContent={() => {
-          setActiveTab("Content");
-          setMobileMainTab("content");
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }} />; 
-        break;
-      default: PanelComponent = null;
+        return (
+          <DownloadPanel onNavigateToContent={() => {
+            setActiveTab("Content");
+            setMobileMainTab("content");
+          }} />
+        );
+      default: return null;
     }
-    return (
-      <Suspense fallback={
-        <div className="flex items-center justify-center p-12 text-outline-variant">
-          <Loader2 className="animate-spin w-8 h-8" />
-        </div>
-      }>
-        {PanelComponent}
-      </Suspense>
-    );
-  }
+  };
 
   // Global Keyboard Shortcuts
   useEffect(() => {
@@ -480,7 +466,7 @@ function App() {
                   </div>
                 </header>
 
-                <div className="bg-white rounded-2xl p-6 md:p-8 surface-ring-vercel max-w-full panel-enter" key={activeTab}>
+                <div className="bg-white rounded-2xl p-6 md:p-8 surface-ring-vercel max-w-full min-h-[520px] panel-enter" key={activeTab}>
                   {renderPanelContent(activeTab)}
                   {renderNextStepButton(activeTab)}
                 </div>
