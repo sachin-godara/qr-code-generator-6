@@ -18,14 +18,23 @@ const howTo = {
     { name: "Download your WiFi QR code", text: "Download your QR code in PNG, SVG, or PDF format. Print it and display it at your restaurant, office, or home for guests to scan." }
   ]
 };
+
+const faqs = [
+  { q: "How does a WiFi QR code work?", a: "When an iPhone or Android phone camera scans the WiFi QR code, it reads the encrypted network credentials (SSID and password) and automatically prompts the user to join the network with one tap — no manual typing needed." },
+  { q: "Is creating a WiFi QR code safe and private?", a: "Yes. The QR code generation runs locally in your browser. Your WiFi password is never stored, logged, or sent to any remote database." },
+  { q: "Can guests connect without downloading an app?", a: "Yes! The default Camera app on both iOS (iPhone/iPad) and Android natively supports scanning WiFi QR codes out of the box." },
+  { q: "Which WiFi security types are supported?", a: "GenerateCustomQR supports WPA/WPA2, WPA3, WEP, and Open (no password) networks." },
+  { q: "Can I print the WiFi QR code for my business?", a: "Yes! You can download high-resolution PNG, vector SVG, or print-ready PDF files for tabletop displays, counter signs, or guest rooms." }
+];
 ---
 <BaseLayout
-  title="Free WiFi QR Code Generator — Share WiFi Password Instantly | GenerateCustomQR"
-  description="Create a free WiFi QR code to share your network password instantly. Perfect for cafes, hotels, guests, and offices. No signup required."
-  keywords="wifi qr code, share wifi password, wifi qr code generator, free wifi qr code, qr code for wifi"
+  title="Free WiFi QR Code Generator — Connect Without Typing Passwords | GenerateCustomQR"
+  description="Create a free WiFi QR code to share your network password instantly. Perfect for cafes, hotels, Airbnb, and guest networks. No signup required."
+  keywords="wifi qr code generator, share wifi password qr code, free wifi qr code, qr code for wifi connect, wifi qr code printable"
   ogImage="/og-wifi.png"
   breadcrumbs={breadcrumbs}
   howTo={howTo}
+  faqs={faqs}
 >
   <style is:global>
     @import '../styles/global.css';

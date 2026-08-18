@@ -19,14 +19,23 @@ const howTo = {
     { name: "Download your branded QR code", text: "Download in PNG, SVG, or PDF. The QR code automatically uses high error correction to stay scannable with the logo." }
   ]
 };
+
+const faqs = [
+  { q: "Will my QR code still scan if I add a logo?", a: "Yes! GenerateCustomQR automatically sets Error Correction to Level H (High), which allows up to 30% of the QR code matrix to be covered by a logo or damaged while still scanning 100% reliably." },
+  { q: "Can I remove the background behind my uploaded logo?", a: "Yes. Our generator includes an automatic background removal toggle that transparently removes solid white or colored backgrounds from your logo image." },
+  { q: "What logo file formats are supported?", a: "You can upload PNG, JPG, JPEG, SVG, WebP, and GIF images. Transparent PNG and SVG vector files give the highest quality results." },
+  { q: "Can I adjust the clearance padding around the logo?", a: "Yes! You can adjust the dot clearance slider so that QR modules stay clear of your logo, keeping it crisp and readable." },
+  { q: "Is there any watermark or subscription needed for logo QR codes?", a: "No, GenerateCustomQR is 100% free with no watermarks, no account signup, and no subscription fees." }
+];
 ---
 <BaseLayout
-  title="QR Code with Logo — Free Logo QR Code Generator | GenerateCustomQR"
-  description="Add your logo to a custom QR code for free. Create branded QR codes with high error correction, custom colors, and distinct shapes. No signup required."
-  keywords="qr code with logo, custom qr code, branded qr code, qr code generator with image, free logo qr code"
+  title="Custom QR Code Generator with Logo — Free Logo Embedding | GenerateCustomQR"
+  description="Add your logo, icon, or image to custom QR codes for free. High error correction, automatic background removal, and vector SVG/PNG downloads with no watermark."
+  keywords="qr code with logo, custom logo qr code generator, add logo to qr code free, branded qr code maker, qr code with picture in middle"
   ogImage="/og-logo.png"
   breadcrumbs={breadcrumbs}
   howTo={howTo}
+  faqs={faqs}
 >
   <style is:global>
     @import '../styles/global.css';

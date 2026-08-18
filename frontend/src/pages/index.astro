@@ -2,11 +2,40 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import QRGeneratorApp from '../react/QRGeneratorApp';
 import Footer from '../components/layout/Footer.astro';
+
+const breadcrumbs = [
+  { name: "Home", url: "/" }
+];
+
+const howTo = {
+  name: "How to Create a Custom QR Code",
+  description: "Design and generate a fully customized QR code with logo, colors, gradients, and frames in under 2 minutes — 100% free.",
+  steps: [
+    { name: "Enter your content", text: "Choose a content type (URL, text, WiFi, vCard, email, SMS, event, etc.) and enter the data you want to encode." },
+    { name: "Customize the design", text: "Choose from 40+ dot styles, 19 eye frames, 23 eyeball patterns, and apply color gradients to create a unique look." },
+    { name: "Add a logo", text: "Upload your own logo or choose from 46 preset brand icons with automatic background removal and dot clearance control." },
+    { name: "Pick a frame", text: "Wrap your QR code in one of 51 decorative text frames with custom CTA text, fonts, and colors." },
+    { name: "Download for free", text: "Export your QR code in PNG (up to 4096px), SVG (vector), or PDF (300 DPI) — completely free, no watermark, no signup." }
+  ]
+};
+
+const faqs = [
+  { q: "How do I create a custom QR code?", a: "Enter your URL, text, or contact information, choose from 39 dot styles and 28 eye patterns, customize colors and gradients, add a logo from 46 Presets or upload your own, pick a decorative frame, and download your QR code in PNG, SVG, or PDF format — completely free." },
+  { q: "Is the QR code generator free?", a: "Yes, GenerateCustomQR is 100% free with all features unlocked — no signup, no watermarks, no usage limits. You get full access to 40+ dot styles, 51 text frames, 121 templates, logo embedding, batch generation, and PNG/SVG/PDF export at no cost." },
+  { q: "What types of QR codes can I create?", a: "You can create QR codes for 12 different content types: URLs, plain text, WiFi credentials, vCards (contact cards), emails, SMS messages, calendar events, phone numbers, cryptocurrency addresses, Google Maps locations, PayPal payment links, and App Store links." },
+  { q: "Can I add a logo to my QR code?", a: "Yes, you can upload your own logo or choose from 46 preset brand icons including Instagram, WhatsApp, YouTube, Facebook, and more. Features include automatic background removal, adjustable dot clearance around the logo, multiple card shapes, and brand or custom color modes." },
+  { q: "What download formats are available?", a: "You can download QR codes in three formats: PNG (up to 4096×4096 pixels for print), SVG (infinitely scalable vector for designers), and PDF (300 DPI print-ready). All formats are free with no watermarks. You can also copy the QR code directly to your clipboard." },
+  { q: "Can I generate QR codes in bulk?", a: "Yes, GenerateCustomQR supports batch generation of up to 500 QR codes at once. Upload a CSV file with your data, map the columns, choose your design settings, and download all QR codes as a ZIP file in PNG, SVG, or PDF format." },
+  { q: "Do QR codes created here expire?", a: "No! All QR codes generated on GenerateCustomQR are static and permanent. The data is encoded directly into the QR code image, so it works forever without any server, subscription, or tracking dependency." }
+];
 ---
 <BaseLayout
-  title="GenerateCustomQR — Free Custom QR Code Generator | 39 Styles, Logo, Batch"
-  description="Create stunning custom QR codes with 39 dot styles, 51 text frames, 121 templates, and logo embedding. The best free QR code creator to make a QR code online."
-  keywords="QR code generator, custom QR code, QR code maker, QR code creator, make a QR code, free QR code, QR code with logo, QR code design, wifi QR code, vcard QR code, batch QR generator"
+  title="Free Custom QR Code Generator with Logo — No Watermark, 40+ Styles | GenerateCustomQR"
+  description="Generate custom QR codes 100% free with logo embedding, 40+ dot styles, CTA text frames, and gradient colors. Download in vector SVG, PDF, or PNG with no watermark and no signup."
+  keywords="qr code generator, custom qr code with logo, free qr code generator no watermark, qr code maker without signup, aesthetic qr code generator, printable qr code high resolution, bulk qr code generator, create qr code online, qr code generator online, custom qr code design, qr code maker online free, qr code png download, qr code svg download"
+  breadcrumbs={breadcrumbs}
+  howTo={howTo}
+  faqs={faqs}
 >
   <!-- Import global styles -->
   <style is:global>
@@ -18,7 +47,7 @@ import Footer from '../components/layout/Footer.astro';
     client:load = hydrates immediately on page load (needed for interactive tool).
   -->
   <main id="generator">
-    <h1 class="sr-only">Free Custom GenerateCustomQR Generator</h1>
+    <h1 class="sr-only">Free Custom QR Code Generator with Logo &amp; 40+ Styles — No Watermark</h1>
     <QRGeneratorApp client:load />
   </main>
 

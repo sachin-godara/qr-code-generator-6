@@ -6,17 +6,19 @@ import Footer from '../components/layout/Footer.astro';
 interface Props {
   title: string;
   description: string;
+  keywords?: string;
   breadcrumbs: { name: string; url: string }[];
   heading: string;
   lastUpdated?: string;
   icon?: string;
 }
 
-const { title, description, breadcrumbs, heading, lastUpdated, icon } = Astro.props;
+const { title, description, keywords, breadcrumbs, heading, lastUpdated, icon } = Astro.props;
 ---
 <BaseLayout
   title={title}
   description={description}
+  keywords={keywords}
   breadcrumbs={breadcrumbs}
 >
   <style is:global>

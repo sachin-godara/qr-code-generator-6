@@ -33,7 +33,7 @@ const currentPath = Astro.url.pathname;
           <span class="text-[9px] font-medium text-on-surface-variant tracking-wider hidden sm:block whitespace-nowrap">40+ styles · 100% free</span>
         </div>
       </a>
-      <div class="hidden md:flex items-center gap-6">
+      <div class="hidden md:flex items-center gap-5 lg:gap-6">
         <a
           href="/"
           class={`text-sm font-semibold transition-colors duration-200 ${currentPath === "/" ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
@@ -42,8 +42,29 @@ const currentPath = Astro.url.pathname;
           Generator
         </a>
         <a
+          href="/qr-code-with-logo"
+          class={`text-sm font-semibold transition-colors duration-200 ${currentPath === "/qr-code-with-logo" ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
+          {...(currentPath === "/qr-code-with-logo" ? { "aria-current": "page" } : {})}
+        >
+          With Logo
+        </a>
+        <a
+          href="/wifi-qr-code"
+          class={`text-sm font-semibold transition-colors duration-200 ${currentPath === "/wifi-qr-code" ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
+          {...(currentPath === "/wifi-qr-code" ? { "aria-current": "page" } : {})}
+        >
+          WiFi QR
+        </a>
+        <a
+          href="/vcard-qr-code"
+          class={`text-sm font-semibold transition-colors duration-200 ${currentPath === "/vcard-qr-code" ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
+          {...(currentPath === "/vcard-qr-code" ? { "aria-current": "page" } : {})}
+        >
+          vCard
+        </a>
+        <a
           href="/how-to-use"
-          class={`text-sm font-semibold transition-colors duration-200 flex items-center gap-1.5 ${currentPath === "/how-to-use" ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
+          class={`text-sm font-semibold transition-colors duration-200 flex items-center gap-1 ${currentPath === "/how-to-use" ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
           {...(currentPath === "/how-to-use" ? { "aria-current": "page" } : {})}
         >
           <span class="material-symbols-outlined text-[16px]">help_outline</span>
@@ -51,7 +72,7 @@ const currentPath = Astro.url.pathname;
         </a>
         <a
           href="/qr-code-scanner"
-          class={`text-sm font-bold transition-colors flex items-center gap-1.5 px-4 py-2 rounded-full border ${currentPath === "/qr-code-scanner" ? "text-primary bg-primary/10 border-primary/30" : "text-on-surface hover:text-primary bg-surface-container hover:bg-surface-container-high border-outline-variant/30"}`}
+          class={`text-sm font-bold transition-colors flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border ${currentPath === "/qr-code-scanner" ? "text-primary bg-primary/10 border-primary/30" : "text-on-surface hover:text-primary bg-surface-container hover:bg-surface-container-high border-outline-variant/30"}`}
           {...(currentPath === "/qr-code-scanner" ? { "aria-current": "page" } : {})}
         >
           <span class="material-symbols-outlined text-[16px]">qr_code_scanner</span>
@@ -76,21 +97,42 @@ const currentPath = Astro.url.pathname;
   <div id="mobile-menu" class="hidden md:hidden border-t border-outline-variant bg-surface-container-lowest px-4 py-3 space-y-1 shadow-lg">
     <a
       href="/"
-      class={`w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold ${currentPath === "/" ? "bg-primary/10 text-primary" : "text-on-surface-variant hover:bg-surface-container"}`}
+      class={`w-full flex items-center gap-3 p-2.5 rounded-xl min-h-[44px] font-bold ${currentPath === "/" ? "bg-primary/10 text-primary" : "text-on-surface-variant hover:bg-surface-container"}`}
     >
       <span class="material-symbols-outlined text-[20px]">qr_code_2</span>
       Generator
     </a>
     <a
+      href="/qr-code-with-logo"
+      class={`w-full flex items-center gap-3 p-2.5 rounded-xl min-h-[44px] font-bold ${currentPath === "/qr-code-with-logo" ? "bg-primary/10 text-primary" : "text-on-surface-variant hover:bg-surface-container"}`}
+    >
+      <span class="material-symbols-outlined text-[20px]">image</span>
+      QR with Logo
+    </a>
+    <a
+      href="/wifi-qr-code"
+      class={`w-full flex items-center gap-3 p-2.5 rounded-xl min-h-[44px] font-bold ${currentPath === "/wifi-qr-code" ? "bg-primary/10 text-primary" : "text-on-surface-variant hover:bg-surface-container"}`}
+    >
+      <span class="material-symbols-outlined text-[20px]">wifi</span>
+      WiFi QR Code
+    </a>
+    <a
+      href="/vcard-qr-code"
+      class={`w-full flex items-center gap-3 p-2.5 rounded-xl min-h-[44px] font-bold ${currentPath === "/vcard-qr-code" ? "bg-primary/10 text-primary" : "text-on-surface-variant hover:bg-surface-container"}`}
+    >
+      <span class="material-symbols-outlined text-[20px]">contact_page</span>
+      vCard QR Code
+    </a>
+    <a
       href="/how-to-use"
-      class={`w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold ${currentPath === "/how-to-use" ? "bg-primary/10 text-primary" : "text-on-surface-variant hover:bg-surface-container"}`}
+      class={`w-full flex items-center gap-3 p-2.5 rounded-xl min-h-[44px] font-bold ${currentPath === "/how-to-use" ? "bg-primary/10 text-primary" : "text-on-surface-variant hover:bg-surface-container"}`}
     >
       <span class="material-symbols-outlined text-[20px]">help_outline</span>
       How to Use
     </a>
     <a
       href="/qr-code-scanner"
-      class={`w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold ${currentPath === "/qr-code-scanner" ? "text-primary bg-primary/5 border border-primary/20" : "text-on-surface-variant hover:bg-surface-container"}`}
+      class={`w-full flex items-center gap-3 p-2.5 rounded-xl min-h-[44px] font-bold ${currentPath === "/qr-code-scanner" ? "text-primary bg-primary/5 border border-primary/20" : "text-on-surface-variant hover:bg-surface-container"}`}
     >
       <span class="material-symbols-outlined text-[20px]">qr_code_scanner</span>
       Scan QR Code

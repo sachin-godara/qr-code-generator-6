@@ -18,14 +18,21 @@ const howTo = {
     { name: "Download and share", text: "Download in PNG, SVG, or PDF. Add to business cards, flyers, or product packaging." }
   ]
 };
+
+const faqs = [
+  { q: "How does an Email QR code work?", a: "When scanned by a smartphone camera, an Email QR code automatically triggers the device's default email app (like Apple Mail, Gmail, or Outlook) with the recipient address, subject, and body text pre-populated." },
+  { q: "Can I pre-fill both the subject line and message body?", a: "Yes! You can specify the exact recipient email, subject line, and draft message body." },
+  { q: "Is an email QR code free and without limits?", a: "Yes, you can generate unlimited Email QR codes with zero limits, no signup, and no expiration." }
+];
 ---
 <BaseLayout
   title="Free Email QR Code Generator — Pre-filled Email Links | GenerateCustomQR"
-  description="Create a free email QR code with a pre-filled subject and body. Perfect for customer support, feedback forms, and instant inquiries. No signup required."
-  keywords="email qr code, mailto qr code, qr code for email, email qr code generator, send email qr code"
+  description="Create a free email QR code with pre-filled recipient, subject, and message. Ideal for customer support, feedback forms, and instant inquiries."
+  keywords="email qr code, mailto qr code generator, qr code for email, pre filled email qr code, free email qr code maker"
   ogImage="/og-email.png"
   breadcrumbs={breadcrumbs}
   howTo={howTo}
+  faqs={faqs}
 >
   <style is:global>
     @import '../styles/global.css';

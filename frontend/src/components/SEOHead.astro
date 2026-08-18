@@ -38,6 +38,8 @@ const resolvedOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogIm
 <meta name="author" content="GenerateCustomQR" />
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 <link rel="canonical" href={resolvedCanonical} />
+<link rel="alternate" hreflang="en" href={resolvedCanonical} />
+<link rel="alternate" hreflang="x-default" href={resolvedCanonical} />
 
 <!-- Google Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -102,61 +104,6 @@ const resolvedOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogIm
   "screenshot": resolvedOgImage
 })} />
 
-<!-- FAQ Structured Data for Rich Snippets -->
-<script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "How do I create a custom QR code?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Enter your URL, text, or contact information, choose from 39 dot styles and 28 eye patterns, customize colors and gradients, add a logo from 46 Presets or upload your own, pick a decorative frame, and download your QR code in PNG, SVG, or PDF format — completely free."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Is the QR code generator free?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, GenerateCustomQR is 100% free with all features unlocked — no signup, no watermarks, no usage limits. You get full access to 40+ dot styles, 51 text frames, 48 templates, logo embedding, batch generation, and PNG/SVG/PDF export at no cost."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What types of QR codes can I create?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "You can create QR codes for 12 different content types: URLs, plain text, WiFi credentials, vCards (contact cards), emails, SMS messages, calendar events, phone numbers, cryptocurrency addresses, Google Maps locations, PayPal payment links, and App Store links."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I add a logo to my QR code?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, you can upload your own logo or choose from 46 preset brand icons including Instagram, WhatsApp, YouTube, Facebook, and more. Features include automatic background removal, adjustable dot clearance around the logo, multiple card shapes, and brand or custom color modes."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What download formats are available?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "You can download QR codes in three formats: PNG (up to 4096×4096 pixels for print), SVG (infinitely scalable vector for designers), and PDF (300 DPI print-ready). All formats are free with no watermarks. You can also copy the QR code directly to your clipboard."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Can I generate QR codes in bulk?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes, GenerateCustomQR supports batch generation of up to 500 QR codes at once. Upload a CSV file with your data, map the columns, choose your design settings, and download all QR codes as a ZIP file in PNG, SVG, or PDF format."
-      }
-    }
-  ]
-})} />
 
 <!-- BreadcrumbList Structured Data (if breadcrumbs provided) -->
 {breadcrumbs && breadcrumbs.length > 0 && (

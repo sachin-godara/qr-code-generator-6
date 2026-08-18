@@ -18,14 +18,23 @@ const howTo = {
     { name: "Download and share", text: "Download in PNG, SVG, or PDF. Print on business cards, name badges, email signatures, or presentation slides." }
   ]
 };
+
+const faqs = [
+  { q: "What is a vCard QR Code?", a: "A vCard QR code contains electronic business card information (.vcf format). When scanned by any smartphone camera, it immediately prompts the user to add the person as a new contact with one tap." },
+  { q: "What contact details can I include in a vCard QR code?", a: "You can include full name, job title, company name, phone number, mobile number, email address, website URL, and physical office address." },
+  { q: "Does the recipient need a special app to save my contact info?", a: "No. Modern iOS and Android camera apps natively parse vCard QR codes and open the native Contacts/Address Book app." },
+  { q: "Can I add my profile picture or company logo to the vCard QR code?", a: "Yes! You can embed your custom logo or headshot in the center of the QR code with customizable card shapes and background padding." },
+  { q: "What is the best format for printing a vCard QR code on business cards?", a: "We recommend downloading in SVG (vector format) or high-resolution PNG (4096px) to ensure crisp, 300+ DPI print quality." }
+];
 ---
 <BaseLayout
-  title="Free vCard QR Code Generator — Digital Business Card | GenerateCustomQR"
-  description="Create a free vCard QR code to instantly share your contact details. Perfect for business cards, networking, and digital portfolios. No signup required."
-  keywords="vcard qr code, contact qr code, digital business card, qr code for business card, free vcard generator"
+  title="Free vCard QR Code Generator — Digital Business Card QR | GenerateCustomQR"
+  description="Create a free vCard QR code to instantly share your digital business card and contact details. Download vector SVG and PNG with zero watermarks."
+  keywords="vcard qr code generator, digital business card qr code, contact qr code free, qr code for business cards, vcf qr code maker"
   ogImage="/og-vcard.png"
   breadcrumbs={breadcrumbs}
   howTo={howTo}
+  faqs={faqs}
 >
   <style is:global>
     @import '../styles/global.css';

@@ -121,12 +121,19 @@ const faqs = [
   { q: "What's the difference between Eye Frames and Eyeballs?", a: "Eye Frames are the outer border of the three corner squares (finder patterns). Eyeballs are the inner square inside each finder pattern. Mixing different styles for frames and eyeballs creates a highly unique QR code appearance." },
   { q: "Can I undo mistakes while designing?", a: "Yes — every change is tracked in the design history. Press Ctrl+Z (or ⌘+Z on Mac) to undo, and Ctrl+Shift+Z to redo. You can step back through your entire design session." },
 ];
+
+const howTo = {
+  name: "How to Make a Custom QR Code in 5 Steps",
+  description: "Learn how to create a fully customized QR code with colors, logos, frames, and effects — completely free, no signup required.",
+  steps: steps.map(s => ({ name: s.title, text: s.description }))
+};
 ---
 <BaseLayout
   title="How to Make a QR Code — Create a QR Code for Free"
   description="Learn how to make a QR code for free in 5 simple steps. Complete guide to creating stunning custom QR codes, adding logos, and ensuring scannability."
-  keywords="how to make a qr code, create a qr code, make a qr code, create qr code, how to use QR code maker, QR code guide"
+  keywords="how to make a qr code, create a qr code, make a qr code, create qr code, how to use QR code maker, QR code guide, how to create qr code for website, qr code tutorial, qr code step by step, how to generate qr code"
   breadcrumbs={breadcrumbs}
+  howTo={howTo}
   faqs={faqs}
 >
   <style is:global>

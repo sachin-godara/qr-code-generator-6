@@ -18,14 +18,21 @@ const howTo = {
     { name: "Download and share", text: "Download in PNG, SVG, or PDF. Add to invitations, posters, tickets, or email signatures." }
   ]
 };
+
+const faqs = [
+  { q: "What is an Event (iCal) QR Code?", a: "An Event QR code encodes standard calendar event data (iCalendar / .ics). When scanned, smartphones prompt users to add the event title, start/end time, location, and description directly into Apple Calendar, Google Calendar, or Outlook." },
+  { q: "Can I set an exact location and description?", a: "Yes, you can include the physical venue address or virtual meeting URL along with full event notes and start/finish dates and times." },
+  { q: "Is it completely free without registration?", a: "Yes, 100% free with unlimited scans, no account signup, and no expiration date." }
+];
 ---
 <BaseLayout
   title="Free Event QR Code Generator — Calendar Invite QR | GenerateCustomQR"
-  description="Create a free event QR code that adds calendar events to any phone. Perfect for invitations, tickets, conference badges, and event posters. No signup required."
-  keywords="event qr code, calendar qr code, event qr code generator, qr code for events, calendar invite qr code, ics qr code"
+  description="Create a free event QR code that adds calendar events to any smartphone. Perfect for invitations, tickets, conference badges, and event posters."
+  keywords="event qr code, calendar qr code generator, qr code for events, calendar invite qr code, ics qr code maker, wedding qr code"
   ogImage="/og-event.png"
   breadcrumbs={breadcrumbs}
   howTo={howTo}
+  faqs={faqs}
 >
   <style is:global>
     @import '../styles/global.css';
