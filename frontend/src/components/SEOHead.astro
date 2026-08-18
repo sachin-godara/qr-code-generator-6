@@ -25,9 +25,9 @@ const {
   faqs,
 } = Astro.props;
 
-const siteUrl = Astro.site?.toString().replace(/\/$/, '') || '';
-const resolvedCanonical = canonicalUrl || Astro.url.href;
-const resolvedOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://generatecustomqr.com';
+const resolvedCanonical = canonicalUrl || `${siteUrl}${Astro.url.pathname}`;
+const resolvedOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage.startsWith('/') ? '' : '/'}${ogImage}`;
 ---
 
 <!-- Primary Meta Tags -->
@@ -167,7 +167,9 @@ const resolvedOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogIm
       "@type": "ListItem",
       "position": index + 1,
       "name": crumb.name,
-      "item": crumb.url
+      "item": crumb.url.startsWith('http')
+        ? crumb.url
+        : `${siteUrl}${crumb.url.startsWith('/') ? '' : '/'}${crumb.url}`
     }))
   })} />
 )}
