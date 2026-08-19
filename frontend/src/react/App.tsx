@@ -321,11 +321,18 @@ function App() {
                 className="text-sm font-semibold transition-colors duration-200 text-on-surface-variant hover:text-on-surface flex items-center gap-1.5"
               >
                 <span className="material-symbols-outlined text-[16px]">help_outline</span>
-                How to Use
+                Guide
+              </a>
+              <a
+                href="/blog"
+                className="text-sm font-semibold transition-colors duration-200 text-on-surface-variant hover:text-on-surface flex items-center gap-1.5"
+              >
+                <span className="material-symbols-outlined text-[16px]">rss_feed</span>
+                Blog
               </a>
               <a
                 href="/qr-code-scanner"
-                className="text-sm font-semibold transition-colors duration-200 text-on-surface-variant hover:text-on-surface flex items-center gap-1.5"
+                className="text-sm font-bold transition-colors flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border text-on-surface hover:text-primary hover:bg-surface-container border-outline-variant/30"
               >
                 <span className="material-symbols-outlined text-[16px]">qr_code_scanner</span>
                 Scan
@@ -360,7 +367,15 @@ function App() {
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className="material-symbols-outlined text-[20px]">help_outline</span>
-              How to Use
+              Guide
+            </a>
+            <a
+              href="/blog"
+              className="w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold text-on-surface-variant hover:bg-surface-container"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <span className="material-symbols-outlined text-[20px]">rss_feed</span>
+              Blog
             </a>
             <a
               href="/qr-code-scanner"

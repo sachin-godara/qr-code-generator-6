@@ -1,0 +1,237 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const allPosts = await getCollection('blog');
+const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const featuredPosts = sortedPosts.filter(p => p.data.featured);
+const regularPosts = sortedPosts.filter(p => !p.data.featured);
+
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "Blog", url: "/blog" }
+];
+
+const categoryLabels: Record<string, { label: string; icon: string }> = {
+  'guides': { label: 'Guide', icon: 'menu_book' },
+  'use-cases': { label: 'Use Case', icon: 'cases' },
+  'design-tips': { label: 'Design Tips', icon: 'palette' },
+  'industry': { label: 'Industry', icon: 'business' },
+  'comparisons': { label: 'Comparison', icon: 'compare' },
+  'news': { label: 'News', icon: 'newspaper' },
+};
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+}
+---
+<BaseLayout
+  title="QR Code Blog — Tips, Guides & Best Practices | GenerateCustomQR"
+  description="Expert guides on QR code design, business use cases, print best practices, and industry trends. Learn how to create stunning QR codes that drive results."
+  keywords="qr code blog, qr code tips, qr code guides, qr code best practices, qr code design tips, how to use qr codes"
+  breadcrumbs={breadcrumbs}
+>
+  <style is:global>
+    @import '../../styles/global.css';
+    @import '../../styles/blog.css';
+  </style>
+
+  <div class="min-h-screen flex flex-col bg-surface">
+    <Header />
+
+    <main class="flex-grow">
+
+      <!-- ═══ HERO ═══ -->
+      <section class="blog-hero py-16 md:py-24 border-b border-outline-variant/50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center blog-reveal">
+          <div class="inline-flex items-center gap-2 bg-surface-container-lowest border border-outline-variant/60 text-on-surface-variant text-xs font-bold px-4 py-1.5 rounded-full mb-6 shadow-xs">
+            <span class="material-symbols-outlined text-[14px]">rss_feed</span>
+            QR Code Knowledge Hub
+          </div>
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-black text-on-surface tracking-tight mb-5 leading-[1.1]">
+            Tips, Guides &<br>
+            <span class="bg-gradient-to-r from-zinc-600 to-zinc-400 bg-clip-text text-transparent">Best Practices</span>
+          </h1>
+          <p class="text-on-surface-variant text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+            Everything you need to know about creating, designing, and deploying QR codes that look stunning and scan perfectly every time.
+          </p>
+        </div>
+      </section>
+
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-16 space-y-16">
+
+        <!-- ═══ FEATURED POSTS ═══ -->
+        {featuredPosts.length > 0 && (
+          <section class="blog-reveal">
+            <div class="flex items-center gap-3 mb-8">
+              <div class="w-10 h-10 rounded-xl bg-zinc-900 text-white flex items-center justify-center">
+                <span class="material-symbols-outlined text-xl">star</span>
+              </div>
+              <div>
+                <h2 class="text-xl font-bold text-on-surface tracking-tight">Featured Articles</h2>
+                <p class="text-xs text-on-surface-variant font-medium">Our most popular guides</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {featuredPosts.map((post) => {
+                const cat = categoryLabels[post.data.category] || { label: post.data.category, icon: 'article' };
+                return (
+                  <a
+                    href={`/blog/${post.id}`}
+                    class="blog-card group block bg-surface-container-lowest rounded-2xl border border-outline-variant/60 overflow-hidden shadow-xs"
+                  >
+                    {/* Gradient Header */}
+                    <div class="h-40 sm:h-48 bg-gradient-to-br from-zinc-100 via-zinc-50 to-white relative overflow-hidden">
+                      <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-7xl text-zinc-200 group-hover:text-zinc-300 transition-colors">article</span>
+                      </div>
+                      <div class="absolute top-4 left-4">
+                        <span class="category-badge" data-cat={post.data.category}>
+                          <span class="material-symbols-outlined text-[12px]">{cat.icon}</span>
+                          {cat.label}
+                        </span>
+                      </div>
+                      {post.data.readingTime && (
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-xs font-bold text-on-surface-variant px-2.5 py-1 rounded-full border border-outline-variant/40">
+                          {post.data.readingTime} min read
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Content */}
+                    <div class="p-5 sm:p-6 space-y-3">
+                      <h3 class="text-lg sm:text-xl font-bold text-on-surface tracking-tight leading-snug group-hover:text-zinc-600 transition-colors line-clamp-2">
+                        {post.data.title}
+                      </h3>
+                      <p class="text-sm text-on-surface-variant leading-relaxed line-clamp-2">
+                        {post.data.description}
+                      </p>
+                      <div class="flex items-center justify-between pt-2">
+                        <time class="text-xs font-medium text-on-surface-variant" datetime={post.data.pubDate.toISOString()}>
+                          {formatDate(post.data.pubDate)}
+                        </time>
+                        <span class="text-xs font-bold text-on-surface group-hover:translate-x-1 transition-transform flex items-center gap-1">
+                          Read article
+                          <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+          </section>
+        )}
+
+        <!-- ═══ ALL POSTS ═══ -->
+        <section class="blog-reveal">
+          <div class="flex items-center gap-3 mb-8">
+            <div class="w-10 h-10 rounded-xl bg-surface-container text-on-surface-variant flex items-center justify-center border border-outline-variant/40">
+              <span class="material-symbols-outlined text-xl">library_books</span>
+            </div>
+            <div>
+              <h2 class="text-xl font-bold text-on-surface tracking-tight">All Articles</h2>
+              <p class="text-xs text-on-surface-variant font-medium">{sortedPosts.length} posts published</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {(regularPosts.length > 0 ? regularPosts : sortedPosts).map((post) => {
+              const cat = categoryLabels[post.data.category] || { label: post.data.category, icon: 'article' };
+              return (
+                <a
+                  href={`/blog/${post.id}`}
+                  class="blog-card group block bg-surface-container-lowest rounded-2xl border border-outline-variant/60 overflow-hidden shadow-xs"
+                >
+                  {/* Mini Gradient Header */}
+                  <div class="h-32 bg-gradient-to-br from-zinc-100 via-zinc-50 to-white relative overflow-hidden">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                      <span class="material-symbols-outlined text-5xl text-zinc-200 group-hover:text-zinc-300 transition-colors">description</span>
+                    </div>
+                    <div class="absolute top-3 left-3">
+                      <span class="category-badge" data-cat={post.data.category}>
+                        <span class="material-symbols-outlined text-[11px]">{cat.icon}</span>
+                        {cat.label}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div class="p-4 sm:p-5 space-y-2.5">
+                    <h3 class="text-base font-bold text-on-surface tracking-tight leading-snug group-hover:text-zinc-600 transition-colors line-clamp-2">
+                      {post.data.title}
+                    </h3>
+                    <p class="text-sm text-on-surface-variant leading-relaxed line-clamp-2">
+                      {post.data.description}
+                    </p>
+                    <div class="flex items-center justify-between pt-1.5">
+                      <div class="flex items-center gap-2 text-xs text-on-surface-variant">
+                        <time datetime={post.data.pubDate.toISOString()}>
+                          {formatDate(post.data.pubDate)}
+                        </time>
+                        {post.data.readingTime && (
+                          <>
+                            <span class="text-outline-variant">·</span>
+                            <span>{post.data.readingTime} min</span>
+                          </>
+                        )}
+                      </div>
+                      <span class="material-symbols-outlined text-[16px] text-on-surface-variant group-hover:text-on-surface group-hover:translate-x-0.5 transition-all">
+                        arrow_forward
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </section>
+
+        <!-- ═══ CTA BANNER ═══ -->
+        <section class="rounded-3xl bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 text-white p-8 sm:p-12 shadow-2xl relative overflow-hidden text-center blog-reveal">
+          <div class="absolute -top-24 -right-24 w-72 h-72 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="relative z-10 max-w-2xl mx-auto space-y-4">
+            <h2 class="text-2xl sm:text-3xl font-black tracking-tight">Ready to Create Your QR Code?</h2>
+            <p class="text-zinc-400 text-sm sm:text-base leading-relaxed">
+              Put what you've learned into practice. Design custom QR codes with 40+ styles, logos, and frames — 100% free.
+            </p>
+            <div class="pt-3">
+              <a
+                href="/"
+                class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold bg-white text-zinc-900 hover:bg-zinc-100 transition-all shadow-lg hover:scale-105 active:scale-95 text-sm"
+              >
+                <span class="material-symbols-outlined text-lg">qr_code_2</span>
+                Create QR Code Now
+              </a>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <Footer />
+  </div>
+
+  <script>
+    // Scroll reveal animation
+    const revealEls = document.querySelectorAll('.blog-reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    revealEls.forEach(el => observer.observe(el));
+  </script>
+</BaseLayout>
