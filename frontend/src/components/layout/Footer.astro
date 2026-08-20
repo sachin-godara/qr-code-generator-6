@@ -10,7 +10,7 @@ const currentYear = new Date().getFullYear();
       
       <!-- Brand & Description -->
       <div class="space-y-4 lg:col-span-1">
-        <a href="/" class="flex items-center gap-2 group">
+        <a href="/" class="flex items-center gap-2 group" aria-label="GenerateCustomQR homepage">
           <div class="w-8 h-8 flex-shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="w-full h-full drop-shadow-sm">
               <defs>
@@ -41,7 +41,7 @@ const currentYear = new Date().getFullYear();
       </div>
 
       <!-- Product Links -->
-      <div class="space-y-4">
+      <nav class="space-y-4" aria-label="QR Code Tools">
         <h3 class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">QR Code Tools</h3>
         <ul class="space-y-3">
           <li><a href="/url-qr-code-generator" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">URL QR Code</a></li>
@@ -53,10 +53,10 @@ const currentYear = new Date().getFullYear();
           <li><a href="/free-qr-code-generator" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">Free Generator</a></li>
           <li><a href="/qr-code-scanner" class="text-sm font-bold text-primary hover:text-primary-hover transition-colors flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">qr_code_scanner</span> QR Scanner</a></li>
         </ul>
-      </div>
+      </nav>
 
       <!-- Resources Links -->
-      <div class="space-y-4">
+      <nav class="space-y-4" aria-label="Resources">
         <h3 class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Resources</h3>
         <ul class="space-y-3">
           <li><a href="/how-to-use" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">How to Make a QR Code</a></li>
@@ -64,16 +64,16 @@ const currentYear = new Date().getFullYear();
           <li><a href="/about" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">About Us</a></li>
           <li><a href="/contact" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">Contact Support</a></li>
         </ul>
-      </div>
+      </nav>
 
       <!-- Legal Links -->
-      <div class="space-y-4">
+      <nav class="space-y-4" aria-label="Legal">
         <h3 class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Legal</h3>
         <ul class="space-y-3">
           <li><a href="/privacy-policy" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">Privacy Policy</a></li>
           <li><a href="/terms" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">Terms & Conditions</a></li>
         </ul>
-      </div>
+      </nav>
 
     </div>
 

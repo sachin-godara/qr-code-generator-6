@@ -5,3 +5,6 @@ Allow: /
 Disallow: /api/
 
 Sitemap: https://generatecustomqr.com/sitemap-index.xml
+
+# RSS Feed
+# https://generatecustomqr.com/rss.xml

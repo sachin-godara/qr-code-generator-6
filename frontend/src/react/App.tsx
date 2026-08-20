@@ -63,6 +63,20 @@ function App() {
     };
   }, []);
   useEffect(() => {
+    // Check URL query parameters (e.g. from QR scanner or external links)
+    const urlParams = new URLSearchParams(window.location.search);
+    const queryText = urlParams.get('url') || urlParams.get('text') || urlParams.get('content');
+    const queryType = urlParams.get('type') as any;
+
+    if (queryText) {
+      const isUrl = queryText.startsWith('http://') || queryText.startsWith('https://');
+      useQRStore.getState().updateSettings({
+        contentType: queryType || (isUrl ? 'url' : 'text'),
+        contentData: queryText
+      });
+      return;
+    }
+
     // Automatically select the correct content type based on the landing page URL
     const path = window.location.pathname;
     let expectedType = null;
