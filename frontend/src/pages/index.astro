@@ -106,7 +106,7 @@ const faqs = [
         {/* Card 1 */}
         <div class="p-6 rounded-3xl bg-surface-container-lowest border border-outline-variant/60 shadow-sm hover-lift space-y-4 group">
           <div class="w-12 h-12 rounded-2xl bg-violet-50 text-violet-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-            <span class="material-symbols-outlined text-2xl">palette</span>
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">palette</span>
           </div>
           <h3 class="text-lg font-bold text-on-surface">39 Matrix Dot Styles</h3>
           <p class="text-sm text-on-surface-variant leading-relaxed">
@@ -122,7 +122,7 @@ const faqs = [
         {/* Card 2 */}
         <div class="p-6 rounded-3xl bg-surface-container-lowest border border-outline-variant/60 shadow-sm hover-lift space-y-4 group">
           <div class="w-12 h-12 rounded-2xl bg-pink-50 text-pink-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-            <span class="material-symbols-outlined text-2xl">image</span>
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">image</span>
           </div>
           <h3 class="text-lg font-bold text-on-surface">Smart Logo Embedding</h3>
           <p class="text-sm text-on-surface-variant leading-relaxed">
@@ -138,7 +138,7 @@ const faqs = [
         {/* Card 3 */}
         <div class="p-6 rounded-3xl bg-surface-container-lowest border border-outline-variant/60 shadow-sm hover-lift space-y-4 group">
           <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-            <span class="material-symbols-outlined text-2xl">download</span>
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">download</span>
           </div>
           <h3 class="text-lg font-bold text-on-surface">High-Res PNG, SVG & PDF</h3>
           <p class="text-sm text-on-surface-variant leading-relaxed">
@@ -154,7 +154,7 @@ const faqs = [
         {/* Card 4 */}
         <div class="p-6 rounded-3xl bg-surface-container-lowest border border-outline-variant/60 shadow-sm hover-lift space-y-4 group">
           <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-            <span class="material-symbols-outlined text-2xl">crop_free</span>
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">crop_free</span>
           </div>
           <h3 class="text-lg font-bold text-on-surface">51 Decorative Frames</h3>
           <p class="text-sm text-on-surface-variant leading-relaxed">
@@ -170,7 +170,7 @@ const faqs = [
         {/* Card 5 */}
         <div class="p-6 rounded-3xl bg-surface-container-lowest border border-outline-variant/60 shadow-sm hover-lift space-y-4 group">
           <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-            <span class="material-symbols-outlined text-2xl">style</span>
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">style</span>
           </div>
           <h3 class="text-lg font-bold text-on-surface">121 Ready Presets</h3>
           <p class="text-sm text-on-surface-variant leading-relaxed">
@@ -186,7 +186,7 @@ const faqs = [
         {/* Card 6 */}
         <div class="p-6 rounded-3xl bg-surface-container-lowest border border-outline-variant/60 shadow-sm hover-lift space-y-4 group">
           <div class="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-            <span class="material-symbols-outlined text-2xl">dataset</span>
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">dataset</span>
           </div>
           <h3 class="text-lg font-bold text-on-surface">Batch CSV Generator</h3>
           <p class="text-sm text-on-surface-variant leading-relaxed">
@@ -237,14 +237,14 @@ const faqs = [
           >
             <div class="space-y-2">
               <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-colors">
-                <span class="material-symbols-outlined text-xl">{item.icon}</span>
+                <span class="material-symbols-outlined text-xl" aria-hidden="true">{item.icon}</span>
               </div>
               <h3 class="text-sm font-bold text-on-surface group-hover:text-primary transition-colors">{item.title}</h3>
               <p class="text-xs text-on-surface-variant leading-relaxed">{item.desc}</p>
             </div>
             <div class="pt-3 flex items-center gap-1 text-[11px] font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
               <span>Create Now</span>
-              <span class="material-symbols-outlined text-xs">arrow_forward</span>
+              <span class="material-symbols-outlined text-xs" aria-hidden="true">arrow_forward</span>
             </div>
           </button>
         ))}
@@ -260,7 +260,7 @@ const faqs = [
           <p class="text-on-surface-variant max-w-xl">Learn how to make the most out of your QR codes with our latest guides, tutorials, and best practices.</p>
         </div>
         <a href="/blog" class="inline-flex items-center gap-2 text-sm font-bold text-primary hover:text-primary-dark transition-colors whitespace-nowrap">
-          View all articles <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+          View all articles <span class="material-symbols-outlined text-[18px]" aria-hidden="true">arrow_forward</span>
         </a>
       </div>
 
@@ -286,7 +286,7 @@ const faqs = [
                 <div class="text-xs font-medium text-on-surface-variant">
                   {post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                 </div>
-                <span class="material-symbols-outlined text-primary opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">
+                <span class="material-symbols-outlined text-primary opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" aria-hidden="true">
                   arrow_forward
                 </span>
               </div>
@@ -311,7 +311,7 @@ const faqs = [
         <details class="group border border-outline-variant/60 rounded-2xl bg-surface-container-lowest overflow-hidden shadow-2xs">
           <summary class="flex justify-between items-center p-5 min-h-[56px] cursor-pointer font-bold text-on-surface hover:bg-surface-container-low transition-colors select-none">
             Is GenerateCustomQR completely free to use?
-            <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary">expand_more</span>
+            <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary" aria-hidden="true">expand_more</span>
           </summary>
           <div class="px-5 pb-5 pt-2 text-on-surface-variant text-sm sm:text-base leading-relaxed border-t border-outline-variant/30 space-y-2">
             <p>Yes, 100% free! There are no hidden fees, no subscriptions, no watermarks, and no registration required.</p>
@@ -322,7 +322,7 @@ const faqs = [
         <details class="group border border-outline-variant/60 rounded-2xl bg-surface-container-lowest overflow-hidden shadow-2xs">
           <summary class="flex justify-between items-center p-5 min-h-[56px] cursor-pointer font-bold text-on-surface hover:bg-surface-container-low transition-colors select-none">
             Can I add a logo to my QR code without breaking scan ability?
-            <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary">expand_more</span>
+            <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary" aria-hidden="true">expand_more</span>
           </summary>
           <div class="px-5 pb-5 pt-2 text-on-surface-variant text-sm sm:text-base leading-relaxed border-t border-outline-variant/30">
             Yes! GenerateCustomQR automatically switches error correction to <strong>Level H (High)</strong> when you add a logo. Level H allows up to 30% of the QR data to be covered while remaining 100% scannable by any smartphone camera.
@@ -332,7 +332,7 @@ const faqs = [
         <details class="group border border-outline-variant/60 rounded-2xl bg-surface-container-lowest overflow-hidden shadow-2xs">
           <summary class="flex justify-between items-center p-5 min-h-[56px] cursor-pointer font-bold text-on-surface hover:bg-surface-container-low transition-colors select-none">
             What download formats are supported?
-            <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary">expand_more</span>
+            <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary" aria-hidden="true">expand_more</span>
           </summary>
           <div class="px-5 pb-5 pt-2 text-on-surface-variant text-sm sm:text-base leading-relaxed border-t border-outline-variant/30">
             We support 3 formats:
@@ -347,7 +347,7 @@ const faqs = [
         <details class="group border border-outline-variant/60 rounded-2xl bg-surface-container-lowest overflow-hidden shadow-2xs">
           <summary class="flex justify-between items-center p-5 min-h-[56px] cursor-pointer font-bold text-on-surface hover:bg-surface-container-low transition-colors select-none">
             How does the Batch CSV generation work?
-            <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary">expand_more</span>
+            <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary" aria-hidden="true">expand_more</span>
           </summary>
           <div class="px-5 pb-5 pt-2 text-on-surface-variant text-sm sm:text-base leading-relaxed border-t border-outline-variant/30">
             Select "Batch Generator" in the navigation or select "Batch CSV" under Content. Upload a CSV file with your URLs or data. Map the CSV columns to data and filename fields, apply your design settings, and download all generated QR codes as a single ZIP file!
