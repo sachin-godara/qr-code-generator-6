@@ -25,8 +25,6 @@ import {
   ShieldCheck, 
   Eye, 
   EyeOff, 
-  Volume2, 
-  VolumeX,
   Download,
   QrCode,
   Calendar,
@@ -35,7 +33,10 @@ import {
   ScanLine,
   FileCode,
   FileDown,
-  SwitchCamera
+  SwitchCamera,
+  XCircle,
+  AlertTriangle,
+  UploadCloud
 } from 'lucide-react';
 import { scanQRImageBackend, API_BASE } from '../../services/qrApi';
 
@@ -322,7 +323,6 @@ export default function QRScannerApp() {
   // Extra UX features
   const [isDragging, setIsDragging] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [soundEnabled, setSoundEnabled] = useState(true);
   const [showHistory, setShowHistory] = useState(false);
   const [scanHistory, setScanHistory] = useState<ScanHistoryItem[]>([]);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
@@ -481,14 +481,12 @@ export default function QRScannerApp() {
     const parsed = parseQRContent(decodedText);
     setParsedData(parsed);
     saveToHistory(parsed);
-    if (soundEnabled) {
-      playScanSound();
-    }
+    playScanSound();
     if (typeof navigator !== 'undefined' && navigator.vibrate) {
       try { navigator.vibrate(80); } catch (e) {}
     }
     showToast('QR Code decoded successfully!');
-  }, [soundEnabled, saveToHistory, showToast]);
+  }, [saveToHistory, showToast]);
 
   // Robust Camera start with automatic device & facingMode fallbacks
   const startCamera = async (cameraId?: string, customFacingMode?: 'environment' | 'user') => {
@@ -1042,24 +1040,8 @@ export default function QRScannerApp() {
 
         </div>
 
-        {/* Action Controls (Sound, History) */}
-        <div className="flex items-center justify-end gap-2 shrink-0">
-          <button
-            onClick={() => {
-              setSoundEnabled(!soundEnabled);
-              showToast(!soundEnabled ? 'Audio feedback enabled' : 'Audio feedback muted');
-            }}
-            className={`p-2 sm:p-2.5 rounded-xl border transition-all cursor-pointer min-h-[40px] min-w-[40px] flex items-center justify-center ${
-              soundEnabled 
-                ? 'bg-primary/10 text-primary border-primary/30 shadow-xs' 
-                : 'bg-surface-container text-on-surface-variant border-outline-variant/60 hover:text-on-surface'
-            }`}
-            title={soundEnabled ? 'Mute sound on scan' : 'Enable audio chime on scan'}
-            aria-label="Toggle scan sound"
-          >
-            {soundEnabled ? <Volume2 size={17} /> : <VolumeX size={17} />}
-          </button>
-
+        {/* Action Controls (History Drawer Toggle) */}
+        <div className="flex items-center justify-end shrink-0">
           <button
             onClick={() => setShowHistory(!showHistory)}
             className={`flex items-center justify-center gap-1.5 px-3 sm:px-3.5 py-2 sm:py-2.5 rounded-xl border text-xs font-bold transition-all cursor-pointer min-h-[40px] ${
@@ -1085,8 +1067,8 @@ export default function QRScannerApp() {
       {/* Main Body */}
       <div className="p-4 sm:p-6 md:p-8">
         
-        {/* Error Alert Box */}
-        {error && (
+        {/* Error Alert Box (for camera errors or general notices) */}
+        {error && (!uploadedImagePreview || activeTab === 'camera') && (
           <motion.div 
             initial={{ opacity: 0, y: -10 }} 
             animate={{ opacity: 1, y: 0 }}
@@ -1233,74 +1215,158 @@ export default function QRScannerApp() {
             {/* --- File Upload / Drag-and-Drop View --- */}
             <div className={`w-full flex-col items-center ${activeTab === 'file' ? 'flex' : 'hidden'}`}>
               
-              {/* Uploaded Preview (if deep scanning in progress) */}
+              {/* STATE 1: Deep scanning in progress */}
               {uploadedImagePreview && isDeepScanning && (
-                <div className="w-full max-w-[280px] mb-4 sm:mb-6 rounded-2xl overflow-hidden border border-outline-variant shadow-lg relative bg-surface-container-highest">
-                  <img 
-                    src={uploadedImagePreview} 
-                    alt="Uploaded preview" 
-                    className="w-full h-auto object-contain opacity-50" 
-                  />
-                  <div className="absolute inset-0 flex flex-col items-center justify-center p-4 bg-black/60 text-white text-center backdrop-blur-xs">
-                    <Loader2 className="w-8 h-8 sm:w-10 sm:h-10 text-primary animate-spin mb-2 sm:mb-3" />
-                    <p className="text-xs font-bold uppercase tracking-wider text-white">Deep Scanning...</p>
-                    <p className="text-[11px] text-white/80 mt-1 font-medium">{deepScanStep}</p>
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="w-full max-w-[420px] aspect-square rounded-2xl sm:rounded-3xl border border-outline-variant shadow-xl relative bg-surface-container p-6 flex flex-col items-center justify-center text-center overflow-hidden"
+                >
+                  <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-2xl overflow-hidden relative mb-4 border border-outline-variant/60 bg-neutral-950 flex items-center justify-center shadow-inner">
+                    <img 
+                      src={uploadedImagePreview} 
+                      alt="Uploaded QR preview" 
+                      className="w-full h-full object-contain opacity-50" 
+                    />
+                    <div className="absolute inset-0 flex flex-col items-center justify-center p-4 bg-black/40 text-white backdrop-blur-xs">
+                      <Loader2 className="w-10 h-10 text-primary animate-spin mb-2" />
+                    </div>
+                    {/* Animated Scanning Beam */}
+                    <div className="w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent shadow-[0_0_12px_var(--color-primary)] animate-pulse absolute top-1/2 -translate-y-1/2"></div>
                   </div>
-                </div>
+
+                  <h4 className="text-sm sm:text-base font-black text-on-surface uppercase tracking-wider">AI Deep Scanning...</h4>
+                  <p className="text-xs text-on-surface-variant mt-1 max-w-[280px] font-medium">{deepScanStep}</p>
+                </motion.div>
               )}
 
-              {/* Dropzone Box */}
-              <div 
-                ref={dropZoneRef}
-                onDragOver={handleDragOver}
-                onDragLeave={handleDragLeave}
-                onDrop={handleDrop}
-                onClick={() => !isDeepScanning && fileInputRef.current?.click()}
-                className={`w-full max-w-[420px] aspect-square rounded-2xl sm:rounded-3xl border-2 border-dashed transition-all duration-200 flex flex-col items-center justify-center cursor-pointer p-4 sm:p-6 text-center select-none relative overflow-hidden group ${
-                  isDragging 
-                    ? 'border-primary bg-primary/10 scale-[1.02] shadow-2xl' 
-                    : 'border-outline-variant/80 hover:border-primary bg-surface-container/40 hover:bg-surface-container/70 shadow-xs'
-                }`}
-              >
-                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300 shadow-inner border border-primary/20">
-                  <ImageIcon size={30} className="sm:w-9 sm:h-9" />
-                </div>
+              {/* STATE 2: Upload Failed / Invalid QR Code Card */}
+              {uploadedImagePreview && !isDeepScanning && error && !scanResult && (
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  className="w-full max-w-[420px] bg-surface-container rounded-2xl sm:rounded-3xl p-5 sm:p-7 border border-error/30 shadow-lg flex flex-col items-center text-center relative overflow-hidden"
+                >
+                  {/* Thumbnail preview with failure badge */}
+                  <div className="relative mb-3.5">
+                    <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border-2 border-error/40 shadow-inner bg-surface flex items-center justify-center">
+                      <img 
+                        src={uploadedImagePreview} 
+                        alt="Uploaded attempt" 
+                        className="w-full h-full object-contain p-1 opacity-75" 
+                      />
+                    </div>
+                    <div className="absolute -top-1.5 -right-1.5 bg-error text-white p-1 rounded-full shadow-md">
+                      <XCircle size={18} />
+                    </div>
+                  </div>
 
-                <h3 className="text-sm sm:text-base md:text-lg font-black text-on-surface mb-1">
-                  {isDragging ? 'Drop QR image here' : 'Tap or Drag QR image here'}
-                </h3>
-                
-                <p className="text-[11px] sm:text-xs text-on-surface-variant max-w-[240px] sm:max-w-[260px] leading-relaxed mb-3 sm:mb-4">
-                  Supports PNG, JPG, WebP, SVG, and screenshot files.
-                </p>
+                  {/* Failure Badge */}
+                  <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-error-container text-on-error-container text-[11px] font-bold mb-2">
+                    <AlertTriangle size={13} className="text-error" />
+                    <span>No Valid QR Code Detected</span>
+                  </div>
 
-                {/* Format chips */}
-                <div className="flex flex-wrap items-center justify-center gap-1 max-w-[280px]">
-                  <span className="px-2 py-0.5 rounded-md bg-surface border border-outline-variant/60 text-[10px] font-bold text-on-surface-variant">PNG</span>
-                  <span className="px-2 py-0.5 rounded-md bg-surface border border-outline-variant/60 text-[10px] font-bold text-on-surface-variant">JPG</span>
-                  <span className="px-2 py-0.5 rounded-md bg-surface border border-outline-variant/60 text-[10px] font-bold text-on-surface-variant">WebP</span>
-                  <span className="px-2 py-0.5 rounded-md bg-surface border border-outline-variant/60 text-[10px] font-bold text-on-surface-variant">SVG</span>
-                </div>
+                  <h3 className="text-base sm:text-lg font-black text-on-surface mb-1">
+                    Could Not Read QR Code
+                  </h3>
 
-                {/* Ctrl+V helper badge */}
-                <div className="mt-3 sm:mt-4 inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-surface-container-high border border-outline-variant/60 text-[10px] sm:text-[11px] font-semibold text-on-surface-variant">
-                  <Sparkles size={11} className="text-primary" />
-                  <span>Tip: Press <kbd className="font-mono font-bold text-on-surface bg-surface px-1 py-0.5 rounded border border-outline-variant">Ctrl+V</kbd> to paste</span>
-                </div>
+                  <p className="text-xs text-on-surface-variant max-w-[280px] leading-relaxed mb-5">
+                    We couldn't detect a clear QR code in this image. The code may be blurry, low-contrast, or cropped.
+                  </p>
 
-                <input 
-                  type="file" 
-                  accept="image/*" 
-                  ref={fileInputRef} 
-                  className="hidden" 
-                  onChange={handleFileUpload}
-                  disabled={isDeepScanning}
-                />
-              </div>
+                  {/* Action Buttons */}
+                  <div className="flex flex-col sm:flex-row gap-2 w-full">
+                    <button
+                      onClick={() => fileInputRef.current?.click()}
+                      className="flex-1 flex items-center justify-center gap-1.5 bg-primary text-white py-3 px-4 rounded-xl font-bold hover:bg-primary/90 text-xs shadow-md transition-all cursor-pointer btn-spring min-h-[44px]"
+                    >
+                      <UploadCloud size={16} />
+                      <span>Try Another Image</span>
+                    </button>
 
-              <p className="mt-4 sm:mt-5 text-center text-xs font-medium text-on-surface-variant px-2">
-                Upload a saved image or screenshot to decode full contents.
-              </p>
+                    <button
+                      onClick={() => handleTabChange('camera')}
+                      className="flex-1 flex items-center justify-center gap-1.5 bg-surface hover:bg-surface-container text-on-surface py-3 px-4 rounded-xl font-bold text-xs border border-outline-variant/60 transition-colors cursor-pointer min-h-[44px]"
+                    >
+                      <Camera size={16} />
+                      <span>Scan with Camera</span>
+                    </button>
+                  </div>
+
+                  <button
+                    onClick={resetScanner}
+                    className="mt-3.5 text-xs font-bold text-on-surface-variant hover:text-on-surface hover:underline cursor-pointer py-1"
+                  >
+                    Clear and return to dropzone
+                  </button>
+
+                  <input 
+                    type="file" 
+                    accept="image/*" 
+                    ref={fileInputRef} 
+                    className="hidden" 
+                    onChange={handleFileUpload}
+                  />
+                </motion.div>
+              )}
+
+              {/* STATE 3: Standard Clean Dropzone Box (when no upload or after reset) */}
+              {(!uploadedImagePreview || (!isDeepScanning && !error)) && (
+                <>
+                  <div 
+                    ref={dropZoneRef}
+                    onDragOver={handleDragOver}
+                    onDragLeave={handleDragLeave}
+                    onDrop={handleDrop}
+                    onClick={() => !isDeepScanning && fileInputRef.current?.click()}
+                    className={`w-full max-w-[420px] aspect-square rounded-2xl sm:rounded-3xl border-2 border-dashed transition-all duration-200 flex flex-col items-center justify-center cursor-pointer p-4 sm:p-6 text-center select-none relative overflow-hidden group ${
+                      isDragging 
+                        ? 'border-primary bg-primary/10 scale-[1.02] shadow-2xl' 
+                        : 'border-outline-variant/80 hover:border-primary bg-surface-container/40 hover:bg-surface-container/70 shadow-xs'
+                    }`}
+                  >
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300 shadow-inner border border-primary/20">
+                      <ImageIcon size={30} className="sm:w-9 sm:h-9" />
+                    </div>
+
+                    <h3 className="text-sm sm:text-base md:text-lg font-black text-on-surface mb-1">
+                      {isDragging ? 'Drop QR image here' : 'Tap or Drag QR image here'}
+                    </h3>
+                    
+                    <p className="text-[11px] sm:text-xs text-on-surface-variant max-w-[240px] sm:max-w-[260px] leading-relaxed mb-3 sm:mb-4">
+                      Supports PNG, JPG, WebP, SVG, and screenshot files.
+                    </p>
+
+                    {/* Format chips */}
+                    <div className="flex flex-wrap items-center justify-center gap-1 max-w-[280px]">
+                      <span className="px-2 py-0.5 rounded-md bg-surface border border-outline-variant/60 text-[10px] font-bold text-on-surface-variant">PNG</span>
+                      <span className="px-2 py-0.5 rounded-md bg-surface border border-outline-variant/60 text-[10px] font-bold text-on-surface-variant">JPG</span>
+                      <span className="px-2 py-0.5 rounded-md bg-surface border border-outline-variant/60 text-[10px] font-bold text-on-surface-variant">WebP</span>
+                      <span className="px-2 py-0.5 rounded-md bg-surface border border-outline-variant/60 text-[10px] font-bold text-on-surface-variant">SVG</span>
+                    </div>
+
+                    {/* Ctrl+V helper badge */}
+                    <div className="mt-3 sm:mt-4 inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-surface-container-high border border-outline-variant/60 text-[10px] sm:text-[11px] font-semibold text-on-surface-variant">
+                      <Sparkles size={11} className="text-primary" />
+                      <span>Tip: Press <kbd className="font-mono font-bold text-on-surface bg-surface px-1 py-0.5 rounded border border-outline-variant">Ctrl+V</kbd> to paste</span>
+                    </div>
+
+                    <input 
+                      type="file" 
+                      accept="image/*" 
+                      ref={fileInputRef} 
+                      className="hidden" 
+                      onChange={handleFileUpload}
+                      disabled={isDeepScanning}
+                    />
+                  </div>
+
+                  <p className="mt-4 sm:mt-5 text-center text-xs font-medium text-on-surface-variant px-2">
+                    Upload a saved image or screenshot to decode full contents.
+                  </p>
+                </>
+              )}
             </div>
 
           </div>
