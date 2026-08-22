@@ -41,23 +41,21 @@ Create a dedicated landing page (e.g., `yourname.com/card`) with links to your s
 
 ### For a vCard QR Code:
 
-1. Visit [GenerateCustomQR](https://generatecustomqr.com)
-2. Select **vCard** as the content type
-3. Fill in your details:
+1. Open the [Free vCard QR Code Generator](/vcard-qr-code)
+2. Fill in your professional details:
    - Full name and job title
    - Company name
    - Phone number(s) — mobile, work
    - Email address(es)
    - Website URL
    - Physical address (optional)
-4. The QR code generates automatically as you type
+3. The QR code generates automatically as you type
 
 ### For a URL QR Code:
 
-1. Visit [GenerateCustomQR](https://generatecustomqr.com)
-2. Select **URL** as the content type
-3. Paste your website or LinkedIn URL
-4. The QR code generates automatically
+1. Open the [URL to QR Code Generator](/url-qr-code-generator)
+2. Paste your website, digital portfolio, or LinkedIn profile URL
+3. The QR code generates automatically
 
 ## Step 2: Design Your QR Code to Match Your Brand
 

@@ -4,7 +4,7 @@
 
 ---
 
-## 🗺️ 1. Static Route Topology (21+ Pre-Rendered Pages)
+## 🗺️ 1. Static Route Topology (28 Pre-Rendered Pages)
 
 Astro 5 builds all public-facing pages at compile time into static HTML/CSS with zero server runtime overhead:
 
@@ -21,11 +21,11 @@ Astro 5 builds all public-facing pages at compile time into static HTML/CSS with
 | `/qr-code-scanner` | `qr-code-scanner.astro` | WebRTC camera video stream & image file upload scanner tool. |
 | `/how-to-use` | `how-to-use.astro` | Interactive step-by-step documentation and tutorials. |
 | `/about` | `about.astro` | Company background, security standards, and mission statement. |
-| `/contact` | `contact.astro` | Interactive contact form connected to `/api/contact`. |
+| `/contact` | `contact.astro` | Interactive contact form with Honeypot spam defense. |
 | `/privacy-policy` | `privacy-policy.astro` | GDPR & CCPA privacy policy and data governance statement. |
 | `/terms` | `terms.astro` | Terms of service and intellectual property agreement. |
 | `/blog` | `blog/index.astro` | SEO content marketing blog index with search and tag filters. |
-| `/blog/[...slug]` | `blog/[...slug].astro` | Dynamic Markdown article route rendered via Content Collections. |
+| `/blog/[...slug]` (12 posts) | `blog/[...slug].astro` | 12 high-intent Markdown articles rendered via Content Collections. |
 | `/404` & `/500` | `404.astro` / `500.astro` | Custom branded error recovery pages. |
 
 ---

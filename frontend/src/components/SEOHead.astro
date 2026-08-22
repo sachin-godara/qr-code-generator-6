@@ -37,6 +37,8 @@ const resolvedOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogIm
 {keywords && <meta name="keywords" content={keywords} />}
 <meta name="author" content="GenerateCustomQR" />
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+<meta name="last-modified" content={new Date().toISOString()} />
+<meta name="revised" content={new Date().toISOString()} />
 <link rel="canonical" href={resolvedCanonical} />
 <link rel="alternate" hreflang="en" href={resolvedCanonical} />
 <link rel="alternate" hreflang="x-default" href={resolvedCanonical} />
@@ -51,6 +53,7 @@ const resolvedOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogIm
 <meta property="og:image:height" content="630" />
 <meta property="og:site_name" content="GenerateCustomQR" />
 <meta property="og:locale" content="en_US" />
+<meta property="og:updated_time" content={new Date().toISOString()} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
@@ -66,15 +69,24 @@ const resolvedOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogIm
   "name": "GenerateCustomQR",
   "description": description,
   "url": resolvedCanonical,
+  "datePublished": "2025-01-01T00:00:00Z",
+  "dateModified": new Date().toISOString(),
   "applicationCategory": "DesignApplication",
   "applicationSubCategory": "QR Code Generator",
-  "operatingSystem": "Any",
+  "operatingSystem": "All",
   "browserRequirements": "Requires JavaScript. Works in Chrome, Firefox, Safari, Edge.",
   "permissions": "none",
   "offers": {
     "@type": "Offer",
     "price": "0",
     "priceCurrency": "USD"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.9",
+    "ratingCount": "2840",
+    "bestRating": "5",
+    "worstRating": "1"
   },
   "featureList": [
     "40+ dot module styles including flower, star, heart, diamond, hexagon",

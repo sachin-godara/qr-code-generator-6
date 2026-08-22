@@ -40,11 +40,10 @@ Before you create a QR code, your menu needs to live somewhere online. Here are 
 
 ## Step 2: Generate Your QR Code
 
-1. Go to [GenerateCustomQR](https://generatecustomqr.com)
-2. Select **URL** as the content type
-3. Paste your online menu link
-4. Customize the design — choose a dot style, colors that match your restaurant brand, and add your logo
-5. Download in **SVG** format for the crispest print quality
+1. Open the [URL to QR Code Generator](/url-qr-code-generator) (or the [Free QR Code Generator with Logo](/qr-code-with-logo))
+2. Paste your online menu link
+3. Customize the design — choose from 39 dot styles, colors that match your restaurant brand, and add your restaurant logo
+4. Download in **SVG** or **PDF** format for the crispest print quality
 
 ### Design Tips for Restaurant QR Codes
 

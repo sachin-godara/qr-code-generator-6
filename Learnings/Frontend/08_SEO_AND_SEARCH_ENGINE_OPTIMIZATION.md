@@ -234,23 +234,54 @@ const blog = defineCollection({
 });
 ```
 
-### Strategic Topic Clusters (4 Published Articles):
-1. **Design Tips**: `qr-code-design-best-practices-for-print.md` (DPI, CMYK, quiet zones, minimum sizing) — 6 min read.
-2. **Business Networking**: `how-to-add-qr-code-to-business-card.md` (vCard formatting, digital business cards) — 6 min read.
-3. **Hospitality & Retail**: `qr-code-for-restaurant-menu.md` (Contactless dining, PDF menus, multi-language) — 7 min read. ⭐ Featured.
-4. **Technical Comparison**: `static-vs-dynamic-qr-codes.md` (Data permanence, privacy, redirect latency) — 5 min read. ⭐ Featured.
+### Strategic Topic Clusters (12 Published Articles across 6 Categories):
+1. **Guides**:
+   - `how-to-scan-a-qr-code.md` (Camera app, Google Lens, WebRTC online scanner) — 5 min read. ⭐ Featured.
+   - `qr-code-size-guide.md` (Print sizing, business cards, billboards, viewing distance) — 6 min read.
+   - `qr-code-for-google-maps.md` (Location coordinates, business maps, wedding venue) — 5 min read.
+2. **Design Tips**:
+   - `qr-code-color-guide.md` (4.5:1 contrast ratios, gradient modes, dark mode) — 7 min read. ⭐ Featured.
+   - `qr-code-design-best-practices-for-print.md` (DPI, CMYK, quiet zones, minimum sizing) — 6 min read.
+3. **Use Cases**:
+   - `how-to-add-qr-code-to-business-card.md` (vCard formatting, digital business cards) — 6 min read.
+   - `qr-code-for-restaurant-menu.md` (Contactless dining, PDF menus, multi-language) — 7 min read. ⭐ Featured.
+   - `wifi-qr-code-for-hotels.md` (Guest WiFi network setup, Airbnb hospitality) — 6 min read.
+   - `qr-codes-for-real-estate.md` (Virtual tours, property listing yard signs) — 6 min read.
+4. **Comparisons**:
+   - `static-vs-dynamic-qr-codes.md` (Data permanence, privacy, redirect latency) — 5 min read. ⭐ Featured.
+   - `qr-code-vs-barcode.md` (1D vs 2D barcodes, error correction, scanning speed) — 5 min read.
+5. **News & Trends**:
+   - `qr-code-trends-2025.md` (Industry adoption, vector innovations, market statistics) — 6 min read.
 
-### Blog Template SEO Features (`blog/[...slug].astro`):
+### Blog Template SEO & Conversion Features (`blog/[...slug].astro`):
 - Unique `<title>` with brand suffix: `{post.data.title} | GenerateCustomQR Blog`
 - Article JSON-LD structured data with `datePublished`, `dateModified`, `author`, `publisher`
 - BreadcrumbList with 3-level hierarchy: Home → Blog → Post Title
+- In-Article High-Converting QR Generator Callout Box linking readers directly to creation tools
+- Contextual back-linking across all 12 articles into `/vcard-qr-code`, `/wifi-qr-code`, `/url-qr-code-generator`, `/qr-code-with-logo`, and `/qr-code-scanner`
 - Related posts cross-linking (3 recommended articles)
 - Author box with organization description and about link
 - Reading progress bar for user engagement signals
 
 ---
 
-## 🔗 6. Internal Linking Architecture
+## 📊 6. Master 150+ Keyword Inventory & Intent Clusters
+
+The site captures organic search volume across **7 distinct search intent clusters**:
+
+| Cluster | Key Target Queries | Primary Landing Pages |
+| :--- | :--- | :--- |
+| **1. Core Head Terms** | `qr code generator`, `free qr code generator`, `qr code maker`, `create qr code online` | `/`, `/free-qr-code-generator` |
+| **2. Feature Modifiers** | `no watermark`, `no signup`, `with logo`, `vector svg`, `high resolution 300 dpi` | `/`, `/free-qr-code-generator`, `/qr-code-with-logo` |
+| **3. Content Types** | `url to qr code`, `wifi qr code`, `vcard qr code`, `email qr code`, `event qr code`, `maps qr code` | Dedicated tool routes (`/url-...`, `/wifi-...`, `/vcard-...`) |
+| **4. Scanner & Reader** | `qr code scanner`, `scan qr code from image`, `scan qr code online`, `how to scan qr code` | `/qr-code-scanner`, `/blog/how-to-scan-a-qr-code` |
+| **5. Industry Niches** | `restaurant menu qr`, `hotel wifi qr`, `real estate qr sign`, `business card qr code` | Blog use-case cluster |
+| **6. Tech & Sizing** | `qr code size guide`, `qr code color guide`, `static vs dynamic`, `qr code vs barcode` | Blog guides & comparisons |
+| **7. Brand & Authority** | `about generatecustomqr`, `contact support`, `who made generatecustomqr` | `/about`, `/contact` |
+
+### Automated Quality Gate Tooling:
+- `frontend/scripts/audit_seo.mjs`: Validates title lengths (35–65 ch), description lengths (100–165 ch), H1 tags, schemas, and 100% blog internal linking on every build.
+- `frontend/scripts/seo_analyzer.mjs`: Extracts and exports complete JSON audit metadata (`seo_audit_report.json`).
 
 ### Navigation Topology:
 ```

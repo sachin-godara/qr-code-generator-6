@@ -13,7 +13,7 @@
 - **Enterprise-Grade Resolution & Formats**: Instant client-side preview with server-side exports in PNG, lossless SVG, and vector PDF up to **8K (8192px)** with DPI scaling and aspect ratio preservation.
 - **Batch Processing**: Ingests CSV files, maps dynamic columns, and batches up to 50 customized QR codes into a structured ZIP archive.
 - **Dual-Engine Computer Vision Scanner**: Combines deep learning (WeChat QR Caffe CNN) with an OpenCV + PyZBar waterfall filter pipeline capable of decoding inverted, blurred, low-contrast, or stylized QR codes.
-- **Hybrid SSR/SSG & Interactive Island Architecture**: Astro 5 static pages (21+ routes, automated SEO, JSON-LD schemas, sitemaps, RSS blog) seamlessly hosting React 19 interactive visual studios.
+- **Hybrid SSR/SSG & Interactive Island Architecture**: Astro 5 static pages (28 pre-rendered routes, 12 SEO blog guides, 150+ keyword catalog, automated JSON-LD schemas, sitemaps, RSS feed) seamlessly hosting React 19 interactive visual studios.
 
 ---
 

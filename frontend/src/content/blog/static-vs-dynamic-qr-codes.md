@@ -109,6 +109,8 @@ Here's a simple decision framework:
 
 ## Create Free Static QR Codes
 
-[GenerateCustomQR](https://generatecustomqr.com) specializes in **high-quality static QR codes** with full design customization — 40+ dot styles, logo embedding, text frames, and high-resolution PNG/SVG/PDF downloads. All completely free, no signup required, and your QR codes never expire.
+[GenerateCustomQR](/) specializes in **high-quality static QR codes** with full design customization — 40+ dot styles, logo embedding, text frames, and high-resolution PNG/SVG/PDF downloads. All completely free, no signup required, and your QR codes never expire.
 
-[Create your QR code now →](https://generatecustomqr.com)
+- [Create a Free Custom QR Code](/)
+- [Learn more about our 100% Free QR Code Generator](/free-qr-code-generator)
+- [How to Add a Logo to a QR Code](/qr-code-with-logo)

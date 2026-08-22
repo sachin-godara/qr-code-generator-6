@@ -10,6 +10,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "test": "vitest run",
+    "test:seo": "node scripts/audit_seo.mjs",
     "astro": "astro"
   },
   "dependencies": {

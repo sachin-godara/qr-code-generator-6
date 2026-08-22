@@ -136,6 +136,10 @@ Before sending your QR code to the printer:
 
 ## Create Print-Ready QR Codes for Free
 
-[GenerateCustomQR](https://generatecustomqr.com) exports in **SVG** (infinite vector quality), **PDF** (300 DPI), and **PNG** (up to 4096px) — all free, no watermarks. Design with 40+ dot styles, embed your logo, and download in seconds.
+[GenerateCustomQR](/) exports in **SVG** (infinite vector quality), **PDF** (300 DPI), and **PNG** (up to 8K resolution) — all free with no watermarks. Design with 40+ dot styles, embed your logo, and download in seconds.
+
+- [Create a Print-Ready QR Code](/)
+- [Learn How to Add a Logo to a QR Code](/qr-code-with-logo)
+- [Step-by-Step Guide on How to Make a QR Code](/how-to-use)
 
 [Start designing →](https://generatecustomqr.com)
