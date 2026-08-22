@@ -217,18 +217,18 @@ const faqs = [
 
       <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
         {[
-          { id: "url", icon: "link", title: "Website URL", desc: "Direct visitors to any web link" },
-          { id: "wifi", icon: "wifi", title: "WiFi Credentials", desc: "Auto-connect without typing passwords" },
-          { id: "vcard", icon: "contact_page", title: "vCard Contact", desc: "Digital business card saved to contacts" },
-          { id: "email", icon: "mail", title: "Email Message", desc: "Pre-fill recipient, subject & body" },
-          { id: "sms", icon: "sms", title: "SMS Message", desc: "Send SMS with pre-written text" },
-          { id: "phone", icon: "call", title: "Phone Call", desc: "Dial a phone number directly" },
-          { id: "event", icon: "event", title: "Calendar Event", desc: "Add event to Google/Apple Calendar" },
-          { id: "text", icon: "subject", title: "Plain Text", desc: "Display raw text or notes on scan" },
-          { id: "location", icon: "location_on", title: "Maps Location", desc: "Open Google Maps or coordinates" },
-          { id: "crypto", icon: "currency_bitcoin", title: "Crypto Wallet", desc: "Bitcoin, Ethereum, USDT transfers" },
-          { id: "paypal", icon: "payments", title: "PayPal Link", desc: "Receive payments or donations" },
-          { id: "appstore", icon: "apps", title: "App Store", desc: "Redirect to iOS or Android apps" },
+          { id: "url", icon: "link", title: "Website URL", desc: "Direct visitors to any web link", label: "Make URL QR" },
+          { id: "wifi", icon: "wifi", title: "WiFi Credentials", desc: "Auto-connect without typing passwords", label: "Make WiFi QR" },
+          { id: "vcard", icon: "contact_page", title: "vCard Contact", desc: "Digital business card saved to contacts", label: "Make vCard QR" },
+          { id: "email", icon: "mail", title: "Email Message", desc: "Pre-fill recipient, subject & body", label: "Make Email QR" },
+          { id: "sms", icon: "sms", title: "SMS Message", desc: "Send SMS with pre-written text", label: "Make SMS QR" },
+          { id: "phone", icon: "call", title: "Phone Call", desc: "Dial a phone number directly", label: "Make Phone QR" },
+          { id: "event", icon: "event", title: "Calendar Event", desc: "Add event to Google/Apple Calendar", label: "Make Event QR" },
+          { id: "text", icon: "subject", title: "Plain Text", desc: "Display raw text or notes on scan", label: "Make Text QR" },
+          { id: "location", icon: "location_on", title: "Maps Location", desc: "Open Google Maps or coordinates", label: "Make Maps QR" },
+          { id: "crypto", icon: "currency_bitcoin", title: "Crypto Wallet", desc: "Bitcoin, Ethereum, USDT transfers", label: "Make Crypto QR" },
+          { id: "paypal", icon: "payments", title: "PayPal Link", desc: "Receive payments or donations", label: "Make PayPal QR" },
+          { id: "appstore", icon: "apps", title: "App Store", desc: "Redirect to iOS or Android apps", label: "Make App QR" },
         ].map(item => (
           <button
             type="button"
@@ -243,11 +243,68 @@ const faqs = [
               <p class="text-xs text-on-surface-variant leading-relaxed">{item.desc}</p>
             </div>
             <div class="pt-3 flex items-center gap-1 text-[11px] font-bold text-primary opacity-0 group-hover:opacity-100 transition-opacity">
-              <span>Create Now</span>
+              <span>{item.label}</span>
               <span class="material-symbols-outlined text-xs" aria-hidden="true">arrow_forward</span>
             </div>
           </button>
         ))}
+      </div>
+    </section>
+
+    <!-- 4. STEP-BY-STEP HOW IT WORKS GUIDE -->
+    <section id="how-it-works" class="space-y-12">
+      <div class="text-center max-w-2xl mx-auto space-y-4">
+        <span class="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full uppercase tracking-wider">
+          Simple Workflow
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-black text-on-surface tracking-tight">
+          How to Create a Custom QR Code in 4 Steps
+        </h2>
+        <p class="text-base text-on-surface-variant leading-relaxed">
+          Follow our intuitive design pipeline to produce print-ready, scannable QR codes in under 60 seconds.
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="p-6 rounded-3xl bg-surface-container-lowest border border-outline-variant/60 shadow-sm space-y-4 relative">
+          <div class="w-10 h-10 rounded-xl bg-primary text-white font-black text-lg flex items-center justify-center shadow-md shadow-primary/20">
+            1
+          </div>
+          <h3 class="text-lg font-bold text-on-surface">Select Content Type</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">
+            Choose your payload: website URL, guest WiFi, digital vCard contact, email draft, phone number, or event calendar invite.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-surface-container-lowest border border-outline-variant/60 shadow-sm space-y-4 relative">
+          <div class="w-10 h-10 rounded-xl bg-primary text-white font-black text-lg flex items-center justify-center shadow-md shadow-primary/20">
+            2
+          </div>
+          <h3 class="text-lg font-bold text-on-surface">Customize Dot Patterns</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">
+            Pick from 39 matrix dot styles, 25 eye frames, 20 eyeballs, and multi-color linear or radial gradient palettes.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-surface-container-lowest border border-outline-variant/60 shadow-sm space-y-4 relative">
+          <div class="w-10 h-10 rounded-xl bg-primary text-white font-black text-lg flex items-center justify-center shadow-md shadow-primary/20">
+            3
+          </div>
+          <h3 class="text-lg font-bold text-on-surface">Embed Brand Logo</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">
+            Upload your company SVG or PNG icon. Our engine automatically applies Level H error correction and safe quiet zone padding.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-surface-container-lowest border border-outline-variant/60 shadow-sm space-y-4 relative">
+          <div class="w-10 h-10 rounded-xl bg-primary text-white font-black text-lg flex items-center justify-center shadow-md shadow-primary/20">
+            4
+          </div>
+          <h3 class="text-lg font-bold text-on-surface">Export in High-Res</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">
+            Download your customized QR code in lossless vector SVG for commercial printing, 300 DPI PDF, or high-res PNG up to 8K.
+          </p>
+        </div>
       </div>
     </section>
 
@@ -357,10 +414,31 @@ const faqs = [
         <details class="group border border-outline-variant/60 rounded-2xl bg-surface-container-lowest overflow-hidden shadow-2xs">
           <summary class="flex justify-between items-center p-5 min-h-[56px] cursor-pointer font-bold text-on-surface hover:bg-surface-container-low transition-colors select-none">
             Are my generated QR codes stored on your servers?
-            <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary">expand_more</span>
+            <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary" aria-hidden="true">expand_more</span>
           </summary>
           <div class="px-5 pb-5 pt-2 text-on-surface-variant text-sm sm:text-base leading-relaxed border-t border-outline-variant/30">
             No! GenerateCustomQR is completely stateless and privacy-first. We do not store your QR content, personal data, or generated images on any database. Everything is rendered on the fly directly to your browser.
+          </div>
+        </details>
+
+        <details class="group border border-outline-variant/60 rounded-2xl bg-surface-container-lowest overflow-hidden shadow-2xs">
+          <summary class="flex justify-between items-center p-5 min-h-[56px] cursor-pointer font-bold text-on-surface hover:bg-surface-container-low transition-colors select-none">
+            What is the minimum recommended QR code size for printing?
+            <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary" aria-hidden="true">expand_more</span>
+          </summary>
+          <div class="px-5 pb-5 pt-2 text-on-surface-variant text-sm sm:text-base leading-relaxed border-t border-outline-variant/30 space-y-2">
+            <p>For standard business cards and small flyers, we recommend a minimum size of <strong>2 × 2 cm (0.8 × 0.8 inches)</strong> with at least 300 DPI resolution.</p>
+            <p>For posters and billboards, use our 10:1 distance-to-size formula (e.g., viewing distance of 2 meters requires a 20 cm QR code) and export in <strong>SVG vector format</strong> for infinite scalability.</p>
+          </div>
+        </details>
+
+        <details class="group border border-outline-variant/60 rounded-2xl bg-surface-container-lowest overflow-hidden shadow-2xs">
+          <summary class="flex justify-between items-center p-5 min-h-[56px] cursor-pointer font-bold text-on-surface hover:bg-surface-container-low transition-colors select-none">
+            Do these generated QR codes ever expire or have scan limits?
+            <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-primary" aria-hidden="true">expand_more</span>
+          </summary>
+          <div class="px-5 pb-5 pt-2 text-on-surface-variant text-sm sm:text-base leading-relaxed border-t border-outline-variant/30">
+            Never! The QR codes created on GenerateCustomQR are 100% static, meaning your encoded data (URL, WiFi credentials, vCard, or text) is embedded directly into the matrix pattern. They will work forever without expiration, scan counters, or third-party redirect servers.
           </div>
         </details>
       </div>

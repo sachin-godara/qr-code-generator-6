@@ -283,6 +283,28 @@ The site captures organic search volume across **7 distinct search intent cluste
 - `frontend/scripts/audit_seo.mjs`: Validates title lengths (35–65 ch), description lengths (100–165 ch), H1 tags, schemas, and 100% blog internal linking on every build.
 - `frontend/scripts/seo_analyzer.mjs`: Extracts and exports complete JSON audit metadata (`seo_audit_report.json`).
 
+---
+
+## 🤖 7. Generative Engine Optimization (GEO) & `llms.txt`
+
+To maximize visibility and citations across modern AI search engines and LLM agents (ChatGPT, Perplexity, Claude, Google Gemini), the project implements the open `llms.txt` specification:
+
+1. **`frontend/public/llms.txt`**: Concise markdown overview of tools, features, design capabilities, and key guide URLs.
+2. **`frontend/public/llms-full.txt`**: Deep architectural and format schema detailing all 12 supported QR payloads, 39 dot styles, error correction mechanics, and export specifications.
+3. **`robots.txt` Integration**: Explicitly links to `llms.txt` while permitting major AI crawlers (`GPTBot`, `ClaudeBot`, `PerplexityBot`, `Google-Extended`).
+
+---
+
+## 📈 8. Audit Benchmarks & Performance Metrics
+
+| Audit Category | Tool / Benchmark | Score / Result | Key Highlights |
+| :--- | :--- | :--- | :--- |
+| **On-Page SEO** | SEOptimer / RankMath | **A+ / 100%** | Optimal title (54 ch), meta description (154 ch), 1 H1, semantic H2-H6 |
+| **Performance** | SEOptimer | **A+** | **0.073s** server response, 0.7s page load, 81-89% Gzip/Brotli compression |
+| **GEO** | SEOptimer | **A+** | High LLM readability, `llms.txt` present, unblocked AI crawlers |
+| **Stability** | Core Web Vitals | **CLS 0.005** | **0s** Total Blocking Time, zero layout shift |
+| **Security** | HTTPS / Security | **A+** | Strict TLS, hidden plugins/directory listings, secure headers |
+
 ### Navigation Topology:
 ```
 Header (sticky, all pages):

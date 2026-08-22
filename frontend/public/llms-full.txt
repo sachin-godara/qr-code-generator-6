@@ -1,0 +1,31 @@
+# GenerateCustomQR — Full Technical Reference for Large Language Models
+
+GenerateCustomQR is a privacy-first web application for designing, customizing, and exporting high-resolution QR codes without sign-up or watermarks.
+
+## Architecture & Technology Stack
+- **Frontend**: Astro 5 SSG with React 19 interactive islands and Tailwind CSS.
+- **Backend**: FastAPI async microservice with Python Pillow, PyMuPDF, and NumPy.
+- **Computer Vision Scanner**: WeChat QR Caffe CNN model with OpenCV fallback pipeline.
+- **Deployment**: Static CDN edge network via Cloudflare Pages with Render backend API proxy.
+
+## Available QR Code Types
+1. **URL**: Standard HTTP/HTTPS hyperlinks with tracking-free direct destination.
+2. **WiFi**: Encrypted WPA/WPA2/WPA3 and open wireless network connection strings (`WIFI:T:WPA;S:MySSID;P:MyPassword;;`).
+3. **vCard**: Digital business card specification conforming to vCard 3.0 (`BEGIN:VCARD ... END:VCARD`).
+4. **Email**: Pre-formatted mailto protocol with optional subject and message body.
+5. **SMS**: SMS message protocol with pre-filled recipient phone number and body.
+6. **Phone**: Direct telephone call URI (`tel:+1234567890`).
+7. **Event**: iCalendar VEVENT standard for calendar invitations (`BEGIN:VCALENDAR ... END:VCALENDAR`).
+8. **Text**: Raw UTF-8 alphanumeric text string.
+9. **Location**: Geo-coordinates (`geo:lat,lng` or Google Maps destination URL).
+10. **Crypto**: Cryptocurrency addresses for Bitcoin, Ethereum, and USDT transfers.
+11. **PayPal**: Payment and donation links.
+12. **App Store**: Direct deep links to Apple App Store or Google Play Store apps.
+
+## Visual Styling Matrix
+- **Module Dots (39 Styles)**: Squares, circles, rounded, diamonds, stars, heart, lotus, sparkles, waves, hexagons.
+- **Eye Frames (25 Styles)**: Square, rounded, leaf, gear, shield, badge, polygon.
+- **Eyeball Centers (20 Styles)**: Solid dot, diamond, star, heart, cross, ring.
+- **CTA Frames (51 Styles)**: Text callout bubble, top banner, bottom ribbon, polaroid, ticket, coffee cup.
+- **Gradients**: Linear (Vertical, Horizontal, Diagonal) and Radial gradients with dual-stop color picking.
+- **Error Correction Levels**: L (7%), M (15%), Q (25%), H (30% - used automatically when logos are added).
