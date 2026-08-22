@@ -46,8 +46,8 @@
       "file": "about.astro",
       "url": "/about",
       "type": "Landing Page / Tool",
-      "title": "About Us — GenerateCustomQR",
-      "titleLength": 27,
+      "title": "About GenerateCustomQR — Free Custom QR Code Maker",
+      "titleLength": 50,
       "description": "Learn more about GenerateCustomQR, the free, privacy-first custom QR code generator built for creators, designers, and developers.",
       "descLength": 130,
       "keywords": [
@@ -58,7 +58,7 @@
         "who made generatecustomqr"
       ],
       "keywordsCount": 5,
-      "h1": "N/A",
+      "h1": "About GenerateCustomQR",
       "h2Count": 2,
       "h2s": [
         "Our Mission",
@@ -73,10 +73,10 @@
       "file": "contact.astro",
       "url": "/contact",
       "type": "Landing Page / Tool",
-      "title": "Contact Us — GenerateCustomQR",
-      "titleLength": 29,
-      "description": "Get in touch with the GenerateCustomQR team. We",
-      "descLength": 47,
+      "title": "Contact Support & Feedback — GenerateCustomQR",
+      "titleLength": 45,
+      "description": "Get in touch with the GenerateCustomQR team. We're here to help with bug reports, feature requests, or general inquiries.",
+      "descLength": 121,
       "keywords": [
         "contact generatecustomqr",
         "qr code generator support",
@@ -85,7 +85,7 @@
         "qr code help"
       ],
       "keywordsCount": 5,
-      "h1": "N/A",
+      "h1": "Get in Touch",
       "h2Count": 1,
       "h2s": [
         "Frequently Asked Questions"
@@ -242,10 +242,11 @@
       ],
       "keywordsCount": 13,
       "h1": "Free Custom QR Code Generator with Logo &amp; 40+ Styles — No Watermark",
-      "h2Count": 5,
+      "h2Count": 6,
       "h2s": [
         "Everything You Need to Build Award-Winning QR Codes",
         "Encode Anything Into a Scannable QR Code",
+        "How to Create a Custom QR Code in 4 Steps",
         "QR Code Guides & Tips",
         "Frequently Asked Questions",
         "Ready to Create Your Custom QR Code?"
@@ -265,7 +266,7 @@
       "descLength": 152,
       "keywords": [],
       "keywordsCount": 0,
-      "h1": "N/A",
+      "h1": "Privacy Policy",
       "h2Count": 9,
       "h2s": [
         "1. Information We Collect",
@@ -355,11 +356,11 @@
       "type": "Landing Page / Tool",
       "title": "Terms & Conditions — GenerateCustomQR",
       "titleLength": 37,
-      "description": "Read the terms of service for using GenerateCustomQR",
-      "descLength": 52,
+      "description": "Read the terms of service for using GenerateCustomQR's free QR code generator. Understand your rights and responsibilities when generating custom QR codes.",
+      "descLength": 155,
       "keywords": [],
       "keywordsCount": 0,
-      "h1": "N/A",
+      "h1": "Terms & Conditions",
       "h2Count": 10,
       "h2s": [
         "1. Acceptance of Terms",
@@ -583,8 +584,8 @@
       "type": "Blog (design-tips)",
       "title": "QR Code Design Best Practices for Print — Expert Tips for 2025",
       "titleLength": 62,
-      "description": "Master the art of print-ready QR codes. Learn optimal sizing, resolution, color contrast, material selection, and placement strategies that ensure every scan succeeds.",
-      "descLength": 167,
+      "description": "Master print-ready QR codes. Learn optimal sizing, 300 DPI resolution, color contrast, and material strategies that ensure every scan succeeds.",
+      "descLength": 143,
       "keywords": [
         "qr code design best practices",
         "qr code print size",
@@ -694,8 +695,8 @@
       "file": "blog/qr-code-size-guide.md",
       "url": "/blog/qr-code-size-guide",
       "type": "Blog (guides)",
-      "title": "QR Code Size Guide — Minimum Sizes for Print, Business Cards & Billboards",
-      "titleLength": 73,
+      "title": "QR Code Size Guide — Minimum Sizes for Print & Billboards",
+      "titleLength": 57,
       "description": "Complete sizing reference for QR codes. Learn the minimum dimensions for business cards, stickers, posters, billboards, and digital screens.",
       "descLength": 140,
       "keywords": [
@@ -707,7 +708,7 @@
         "qr code size for business card"
       ],
       "keywordsCount": 6,
-      "h1": "QR Code Size Guide — Minimum Sizes for Print, Business Cards & Billboards",
+      "h1": "QR Code Size Guide — Minimum Sizes for Print & Billboards",
       "h2Count": 8,
       "h2s": [
         "The Golden Rule: Scan Distance ÷ 10",
@@ -732,8 +733,8 @@
       "file": "blog/qr-code-trends-2025.md",
       "url": "/blog/qr-code-trends-2025",
       "type": "Blog (news)",
-      "title": "QR Code Trends in 2025 — Adoption, Design Innovation & Industry Growth",
-      "titleLength": 70,
+      "title": "QR Code Trends 2025 — Design Innovations & Statistics",
+      "titleLength": 53,
       "description": "Explore the latest QR code trends in 2025 including design innovations, industry adoption rates, and predictions for the future of QR technology.",
       "descLength": 145,
       "keywords": [
@@ -745,7 +746,7 @@
         "qr code market size"
       ],
       "keywordsCount": 6,
-      "h1": "QR Code Trends in 2025 — Adoption, Design Innovation & Industry Growth",
+      "h1": "QR Code Trends 2025 — Design Innovations & Statistics",
       "h2Count": 6,
       "h2s": [
         "QR Code Adoption by the Numbers",
@@ -768,8 +769,8 @@
       "file": "blog/qr-code-vs-barcode.md",
       "url": "/blog/qr-code-vs-barcode",
       "type": "Blog (comparisons)",
-      "title": "QR Code vs Barcode — What",
-      "titleLength": 25,
+      "title": "QR Code vs Barcode — What's the Difference? (2025 Guide)",
+      "titleLength": 56,
       "description": "Understand the key differences between QR codes and traditional barcodes. Compare data capacity, scanning methods, use cases, and which is better for your needs.",
       "descLength": 161,
       "keywords": [
@@ -780,7 +781,7 @@
         "qr code advantages"
       ],
       "keywordsCount": 5,
-      "h1": "QR Code vs Barcode — What",
+      "h1": "QR Code vs Barcode — What's the Difference? (2025 Guide)",
       "h2Count": 8,
       "h2s": [
         "At a Glance",
@@ -805,8 +806,8 @@
       "file": "blog/qr-codes-for-real-estate.md",
       "url": "/blog/qr-codes-for-real-estate",
       "type": "Blog (use-cases)",
-      "title": "QR Codes for Real Estate — Virtual Tours, Property Listings & Open Houses",
-      "titleLength": 73,
+      "title": "QR Codes for Real Estate — Listing Signs & Virtual Tours",
+      "titleLength": 56,
       "description": "How real estate agents use QR codes on property signs, brochures, and business cards to link buyers to virtual tours, MLS listings, and contact details.",
       "descLength": 152,
       "keywords": [
@@ -817,7 +818,7 @@
         "realtor qr code"
       ],
       "keywordsCount": 5,
-      "h1": "QR Codes for Real Estate — Virtual Tours, Property Listings & Open Houses",
+      "h1": "QR Codes for Real Estate — Listing Signs & Virtual Tours",
       "h2Count": 6,
       "h2s": [
         "Why Real Estate Agents Need QR Codes",
@@ -840,8 +841,8 @@
       "file": "blog/static-vs-dynamic-qr-codes.md",
       "url": "/blog/static-vs-dynamic-qr-codes",
       "type": "Blog (comparisons)",
-      "title": "Static vs Dynamic QR Codes — What",
-      "titleLength": 33,
+      "title": "Static vs Dynamic QR Codes — What's the Difference?",
+      "titleLength": 51,
       "description": "Understand the key differences between static and dynamic QR codes. Learn when to use each type, their pros and cons, and which is better for your business needs.",
       "descLength": 162,
       "keywords": [
@@ -852,7 +853,7 @@
         "which qr code type to use"
       ],
       "keywordsCount": 5,
-      "h1": "Static vs Dynamic QR Codes — What",
+      "h1": "Static vs Dynamic QR Codes — What's the Difference?",
       "h2Count": 5,
       "h2s": [
         "Quick Comparison",
@@ -935,7 +936,7 @@
         },
         {
           "url": "/blog/qr-code-size-guide",
-          "title": "QR Code Size Guide — Minimum Sizes for Print, Business Cards & Billboards"
+          "title": "QR Code Size Guide — Minimum Sizes for Print & Billboards"
         }
       ]
     },
@@ -949,7 +950,7 @@
         },
         {
           "url": "/blog/qr-code-size-guide",
-          "title": "QR Code Size Guide — Minimum Sizes for Print, Business Cards & Billboards"
+          "title": "QR Code Size Guide — Minimum Sizes for Print & Billboards"
         }
       ]
     },
@@ -973,7 +974,7 @@
       "pages": [
         {
           "url": "/blog/qr-code-vs-barcode",
-          "title": "QR Code vs Barcode — What"
+          "title": "QR Code vs Barcode — What's the Difference? (2025 Guide)"
         }
       ]
     },
@@ -983,7 +984,7 @@
       "pages": [
         {
           "url": "/about",
-          "title": "About Us — GenerateCustomQR"
+          "title": "About GenerateCustomQR — Free Custom QR Code Maker"
         }
       ]
     },
@@ -1093,7 +1094,7 @@
       "pages": [
         {
           "url": "/contact",
-          "title": "Contact Us — GenerateCustomQR"
+          "title": "Contact Support & Feedback — GenerateCustomQR"
         }
       ]
     },
@@ -1193,7 +1194,7 @@
       "pages": [
         {
           "url": "/about",
-          "title": "About Us — GenerateCustomQR"
+          "title": "About GenerateCustomQR — Free Custom QR Code Maker"
         }
       ]
     },
@@ -1213,7 +1214,7 @@
       "pages": [
         {
           "url": "/blog/qr-code-vs-barcode",
-          "title": "QR Code vs Barcode — What"
+          "title": "QR Code vs Barcode — What's the Difference? (2025 Guide)"
         }
       ]
     },
@@ -1223,7 +1224,7 @@
       "pages": [
         {
           "url": "/blog/static-vs-dynamic-qr-codes",
-          "title": "Static vs Dynamic QR Codes — What"
+          "title": "Static vs Dynamic QR Codes — What's the Difference?"
         }
       ]
     },
@@ -1263,7 +1264,7 @@
       "pages": [
         {
           "url": "/blog/static-vs-dynamic-qr-codes",
-          "title": "Static vs Dynamic QR Codes — What"
+          "title": "Static vs Dynamic QR Codes — What's the Difference?"
         }
       ]
     },
@@ -1353,7 +1354,7 @@
       "pages": [
         {
           "url": "/about",
-          "title": "About Us — GenerateCustomQR"
+          "title": "About GenerateCustomQR — Free Custom QR Code Maker"
         }
       ]
     },
@@ -1373,7 +1374,7 @@
       "pages": [
         {
           "url": "/blog/qr-code-trends-2025",
-          "title": "QR Code Trends in 2025 — Adoption, Design Innovation & Industry Growth"
+          "title": "QR Code Trends 2025 — Design Innovations & Statistics"
         }
       ]
     },
@@ -1413,7 +1414,7 @@
       "pages": [
         {
           "url": "/blog/qr-code-size-guide",
-          "title": "QR Code Size Guide — Minimum Sizes for Print, Business Cards & Billboards"
+          "title": "QR Code Size Guide — Minimum Sizes for Print & Billboards"
         }
       ]
     },
@@ -1603,7 +1604,7 @@
       "pages": [
         {
           "url": "/blog/qr-code-trends-2025",
-          "title": "QR Code Trends in 2025 — Adoption, Design Innovation & Industry Growth"
+          "title": "QR Code Trends 2025 — Design Innovations & Statistics"
         }
       ]
     },
@@ -1613,7 +1614,7 @@
       "pages": [
         {
           "url": "/blog/qr-code-vs-barcode",
-          "title": "QR Code vs Barcode — What"
+          "title": "QR Code vs Barcode — What's the Difference? (2025 Guide)"
         }
       ]
     },
@@ -1623,7 +1624,7 @@
       "pages": [
         {
           "url": "/blog/qr-code-vs-barcode",
-          "title": "QR Code vs Barcode — What"
+          "title": "QR Code vs Barcode — What's the Difference? (2025 Guide)"
         }
       ]
     },
@@ -1703,7 +1704,7 @@
       "pages": [
         {
           "url": "/blog/qr-code-size-guide",
-          "title": "QR Code Size Guide — Minimum Sizes for Print, Business Cards & Billboards"
+          "title": "QR Code Size Guide — Minimum Sizes for Print & Billboards"
         }
       ]
     },
@@ -1713,7 +1714,7 @@
       "pages": [
         {
           "url": "/contact",
-          "title": "Contact Us — GenerateCustomQR"
+          "title": "Contact Support & Feedback — GenerateCustomQR"
         }
       ]
     },
@@ -1783,7 +1784,7 @@
       "pages": [
         {
           "url": "/blog/qr-codes-for-real-estate",
-          "title": "QR Codes for Real Estate — Virtual Tours, Property Listings & Open Houses"
+          "title": "QR Codes for Real Estate — Listing Signs & Virtual Tours"
         }
       ]
     },
@@ -1803,7 +1804,7 @@
       "pages": [
         {
           "url": "/blog/qr-codes-for-real-estate",
-          "title": "QR Codes for Real Estate — Virtual Tours, Property Listings & Open Houses"
+          "title": "QR Codes for Real Estate — Listing Signs & Virtual Tours"
         }
       ]
     },
@@ -1833,7 +1834,7 @@
       "pages": [
         {
           "url": "/about",
-          "title": "About Us — GenerateCustomQR"
+          "title": "About GenerateCustomQR — Free Custom QR Code Maker"
         }
       ]
     },
@@ -1893,7 +1894,7 @@
       "pages": [
         {
           "url": "/contact",
-          "title": "Contact Us — GenerateCustomQR"
+          "title": "Contact Support & Feedback — GenerateCustomQR"
         }
       ]
     },
@@ -1923,7 +1924,7 @@
       "pages": [
         {
           "url": "/contact",
-          "title": "Contact Us — GenerateCustomQR"
+          "title": "Contact Support & Feedback — GenerateCustomQR"
         }
       ]
     },
@@ -1933,7 +1934,7 @@
       "pages": [
         {
           "url": "/blog/qr-code-trends-2025",
-          "title": "QR Code Trends in 2025 — Adoption, Design Innovation & Industry Growth"
+          "title": "QR Code Trends 2025 — Design Innovations & Statistics"
         }
       ]
     },
@@ -1953,7 +1954,7 @@
       "pages": [
         {
           "url": "/blog/qr-code-trends-2025",
-          "title": "QR Code Trends in 2025 — Adoption, Design Innovation & Industry Growth"
+          "title": "QR Code Trends 2025 — Design Innovations & Statistics"
         }
       ]
     },
@@ -1993,7 +1994,7 @@
       "pages": [
         {
           "url": "/blog/qr-codes-for-real-estate",
-          "title": "QR Codes for Real Estate — Virtual Tours, Property Listings & Open Houses"
+          "title": "QR Codes for Real Estate — Listing Signs & Virtual Tours"
         }
       ]
     },
@@ -2033,7 +2034,7 @@
       "pages": [
         {
           "url": "/blog/qr-code-size-guide",
-          "title": "QR Code Size Guide — Minimum Sizes for Print, Business Cards & Billboards"
+          "title": "QR Code Size Guide — Minimum Sizes for Print & Billboards"
         }
       ]
     },
@@ -2043,7 +2044,7 @@
       "pages": [
         {
           "url": "/blog/qr-code-size-guide",
-          "title": "QR Code Size Guide — Minimum Sizes for Print, Business Cards & Billboards"
+          "title": "QR Code Size Guide — Minimum Sizes for Print & Billboards"
         }
       ]
     },
@@ -2053,7 +2054,7 @@
       "pages": [
         {
           "url": "/blog/qr-code-trends-2025",
-          "title": "QR Code Trends in 2025 — Adoption, Design Innovation & Industry Growth"
+          "title": "QR Code Trends 2025 — Design Innovations & Statistics"
         }
       ]
     },
@@ -2083,7 +2084,7 @@
       "pages": [
         {
           "url": "/blog/qr-code-trends-2025",
-          "title": "QR Code Trends in 2025 — Adoption, Design Innovation & Industry Growth"
+          "title": "QR Code Trends 2025 — Design Innovations & Statistics"
         }
       ]
     },
@@ -2103,7 +2104,7 @@
       "pages": [
         {
           "url": "/blog/qr-code-vs-barcode",
-          "title": "QR Code vs Barcode — What"
+          "title": "QR Code vs Barcode — What's the Difference? (2025 Guide)"
         }
       ]
     },
@@ -2143,7 +2144,7 @@
       "pages": [
         {
           "url": "/blog/qr-codes-for-real-estate",
-          "title": "QR Codes for Real Estate — Virtual Tours, Property Listings & Open Houses"
+          "title": "QR Codes for Real Estate — Listing Signs & Virtual Tours"
         }
       ]
     },
@@ -2153,7 +2154,7 @@
       "pages": [
         {
           "url": "/blog/qr-codes-for-real-estate",
-          "title": "QR Codes for Real Estate — Virtual Tours, Property Listings & Open Houses"
+          "title": "QR Codes for Real Estate — Listing Signs & Virtual Tours"
         }
       ]
     },
@@ -2163,7 +2164,7 @@
       "pages": [
         {
           "url": "/contact",
-          "title": "Contact Us — GenerateCustomQR"
+          "title": "Contact Support & Feedback — GenerateCustomQR"
         }
       ]
     },
@@ -2253,7 +2254,7 @@
       "pages": [
         {
           "url": "/blog/static-vs-dynamic-qr-codes",
-          "title": "Static vs Dynamic QR Codes — What"
+          "title": "Static vs Dynamic QR Codes — What's the Difference?"
         }
       ]
     },
@@ -2263,7 +2264,7 @@
       "pages": [
         {
           "url": "/blog/static-vs-dynamic-qr-codes",
-          "title": "Static vs Dynamic QR Codes — What"
+          "title": "Static vs Dynamic QR Codes — What's the Difference?"
         }
       ]
     },
@@ -2363,7 +2364,7 @@
       "pages": [
         {
           "url": "/blog/static-vs-dynamic-qr-codes",
-          "title": "Static vs Dynamic QR Codes — What"
+          "title": "Static vs Dynamic QR Codes — What's the Difference?"
         }
       ]
     },
@@ -2373,7 +2374,7 @@
       "pages": [
         {
           "url": "/about",
-          "title": "About Us — GenerateCustomQR"
+          "title": "About GenerateCustomQR — Free Custom QR Code Maker"
         }
       ]
     },

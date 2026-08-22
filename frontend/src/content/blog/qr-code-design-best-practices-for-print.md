@@ -1,6 +1,6 @@
 ---
 title: "QR Code Design Best Practices for Print — Expert Tips for 2025"
-description: "Master the art of print-ready QR codes. Learn optimal sizing, resolution, color contrast, material selection, and placement strategies that ensure every scan succeeds."
+description: "Master print-ready QR codes. Learn optimal sizing, 300 DPI resolution, color contrast, and material strategies that ensure every scan succeeds."
 pubDate: 2025-08-12
 author: "GenerateCustomQR Team"
 keywords: "qr code design best practices, qr code print size, qr code resolution for print, qr code design tips, how to print qr code, qr code minimum size"

@@ -1,5 +1,5 @@
 ---
-title: "QR Code Size Guide — Minimum Sizes for Print, Business Cards & Billboards"
+title: "QR Code Size Guide — Minimum Sizes for Print & Billboards"
 description: "Complete sizing reference for QR codes. Learn the minimum dimensions for business cards, stickers, posters, billboards, and digital screens."
 pubDate: 2026-08-21
 author: "GenerateCustomQR Team"

@@ -1,5 +1,5 @@
 ---
-title: "QR Code Trends in 2025 — Adoption, Design Innovation & Industry Growth"
+title: "QR Code Trends 2025 — Design Innovations & Statistics"
 description: "Explore the latest QR code trends in 2025 including design innovations, industry adoption rates, and predictions for the future of QR technology."
 pubDate: 2026-08-27
 author: "GenerateCustomQR Team"

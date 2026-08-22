@@ -25,10 +25,11 @@ function addKeyword(kw, pageUrl, pageTitle) {
 pageFiles.forEach(file => {
   const content = fs.readFileSync(path.join(pagesDir, file), 'utf8');
   
-  const titleMatch = content.match(/title=["']([^"']+)["']/);
-  const descMatch = content.match(/description=["']([^"']+)["']/);
-  const kwMatch = content.match(/keywords=["']([^"']+)["']/);
-  const ogImgMatch = content.match(/ogImage=["']([^"']+)["']/);
+  const titleMatch = content.match(/title=["']([^"'\r\n]+)["']/);
+  const descMatch = content.match(/description="([^"]+)"|description='([^']+)'/);
+  const kwMatch = content.match(/keywords=["']([^"'\r\n]+)["']/);
+  const ogImgMatch = content.match(/ogImage=["']([^"'\r\n]+)["']/);
+  const headingPropMatch = content.match(/heading=["']([^"'\r\n]+)["']/);
   const h1Match = content.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
   const h2Matches = [...content.matchAll(/<h2[^>]*>([\s\S]*?)<\/h2>/gi)].map(m => m[1].replace(/<[^>]+>/g, '').trim());
   const faqMatches = content.includes('faqs={faqs}');
@@ -36,9 +37,9 @@ pageFiles.forEach(file => {
   const breadcrumbsMatches = content.includes('breadcrumbs={breadcrumbs}');
   
   const title = titleMatch ? titleMatch[1] : 'N/A';
-  const description = descMatch ? descMatch[1] : 'N/A';
+  const description = descMatch ? (descMatch[1] || descMatch[2]) : 'N/A';
   const keywords = kwMatch ? kwMatch[1].split(',').map(s => s.trim()).filter(Boolean) : [];
-  const h1 = h1Match ? h1Match[1].replace(/<[^>]+>/g, '').trim() : 'N/A';
+  const h1 = h1Match ? h1Match[1].replace(/<[^>]+>/g, '').trim() : (headingPropMatch ? headingPropMatch[1] : 'N/A');
   const ogImage = ogImgMatch ? ogImgMatch[1] : '/og-image.png';
 
   const slug = file.replace('.astro', '');
@@ -73,9 +74,12 @@ blogFiles.forEach(file => {
   if (!fmMatch) return;
   
   const fm = fmMatch[1];
-  const title = (fm.match(/title:\s*["']?([^"'\r\n]+)["']?/) || [])[1] || 'N/A';
-  const description = (fm.match(/description:\s*["']?([^"'\r\n]+)["']?/) || [])[1] || 'N/A';
-  const rawKeywords = (fm.match(/keywords:\s*["']?([^"'\r\n]+)["']?/) || [])[1] || '';
+  const titleMatch = fm.match(/title:\s*"([^"\r\n]+)"|title:\s*'([^'\r\n]+)'|title:\s*([^\r\n]+)/);
+  const descMatch = fm.match(/description:\s*"([^"\r\n]+)"|description:\s*'([^'\r\n]+)'|description:\s*([^\r\n]+)/);
+  const kwMatch = fm.match(/keywords:\s*"([^"\r\n]+)"|keywords:\s*'([^'\r\n]+)'|keywords:\s*([^\r\n]+)/);
+  const title = titleMatch ? (titleMatch[1] || titleMatch[2] || titleMatch[3]).trim() : 'N/A';
+  const description = descMatch ? (descMatch[1] || descMatch[2] || descMatch[3]).trim() : 'N/A';
+  const rawKeywords = kwMatch ? (kwMatch[1] || kwMatch[2] || kwMatch[3]).trim() : '';
   const category = (fm.match(/category:\s*["']?([^"'\r\n]+)["']?/) || [])[1] || 'general';
   const pubDate = (fm.match(/pubDate:\s*([^\r\n]+)/) || [])[1] || '';
   const readingTime = (fm.match(/readingTime:\s*([^\r\n]+)/) || [])[1] || '';

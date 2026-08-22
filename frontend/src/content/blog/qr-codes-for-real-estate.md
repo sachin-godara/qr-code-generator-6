@@ -1,5 +1,5 @@
 ---
-title: "QR Codes for Real Estate — Virtual Tours, Property Listings & Open Houses"
+title: "QR Codes for Real Estate — Listing Signs & Virtual Tours"
 description: "How real estate agents use QR codes on property signs, brochures, and business cards to link buyers to virtual tours, MLS listings, and contact details."
 pubDate: 2026-08-22
 author: "GenerateCustomQR Team"
