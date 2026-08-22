@@ -299,11 +299,13 @@ To maximize visibility and citations across modern AI search engines and LLM age
 
 | Audit Category | Tool / Benchmark | Score / Result | Key Highlights |
 | :--- | :--- | :--- | :--- |
-| **On-Page SEO** | SEOptimer / RankMath | **A+ / 100%** | Optimal title (54 ch), meta description (154 ch), 1 H1, semantic H2-H6 |
-| **Performance** | SEOptimer | **A+** | **0.073s** server response, 0.7s page load, 81-89% Gzip/Brotli compression |
-| **GEO** | SEOptimer | **A+** | High LLM readability, `llms.txt` present, unblocked AI crawlers |
+| **Meta Data Quality** | Seobility / RankMath | **100% (3/3)** | Optimal 54 ch title (554px / 580px max), 154 ch meta description, 0 duplicate words |
+| **Page Quality & Code** | Seobility | **94%** | Clean semantic markup, 100% image alt text, gzip compression |
+| **On-Page SEO** | SEOptimer / RankMath | **A+ / 100%** | Optimal title, 1 H1, semantic H2-H6 structure, canonical tags |
+| **Performance** | SEOptimer / Seobility | **A+ (0.073s–0.14s)** | Server response 0.073s, page load 0.7s, 81-89% Gzip/Brotli compression |
+| **GEO / AI Visibility** | SEOptimer / SEOCheckup| **A+ / 72/100** | High LLM readability, `llms.txt` and `llms-full.txt` present |
 | **Stability** | Core Web Vitals | **CLS 0.005** | **0s** Total Blocking Time, zero layout shift |
-| **Security** | HTTPS / Security | **A+** | Strict TLS, hidden plugins/directory listings, secure headers |
+| **Security & HTTPS** | Seobility / HTTPS | **100% (2/2)** | Full HTTPS encryption, no X-Powered-By header, strict CSP |
 
 ### Navigation Topology:
 ```
