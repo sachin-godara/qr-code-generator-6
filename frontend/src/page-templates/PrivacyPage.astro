@@ -9,18 +9,22 @@ interface Props {
 
 const { locale } = Astro.props;
 
-const metaMap: Record<Locale, { title: string; desc: string; heading: string; s1Title: string; s1Text: string; s2Title: string; s2Text: string; s3Title: string; s3Text: string; lastUpdated: string }> = {
+const metaMap: Record<Locale, { title: string; desc: string; heading: string; s1Title: string; s1Text: string; s2Title: string; s2Text: string; s3Title: string; s3Text: string; s4Title: string; s4Text: string; s5Title: string; s5Text: string; lastUpdated: string }> = {
   en: {
     title: "Privacy Policy — GenerateCustomQR",
     desc: "GenerateCustomQR is a privacy-first tool. All QR code generation runs locally in your browser. We never collect or store your encoded data.",
     heading: "Privacy Policy",
     lastUpdated: "January 1, 2025",
     s1Title: "1. Privacy First Commitment",
-    s1Text: "GenerateCustomQR is designed from the ground up to respect your privacy. All QR code matrix calculations and rendering execute directly on your local device or via secure, non-logging memory buffers.",
+    s1Text: "GenerateCustomQR is designed from the ground up to respect your privacy. All QR code matrix calculations and rendering execute directly on your local device or via secure, non-logging memory buffers. We do not maintain any user databases or track individual creation habits.",
     s2Title: "2. Zero Data Collection on Encoded Content",
-    s2Text: "We do not store, intercept, or sell the data you encode into QR codes (such as passwords, contact information, URLs, or text messages).",
-    s3Title: "3. Third-Party Analytics",
-    s3Text: "We use standard, privacy-respecting website analytics (Google Analytics 4) to monitor aggregate traffic and improve platform performance. No personally identifiable information (PII) is captured."
+    s2Text: "We do not store, intercept, or sell the data you encode into QR codes (such as Wi-Fi passwords, contact information, personal URLs, or confidential messages). What you create remains exclusively on your machine.",
+    s3Title: "3. Local Browser Storage",
+    s3Text: "We utilize local browser storage (localStorage) exclusively to preserve your active studio design preferences (such as selected colors, dot shapes, and custom logo uploads) for your convenience. This data never leaves your device.",
+    s4Title: "4. Third-Party Analytics & Cookies",
+    s4Text: "We use standard, privacy-respecting website analytics (Google Analytics 4) to monitor aggregate traffic and improve platform performance. No personally identifiable information (PII) is captured or shared with commercial advertising networks.",
+    s5Title: "5. Your Rights Under GDPR & CCPA",
+    s5Text: "Because we do not collect or store personal data or user accounts, there are no personal profiles to delete or export. You have full sovereignty over your data simply by clearing your browser cache."
   },
   es: {
     title: "Política de Privacidad — GenerateCustomQR",
@@ -30,9 +34,13 @@ const metaMap: Record<Locale, { title: string; desc: string; heading: string; s1
     s1Title: "1. Compromiso de Privacidad Absoluta",
     s1Text: "GenerateCustomQR está diseñado desde sus cimientos para respetar tu privacidad. Los cálculos y renderizados del código QR se ejecutan directamente en tu dispositivo o en memoria sin almacenamiento.",
     s2Title: "2. Cero Recolección de Datos Codificados",
-    s2Text: "No almacenamos, interceptamos ni vendemos los datos que introduces en tus códigos QR (claves de WiFi, datos de contacto, enlaces o mensajes).",
-    s3Title: "3. Analítica Agregada",
-    s3Text: "Utilizamos analíticas estándar sin recopilación de información personal identificable para monitorizar el rendimiento global de la plataforma."
+    s2Text: "No almacenamos, interceptamos ni vendemos los datos que introduces en tus códigos QR (claves de WiFi, datos de contacto, enlaces o mensajes). Lo que creas permanece exclusivamente en tu equipo.",
+    s3Title: "3. Almacenamiento Local en el Navegador",
+    s3Text: "Utilizamos el almacenamiento local de tu navegador (localStorage) únicamente para guardar tus preferencias de diseño activas (colores, formas de puntos, logos subidos). Esta información nunca sale de tu dispositivo.",
+    s4Title: "4. Analítica Agregada y Cookies",
+    s4Text: "Utilizamos analíticas estándar sin recopilación de información personal identificable para monitorizar el rendimiento global de la plataforma.",
+    s5Title: "5. Derechos del Usuario (RGPD)",
+    s5Text: "Al no recopilar datos personales ni requerir registro de cuentas, no existen perfiles que eliminar. Puedes borrar cualquier preferencia almacenada simplemente limpiando la caché de tu navegador."
   },
   pt: {
     title: "Política de Privacidade — GenerateCustomQR",
@@ -40,11 +48,15 @@ const metaMap: Record<Locale, { title: string; desc: string; heading: string; s1
     heading: "Política de Privacidade",
     lastUpdated: "1 de Janeiro de 2025",
     s1Title: "1. Privacidade em Primeiro Lugar",
-    s1Text: "O GenerateCustomQR foi planejado para garantir sigilo total. Toda a renderização do QR code ocorre diretamente no seu dispositivo sem registro de dados.",
+    s1Text: "O GenerateCustomQR foi planejado para garantir sigilo total. Toda a renderização do QR code ocorre diretamente no seu dispositivo sem registro de dados ou criação de perfis.",
     s2Title: "2. Nenhuma Coleta do Conteúdo Codificado",
-    s2Text: "Não armazenamos, interceptamos nem compartilhamos nenhuma informação digitada nos seus QR codes (como senhas, telefones ou e-mails).",
-    s3Title: "3. Métricas Anônimas",
-    s3Text: "Utilizamos ferramentas de análise agregada para monitorar a estabilidade do serviço sem registrar dados pessoais identificáveis."
+    s2Text: "Não armazenamos, interceptamos nem compartilhamos nenhuma informação digitada nos seus QR codes (como senhas, telefones ou e-mails). Seus dados nunca são transferidos para servidores externos.",
+    s3Title: "3. Armazenamento Local no Navegador",
+    s3Text: "Usamos o armazenamento local do navegador (localStorage) apenas para manter suas configurações de estilo salvas entre sessões.",
+    s4Title: "4. Métricas Anônimas",
+    s4Text: "Utilizamos ferramentas de análise agregada para monitorar a estabilidade do serviço sem registrar dados pessoais identificáveis.",
+    s5Title: "5. Conformidade com LGPD / GDPR",
+    s5Text: "Por não coletarmos informações pessoais nem exigirmos cadastro, você mantém total autonomia sobre seus dados simplesmente limpando os cookies do seu navegador."
   },
   de: {
     title: "Datenschutzerklärung — GenerateCustomQR",
@@ -52,11 +64,15 @@ const metaMap: Record<Locale, { title: string; desc: string; heading: string; s1
     heading: "Datenschutzerklärung",
     lastUpdated: "1. Januar 2025",
     s1Title: "1. Datenschutz an erster Stelle",
-    s1Text: "GenerateCustomQR wurde mit Fokus auf maximale Privatsphäre entwickelt. Die QR-Code-Berechnung erfolgt direkt in Ihrem Browser ohne Speicherung auf Servern.",
+    s1Text: "GenerateCustomQR wurde mit Fokus auf maximale Privatsphäre entwickelt. Die QR-Code-Berechnung erfolgt direkt in Ihrem Browser ohne Speicherung auf Servern oder Nachverfolgung.",
     s2Title: "2. Keine Erfassung codierter Inhalte",
-    s2Text: "Wir speichern, lesen oder verkaufen niemals die von Ihnen eingegebenen Daten (wie Passwörter, Kontakte, URLs oder Nachrichten).",
-    s3Title: "3. Anonyme Web-Analyse",
-    s3Text: "Wir nutzen standardmäßige, datenschutzkonforme Analysetools zur Überwachung der technischen Plattformleistung ohne Erfassung persönlicher Daten."
+    s2Text: "Wir speichern, lesen oder verkaufen niemals die von Ihnen eingegebenen Daten (wie Passwörter, Kontakte, URLs oder Nachrichten). Was Sie erstellen, bleibt auf Ihrem Rechner.",
+    s3Title: "3. Lokaler Browser-Speicher",
+    s3Text: "Wir verwenden den lokalen Browser-Speicher (localStorage) ausschließlich zur Speicherung Ihrer aktiven Designeinstellungen.",
+    s4Title: "4. Anonyme Web-Analyse",
+    s4Text: "Wir nutzen standardmäßige, datenschutzkonforme Analysetools zur Überwachung der technischen Plattformleistung ohne Erfassung persönlicher Daten.",
+    s5Title: "5. DSGVO-Rechte",
+    s5Text: "Da keine personenbezogenen Daten erhoben oder Benutzerkonten geführt werden, bestehen keine serverseitigen Datenprofile. Sie haben die volle Kontrolle über Ihre Browsereinstellungen."
   }
 };
 
@@ -84,4 +100,10 @@ const breadcrumbs = [
 
   <h2>{pageMeta.s3Title}</h2>
   <p>{pageMeta.s3Text}</p>
+
+  <h2>{pageMeta.s4Title}</h2>
+  <p>{pageMeta.s4Text}</p>
+
+  <h2>{pageMeta.s5Title}</h2>
+  <p>{pageMeta.s5Text}</p>
 </LegalLayout>

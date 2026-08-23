@@ -9,7 +9,7 @@ interface Props {
 
 const { locale } = Astro.props;
 
-const metaMap: Record<Locale, { title: string; desc: string; heading: string; s1Title: string; s1Text: string; s2Title: string; s2Text: string; s3Title: string; s3Text: string; lastUpdated: string }> = {
+const metaMap: Record<Locale, { title: string; desc: string; heading: string; s1Title: string; s1Text: string; s2Title: string; s2Text: string; s3Title: string; s3Text: string; s4Title: string; s4Text: string; s5Title: string; s5Text: string; lastUpdated: string }> = {
   en: {
     title: "Terms and Conditions — GenerateCustomQR",
     desc: "Terms of service and usage conditions for GenerateCustomQR. Free for both personal and commercial projects with zero restrictions.",
@@ -19,8 +19,12 @@ const metaMap: Record<Locale, { title: string; desc: string; heading: string; s1
     s1Text: "By accessing or using GenerateCustomQR, you agree to be bound by these Terms and Conditions. If you do not agree to these terms, please do not use our service.",
     s2Title: "2. Free & Commercial License",
     s2Text: "All QR codes generated through GenerateCustomQR are 100% free for both personal and commercial use. You own all rights to the generated image files and may print, distribute, or publish them without royalty fees or attribution requirements.",
-    s3Title: "3. Disclaimer of Warranty",
-    s3Text: "The service is provided 'as is' and 'as available' without warranties of any kind. While we rigorously test our QR engine for scannability and compliance with ISO/IEC 18004, we advise users to test-scan all codes before initiating large-scale physical print runs."
+    s3Title: "3. Acceptable Use & Prohibited Content",
+    s3Text: "You agree not to use GenerateCustomQR to encode malicious URLs (phishing, malware distribution, scams), deceptive content, or unlawful materials. We reserve the right to block malicious automated abuse.",
+    s4Title: "4. Disclaimer of Warranty",
+    s4Text: "The service is provided 'as is' and 'as available' without warranties of any kind. While we rigorously test our QR engine for scannability and compliance with ISO/IEC 18004 standards, we advise users to test-scan all codes before initiating large-scale physical print runs.",
+    s5Title: "5. Modifications to Service",
+    s5Text: "GenerateCustomQR reserves the right to enhance, modify, or update features at any time to improve system speed, security, and user experience."
   },
   es: {
     title: "Términos y Condiciones — GenerateCustomQR",
@@ -31,8 +35,12 @@ const metaMap: Record<Locale, { title: string; desc: string; heading: string; s1
     s1Text: "Al acceder o utilizar GenerateCustomQR, aceptas quedar vinculado por estos Términos y Condiciones de uso.",
     s2Title: "2. Licencia Gratuita y Comercial",
     s2Text: "Todos los códigos QR generados son 100% gratuitos para uso personal y comercial. Eres el propietario exclusivo de los archivos descargados y puedes imprimirlos o distribuirlos sin pagar regalías ni incluir atribución.",
-    s3Title: "3. Descargo de Responsabilidad",
-    s3Text: "El servicio se ofrece 'tal cual'. Aunque nuestro motor se ajusta al estándar internacional ISO/IEC 18004, recomendamos realizar siempre una prueba de escaneo antes de imprimir tiradas a gran escala."
+    s3Title: "3. Uso Aceptable y Contenido Prohibido",
+    s3Text: "Te comprometes a no utilizar GenerateCustomQR para codificar enlaces fraudulentos (phishing, malware, estafas) ni contenidos ilegales.",
+    s4Title: "4. Descargo de Responsabilidad",
+    s4Text: "El servicio se ofrece 'tal cual'. Aunque nuestro motor se ajusta al estándar internacional ISO/IEC 18004, recomendamos realizar siempre una prueba de escaneo antes de imprimir tiradas a gran escala.",
+    s5Title: "5. Modificaciones del Servicio",
+    s5Text: "GenerateCustomQR se reserva el derecho de añadir nuevas funciones y mejoras continuas para optimizar la experiencia de usuario."
   },
   pt: {
     title: "Termos de Uso — GenerateCustomQR",
@@ -43,8 +51,12 @@ const metaMap: Record<Locale, { title: string; desc: string; heading: string; s1
     s1Text: "Ao acessar e utilizar o GenerateCustomQR, você concorda com estes Termos e Condições de Uso.",
     s2Title: "2. Licença Gratuita para Uso Comercial",
     s2Text: "Todos os QR codes gerados são 100% gratuitos para uso pessoal e comercial. Você detém todos os direitos sobre as imagens criadas e pode utilizá-las livremente sem cobrança de taxas.",
-    s3Title: "3. Isenção de Garantias",
-    s3Text: "O serviço é fornecido 'como está'. Embora nosso gerador siga o padrão ISO/IEC 18004, recomendamos escanear e testar o código antes de realizar impressões em grande quantidade."
+    s3Title: "3. Uso Aceitável e Conteúdo Proibido",
+    s3Text: "É expressamente proibido utilizar o gerador para criar links maliciosos, golpes virtuais, vírus ou distribuição de conteúdo ilegal.",
+    s4Title: "4. Isenção de Garantias",
+    s4Text: "O serviço é fornecido 'como está'. Embora nosso gerador siga o padrão ISO/IEC 18004, recomendamos escanear e testar o código antes de realizar impressões em grande quantidade.",
+    s5Title: "5. Atualizações da Plataforma",
+    s5Text: "O GenerateCustomQR reserva-se o direito de aprimorar ferramentas e recursos constantemente visando a melhor performance."
   },
   de: {
     title: "Nutzungsbedingungen — GenerateCustomQR",
@@ -55,8 +67,12 @@ const metaMap: Record<Locale, { title: string; desc: string; heading: string; s1
     s1Text: "Durch die Nutzung von GenerateCustomQR erklären Sie sich mit diesen Nutzungsbedingungen einverstanden.",
     s2Title: "2. Kostenlose kommerzielle Lizenz",
     s2Text: "Alle mit GenerateCustomQR erstellten QR-Codes sind sowohl für private als auch für kommerzielle Zwecke zu 100% kostenlos. Sie besitzen alle Rechte an den generierten Dateien und dürfen diese lizenzfrei drucken und veröffentlichen.",
-    s3Title: "3. Gewährleistungsausschluss",
-    s3Text: "Der Dienst wird 'wie besehen' bereitgestellt. Obwohl unsere QR-Engine nach ISO/IEC 18004 standardkonform rendert, empfehlen wir einen Test-Scan vor dem Großdruck."
+    s3Title: "3. Zulässige Nutzung & Verbotene Inhalte",
+    s3Text: "Die Erstellung von QR-Codes für betrügerische Zwecke (Phishing, Schadsoftware, Täuschung) oder rechtswidrige Inhalte ist strengstens untersagt.",
+    s4Title: "4. Gewährleistungsausschluss",
+    s4Text: "Der Dienst wird 'wie besehen' bereitgestellt. Obwohl unsere QR-Engine nach ISO/IEC 18004 standardkonform rendert, empfehlen wir einen Test-Scan vor dem Großdruck.",
+    s5Title: "5. Aktualisierungen des Dienstes",
+    s5Text: "GenerateCustomQR behält sich das Recht vor, Funktionen und Performance-Optimierungen jederzeit einzupflegen."
   }
 };
 
@@ -84,4 +100,10 @@ const breadcrumbs = [
 
   <h2>{pageMeta.s3Title}</h2>
   <p>{pageMeta.s3Text}</p>
+
+  <h2>{pageMeta.s4Title}</h2>
+  <p>{pageMeta.s4Text}</p>
+
+  <h2>{pageMeta.s5Title}</h2>
+  <p>{pageMeta.s5Text}</p>
 </LegalLayout>

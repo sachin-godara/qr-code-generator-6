@@ -56,7 +56,10 @@ export function getCleanPathname(pathname: string): string {
  *      ('en', '/wifi-qr-code') -> '/wifi-qr-code'
  */
 export function getLocalizedUrl(targetLocale: Locale, pathname: string): string {
-  const cleanPath = getCleanPathname(pathname).replace(/^\//, '');
+  let cleanPath = getCleanPathname(pathname).replace(/^\//, '');
+  if (cleanPath === '404' || cleanPath === '500') {
+    cleanPath = '';
+  }
   if (targetLocale === defaultLocale) {
     return cleanPath ? `/${cleanPath}` : '/';
   }
