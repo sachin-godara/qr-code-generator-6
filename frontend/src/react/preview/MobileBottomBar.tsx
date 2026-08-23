@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useQRStore } from "@/store/useQRStore";
 import { useDownloadStore } from "@/store/useDownloadStore";
 import { useDownloadHandlers } from "@/hooks/useDownloadHandlers";
+import { useTranslation } from "@/i18n/useTranslation";
 
 interface MobileBottomBarProps {
   isLoading: boolean;
@@ -26,6 +27,7 @@ export function MobileBottomBar({
   setMobileMainTab,
   showMiniPreview
 }: MobileBottomBarProps) {
+  const { t } = useTranslation();
   const { undo, redo, resetSettings, history, historyIndex } = useQRStore();
   const { downloadFormat, isDownloading, downloadSuccess } = useDownloadStore();
   const { handleDownloadCustom } = useDownloadHandlers();
@@ -105,7 +107,7 @@ export function MobileBottomBar({
               className="mx-auto mt-2 flex items-center gap-1 text-[10px] font-bold text-on-surface-variant/70 hover:text-on-surface-variant transition-colors"
             >
               <span className="material-symbols-outlined text-[14px]">keyboard_arrow_up</span>
-              Hide preview
+              {t("studio.preview.hidePreview") || "Hide preview"}
             </button>
           </div>
         ) : (
@@ -126,7 +128,7 @@ export function MobileBottomBar({
                 className={`w-full h-full object-contain ${isError ? 'opacity-40 grayscale' : ''}`} 
               />
             </div>
-            <span className="text-xs font-bold text-on-surface-variant">Tap to show preview</span>
+            <span className="text-xs font-bold text-on-surface-variant">{t("studio.preview.showPreview") || "Tap to show preview"}</span>
             <span className="material-symbols-outlined text-[16px] text-on-surface-variant/60">keyboard_arrow_down</span>
           </button>
         )}
@@ -155,7 +157,7 @@ export function MobileBottomBar({
               )}
               <span className={`relative z-10 material-symbols-outlined text-[20px] ${mobileMainTab === 'content' ? 'text-primary font-bold' : ''}`}>edit_document</span>
             </div>
-            <span className="text-[10px] font-bold">Content</span>
+            <span className="text-[10px] font-bold">{t("studio.mobileTabs.content")}</span>
           </button>
 
           <button
@@ -174,7 +176,7 @@ export function MobileBottomBar({
               )}
               <span className={`relative z-10 material-symbols-outlined text-[20px] ${mobileMainTab === 'design' ? 'text-primary font-bold' : ''}`}>palette</span>
             </div>
-            <span className="text-[10px] font-bold">Design</span>
+            <span className="text-[10px] font-bold">{t("studio.mobileTabs.design")}</span>
           </button>
 
           <button
@@ -193,7 +195,7 @@ export function MobileBottomBar({
               )}
               <span className={`relative z-10 material-symbols-outlined text-[20px] ${mobileMainTab === 'logo' ? 'text-primary font-bold' : ''}`}>add_photo_alternate</span>
             </div>
-            <span className="text-[10px] font-bold">Logo</span>
+            <span className="text-[10px] font-bold">{t("studio.mobileTabs.logo")}</span>
           </button>
 
           <button
@@ -212,7 +214,7 @@ export function MobileBottomBar({
               )}
               <span className={`relative z-10 material-symbols-outlined text-[20px] ${mobileMainTab === 'more' ? 'text-primary font-bold' : ''}`}>more_horiz</span>
             </div>
-            <span className="text-[10px] font-bold">More</span>
+            <span className="text-[10px] font-bold">{t("studio.mobileTabs.more")}</span>
           </button>
 
           <button
@@ -231,7 +233,7 @@ export function MobileBottomBar({
               )}
               <span className={`relative z-10 material-symbols-outlined text-[20px] ${mobileMainTab === 'download' ? 'text-emerald-600 font-bold' : ''}`}>download</span>
             </div>
-            <span className="text-[10px] font-bold">Download</span>
+            <span className="text-[10px] font-bold">{t("studio.mobileTabs.download")}</span>
           </button>
 
         </div>

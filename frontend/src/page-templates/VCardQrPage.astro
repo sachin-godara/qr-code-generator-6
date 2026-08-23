@@ -1,0 +1,377 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import QRGeneratorApp from '../react/QRGeneratorApp';
+import Footer from '../components/layout/Footer.astro';
+import { type Locale } from '../i18n/config';
+import { getLocalizedUrl, t } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const metaMap: Record<Locale, {
+  title: string;
+  desc: string;
+  badge: string;
+  specsTitle: string;
+  specs: Array<{ icon: string; title: string; desc: string }>;
+  stepsTitle: string;
+  steps: Array<{ icon: string; title: string; desc: string }>;
+  benefitsTitle: string;
+  benefits: Array<{ icon: string; title: string; desc: string }>;
+  tipsTitle: string;
+  tips: Array<{ icon: string; title: string; desc: string }>;
+  faqsTitle: string;
+  faqs: Array<{ q: string; a: string }>;
+  otherToolsTitle: string;
+  ctaTitle: string;
+  ctaDesc: string;
+  ctaBtn: string;
+}> = {
+  en: {
+    title: "Free vCard QR Code Generator — Digital Business Cards",
+    desc: "Create a digital business card QR code for free. Share phone, email, company, address, and website with 1-tap contact saving on iPhone and Android.",
+    badge: "Digital Business Cards",
+    specsTitle: "Key Technical Capabilities",
+    specs: [
+      { icon: "contact_page", title: "Universal vCard 3.0 Standard", desc: "Structured encoding for full name, title, organization, phone numbers, email, website, and physical address." },
+      { icon: "touch_app", title: "1-Tap Native Address Book Save", desc: "iOS and Android camera apps automatically prompt users to save you directly to their address book." },
+      { icon: "shield", title: "Zero Server Logging & Privacy", desc: "Your contact information is encoded directly into the QR code matrix without tracking or intermediate redirects." },
+      { icon: "download", title: "Lossless Vector & 300 DPI PDF", desc: "High-resolution SVG and print-ready PDF exports designed specifically for luxury business card printing." }
+    ],
+    stepsTitle: "How to Create a vCard QR Code in 4 Easy Steps",
+    steps: [
+      { icon: "contact_page", title: "1. Select vCard Type", desc: "Choose vCard from the generator content tabs." },
+      { icon: "person", title: "2. Enter Contact Info", desc: "Fill in name, phone numbers, email, company, title, and website." },
+      { icon: "palette", title: "3. Brand & Style", desc: "Add your corporate logo, custom dot patterns, and brand colors." },
+      { icon: "print", title: "4. Download & Print", desc: "Export in vector SVG or PDF and print on business cards or resumes." }
+    ],
+    benefitsTitle: "Why Use a Digital vCard QR Code?",
+    benefits: [
+      { icon: "speed", title: "Instant Contact Saving", desc: "Recipients scan once and your full contact info is saved to their phone contacts — no manual typing." },
+      { icon: "error_med", title: "No Typos or Lost Cards", desc: "Unlike paper business cards, a vCard QR ensures your info is saved correctly every time." },
+      { icon: "groups", title: "Networking Events & Expos", desc: "Share your contact at conferences, meetups, and trade shows without running out of cards." },
+      { icon: "eco", title: "Eco-Friendly & Modern", desc: "Reduce paper waste by supplementing traditional business cards with a digital QR alternative." }
+    ],
+    tipsTitle: "Best Practices for Business Card QR Codes",
+    tips: [
+      { icon: "straighten", title: "Minimum Print Size: 2.5×2.5 cm", desc: "Because vCards contain rich contact text, print at least 25×25 mm (1×1 inch) for instant scanning." },
+      { icon: "contrast", title: "Maintain 4.5:1 High Contrast", desc: "Dark QR modules on clean white or light backgrounds guarantee fast reading in low networking light." },
+      { icon: "phone_iphone", title: "Test with Camera Before Print Run", desc: "Always test a physical proof on both iPhone and Android before sending to print." },
+      { icon: "picture_as_pdf", title: "Use Vector SVG / PDF for Print", desc: "Vector formats prevent pixelation and ensure ultra-sharp module edges on physical cards." }
+    ],
+    faqsTitle: "Frequently Asked Questions About vCard QR Codes",
+    faqs: [
+      { q: "What is a vCard QR Code?", a: "A vCard QR code contains electronic business card information (.vcf format). When scanned by any smartphone camera, it immediately prompts the user to add the person as a new contact with one tap." },
+      { q: "What contact details can I include in a vCard QR code?", a: "You can include full name, job title, company name, phone number, mobile number, email address, website URL, and physical office address." },
+      { q: "Does the recipient need a special app to save my contact info?", a: "No. Modern iOS and Android camera apps natively parse vCard QR codes and open the native Contacts/Address Book app." },
+      { q: "What is the best format for printing a vCard QR code on business cards?", a: "We recommend downloading in SVG (vector format) or high-resolution 300 DPI PDF to ensure crisp print quality." }
+    ],
+    otherToolsTitle: "Explore Other Free QR Code Tools",
+    ctaTitle: "Ready to Create Your Digital Business Card?",
+    ctaDesc: "Generate free, high-resolution vCard QR codes for networking, business cards, and portfolios.",
+    ctaBtn: "Create vCard QR Code Now ↑"
+  },
+  es: {
+    title: "Generador de Códigos QR vCard Gratis — Tarjeta de Visita Digital",
+    desc: "Crea tarjetas de presentación digitales con código QR gratis. Comparte teléfono, correo, empresa y dirección con guardado en 1 toque en iPhone y Android.",
+    badge: "Tarjeta de Visita Digital",
+    specsTitle: "Capacidades Técnicas Clave",
+    specs: [
+      { icon: "contact_page", title: "Estándar Universal vCard 3.0", desc: "Estructura compatible para nombre, cargo, empresa, teléfonos, correo, web y dirección." },
+      { icon: "touch_app", title: "Guardado en 1 Toque en la Agenda", desc: "La cámara de iOS y Android ofrece guardar el contacto directamente en el teléfono." },
+      { icon: "shield", title: "Privacidad Total sin Registro", desc: "Toda la información se codifica en la matriz QR sin pasar por servidores intermedios." },
+      { icon: "download", title: "Vector SVG y PDF a 300 DPI", desc: "Exportación lista para imprentas profesionales y tarjetas de visita de alta gama." }
+    ],
+    stepsTitle: "Cómo Crear un Código QR vCard en 4 Pasos",
+    steps: [
+      { icon: "contact_page", title: "1. Elige vCard", desc: "Selecciona vCard como tipo de contenido en el generador." },
+      { icon: "person", title: "2. Introduce Datos", desc: "Nombre, cargo, empresa, teléfono, correo y web." },
+      { icon: "palette", title: "3. Personaliza", desc: "Añade el logo de tu empresa, colores corporativos y marcos." },
+      { icon: "print", title: "4. Imprime y Comparte", desc: "Añádelo a tus tarjetas de visita, currículum o presentaciones." }
+    ],
+    benefitsTitle: "¿Por qué Usar un Código QR vCard?",
+    benefits: [
+      { icon: "speed", title: "Guardado Inmediato", desc: "Al escanear, todos tus datos de contacto se guardan en la agenda del móvil con 1 solo toque." },
+      { icon: "error_med", title: "Cero Errores al Escribir", desc: "Evita que tus clientes pierdan tu teléfono o cometan errores tipográficos." },
+      { icon: "groups", title: "Eventos y Networking", desc: "Comparte tus datos en ferias y congresos sin preocuparte por quedarte sin tarjetas." },
+      { icon: "eco", title: "Ecológico y Profesional", desc: "Ahorra papel y ofrece una imagen moderna e innovadora de tu empresa." }
+    ],
+    tipsTitle: "Consejos para Tarjetas de Visita con QR",
+    tips: [
+      { icon: "straighten", title: "Tamaño Mínimo: 2.5×2.5 cm", desc: "Al contener información detallada, mantén un tamaño mínimo de 25×25 mm para un escaneo instantáneo." },
+      { icon: "contrast", title: "Alto Contraste de Color", desc: "Módulos oscuros sobre fondo claro aseguran lecturas rápidas incluso con poca luz en eventos." },
+      { icon: "phone_iphone", title: "Prueba Física de Impresión", desc: "Prueba siempre una muestra impresa con iOS y Android antes de imprimir tiradas grandes." },
+      { icon: "picture_as_pdf", title: "Descarga en SVG o PDF", desc: "Los formatos vectoriales aseguran que los bordes de los puntos no se pixelan en imprenta." }
+    ],
+    faqsTitle: "Preguntas Frecuentes sobre Códigos QR vCard",
+    faqs: [
+      { q: "¿Qué es un código QR vCard?", a: "Un código QR vCard contiene los datos de tu tarjeta de visita digital (.vcf). Cualquier móvil lo reconoce al instante y permite guardar el contacto." },
+      { q: "¿Qué datos puedo incluir?", a: "Nombre, apellidos, empresa, cargo profesional, teléfonos, correo electrónico, dirección física y sitio web." },
+      { q: "¿Requiere alguna app especial?", a: "No, las cámaras nativas de iPhone y Android reconocen códigos vCard automáticamente." },
+      { q: "¿Cuál es el mejor formato para imprenta?", a: "Recomendamos descargar en formato SVG vectorial o PDF a 300 DPI para una nitidez perfecta en tarjetas físicas." }
+    ],
+    otherToolsTitle: "Explora Otras Herramientas QR Gratuitas",
+    ctaTitle: "¿Listo para Crear tu Tarjeta de Visita Digital?",
+    ctaDesc: "Crea códigos QR vCard con tus datos de contacto y logotipo corporativo en segundos.",
+    ctaBtn: "Crear Código QR vCard Ahora ↑"
+  },
+  pt: {
+    title: "Gerador de QR Code vCard Grátis — Cartão de Visita Digital",
+    desc: "Crie um cartão de visita digital em QR code gratuitamente. Compartilhe telefone, e-mail, cargo e contatos com salvamento em 1 clique.",
+    badge: "Cartão de Visita Digital",
+    specsTitle: "Recursos Técnicos Avançados",
+    specs: [
+      { icon: "contact_page", title: "Padrão Universal vCard 3.0", desc: "Suporta nome, cargo, empresa, telefones, e-mail, site comercial e endereço." },
+      { icon: "touch_app", title: "Salvamento em 1 Toque na Agenda", desc: "A câmera do iPhone e do Android abre a opção de salvar na agenda automaticamente." },
+      { icon: "shield", title: "Privacidade e Segurança", desc: "Dados gravados diretamente no código QR sem envio para servidores externos." },
+      { icon: "download", title: "Vetor SVG e PDF em 300 DPI", desc: "Qualidade ultra nítida ideal para gráficas e impressão de cartões de luxo." }
+    ],
+    stepsTitle: "Como Criar um QR Code vCard em 4 Passos",
+    steps: [
+      { icon: "contact_page", title: "1. Escolha vCard", desc: "Selecione vCard nas opções de conteúdo." },
+      { icon: "person", title: "2. Preencha os Dados", desc: "Nome, cargo, empresa, telefone, e-mail e site." },
+      { icon: "palette", title: "3. Personalize", desc: "Adicione seu logotipo, moldura e cores da marca." },
+      { icon: "print", title: "4. Imprima", desc: "Aplique em cartões de visita, crachás e currículos." }
+    ],
+    benefitsTitle: "Vantagens do Cartão Digital vCard",
+    benefits: [
+      { icon: "speed", title: "Salvamento em 1 Toque", desc: "Quem escaneia salva todos os seus contatos na agenda telefônica instantaneamente." },
+      { icon: "error_med", title: "Sem Erros de Digitação", desc: "Garante que seu telefone e e-mail sejam gravados sem qualquer erro manual." },
+      { icon: "groups", title: "Eventos e Feiras", desc: "Faça networking em conferências sem correr o risco de ficar sem cartões de papel." },
+      { icon: "eco", title: "Sustentável e Moderno", desc: "Transmita uma imagem moderna e reduza custos com impressões excessivas." }
+    ],
+    tipsTitle: "Dicas para Cartões com QR Code",
+    tips: [
+      { icon: "straighten", title: "Tamanho Mínimo: 2,5×2,5 cm", desc: "Por conter dados detalhados de contato, imprima no mínimo a 25×25 mm para leitura rápida." },
+      { icon: "contrast", title: "Alto Contraste de Cores", desc: "Cores contrastantes garantem escaneamento rápido mesmo sob baixa iluminação de eventos." },
+      { icon: "phone_iphone", title: "Teste a Leitura na Prova", desc: "Faça uma leitura de teste com smartphones antes de mandar rodar a tiragem do cartão." },
+      { icon: "picture_as_pdf", title: "Use Formato Vetorial SVG", desc: "O arquivo vetorial mantém as bordas nítidas sem perda de qualidade em papel couche ou linho." }
+    ],
+    faqsTitle: "Perguntas Frecuentes sobre vCard",
+    faqs: [
+      { q: "O que é um QR Code vCard?", a: "É um código que carrega seu cartão de visita digital (.vcf). Ao ser lido por qualquer smartphone, abre diretamente a tela de salvar contato." },
+      { q: "Quais dados posso colocar?", a: "Nome completo, empresa, cargo, telefones, e-mail, site e endereço comercial." },
+      { q: "Precisa de aplicativo para ler?", a: "Não! A própria câmera do iPhone e do Android realiza a leitura e abre a agenda." },
+      { q: "Qual o melhor formato para cartões impressos?", a: "Sugerimos baixar em SVG vetorial ou PDF em 300 DPI para máxima nitidez na gráfica." }
+    ],
+    otherToolsTitle: "Conheça Outras Ferramentas QR Gratuitas",
+    ctaTitle: "Pronto para Criar seu Cartão de Visita Digital?",
+    ctaDesc: "Gere códigos QR vCard profissionais com seus dados e logotipo em segundos.",
+    ctaBtn: "Criar QR Code vCard Agora ↑"
+  },
+  de: {
+    title: "Kostenloser vCard QR-Code Generator — Digitale Visitenkarte",
+    desc: "Erstellen Sie eine digitale Visitenkarte als QR-Code. Kontaktdaten mit 1 Klick auf iPhone und Android speichern. 100% kostenlos.",
+    badge: "Digitale Visitenkarte",
+    specsTitle: "Wichtige technische Merkmale",
+    specs: [
+      { icon: "contact_page", title: "Universal vCard 3.0 Standard", desc: "Strukturierte Übertragung von Name, Position, Firma, Telefonnummern, E-Mail und Adresse." },
+      { icon: "touch_app", title: "1-Klick-Speicherung im Adressbuch", desc: "Smartphones fordern beim Scannen direkt dazu auf, den Kontakt abzuspeichern." },
+      { icon: "shield", title: "Höchster Datenschutz", desc: "Alle Daten sind im QR-Muster verschlüsselt hinterlegt ohne Weiterleitung über fremde Server." },
+      { icon: "download", title: "Vektor-SVG & 300 DPI PDF", desc: "Druckfertige Vektorgrafiken für professionellen Visitenkartendruck." }
+    ],
+    stepsTitle: "So erstellen Sie einen vCard-QR-Code in 4 Schritten",
+    steps: [
+      { icon: "contact_page", title: "1. vCard auswählen", desc: "vCard als Inhaltstyp im Generator wählen." },
+      { icon: "person", title: "2. Daten eingeben", desc: "Name, Position, Firma, Telefon und E-Mail eintragen." },
+      { icon: "palette", title: "3. Branding gestalten", desc: "Eigenes Logo und Firmenfarben hinzufügen." },
+      { icon: "print", title: "4. Drucken & Teilen", desc: "Auf Visitenkarten und Präsentationen drucken." }
+    ],
+    benefitsTitle: "Vorteile einer vCard-Visitenkarte",
+    benefits: [
+      { icon: "speed", title: "1-Klick-Kontaktspeicherung", desc: "Ein Scan genügt und alle Daten werden direkt im Adressbuch des Smartphones gespeichert." },
+      { icon: "error_med", title: "Keine Tippfehler", desc: "Verhindert Tippfehler bei Telefonnummern oder komplexen E-Mail-Adressen." },
+      { icon: "groups", title: "Ideal für Messen & Events", desc: "Knüpfen Sie Kontakte auf Konferenzen ohne Papiervisitenkarten-Engpass." },
+      { icon: "eco", title: "Umweltfreundlich", desc: "Reduzieren Sie Papierverbrauch mit einer nachhaltigen digitalen Lösung." }
+    ],
+    tipsTitle: "Tipps für Visitenkarten-QR-Codes",
+    tips: [
+      { icon: "straighten", title: "Mindestgröße: 2,5×2,5 cm", desc: "Da vCards viele Kontaktdaten enthalten, sollte der Code mindestens 25×25 mm groß gedruckt werden." },
+      { icon: "contrast", title: "Ausreichender Farbkontrast", desc: "Dunkle Punkte auf hellem Grund ermöglichen rasantes Scannen auch bei schwachem Messe-Licht." },
+      { icon: "phone_iphone", title: "Kamera-Test vor dem Druck", desc: "Testen Sie einen Probedruck mit iOS und Android vor dem finalen Druckauftrag." },
+      { icon: "picture_as_pdf", title: "Vektor-Export bevorzugen", desc: "SVG oder 300 DPI PDF verhindern unscharfe Ränder auf Papier." }
+    ],
+    faqsTitle: "Häufige Fragen zu vCard",
+    faqs: [
+      { q: "Was ist ein vCard-QR-Code?", a: "Ein elektronisches Visitenkarten-Format (.vcf). Nach dem Scannen öffnet sich sofort der Dialog 'Neuen Kontakt speichern'." },
+      { q: "Welche Angaben können gespeichert werden?", a: "Vor- und Nachname, Firmenname, Berufsbezeichnung, Telefonnummern, E-Mail, Website und Adresse." },
+      { q: "Wird eine spezielle App benötigt?", a: "Nein, Standard-Kamera-Apps von iOS und Android erkennen vCards nativ." },
+      { q: "Welches Dateiformat eignet sich für Visitenkarten?", a: "Wir empfehlen Vektor-SVG oder 300 DPI PDF für gestochen scharfe Druckergebnisse." }
+    ],
+    otherToolsTitle: "Weitere kostenlose QR-Code Tools",
+    ctaTitle: "Bereit für Ihre digitale Visitenkarte?",
+    ctaDesc: "Erstellen Sie vCard-QR-Codes mit Firmenlogo in wenigen Sekunden. Kostenlos als SVG und PDF.",
+    ctaBtn: "Jetzt vCard-QR-Code erstellen ↑"
+  }
+};
+
+const pageMeta = metaMap[locale] || metaMap.en;
+
+const breadcrumbs = [
+  { name: t(locale, 'nav.generator'), url: getLocalizedUrl(locale, '/') },
+  { name: t(locale, 'footer.vcardQR'), url: getLocalizedUrl(locale, '/vcard-qr-code') }
+];
+
+const relatedTools = [
+  { icon: "link", title: "URL to QR", desc: "Website links & portfolios", url: getLocalizedUrl(locale, '/url-qr-code-generator') },
+  { icon: "wifi", title: "WiFi QR", desc: "1-tap wifi connections", url: getLocalizedUrl(locale, '/wifi-qr-code') },
+  { icon: "image", title: "QR with Logo", desc: "Branded custom logos", url: getLocalizedUrl(locale, '/qr-code-with-logo') },
+  { icon: "event", title: "Event QR", desc: "Save dates to calendars", url: getLocalizedUrl(locale, '/event-qr-code') },
+  { icon: "mail", title: "Email QR", desc: "Pre-filled email drafts", url: getLocalizedUrl(locale, '/email-qr-code') },
+  { icon: "qr_code_scanner", title: "QR Scanner", desc: "Camera & image decoder", url: getLocalizedUrl(locale, '/qr-code-scanner') }
+];
+
+const howTo = {
+  name: pageMeta.title,
+  description: pageMeta.desc,
+  steps: pageMeta.steps.map((s, idx) => ({ name: `${idx + 1}. ${s.title}`, text: s.desc }))
+};
+
+const faqs = pageMeta.faqs;
+---
+<BaseLayout
+  locale={locale}
+  title={pageMeta.title}
+  description={pageMeta.desc}
+  breadcrumbs={breadcrumbs}
+  howTo={howTo}
+  faqs={faqs}
+>
+  <style is:global>
+    @import '../styles/global.css';
+  </style>
+
+  <main id="generator">
+    <QRGeneratorApp client:load locale={locale} />
+  </main>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-16 text-on-surface" id="about">
+    
+    <!-- Hero Header -->
+    <div class="text-center max-w-3xl mx-auto space-y-3">
+      <span class="inline-block text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-3.5 py-1.5 rounded-full">{pageMeta.badge}</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-on-surface tracking-tight">{pageMeta.title}</h1>
+      <p class="text-sm sm:text-base text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
+        {pageMeta.desc}
+      </p>
+    </div>
+
+    <!-- 1. Technical Capabilities Grid -->
+    <section class="space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.specsTitle}</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {pageMeta.specs.map((s) => (
+          <div class="p-5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/40 hover:-translate-y-1 hover:shadow-md transition-all duration-300 shadow-xs space-y-2">
+            <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+              <span class="material-symbols-outlined text-xl">{s.icon}</span>
+            </div>
+            <h3 class="font-bold text-sm text-on-surface">{s.title}</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 2. 4-Step Process Guide -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.stepsTitle}</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {pageMeta.steps.map((step, idx) => (
+          <div class="text-center p-5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/40 hover:-translate-y-1 hover:shadow-md transition-all duration-300 shadow-xs">
+            <div class="w-10 h-10 mx-auto mb-3 rounded-full bg-primary/10 text-primary font-black text-sm flex items-center justify-center">
+              {idx + 1}
+            </div>
+            <h3 class="font-bold text-sm text-on-surface mb-1">{step.title}</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 3. Why Use vCard Grid -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.benefitsTitle}</h2>
+      <div class="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+        {pageMeta.benefits.map((b) => (
+          <div class="flex items-start gap-3.5 p-4.5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/30 hover:-translate-y-0.5 hover:shadow-xs transition-all duration-200">
+            <span class="material-symbols-outlined text-primary text-2xl shrink-0 mt-0.5">{b.icon}</span>
+            <div>
+              <h3 class="font-bold text-sm text-on-surface">{b.title}</h3>
+              <p class="text-xs text-on-surface-variant mt-1 leading-relaxed">{b.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 4. Best Practices Guide -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.tipsTitle}</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {pageMeta.tips.map((tip) => (
+          <div class="p-4.5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 space-y-2">
+            <span class="material-symbols-outlined text-emerald-600 text-2xl">{tip.icon}</span>
+            <h3 class="font-bold text-sm text-on-surface">{tip.title}</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">{tip.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 5. Explore Other Tools Ribbon -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.otherToolsTitle}</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        {relatedTools.map((tool) => (
+          <a
+            href={tool.url}
+            class="p-3.5 rounded-xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/40 hover:-translate-y-1 hover:shadow-xs transition-all text-center group flex flex-col items-center justify-between"
+          >
+            <div class="w-8 h-8 rounded-lg bg-zinc-100 group-hover:bg-primary group-hover:text-white flex items-center justify-center transition-colors mb-2">
+              <span class="material-symbols-outlined text-lg">{tool.icon}</span>
+            </div>
+            <span class="font-bold text-xs text-on-surface group-hover:text-primary transition-colors block">{tool.title}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- 6. FAQs Accordion -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.faqsTitle}</h2>
+      <div class="space-y-3 max-w-3xl mx-auto">
+        {pageMeta.faqs.map((faq) => (
+          <details class="group border border-outline-variant/60 rounded-2xl bg-surface-container-lowest overflow-hidden shadow-xs transition-all">
+            <summary class="flex justify-between items-center p-4.5 cursor-pointer font-bold text-sm sm:text-base hover:bg-surface-container-low transition-colors select-none text-on-surface">
+              <span>{faq.q}</span>
+              <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-on-surface-variant">expand_more</span>
+            </summary>
+            <p class="px-4.5 pb-4.5 pt-1 text-on-surface-variant text-xs sm:text-sm leading-relaxed border-t border-outline-variant/30">
+              {faq.a}
+            </p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- 7. Bottom CTA Banner -->
+    <section class="rounded-3xl bg-linear-to-br from-zinc-900 to-zinc-950 text-white p-8 sm:p-12 text-center space-y-4 shadow-lg border border-zinc-800">
+      <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">{pageMeta.ctaTitle}</h2>
+      <p class="text-xs sm:text-sm text-zinc-400 max-w-lg mx-auto leading-relaxed">{pageMeta.ctaDesc}</p>
+      <div class="pt-2">
+        <button
+          onclick="document.getElementById('generator')?.scrollIntoView({ behavior: 'smooth' });"
+          class="px-6 py-3 rounded-full bg-white text-zinc-900 font-extrabold text-xs sm:text-sm hover:bg-zinc-100 hover:scale-105 transition-all shadow-md cursor-pointer"
+        >
+          {pageMeta.ctaBtn}
+        </button>
+      </div>
+    </section>
+
+  </div>
+
+  <Footer locale={locale} />
+</BaseLayout>

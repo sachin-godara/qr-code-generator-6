@@ -8,6 +8,15 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   // This affects sitemap generation, canonical URLs, and OG meta tags
   site: 'https://generatecustomqr.com',
+
+  // Directory-based Internationalization (i18n)
+  i18n: {
+    defaultLocale: 'en',
+    locales: ['en', 'es', 'pt', 'de'],
+    routing: {
+      prefixDefaultLocale: false,
+    },
+  },
   
   devToolbar: {
     enabled: false,

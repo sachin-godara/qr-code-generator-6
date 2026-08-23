@@ -4,12 +4,14 @@ import { useQRStore } from "@/store/useQRStore";
 import { useDownloadStore } from "@/store/useDownloadStore";
 import { useDownloadHandlers } from "@/hooks/useDownloadHandlers";
 import { ScannabilityAlert } from "@/components/ui/ScannabilityAlert";
+import { useTranslation } from "@/i18n/useTranslation";
 
 interface DownloadPanelProps {
   onNavigateToContent?: () => void;
 }
 
 export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
+  const { t } = useTranslation();
   const { settings, batchCsvRows, batchDataColumn } = useQRStore();
   const { 
     batchFormat, setBatchFormat, batchSize, setBatchSize,
@@ -278,7 +280,12 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
             <>
               <span className="material-symbols-outlined text-2xl">download</span>
               <span>
-                Download {downloadFormat} {downloadFormat === "PNG" ? `(${downloadSize}px)` : ""}
+                {downloadFormat === "PNG" 
+                  ? `${t("studio.download.downloadPng")} (${downloadSize}px)` 
+                  : downloadFormat === "SVG" 
+                    ? t("studio.download.downloadSvg") 
+                    : t("studio.download.downloadPdf")
+                }
               </span>
             </>
           )}
@@ -307,7 +314,7 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
           ) : (
             <>
               <span className="material-symbols-outlined text-xl">content_copy</span>
-              <span>Copy PNG</span>
+              <span>{t("studio.download.copyClipboard")}</span>
             </>
           )}
         </button>

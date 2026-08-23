@@ -2,8 +2,13 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
+import { defaultLocale } from '../i18n/config';
+import { getLocalizedUrl, t } from '../i18n/utils';
+
+const locale = defaultLocale;
 ---
 <BaseLayout
+  locale={locale}
   title="Page Not Found (404) — GenerateCustomQR"
   description="The page you are looking for does not exist. Return to the homepage to generate a free QR code."
 >
@@ -12,7 +17,7 @@ import Footer from '../components/layout/Footer.astro';
   </style>
 
   <div class="min-h-screen bg-surface flex flex-col relative selection:bg-primary/20 selection:text-primary">
-    <Header />
+    <Header locale={locale} />
     
     <!-- Decorative Background Elements -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none z-0">
@@ -35,32 +40,32 @@ import Footer from '../components/layout/Footer.astro';
         </div>
 
         <h2 class="text-3xl sm:text-4xl font-bold text-on-surface mb-4 tracking-tight">
-          Looks like you're lost.
+          {t(locale, 'errors.title404') || "Page Not Found"}
         </h2>
         
         <p class="text-lg text-on-surface-variant max-w-lg mx-auto mb-12">
-          The page you are looking for has vanished, moved, or never existed in the first place. Let's get you back on track.
+          {t(locale, 'errors.desc404') || "The page you are looking for has vanished, moved, or never existed. Let's get you back on track."}
         </p>
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
-            href="/"
+            href={getLocalizedUrl(locale, '/')}
             class="w-full sm:w-auto px-8 py-4 bg-primary text-white font-bold rounded-2xl hover:bg-primary-hover hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg hover:shadow-primary/25 flex items-center justify-center gap-2"
           >
             <span class="material-symbols-outlined">qr_code_2</span>
-            Make a QR Code
+            {t(locale, 'nav.generator')}
           </a>
           <a
-            href="/qr-code-scanner"
+            href={getLocalizedUrl(locale, '/qr-code-scanner')}
             class="w-full sm:w-auto px-8 py-4 bg-surface-container-high text-on-surface font-bold rounded-2xl hover:bg-surface-container-highest hover:scale-105 active:scale-95 transition-all duration-300 border border-outline-variant/50 shadow-sm hover:shadow-md flex items-center justify-center gap-2"
           >
             <span class="material-symbols-outlined">qr_code_scanner</span>
-            Scan a QR Code
+            {t(locale, 'nav.scan')}
           </a>
         </div>
       </div>
     </main>
 
-    <Footer />
+    <Footer locale={locale} />
   </div>
 </BaseLayout>

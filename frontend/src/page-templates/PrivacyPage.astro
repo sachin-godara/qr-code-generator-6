@@ -1,0 +1,87 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { type Locale } from '../i18n/config';
+import { getLocalizedUrl, t } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const metaMap: Record<Locale, { title: string; desc: string; heading: string; s1Title: string; s1Text: string; s2Title: string; s2Text: string; s3Title: string; s3Text: string; lastUpdated: string }> = {
+  en: {
+    title: "Privacy Policy — GenerateCustomQR",
+    desc: "GenerateCustomQR is a privacy-first tool. All QR code generation runs locally in your browser. We never collect or store your encoded data.",
+    heading: "Privacy Policy",
+    lastUpdated: "January 1, 2025",
+    s1Title: "1. Privacy First Commitment",
+    s1Text: "GenerateCustomQR is designed from the ground up to respect your privacy. All QR code matrix calculations and rendering execute directly on your local device or via secure, non-logging memory buffers.",
+    s2Title: "2. Zero Data Collection on Encoded Content",
+    s2Text: "We do not store, intercept, or sell the data you encode into QR codes (such as passwords, contact information, URLs, or text messages).",
+    s3Title: "3. Third-Party Analytics",
+    s3Text: "We use standard, privacy-respecting website analytics (Google Analytics 4) to monitor aggregate traffic and improve platform performance. No personally identifiable information (PII) is captured."
+  },
+  es: {
+    title: "Política de Privacidad — GenerateCustomQR",
+    desc: "GenerateCustomQR prioriza tu privacidad. La generación de códigos QR se realiza localmente en tu navegador sin almacenar datos.",
+    heading: "Política de Privacidad",
+    lastUpdated: "1 de Enero de 2025",
+    s1Title: "1. Compromiso de Privacidad Absoluta",
+    s1Text: "GenerateCustomQR está diseñado desde sus cimientos para respetar tu privacidad. Los cálculos y renderizados del código QR se ejecutan directamente en tu dispositivo o en memoria sin almacenamiento.",
+    s2Title: "2. Cero Recolección de Datos Codificados",
+    s2Text: "No almacenamos, interceptamos ni vendemos los datos que introduces en tus códigos QR (claves de WiFi, datos de contacto, enlaces o mensajes).",
+    s3Title: "3. Analítica Agregada",
+    s3Text: "Utilizamos analíticas estándar sin recopilación de información personal identificable para monitorizar el rendimiento global de la plataforma."
+  },
+  pt: {
+    title: "Política de Privacidade — GenerateCustomQR",
+    desc: "O GenerateCustomQR protege sua privacidade. A geração dos códigos QR ocorre localmente no navegador sem coleta de dados.",
+    heading: "Política de Privacidade",
+    lastUpdated: "1 de Janeiro de 2025",
+    s1Title: "1. Privacidade em Primeiro Lugar",
+    s1Text: "O GenerateCustomQR foi planejado para garantir sigilo total. Toda a renderização do QR code ocorre diretamente no seu dispositivo sem registro de dados.",
+    s2Title: "2. Nenhuma Coleta do Conteúdo Codificado",
+    s2Text: "Não armazenamos, interceptamos nem compartilhamos nenhuma informação digitada nos seus QR codes (como senhas, telefones ou e-mails).",
+    s3Title: "3. Métricas Anônimas",
+    s3Text: "Utilizamos ferramentas de análise agregada para monitorar a estabilidade do serviço sem registrar dados pessoais identificáveis."
+  },
+  de: {
+    title: "Datenschutzerklärung — GenerateCustomQR",
+    desc: "GenerateCustomQR ist ein datenschutzfreundlicher Generator. Die Generierung erfolgt lokal im Browser ohne Speicherung persönlicher Daten.",
+    heading: "Datenschutzerklärung",
+    lastUpdated: "1. Januar 2025",
+    s1Title: "1. Datenschutz an erster Stelle",
+    s1Text: "GenerateCustomQR wurde mit Fokus auf maximale Privatsphäre entwickelt. Die QR-Code-Berechnung erfolgt direkt in Ihrem Browser ohne Speicherung auf Servern.",
+    s2Title: "2. Keine Erfassung codierter Inhalte",
+    s2Text: "Wir speichern, lesen oder verkaufen niemals die von Ihnen eingegebenen Daten (wie Passwörter, Kontakte, URLs oder Nachrichten).",
+    s3Title: "3. Anonyme Web-Analyse",
+    s3Text: "Wir nutzen standardmäßige, datenschutzkonforme Analysetools zur Überwachung der technischen Plattformleistung ohne Erfassung persönlicher Daten."
+  }
+};
+
+const pageMeta = metaMap[locale] || metaMap.en;
+
+const breadcrumbs = [
+  { name: t(locale, 'nav.generator'), url: getLocalizedUrl(locale, '/') },
+  { name: t(locale, 'footer.privacy'), url: getLocalizedUrl(locale, '/privacy-policy') }
+];
+---
+<LegalLayout
+  locale={locale}
+  title={pageMeta.title}
+  description={pageMeta.desc}
+  breadcrumbs={breadcrumbs}
+  heading={pageMeta.heading}
+  lastUpdated={pageMeta.lastUpdated}
+  icon="security"
+>
+  <h2>{pageMeta.s1Title}</h2>
+  <p>{pageMeta.s1Text}</p>
+
+  <h2>{pageMeta.s2Title}</h2>
+  <p>{pageMeta.s2Text}</p>
+
+  <h2>{pageMeta.s3Title}</h2>
+  <p>{pageMeta.s3Text}</p>
+</LegalLayout>

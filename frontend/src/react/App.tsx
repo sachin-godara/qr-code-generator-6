@@ -18,8 +18,12 @@ import {
   DownloadPanel 
 } from "./panels"
 import { DesktopPreviewPane, MobileBottomBar, FullscreenLightbox } from "./preview"
+import { useTranslation } from "@/i18n/useTranslation"
+import { ReactLanguageSwitcher } from "./components/ReactLanguageSwitcher"
+import { getLocalizedUrl } from "@/i18n/utils"
 
 function App() {
+  const { t, locale } = useTranslation()
   const { settings, undo, redo, resetSettings, history, historyIndex } = useQRStore()
   const { hasComplexStyling } = useDownloadHandlers()
   const { isDownloading, isBatchGenerating, downloadSize, downloadFormat, copySuccess } = useDownloadStore()
@@ -167,9 +171,20 @@ function App() {
       }
     } else if (imageUrl) {
       navigator.clipboard.writeText(imageUrl);
-      setToast({ message: "Image URL Copied!", icon: "link" });
+      setToast({ message: t("studio.buttons.copied"), icon: "link" });
     }
   }
+
+  const sidebarTabs = [
+    { name: "Content", label: t("studio.tabs.content"), icon: "qr_code_scanner" },
+    { name: "Templates", label: t("studio.tabs.templates"), icon: "style" },
+    { name: "Design", label: t("studio.tabs.design"), icon: "palette" },
+    { name: "Logo", label: t("studio.tabs.logo"), icon: "image" },
+    { name: "Frames", label: t("studio.tabs.frames"), icon: "crop_free" },
+    { name: "Effects", label: t("studio.tabs.effects"), icon: "auto_awesome" },
+    { name: "Advanced", label: t("studio.tabs.advanced"), icon: "tune" },
+    { name: "Download", label: t("studio.tabs.download"), icon: "download" },
+  ]
 
   const goToNextTab = (currentTabName: string) => {
     const currentIndex = sidebarTabs.findIndex(t => t.name === currentTabName);
@@ -191,17 +206,18 @@ function App() {
   const renderNextStepButton = (currentTabName: string) => {
     const currentIndex = sidebarTabs.findIndex(t => t.name === currentTabName);
     if (currentIndex >= 0 && currentIndex < sidebarTabs.length - 1) {
+      const currentTab = sidebarTabs[currentIndex];
       const nextTab = sidebarTabs[currentIndex + 1];
       return (
         <div className="mt-8 pt-6 border-t border-outline-variant/30 flex justify-between items-center animate-in fade-in duration-500">
           <div className="text-sm text-on-surface-variant font-medium hidden sm:block">
-            Done with {currentTabName}?
+            {t("studio.buttons.doneWith", { tab: currentTab.label })}
           </div>
           <button
             onClick={() => goToNextTab(currentTabName)}
             className="w-full sm:w-auto flex items-center justify-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-xl font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all"
           >
-            <span>Continue to {nextTab.name}</span>
+            <span>{t("studio.buttons.continueTo", { tab: nextTab.label })}</span>
             <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
           </button>
         </div>
@@ -242,39 +258,28 @@ function App() {
           e.preventDefault();
           if (e.shiftKey) {
             redo();
-            setToast({ message: "Redone", icon: "redo" });
+            setToast({ message: t("studio.buttons.redo"), icon: "redo" });
           } else {
             undo();
-            setToast({ message: "Undone", icon: "undo" });
+            setToast({ message: t("studio.buttons.undo"), icon: "undo" });
           }
         }
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [undo, redo, setToast]);
-
-  const sidebarTabs = [
-    { name: "Content", icon: "qr_code_scanner" },
-    { name: "Templates", icon: "style" },
-    { name: "Design", icon: "palette" },
-    { name: "Logo", icon: "image" },
-    { name: "Frames", icon: "crop_free" },
-    { name: "Effects", icon: "auto_awesome" },
-    { name: "Advanced", icon: "tune" },
-    { name: "Download", icon: "download" },
-  ]
+  }, [undo, redo, setToast, t]);
 
   // Tab-aware context metadata for dynamic headlines
   const TAB_META: Record<string, { headline: string; sub: string; step: number }> = {
-    Content:   { headline: "What would you like to encode?",  sub: "Choose a content type and enter your data.",              step: 1 },
-    Templates: { headline: "Pick a Style Template",            sub: "One-click presets for every use case.",                   step: 2 },
-    Design:    { headline: "Customize Your QR Design",         sub: "Dots, eyes, colors, gradients — make it yours.",          step: 3 },
-    Logo:      { headline: "Add Your Brand Logo",              sub: "Upload a custom logo or choose a preset icon.",           step: 4 },
-    Frames:    { headline: "Apply Text Frames",                sub: "Add a label or call-to-action around your QR code.",      step: 5 },
-    Effects:   { headline: "Add Visual Effects",               sub: "Shadows, glows, and canvas decorations.",                 step: 6 },
-    Advanced:  { headline: "Advanced Settings",                sub: "Error correction, quiet zone, and canvas fine-tuning.",   step: 7 },
-    Download:  { headline: "Export Your QR Code",              sub: "Choose format, resolution, and download.",                step: 8 },
+    Content:   { headline: t("studio.tabHeadlines.content_title"),   sub: t("studio.tabHeadlines.content_sub"),   step: 1 },
+    Templates: { headline: t("studio.tabHeadlines.templates_title"), sub: t("studio.tabHeadlines.templates_sub"), step: 2 },
+    Design:    { headline: t("studio.tabHeadlines.design_title"),    sub: t("studio.tabHeadlines.design_sub"),    step: 3 },
+    Logo:      { headline: t("studio.tabHeadlines.logo_title"),      sub: t("studio.tabHeadlines.logo_sub"),      step: 4 },
+    Frames:    { headline: t("studio.tabHeadlines.frames_title"),    sub: t("studio.tabHeadlines.frames_sub"),    step: 5 },
+    Effects:   { headline: t("studio.tabHeadlines.effects_title"),   sub: t("studio.tabHeadlines.effects_sub"),   step: 6 },
+    Advanced:  { headline: t("studio.tabHeadlines.advanced_title"),  sub: t("studio.tabHeadlines.advanced_sub"),  step: 7 },
+    Download:  { headline: t("studio.tabHeadlines.download_title"),  sub: t("studio.tabHeadlines.download_sub"),  step: 8 },
   }
   const meta = TAB_META[activeTab] ?? TAB_META["Content"]
 
@@ -322,48 +327,53 @@ function App() {
                 <span className="text-[9px] font-medium text-on-surface-variant tracking-wider hidden sm:block whitespace-nowrap">40+ styles · 100% free</span>
               </div>
             </a>
-            <div className="hidden md:flex items-center gap-6">
+            <div className="hidden md:flex items-center gap-5 lg:gap-6">
               <button
                 onClick={() => setActiveTab("Content")}
                 className={`text-sm font-semibold transition-colors duration-200 ${activeTab === "Content" && settings.contentType !== "batch" ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
                 aria-current="page"
               >
-                Generator
+                {t("nav.generator")}
               </button>
               <a
-                href="/how-to-use"
+                href={getLocalizedUrl(locale, '/how-to-use')}
                 className="text-sm font-semibold transition-colors duration-200 text-on-surface-variant hover:text-on-surface flex items-center gap-1.5"
               >
                 <span className="material-symbols-outlined text-[16px]">help_outline</span>
-                Guide
+                {t("nav.guide")}
               </a>
               <a
-                href="/blog"
+                href={getLocalizedUrl(locale, '/blog')}
                 className="text-sm font-semibold transition-colors duration-200 text-on-surface-variant hover:text-on-surface flex items-center gap-1.5"
               >
                 <span className="material-symbols-outlined text-[16px]">rss_feed</span>
-                Blog
+                {t("nav.blog")}
               </a>
               <a
-                href="/qr-code-scanner"
+                href={getLocalizedUrl(locale, '/qr-code-scanner')}
                 className="text-sm font-bold transition-colors flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border text-on-surface hover:text-primary hover:bg-surface-container border-outline-variant/30"
               >
                 <span className="material-symbols-outlined text-[16px]">qr_code_scanner</span>
-                Scan
+                {t("nav.scan")}
               </a>
             </div>
           </div>
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl hover:bg-surface-container transition-colors touch-press"
-            aria-label="Toggle navigation menu"
-            aria-expanded={mobileMenuOpen}
-            aria-controls="mobile-menu-react"
-          >
-            <span className="material-symbols-outlined text-on-surface">
-              {mobileMenuOpen ? 'close' : 'menu'}
-            </span>
-          </button>
+
+          {/* Right Area: Language Switcher + Mobile Hamburger Menu */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            <ReactLanguageSwitcher />
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="md:hidden w-10 h-10 flex items-center justify-center rounded-xl hover:bg-surface-container transition-colors touch-press"
+              aria-label="Toggle navigation menu"
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-menu-react"
+            >
+              <span className="material-symbols-outlined text-on-surface">
+                {mobileMenuOpen ? 'close' : 'menu'}
+              </span>
+            </button>
+          </div>
         </div>
         {mobileMenuOpen && (
           <div id="mobile-menu-react" className="md:hidden border-t border-outline-variant bg-surface-container-lowest px-4 py-3 space-y-1 shadow-lg">
@@ -373,31 +383,31 @@ function App() {
               aria-current="page"
             >
               <span className="material-symbols-outlined text-[20px]">qr_code_2</span>
-              Generator
+              {t("nav.generator")}
             </button>
             <a
-              href="/how-to-use"
+              href={getLocalizedUrl(locale, '/how-to-use')}
               className="w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold text-on-surface-variant hover:bg-surface-container"
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className="material-symbols-outlined text-[20px]">help_outline</span>
-              Guide
+              {t("nav.guide")}
             </a>
             <a
-              href="/blog"
+              href={getLocalizedUrl(locale, '/blog')}
               className="w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold text-on-surface-variant hover:bg-surface-container"
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className="material-symbols-outlined text-[20px]">rss_feed</span>
-              Blog
+              {t("nav.blog")}
             </a>
             <a
-              href="/qr-code-scanner"
+              href={getLocalizedUrl(locale, '/qr-code-scanner')}
               className="w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold text-primary bg-primary/5 border border-primary/20"
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className="material-symbols-outlined text-[20px]">qr_code_scanner</span>
-              Scan QR Code
+              {t("nav.scanQR")}
             </a>
           </div>
         )}
@@ -416,10 +426,10 @@ function App() {
         <aside className="w-20 xl:w-72 border-r border-outline-variant bg-surface-container-lowest hidden lg:flex flex-col py-6 px-2 xl:px-4 gap-2 sticky top-16 h-[calc(100vh-4rem)] transition-all duration-300">
           <div className="mb-3 px-1 xl:px-2 flex flex-col items-center xl:items-start text-center xl:text-left overflow-hidden">
             <h2 className="text-xs xl:text-sm font-semibold text-on-surface tracking-tight truncate w-full">
-              <span className="xl:hidden">Tools</span>
-              <span className="hidden xl:inline">Customization</span>
+              <span className="xl:hidden">{t("studio.labels.tools") || "Tools"}</span>
+              <span className="hidden xl:inline">{t("studio.labels.customization") || "Customization"}</span>
             </h2>
-            <p className="hidden xl:block text-xs text-on-surface-variant mt-0.5">Personalize your QR code</p>
+            <p className="hidden xl:block text-xs text-on-surface-variant mt-0.5">{t("studio.labels.personalize") || "Personalize your QR code"}</p>
           </div>
           <div className="space-y-1 flex-1 overflow-y-auto overflow-x-hidden">
             {sidebarTabs.map((tab) => (
@@ -436,7 +446,7 @@ function App() {
                   }`}
               >
                 <span className={`material-symbols-outlined text-[22px] xl:text-[18px] transition-colors ${activeTab === tab.name ? "text-primary" : "text-on-surface-variant"}`}>{tab.icon}</span>
-                <span className="hidden xl:inline whitespace-nowrap">{tab.name}</span>
+                <span className="hidden xl:inline whitespace-nowrap">{tab.label}</span>
               </button>
             ))}
           </div>
@@ -460,7 +470,7 @@ function App() {
                             setActiveTab(tab.name);
                             window.scrollTo({ top: 0, behavior: 'smooth' });
                           }}
-                          title={tab.name}
+                          title={tab.label}
                           className={`h-1.5 rounded-full transition-all duration-300 ${
                             tab.name === activeTab
                               ? 'w-6 bg-primary'
@@ -471,7 +481,7 @@ function App() {
                         />
                       ))}
                       <span className="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest ml-1">
-                        Step {meta.step} / {sidebarTabs.length}
+                        {t("studio.labels.step", { current: meta.step, total: sidebarTabs.length }) || `Step ${meta.step} / ${sidebarTabs.length}`}
                       </span>
                     </div>
                     <h2 className="text-xl font-semibold text-on-surface tracking-tight panel-enter" key={`h-${activeTab}`}>{meta.headline}</h2>
@@ -484,7 +494,7 @@ function App() {
                       onClick={undo}
                       disabled={historyIndex <= 0}
                       className="p-2 rounded-lg bg-surface hover:bg-surface-container-high text-on-surface-variant disabled:opacity-40 disabled:pointer-events-none transition-all duration-200 hover:scale-105 active:scale-95 flex items-center justify-center border border-outline-variant/30 shadow-2xs group"
-                      title="Undo"
+                      title={t("studio.buttons.undo")}
                     >
                       <span className="material-symbols-outlined text-[18px] group-active:-rotate-45 transition-transform duration-200">undo</span>
                     </button>
@@ -492,7 +502,7 @@ function App() {
                       onClick={redo}
                       disabled={historyIndex >= history.length - 1}
                       className="p-2 rounded-lg bg-surface hover:bg-surface-container-high text-on-surface-variant disabled:opacity-40 disabled:pointer-events-none transition-all duration-200 hover:scale-105 active:scale-95 flex items-center justify-center border border-outline-variant/30 shadow-2xs group"
-                      title="Redo"
+                      title={t("studio.buttons.redo")}
                     >
                       <span className="material-symbols-outlined text-[18px] group-active:rotate-45 transition-transform duration-200">redo</span>
                     </button>
@@ -500,10 +510,10 @@ function App() {
                     <button
                       onClick={resetSettings}
                       className="py-1.5 px-3 rounded-lg bg-error-container/20 hover:bg-error-container/40 text-error font-semibold text-xs transition-all duration-200 hover:scale-105 active:scale-95 flex items-center gap-1.5 shadow-2xs group"
-                      title="Reset Design"
+                      title={t("studio.buttons.reset")}
                     >
                       <span className="material-symbols-outlined text-[16px] group-hover:rotate-180 transition-transform duration-300">restart_alt</span>
-                      <span>Reset Design</span>
+                      <span>{t("studio.buttons.reset")}</span>
                     </button>
                   </div>
                 </header>

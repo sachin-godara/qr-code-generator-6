@@ -1,0 +1,1171 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import { type Locale } from '../i18n/config';
+import { getLocalizedUrl, t } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const breadcrumbs = [
+  { name: t(locale, 'nav.generator'), url: getLocalizedUrl(locale, '/') },
+  { name: t(locale, 'nav.guide'), url: getLocalizedUrl(locale, '/how-to-use') }
+];
+
+const metaMap: Record<Locale, {
+  title: string;
+  desc: string;
+  heroBadge: string;
+  heroH1Pre: string;
+  heroH1Accent: string;
+  heroH1Post: string;
+  heroDesc: string;
+  startBtn: string;
+  seeHowBtn: string;
+  stats: Array<{ value: string; label: string }>;
+  stepsBadge: string;
+  stepsHeading: string;
+  featuresBadge: string;
+  featuresHeading: string;
+  featuresSub: string;
+  tipsBadge: string;
+  tipsHeading: string;
+  tipsSub: string;
+  dosTitle: string;
+  dontsTitle: string;
+  exportBadge: string;
+  exportHeading: string;
+  exportSub: string;
+  exportTableCols: { format: string; res: string; bestFor: string; pros: string; limit: string };
+  shortcutsTitle: string;
+  shortcutsSub: string;
+  shortcutsNote: string;
+  faqBadge: string;
+  faqHeading: string;
+  faqSub: string;
+  ctaBadge: string;
+  ctaH2Pre: string;
+  ctaH2Accent: string;
+  ctaDesc: string;
+  ctaStartBtn: string;
+  ctaReadAgain: string;
+}> = {
+  en: {
+    title: "How to Make a QR Code — Free Step-by-Step Guide",
+    desc: "Learn how to make a QR code for free in 5 simple steps. Complete guide to creating stunning custom QR codes, adding logos, and ensuring scannability.",
+    heroBadge: "Complete Guide — Updated 2025",
+    heroH1Pre: "Master",
+    heroH1Accent: " QR Code Maker",
+    heroH1Post: "in Minutes",
+    heroDesc: "Everything you need to create stunning, scannable QR codes — from your first code to batch exports for hundreds. No experience required.",
+    startBtn: "Start Creating Free",
+    seeHowBtn: "See How It Works",
+    stats: [
+      { value: "39", label: "Dot Styles" },
+      { value: "51", label: "Text Frames" },
+      { value: "121", label: "Templates" },
+      { value: "100%", label: "Free Forever" },
+    ],
+    stepsBadge: "Step by Step",
+    stepsHeading: "Five Steps to a Perfect QR Code",
+    featuresBadge: "Full Feature Set",
+    featuresHeading: "Everything You Can Create",
+    featuresSub: "12 content types, unlimited design combinations, and zero paywalls. Here's the complete arsenal at your fingertips.",
+    tipsBadge: "Expert Advice",
+    tipsHeading: "Pro Tips for Reliable Scanning",
+    tipsSub: "Follow these proven best practices to ensure your QR codes scan flawlessly in every environment.",
+    dosTitle: "Best Practices ✅",
+    dontsTitle: "Common Mistakes ❌",
+    exportBadge: "Export Formats",
+    exportHeading: "PNG vs SVG vs PDF — Which to Choose?",
+    exportSub: "Each format serves a different purpose. Here's exactly when to use each one.",
+    exportTableCols: { format: "Format", res: "Resolution", bestFor: "Best For", pros: "Advantages", limit: "Not Ideal For" },
+    shortcutsTitle: "Power User Shortcuts",
+    shortcutsSub: "Speed up your workflow with these keyboard shortcuts in the generator.",
+    shortcutsNote: "The undo history persists for your entire design session.",
+    faqBadge: "FAQ",
+    faqHeading: "Frequently Asked Questions",
+    faqSub: "Got questions? We've got clear, honest answers.",
+    ctaBadge: "Free — No signup — No watermarks",
+    ctaH2Pre: "Ready to Create",
+    ctaH2Accent: "Your First QR Code?",
+    ctaDesc: "Join thousands of designers, marketers, and developers creating stunning custom QR codes with QR Code Maker — completely free.",
+    ctaStartBtn: "Start Creating — It's Free",
+    ctaReadAgain: "Read the guide again"
+  },
+  es: {
+    title: "Cómo Crear un Código QR — Guía Paso a Paso Gratis",
+    desc: "Aprende a crear un código QR gratis en 5 sencillos pasos. Guía completa para diseñar códigos QR personalizados con logos y marcos.",
+    heroBadge: "Guía Completa — Actualizada 2025",
+    heroH1Pre: "Domina",
+    heroH1Accent: " el Creador de QR",
+    heroH1Post: "en Minutos",
+    heroDesc: "Todo lo que necesitas para crear códigos QR impresionantes y escaneables: desde tu primer código hasta exportaciones en lote.",
+    startBtn: "Crear QR Gratis",
+    seeHowBtn: "Ver Cómo Funciona",
+    stats: [
+      { value: "39", label: "Estilos de Puntos" },
+      { value: "51", label: "Marcos de Texto" },
+      { value: "121", label: "Plantillas" },
+      { value: "100%", label: "Gratis Siempre" },
+    ],
+    stepsBadge: "Paso a Paso",
+    stepsHeading: "Cinco Pasos para un Código QR Perfecto",
+    featuresBadge: "Arsenal Completo",
+    featuresHeading: "Todo lo que Puedes Crear",
+    featuresSub: "12 tipos de contenido, combinaciones ilimitadas y sin muros de pago. Todo a tu alcance.",
+    tipsBadge: "Consejos Pro",
+    tipsHeading: "Consejos para un Escaneo Perfecto",
+    tipsSub: "Sigue estas recomendaciones para asegurar que tus códigos QR se escaneen sin fallos en cualquier dispositivo.",
+    dosTitle: "Buenas Prácticas ✅",
+    dontsTitle: "Errores Comunes ❌",
+    exportBadge: "Formatos de Exportación",
+    exportHeading: "PNG vs SVG vs PDF: ¿Cuál Elegir?",
+    exportSub: "Cada formato tiene un propósito específico. Descubre cuál es el idóneo para tu proyecto.",
+    exportTableCols: { format: "Formato", res: "Resolución", bestFor: "Ideal Para", pros: "Ventajas", limit: "No Recomendado Para" },
+    shortcutsTitle: "Atajos de Teclado",
+    shortcutsSub: "Acelera tu diseño con estos atajos de teclado rápidos en el generador.",
+    shortcutsNote: "El historial de deshacer se conserva durante toda tu sesión de diseño.",
+    faqBadge: "Preguntas Frecuentes",
+    faqHeading: "Preguntas Frecuentes",
+    faqSub: "¿Tienes dudas? Aquí tienes respuestas claras y directas.",
+    ctaBadge: "Gratis — Sin registro — Sin marcas de agua",
+    ctaH2Pre: "¿Listo para Crear",
+    ctaH2Accent: "tu Primer Código QR?",
+    ctaDesc: "Únete a miles de diseñadores, marcas y desarrolladores que crean códigos QR profesionales con QR Code Maker.",
+    ctaStartBtn: "Comenzar Gratis",
+    ctaReadAgain: "Volver a leer la guía"
+  },
+  pt: {
+    title: "Como Criar um QR Code — Guia Completo e Gratuito",
+    desc: "Aprenda a criar QR codes gratuitos em 5 passos simples. Guia definitivo com logotipos, molduras e leitura 100% garantida.",
+    heroBadge: "Guia Completo — Atualizado 2025",
+    heroH1Pre: "Domine o",
+    heroH1Accent: " Gerador de QR Code",
+    heroH1Post: "em Minutos",
+    heroDesc: "Tudo o que você precisa para criar QR codes incríveis e funcionais — do seu primeiro código à exportação em lote.",
+    startBtn: "Começar a Criar Grátis",
+    seeHowBtn: "Ver Como Funciona",
+    stats: [
+      { value: "39", label: "Estilos de Pontos" },
+      { value: "51", label: "Molduras de Texto" },
+      { value: "121", label: "Modelos Prontos" },
+      { value: "100%", label: "Grátis para Sempre" },
+    ],
+    stepsBadge: "Passo a Passo",
+    stepsHeading: "Cinco Passos para um QR Code Perfeito",
+    featuresBadge: "Recursos Completos",
+    featuresHeading: "Tudo o que Você Pode Criar",
+    featuresSub: "12 formatos de dados, combinações infinitas e sem cobranças. O estúdio completo em suas mãos.",
+    tipsBadge: "Dicas de Especialistas",
+    tipsHeading: "Dicas Profissionais para Leitura Rápida",
+    tipsSub: "Siga estas práticas recomendadas para garantir leitura imediata em qualquer celular ou material impresso.",
+    dosTitle: "Boas Práticas ✅",
+    dontsTitle: "Erros Comuns ❌",
+    exportBadge: "Formatos de Exportação",
+    exportHeading: "PNG vs SVG vs PDF — Qual Escolher?",
+    exportSub: "Cada formato possui uma finalidade ideal. Saiba exatamente quando utilizar cada um.",
+    exportTableCols: { format: "Formato", res: "Resolução", bestFor: "Ideal Para", pros: "Vantagens", limit: "Não Indicado Para" },
+    shortcutsTitle: "Atalhos de Produtividade",
+    shortcutsSub: "Acelere seu fluxo de trabalho com atalhos de teclado no estúdio gerador.",
+    shortcutsNote: "O histórico de edições permanece ativo durante toda a sua sessão.",
+    faqBadge: "Dúvidas Comuns",
+    faqHeading: "Perguntas Frequentes",
+    faqSub: "Respostas transparentes para todas as suas dúvidas sobre códigos QR.",
+    ctaBadge: "Grátis — Sem cadastro — Sem marcas d'água",
+    ctaH2Pre: "Pronto para Criar",
+    ctaH2Accent: "seu Primeiro QR Code?",
+    ctaDesc: "Junte-se a milhares de designers, marcas e empresas criando QR codes de alta qualidade — 100% grátis.",
+    ctaStartBtn: "Começar Agora — É Grátis",
+    ctaReadAgain: "Ler o guia novamente"
+  },
+  de: {
+    title: "So erstellen Sie einen QR-Code — Schritt-für-Schritt-Anleitung",
+    desc: "Erfahren Sie, wie Sie kostenlose QR-Codes in 5 einfachen Schritten erstellen. Vollständige Anleitung mit Logos, Rahmen und Profi-Tipps.",
+    heroBadge: "Komplette Anleitung — Aktualisiert 2025",
+    heroH1Pre: "Meistern Sie den",
+    heroH1Accent: " QR-Code-Generator",
+    heroH1Post: "in Minuten",
+    heroDesc: "Alles, was Sie für wunderschöne und zuverlässige QR-Codes benötigen — vom ersten Code bis zum Massenexport.",
+    startBtn: "Kostenlos starten",
+    seeHowBtn: "Funktionsweise ansehen",
+    stats: [
+      { value: "39", label: "Punktstile" },
+      { value: "51", label: "Textrahmen" },
+      { value: "121", label: "Vorlagen" },
+      { value: "100%", label: "Dauerhaft Gratis" },
+    ],
+    stepsBadge: "Schritt für Schritt",
+    stepsHeading: "Fünf Schritte zum perfekten QR-Code",
+    featuresBadge: "Funktionsumfang",
+    featuresHeading: "Alles, was Sie gestalten können",
+    featuresSub: "12 Inhaltstypen, unbegrenzte Design-Kombinationen und keine Bezahlschranken.",
+    tipsBadge: "Experten-Tipps",
+    tipsHeading: "Profi-Tipps für maximale Scannbarkeit",
+    tipsSub: "Befolgen Sie diese Best Practices für fehlerfreies Scannen auf allen Endgeräten.",
+    dosTitle: "Best Practices ✅",
+    dontsTitle: "Häufige Fehler ❌",
+    exportBadge: "Exportformate",
+    exportHeading: "PNG vs. SVG vs. PDF — Welches Format?",
+    exportSub: "Jedes Format hat seinen Zweck. Hier erfahren Sie, welches Format für Ihren Einsatz perfekt ist.",
+    exportTableCols: { format: "Format", res: "Auflösung", bestFor: "Ideal für", pros: "Vorteile", limit: "Weniger geeignet für" },
+    shortcutsTitle: "Tastaturkürzel für Power-User",
+    shortcutsSub: "Beschleunigen Sie Ihre Gestaltung mit schnellen Tastaturkürzeln.",
+    shortcutsNote: "Der Bearbeitungsverlauf bleibt während Ihrer gesamten Sitzung erhalten.",
+    faqBadge: "Häufige Fragen",
+    faqHeading: "Häufig gestellte Fragen",
+    faqSub: "Haben Sie Fragen? Wir haben die passenden Antworten.",
+    ctaBadge: "Kostenlos — Ohne Registrierung — Keine Wasserzeichen",
+    ctaH2Pre: "Bereit für Ihren",
+    ctaH2Accent: "ersten eigenen QR-Code?",
+    ctaDesc: "Schließen Sie sich Tausenden von Designern und Unternehmen an, die mit unserem Generator arbeiten.",
+    ctaStartBtn: "Jetzt kostenlos erstellen",
+    ctaReadAgain: "Anleitung nochmals lesen"
+  }
+};
+
+const meta = metaMap[locale] || metaMap.en;
+
+const stepsMap: Record<Locale, Array<{ number: string; emoji: string; title: string; description: string; tags: string[]; hint: string }>> = {
+  en: [
+    {
+      number: "01",
+      emoji: "📝",
+      title: "Choose Your Content Type",
+      description: "Select from 12 content types: URL, Plain Text, WiFi credentials, vCard contact, Email, SMS, Phone, App Store link, Event (iCal), Crypto wallet, or batch CSV upload. Each type has smart, tailored input fields.",
+      tags: ["URL", "WiFi", "vCard", "Email", "SMS", "Batch CSV"],
+      hint: "Tip: Use vCard to create a scannable digital business card instantly."
+    },
+    {
+      number: "02",
+      emoji: "🎨",
+      title: "Design Your QR Style",
+      description: "Choose from 39 dot patterns (squares, circles, rounded, fluid, leaves, diamonds, and more), 28 eye frame shapes, and matching eyeball styles. Mix and match to create a completely unique look.",
+      tags: ["39 Dot Styles", "28 Eye Frames", "Custom Colors"],
+      hint: "Tip: Use rounded or circular dots for a modern, premium feel."
+    },
+    {
+      number: "03",
+      emoji: "🖼️",
+      title: "Add Your Logo",
+      description: "Upload a custom PNG/JPG/SVG logo or pick from 46 preset brand icons. Set logo size, padding color, and shape (square or circle). The generator automatically selects H-level error correction to keep your QR scannable.",
+      tags: ["Custom Upload", "46 Presets", "Auto Error Correction"],
+      hint: "Tip: Use a white or matching background pad around dark logos."
+    },
+    {
+      number: "04",
+      emoji: "✨",
+      title: "Apply Frames & Effects",
+      description: "Wrap your QR code in one of 51 text frames with custom label text and fonts. Add shadow effects (glow, drop shadow, inset), canvas decorations, rounded corners, and background images.",
+      tags: ["51 Text Frames", "Shadow Effects", "Background Images"],
+      hint: "Tip: A simple bold frame with your website URL boosts engagement."
+    },
+    {
+      number: "05",
+      emoji: "⬇️",
+      title: "Download & Share",
+      description: "Export in PNG (up to 8K resolution), SVG (infinite vector scale), or PDF (print-ready). Batch mode exports all codes as a ZIP. Everything is completely free — no watermarks, no account, no limits.",
+      tags: ["PNG up to 8K", "SVG Vector", "PDF Print-Ready", "Batch ZIP"],
+      hint: "Tip: Use SVG for print materials — scales to any size perfectly."
+    }
+  ],
+  es: [
+    {
+      number: "01",
+      emoji: "📝",
+      title: "Elige el Tipo de Contenido",
+      description: "Selecciona entre 12 tipos: URL, texto, credenciales WiFi, vCard, correo, SMS, teléfono, enlace a app, evento de calendario, cripto o carga por CSV. Cada formato cuenta con campos inteligentes.",
+      tags: ["URL", "WiFi", "vCard", "Correo", "SMS", "Lote CSV"],
+      hint: "Consejo: Usa vCard para crear una tarjeta de visita digital al instante."
+    },
+    {
+      number: "02",
+      emoji: "🎨",
+      title: "Personaliza el Estilo",
+      description: "Elige entre 39 patrones de puntos, 28 marcos de ojos y centros a juego. Combina estilos para lograr un aspecto 100% exclusivo.",
+      tags: ["39 Puntos", "28 Ojos", "Colores Únicos"],
+      hint: "Consejo: Los puntos redondeados ofrecen un acabado muy moderno y elegante."
+    },
+    {
+      number: "03",
+      emoji: "🖼️",
+      title: "Añade tu Logotipo",
+      description: "Sube un logo en PNG, JPG o SVG o elige entre 46 iconos de marca. El generador activa automáticamente corrección nivel H para garantizar legibilidad.",
+      tags: ["Subida de Logo", "46 Iconos", "Alta Corrección"],
+      hint: "Consejo: Usa un fondo blanco alrededor de logos oscuros para facilitar el escaneo."
+    },
+    {
+      number: "04",
+      emoji: "✨",
+      title: "Aplica Marcos y Efectos",
+      description: "Elige entre 51 marcos de texto con llamada a la acción, añade sombras suaves, resplandores neón o imágenes de fondo.",
+      tags: ["51 Marcos", "Sombras 3D", "Fondos de Lienzo"],
+      hint: "Consejo: Un marco con tu dirección web aumenta las visitas notablemente."
+    },
+    {
+      number: "05",
+      emoji: "⬇️",
+      title: "Descarga y Comparte",
+      description: "Exporta en PNG (hasta 8K), SVG vectorial o PDF para imprenta. Todo es 100% gratis, sin marcas de agua y sin límites.",
+      tags: ["PNG hasta 8K", "Vector SVG", "PDF Imprenta", "ZIP por Lote"],
+      hint: "Consejo: Usa SVG para material impreso porque nunca pierde nitidez."
+    }
+  ],
+  pt: [
+    {
+      number: "01",
+      emoji: "📝",
+      title: "Escolha o Tipo de Conteúdo",
+      description: "Selecione entre 12 formatos: URL, texto, Wi-Fi, vCard, e-mail, SMS, telefone, link de app, evento de calendário, cripto ou lote CSV.",
+      tags: ["URL", "Wi-Fi", "vCard", "E-mail", "SMS", "Lote CSV"],
+      hint: "Dica: Use vCard para gerar um cartão de visita digital e interativo."
+    },
+    {
+      number: "02",
+      emoji: "🎨",
+      title: "Personalize o Design",
+      description: "Escolha entre 39 padrões de pontos, 28 molduras para os cantos e centros combinando. Personalize cores e degradês.",
+      tags: ["39 Pontos", "28 Cantos", "Cores Exclusivas"],
+      hint: "Dica: Pontos arredondados dão um toque elegante e sofisticado."
+    },
+    {
+      number: "03",
+      emoji: "🖼️",
+      title: "Adicione seu Logotipo",
+      description: "Envie um arquivo PNG, JPG ou SVG ou escolha entre 46 ícones prontos. O gerador ativa correção nível H para garantir leitura perfeita.",
+      tags: ["Upload de Logo", "46 Ícones", "Alta Correção"],
+      hint: "Dica: Mantenha um fundo branco em logos escuros para facilitar a leitura."
+    },
+    {
+      number: "04",
+      emoji: "✨",
+      title: "Aplique Molduras e Efeitos",
+      description: "Envolva seu código em molduras com texto chamativo, aplique sombras 3D ou brilhos neon para destacar seu QR code.",
+      tags: ["51 Molduras", "Sombras 3D", "Fundos Estilizados"],
+      hint: "Dica: Uma moldura com o link do seu site aumenta muito o número de cliques."
+    },
+    {
+      number: "05",
+      emoji: "⬇️",
+      title: "Baixe e Compartilhe",
+      description: "Exporte em PNG (até 8K), SVG vetorial ou PDF para impressão. 100% grátis e sem limites de validade.",
+      tags: ["PNG até 8K", "Vetor SVG", "PDF Gráfica", "ZIP em Lote"],
+      hint: "Dica: Utilize SVG para materiais impressos para manter resolução perfeita."
+    }
+  ],
+  de: [
+    {
+      number: "01",
+      emoji: "📝",
+      title: "Inhaltstyp wählen",
+      description: "Wählen Sie aus 12 Typen: URL, Text, WLAN, vCard-Kontakt, E-Mail, SMS, Telefon, App-Link, Termin (iCal), Krypto oder CSV-Stapelverarbeitung.",
+      tags: ["URL", "WLAN", "vCard", "E-Mail", "SMS", "Stapel-CSV"],
+      hint: "Tipp: Nutzen Sie vCard für eine sofort scanbare digitale Visitenkarte."
+    },
+    {
+      number: "02",
+      emoji: "🎨",
+      title: "QR-Design anpassen",
+      description: "Wählen Sie aus 39 Punktmustern, 28 Eckenrahmen und passenden Mittelpunkten. Passen Sie Farben und Verläufe nach Wunsch an.",
+      tags: ["39 Punktstile", "28 Ecken", "Eigene Farben"],
+      hint: "Tipp: Abgerundete Punkte wirken besonders modern und hochwertig."
+    },
+    {
+      number: "03",
+      emoji: "🖼️",
+      title: "Logo hinzufügen",
+      description: "Laden Sie ein Logo (PNG, JPG, SVG) hoch oder wählen Sie aus 46 Vorlagen. Die Fehlerkorrektur wird automatisch auf Level H optimiert.",
+      tags: ["Eigenes Logo", "46 Symbole", "Hohe Fehlerkorrektur"],
+      hint: "Tipp: Nutzen Sie einen weißen Schutzabstand um dunkle Logos."
+    },
+    {
+      number: "04",
+      emoji: "✨",
+      title: "Rahmen & Effekte wählen",
+      description: "Umrahmen Sie den QR-Code mit einem Textaufruf ('Scan Me'), fügen Sie sanfte Schatten oder 3D-Effekte hinzu.",
+      tags: ["51 Textrahmen", "Schatteneffekte", "Hintergrund-Leinwand"],
+      hint: "Tipp: Ein Rahmen mit Ihrer Website-Adresse erhöht die Scan-Rate deutlich."
+    },
+    {
+      number: "05",
+      emoji: "⬇️",
+      title: "Herunterladen & Teilen",
+      description: "Exportieren Sie in PNG (bis 8K), Vektor-SVG oder PDF für die Druckerei. 100% kostenlos und dauerhaft ohne Ablaufdatum.",
+      tags: ["PNG bis 8K", "Vektor SVG", "Druckfertiges PDF", "ZIP-Archiv"],
+      hint: "Tipp: Verwenden Sie SVG für Printmedien, um gestochen scharfe Kanten zu garantieren."
+    }
+  ]
+};
+
+const steps = stepsMap[locale] || stepsMap.en;
+
+const featuresMap: Record<Locale, Array<{ icon: string; color: string; title: string; desc: string }>> = {
+  en: [
+    { icon: "qr_code_2",     color: "bg-violet-50 text-violet-600",   title: "12 Content Types",     desc: "URL, Text, WiFi, vCard, Email, SMS, Phone, App, Event, Crypto, Batch" },
+    { icon: "grain",         color: "bg-blue-50 text-blue-600",       title: "39 Dot Patterns",     desc: "Squares, circles, rounded, fluid, stars, leaves, diamonds, hexagons" },
+    { icon: "visibility",   color: "bg-sky-50 text-sky-600",          title: "28 eye frames",        desc: "Mix and match eye frames and eyeballs for a completely custom look" },
+    { icon: "crop_free",     color: "bg-indigo-50 text-indigo-600",   title: "51 Text Frames",       desc: "Customizable label text, font, and color to brand every code" },
+    { icon: "style",         color: "bg-fuchsia-50 text-fuchsia-600", title: "121 Templates",         desc: "One-click professional presets: Business, Social, Event, Crypto" },
+    { icon: "image",         color: "bg-pink-50 text-pink-600",       title: "Logo Embedding",       desc: "Upload custom logo or pick from 46 brand presets with auto padding" },
+    { icon: "gradient",      color: "bg-rose-50 text-rose-600",       title: "Gradient Modes",       desc: "Linear and radial gradients across dots, eyes, and background" },
+    { icon: "auto_awesome",  color: "bg-orange-50 text-orange-600",   title: "Shadow & Glow Effects",desc: "Glow, drop shadow, and inset shadow effects for depth and drama" },
+    { icon: "wallpaper",     color: "bg-amber-50 text-amber-600",     title: "Background Images",    desc: "Use any image as QR canvas background for creative branding" },
+    { icon: "dataset",       color: "bg-lime-50 text-lime-600",       title: "Batch ZIP Export",     desc: "Generate hundreds of unique QR codes from a CSV file in seconds" },
+    { icon: "history",       color: "bg-green-50 text-green-600",     title: "Undo / Redo History",  desc: "Full design history with Ctrl+Z / Ctrl+Shift+Z keyboard shortcuts" },
+    { icon: "preview",       color: "bg-teal-50 text-teal-600",       title: "Live Real-Time Preview",desc: "Instant preview updates as you customize — no page reloads" },
+  ],
+  es: [
+    { icon: "qr_code_2",     color: "bg-violet-50 text-violet-600",   title: "12 Tipos de Contenido",desc: "URL, Texto, WiFi, vCard, Correo, SMS, Teléfono, Apps, Eventos, Cripto y Lotes" },
+    { icon: "grain",         color: "bg-blue-50 text-blue-600",       title: "39 Estilos de Puntos", desc: "Cuadrados, círculos, redondeados, fluidos, estrellas, hojas y diamantes" },
+    { icon: "visibility",   color: "bg-sky-50 text-sky-600",          title: "28 Marcos de Ojos",    desc: "Combina marcos exteriores y centros para un estilo completamente único" },
+    { icon: "crop_free",     color: "bg-indigo-50 text-indigo-600",   title: "51 Marcos de Texto",   desc: "Texto de llamada a la acción, fuentes y colores 100% personalizables" },
+    { icon: "style",         color: "bg-fuchsia-50 text-fuchsia-600", title: "121 Plantillas",        desc: "Diseños profesionales en un clic: Empresa, Redes, Eventos y Hostelería" },
+    { icon: "image",         color: "bg-pink-50 text-pink-600",       title: "Inserción de Logo",    desc: "Sube tu propio logo o elige entre 46 iconos de marca con respiro automático" },
+    { icon: "gradient",      color: "bg-rose-50 text-rose-600",       title: "Modos de Degradado",   desc: "Degradados lineales y radiales en puntos, ojos y fondo" },
+    { icon: "auto_awesome",  color: "bg-orange-50 text-orange-600",   title: "Sombras y Efectos",    desc: "Resplandores, sombras proyectadas y profundidad tridimensional" },
+    { icon: "wallpaper",     color: "bg-amber-50 text-amber-600",     title: "Imágenes de Fondo",    desc: "Usa cualquier imagen como lienzo de fondo para potenciar tu marca" },
+    { icon: "dataset",       color: "bg-lime-50 text-lime-600",       title: "Exportación por Lotes", desc: "Genera cientos de códigos QR desde un archivo CSV en segundos" },
+    { icon: "history",       color: "bg-green-50 text-green-600",     title: "Historial Deshacer/Rehacer", desc: "Historial completo de cambios con atajos Ctrl+Z / Ctrl+Shift+Z" },
+    { icon: "preview",       color: "bg-teal-50 text-teal-600",       title: "Vista Previa en Vivo", desc: "Actualización instantánea en tiempo real sin recargar la página" },
+  ],
+  pt: [
+    { icon: "qr_code_2",     color: "bg-violet-50 text-violet-600",   title: "12 Tipos de Conteúdo", desc: "URL, Texto, Wi-Fi, vCard, E-mail, SMS, Telefone, Apps, Eventos, Cripto e Lote" },
+    { icon: "grain",         color: "bg-blue-50 text-blue-600",       title: "39 Estilos de Pontos", desc: "Quadrados, círculos, arredondados, orgânicos, estrelas e diamantes" },
+    { icon: "visibility",   color: "bg-sky-50 text-sky-600",          title: "28 Molduras de Cantos",desc: "Combine bordas e centros para criar uma estética exclusiva da sua marca" },
+    { icon: "crop_free",     color: "bg-indigo-50 text-indigo-600",   title: "51 Molduras de Texto", desc: "Chamadas para ação personalizadas com diferentes fontes e cores" },
+    { icon: "style",         color: "bg-fuchsia-50 text-fuchsia-600", title: "121 Modelos Prontos",  desc: "Modelos profissionais em um clique: Negócios, Social, Eventos e Cardápios" },
+    { icon: "image",         color: "bg-pink-50 text-pink-600",       title: "Inserção de Logotipo", desc: "Envie seu logo ou use 46 ícones de marcas com margem de respiro automática" },
+    { icon: "gradient",      color: "bg-rose-50 text-rose-600",       title: "Modos de Degradê",     desc: "Degradês lineares e radiais nos pontos, olhos e plano de fundo" },
+    { icon: "auto_awesome",  color: "bg-orange-50 text-orange-600",   title: "Efeitos e Sombras 3D", desc: "Brilhos, sombras projetadas e relevo visual para destaque do código" },
+    { icon: "wallpaper",     color: "bg-amber-50 text-amber-600",     title: "Fundos Personalizados",desc: "Adicione qualquer imagem como fundo decorativo da sua composição" },
+    { icon: "dataset",       color: "bg-lime-50 text-lime-600",       title: "Exportação em Lote",   desc: "Crie centenas de QR codes a partir de uma planilha CSV em segundos" },
+    { icon: "history",       color: "bg-green-50 text-green-600",     title: "Histórico de Edições", desc: "Histórico total de alterações com atalhos Ctrl+Z e Ctrl+Shift+Z" },
+    { icon: "preview",       color: "bg-teal-50 text-teal-600",       title: "Prévia em Tempo Real", desc: "Atualizações visuais instantâneas sem recarregar a página" },
+  ],
+  de: [
+    { icon: "qr_code_2",     color: "bg-violet-50 text-violet-600",   title: "12 Inhaltstypen",      desc: "URL, Text, WLAN, vCard, E-Mail, SMS, Telefon, App-Link, Termin, Krypto, Stapel" },
+    { icon: "grain",         color: "bg-blue-50 text-blue-600",       title: "39 Punktstile",        desc: "Quadrate, Kreise, abgerundet, organisch, Sterne, Rauten und Wellen" },
+    { icon: "visibility",   color: "bg-sky-50 text-sky-600",          title: "28 Eckenrahmen",       desc: "Eckenrahmen und Mittelpunkte für ein unverwechselbares Design kombinieren" },
+    { icon: "crop_free",     color: "bg-indigo-50 text-indigo-600",   title: "51 Textrahmen",        desc: "Individuelle Handlungsaufforderungen mit Schriftart- und Farbwahl" },
+    { icon: "style",         color: "bg-fuchsia-50 text-fuchsia-600", title: "121 Vorlagen",         desc: "1-Klick-Vorlagen für Visitenkarten, WLAN, Events, Gastronomie und Socials" },
+    { icon: "image",         color: "bg-pink-50 text-pink-600",       title: "Logo-Integration",     desc: "Eigenes Logo hochladen oder 46 Markensymbole mit Schutzabstand nutzen" },
+    { icon: "gradient",      color: "bg-rose-50 text-rose-600",       title: "Farbverläufe",         desc: "Lineare und radiale Verläufe für Punkte, Ecken und Hintergrund" },
+    { icon: "auto_awesome",  color: "bg-orange-50 text-orange-600",   title: "Schatten & 3D-Effekte",desc: "Neon-Glow, Schlagschatten und plastische Tiefenwirkung" },
+    { icon: "wallpaper",     color: "bg-amber-50 text-amber-600",     title: "Hintergrundbilder",    desc: "Beliebiges Bild als kreativen Canvas-Hintergrund einbinden" },
+    { icon: "dataset",       color: "bg-lime-50 text-lime-600",       title: "ZIP-Massenexport",     desc: "Hunderte einzigartige QR-Codes aus einer CSV-Tabelle in Sekunden erstellen" },
+    { icon: "history",       color: "bg-green-50 text-green-600",     title: "Rückgängig-Verlauf",   desc: "Kompletter Design-Verlauf mit Ctrl+Z / Ctrl+Shift+Z Tastenkombinationen" },
+    { icon: "preview",       color: "bg-teal-50 text-teal-600",       title: "Echtzeit-Vorschau",    desc: "Sofortige visuelle Aktualisierung ohne Seiten-Neuladen" },
+  ]
+};
+
+const features = featuresMap[locale] || featuresMap.en;
+
+const doTipsMap: Record<Locale, Array<{ text: string }>> = {
+  en: [
+    { text: "Use Error Correction **H** when embedding a logo — it recovers up to 30% of the code." },
+    { text: "Maintain a **4.5:1 contrast ratio** between foreground dots and background for reliable scanning." },
+    { text: "Keep the **quiet zone** (white border) around the QR at least 4 module widths wide." },
+    { text: "Test your QR code with **3 different scanner apps** before printing large batches." },
+    { text: "For print, export as **SVG** or **PDF** to ensure crisp edges at any scale." },
+  ],
+  es: [
+    { text: "Usa Corrección de Error **H** al incluir un logo: recupera hasta el 30% del código." },
+    { text: "Mantén una relación de **contraste de 4.5:1** entre los puntos y el fondo." },
+    { text: "Conserva la **zona de silencio** (margen blanco) de al menos 4 módulos alrededor del código." },
+    { text: "Prueba tu código QR con **3 apps de escáner distintas** antes de imprimir tiradas grandes." },
+    { text: "Para imprenta, exporta en **SVG** o **PDF** para garantizar nitidez infinita." },
+  ],
+  pt: [
+    { text: "Use Correção de Erro **H** ao incluir logotipo: recupera até 30% do código." },
+    { text: "Mantenha uma taxa de **contraste de 4.5:1** entre os pontos e o fundo." },
+    { text: "Deixe uma **área de respiro** (margem branca) de pelo menos 4 módulos ao redor." },
+    { text: "Teste seu QR code com **3 leitores diferentes** antes de rodar tiragens impressas." },
+    { text: "Para gráficas, exporte em **SVG** ou **PDF** para manter nitidez absoluta." },
+  ],
+  de: [
+    { text: "Verwenden Sie Fehlerkorrektur **H** bei Logo-Integration (stellt bis zu 30% wieder her)." },
+    { text: "Achten Sie auf ein **Kontrastverhältnis von mindestens 4,5:1** zwischen Punkten und Hintergrund." },
+    { text: "Halten Sie die **Ruhezone** (weißer Rand) von mindestens 4 Modulbreiten ein." },
+    { text: "Testen Sie Ihren QR-Code mit **3 verschiedenen Scanner-Apps** vor dem Massendruck." },
+    { text: "Exportieren Sie für den Druck als **SVG** oder **PDF** für stufenlose Schärfe." },
+  ]
+};
+
+const dontTipsMap: Record<Locale, Array<{ text: string }>> = {
+  en: [
+    { text: "Don't **invert dark/light colors** without testing — some scanners fail on dark backgrounds." },
+    { text: "Don't print QR codes **smaller than 2cm × 2cm** — scanners struggle at that size." },
+    { text: "Don't use **low-contrast color combinations** (e.g., light gray on white)." },
+    { text: "Don't crop the **finder patterns** (the three corner squares) when adding frames." },
+    { text: "Don't use Error Correction **L** when your QR will be displayed on a textured surface." },
+  ],
+  es: [
+    { text: "No **inviertas colores oscuros/claros** sin probar: algunos lectores fallan con fondo oscuro." },
+    { text: "No imprimas códigos QR **menores de 2cm × 2cm**." },
+    { text: "No utilices combinaciones de **bajo contraste** (ej. gris claro sobre blanco)." },
+    { text: "No recortes los **patrones de esquina** (los 3 ojos) al añadir marcos." },
+    { text: "No uses nivel **L** si el código se expondrá en superficies con textura." },
+  ],
+  pt: [
+    { text: "Não **inverta cores claras/escuras** sem testar: alguns leitores falham em fundos escuros." },
+    { text: "Não imprima QR codes **menores que 2cm × 2cm**." },
+    { text: "Não use combinações de **baixo contraste** (ex: cinza claro no branco)." },
+    { text: "Não cubra os **três cantos de localização** ao posicionar molduras." },
+    { text: "Não utilize nível **L** quando o código for aplicado em texturas ou relevos." },
+  ],
+  de: [
+    { text: "Invertieren Sie nicht ungetestet Hell/Dunkel: Manche Scanner scheitern an dunklem Hintergrund." },
+    { text: "Drucken Sie QR-Codes **nicht kleiner als 2cm × 2cm**." },
+    { text: "Verwenden Sie keine **kontrastarmen Farbkombinationen** (z. B. Hellgrau auf Weiß)." },
+    { text: "Schneiden Sie nicht die **drei Eckmarkierungen** beim Rahmen-Design ab." },
+    { text: "Nutzen Sie nicht Fehlerkorrektur **L** auf unebenen oder gemusterten Flächen." },
+  ]
+};
+
+const doTips = doTipsMap[locale] || doTipsMap.en;
+const dontTips = dontTipsMap[locale] || dontTipsMap.en;
+
+const exportsMap: Record<Locale, Array<{ format: string; icon: string; resolution: string; useCase: string; pros: string; notFor: string }>> = {
+  en: [
+    {
+      format: "PNG",
+      icon: "photo_size_select_large",
+      resolution: "Up to 8192 × 8192 px",
+      useCase: "Digital displays, websites, social media, email signatures",
+      pros: "Universal compatibility, small file size",
+      notFor: "Large-scale print that needs to be resized"
+    },
+    {
+      format: "SVG",
+      icon: "polyline",
+      resolution: "Infinite (vector)",
+      useCase: "Print materials, business cards, billboards, signage",
+      pros: "Scales to any size with zero quality loss",
+      notFor: "Environments that don't support SVG (e.g., some email clients)"
+    },
+    {
+      format: "PDF",
+      icon: "picture_as_pdf",
+      resolution: "Print-ready (300 DPI equivalent)",
+      useCase: "Professional print shops, brochures, packaging, posters",
+      pros: "Print-ready, embeds fonts and vectors, industry standard",
+      notFor: "Web embeds or dynamic use cases"
+    },
+  ],
+  es: [
+    {
+      format: "PNG",
+      icon: "photo_size_select_large",
+      resolution: "Hasta 8192 × 8192 px",
+      useCase: "Pantallas digitales, páginas web, redes sociales, firmas de correo",
+      pros: "Compatibilidad universal, tamaño de archivo reducido",
+      notFor: "Impresión a gran escala que deba reescalarse"
+    },
+    {
+      format: "SVG",
+      icon: "polyline",
+      resolution: "Infinito (vectorial)",
+      useCase: "Material impreso, tarjetas de visita, vallas publicitarias, rotulación",
+      pros: "Escala a cualquier tamaño con cero pérdida de calidad",
+      notFor: "Entornos que no admiten SVG (ej. ciertos clientes de correo)"
+    },
+    {
+      format: "PDF",
+      icon: "picture_as_pdf",
+      resolution: "Listo para imprenta (300 DPI)",
+      useCase: "Imprentas profesionales, folletos, packaging, cartelería",
+      pros: "Listo para imprenta, incrusta vectores y fuentes",
+      notFor: "Incrustaciones web o usos interactivos"
+    },
+  ],
+  pt: [
+    {
+      format: "PNG",
+      icon: "photo_size_select_large",
+      resolution: "Até 8192 × 8192 px",
+      useCase: "Displays digitais, sites, redes sociais, assinaturas de e-mail",
+      pros: "Compatibilidade universal, arquivo leve",
+      notFor: "Impressões gigantes que precisem de redimensionamento"
+    },
+    {
+      format: "SVG",
+      icon: "polyline",
+      resolution: "Infinito (vetorial)",
+      useCase: "Materiais impressos, cartões de visita, outdoors, sinalização",
+      pros: "Escala para qualquer dimensão com zero perda de qualidade",
+      notFor: "Ambientes sem suporte a SVG (ex: clientes de e-mail antigos)"
+    },
+    {
+      format: "PDF",
+      icon: "picture_as_pdf",
+      resolution: "Pronto para gráfica (300 DPI)",
+      useCase: "Gráficas profissionais, folders, embalagens, pôsteres",
+      pros: "Pronto para gráfica comercial, vetores e fontes embutidos",
+      notFor: "Uso em web ou conteúdos dinâmicos"
+    },
+  ],
+  de: [
+    {
+      format: "PNG",
+      icon: "photo_size_select_large",
+      resolution: "Bis zu 8192 × 8192 px",
+      useCase: "Digitale Bildschirme, Websites, Social Media, E-Mail-Signaturen",
+      pros: "Universelle Kompatibilität, kompakte Dateigröße",
+      notFor: "Großformatdruck, der nachträglich vergrößert wird"
+    },
+    {
+      format: "SVG",
+      icon: "polyline",
+      resolution: "Unendlich (Vektor)",
+      useCase: "Druckmaterialien, Visitenkarten, Plakate, Beschilderungen",
+      pros: "Stufenlose Skalierung ohne Qualitätsverlust",
+      notFor: "Systeme ohne SVG-Unterstützung (z. B. manche Mail-Programme)"
+    },
+    {
+      format: "PDF",
+      icon: "picture_as_pdf",
+      resolution: "Druckfertig (300 DPI Äquivalent)",
+      useCase: "Professionelle Druckereien, Broschüren, Verpackungen, Poster",
+      pros: "Druckfertig, bettet Vektoren und Schriften ein",
+      notFor: "Web-Einbettungen oder dynamische Schnittstellen"
+    },
+  ]
+};
+
+const exportsList = exportsMap[locale] || exportsMap.en;
+
+const faqsMap: Record<Locale, Array<{ q: string; a: string }>> = {
+  en: [
+    { q: "Is QR Code Maker really 100% free?", a: "Yes — every single feature is completely free. No paywalls, no premium tiers, no watermarks, and no sign-up required. You can generate unlimited QR codes with full customization and download in any format for free." },
+    { q: "Can I use generated QR codes commercially?", a: "Yes, all QR codes you create are yours to use freely for any purpose, including commercial products, marketing materials, packaging, and client work." },
+    { q: "How do I make sure my QR code will scan reliably?", a: "Use Error Correction level H when adding a logo, maintain a 4.5:1 contrast ratio between dots and background, keep the quiet zone (white border), and test with multiple scanner apps before printing. Our Pro Tips section covers all best practices in detail." },
+    { q: "What is the maximum batch size?", a: "The batch generator can handle CSV files with hundreds of rows. Each row generates one unique QR code. All codes are exported as a single ZIP file download." },
+    { q: "What's the difference between dot styles?", a: "Dot styles change the shape of every module (data cell) in your QR code. Options include classic squares, perfect circles, rounded corners, flowing fluid shapes, stars, diamonds, leaves, hexagons, and more. Each style creates a distinct visual character while remaining fully scannable." },
+    { q: "Can I add my company logo to every QR code?", a: "Yes — upload a PNG, JPG, or SVG logo once and it will be embedded in the center of your QR code. You can control the logo size, padding color, and shape. Error Correction H is automatically recommended when a logo is detected." },
+    { q: "Do QR codes expire?", a: "Static QR codes (the type this tool generates) never expire. They are simple data-encoded images with no tracking, no server dependency, and no expiry date. As long as the destination URL exists, the code will always work." },
+    { q: "Which scanner apps work best for testing?", a: "We recommend testing with at least 3 apps: the native iOS Camera app, Google Lens on Android, and a dedicated scanner like QR Code Reader by Scan. Testing cross-platform ensures compatibility for all your users." },
+    { q: "What's the difference between Eye Frames and Eyeballs?", a: "Eye Frames are the outer border of the three corner squares (finder patterns). Eyeballs are the inner square inside each finder pattern. Mixing different styles for frames and eyeballs creates a highly unique QR code appearance." },
+    { q: "Can I undo mistakes while designing?", a: "Yes — every change is tracked in the design history. Press Ctrl+Z (or ⌘+Z on Mac) to undo, and Ctrl+Shift+Z to redo. You can step back through your entire design session." },
+  ],
+  es: [
+    { q: "¿Este generador de códigos QR es realmente 100% gratis?", a: "Sí: todas y cada una de las funciones son completamente gratuitas. Sin pagos, sin planes prémium, sin marcas de agua y sin necesidad de registrarse. Genera códigos ilimitados y descárgalos en alta resolución gratis." },
+    { q: "¿Puedo usar los códigos QR con fines comerciales?", a: "Sí, todos los códigos QR que crees te pertenecen y puedes usarlos libremente para productos comerciales, publicidad, packaging y proyectos para clientes." },
+    { q: "¿Cómo me aseguro de que el código QR se escanee bien?", a: "Usa corrección de error nivel H al insertar logos, mantén un contraste 4.5:1 entre puntos y fondo, conserva el margen blanco exterior y haz pruebas con varias apps antes de imprimir." },
+    { q: "¿Cuál es el tamaño máximo de generación por lote?", a: "El generador por lote admite archivos CSV con cientos de filas. Cada fila genera un código QR único y se descargan todos comprimidos en un archivo ZIP." },
+    { q: "¿Qué diferencia hay entre los estilos de puntos?", a: "Los estilos cambian la forma geométrica de cada módulo de datos: cuadrados clásicos, círculos, redondeados, formas fluidas, estrellas, hojas, etc. Cada estilo aporta una estética única sin perder escaneabilidad." },
+    { q: "¿Puedo incluir el logo de mi empresa?", a: "Sí: sube cualquier archivo PNG, JPG o SVG. Puedes personalizar el tamaño, el fondo protector y la forma. El generador activa corrección H automáticamente." },
+    { q: "¿Los códigos QR caducan?", a: "Los códigos estáticos generados aquí nunca caducan. La información está grabada directamente en la imagen sin depender de servidores externos." },
+    { q: "¿Qué apps recomiendan para hacer pruebas?", a: "Recomendamos probar con al menos 3 lectores: la cámara nativa de iOS, Google Lens en Android y una app dedicada de escaneo QR." },
+    { q: "¿Qué diferencia hay entre Marcos de Ojos y Centros?", a: "El marco de ojo es el borde exterior cuadrado de las esquinas (patrones de alineación). El centro es el punto interior. Combinar ambos da un aspecto totalmente personalizado." },
+    { q: "¿Puedo deshacer cambios mientras diseño?", a: "Sí: cada cambio se guarda en el historial. Pulsa Ctrl+Z (o ⌘+Z en Mac) para deshacer, y Ctrl+Shift+Z para rehacer cualquier paso." },
+  ],
+  pt: [
+    { q: "O QR Code Maker é realmente 100% gratuito?", a: "Sim — todas as ferramentas são 100% gratuitas. Sem taxas ocultas, sem planos pagos, sem marcas d'água e sem necessidade de cadastro. Crie QR codes ilimitados para sempre." },
+    { q: "Posso utilizar os QR codes comercialmente?", a: "Sim, todos os QR codes criados são seus para usar livremente em produtos comerciais, campanhas publicitárias, embalagens e projetos para clientes." },
+    { q: "Como garantir que meu QR code funcione perfeitamente?", a: "Utilize correção de erro nível H ao adicionar logo, mantenha contraste mínimo de 4.5:1, preserve a margem branca e teste em múltiplos celulares antes de imprimir." },
+    { q: "Qual é o limite de geração em lote?", a: "O gerador em lote suporta planilhas CSV com centenas de linhas. Cada linha gera um QR code exclusivo e tudo é baixado em um único arquivo ZIP." },
+    { q: "Qual a diferença entre os estilos de pontos?", a: "Os estilos alteram o formato visual de cada módulo de dados: quadrados, círculos perfeitos, cantos arredondados, formas fluidas, diamantes, folhas e muito mais." },
+    { q: "Posso incluir o logotipo da minha empresa?", a: "Sim — envie seu logo em PNG, JPG ou SVG. Você controla o tamanho, margem de respiro e formato. O nível H é ativado automaticamente." },
+    { q: "Os QR codes possuem prazo de validade?", a: "Não. Os códigos gerados são estáticos e os dados ficam gravados diretamente na imagem. Eles nunca expiram e funcionam para sempre." },
+    { q: "Quais aplicativos são ideais para testes?", a: "Recomendamos testar com a Câmera nativa do iPhone, o Google Lens no Android e um leitor dedicado de QR code." },
+    { q: "Qual a diferença entre Moldura do Canto e Centro do Olho?", a: "A moldura é o contorno externo dos três cantos do QR code. O centro é o quadrado interno. Misturar estilos cria um visual marcante e único." },
+    { q: "Posso desfazer erros durante a criação?", a: "Sim — o estúdio salva todo o histórico da sessão. Use Ctrl+Z (ou ⌘+Z no Mac) para desfazer e Ctrl+Shift+Z para refazer." },
+  ],
+  de: [
+    { q: "Ist der QR-Code-Maker wirklich 100% kostenlos?", a: "Ja — jede einzelne Funktion ist vollkommen kostenlos. Keine Paywalls, keine Abos, keine Wasserzeichen und keine Registrierung erforderlich. Unbegrenzte Downloads in allen Formaten." },
+    { q: "Darf ich die QR-Codes gewerblich nutzen?", a: "Ja, alle erstellten QR-Codes gehören Ihnen und dürfen frei für kommerzielle Produkte, Marketingunterlagen, Verpackungen und Kundenprojekte verwendet werden." },
+    { q: "Wie stelle ich sicher, dass mein QR-Code zuverlässig scannt?", a: "Nutzen Sie Fehlerkorrektur H bei Logos, achten Sie auf einen Kontrast von 4,5:1, halten Sie die weiße Ruhezone ein und testen Sie mit mehreren Kameras vor dem Druck." },
+    { q: "Wie viele Codes kann ich per CSV-Stapelverarbeitung generieren?", a: "Die Stapelverarbeitung verarbeitet Tabellen mit hunderten von Zeilen. Alle generierten QR-Codes werden gebündelt als ZIP-Datei heruntergeladen." },
+    { q: "Was bewirken die verschiedenen Punktstile?", a: "Punktstile verändern die Form der einzelnen Datenzellen: Quadrate, Kreise, abgerundet, organisch, Sterne, Rauten und mehr — für einen individuellen Look." },
+    { q: "Kann ich mein Firmenlogo einbinden?", a: "Ja — laden Sie ein PNG-, JPG- oder SVG-Logo hoch. Sie bestimmen Größe, Schutzabstand und Form. Fehlerkorrektur Level H wird automatisch gewählt." },
+    { q: "Haben die QR-Codes ein Ablaufdatum?", a: "Nein. Die hier erstellten statischen QR-Codes laufen niemals ab. Die Daten sind direkt im Muster gespeichert und bleiben dauerhaft gültig." },
+    { q: "Welche Scanner-Apps empfehlen sich zum Testen?", a: "Wir empfehlen Tests mit der iOS-Kamera-App, Google Lens auf Android sowie einem eigenständigen Barcode-Scanner." },
+    { q: "Was ist der Unterschied zwischen Eckenrahmen und Mittelpunkt?", a: "Der Eckenrahmen ist die äußere Umrandung der drei Positionierungsquadrate. Der Mittelpunkt ist das innere Quadrat. Die Kombination schafft unverwechselbare Designs." },
+    { q: "Kann ich Fehler während der Gestaltung rückgängig machen?", a: "Ja — jeder Schritt wird im Verlauf gespeichert. Mit Strg+Z (bzw. ⌘+Z auf dem Mac) machen Sie Änderungen rückgängig, mit Strg+Umschalt+Z stellen Sie sie wieder her." },
+  ]
+};
+
+const faqs = faqsMap[locale] || faqsMap.en;
+
+const howTo = {
+  name: meta.stepsHeading,
+  description: meta.desc,
+  steps: steps.map(s => ({ name: s.title, text: s.description }))
+};
+---
+<BaseLayout
+  locale={locale}
+  title={meta.title}
+  description={meta.desc}
+  breadcrumbs={breadcrumbs}
+  howTo={howTo}
+  faqs={faqs}
+>
+  <style is:global>
+    @import '../styles/global.css';
+    @import '../styles/how-to-use.css';
+  </style>
+
+  <Header locale={locale} />
+
+  <!-- ╔══════════════════════════════════════════╗ -->
+  <!-- ║  SECTION 1: CINEMATIC HERO               ║ -->
+  <!-- ╚══════════════════════════════════════════╝ -->
+  <section class="htu-hero-bg relative overflow-hidden min-h-[85vh] flex flex-col items-center justify-center px-6 py-20 text-center">
+    <!-- Floating QR silhouettes -->
+    <div class="absolute inset-0 pointer-events-none select-none" aria-hidden="true">
+      <!-- Top-left silhouette -->
+      <div class="absolute top-10 left-8 sm:left-16 opacity-[0.07] htu-float-a">
+        <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+          <rect x="4" y="4" width="48" height="48" rx="6" fill="#18181b"/>
+          <rect x="14" y="14" width="28" height="28" rx="3" fill="#ffffff"/>
+          <rect x="19" y="19" width="18" height="18" rx="2" fill="#18181b"/>
+          <rect x="68" y="4" width="48" height="48" rx="6" fill="#18181b"/>
+          <rect x="78" y="14" width="28" height="28" rx="3" fill="#ffffff"/>
+          <rect x="83" y="19" width="18" height="18" rx="2" fill="#18181b"/>
+          <rect x="4" y="68" width="48" height="48" rx="6" fill="#18181b"/>
+          <rect x="14" y="78" width="28" height="28" rx="3" fill="#ffffff"/>
+          <rect x="19" y="83" width="18" height="18" rx="2" fill="#18181b"/>
+          <rect x="68" y="68" width="8" height="8" fill="#18181b"/>
+          <rect x="80" y="68" width="8" height="8" fill="#18181b"/>
+          <rect x="92" y="68" width="8" height="8" fill="#18181b"/>
+          <rect x="104" y="68" width="8" height="8" fill="#18181b"/>
+          <rect x="68" y="80" width="8" height="8" fill="#18181b"/>
+          <rect x="80" y="80" width="8" height="8" fill="#18181b"/>
+          <rect x="92" y="92" width="8" height="8" fill="#18181b"/>
+          <rect x="104" y="80" width="8" height="8" fill="#18181b"/>
+          <rect x="68" y="92" width="8" height="8" fill="#18181b"/>
+          <rect x="80" y="104" width="8" height="8" fill="#18181b"/>
+          <rect x="104" y="104" width="8" height="8" fill="#18181b"/>
+        </svg>
+      </div>
+      <!-- Bottom-right silhouette -->
+      <div class="absolute bottom-16 right-8 sm:right-20 opacity-[0.06] htu-float-b">
+        <svg width="90" height="90" viewBox="0 0 90 90" fill="none">
+          <rect x="3" y="3" width="36" height="36" rx="5" fill="#7c3aed"/>
+          <rect x="10" y="10" width="22" height="22" rx="2" fill="#ffffff"/>
+          <rect x="15" y="15" width="12" height="12" rx="1" fill="#7c3aed"/>
+          <rect x="51" y="3" width="36" height="36" rx="5" fill="#7c3aed"/>
+          <rect x="58" y="10" width="22" height="22" rx="2" fill="#ffffff"/>
+          <rect x="63" y="15" width="12" height="12" rx="1" fill="#7c3aed"/>
+          <rect x="3" y="51" width="36" height="36" rx="5" fill="#7c3aed"/>
+          <rect x="10" y="58" width="22" height="22" rx="2" fill="#ffffff"/>
+          <rect x="15" y="63" width="12" height="12" rx="1" fill="#7c3aed"/>
+          <rect x="51" y="51" width="6" height="6" fill="#7c3aed"/>
+          <rect x="60" y="51" width="6" height="6" fill="#7c3aed"/>
+          <rect x="69" y="60" width="6" height="6" fill="#7c3aed"/>
+          <rect x="78" y="51" width="6" height="6" fill="#7c3aed"/>
+          <rect x="51" y="60" width="6" height="6" fill="#7c3aed"/>
+          <rect x="60" y="78" width="6" height="6" fill="#7c3aed"/>
+        </svg>
+      </div>
+      <!-- Center-right silhouette -->
+      <div class="absolute top-1/3 right-4 sm:right-12 opacity-[0.05] htu-float-c hidden sm:block">
+        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+          <rect x="2" y="2" width="24" height="24" rx="3" fill="#2563eb"/>
+          <rect x="6" y="6" width="16" height="16" rx="2" fill="#ffffff"/>
+          <rect x="9" y="9" width="10" height="10" rx="1" fill="#2563eb"/>
+          <rect x="34" y="2" width="24" height="24" rx="3" fill="#2563eb"/>
+          <rect x="38" y="6" width="16" height="16" rx="2" fill="#ffffff"/>
+          <rect x="41" y="9" width="10" height="10" rx="1" fill="#2563eb"/>
+          <rect x="2" y="34" width="24" height="24" rx="3" fill="#2563eb"/>
+          <rect x="6" y="38" width="16" height="16" rx="2" fill="#ffffff"/>
+          <rect x="9" y="41" width="10" height="10" rx="1" fill="#2563eb"/>
+          <rect x="34" y="34" width="5" height="5" fill="#2563eb"/>
+          <rect x="42" y="34" width="5" height="5" fill="#2563eb"/>
+          <rect x="50" y="42" width="5" height="5" fill="#2563eb"/>
+          <rect x="34" y="50" width="5" height="5" fill="#2563eb"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Pill badge -->
+    <div class="htu-reveal inline-flex items-center gap-2 bg-white/80 border border-white/60 backdrop-blur-sm rounded-full px-4 py-1.5 text-sm font-semibold text-on-surface-variant mb-6 shadow-xs">
+      <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+      {meta.heroBadge}
+    </div>
+
+    <!-- Main headline -->
+    <h1 class="htu-reveal delay-1 text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.08] mb-6 max-w-4xl">
+      {meta.heroH1Pre}
+      <span class="htu-accent-text">{meta.heroH1Accent}</span>
+      <br />{meta.heroH1Post}
+    </h1>
+
+    <p class="htu-reveal delay-2 text-base sm:text-xl text-on-surface-variant max-w-2xl mb-10 leading-relaxed">
+      {meta.heroDesc}
+    </p>
+
+    <!-- CTA Buttons -->
+    <div class="htu-reveal delay-3 flex flex-wrap items-center justify-center gap-4 mb-16">
+      <a
+        href={getLocalizedUrl(locale, '/')}
+        class="inline-flex items-center gap-2.5 bg-primary text-on-primary font-bold text-base px-7 py-3.5 rounded-xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 group cursor-pointer"
+        id="hero-start-creating-btn"
+      >
+        <span class="material-symbols-outlined text-[20px] group-hover:rotate-12 transition-transform duration-300">qr_code_2</span>
+        {meta.startBtn}
+      </a>
+      <a
+        href="#steps"
+        class="inline-flex items-center gap-2.5 bg-white border border-outline-variant text-on-surface font-semibold text-base px-6 py-3.5 rounded-xl hover:shadow-md hover:-translate-y-1 transition-all duration-300 group cursor-pointer"
+        id="hero-see-how-btn"
+      >
+        {meta.seeHowBtn}
+        <span class="material-symbols-outlined text-[20px] group-hover:translate-y-0.5 transition-transform duration-300">expand_more</span>
+      </a>
+    </div>
+
+    <!-- Quick stats row -->
+    <div class="htu-reveal delay-4 flex flex-wrap items-center justify-center gap-8 sm:gap-12">
+      {meta.stats.map(stat => (
+        <div class="text-center">
+          <div class="text-3xl font-bold text-on-surface tracking-tight">{stat.value}</div>
+          <div class="text-xs font-medium text-on-surface-variant uppercase tracking-widest mt-0.5">{stat.label}</div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════════════╗ -->
+  <!-- ║  SECTION 2: 5-STEP WALKTHROUGH          ║ -->
+  <!-- ╚══════════════════════════════════════════╝ -->
+  <section id="steps" class="max-w-5xl mx-auto px-6 py-20 sm:py-24">
+    <div class="text-center mb-16 htu-reveal">
+      <span class="inline-block text-xs font-bold uppercase tracking-widest text-on-surface-variant bg-surface-container px-3.5 py-1 rounded-full mb-4">{meta.stepsBadge}</span>
+      <h2 class="text-3xl sm:text-5xl font-bold text-on-surface mb-4">{meta.stepsHeading}</h2>
+      <div class="htu-section-divider"></div>
+    </div>
+
+    <div class="space-y-6" id="steps-list">
+      {steps.map((step, i) => (
+        <div
+          class={`htu-step-card p-6 sm:p-8 htu-reveal delay-${(i % 5) + 1}`}
+          id={`step-card-${i + 1}`}
+        >
+          <div class="flex flex-col sm:flex-row gap-5 sm:gap-8">
+            <!-- Left: number + emoji -->
+            <div class="flex sm:flex-col items-center sm:items-center gap-3 sm:gap-2 flex-shrink-0">
+              <div class="htu-step-badge">{step.number}</div>
+              <div class="text-3xl">{step.emoji}</div>
+            </div>
+            <!-- Right: content -->
+            <div class="flex-1 min-w-0">
+              <h3 class="text-xl font-bold text-on-surface mb-3">{step.title}</h3>
+              <p class="text-on-surface-variant leading-relaxed mb-4 text-sm sm:text-base">{step.description}</p>
+              <!-- Tags -->
+              <div class="flex flex-wrap gap-2 mb-4">
+                {step.tags.map(tag => (
+                  <span class="px-2.5 py-1 bg-surface-container text-on-surface-variant text-xs font-semibold rounded-full border border-outline-variant/50">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <!-- Hint box -->
+              <div class="flex items-start gap-2.5 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 text-xs sm:text-sm text-amber-800 font-medium">
+                <span class="material-symbols-outlined text-[18px] text-amber-500 flex-shrink-0 mt-0.5">lightbulb</span>
+                {step.hint}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════════════╗ -->
+  <!-- ║  SECTION 3: FEATURE SHOWCASE GRID       ║ -->
+  <!-- ╚══════════════════════════════════════════╝ -->
+  <section class="bg-gradient-to-b from-surface-container/40 to-transparent py-20 sm:py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16 htu-reveal">
+        <span class="inline-block text-xs font-bold uppercase tracking-widest text-on-surface-variant bg-white px-3.5 py-1 rounded-full border border-outline-variant mb-4">{meta.featuresBadge}</span>
+        <h2 class="text-3xl sm:text-5xl font-bold text-on-surface mb-4">{meta.featuresHeading}</h2>
+        <p class="text-on-surface-variant max-w-xl mx-auto text-sm sm:text-base">{meta.featuresSub}</p>
+        <div class="htu-section-divider"></div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5" id="features-grid">
+        {features.map((feat, i) => (
+          <div
+            class={`htu-glass-card rounded-2xl p-6 htu-reveal delay-${(i % 3) + 1}`}
+            id={`feature-card-${i + 1}`}
+          >
+            <div class={`htu-feature-icon ${feat.color} rounded-2xl mb-4`}>
+              <span class="material-symbols-outlined text-[24px]">{feat.icon}</span>
+            </div>
+            <h3 class="font-bold text-on-surface text-base mb-1.5">{feat.title}</h3>
+            <p class="text-sm text-on-surface-variant leading-relaxed">{feat.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════════════╗ -->
+  <!-- ║  SECTION 4: PRO TIPS & BEST PRACTICES  ║ -->
+  <!-- ╚══════════════════════════════════════════╝ -->
+  <section class="max-w-5xl mx-auto px-6 py-20 sm:py-24">
+    <div class="text-center mb-16 htu-reveal">
+      <span class="inline-block text-xs font-bold uppercase tracking-widest text-on-surface-variant bg-surface-container px-3.5 py-1 rounded-full mb-4">{meta.tipsBadge}</span>
+      <h2 class="text-3xl sm:text-5xl font-bold text-on-surface mb-4">{meta.tipsHeading}</h2>
+      <p class="text-on-surface-variant max-w-xl mx-auto text-sm sm:text-base">{meta.tipsSub}</p>
+      <div class="htu-section-divider"></div>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Do's -->
+      <div class="htu-reveal delay-1">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-9 h-9 rounded-xl bg-green-100 flex items-center justify-center">
+            <span class="material-symbols-outlined text-green-600 text-[20px]">check_circle</span>
+          </div>
+          <h3 class="text-xl font-bold text-green-800">{meta.dosTitle}</h3>
+        </div>
+        <div class="space-y-3">
+          {doTips.map((tip, i) => (
+            <div class="htu-tip-do flex items-start gap-3" id={`do-tip-${i + 1}`}>
+              <span class="material-symbols-outlined text-green-500 text-[18px] flex-shrink-0 mt-0.5">done</span>
+              <p class="text-sm text-green-900 leading-relaxed" set:html={tip.text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')} />
+            </div>
+          ))}
+        </div>
+      </div>
+      <!-- Don'ts -->
+      <div class="htu-reveal delay-2">
+        <div class="flex items-center gap-3 mb-5">
+          <div class="w-9 h-9 rounded-xl bg-red-100 flex items-center justify-center">
+            <span class="material-symbols-outlined text-red-500 text-[20px]">cancel</span>
+          </div>
+          <h3 class="text-xl font-bold text-red-800">{meta.dontsTitle}</h3>
+        </div>
+        <div class="space-y-3">
+          {dontTips.map((tip, i) => (
+            <div class="htu-tip-dont flex items-start gap-3" id={`dont-tip-${i + 1}`}>
+              <span class="material-symbols-outlined text-red-400 text-[18px] flex-shrink-0 mt-0.5">close</span>
+              <p class="text-sm text-red-900 leading-relaxed" set:html={tip.text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════════════╗ -->
+  <!-- ║  SECTION 5: EXPORT FORMAT COMPARISON    ║ -->
+  <!-- ╚══════════════════════════════════════════╝ -->
+  <section class="bg-gradient-to-b from-transparent via-surface-container/30 to-transparent py-20 sm:py-24 px-6">
+    <div class="max-w-5xl mx-auto">
+      <div class="text-center mb-16 htu-reveal">
+        <span class="inline-block text-xs font-bold uppercase tracking-widest text-on-surface-variant bg-white px-3.5 py-1 rounded-full border border-outline-variant mb-4">{meta.exportBadge}</span>
+        <h2 class="text-3xl sm:text-5xl font-bold text-on-surface mb-4">{meta.exportHeading}</h2>
+        <p class="text-on-surface-variant max-w-xl mx-auto text-sm sm:text-base">{meta.exportSub}</p>
+        <div class="htu-section-divider"></div>
+      </div>
+
+      <div class="htu-reveal delay-1 bg-white rounded-3xl border border-outline-variant shadow-xs overflow-hidden">
+        <!-- Mobile: Card layout -->
+        <div class="block sm:hidden divide-y divide-outline-variant/50">
+          {exportsList.map(exp => (
+            <div class="p-6" id={`export-card-${exp.format.toLowerCase()}`}>
+              <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 bg-surface-container rounded-xl flex items-center justify-center">
+                  <span class="material-symbols-outlined text-on-surface-variant text-[22px]">{exp.icon}</span>
+                </div>
+                <div>
+                  <div class="font-bold text-lg text-on-surface">{exp.format}</div>
+                  <div class="text-xs text-on-surface-variant font-mono">{exp.resolution}</div>
+                </div>
+              </div>
+              <div class="space-y-2 text-sm">
+                <div><span class="font-semibold text-on-surface">{meta.exportTableCols.bestFor}: </span><span class="text-on-surface-variant">{exp.useCase}</span></div>
+                <div><span class="font-semibold text-green-700">✓ </span><span class="text-on-surface-variant">{exp.pros}</span></div>
+                <div><span class="font-semibold text-red-600">✗ </span><span class="text-on-surface-variant">{exp.notFor}</span></div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <!-- Desktop: Table layout -->
+        <div class="hidden sm:block overflow-x-auto">
+          <table class="htu-table w-full">
+            <thead>
+              <tr>
+                <th>{meta.exportTableCols.format}</th>
+                <th>{meta.exportTableCols.res}</th>
+                <th>{meta.exportTableCols.bestFor}</th>
+                <th>{meta.exportTableCols.pros}</th>
+                <th>{meta.exportTableCols.limit}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {exportsList.map(exp => (
+                <tr id={`export-row-${exp.format.toLowerCase()}`}>
+                  <td>
+                    <div class="flex items-center gap-2.5">
+                      <div class="w-8 h-8 bg-surface-container rounded-lg flex items-center justify-center flex-shrink-0">
+                        <span class="material-symbols-outlined text-[18px] text-on-surface-variant">{exp.icon}</span>
+                      </div>
+                      <span class="font-bold text-on-surface">{exp.format}</span>
+                    </div>
+                  </td>
+                  <td><span class="font-mono text-xs bg-surface-container px-2 py-0.5 rounded">{exp.resolution}</span></td>
+                  <td>{exp.useCase}</td>
+                  <td class="text-green-700 font-medium">{exp.pros}</td>
+                  <td class="text-red-600">{exp.notFor}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════════════╗ -->
+  <!-- ║  SECTION 6: KEYBOARD SHORTCUTS          ║ -->
+  <!-- ╚══════════════════════════════════════════╝ -->
+  <section class="max-w-5xl mx-auto px-6 py-16 sm:py-20">
+    <div class="htu-reveal">
+      <div class="bg-surface-container-lowest border border-outline-variant rounded-3xl p-8 sm:p-10">
+        <div class="flex items-center gap-3 mb-8">
+          <div class="w-10 h-10 bg-primary rounded-xl flex items-center justify-center flex-shrink-0">
+            <span class="material-symbols-outlined text-on-primary text-[20px]">keyboard</span>
+          </div>
+          <div>
+            <h2 class="text-2xl font-bold text-on-surface">{meta.shortcutsTitle}</h2>
+            <p class="text-sm text-on-surface-variant">{meta.shortcutsSub}</p>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {[
+            { keys: ["Ctrl", "Z"],         desc: "Undo last design change" },
+            { keys: ["Ctrl", "Shift", "Z"], desc: "Redo last undone change" },
+            { keys: ["⌘", "Z"],            desc: "Undo (Mac)" },
+            { keys: ["⌘", "Shift", "Z"],   desc: "Redo (Mac)" },
+          ].map((shortcut, i) => (
+            <div class="flex items-center justify-between gap-4 p-4 bg-surface rounded-xl border border-outline-variant/50" id={`shortcut-${i + 1}`}>
+              <span class="text-sm text-on-surface-variant">{shortcut.desc}</span>
+              <div class="flex items-center gap-1.5 flex-shrink-0">
+                {shortcut.keys.map(k => (
+                  <kbd class="htu-kbd">{k}</kbd>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+        <p class="text-xs text-on-surface-variant mt-6 text-center">
+          {meta.shortcutsNote}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════════════╗ -->
+  <!-- ║  SECTION 7: FAQ ACCORDION               ║ -->
+  <!-- ╚══════════════════════════════════════════╝ -->
+  <section class="max-w-4xl mx-auto px-6 py-20 sm:py-24">
+    <div class="text-center mb-16 htu-reveal">
+      <span class="inline-block text-xs font-bold uppercase tracking-widest text-on-surface-variant bg-surface-container px-3.5 py-1 rounded-full mb-4">{meta.faqBadge}</span>
+      <h2 class="text-3xl sm:text-5xl font-bold text-on-surface mb-4">{meta.faqHeading}</h2>
+      <p class="text-on-surface-variant max-w-xl mx-auto text-sm sm:text-base">{meta.faqSub}</p>
+      <div class="htu-section-divider"></div>
+    </div>
+
+    <div class="space-y-3" id="faq-list">
+      {faqs.map((faq, i) => (
+        <div class={`htu-faq-item htu-reveal delay-${(i % 3) + 1}`} id={`faq-item-${i + 1}`}>
+          <button
+            class="htu-faq-trigger"
+            aria-expanded="false"
+            aria-controls={`faq-body-${i + 1}`}
+            id={`faq-trigger-${i + 1}`}
+          >
+            <span>{faq.q}</span>
+            <span class="material-symbols-outlined htu-chevron" aria-hidden="true">expand_more</span>
+          </button>
+          <div class="htu-faq-body" id={`faq-body-${i + 1}`} role="region" aria-labelledby={`faq-trigger-${i + 1}`}>
+            <p>{faq.a}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ╔══════════════════════════════════════════╗ -->
+  <!-- ║  SECTION 8: CTA FOOTER                  ║ -->
+  <!-- ╚══════════════════════════════════════════╝ -->
+  <section class="htu-cta-bg py-24 px-6 text-center htu-reveal">
+    <div class="relative z-10 max-w-3xl mx-auto">
+      <div class="inline-flex items-center gap-2 bg-white/10 border border-white/20 backdrop-blur-sm text-white/80 text-sm font-semibold px-4 py-1.5 rounded-full mb-8">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        {meta.ctaBadge}
+      </div>
+      <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
+        {meta.ctaH2Pre}<br/>
+        <span style="color: #a78bfa;">{meta.ctaH2Accent}</span>
+      </h2>
+      <p class="text-white/70 text-base sm:text-lg mb-10 max-w-xl mx-auto leading-relaxed">
+        {meta.ctaDesc}
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a href={getLocalizedUrl(locale, '/')} class="htu-cta-btn cursor-pointer" id="cta-footer-start-btn">
+          <span class="material-symbols-outlined text-[20px]">qr_code_2</span>
+          {meta.ctaStartBtn}
+          <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+        </a>
+        <a href="#steps" class="inline-flex items-center gap-2 text-white/70 hover:text-white font-semibold text-base transition-colors duration-200 cursor-pointer" id="cta-footer-guide-btn">
+          {meta.ctaReadAgain}
+          <span class="material-symbols-outlined text-[18px]">north</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scroll reveal + FAQ accordion logic -->
+  <script>
+    // ── IntersectionObserver for scroll reveals ──
+    const revealEls = document.querySelectorAll('.htu-reveal, .htu-reveal-left, .htu-reveal-scale');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // ── FAQ accordion ──
+    const faqTriggers = document.querySelectorAll('.htu-faq-trigger');
+    faqTriggers.forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const isOpen = trigger.classList.contains('open');
+        // Close all
+        faqTriggers.forEach(t => {
+          t.classList.remove('open');
+          t.setAttribute('aria-expanded', 'false');
+          const bodyId = t.getAttribute('aria-controls');
+          if (bodyId) {
+            const body = document.getElementById(bodyId);
+            if (body) body.classList.remove('open');
+          }
+        });
+        // Open clicked (unless it was already open)
+        if (!isOpen) {
+          trigger.classList.add('open');
+          trigger.setAttribute('aria-expanded', 'true');
+          const bodyId = trigger.getAttribute('aria-controls');
+          if (bodyId) {
+            const body = document.getElementById(bodyId);
+            if (body) body.classList.add('open');
+          }
+        }
+      });
+    });
+  </script>
+  <Footer locale={locale} />
+</BaseLayout>

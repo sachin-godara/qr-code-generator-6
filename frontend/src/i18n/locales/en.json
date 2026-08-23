@@ -1,0 +1,561 @@
+{
+  "nav": {
+    "generator": "Generator",
+    "guide": "Guide",
+    "blog": "Blog",
+    "scan": "Scan",
+    "scanQR": "Scan QR Code",
+    "selectLanguage": "Select language"
+  },
+  "studio": {
+    "tabs": {
+      "content": "Content",
+      "templates": "Templates",
+      "design": "Design",
+      "logo": "Logo",
+      "frames": "Frames",
+      "effects": "Effects",
+      "advanced": "Advanced",
+      "download": "Download"
+    },
+    "mobileTabs": {
+      "content": "Content",
+      "design": "Design",
+      "logo": "Logo",
+      "more": "More",
+      "download": "Download"
+    },
+    "tabHeadlines": {
+      "content_title": "What would you like to encode?",
+      "content_sub": "Choose a content type and enter your data.",
+      "templates_title": "Pick a Style Template",
+      "templates_sub": "One-click presets for every use case.",
+      "design_title": "Customize Your QR Design",
+      "design_sub": "Dots, eyes, colors, gradients — make it yours.",
+      "logo_title": "Add Your Brand Logo",
+      "logo_sub": "Upload a custom logo or choose a preset icon.",
+      "frames_title": "Apply Text Frames",
+      "frames_sub": "Add a label or call-to-action around your QR code.",
+      "effects_title": "Add Visual Effects",
+      "effects_sub": "Shadows, glows, and canvas decorations.",
+      "advanced_title": "Advanced Settings",
+      "advanced_sub": "Error correction, quiet zone, and canvas fine-tuning.",
+      "download_title": "Export Your QR Code",
+      "download_sub": "Choose format, resolution, and download."
+    },
+    "buttons": {
+      "continueTo": "Continue to {tab}",
+      "doneWith": "Done with {tab}?",
+      "undo": "Undo",
+      "redo": "Redo",
+      "reset": "Reset",
+      "copyUrl": "Copy Link",
+      "share": "Share",
+      "fullscreen": "Fullscreen",
+      "download": "Download",
+      "copyImage": "Copy Image",
+      "generating": "Generating...",
+      "downloading": "Downloading...",
+      "copied": "Copied!"
+    },
+    "labels": {
+      "tools": "Tools",
+      "customization": "Customization",
+      "personalize": "Personalize your QR code",
+      "step": "Step {current} / {total}"
+    },
+    "templateCategories": {
+      "all": "All",
+      "wifi": "Wi-Fi",
+      "business": "Business",
+      "marketing": "Marketing",
+      "restaurant": "Restaurant",
+      "events": "Events",
+      "social": "Social",
+      "retail": "Retail",
+      "education": "Education",
+      "premium": "Premium"
+    },
+    "logoCategories": {
+      "all": "All",
+      "social": "Social & Apps",
+      "tech": "Tech & Contact",
+      "business": "Business & Pay",
+      "media": "Media & More"
+    },
+    "logoStyles": {
+      "badge": "Brand Badge",
+      "duotone": "Soft Glass",
+      "glyph": "Pure Glyph"
+    },
+    "content": {
+      "categories": {
+        "basic": "Basic",
+        "network": "Network",
+        "locationEvents": "Location & Events",
+        "payments": "Payments",
+        "appsSocial": "Apps & Social",
+        "advanced": "Advanced"
+      },
+      "types": {
+        "url": "URL",
+        "text": "Text",
+        "phone": "Phone",
+        "sms": "SMS",
+        "whatsapp": "WhatsApp",
+        "email": "Email",
+        "vcard": "vCard",
+        "wifi": "Wi-Fi",
+        "location": "Location",
+        "event": "Event",
+        "upi": "UPI Pay",
+        "crypto": "Crypto",
+        "paypal": "PayPal",
+        "appstore": "App Store",
+        "googleplay": "Play Store",
+        "social": "Socials",
+        "batch": "Batch CSV"
+      }
+    },
+    "forms": {
+      "url": {
+        "label": "Website URL",
+        "placeholder": "https://example.com"
+      },
+      "text": {
+        "label": "Plain Text",
+        "placeholder": "Enter your message or notes here..."
+      },
+      "phone": {
+        "label": "Phone Number",
+        "placeholder": "+1 234 567 8900"
+      },
+      "sms": {
+        "phoneLabel": "Phone Number",
+        "phonePlaceholder": "+1 234 567 8900",
+        "messageLabel": "SMS Message",
+        "messagePlaceholder": "Type your message..."
+      },
+      "whatsapp": {
+        "phoneLabel": "WhatsApp Number (with Country Code)",
+        "phonePlaceholder": "14155552671",
+        "messageLabel": "Pre-filled Message",
+        "messagePlaceholder": "Hi, I would like to inquire about..."
+      },
+      "email": {
+        "toLabel": "Email Address",
+        "toPlaceholder": "contact@example.com",
+        "subjectLabel": "Subject",
+        "subjectPlaceholder": "General Inquiry",
+        "bodyLabel": "Email Body",
+        "bodyPlaceholder": "Write your email message..."
+      },
+      "vcard": {
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "organization": "Organization / Company",
+        "title": "Job Title",
+        "phone": "Work Phone",
+        "cellPhone": "Cell Phone",
+        "email": "Email Address",
+        "url": "Website URL",
+        "address": "Street Address",
+        "city": "City",
+        "country": "Country",
+        "note": "Note"
+      },
+      "wifi": {
+        "ssidLabel": "Network Name (SSID)",
+        "ssidPlaceholder": "MyHomeWiFi",
+        "passwordLabel": "Password",
+        "passwordPlaceholder": "Enter WiFi password",
+        "encryptionLabel": "Encryption Type",
+        "hiddenLabel": "Hidden Network",
+        "wpa": "WPA/WPA2/WPA3",
+        "wep": "WEP",
+        "none": "No Password (Open)"
+      },
+      "location": {
+        "latLabel": "Latitude",
+        "latPlaceholder": "37.7749",
+        "lngLabel": "Longitude",
+        "lngPlaceholder": "-122.4194",
+        "searchLabel": "Search Location",
+        "searchPlaceholder": "City, place, or address..."
+      },
+      "event": {
+        "title": "Event Title",
+        "location": "Event Location",
+        "startDate": "Start Date & Time",
+        "endDate": "End Date & Time",
+        "description": "Event Description"
+      },
+      "crypto": {
+        "currencyLabel": "Cryptocurrency",
+        "addressLabel": "Wallet Address",
+        "amountLabel": "Amount (Optional)",
+        "messageLabel": "Memo / Message (Optional)"
+      },
+      "paypal": {
+        "typeLabel": "Payment Type",
+        "buyNow": "Buy Now",
+        "donate": "Donation",
+        "cart": "Add to Cart",
+        "userLabel": "PayPal Username / Email",
+        "itemLabel": "Item Name",
+        "amountLabel": "Price / Amount",
+        "currencyLabel": "Currency"
+      }
+    },
+    "design": {
+      "dotPattern": "Dot Pattern",
+      "dotsStyle": "Dot Pattern Style",
+      "eyeFrame": "Corner Frame",
+      "eyeFrameStyle": "Eye Frame Style",
+      "eyeBall": "Corner Center",
+      "eyeballStyle": "Eyeball Center Style",
+      "colorType": "Color Style",
+      "solid": "Solid Color",
+      "gradient": "Gradient",
+      "gradientType": "Gradient Type",
+      "foreground": "QR Code Color",
+      "fgColor": "QR Code Color",
+      "fgColorEnd": "Gradient End Color",
+      "background": "Background Color",
+      "bgColor": "Background Color",
+      "transparent": "Transparent",
+      "transparentBg": "Transparent Background",
+      "customEyes": "Eyes Customization",
+      "linkEyes": "Link Eyes",
+      "independentCorners": "Style Each Corner Independently",
+      "allCorners": "All Corners",
+      "cornerTL": "Top Left",
+      "cornerTR": "Top Right",
+      "cornerBL": "Bottom Left",
+      "eyeFrameColor": "Eye Frame Color",
+      "eyeballColor": "Eyeball Color"
+    },
+    "logo": {
+      "uploadCustom": "Upload Custom Logo",
+      "choosePreset": "Choose Preset Icon",
+      "searchIcons": "Search 46+ brand icons...",
+      "removeBg": "Remove Logo Background",
+      "cardShape": "Logo Badge Shape",
+      "shapeNone": "None (Raw)",
+      "shapeCircle": "Circle",
+      "shapeSquare": "Rounded Square",
+      "logoSize": "Logo Size",
+      "padding": "Badge Padding",
+      "clearance": "Dot Clearance Zone",
+      "logoColor": "Icon Color"
+    },
+    "frames": {
+      "frameStyle": "Frame Design",
+      "noFrame": "No Frame",
+      "frameText": "Call to Action Text",
+      "fontFamily": "Typography Font",
+      "frameColor": "Frame Color",
+      "textColor": "Text Color"
+    },
+    "effects": {
+      "shadow": "Shadow Effect",
+      "noShadow": "No Shadow",
+      "softShadow": "Soft Shadow",
+      "elevated": "Elevated 3D",
+      "neonGlow": "Neon Glow",
+      "bgImage": "Background Canvas Image",
+      "blendMode": "Blend Mode",
+      "opacity": "Image Opacity"
+    },
+    "advanced": {
+      "errorCorrection": "Error Correction Level",
+      "ecLow": "Low (7% recovery)",
+      "ecMedium": "Medium (15% recovery - Standard)",
+      "ecQuartile": "Quartile (25% recovery)",
+      "ecHigh": "High (30% recovery - Recommended for Logos)",
+      "quietZone": "Quiet Zone (Margin)",
+      "inverted": "Invert Colors (Dark Mode)"
+    },
+    "download": {
+      "exportFormat": "Export Format",
+      "pngDesc": "High-res raster for web and screens",
+      "svgDesc": "Infinite vector for professional printing",
+      "pdfDesc": "Print-ready vector PDF document",
+      "resolution": "Image Size (Resolution)",
+      "downloadPng": "Download PNG",
+      "downloadSvg": "Download SVG",
+      "downloadPdf": "Download PDF",
+      "copyClipboard": "Copy to Clipboard",
+      "batchMode": "Batch CSV Generation",
+      "batchDesc": "Generate up to 500 QR codes from a single spreadsheet"
+    },
+    "preview": {
+      "livePreview": "Live Preview",
+      "showPreview": "Tap to show preview",
+      "hidePreview": "Hide preview",
+      "scannability": "Scannability Score",
+      "contrastRatio": "Contrast Ratio",
+      "contrastGood": "Excellent Contrast",
+      "contrastWarning": "Low Contrast - May Be Hard to Scan",
+      "scanWithPhone": "Scan with phone to test"
+    }
+  },
+  "blog": {
+    "heroBadge": "QR Code Knowledge Hub",
+    "heroTitle": "Tips, Guides & Best Practices",
+    "heroSub": "Everything you need to know about creating, designing, and deploying QR codes that look stunning and scan perfectly every time.",
+    "featuredArticles": "Featured Articles",
+    "popularGuides": "Our most popular guides",
+    "allArticles": "All Articles",
+    "postsPublished": "{count} posts published",
+    "readArticle": "Read article",
+    "minRead": "{min} min read",
+    "relatedGuides": "Related Guides",
+    "viewAll": "View All",
+    "viewAllGuides": "View All Guides",
+    "latestFromBlog": "Latest from the Blog",
+    "ctaTitle": "Ready to Create Your QR Code?",
+    "ctaDesc": "Put what you've learned into practice. Design custom QR codes with 40+ styles, logos, and frames — 100% free.",
+    "ctaButton": "Create QR Code Now",
+    "postCtaTitle": "Create Your Custom QR Code Now",
+    "postCtaDesc": "Design free high-resolution QR codes with logos, colors, and frames in under 2 minutes.",
+    "postCtaButton": "Open QR Generator",
+    "categories": {
+      "guides": "Guide",
+      "use-cases": "Use Case",
+      "design-tips": "Design Tips",
+      "industry": "Industry",
+      "comparisons": "Comparison",
+      "news": "News"
+    }
+  },
+  "scanner": {
+    "title": "Free Online QR Code Scanner",
+    "subtitle": "Scan with camera, upload image files, or paste screenshots directly.",
+    "features": {
+      "privateTitle": "100% Private",
+      "privateDesc": "Decoded locally",
+      "instantTitle": "Instant Scan",
+      "instantDesc": "Camera & files",
+      "aiTitle": "AI Deep Scan",
+      "aiDesc": "Dark & blur fix",
+      "freeTitle": "100% Free",
+      "freeDesc": "No app required"
+    },
+    "cameraTab": "Scan Camera",
+    "uploadTab": "Upload Image",
+    "startCamera": "Start Camera Scanner",
+    "stopCamera": "Stop Camera",
+    "dropImage": "Tap or Drag QR image here",
+    "pasteHint": "Press Ctrl+V anywhere to paste screenshot",
+    "scanning": "Scanning image...",
+    "decodedResult": "Decoded QR Code Result",
+    "copyContent": "Copy Content",
+    "openLink": "Open Website Link",
+    "connectWifi": "Copy WiFi Password",
+    "saveVCard": "Download Contact Card",
+    "sendEmail": "Send Email",
+    "callPhone": "Call Phone Number",
+    "sendSms": "Send SMS",
+    "openMap": "Open in Google Maps",
+    "scanHistory": "Recent Scans",
+    "clearHistory": "Clear History",
+    "historyTab": "History",
+    "scanNotice": "Scan Notice",
+    "cameraAccessRequired": "Camera Access Required",
+    "liveCameraScanner": "Live Camera Scanner",
+    "cameraBlockedDesc": "Camera was blocked or unavailable. Check browser permissions or switch to file upload.",
+    "cameraScanDesc": "Scan any QR code instantly in real-time using your phone or laptop camera.",
+    "retryCamera": "Retry Camera",
+    "uploadFile": "Upload File",
+    "cameraHint": "Point your camera viewfinder directly at any QR code.",
+    "decodedSuccessfully": "Decoded Successfully",
+    "wantCustomFrames": "Want custom frames, gradient colors, or company logos?",
+    "openInStudio": "Open in QR Studio",
+    "downloadHub": "Download & Export Hub",
+    "clearAll": "Clear All",
+    "couldNotRead": "Could Not Read QR Code",
+    "couldNotReadDesc": "We couldn't detect a clear QR code in this image. The code may be blurry, low-contrast, or cropped.",
+    "tryAnotherImage": "Try Another Image",
+    "scanWithCamera": "Scan with Camera",
+    "clearAndReturn": "Clear and return to dropzone",
+    "supportsFormats": "Supports PNG, JPG, WebP, SVG, and screenshot files.",
+    "ctrlVTip": "Tip: Press Ctrl+V to paste",
+    "uploadSavedImageDesc": "Upload a saved image or screenshot to decode full contents.",
+    "cameraPermissionDenied": "Camera permission denied. Please allow camera access in your browser settings and click Retry.",
+    "cameraNotFound": "No webcam or camera device detected on this computer. You can upload an image or press Ctrl+V to paste.",
+    "cameraHttpsRequired": "Camera access requires HTTPS. Please ensure you are browsing on a secure connection.",
+    "cameraUnavailable": "Camera is currently unavailable. Please verify browser permissions or upload an image instead.",
+    "noHistory": "No scans yet",
+    "cameraPermissionError": "Camera permission was denied or camera is unavailable.",
+    "noQrFound": "No QR code detected in this image. Try our AI Deep Scan.",
+    "aiDeepScan": "AI Deep Scan",
+    "guideTitle": "How to Scan a QR Code",
+    "guideSubtitle": "Quick native scanning instructions for all mobile devices without installing any apps.",
+    "iosTitle": "On iPhone & iPad (iOS)",
+    "iosDesc": "Open your native Camera app, hold your device steady over the QR code, and tap the yellow notification link that appears instantly.",
+    "androidTitle": "On Android Devices",
+    "androidDesc": "Open your native Camera app or tap Google Lens, frame the QR code in the viewfinder, and tap the action pill on screen.",
+    "supportedTitle": "Supported QR Content Types",
+    "supportedSub": "Our scanner automatically identifies and parses all standard QR formats.",
+    "formats": {
+      "urlsTitle": "Websites & URLs",
+      "urlsDesc": "Instant browser redirection",
+      "wifiTitle": "WiFi Networks",
+      "wifiDesc": "One-tap network connection",
+      "vcardTitle": "vCard Contacts",
+      "vcardDesc": "Add contact directly to phonebook",
+      "mapsTitle": "Maps & Geo",
+      "mapsDesc": "Instant Google Maps navigation",
+      "eventsTitle": "Calendar Events",
+      "eventsDesc": "Event summary, time, and location",
+      "textTitle": "Plain Text & JSON",
+      "textDesc": "Raw text data and serializations"
+    },
+    "ctaTitle": "Need to Create a Custom QR Code?",
+    "ctaDesc": "Generate high-resolution QR codes with logos, colors, gradients, and custom frames for free.",
+    "ctaButton": "Create a QR Code Now"
+  },
+  "landing": {
+    "heroTitle": "Free Custom QR Code Generator with Logo",
+    "heroSub": "Create stunning, high-resolution custom QR codes with 40+ dot styles, text frames, and brand logos. 100% free with vector SVG and PDF export.",
+    "stats": {
+      "dotStyles": "Matrix Dot Styles",
+      "frames": "Custom Text Frames",
+      "presets": "One-Click Presets",
+      "free": "Free · No Signup"
+    },
+    "trust": {
+      "rating": "Rated 4.9 / 5 by 2,840+ creators",
+      "iso": "ISO/IEC 18004 Compliant",
+      "private": "100% Private · Zero Tracking",
+      "commercial": "Free for Commercial Use"
+    },
+    "featuresHeading": "Everything You Need to Build Award-Winning QR Codes",
+    "featuresSub": "Unmatched design freedom meets enterprise-grade rendering engine.",
+    "features": {
+      "badge": "Why Choose GenerateCustomQR",
+      "card1Title": "39 Matrix Dot Styles",
+      "card1Desc": "From classic squares and smooth circles to diamonds, stars, lotus, sparkles, and fluid waves — customize every module pattern.",
+      "card2Title": "Smart Logo Embedding",
+      "card2Desc": "Upload your custom brand logo or pick from 46 preset icons (Instagram, WhatsApp, WiFi). Includes auto background padding & dot clearance.",
+      "card3Title": "High-Res PNG, SVG & PDF",
+      "card3Desc": "Export pixel-perfect PNGs up to 8192px, infinitely scalable SVG vectors for billboards, or print-ready 300 DPI PDFs — all free.",
+      "card4Title": "51 Decorative Frames",
+      "card4Desc": "Wrap your QR code in eye-catching text callouts, speech bubbles, ribbon banners, or ticket stubs with custom label text.",
+      "card5Title": "121 Ready Presets",
+      "card5Desc": "One-click designer presets for business cards, WiFi stickers, restaurant menus, social media, events, and retail packaging.",
+      "card6Title": "Batch CSV Generator",
+      "card6Desc": "Upload a CSV file to generate up to 500 custom QR codes in a single ZIP file. Map custom data and filenames effortlessly."
+    },
+    "formats": {
+      "badge": "Supported Formats",
+      "title": "Encode Anything Into a Scannable QR Code",
+      "sub": "From simple website URLs to digital business cards, encrypted WiFi credentials, and crypto payments.",
+      "makeCta": "Make {type} QR",
+      "items": {
+        "urlTitle": "Website URL",
+        "urlDesc": "Direct visitors to any web link",
+        "wifiTitle": "WiFi Credentials",
+        "wifiDesc": "Auto-connect without typing passwords",
+        "vcardTitle": "vCard Contact",
+        "vcardDesc": "Digital business card saved to contacts",
+        "emailTitle": "Email Message",
+        "emailDesc": "Pre-fill recipient, subject & body",
+        "smsTitle": "SMS Message",
+        "smsDesc": "Send SMS with pre-written text",
+        "phoneTitle": "Phone Call",
+        "phoneDesc": "Dial a phone number directly",
+        "eventTitle": "Calendar Event",
+        "eventDesc": "Add event to Google/Apple Calendar",
+        "textTitle": "Plain Text",
+        "textDesc": "Display raw text or notes on scan",
+        "locationTitle": "Maps Location",
+        "locationDesc": "Open Google Maps or coordinates",
+        "cryptoTitle": "Crypto Wallet",
+        "cryptoDesc": "Bitcoin, Ethereum, USDT transfers",
+        "paypalTitle": "PayPal Link",
+        "paypalDesc": "Receive payments or donations",
+        "appstoreTitle": "App Store",
+        "appstoreDesc": "Redirect to iOS or Android apps"
+      }
+    },
+    "tutorial": {
+      "badge": "Quick Tutorial"
+    },
+    "faqHeading": "Frequently Asked Questions",
+    "faq": {
+      "badge": "Got Questions?"
+    },
+    "howToHeading": "How to Create a Custom QR Code in 5 Steps"
+  },
+  "howToUse": {
+    "heroBadge": "Step-by-Step Guide",
+    "heroTitle": "How to Create a Custom QR Code — Complete Guide",
+    "heroSub": "Learn how to create, design, customize, and download free QR codes with logos, frames, and custom colors in 5 simple steps.",
+    "steps": [
+      {
+        "number": "01",
+        "emoji": "📝",
+        "title": "Choose Your Content Type",
+        "description": "Select from 12 content types: URL, Plain Text, WiFi credentials, vCard contact, Email, SMS, Phone, App Store link, Event (iCal), Crypto wallet, or batch CSV upload.",
+        "tags": ["URL", "WiFi", "vCard", "Email", "SMS", "Batch CSV"],
+        "hint": "Tip: Use vCard to create a scannable digital business card instantly."
+      },
+      {
+        "number": "02",
+        "emoji": "🎨",
+        "title": "Design Your QR Style",
+        "description": "Choose from 39 dot patterns (squares, circles, rounded, fluid, leaves, diamonds, and more), 28 eye frame shapes, and matching eyeball styles.",
+        "tags": ["39 Dot Styles", "28 Eye Frames", "Custom Colors"],
+        "hint": "Tip: Use rounded or circular dots for a modern, premium feel."
+      },
+      {
+        "number": "03",
+        "emoji": "🖼️",
+        "title": "Add Your Logo",
+        "description": "Upload a custom PNG/JPG/SVG logo or pick from 46 preset brand icons. Set logo size, padding color, and shape (square or circle).",
+        "tags": ["Custom Upload", "46 Presets", "Auto Error Correction"],
+        "hint": "Tip: Use a white or matching background pad around dark logos."
+      },
+      {
+        "number": "04",
+        "emoji": "✨",
+        "title": "Apply Frames & Effects",
+        "description": "Wrap your QR code in one of 51 text frames with custom label text and fonts. Add shadow effects, rounded corners, and background images.",
+        "tags": ["51 Text Frames", "Shadow Effects", "Background Canvas"],
+        "hint": "Tip: A simple bold frame with your website URL boosts engagement."
+      },
+      {
+        "number": "05",
+        "emoji": "⬇️",
+        "title": "Download & Share",
+        "description": "Export in PNG (up to 8K resolution), SVG (infinite vector scale), or PDF (print-ready). Batch mode exports all codes as a ZIP.",
+        "tags": ["PNG up to 8K", "SVG Vector", "PDF Print-Ready", "Batch ZIP"],
+        "hint": "Tip: Use SVG for print materials — scales to any size perfectly."
+      }
+    ]
+  },
+  "footer": {
+    "desc": "Create stunning, fully customizable QR codes with logo embedding. 100% free, no signup required, no expiration limits.",
+    "toolsHeading": "QR Code Tools",
+    "resourcesHeading": "Resources",
+    "legalHeading": "Legal",
+    "urlQR": "URL QR Code",
+    "wifiQR": "WiFi QR Code",
+    "vcardQR": "vCard / Contact QR",
+    "logoQR": "QR Code with Logo",
+    "eventQR": "Event (iCal) QR Code",
+    "emailQR": "Email QR Code",
+    "freeGenerator": "Free Generator",
+    "scanner": "QR Scanner",
+    "guide": "How to Make a QR Code",
+    "blog": "Blog",
+    "about": "About Us",
+    "contact": "Contact Support",
+    "privacy": "Privacy Policy",
+    "terms": "Terms & Conditions",
+    "copyright": "© {year} GenerateCustomQR. All rights reserved.",
+    "isoBadge": "ISO/IEC 18004 Standard Compliant"
+  }
+}

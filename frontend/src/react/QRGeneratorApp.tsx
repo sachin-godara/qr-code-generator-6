@@ -12,6 +12,7 @@ import React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import App from "./App";
 import { ErrorBoundary } from "./ErrorBoundary";
+import { TranslationProvider } from "@/i18n/useTranslation";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,12 +24,18 @@ const queryClient = new QueryClient({
   },
 });
 
-export default function QRGeneratorApp() {
+interface QRGeneratorAppProps {
+  locale?: string;
+}
+
+export default function QRGeneratorApp({ locale = 'en' }: QRGeneratorAppProps) {
   return (
     <ErrorBoundary>
-      <QueryClientProvider client={queryClient}>
-        <App />
-      </QueryClientProvider>
+      <TranslationProvider locale={locale}>
+        <QueryClientProvider client={queryClient}>
+          <App />
+        </QueryClientProvider>
+      </TranslationProvider>
     </ErrorBoundary>
   );
 }

@@ -9,8 +9,6 @@ readingTime: 6
 featured: false
 ---
 
-# WiFi QR Code for Hotels & Airbnb — Complete Setup Guide
-
 Every hotel guest and Airbnb visitor asks the same question: *"What's the WiFi password?"* A WiFi QR code eliminates this friction entirely — guests scan once and connect instantly.
 
 ## Why Hotels & Airbnb Need WiFi QR Codes
@@ -168,3 +166,4 @@ Ready to stop answering "What's the WiFi password?" forever?
 - [Create a WiFi QR code →](/wifi-qr-code)
 - [Create a vCard for your business card →](/vcard-qr-code)
 - [Learn QR code design best practices →](/blog/qr-code-design-best-practices-for-print)
+

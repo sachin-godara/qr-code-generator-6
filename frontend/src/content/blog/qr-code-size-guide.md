@@ -9,8 +9,6 @@ readingTime: 6
 featured: false
 ---
 
-# QR Code Size Guide — How Big Should a QR Code Be?
-
 One of the most common questions when creating a QR code is: *"How big does it need to be?"* The answer depends on where you're placing it, how far away people will scan it, and how much data the code contains.
 
 This guide provides definitive sizing recommendations for every common use case.
@@ -111,3 +109,4 @@ Ready to generate a QR code at the perfect size? [GenerateCustomQR](/) lets you 
 - [Create a WiFi QR code →](/wifi-qr-code)
 - [Create a vCard QR code →](/vcard-qr-code)
 - [Learn print best practices →](/blog/qr-code-design-best-practices-for-print)
+

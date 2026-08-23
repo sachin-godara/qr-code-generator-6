@@ -9,8 +9,6 @@ readingTime: 7
 featured: true
 ---
 
-# QR Code Color Guide — Best Colors for Scannability
-
 Customizing your QR code's colors is one of the easiest ways to match your brand. But not all color combinations are scanner-friendly. This guide explains the science behind QR code colors and gives you safe, tested combinations.
 
 ## The Golden Rule: Dark on Light
@@ -170,3 +168,4 @@ Ready to design a QR code in your brand colors? [GenerateCustomQR](/) gives you 
 - [Start designing →](/)
 - [Learn about print sizing →](/blog/qr-code-size-guide)
 - [See print best practices →](/blog/qr-code-design-best-practices-for-print)
+

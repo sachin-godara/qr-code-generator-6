@@ -2,8 +2,10 @@ import { useState, useRef, type RefObject } from "react";
 import { useQRStore } from "@/store/useQRStore";
 import { StylePreviewCard } from "@/components/previews/StylePreviewCard";
 import { DOT_STYLES, EYE_FRAME_STYLES, EYEBALL_STYLES } from "@/data/options";
+import { useTranslation } from "@/i18n/useTranslation";
 
 export function DesignPanel() {
+  const { t } = useTranslation();
   const { settings, updateSettings } = useQRStore();
   
   const [activeCorner, setActiveCorner] = useState<"all" | "tl" | "tr" | "bl">("all");
@@ -25,13 +27,13 @@ export function DesignPanel() {
       {isGradientActive && (
         <div className="flex items-center gap-2 p-3 bg-primary/5 border border-primary/15 rounded-lg text-xs font-medium text-primary">
           <span className="material-symbols-outlined text-base">palette</span>
-          <span>Gradient Effect Active (<strong>{settings.gradient_type}</strong>). Showing both foreground start and end colors below:</span>
+          <span>{t("studio.design.gradient")}: <strong>{settings.gradient_type}</strong></span>
         </div>
       )}
       <div className={`grid grid-cols-1 ${isGradientActive ? 'sm:grid-cols-2 xl:grid-cols-3' : 'sm:grid-cols-2'} gap-6`}>
         <div className="flex flex-col h-full">
           <div className="section-label block mb-2">
-            {isGradientActive ? "Foreground (Start)" : "Foreground Color"}
+            {isGradientActive ? `${t("studio.design.foreground")} (Start)` : t("studio.design.foreground")}
           </div>
           <div className="flex items-center gap-2 h-11 px-1 mt-auto border border-outline-variant rounded-lg bg-white focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-shadow">
             <input name="input_field_d14b1075" aria-label="Input Field"
@@ -71,7 +73,7 @@ export function DesignPanel() {
 
         <div className="flex flex-col h-full">
           <div className="flex justify-between items-center gap-1 mb-2">
-            <div className="section-label block truncate">Background</div>
+            <div className="section-label block truncate">{t("studio.design.background")}</div>
             <label className="flex items-center gap-1.5 text-xs font-semibold cursor-pointer select-none px-2 py-1 rounded-full bg-surface-variant text-on-surface-variant hover:bg-outline-variant/30 transition-colors shrink-0">
               <input name="input_field_f5329e44" aria-label="Input Field"
                 type="checkbox"
@@ -79,7 +81,7 @@ export function DesignPanel() {
                 onChange={(e) => updateSettings({ bg_transparent: e.target.checked, ...(e.target.checked ? { effect_shadow: "none" } as any : {}) })}
                 className="w-3.5 h-3.5 rounded border-outline text-primary focus:ring-primary accent-primary cursor-pointer"
               />
-              <span>Transparent</span>
+              <span>{t("studio.design.transparent")}</span>
             </label>
           </div>
           <div className={`flex items-center gap-2 h-11 px-1 mt-auto border border-outline-variant rounded-lg bg-white focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-shadow ${settings.bg_transparent ? 'opacity-40 pointer-events-none' : ''}`}>
@@ -100,7 +102,7 @@ export function DesignPanel() {
       </div>
 
       <div className="space-y-3 border-t border-outline-variant/30 pt-4 mt-4">
-        <div className="section-label block mb-1">Dot Style</div>
+        <div className="section-label block mb-1">{t("studio.design.dotPattern")}</div>
         <div className="relative group">
           <button
             type="button"
@@ -136,7 +138,7 @@ export function DesignPanel() {
 
       <div className="space-y-3 border-t border-outline-variant/30 pt-4 mt-4">
         <div className="flex justify-between items-center mb-1">
-          <div className="section-label block">Eyes Customization</div>
+          <div className="section-label block">{t("studio.design.customEyes") || "Eyes Customization"}</div>
           <label className="flex items-center gap-2 text-xs font-semibold cursor-pointer select-none px-2.5 py-1 rounded-full bg-surface-variant text-on-surface-variant hover:bg-outline-variant/30 transition-colors">
             <input name="input_field_dfafa1b6" aria-label="Input Field"
               type="checkbox"
@@ -147,7 +149,7 @@ export function DesignPanel() {
               }}
               className="w-3.5 h-3.5 rounded border-outline text-primary focus:ring-primary accent-primary cursor-pointer"
             />
-            <span>Link Eyes</span>
+            <span>{t("studio.design.linkEyes") || "Link Eyes"}</span>
           </label>
         </div>
 
@@ -163,13 +165,13 @@ export function DesignPanel() {
                     : 'bg-surface border-outline-variant text-on-surface-variant hover:bg-surface-variant'
                   }`}
               >
-                {corner === 'tl' ? 'Top Left' : corner === 'tr' ? 'Top Right' : 'Bottom Left'}
+                {corner === 'tl' ? (t("studio.design.cornerTL") || 'Top Left') : corner === 'tr' ? (t("studio.design.cornerTR") || 'Top Right') : (t("studio.design.cornerBL") || 'Bottom Left')}
               </button>
             ))}
           </div>
         )}
 
-        <div className="text-xs font-semibold text-on-surface-variant mb-1 block">Frame Style</div>
+        <div className="text-xs font-semibold text-on-surface-variant mb-1 block">{t("studio.design.eyeFrameStyle") || "Frame Style"}</div>
         <div className="relative group mb-4">
           <button
             type="button"
@@ -214,7 +216,7 @@ export function DesignPanel() {
           </button>
         </div>
 
-        <div className="text-xs font-semibold text-on-surface-variant mb-1 block">Eyeball Style</div>
+        <div className="text-xs font-semibold text-on-surface-variant mb-1 block">{t("studio.design.eyeballStyle") || "Eyeball Style"}</div>
         <div className="relative group mb-4">
           <button
             type="button"
@@ -264,7 +266,7 @@ export function DesignPanel() {
           <div className="space-y-2">
             <div className="section-label flex items-center gap-1.5 mb-1">
               <span className="w-2 h-2 rounded-full border-2 border-primary inline-block"></span>
-              Eye Frame Color
+              {t("studio.design.eyeFrameColor") || "Eye Frame Color"}
             </div>
             <div className="flex items-center gap-2">
               <input name="input_field_3890e682" aria-label="Input Field"
@@ -315,7 +317,7 @@ export function DesignPanel() {
           <div className="space-y-2">
             <div className="section-label flex items-center gap-1.5 mb-1">
               <span className="w-2 h-2 rounded-full bg-primary inline-block"></span>
-              Eyeball Color
+              {t("studio.design.eyeballColor") || "Eyeball Color"}
             </div>
             <div className="flex items-center gap-2">
               <input name="input_field_697bbf88" aria-label="Input Field"

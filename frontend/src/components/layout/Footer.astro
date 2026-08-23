@@ -1,5 +1,31 @@
 ---
+import { getLocaleFromUrl, getLocalizedUrl, t } from '../../i18n/utils';
+import { type Locale } from '../../i18n/config';
+
+interface Props {
+  locale?: Locale;
+}
+
+const currentLocale = (Astro.props.locale || getLocaleFromUrl(Astro.url)) as Locale;
 const currentYear = new Date().getFullYear();
+
+const homeUrl = getLocalizedUrl(currentLocale, '/');
+const urlQrUrl = getLocalizedUrl(currentLocale, '/url-qr-code-generator');
+const wifiQrUrl = getLocalizedUrl(currentLocale, '/wifi-qr-code');
+const vcardQrUrl = getLocalizedUrl(currentLocale, '/vcard-qr-code');
+const logoQrUrl = getLocalizedUrl(currentLocale, '/qr-code-with-logo');
+const eventQrUrl = getLocalizedUrl(currentLocale, '/event-qr-code');
+const emailQrUrl = getLocalizedUrl(currentLocale, '/email-qr-code');
+const freeGenUrl = getLocalizedUrl(currentLocale, '/free-qr-code-generator');
+const scannerUrl = getLocalizedUrl(currentLocale, '/qr-code-scanner');
+
+const howToUrl = getLocalizedUrl(currentLocale, '/how-to-use');
+const blogUrl = getLocalizedUrl(currentLocale, '/blog');
+const aboutUrl = getLocalizedUrl(currentLocale, '/about');
+const contactUrl = getLocalizedUrl(currentLocale, '/contact');
+
+const privacyUrl = getLocalizedUrl(currentLocale, '/privacy-policy');
+const termsUrl = getLocalizedUrl(currentLocale, '/terms');
 ---
 <!-- PREMIUM SEO FOOTER -->
 <footer class="border-t border-outline-variant/60 bg-surface-container-lowest mt-auto">
@@ -10,7 +36,7 @@ const currentYear = new Date().getFullYear();
       
       <!-- Brand & Description -->
       <div class="space-y-4 lg:col-span-1">
-        <a href="/" class="flex items-center gap-2 group" aria-label="GenerateCustomQR homepage">
+        <a href={homeUrl} class="flex items-center gap-2 group" aria-label="GenerateCustomQR homepage">
           <div class="w-8 h-8 flex-shrink-0">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="w-full h-full drop-shadow-sm">
               <defs>
@@ -36,42 +62,48 @@ const currentYear = new Date().getFullYear();
           <span class="text-xl font-black tracking-tight text-on-surface">GenerateCustomQR</span>
         </a>
         <p class="text-sm text-on-surface-variant leading-relaxed">
-          Create stunning, fully customizable QR codes with logo embedding. 100% free, no signup required, no expiration limits.
+          {t(currentLocale, 'footer.desc')}
         </p>
       </div>
 
       <!-- Product Links -->
       <nav class="space-y-4" aria-label="QR Code Tools">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">QR Code Tools</h3>
+        <h3 class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">
+          {t(currentLocale, 'footer.toolsHeading')}
+        </h3>
         <ul class="space-y-3">
-          <li><a href="/url-qr-code-generator" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">URL QR Code</a></li>
-          <li><a href="/wifi-qr-code" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">WiFi QR Code</a></li>
-          <li><a href="/vcard-qr-code" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">vCard / Contact QR</a></li>
-          <li><a href="/qr-code-with-logo" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">QR Code with Logo</a></li>
-          <li><a href="/event-qr-code" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">Event (iCal) QR Code</a></li>
-          <li><a href="/email-qr-code" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">Email QR Code</a></li>
-          <li><a href="/free-qr-code-generator" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">Free Generator</a></li>
-          <li><a href="/qr-code-scanner" class="text-sm font-bold text-primary hover:text-primary-hover transition-colors flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">qr_code_scanner</span> QR Scanner</a></li>
+          <li><a href={urlQrUrl} class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">{t(currentLocale, 'footer.urlQR')}</a></li>
+          <li><a href={wifiQrUrl} class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">{t(currentLocale, 'footer.wifiQR')}</a></li>
+          <li><a href={vcardQrUrl} class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">{t(currentLocale, 'footer.vcardQR')}</a></li>
+          <li><a href={logoQrUrl} class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">{t(currentLocale, 'footer.logoQR')}</a></li>
+          <li><a href={eventQrUrl} class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">{t(currentLocale, 'footer.eventQR')}</a></li>
+          <li><a href={emailQrUrl} class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">{t(currentLocale, 'footer.emailQR')}</a></li>
+          <li><a href={freeGenUrl} class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">{t(currentLocale, 'footer.freeGenerator')}</a></li>
+          <li><a href={scannerUrl} class="text-sm font-bold text-primary hover:text-primary-hover transition-colors flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">qr_code_scanner</span> {t(currentLocale, 'footer.scanner')}</a></li>
         </ul>
       </nav>
 
       <!-- Resources Links -->
       <nav class="space-y-4" aria-label="Resources">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Resources</h3>
+        <h3 class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">
+          {t(currentLocale, 'footer.resourcesHeading')}
+        </h3>
         <ul class="space-y-3">
-          <li><a href="/how-to-use" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">How to Make a QR Code</a></li>
-          <li><a href="/blog" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">Blog</a></li>
-          <li><a href="/about" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">About Us</a></li>
-          <li><a href="/contact" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">Contact Support</a></li>
+          <li><a href={howToUrl} class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">{t(currentLocale, 'footer.guide')}</a></li>
+          <li><a href={blogUrl} class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">{t(currentLocale, 'footer.blog')}</a></li>
+          <li><a href={aboutUrl} class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">{t(currentLocale, 'footer.about')}</a></li>
+          <li><a href={contactUrl} class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">{t(currentLocale, 'footer.contact')}</a></li>
         </ul>
       </nav>
 
       <!-- Legal Links -->
       <nav class="space-y-4" aria-label="Legal">
-        <h3 class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Legal</h3>
+        <h3 class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">
+          {t(currentLocale, 'footer.legalHeading')}
+        </h3>
         <ul class="space-y-3">
-          <li><a href="/privacy-policy" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">Privacy Policy</a></li>
-          <li><a href="/terms" class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">Terms & Conditions</a></li>
+          <li><a href={privacyUrl} class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">{t(currentLocale, 'footer.privacy')}</a></li>
+          <li><a href={termsUrl} class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">{t(currentLocale, 'footer.terms')}</a></li>
         </ul>
       </nav>
 
@@ -80,12 +112,12 @@ const currentYear = new Date().getFullYear();
     <!-- Copyright & Standards Badge -->
     <div class="border-t border-outline-variant/40 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 pb-24 lg:pb-0">
       <div class="flex items-center gap-2">
-        <p class="text-xs text-on-surface-variant font-medium">&copy; {currentYear} GenerateCustomQR. All rights reserved.</p>
+        <p class="text-xs text-on-surface-variant font-medium">{t(currentLocale, 'footer.copyright', { year: currentYear })}</p>
       </div>
 
       <div class="flex items-center gap-2 text-[11px] font-bold text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200">
         <span class="material-symbols-outlined text-[14px]">verified</span>
-        <span>ISO/IEC 18004 Standard Compliant</span>
+        <span>{t(currentLocale, 'footer.isoBadge')}</span>
       </div>
     </div>
   </div>

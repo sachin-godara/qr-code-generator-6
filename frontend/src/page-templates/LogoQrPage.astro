@@ -1,0 +1,377 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import QRGeneratorApp from '../react/QRGeneratorApp';
+import Footer from '../components/layout/Footer.astro';
+import { type Locale } from '../i18n/config';
+import { getLocalizedUrl, t } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const metaMap: Record<Locale, {
+  title: string;
+  desc: string;
+  badge: string;
+  specsTitle: string;
+  specs: Array<{ icon: string; title: string; desc: string }>;
+  stepsTitle: string;
+  steps: Array<{ icon: string; title: string; desc: string }>;
+  featuresTitle: string;
+  features: Array<{ icon: string; title: string; desc: string }>;
+  tipsTitle: string;
+  tips: Array<{ icon: string; title: string; desc: string }>;
+  faqsTitle: string;
+  faqs: Array<{ q: string; a: string }>;
+  otherToolsTitle: string;
+  ctaTitle: string;
+  ctaDesc: string;
+  ctaBtn: string;
+}> = {
+  en: {
+    title: "QR Code with Logo Generator — Custom Branded QR Codes",
+    desc: "Create custom QR codes with your logo embedded in the center for free. Automatically balances error correction for 100% reliable scanning.",
+    badge: "Custom Logo Embedding",
+    specsTitle: "Key Technical Capabilities",
+    specs: [
+      { icon: "verified_user", title: "Automatic Level H Error Recovery", desc: "Allows up to 30% of the matrix modules to be covered by your logo without losing any scannability." },
+      { icon: "layers", title: "Smart Cushion Clearance Padding", desc: "Automatic background padding prevents QR dot modules from encroaching on or blurring your brand icon." },
+      { icon: "crop_square", title: "Square & Rounded Badge Shapes", desc: "Embed your logo inside circular badges, smooth rounded rectangles, or transparent floating cards." },
+      { icon: "brand_family", title: "46 Preset Icons + Custom Upload", desc: "One-click presets for Instagram, WhatsApp, TikTok, YouTube, plus instant PNG/SVG vector upload." }
+    ],
+    stepsTitle: "How to Add a Logo to Your QR Code in 4 Steps",
+    steps: [
+      { icon: "edit", title: "1. Enter Content", desc: "Type your destination URL, text, WiFi, or vCard details." },
+      { icon: "image", title: "2. Upload Brand Logo", desc: "Upload your company PNG/SVG or pick from 46 brand presets." },
+      { icon: "tune", title: "3. Adjust Logo Card", desc: "Select badge shape, margin padding, and background clearance." },
+      { icon: "download", title: "4. Export Vector", desc: "Download in high-res PNG, vector SVG, or print-ready PDF." }
+    ],
+    featuresTitle: "Logo Customization Features",
+    features: [
+      { icon: "verified_user", title: "Auto Level H Correction", desc: "Automatically elevates error correction so up to 30% of the code can be covered by your logo with zero scanning issues." },
+      { icon: "crop_square", title: "Square & Circular Cards", desc: "Fit your logo into clean square or rounded circular badges with customizable margin spacing." },
+      { icon: "auto_fix_high", title: "Smart Background Padding", desc: "Adds clean white or theme-matched padding to ensure the logo never blends into QR dots." },
+      { icon: "brand_family", title: "46 Preset Brand Icons", desc: "One-click icons for Instagram, WhatsApp, TikTok, YouTube, LinkedIn, Spotify, Apple, and more." }
+    ],
+    tipsTitle: "Best Practices for QR Codes with Logo",
+    tips: [
+      { icon: "visibility", title: "Keep Logo Centered & Sized at 20–25%", desc: "A logo size between 20% and 25% of the total QR width maximizes brand visibility while maintaining 100% scan speed." },
+      { icon: "palette", title: "Use Transparent PNG or SVG", desc: "Logos with transparent backgrounds look cleaner and integrate seamlessly with custom QR color themes." },
+      { icon: "contrast", title: "Preserve Contrast Around Badge", desc: "Always keep a light background cushion around dark logos to prevent dot interference." },
+      { icon: "verified", title: "Test with Phone Cameras", desc: "Always perform a test scan on both iOS and Android before printing large batches." }
+    ],
+    faqsTitle: "Frequently Asked Questions About Logo QR Codes",
+    faqs: [
+      { q: "Will my QR code still scan reliably if I add a logo?", a: "Yes! GenerateCustomQR automatically elevates Error Correction to Level H (High), allowing up to 30% of the visual matrix to be replaced by your logo card while remaining 100% scannable by all smartphones." },
+      { q: "What logo file formats are supported?", a: "You can upload PNG, JPG, WebP, and vector SVG files. Transparent PNG and SVG vector files give the highest quality results." },
+      { q: "Can I customize the logo background shape?", a: "Yes! You can choose between square, rounded rectangle, or circular badge backgrounds, and customize the clearance margin." },
+      { q: "Is the logo feature 100% free with no watermarks?", a: "Yes, completely free for personal and commercial branding with zero watermarks and no account registration." }
+    ],
+    otherToolsTitle: "Explore Other Free QR Code Tools",
+    ctaTitle: "Ready to Brand Your QR Code?",
+    ctaDesc: "Create custom QR codes with your logo in the center in seconds. Free SVG, PDF, and PNG downloads.",
+    ctaBtn: "Create QR Code with Logo Now ↑"
+  },
+  es: {
+    title: "Generador de Códigos QR con Logo — Personaliza tu Marca",
+    desc: "Crea códigos QR con el logo de tu empresa en el centro gratis. Ajuste automático de corrección de error para un escaneo 100% fiable.",
+    badge: "Inserción de Logotipo",
+    specsTitle: "Capacidades Técnicas Clave",
+    specs: [
+      { icon: "verified_user", title: "Corrección Nivel H Automática", desc: "Permite cubrir hasta el 30% de la superficie con el logo manteniendo 100% de legibilidad en todos los móviles." },
+      { icon: "layers", title: "Respiro Protector Inteligente", desc: "Evita que los puntos del código toquen el logo garantizando un contraste visual perfecto." },
+      { icon: "crop_square", title: "Insignias Redondas y Cuadradas", desc: "Enmarca el logotipo en tarjetas circulares, cuadradas o transparentes según el diseño corporativo." },
+      { icon: "brand_family", title: "46 Iconos Listos + Subida Propia", desc: "Iconos en un clic de WhatsApp, Instagram, YouTube, TikTok y subida de archivos SVG/PNG." }
+    ],
+    stepsTitle: "Cómo Añadir un Logo a tu Código QR en 4 Pasos",
+    steps: [
+      { icon: "edit", title: "1. Introduce el Contenido", desc: "Escribe tu URL, texto, datos de WiFi o tarjeta vCard." },
+      { icon: "image", title: "2. Sube tu Logotipo", desc: "Sube un archivo PNG/SVG o elige entre 46 iconos de marca." },
+      { icon: "tune", title: "3. Ajusta la Insignia", desc: "Elige forma cuadrada o circular con fondo protector." },
+      { icon: "download", title: "4. Descarga en Vector", desc: "Exporta en PNG de alta resolución, SVG o PDF listo para imprenta." }
+    ],
+    featuresTitle: "Funciones para Personalizar Logos",
+    features: [
+      { icon: "verified_user", title: "Corrección Nivel H Automática", desc: "Permite cubrir hasta el 30% de la superficie con el logo manteniendo 100% de legibilidad." },
+      { icon: "crop_square", title: "Tarjetas Cuadradas o Circulares", desc: "Adapta el logo en insignias con bordes redondeados y espaciado perfecto." },
+      { icon: "auto_fix_high", title: "Respiro Protector Inteligente", desc: "Evita que los puntos del código toquen el logo garantizando un contraste óptimo." },
+      { icon: "brand_family", title: "46 Iconos de Marcas", desc: "Iconos en un clic de Instagram, WhatsApp, TikTok, YouTube, LinkedIn y más." }
+    ],
+    tipsTitle: "Consejos para Códigos QR con Logo",
+    tips: [
+      { icon: "visibility", title: "Tamaño Recomendado: 20–25%", desc: "Un tamaño de logo de entre el 20% y 25% del ancho del código asegura máxima legibilidad." },
+      { icon: "palette", title: "Usa PNG con Fondo Transparente", desc: "Los logos con transparencia se integran mejor con los colores del código." },
+      { icon: "contrast", title: "Mantén el Respiro Protector", desc: "El fondo blanco o de contraste alrededor del logo evita que los puntos interfieran." },
+      { icon: "verified", title: "Comprueba el Escaneo", desc: "Prueba siempre el escaneo con la cámara del móvil antes de imprimir." }
+    ],
+    faqsTitle: "Preguntas Frecuentes sobre Códigos QR con Logo",
+    faqs: [
+      { q: "¿El código QR se seguirá leyendo al añadir un logo?", a: "¡Sí! Nuestro generador activa automáticamente la corrección de error nivel H (Alta) para garantizar lectura en todos los móviles." },
+      { q: "¿Qué formatos de imagen se aceptan?", a: "Puedes subir archivos en PNG, JPG, WebP y SVG vectorial con máxima resolución." },
+      { q: "¿Es gratis para uso comercial?", a: "Sí, 100% gratis y sin marcas de agua ni limitaciones." },
+      { q: "¿Puedo cambiar la forma del fondo del logo?", a: "Sí, puedes elegir forma redonda, cuadrada o rectangular con margen protector ajustable." }
+    ],
+    otherToolsTitle: "Explora Otras Herramientas QR Gratuitas",
+    ctaTitle: "¿Listo para Personalizar tu Código QR con Logo?",
+    ctaDesc: "Crea códigos QR con la marca de tu empresa en el centro en segundos. Descarga gratis en SVG y PNG.",
+    ctaBtn: "Crear Código QR con Logo Ahora ↑"
+  },
+  pt: {
+    title: "Gerador de QR Code com Logotipo Grátis — Marca Personalizada",
+    desc: "Crie QR codes profissionais com o logotipo da sua empresa no centro. Correção de erro inteligente para leitura 100% precisa em qualquer aparelho.",
+    badge: "Logotipo Personalizado",
+    specsTitle: "Recursos Técnicos Avançados",
+    specs: [
+      { icon: "verified_user", title: "Correção Nível H Automática", desc: "Garante recuperação de até 30% do código coberto pelo logotipo sem falhas de leitura." },
+      { icon: "layers", title: "Margem de Respiro Protetora", desc: "Fundo protetor que isola o logotipo para não misturar com os pontos do QR code." },
+      { icon: "crop_square", title: "Molduras Redondas e Quadradas", desc: "Enquadre seu logo em emblemas circulares ou retangulares refinados." },
+      { icon: "brand_family", title: "46 Ícones de Redes + Envio Próprio", desc: "Ícones em um clique do Instagram, WhatsApp, YouTube e envio de arquivos SVG/PNG." }
+    ],
+    stepsTitle: "Como Adicionar Logo ao QR Code em 4 Passos",
+    steps: [
+      { icon: "edit", title: "1. Insira o Conteúdo", desc: "Digite sua URL ou informações no estúdio." },
+      { icon: "image", title: "2. Envie o Logotipo", desc: "Envie imagem PNG/SVG ou use ícones prontos." },
+      { icon: "tune", title: "3. Ajuste o Respiro", desc: "Defina a borda e o formato redondo ou quadrado." },
+      { icon: "download", title: "4. Baixe em Alta Definição", desc: "Exporte em PNG, SVG ou PDF para gráfica." }
+    ],
+    featuresTitle: "Recursos de Logotipo",
+    features: [
+      { icon: "verified_user", title: "Correção Nivel H Automática", desc: "Eleva a recuperação de erro para 30%, garantindo leitura imediata com logo central." },
+      { icon: "crop_square", title: "Emblema Redondo ou Quadrado", desc: "Enquadre seu logo em formatos elegantes com espaçamento refinado." },
+      { icon: "auto_fix_high", title: "Margem de Respiro Automática", desc: "Gera um fundo protetor que impede que os pontos invadam seu logotipo." },
+      { icon: "brand_family", title: "46 Ícones de Redes e Marcas", desc: "Logotipos prontos para Instagram, WhatsApp, TikTok, YouTube, Spotify e LinkedIn." }
+    ],
+    tipsTitle: "Dicas para QR Codes com Logo",
+    tips: [
+      { icon: "visibility", title: "Tamanho Proporcional: 20–25%", desc: "Um logotipo cobrindo de 20% a 25% da área total proporciona equilíbrio perfeito entre visibilidade e leitura rápida." },
+      { icon: "palette", title: "Prefira PNG com Fundo Transparente", desc: "Imagens transparentes criam um resultado mais profissional e integrado às cores do código." },
+      { icon: "contrast", title: "Preserve a Margem de Proteção", desc: "Mantenha o respiro de fundo para que os módulos escuros não toquem no desenho do logo." },
+      { icon: "verified", title: "Faça Leitura de Teste", desc: "Teste a leitura com a câmera do celular antes de iniciar grandes impressões." }
+    ],
+    faqsTitle: "Dúvidas sobre QR Code com Logo",
+    faqs: [
+      { q: "O QR code funcionará perfeitamente com logo?", a: "Sim! A ferramenta ativa o nível H de correção de erro, permitindo leitura precisa em todos os celulares." },
+      { q: "Quais formatos de arquivo são aceitos?", a: "Aceitamos PNG, JPG, WebP e SVG vetorial." },
+      { q: "É gratuito para uso comercial?", a: "Sim, 100% gratuito sem qualquer cobrança ou marca d'água." },
+      { q: "Posso escolher o formato do fundo do logo?", a: "Sim, você pode alternar entre fundo redondo, quadrado ou retangular com margem personalizada." }
+    ],
+    otherToolsTitle: "Conheça Outras Ferramentas QR Gratuitas",
+    ctaTitle: "Pronto para Criar seu QR Code com Logo?",
+    ctaDesc: "Personalize seu código com a identidade da sua marca em segundos.",
+    ctaBtn: "Criar QR Code com Logo Agora ↑"
+  },
+  de: {
+    title: "QR-Code mit Logo Generator — Eigenes Firmenlogo einbinden",
+    desc: "Erstellen Sie kostenlose QR-Codes mit Ihrem Logo im Zentrum. Automatische Fehlerkorrektur auf Level H für 100% zuverlässige Scans.",
+    badge: "Logo-Integration",
+    specsTitle: "Wichtige technische Merkmale",
+    specs: [
+      { icon: "verified_user", title: "Automatische Fehlerkorrektur H", desc: "Ermöglicht bis zu 30% Flächenabdeckung durch das Logo ohne Einbußen bei der Lesbarkeit." },
+      { icon: "layers", title: "Intelligenter Schutzabstand", desc: "Verhindert störende Überlappungen zwischen QR-Punkten und Ihrem Firmenlogo." },
+      { icon: "crop_square", title: "Quadratische & runde Formen", desc: "Passen Sie die Logokarte harmonisch an das Gesamtbild Ihres Codes an." },
+      { icon: "brand_family", title: "46 Marken-Symbole + Upload", desc: "1-Klick-Symbole für WhatsApp, Instagram, YouTube sowie eigener SVG/PNG Upload." }
+    ],
+    stepsTitle: "So fügen Sie ein Logo in 4 Schritten ein",
+    steps: [
+      { icon: "edit", title: "1. Inhalt eingeben", desc: "URL, Text, WLAN oder Kontaktdaten im Generator eintragen." },
+      { icon: "image", title: "2. Logo hochladen", desc: "Eigenes PNG/SVG hochladen oder aus 46 Vorlagen wählen." },
+      { icon: "tune", title: "3. Schutzabstand anpassen", desc: "Größe und Form (rund/eckig) festlegen." },
+      { icon: "download", title: "4. Vektor herunterladen", desc: "Als PNG, SVG oder druckfertiges PDF exportieren." }
+    ],
+    featuresTitle: "Logo-Funktionen",
+    features: [
+      { icon: "verified_user", title: "Automatische Fehlerkorrektur H", desc: "Ermöglicht bis zu 30% Flächenabdeckung durch das Logo ohne Einbußen bei der Lesbarkeit." },
+      { icon: "crop_square", title: "Quadratische & runde Formen", desc: "Passen Sie die Logokarte harmonisch an das Gesamtbild Ihres Codes an." },
+      { icon: "auto_fix_high", title: "Intelligenter Schutzabstand", desc: "Verhindert störende Überlappungen zwischen QR-Punkten und Logo." },
+      { icon: "brand_family", title: "46 Marken-Symbole", desc: "1-Klick-Symbole für Instagram, WhatsApp, YouTube, LinkedIn, Spotify u.v.m." }
+    ],
+    tipsTitle: "Tipps für QR-Codes mit Logo",
+    tips: [
+      { icon: "visibility", title: "Empfohlene Größe: 20–25%", desc: "Eine Logogröße von 20% bis 25% der Gesamtbreite gewährleistet optimale Lesbarkeit." },
+      { icon: "palette", title: "Transparente PNG-Dateien nutzen", desc: "Logos ohne Hintergrund fügen sich nahtlos in das Farbdesign Ihres Codes ein." },
+      { icon: "contrast", title: "Schutzzone beibehalten", desc: "Eine helle Schutzzone um das Logo verhindert störende Kantenüberlappungen." },
+      { icon: "verified", title: "Smartphone-Scan durchführen", desc: "Testen Sie den Code vor Druckaufträgen mit mehreren Geräten." }
+    ],
+    faqsTitle: "Häufige Fragen zu Logo-QR-Codes",
+    faqs: [
+      { q: "Bleibt der QR-Code mit Logo fehlerfrei scanbar?", a: "Ja! Unsere Engine schaltet automatisch auf Level H um, sodass alle Smartphones den Code sofort erfassen." },
+      { q: "Welche Dateiformate werden unterstützt?", a: "Sie können PNG-, JPG-, WebP- und SVG-Dateien hochladen." },
+      { q: "Ist die Logo-Funktion kostenlos?", a: "Ja, zu 100% kostenlos ohne Wasserzeichen oder Limits." },
+      { q: "Kann die Form des Logo-Hintergrunds gewählt werden?", a: "Ja, Sie können zwischen runden, quadratischen und abgerundeten Kartenformen wählen." }
+    ],
+    otherToolsTitle: "Weitere kostenlose QR-Code Tools",
+    ctaTitle: "Bereit für Ihren Marken-QR-Code?",
+    ctaDesc: "Erstellen Sie individuelle QR-Codes mit Ihrem Logo im Zentrum in wenigen Sekunden.",
+    ctaBtn: "Jetzt QR-Code mit Logo erstellen ↑"
+  }
+};
+
+const pageMeta = metaMap[locale] || metaMap.en;
+
+const breadcrumbs = [
+  { name: t(locale, 'nav.generator'), url: getLocalizedUrl(locale, '/') },
+  { name: t(locale, 'footer.logoQR'), url: getLocalizedUrl(locale, '/qr-code-with-logo') }
+];
+
+const relatedTools = [
+  { icon: "link", title: "URL to QR", desc: "Website links & portfolios", url: getLocalizedUrl(locale, '/url-qr-code-generator') },
+  { icon: "wifi", title: "WiFi QR", desc: "1-tap wifi connections", url: getLocalizedUrl(locale, '/wifi-qr-code') },
+  { icon: "contact_page", title: "vCard QR", desc: "Digital business cards", url: getLocalizedUrl(locale, '/vcard-qr-code') },
+  { icon: "event", title: "Event QR", desc: "Save dates to calendars", url: getLocalizedUrl(locale, '/event-qr-code') },
+  { icon: "mail", title: "Email QR", desc: "Pre-filled email drafts", url: getLocalizedUrl(locale, '/email-qr-code') },
+  { icon: "qr_code_scanner", title: "QR Scanner", desc: "Camera & image decoder", url: getLocalizedUrl(locale, '/qr-code-scanner') }
+];
+
+const howTo = {
+  name: pageMeta.title,
+  description: pageMeta.desc,
+  steps: pageMeta.steps.map((s, idx) => ({ name: `${idx + 1}. ${s.title}`, text: s.desc }))
+};
+
+const faqs = pageMeta.faqs;
+---
+<BaseLayout
+  locale={locale}
+  title={pageMeta.title}
+  description={pageMeta.desc}
+  breadcrumbs={breadcrumbs}
+  howTo={howTo}
+  faqs={faqs}
+>
+  <style is:global>
+    @import '../styles/global.css';
+  </style>
+
+  <main id="generator">
+    <QRGeneratorApp client:load locale={locale} />
+  </main>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-16 text-on-surface" id="about">
+    
+    <!-- Hero Header -->
+    <div class="text-center max-w-3xl mx-auto space-y-3">
+      <span class="inline-block text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-3.5 py-1.5 rounded-full">{pageMeta.badge}</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-on-surface tracking-tight">{pageMeta.title}</h1>
+      <p class="text-sm sm:text-base text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
+        {pageMeta.desc}
+      </p>
+    </div>
+
+    <!-- 1. Technical Capabilities Grid -->
+    <section class="space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.specsTitle}</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {pageMeta.specs.map((s) => (
+          <div class="p-5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/40 hover:-translate-y-1 hover:shadow-md transition-all duration-300 shadow-xs space-y-2">
+            <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+              <span class="material-symbols-outlined text-xl">{s.icon}</span>
+            </div>
+            <h3 class="font-bold text-sm text-on-surface">{s.title}</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 2. 4-Step Process Guide -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.stepsTitle}</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {pageMeta.steps.map((step, idx) => (
+          <div class="text-center p-5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/40 hover:-translate-y-1 hover:shadow-md transition-all duration-300 shadow-xs">
+            <div class="w-10 h-10 mx-auto mb-3 rounded-full bg-primary/10 text-primary font-black text-sm flex items-center justify-center">
+              {idx + 1}
+            </div>
+            <h3 class="font-bold text-sm text-on-surface mb-1">{step.title}</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 3. Logo Customization Features Grid -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.featuresTitle}</h2>
+      <div class="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+        {pageMeta.features.map((f) => (
+          <div class="flex items-start gap-3.5 p-4.5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/30 hover:-translate-y-0.5 hover:shadow-xs transition-all duration-200">
+            <span class="material-symbols-outlined text-primary text-2xl shrink-0 mt-0.5">{f.icon}</span>
+            <div>
+              <h3 class="font-bold text-sm text-on-surface">{f.title}</h3>
+              <p class="text-xs text-on-surface-variant mt-1 leading-relaxed">{f.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 4. Best Practices Guide -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.tipsTitle}</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {pageMeta.tips.map((tip) => (
+          <div class="p-4.5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 space-y-2">
+            <span class="material-symbols-outlined text-emerald-600 text-2xl">{tip.icon}</span>
+            <h3 class="font-bold text-sm text-on-surface">{tip.title}</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">{tip.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 5. Explore Other Tools Ribbon -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.otherToolsTitle}</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        {relatedTools.map((tool) => (
+          <a
+            href={tool.url}
+            class="p-3.5 rounded-xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/40 hover:-translate-y-1 hover:shadow-xs transition-all text-center group flex flex-col items-center justify-between"
+          >
+            <div class="w-8 h-8 rounded-lg bg-zinc-100 group-hover:bg-primary group-hover:text-white flex items-center justify-center transition-colors mb-2">
+              <span class="material-symbols-outlined text-lg">{tool.icon}</span>
+            </div>
+            <span class="font-bold text-xs text-on-surface group-hover:text-primary transition-colors block">{tool.title}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- 6. FAQs Accordion -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.faqsTitle}</h2>
+      <div class="space-y-3 max-w-3xl mx-auto">
+        {pageMeta.faqs.map((faq) => (
+          <details class="group border border-outline-variant/60 rounded-2xl bg-surface-container-lowest overflow-hidden shadow-xs transition-all">
+            <summary class="flex justify-between items-center p-4.5 cursor-pointer font-bold text-sm sm:text-base hover:bg-surface-container-low transition-colors select-none text-on-surface">
+              <span>{faq.q}</span>
+              <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-on-surface-variant">expand_more</span>
+            </summary>
+            <p class="px-4.5 pb-4.5 pt-1 text-on-surface-variant text-xs sm:text-sm leading-relaxed border-t border-outline-variant/30">
+              {faq.a}
+            </p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- 7. Bottom CTA Banner -->
+    <section class="rounded-3xl bg-linear-to-br from-zinc-900 to-zinc-950 text-white p-8 sm:p-12 text-center space-y-4 shadow-lg border border-zinc-800">
+      <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">{pageMeta.ctaTitle}</h2>
+      <p class="text-xs sm:text-sm text-zinc-400 max-w-lg mx-auto leading-relaxed">{pageMeta.ctaDesc}</p>
+      <div class="pt-2">
+        <button
+          onclick="document.getElementById('generator')?.scrollIntoView({ behavior: 'smooth' });"
+          class="px-6 py-3 rounded-full bg-white text-zinc-900 font-extrabold text-xs sm:text-sm hover:bg-zinc-100 hover:scale-105 transition-all shadow-md cursor-pointer"
+        >
+          {pageMeta.ctaBtn}
+        </button>
+      </div>
+    </section>
+
+  </div>
+
+  <Footer locale={locale} />
+</BaseLayout>

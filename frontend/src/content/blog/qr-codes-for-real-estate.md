@@ -9,8 +9,6 @@ readingTime: 6
 featured: false
 ---
 
-# QR Codes for Real Estate — A Complete Guide for Agents & Brokers
-
 Real estate is one of the fastest-growing sectors for QR code adoption. From yard signs to open house flyers, QR codes bridge the gap between physical marketing and digital property information.
 
 ## Why Real Estate Agents Need QR Codes
@@ -127,3 +125,4 @@ Create professional, branded QR codes for your real estate marketing — 100% fr
 - [vCard QR Code for business cards →](/vcard-qr-code)
 - [Email QR Code for inquiries →](/email-qr-code)
 - [Event QR Code for open houses →](/event-qr-code)
+

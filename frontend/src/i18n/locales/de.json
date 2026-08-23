@@ -1,0 +1,562 @@
+{
+  "nav": {
+    "generator": "Generator",
+    "guide": "Anleitung",
+    "blog": "Blog",
+    "scan": "Scannen",
+    "scanQR": "QR-Code scannen",
+    "selectLanguage": "Sprache wählen"
+  },
+  "studio": {
+    "tabs": {
+      "content": "Inhalt",
+      "templates": "Vorlagen",
+      "design": "Design",
+      "logo": "Logo",
+      "frames": "Rahmen",
+      "effects": "Effekte",
+      "advanced": "Erweitert",
+      "download": "Download"
+    },
+    "mobileTabs": {
+      "content": "Inhalt",
+      "design": "Design",
+      "logo": "Logo",
+      "more": "Mehr",
+      "download": "Download"
+    },
+    "tabHeadlines": {
+      "content_title": "Was möchten Sie codieren?",
+      "content_sub": "Wählen Sie einen Inhaltstyp und geben Sie Ihre Daten ein.",
+      "templates_title": "Wählen Sie eine Stilvorlage",
+      "templates_sub": "1-Klick-Vorlagen für jeden Einsatzzweck.",
+      "design_title": "Passen Sie Ihr QR-Design an",
+      "design_sub": "Punkte, Ecken, Farben, Verläufe: gestalten Sie Ihren Stil.",
+      "logo_title": "Fügen Sie Ihr Markenlogo hinzu",
+      "logo_sub": "Laden Sie ein Logo hoch oder wählen Sie ein Markensymbol.",
+      "frames_title": "Textrahmen anwenden",
+      "frames_sub": "Fügen Sie einen Call-to-Action-Rahmen um Ihren QR-Code ein.",
+      "effects_title": "Visuelle Effekte hinzufügen",
+      "effects_sub": "Schatten, Neon-Leuchten und Hintergrund-Dekorationen.",
+      "advanced_title": "Erweiterte Einstellungen",
+      "advanced_sub": "Fehlerkorrektur-Level, Ruhezone und Feineinstellungen.",
+      "download_title": "QR-Code exportieren",
+      "download_sub": "Format und Auflösung wählen und kostenlos herunterladen."
+    },
+    "buttons": {
+      "continueTo": "Weiter zu {tab}",
+      "doneWith": "Fertig mit {tab}?",
+      "undo": "Rückgängig",
+      "redo": "Wiederholen",
+      "reset": "Zurücksetzen",
+      "copyUrl": "Link kopieren",
+      "share": "Teilen",
+      "fullscreen": "Vollbild",
+      "download": "Herunterladen",
+      "copyImage": "Bild kopieren",
+      "generating": "Wird generiert...",
+      "downloading": "Wird heruntergeladen...",
+      "copied": "Kopiert!"
+    },
+    "labels": {
+      "tools": "Werkzeuge",
+      "customization": "Anpassung",
+      "personalize": "QR-Code individuell anpassen",
+      "step": "Schritt {current} / {total}"
+    },
+    "templateCategories": {
+      "all": "Alle",
+      "wifi": "WLAN",
+      "business": "Business",
+      "marketing": "Marketing",
+      "restaurant": "Gastronomie",
+      "events": "Events",
+      "social": "Social Media",
+      "retail": "Handel",
+      "education": "Bildung",
+      "premium": "Premium"
+    },
+    "logoCategories": {
+      "all": "Alle",
+      "social": "Social & Apps",
+      "tech": "Technik & Kontakt",
+      "business": "Business & Bezahlen",
+      "media": "Medien & Mehr"
+    },
+    "logoStyles": {
+      "badge": "Marken-Badge",
+      "duotone": "Soft-Glass",
+      "glyph": "Pur-Icon"
+    },
+    "content": {
+      "categories": {
+        "basic": "Standard",
+        "network": "Netzwerk",
+        "locationEvents": "Standort & Events",
+        "payments": "Zahlungen",
+        "appsSocial": "Apps & Social Media",
+        "advanced": "Erweitert"
+      },
+      "types": {
+        "url": "Website (URL)",
+        "text": "Freitext",
+        "phone": "Telefon",
+        "sms": "SMS",
+        "whatsapp": "WhatsApp",
+        "email": "E-Mail",
+        "vcard": "vCard",
+        "wifi": "WLAN",
+        "location": "Standort",
+        "event": "Termin (Event)",
+        "upi": "Zahlung",
+        "crypto": "Krypto",
+        "paypal": "PayPal",
+        "appstore": "App Store",
+        "googleplay": "Play Store",
+        "social": "Social Media",
+        "batch": "Stapel-CSV"
+      }
+    },
+    "forms": {
+      "url": {
+        "label": "Website-Adresse (URL)",
+        "placeholder": "https://beispiel.de"
+      },
+      "text": {
+        "label": "Reiner Text",
+        "placeholder": "Geben Sie Ihre Nachricht oder Notiz ein..."
+      },
+      "phone": {
+        "label": "Telefonnummer",
+        "placeholder": "+49 170 1234567"
+      },
+      "sms": {
+        "phoneLabel": "Telefonnummer",
+        "phonePlaceholder": "+49 170 1234567",
+        "messageLabel": "SMS-Nachricht",
+        "messagePlaceholder": "Nachricht eingeben..."
+      },
+      "whatsapp": {
+        "phoneLabel": "WhatsApp-Nummer (mit Ländervorwahl)",
+        "phonePlaceholder": "491701234567",
+        "messageLabel": "Vorausgefüllte Nachricht",
+        "messagePlaceholder": "Hallo, ich interessiere mich für..."
+      },
+      "email": {
+        "toLabel": "Empfänger-E-Mail",
+        "toPlaceholder": "kontakt@beispiel.de",
+        "subjectLabel": "Betreff",
+        "subjectPlaceholder": "Allgemeine Anfrage",
+        "bodyLabel": "Nachrichtentext",
+        "bodyPlaceholder": "Schreiben Sie Ihre E-Mail-Nachricht..."
+      },
+      "vcard": {
+        "firstName": "Vorname",
+        "lastName": "Nachname",
+        "organization": "Unternehmen / Organisation",
+        "title": "Position / Funktion",
+        "phone": "Telefon geschäftlich",
+        "cellPhone": "Mobilnummer",
+        "email": "E-Mail-Adresse",
+        "url": "Website",
+        "address": "Straße und Hausnummer",
+        "city": "Stadt",
+        "country": "Land",
+        "note": "Notiz"
+      },
+      "wifi": {
+        "ssidLabel": "WLAN-Name (SSID)",
+        "ssidPlaceholder": "MeinWLANZuhause",
+        "passwordLabel": "WLAN-Passwort",
+        "passwordPlaceholder": "WLAN-Passwort eingeben",
+        "encryptionLabel": "Verschlüsselung",
+        "hiddenLabel": "Verstecktes Netzwerk",
+        "wpa": "WPA/WPA2/WPA3",
+        "wep": "WEP",
+        "none": "Offen (Kein Passwort)"
+      },
+      "location": {
+        "latLabel": "Breitengrad",
+        "latPlaceholder": "52.5200",
+        "lngLabel": "Längengrad",
+        "lngPlaceholder": "13.4050",
+        "searchLabel": "Standort suchen",
+        "searchPlaceholder": "Stadt, Adresse oder Ort suchen..."
+      },
+      "event": {
+        "title": "Veranstaltungstitel",
+        "location": "Veranstaltungsort",
+        "startDate": "Beginn (Datum & Uhrzeit)",
+        "endDate": "Ende (Datum & Uhrzeit)",
+        "description": "Beschreibung der Veranstaltung"
+      },
+      "crypto": {
+        "currencyLabel": "Kryptowährung",
+        "addressLabel": "Wallet-Adresse",
+        "amountLabel": "Betrag (Optional)",
+        "messageLabel": "Nachricht / Verwendungszweck (Optional)"
+      },
+      "paypal": {
+        "typeLabel": "Zahlungsart",
+        "buyNow": "Jetzt Kaufen",
+        "donate": "Spende",
+        "cart": "In den Warenkorb",
+        "userLabel": "PayPal-Nutzername oder E-Mail",
+        "itemLabel": "Artikelbezeichnung",
+        "amountLabel": "Preis / Betrag",
+        "currencyLabel": "Währung"
+      }
+    },
+    "design": {
+      "dotPattern": "Punktmuster (Dots)",
+      "dotsStyle": "Punktmuster-Stil",
+      "eyeFrame": "Eckenrahmen",
+      "eyeFrameStyle": "Eckenrahmen-Stil",
+      "eyeBall": "Eckenpunkt",
+      "eyeballStyle": "Eckenpunkt-Stil",
+      "colorType": "Farbstil",
+      "solid": "Einfarbig",
+      "gradient": "Farbverlauf",
+      "gradientType": "Verlaufstyp",
+      "foreground": "QR-Code Farbe",
+      "fgColor": "QR-Code Farbe",
+      "fgColorEnd": "Verlaufs-Endfarbe",
+      "background": "Hintergrundfarbe",
+      "bgColor": "Hintergrundfarbe",
+      "transparent": "Transparent",
+      "transparentBg": "Transparenter Hintergrund",
+      "customEyes": "Ecken-Anpassung",
+      "linkEyes": "Ecken verknüpfen",
+      "independentCorners": "Jede Ecke separat anpassen",
+      "allCorners": "Alle Ecken",
+      "cornerTL": "Oben Links",
+      "cornerTR": "Oben Rechts",
+      "cornerBL": "Unten Links",
+      "eyeFrameColor": "Eckenrahmen-Farbe",
+      "eyeballColor": "Eckenpunkt-Farbe"
+    },
+    "logo": {
+      "uploadCustom": "Eigenes Logo hochladen",
+      "choosePreset": "Symbol aus Vorlagen wählen",
+      "searchIcons": "Über 46 Markensymbole durchsuchen...",
+      "removeBg": "Logo-Hintergrund entfernen",
+      "cardShape": "Form des Logo-Hintergrunds",
+      "shapeNone": "Keine (Freigestellt)",
+      "shapeCircle": "Kreis",
+      "shapeSquare": "Abgerundetes Quadrat",
+      "logoSize": "Logo-Größe",
+      "padding": "Logo-Abstand (Padding)",
+      "clearance": "Punktfreie Schutzzone",
+      "logoColor": "Symbol-Farbe"
+    },
+    "frames": {
+      "frameStyle": "Rahmendesign",
+      "noFrame": "Kein Rahmen",
+      "frameText": "Call-to-Action Text",
+      "fontFamily": "Schriftart",
+      "frameColor": "Rahmenfarbe",
+      "textColor": "Textfarbe"
+    },
+    "effects": {
+      "shadow": "Schatteneffekt",
+      "noShadow": "Kein Schatten",
+      "softShadow": "Weicher Schatten",
+      "elevated": "3D-Erhöhung",
+      "neonGlow": "Neon-Leuchten",
+      "bgImage": "Hintergrundbild auf Leinwand",
+      "blendMode": "Mischmodus",
+      "opacity": "Bild-Deckkraft"
+    },
+    "advanced": {
+      "errorCorrection": "Fehlerkorrektur-Level",
+      "ecLow": "Niedrig (7% Wiederherstellung)",
+      "ecMedium": "Mittel (15% Wiederherstellung - Standard)",
+      "ecQuartile": "Quartil (25% Wiederherstellung)",
+      "ecHigh": "Hoch (30% Wiederherstellung - Empfohlen für Logos)",
+      "quietZone": "Ruhezone (Randabstand)",
+      "inverted": "Farben umkehren (Dunkelmodus)"
+    },
+    "download": {
+      "exportFormat": "Exportformat",
+      "pngDesc": "Hochauflösende Rastergrafik für Bildschirme und Web",
+      "svgDesc": "Verlustfreie Vektorgrafik für professionellen Druck",
+      "pdfDesc": "Druckfertiges Vektor-PDF (300 DPI)",
+      "resolution": "Bildgröße (Auflösung)",
+      "downloadPng": "PNG herunterladen",
+      "downloadSvg": "SVG herunterladen",
+      "downloadPdf": "PDF herunterladen",
+      "copyClipboard": "In die Zwischenablage kopieren",
+      "batchMode": "Massen-Generierung via CSV",
+      "batchDesc": "Bis zu 500 QR-Codes aus einer Tabelle generieren"
+    },
+    "preview": {
+      "livePreview": "Live-Vorschau",
+      "showPreview": "Tippen für Vorschau",
+      "hidePreview": "Vorschau ausblenden",
+      "scannability": "Scanbarkeits-Wert",
+      "contrastRatio": "Kontrastverhältnis",
+      "contrastGood": "Hervorragender Kontrast",
+      "contrastWarning": "Geringer Kontrast: Könnte schwer lesbar sein",
+      "scanWithPhone": "Mit Smartphone-Kamera testen"
+    }
+  },
+  "blog": {
+    "heroBadge": "QR-Code Wissenszentrum",
+    "heroTitle": "Tipps, Anleitungen & Best Practices",
+    "heroSub": "Alles, was Sie über die Erstellung und Gestaltung von perfekten, scanbaren QR-Codes wissen müssen.",
+    "featuredArticles": "Ausgewählte Artikel",
+    "popularGuides": "Unsere beliebtesten Anleitungen",
+    "allArticles": "Alle Artikel",
+    "postsPublished": "{count} Artikel veröffentlicht",
+    "readArticle": "Artikel lesen",
+    "minRead": "{min} Min. Lesezeit",
+    "relatedGuides": "Ähnliche Anleitungen",
+    "viewAll": "Alle ansehen",
+    "viewAllGuides": "Alle Leitfäden ansehen",
+    "latestFromBlog": "Neues aus dem Blog",
+    "ctaTitle": "Bereit, Ihren QR-Code zu erstellen?",
+    "ctaDesc": "Setzen Sie Ihr Wissen direkt um: Gestalten Sie individuelle QR-Codes mit über 40 Stilen, Logos und Rahmen — 100% kostenlos.",
+    "ctaButton": "Jetzt QR-Code erstellen",
+    "postCtaTitle": "Erstellen Sie jetzt Ihren individuellen QR-Code",
+    "postCtaDesc": "Kostenlose hochauflösende QR-Codes mit Logo, Farben und Rahmen in unter 2 Minuten erstellen.",
+    "postCtaButton": "QR-Code Generator öffnen",
+    "categories": {
+      "guides": "Anleitung",
+      "use-cases": "Anwendungsfall",
+      "design-tips": "Design-Tipps",
+      "industry": "Branchen",
+      "comparisons": "Vergleich",
+      "news": "Neuigkeiten"
+    }
+  },
+  "scanner": {
+    "title": "Kostenloser Online-QR-Code-Scanner",
+    "subtitle": "Mit der Kamera scannen, Bilddateien hochladen oder Screenshots direkt einfügen.",
+    "features": {
+      "privateTitle": "100% Privat",
+      "privateDesc": "Lokal decodiert",
+      "instantTitle": "Schneller Scan",
+      "instantDesc": "Kamera & Dateien",
+      "aiTitle": "KI-Tiefenscan",
+      "aiDesc": "Dunkel- & Schärfefix",
+      "freeTitle": "100% Kostenlos",
+      "freeDesc": "Ohne App nutzbar"
+    },
+    "cameraTab": "Kamera scannen",
+    "uploadTab": "Bild hochladen",
+    "startCamera": "Kamera-Scanner starten",
+    "stopCamera": "Kamera stoppen",
+    "dropImage": "Tippen oder QR-Bild hierher ziehen",
+    "pasteHint": "Drücken Sie überall Strg+V, um einen Screenshot einzufügen",
+    "scanning": "Bild wird analysiert...",
+    "decodedResult": "Decodiertes QR-Code-Ergebnis",
+    "copyContent": "Inhalt kopieren",
+    "openLink": "Website öffnen",
+    "connectWifi": "WLAN-Passwort kopieren",
+    "saveVCard": "vCard-Kontakt herunterladen",
+    "sendEmail": "E-Mail senden",
+    "callPhone": "Telefonnummer anrufen",
+    "sendSms": "SMS senden",
+    "openMap": "In Google Maps öffnen",
+    "scanHistory": "Letzte Scans",
+    "historyTab": "Verlauf",
+    "scanNotice": "Hinweis zum Scan",
+    "cameraAccessRequired": "Kamerazugriff erforderlich",
+    "liveCameraScanner": "Live-Kamera-Scanner",
+    "cameraBlockedDesc": "Kamera blockiert oder nicht verfügbar. Prüfen Sie die Berechtigungen oder laden Sie eine Datei hoch.",
+    "cameraScanDesc": "Scannen Sie jeden QR-Code sofort in Echtzeit mit Ihrer Smartphone- oder Laptop-Kamera.",
+    "retryCamera": "Kamera wiederholen",
+    "uploadFile": "Datei hochladen",
+    "cameraHint": "Richten Sie den Kamerasucher direkt auf den QR-Code.",
+    "decodedSuccessfully": "Erfolgreich decodiert",
+    "wantCustomFrames": "Möchten Sie Textrahmen, Farbverläufe oder Ihr Logo einbinden?",
+    "openInStudio": "Im QR-Studio öffnen",
+    "downloadHub": "Download- & Export-Bereich",
+    "clearHistory": "Verlauf löschen",
+    "clearAll": "Alles löschen",
+    "noHistory": "Noch keine Scans vorhanden",
+    "couldNotRead": "QR-Code konnte nicht gelesen werden",
+    "couldNotReadDesc": "Es konnte kein lesbarer QR-Code erkannt werden. Das Bild könnte unscharf, kontrastarm oder beschnitten sein.",
+    "tryAnotherImage": "Anderes Bild wählen",
+    "scanWithCamera": "Mit Kamera scannen",
+    "clearAndReturn": "Zurück zum Upload-Bereich",
+    "supportsFormats": "Unterstützt PNG, JPG, WebP, SVG und Screenshots.",
+    "ctrlVTip": "Tipp: Strg+V drücken zum Einfügen",
+    "uploadSavedImageDesc": "Gespeichertes Bild oder Screenshot hochladen, um den Inhalt zu decodieren.",
+    "cameraPermissionError": "Kamerazugriff wurde verweigert oder ist nicht verfügbar.",
+    "cameraPermissionDenied": "Kamerazugriff verweigert. Bitte erlauben Sie den Kamerazugriff in den Browsereinstellungen und klicken Sie auf Wiederholen.",
+    "cameraNotFound": "Keine Kamera erkannt. Sie können ein Bild hochladen oder Strg+V zum Einfügen drücken.",
+    "cameraHttpsRequired": "Kamerazugriff erfordert HTTPS. Bitte stellen Sie eine sichere Verbindung her.",
+    "cameraUnavailable": "Kamera derzeit nicht verfügbar. Bitte Berechtigungen prüfen oder Bild hochladen.",
+    "noQrFound": "Kein QR-Code erkannt. Versuchen Sie den KI-Tiefenscan.",
+    "aiDeepScan": "KI-Tiefenscan",
+    "guideTitle": "So scannen Sie einen QR-Code",
+    "guideSubtitle": "Schnellanleitung für alle Smartphones und Tablets ganz ohne App-Installation.",
+    "iosTitle": "Auf dem iPhone & iPad (iOS)",
+    "iosDesc": "Öffnen Sie die native Kamera-App, halten Sie das Gerät ruhig über den QR-Code und tippen Sie auf den gelben Benachrichtigungslink.",
+    "androidTitle": "Auf Android-Geräten",
+    "androidDesc": "Öffnen Sie die Kamera-App oder Google Lens, erfassen Sie den QR-Code im Sucher und tippen Sie auf die Aktions-Schaltfläche.",
+    "deepScanSuccess": "QR-Code durch mehrstufige Bildoptimierung erfolgreich decodiert!",
+    "supportedTitle": "Unterstützte QR-Code-Inhalte",
+    "supportedSub": "Unser Scanner erkennt und verarbeitet automatisch alle gängigen QR-Formate.",
+    "formats": {
+      "urlsTitle": "Websites & URLs",
+      "urlsDesc": "Direkte Weiterleitung im Browser",
+      "wifiTitle": "WLAN-Netzwerke",
+      "wifiDesc": "1-Klick-Verbindung ohne Passworteingabe",
+      "vcardTitle": "vCard-Kontakte",
+      "vcardDesc": "Direkt ins Smartphone-Adressbuch speichern",
+      "mapsTitle": "Standorte & Karten",
+      "mapsDesc": "Direkte Navigation in Google Maps",
+      "eventsTitle": "Kalenderevents",
+      "eventsDesc": "Termine mit Datum, Zeit und Ort",
+      "textTitle": "Reiner Text & JSON",
+      "textDesc": "Textinhalte und Formatierungen"
+    },
+    "ctaTitle": "Möchten Sie einen eigenen QR-Code erstellen?",
+    "ctaDesc": "Erstellen Sie hochauflösende QR-Codes mit Logos, Farben, Verläufen und Rahmen kostenlos.",
+    "ctaButton": "Jetzt QR-Code erstellen"
+  },
+  "landing": {
+    "heroTitle": "Kostenloser QR-Code Generator mit Logo",
+    "heroSub": "Erstellen Sie individuelle hochauflösende QR-Codes mit über 40 Punktstilen, Textrahmen und Firmenlogos. 100% kostenlos mit Vektor-SVG- und PDF-Export.",
+    "stats": {
+      "dotStyles": "Punktmuster-Stile",
+      "frames": "Individuelle Rahmen",
+      "presets": "1-Klick Vorlagen",
+      "free": "Kostenlos · Ohne Anmeldung"
+    },
+    "trust": {
+      "rating": "Mit 4.9 / 5 bewertet von 2.840+ Nutzern",
+      "iso": "ISO/IEC 18004 Standardkonform",
+      "private": "100% Privat · Kein Tracking",
+      "commercial": "Frei für kommerzielle Nutzung"
+    },
+    "featuresHeading": "Alles, was Sie für professionelle QR-Codes brauchen",
+    "featuresSub": "Maximale Gestaltungsfreiheit kombiniert mit einer hochpräzisen Rendering-Engine.",
+    "features": {
+      "badge": "Warum GenerateCustomQR wählen",
+      "card1Title": "39 Punktmuster-Stile",
+      "card1Desc": "Von klassischen Quadraten und weichen Kreisen bis zu Diamanten, Sternen, Lotus und fließenden Wellen: jedes Modul gestaltbar.",
+      "card2Title": "Intelligente Logo-Einbindung",
+      "card2Desc": "Laden Sie Ihr Firmenlogo hoch oder wählen Sie aus 46 Markensymbolen (Instagram, WhatsApp, WLAN) mit automatischer Schutzzone.",
+      "card3Title": "PNG, SVG & PDF Export",
+      "card3Desc": "Exportieren Sie gestochen scharfe PNGs bis 8192px, unbegrenzt skalierbare SVG-Vektoren für Großdrucke oder druckfertige 300 DPI PDFs.",
+      "card4Title": "51 Dekorative Rahmen",
+      "card4Desc": "Versehen Sie Ihren QR-Code mit Sprechblasen, Bannern oder Etiketten mit individuellem Handlungsaufforderungs-Text.",
+      "card5Title": "121 Sofort-Vorlagen",
+      "card5Desc": "1-Klick-Designvorlagen für Visitenkarten, WLAN-Aufsteller, Speisekarten, Events und Social Media.",
+      "card6Title": "CSV-Massen-Generator",
+      "card6Desc": "Laden Sie eine CSV-Tabelle hoch und generieren Sie bis zu 500 individuelle QR-Codes auf einmal in einer ZIP-Datei."
+    },
+    "formats": {
+      "badge": "Unterstützte Formate",
+      "title": "Codieren Sie alles in einen scannbaren QR-Code",
+      "sub": "Von einfachen Website-URLs bis hin zu digitalen Visitenkarten, verschlüsselten WLAN-Zugangsdaten und Krypto-Zahlungen.",
+      "makeCta": "{type}-QR erstellen",
+      "items": {
+        "urlTitle": "Website-URL",
+        "urlDesc": "Besucher direkt auf jede Webadresse leiten",
+        "wifiTitle": "WLAN-Zugangsdaten",
+        "wifiDesc": "Automatisch verbinden ohne Passworteingabe",
+        "vcardTitle": "vCard-Kontakt",
+        "vcardDesc": "Digitale Visitenkarte direkt im Adressbuch speichern",
+        "emailTitle": "E-Mail-Nachricht",
+        "emailDesc": "Empfänger, Betreff und Text vorausfüllen",
+        "smsTitle": "SMS-Nachricht",
+        "smsDesc": "SMS mit vorgefertigtem Text senden",
+        "phoneTitle": "Telefonanruf",
+        "phoneDesc": "Telefonnummer mit einem Klick anrufen",
+        "eventTitle": "Kalendereintrag",
+        "eventDesc": "Termin zu Google/Apple Kalender hinzufügen",
+        "textTitle": "Reiner Text",
+        "textDesc": "Text oder Notizen beim Scannen anzeigen",
+        "locationTitle": "Kartenstandort",
+        "locationDesc": "Google Maps oder GPS-Koordinaten öffnen",
+        "cryptoTitle": "Krypto-Wallet",
+        "cryptoDesc": "Bitcoin-, Ethereum- und USDT-Adressen",
+        "paypalTitle": "PayPal-Link",
+        "paypalDesc": "Zahlungen oder Spenden direkt empfangen",
+        "appstoreTitle": "App Store",
+        "appstoreDesc": "Direkt zu iOS- oder Android-Apps weiterleiten"
+      }
+    },
+    "tutorial": {
+      "badge": "Kurzanleitung"
+    },
+    "faqHeading": "Häufig gestellte Fragen",
+    "faq": {
+      "badge": "Haben Sie Fragen?"
+    },
+    "howToHeading": "In 5 Schritten zum individuellen QR-Code"
+  },
+  "howToUse": {
+    "heroBadge": "Schritt-für-Schritt Anleitung",
+    "heroTitle": "So erstellen Sie einen individuellen QR-Code — Vollständige Anleitung",
+    "heroSub": "Erfahren Sie, wie Sie kostenlose QR-Codes mit Logos, Rahmen und individuellen Farben in 5 einfachen Schritten erstellen und herunterladen.",
+    "steps": [
+      {
+        "number": "01",
+        "emoji": "📝",
+        "title": "Inhaltstyp wählen",
+        "description": "Wählen Sie aus 12 Typen: URL, Text, WLAN, vCard-Kontakt, E-Mail, SMS, Telefon, App-Link, Termin (iCal), Krypto oder CSV-Stapelverarbeitung.",
+        "tags": ["URL", "WLAN", "vCard", "E-Mail", "SMS", "Stapel-CSV"],
+        "hint": "Tipp: Nutzen Sie vCard für eine sofort scanbare digitale Visitenkarte."
+      },
+      {
+        "number": "02",
+        "emoji": "🎨",
+        "title": "QR-Design anpassen",
+        "description": "Wählen Sie aus 39 Punktmustern, 28 Eckenrahmen und passenden Mittelpunkten. Passen Sie Farben und Verläufe nach Wunsch an.",
+        "tags": ["39 Punktstile", "28 Ecken", "Eigene Farben"],
+        "hint": "Tipp: Abgerundete Punkte wirken besonders modern und hochwertig."
+      },
+      {
+        "number": "03",
+        "emoji": "🖼️",
+        "title": "Logo hinzufügen",
+        "description": "Laden Sie ein Logo (PNG, JPG, SVG) hoch oder wählen Sie aus 46 Vorlagen. Die Fehlerkorrektur wird automatisch auf Level H optimiert.",
+        "tags": ["Eigenes Logo", "46 Symbole", "Hohe Fehlerkorrektur"],
+        "hint": "Tipp: Nutzen Sie einen weißen Schutzabstand um dunkle Logos."
+      },
+      {
+        "number": "04",
+        "emoji": "✨",
+        "title": "Rahmen & Effekte wählen",
+        "description": "Umrahmen Sie den QR-Code mit einem Textaufruf ('Scan Me'), fügen Sie sanfte Schatten oder 3D-Effekte hinzu.",
+        "tags": ["51 Textrahmen", "Schatteneffekte", "Hintergrund-Leinwand"],
+        "hint": "Tipp: Ein Rahmen mit Ihrer Website-Adresse erhöht die Scan-Rate deutlich."
+      },
+      {
+        "number": "05",
+        "emoji": "⬇️",
+        "title": "Herunterladen & Teilen",
+        "description": "Exportieren Sie in PNG (bis 8K), Vektor-SVG oder PDF für die Druckerei. 100% kostenlos und dauerhaft ohne Ablaufdatum.",
+        "tags": ["PNG bis 8K", "Vektor SVG", "Druckfertiges PDF", "ZIP-Archiv"],
+        "hint": "Tipp: Verwenden Sie SVG für Printmedien, um gestochen scharfe Kanten zu garantieren."
+      }
+    ]
+  },
+  "footer": {
+    "desc": "Erstellen Sie ansprechende, vollständig anpassbare QR-Codes mit Logo-Einbindung. 100% kostenlos, ohne Registrierung, dauerhaft gültig.",
+    "toolsHeading": "QR-Code Werkzeuge",
+    "resourcesHeading": "Ressourcen",
+    "legalHeading": "Rechtliches",
+    "urlQR": "URL QR-Code",
+    "wifiQR": "WLAN QR-Code",
+    "vcardQR": "vCard / Kontakt QR",
+    "logoQR": "QR-Code mit Logo",
+    "eventQR": "Termin (iCal) QR-Code",
+    "emailQR": "E-Mail QR-Code",
+    "freeGenerator": "Kostenloser Generator",
+    "scanner": "QR-Code Scanner",
+    "guide": "QR-Code Anleitung",
+    "blog": "Blog",
+    "about": "Über Uns",
+    "contact": "Kontakt & Support",
+    "privacy": "Datenschutzerklärung",
+    "terms": "Nutzungsbedingungen",
+    "copyright": "© {year} GenerateCustomQR. Alle Rechte vorbehalten.",
+    "isoBadge": "ISO/IEC 18004 Standardkonform"
+  }
+}

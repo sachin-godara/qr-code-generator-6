@@ -1,0 +1,375 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import QRGeneratorApp from '../react/QRGeneratorApp';
+import Footer from '../components/layout/Footer.astro';
+import { type Locale } from '../i18n/config';
+import { getLocalizedUrl, t } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const metaMap: Record<Locale, {
+  title: string;
+  desc: string;
+  badge: string;
+  specsTitle: string;
+  specs: Array<{ icon: string; title: string; desc: string }>;
+  stepsTitle: string;
+  steps: Array<{ icon: string; title: string; desc: string }>;
+  useCasesTitle: string;
+  useCases: Array<{ icon: string; title: string; desc: string }>;
+  tipsTitle: string;
+  tips: Array<{ icon: string; title: string; desc: string }>;
+  faqsTitle: string;
+  faqs: Array<{ q: string; a: string }>;
+  otherToolsTitle: string;
+  ctaTitle: string;
+  ctaDesc: string;
+  ctaBtn: string;
+}> = {
+  en: {
+    title: "URL to QR Code Generator — Convert Links Free",
+    desc: "Convert any website link or URL to a custom QR code for free. Add your logo, custom colors, and action frames. Free PNG, SVG, and PDF downloads.",
+    badge: "#1 URL QR Solution",
+    specsTitle: "Key Technical Capabilities",
+    specs: [
+      { icon: "link", title: "Direct Zero-Hop Encoding", desc: "Your destination URL is encoded directly into matrix modules without intermediary redirects or ads." },
+      { icon: "analytics", title: "UTM & Tracking Ready", desc: "Full support for Google Analytics UTM tags, affiliate tracking IDs, and custom campaign parameters." },
+      { icon: "image", title: "Branded Center Logos", desc: "Embed company logos or social icons with automatic padding to maintain 100% scan reliability." },
+      { icon: "download", title: "Vector SVG & 300 DPI PDF", desc: "Download lossless vector SVG and high-resolution PDF ready for print shops, billboards, and brochures." }
+    ],
+    stepsTitle: "How to Create a URL QR Code in 4 Easy Steps",
+    steps: [
+      { icon: "content_paste", title: "1. Paste Your Website Link", desc: "Copy your destination URL or landing page link into the input field." },
+      { icon: "palette", title: "2. Style Dots & Colors", desc: "Choose modern dot styles, corner frames, and brand gradient colors." },
+      { icon: "image", title: "3. Embed Brand Logo", desc: "Upload your company logo or choose from 46 preset social icons." },
+      { icon: "download", title: "4. Download & Publish", desc: "Export in PNG, SVG, or PDF and print on your marketing materials." }
+    ],
+    useCasesTitle: "Popular Use Cases for URL QR Codes",
+    useCases: [
+      { icon: "campaign", title: "Marketing & Campaigns", desc: "Place on print ads, flyers, and billboards to direct offline audiences straight to your landing page." },
+      { icon: "inventory_2", title: "Product Packaging", desc: "Add to product boxes and labels for instant access to digital user manuals, tutorials, or warranties." },
+      { icon: "storefront", title: "Retail & Window Displays", desc: "Engage storefront passersby with promotional discounts, online menus, or instant catalog browsing." },
+      { icon: "share", title: "Social Media & Portfolios", desc: "Share your Linktree, YouTube channel, Instagram profile, or digital portfolio on physical cards." }
+    ],
+    tipsTitle: "Best Practices for URL QR Codes",
+    tips: [
+      { icon: "short_text", title: "Use Short Clean URLs", desc: "Shorter URLs create simpler, cleaner QR code patterns with larger modules that scan faster." },
+      { icon: "contrast", title: "High Contrast (4.5:1+)", desc: "Always maintain high contrast between dark modules and a light background for reliable reading." },
+      { icon: "aspect_ratio", title: "Print Size Ratio (10:1)", desc: "A good rule of thumb is a 10:1 distance-to-size ratio (e.g., 2 cm code for 20 cm scanning distance)." },
+      { icon: "verified", title: "Test Before Printing", desc: "Always scan test prints with both iOS and Android cameras before running full print batches." }
+    ],
+    faqsTitle: "Frequently Asked Questions About URL QR Codes",
+    faqs: [
+      { q: "Do URL QR codes expire?", a: "No! All URL QR codes generated here are static and permanent. The website link is baked directly into the visual matrix modules, so they will work forever with zero expiration." },
+      { q: "Can I add Google Analytics UTM tracking parameters?", a: "Yes, you can append any standard UTM query parameters (e.g., ?utm_source=flyer&utm_medium=qr) directly into the URL before generating your code." },
+      { q: "What is the best format for professional printing?", a: "For commercial printing (flyers, banners, product packaging), export in vector SVG or 300 DPI PDF to ensure crisp, razor-sharp edges at any size." },
+      { q: "Is this URL QR generator free for commercial use?", a: "Yes, 100% free for personal and commercial use with zero watermarks, no account registration, and unlimited downloads." }
+    ],
+    otherToolsTitle: "Explore Other Free QR Code Tools",
+    ctaTitle: "Ready to Convert Your Link to a QR Code?",
+    ctaDesc: "Generate high-resolution custom URL QR codes with logos and frames in seconds.",
+    ctaBtn: "Create URL QR Code Now ↑"
+  },
+  es: {
+    title: "Generador de Códigos QR para URL — Convertir Enlaces Gratis",
+    desc: "Convierte cualquier enlace web o URL en un código QR personalizado gratis. Añade logotipo, colores y marcos. Descarga en PNG, SVG y PDF.",
+    badge: "Solución QR para Enlaces",
+    specsTitle: "Capacidades Técnicas Clave",
+    specs: [
+      { icon: "link", title: "Codificación Directa sin Intermediarios", desc: "La URL de destino se graba directamente en la matriz sin redirecciones ni publicidad." },
+      { icon: "analytics", title: "Compatible con Etiquetas UTM", desc: "Soporte total para parámetros de seguimiento de Google Analytics y campañas de marketing." },
+      { icon: "image", title: "Logotipo de Marca Central", desc: "Inserta tu logotipo o icono con respiro protector automático para no perder legibilidad." },
+      { icon: "download", title: "Vectores SVG y PDF 300 DPI", desc: "Descarga archivos listos para imprenta, cartelería de gran formato y envases." }
+    ],
+    stepsTitle: "Cómo Crear un Código QR de URL en 4 Pasos",
+    steps: [
+      { icon: "content_paste", title: "1. Pega tu Enlace", desc: "Copia la dirección web o página de destino en el campo URL." },
+      { icon: "palette", title: "2. Personaliza Colores y Puntos", desc: "Elige patrones modernos, marcos de esquina y degradados de color." },
+      { icon: "image", title: "3. Añade tu Logotipo", desc: "Sube el logo de tu empresa o elige un icono de redes sociales." },
+      { icon: "download", title: "4. Descarga e Imprime", desc: "Exporta en PNG, SVG o PDF de alta calidad para tus impresiones." }
+    ],
+    useCasesTitle: "Casos de Uso para Códigos QR de URL",
+    useCases: [
+      { icon: "campaign", title: "Marketing y Publicidad", desc: "Ponlo en folletos, vallas publicitarias y carteles para dirigir al público a tu web." },
+      { icon: "inventory_2", title: "Envases de Productos", desc: "Añádelo en cajas y etiquetas para manuales de instrucciones o garantías digitales." },
+      { icon: "storefront", title: "Escaparates y Comercios", desc: "Atrae a transeúntes con descuentos exclusivos, catálogos online o menús." },
+      { icon: "share", title: "Redes y Portafolios", desc: "Comparte tu Linktree, canal de YouTube o perfil profesional en tarjetas físicas." }
+    ],
+    tipsTitle: "Consejos para Imprimir Códigos QR de Enlaces",
+    tips: [
+      { icon: "short_text", title: "Usa URLs Cortas", desc: "Las direcciones cortas generan matrices con módulos más grandes que se leen más rápido." },
+      { icon: "contrast", title: "Alto Contraste (4.5:1+)", desc: "Mantén un contraste óptimo entre módulos oscuros y fondo claro para garantizar lectura." },
+      { icon: "aspect_ratio", title: "Regla de Tamaño 10:1", desc: "Calcula 1 cm de tamaño por cada 10 cm de distancia estimada de escaneo." },
+      { icon: "verified", title: "Prueba Antes de Imprimir", desc: "Escanea siempre una prueba física con iPhone y Android antes de tiradas grandes." }
+    ],
+    faqsTitle: "Preguntas Frecuentes sobre Códigos QR de URL",
+    faqs: [
+      { q: "¿Los códigos QR para URL caducan?", a: "¡No! Todos los códigos QR generados son estáticos y permanentes. Funcionan para siempre sin límites." },
+      { q: "¿Puedo añadir parámetros de Google Analytics?", a: "Sí, puedes pegar la URL completa con tus etiquetas UTM antes de generar el código." },
+      { q: "¿Qué formato es mejor para imprimir?", a: "Para imprenta profesional recomendamos SVG vectorial o PDF a 300 DPI para máxima nitidez." },
+      { q: "¿Es gratis para uso comercial?", a: "Sí, 100% gratis para proyectos personales y comerciales sin marcas de agua." }
+    ],
+    otherToolsTitle: "Explora Otras Herramientas QR Gratuitas",
+    ctaTitle: "¿Listo para Convertir tu Enlace en Código QR?",
+    ctaDesc: "Crea códigos QR personalizados con logos y marcos listos para imprimir en segundos.",
+    ctaBtn: "Crear Código QR de URL Ahora ↑"
+  },
+  pt: {
+    title: "Gerador de QR Code para URL — Converter Links Grátis",
+    desc: "Converta qualquer link de site ou URL em um QR code personalizado gratuitamente. Adicione logo, cores e molduras com download em PNG, SVG e PDF.",
+    badge: "Solução QR para Links",
+    specsTitle: "Recursos Técnicos Avançados",
+    specs: [
+      { icon: "link", title: "Codificação Direta e Segura", desc: "O link de destino é gravado diretamente no código sem intermediários ou atrasos." },
+      { icon: "analytics", title: "Suporte a Tags UTM", desc: "Rastreie acessos no Google Analytics e monitore conversões de campanhas impressas." },
+      { icon: "image", title: "Logotipo Central da Marca", desc: "Insira sua marca com margem protetora para preservar a legibilidade do código." },
+      { icon: "download", title: "Vetores SVG e PDF Gráficos", desc: "Arquivos em alta definição prontos para gráfica, banners e embalagens." }
+    ],
+    stepsTitle: "Como Criar um QR Code de Link em 4 Passos",
+    steps: [
+      { icon: "content_paste", title: "1. Cole seu Link", desc: "Copie a URL da sua página ou site no campo de entrada." },
+      { icon: "palette", title: "2. Escolha Cores e Pontos", desc: "Personalize os módulos, cantos e degradês de cor." },
+      { icon: "image", title: "3. Adicione sua Marca", desc: "Faça upload do seu logo ou escolha ícones de redes sociais." },
+      { icon: "download", title: "4. Baixe e Divulgue", desc: "Exporte em PNG, SVG ou PDF para impressão." }
+    ],
+    useCasesTitle: "Onde Utilizar QR Codes de URL",
+    useCases: [
+      { icon: "campaign", title: "Marketing e Divulgação", desc: "Insira em panfletos, cartazes e outdoors para direcionar o público ao seu site." },
+      { icon: "inventory_2", title: "Embalagens de Produtos", desc: "Adicione em caixas para acesso rápido a manuais, termos de garantia e tutoriais." },
+      { icon: "storefront", title: "Vitrines e Lojas", desc: "Atraia clientes com promoções especiais, catálogos online e cardápios digitais." },
+      { icon: "share", title: "Redes e Portfólios", desc: "Compartilhe seu Instagram, canal do YouTube ou portfólio em cartões físicos." }
+    ],
+    tipsTitle: "Dicas para Impressão de QR Codes de Links",
+    tips: [
+      { icon: "short_text", title: "Prefira Links Curtos", desc: "URLs mais curtas geram matrizes mais simples com pontos maiores e leitura mais rápida." },
+      { icon: "contrast", title: "Alto Contraste Visual", desc: "Mantenha pontos escuros sobre fundo claro para garantir leitura em qualquer celular." },
+      { icon: "aspect_ratio", title: "Proporção 10:1 de Distância", desc: "Calcule 1 cm de código para cada 10 cm de distância de leitura esperada." },
+      { icon: "verified", title: "Faça Testes de Leitura", desc: "Sempre faça uma leitura de teste com celular antes de imprimir tiragens grandes." }
+    ],
+    faqsTitle: "Dúvidas Frequentes sobre QR Code de URL",
+    faqs: [
+      { q: "Os QR Codes de URL expiram?", a: "Não! Todos os códigos gerados são estáticos e permanentes. Funcionam para sempre." },
+      { q: "Posso usar tags UTM do Google Analytics?", a: "Sim, basta colar a URL completa com seus parâmetros de rastreamento no gerador." },
+      { q: "Qual o melhor formato para gráfica?", a: "Para impressão profissional, recomendamos o SVG vetorial ou PDF 300 DPI." },
+      { q: "É gratuito para uso comercial?", a: "Sim, 100% gratuito sem qualquer cobrança ou marca d'água." }
+    ],
+    otherToolsTitle: "Conheça Outras Ferramentas QR Gratuitas",
+    ctaTitle: "Pronto para Criar seu QR Code de Link?",
+    ctaDesc: "Gere códigos QR de alta resolução para sites, produtos e campanhas em segundos.",
+    ctaBtn: "Criar QR Code de Link Agora ↑"
+  },
+  de: {
+    title: "URL zu QR-Code Generator — Weblinks kostenlos umwandeln",
+    desc: "Wandeln Sie jeden Weblink oder jede URL kostenlos in einen individuellen QR-Code um. Mit Logo, Farben und Rahmen als PNG, SVG und PDF.",
+    badge: "Beste QR-Lösung für Weblinks",
+    specsTitle: "Wichtige technische Merkmale",
+    specs: [
+      { icon: "link", title: "Direkte Codierung ohne Umwege", desc: "Die Ziel-URL wird ohne Werbe-Zwischenschritte direkt in das QR-Muster eingebettet." },
+      { icon: "analytics", title: "UTM-Tracking bereit", desc: "Unterstützt Google Analytics Kampagnen-Parameter für präzise Erfolgsmessung." },
+      { icon: "image", title: "Eigenes Firmenlogo im Zentrum", desc: "Fügen Sie Ihr Logo mit automatischer Schutzzone für maximale Scan-Sicherheit ein." },
+      { icon: "download", title: "Verlustfreie Vektoren in SVG & PDF", desc: "Druckfertige Vektordateien für Plakate, Flyer, Roll-ups und Verpackungen." }
+    ],
+    stepsTitle: "So erstellen Sie einen URL-QR-Code in 4 Schritten",
+    steps: [
+      { icon: "content_paste", title: "1. Weblink einfügen", desc: "Kopieren Sie Ihre Webadresse oder Landingpage in das Eingabefeld." },
+      { icon: "palette", title: "2. Design & Farben wählen", desc: "Wählen Sie moderne Punktmuster, Rahmen und Markenfarben." },
+      { icon: "image", title: "3. Logo integrieren", desc: "Laden Sie Ihr Firmenlogo hoch oder wählen Sie ein Social-Media-Icon." },
+      { icon: "download", title: "4. Herunterladen & Drucken", desc: "Als PNG, SVG oder druckfertiges PDF für Ihre Printmedien exportieren." }
+    ],
+    useCasesTitle: "Einsatzbereiche für URL-QR-Codes",
+    useCases: [
+      { icon: "campaign", title: "Marketing & Werbung", desc: "Auf Flyern, Plakaten und Anzeigen, um Offline-Kunden direkt auf Ihre Website zu leiten." },
+      { icon: "inventory_2", title: "Produktverpackungen", desc: "Auf Verpackungen für Online-Anleitungen, Registrierungen und Garantieformulare." },
+      { icon: "storefront", title: "Schaufenster & POS", desc: "Passanten mit Rabattaktionen, Speisekarten oder Online-Katalogen begeistern." },
+      { icon: "share", title: "Social Media & Portfolios", desc: "Linktree, YouTube-Kanal oder digitales Portfolio auf Printmedien teilen." }
+    ],
+    tipsTitle: "Tipps für den Druck von URL-QR-Codes",
+    tips: [
+      { icon: "short_text", title: "Kurze Weblinks nutzen", desc: "Kürzere URLs erzeugen einfachere Muster mit größeren Punkten für schnellere Scans." },
+      { icon: "contrast", title: "Hohen Kontrast wahren", desc: "Dunkle Punkte auf hellem Grund sichern die Lesbarkeit bei allen Lichtverhältnissen." },
+      { icon: "aspect_ratio", title: "10:1 Abstandsregel", desc: "Planen Sie 1 cm Code-Größe für jeweils 10 cm Betrachtungsabstand ein." },
+      { icon: "verified", title: "Vor Druckbeginn testen", desc: "Testen Sie den Probedruck stets mit verschiedenen Smartphone-Kameras." }
+    ],
+    faqsTitle: "Häufige Fragen zu URL-QR-Codes",
+    faqs: [
+      { q: "Haben die URL-QR-Codes ein Ablaufdatum?", a: "Nein! Alle erstellten QR-Codes sind statisch und dauerhaft unbegrenzt gültig." },
+      { q: "Kann ich UTM-Tracking-Parameter einbinden?", a: "Ja, Sie können beliebig formatierte URLs mit UTM-Parametern codieren." },
+      { q: "Welches Format eignet sich am besten für den Druck?", a: "Für professionelle Druckereien empfehlen wir SVG oder PDF mit 300 DPI." },
+      { q: "Ist die Nutzung für gewerbliche Zwecke kostenlos?", a: "Ja, zu 100% kostenlos ohne Wasserzeichen oder Einschränkungen." }
+    ],
+    otherToolsTitle: "Weitere kostenlose QR-Code Tools",
+    ctaTitle: "Bereit, Ihren Link in einen QR-Code zu verwandeln?",
+    ctaDesc: "Erstellen Sie hochauflösende URL-QR-Codes mit Logos und Rahmen in wenigen Sekunden.",
+    ctaBtn: "Jetzt URL-QR-Code erstellen ↑"
+  }
+};
+
+const pageMeta = metaMap[locale] || metaMap.en;
+
+const breadcrumbs = [
+  { name: t(locale, 'nav.generator'), url: getLocalizedUrl(locale, '/') },
+  { name: t(locale, 'footer.urlQR'), url: getLocalizedUrl(locale, '/url-qr-code-generator') }
+];
+
+const relatedTools = [
+  { icon: "wifi", title: "WiFi QR", desc: "1-tap wifi connections", url: getLocalizedUrl(locale, '/wifi-qr-code') },
+  { icon: "contact_page", title: "vCard QR", desc: "Digital business cards", url: getLocalizedUrl(locale, '/vcard-qr-code') },
+  { icon: "image", title: "QR with Logo", desc: "Branded custom logos", url: getLocalizedUrl(locale, '/qr-code-with-logo') },
+  { icon: "event", title: "Event QR", desc: "Save dates to calendars", url: getLocalizedUrl(locale, '/event-qr-code') },
+  { icon: "mail", title: "Email QR", desc: "Pre-filled email drafts", url: getLocalizedUrl(locale, '/email-qr-code') },
+  { icon: "qr_code_scanner", title: "QR Scanner", desc: "Camera & image decoder", url: getLocalizedUrl(locale, '/qr-code-scanner') }
+];
+
+const howTo = {
+  name: pageMeta.title,
+  description: pageMeta.desc,
+  steps: pageMeta.steps.map((s, idx) => ({ name: `${idx + 1}. ${s.title}`, text: s.desc }))
+};
+---
+<BaseLayout
+  locale={locale}
+  title={pageMeta.title}
+  description={pageMeta.desc}
+  breadcrumbs={breadcrumbs}
+  howTo={howTo}
+  faqs={pageMeta.faqs}
+>
+  <style is:global>
+    @import '../styles/global.css';
+  </style>
+
+  <main id="generator">
+    <QRGeneratorApp client:load locale={locale} />
+  </main>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-16 text-on-surface" id="about">
+    
+    <!-- Hero Header -->
+    <div class="text-center max-w-3xl mx-auto space-y-3">
+      <span class="inline-block text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-3.5 py-1.5 rounded-full">{pageMeta.badge}</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-on-surface tracking-tight">{pageMeta.title}</h1>
+      <p class="text-sm sm:text-base text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
+        {pageMeta.desc}
+      </p>
+    </div>
+
+    <!-- 1. Technical Capabilities Grid -->
+    <section class="space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.specsTitle}</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {pageMeta.specs.map((s) => (
+          <div class="p-5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/40 hover:-translate-y-1 hover:shadow-md transition-all duration-300 shadow-xs space-y-2">
+            <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+              <span class="material-symbols-outlined text-xl">{s.icon}</span>
+            </div>
+            <h3 class="font-bold text-sm text-on-surface">{s.title}</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 2. 4-Step Process Guide -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.stepsTitle}</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {pageMeta.steps.map((step, idx) => (
+          <div class="text-center p-5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/40 hover:-translate-y-1 hover:shadow-md transition-all duration-300 shadow-xs">
+            <div class="w-10 h-10 mx-auto mb-3 rounded-full bg-primary/10 text-primary font-black text-sm flex items-center justify-center">
+              {idx + 1}
+            </div>
+            <h3 class="font-bold text-sm text-on-surface mb-1">{step.title}</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 3. Where to Use Grid -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.useCasesTitle}</h2>
+      <div class="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+        {pageMeta.useCases.map((uc) => (
+          <div class="flex items-start gap-3.5 p-4.5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/30 hover:-translate-y-0.5 hover:shadow-xs transition-all duration-200">
+            <span class="material-symbols-outlined text-primary text-2xl shrink-0 mt-0.5">{uc.icon}</span>
+            <div>
+              <h3 class="font-bold text-sm text-on-surface">{uc.title}</h3>
+              <p class="text-xs text-on-surface-variant mt-1 leading-relaxed">{uc.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 4. Printing & Placement Guide -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.tipsTitle}</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {pageMeta.tips.map((tip) => (
+          <div class="p-4.5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 space-y-2">
+            <span class="material-symbols-outlined text-emerald-600 text-2xl">{tip.icon}</span>
+            <h3 class="font-bold text-sm text-on-surface">{tip.title}</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">{tip.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 5. Explore Other Tools Ribbon -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.otherToolsTitle}</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        {relatedTools.map((tool) => (
+          <a
+            href={tool.url}
+            class="p-3.5 rounded-xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/40 hover:-translate-y-1 hover:shadow-xs transition-all text-center group flex flex-col items-center justify-between"
+          >
+            <div class="w-8 h-8 rounded-lg bg-zinc-100 group-hover:bg-primary group-hover:text-white flex items-center justify-center transition-colors mb-2">
+              <span class="material-symbols-outlined text-lg">{tool.icon}</span>
+            </div>
+            <span class="font-bold text-xs text-on-surface group-hover:text-primary transition-colors block">{tool.title}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- 6. FAQs Accordion -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.faqsTitle}</h2>
+      <div class="space-y-3 max-w-3xl mx-auto">
+        {pageMeta.faqs.map((faq) => (
+          <details class="group border border-outline-variant/60 rounded-2xl bg-surface-container-lowest overflow-hidden shadow-xs transition-all">
+            <summary class="flex justify-between items-center p-4.5 cursor-pointer font-bold text-sm sm:text-base hover:bg-surface-container-low transition-colors select-none text-on-surface">
+              <span>{faq.q}</span>
+              <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-on-surface-variant">expand_more</span>
+            </summary>
+            <p class="px-4.5 pb-4.5 pt-1 text-on-surface-variant text-xs sm:text-sm leading-relaxed border-t border-outline-variant/30">
+              {faq.a}
+            </p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- 7. Bottom CTA Banner -->
+    <section class="rounded-3xl bg-linear-to-br from-zinc-900 to-zinc-950 text-white p-8 sm:p-12 text-center space-y-4 shadow-lg border border-zinc-800">
+      <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">{pageMeta.ctaTitle}</h2>
+      <p class="text-xs sm:text-sm text-zinc-400 max-w-lg mx-auto leading-relaxed">{pageMeta.ctaDesc}</p>
+      <div class="pt-2">
+        <button
+          onclick="document.getElementById('generator')?.scrollIntoView({ behavior: 'smooth' });"
+          class="px-6 py-3 rounded-full bg-white text-zinc-900 font-extrabold text-xs sm:text-sm hover:bg-zinc-100 hover:scale-105 transition-all shadow-md cursor-pointer"
+        >
+          {pageMeta.ctaBtn}
+        </button>
+      </div>
+    </section>
+
+  </div>
+
+  <Footer locale={locale} />
+</BaseLayout>

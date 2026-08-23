@@ -1,0 +1,310 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { type Locale } from '../i18n/config';
+import { getLocalizedUrl, t } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const isSuccess = Astro.url.searchParams.get('success') === 'true';
+const redirectUrl = Astro.url.origin + Astro.url.pathname + '?success=true';
+
+const metaMap: Record<Locale, {
+  title: string;
+  desc: string;
+  heading: string;
+  subtitle: string;
+  formName: string;
+  formEmail: string;
+  formSubject: string;
+  formSubjectPlaceholder: string;
+  subjects: Array<{ value: string; label: string }>;
+  formMessage: string;
+  formSubmit: string;
+  successMsg: string;
+  secureTitle: string;
+  secureDesc: string;
+  responseTimeTitle: string;
+  responseTimeDesc: string;
+  faqTitle: string;
+  faqs: Array<{ q: string; a: string }>;
+}> = {
+  en: {
+    title: "Contact Us — GenerateCustomQR Help & Feedback",
+    desc: "Get in touch with the GenerateCustomQR team for support, feature requests, bug reports, and business inquiries.",
+    heading: "Get in Touch",
+    subtitle: "Have a question, found a bug, or want to request a new feature? We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible.",
+    formName: "Name",
+    formEmail: "Email Address",
+    formSubject: "Subject",
+    formSubjectPlaceholder: "Select a topic...",
+    subjects: [
+      { value: "general", label: "General Inquiry" },
+      { value: "bug", label: "Bug Report" },
+      { value: "feature", label: "Feature Request" },
+      { value: "partnership", label: "Partnership / API" },
+      { value: "other", label: "Other" }
+    ],
+    formMessage: "Message",
+    formSubmit: "Send Message",
+    successMsg: "Thank you! Your message has been sent successfully. We will be in touch soon.",
+    secureTitle: "Secure & Private",
+    secureDesc: "Your message is securely forwarded to our team. We respect your privacy and never share your details.",
+    responseTimeTitle: "Response Time",
+    responseTimeDesc: "We typically reply to all inquiries within 24-48 hours during standard business days.",
+    faqTitle: "Frequently Asked Questions",
+    faqs: [
+      {
+        q: "Is GenerateCustomQR really free for commercial use?",
+        a: "Yes! All QR codes generated on our platform are completely free for both personal and commercial use. We do not place watermarks on your designs or require payment to download high-resolution files."
+      },
+      {
+        q: "Do my QR codes expire?",
+        a: "No, they never expire. We generate static QR codes, which means the data (like your website URL) is encoded directly into the pattern itself. As long as your website remains active, the QR code will work forever."
+      },
+      {
+        q: "Can you help me track scans?",
+        a: "Because we prioritize privacy and generate static codes, we do not track scans. If you need to track analytics, we recommend adding UTM parameters to your URL (e.g., ?utm_source=qr) before generating the code, and tracking it via your own Google Analytics."
+      }
+    ]
+  },
+  es: {
+    title: "Contacto y Soporte — GenerateCustomQR",
+    desc: "Ponte en contacto con el equipo de GenerateCustomQR para soporte técnico, sugerencias y consultas comerciales.",
+    heading: "Ponte en Contacto",
+    subtitle: "¿Tienes alguna pregunta, sugerencia o necesitas ayuda? Escríbenos y te responderemos lo antes posible.",
+    formName: "Nombre",
+    formEmail: "Correo Electrónico",
+    formSubject: "Asunto",
+    formSubjectPlaceholder: "Selecciona un tema...",
+    subjects: [
+      { value: "general", label: "Consulta General" },
+      { value: "bug", label: "Reporte de Error" },
+      { value: "feature", label: "Sugerencia de Función" },
+      { value: "partnership", label: "Alianzas / API" },
+      { value: "other", label: "Otro" }
+    ],
+    formMessage: "Mensaje",
+    formSubmit: "Enviar Mensaje",
+    successMsg: "¡Gracias! Tu mensaje ha sido enviado correctamente. Te responderemos pronto.",
+    secureTitle: "Seguro y Privado",
+    secureDesc: "Tu mensaje se envía de forma encriptada a nuestro equipo. Respetamos tu privacidad.",
+    responseTimeTitle: "Tiempo de Respuesta",
+    responseTimeDesc: "Normalmente respondemos en un plazo de 24 a 48 horas en días laborables.",
+    faqTitle: "Preguntas Frecuentes",
+    faqs: [
+      {
+        q: "¿GenerateCustomQR es realmente gratis para uso comercial?",
+        a: "¡Sí! Todos los códigos QR generados son 100% gratuitos para uso personal y comercial, sin marcas de agua ni suscripciones."
+      },
+      {
+        q: "¿Los códigos QR caducan?",
+        a: "No, nunca caducan. Generamos códigos estáticos con la información grabada directamente en el patrón."
+      },
+      {
+        q: "¿Puedo rastrear el número de escaneos?",
+        a: "Al ser códigos estáticos centrados en la privacidad, no rastreamos las visitas. Recomendamos añadir parámetros UTM a tu enlace y medirlo en Google Analytics."
+      }
+    ]
+  },
+  pt: {
+    title: "Contato e Suporte — GenerateCustomQR",
+    desc: "Entre em contato com a equipe GenerateCustomQR para suporte, sugestões de novos recursos e dúvidas gerais.",
+    heading: "Fale Conosco",
+    subtitle: "Dúvidas, sugestões de melhorias ou encontrou um erro? Preencha o formulário e responderemos o mais rápido possível.",
+    formName: "Nome",
+    formEmail: "E-mail",
+    formSubject: "Assunto",
+    formSubjectPlaceholder: "Selecione o assunto...",
+    subjects: [
+      { value: "general", label: "Dúvida Geral" },
+      { value: "bug", label: "Reportar Problema" },
+      { value: "feature", label: "Sugestão de Recurso" },
+      { value: "partnership", label: "Parcerias / API" },
+      { value: "other", label: "Outro" }
+    ],
+    formMessage: "Mensagem",
+    formSubmit: "Enviar Mensagem",
+    successMsg: "Obrigado! Sua mensagem foi enviada com sucesso. Retornaremos em breve.",
+    secureTitle: "Seguro e Privado",
+    secureDesc: "Sua mensagem é transmitida com segurança. Nunca compartilhamos seus dados com terceiros.",
+    responseTimeTitle: "Tempo de Resposta",
+    responseTimeDesc: "Costumamos responder a todas as solicitações em até 24-48 horas em dias úteis.",
+    faqTitle: "Perguntas Frequentes",
+    faqs: [
+      {
+        q: "O GenerateCustomQR é realmente gratuito para uso comercial?",
+        a: "Sim! Todos os QR codes criados em nossa plataforma são 100% gratuitos para uso pessoal e comercial sem marcas d'água."
+      },
+      {
+        q: "Os QR codes gerados têm prazo de validade?",
+        a: "Não. Nossos QR codes são estáticos e nunca expiram."
+      },
+      {
+        q: "Como posso rastrear os escaneamentos?",
+        a: "Por privacidade, geramos códigos estáticos sem servidores intermediários. Para monitorar métricas, adicione parâmetros UTM ao link no Google Analytics."
+      }
+    ]
+  },
+  de: {
+    title: "Kontakt & Support — GenerateCustomQR",
+    desc: "Kontaktieren Sie das GenerateCustomQR-Team für Support, Feature-Anfragen, Fehlermeldungen und geschäftliche Anfragen.",
+    heading: "Kontakt aufnehmen",
+    subtitle: "Haben Sie Fragen, Feedback oder Anregungen? Füllen Sie das Formular aus und wir melden uns schnellstmöglich bei Ihnen.",
+    formName: "Name",
+    formEmail: "E-Mail-Adresse",
+    formSubject: "Betreff",
+    formSubjectPlaceholder: "Thema auswählen...",
+    subjects: [
+      { value: "general", label: "Allgemeine Anfrage" },
+      { value: "bug", label: "Fehlermeldung" },
+      { value: "feature", label: "Feature-Wunsch" },
+      { value: "partnership", label: "Kooperation / API" },
+      { value: "other", label: "Sonstiges" }
+    ],
+    formMessage: "Nachricht",
+    formSubmit: "Nachricht senden",
+    successMsg: "Vielen Dank! Ihre Nachricht wurde erfolgreich übermittelt. Wir antworten in Kürze.",
+    secureTitle: "Sicher & Vertraulich",
+    secureDesc: "Ihre Angaben werden sicher übertragen und niemals an Dritte weitergegeben.",
+    responseTimeTitle: "Antwortzeit",
+    responseTimeDesc: "Wir antworten in der Regel innerhalb von 24 bis 48 Stunden an Werktagen.",
+    faqTitle: "Häufig gestellte Fragen",
+    faqs: [
+      {
+        q: "Ist GenerateCustomQR für kommerzielle Zwecke kostenlos?",
+        a: "Ja! Alle erstellten QR-Codes sind uneingeschränkt kostenlos für private und gewerbliche Nutzung."
+      },
+      {
+        q: "Haben die QR-Codes ein Ablaufdatum?",
+        a: "Nein, sie sind dauerhaft und unbegrenzt gültig."
+      },
+      {
+        q: "Bieten Sie Scan-Tracking an?",
+        a: "Aufgrund unseres strengen Datenschutzansatzes speichern wir keine Scan-Statistiken. Fügen Sie einfach UTM-Parameter für Google Analytics zu Ihrer URL hinzu."
+      }
+    ]
+  }
+};
+
+const pageMeta = metaMap[locale] || metaMap.en;
+
+const breadcrumbs = [
+  { name: t(locale, 'nav.generator'), url: getLocalizedUrl(locale, '/') },
+  { name: t(locale, 'footer.contact'), url: getLocalizedUrl(locale, '/contact') }
+];
+---
+<LegalLayout
+  locale={locale}
+  title={pageMeta.title}
+  description={pageMeta.desc}
+  breadcrumbs={breadcrumbs}
+  heading={pageMeta.heading}
+  icon="mail"
+>
+  <p class="text-center text-lg text-on-surface-variant mb-12 max-w-2xl mx-auto leading-relaxed">
+    {pageMeta.subtitle}
+  </p>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 not-prose">
+    
+    <!-- Contact Form -->
+    <div class="md:col-span-2 bg-surface-container p-6 md:p-8 rounded-3xl border border-outline-variant/40 shadow-xs">
+      <form action="https://api.web3forms.com/submit" method="POST" class="space-y-6">
+        
+        <input type="hidden" name="access_key" value="30fc18a9-ae6c-478d-8f30-d3c56fd1da21" />
+        <input type="hidden" name="redirect" value={redirectUrl} />
+        
+        <!-- Honeypot Spam Protection -->
+        <input type="checkbox" name="botcheck" class="hidden" style="display: none;" />
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div>
+            <label for="name" class="block text-xs font-bold uppercase tracking-wider text-on-surface mb-2">{pageMeta.formName}</label>
+            <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-xl bg-surface border border-outline-variant/60 text-on-surface focus:outline-hidden focus:ring-2 focus:ring-primary focus:border-transparent text-sm transition-all" placeholder="Jane Doe" />
+          </div>
+          <div>
+            <label for="email" class="block text-xs font-bold uppercase tracking-wider text-on-surface mb-2">{pageMeta.formEmail}</label>
+            <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-xl bg-surface border border-outline-variant/60 text-on-surface focus:outline-hidden focus:ring-2 focus:ring-primary focus:border-transparent text-sm transition-all" placeholder="jane@example.com" />
+          </div>
+        </div>
+
+        <div>
+          <label for="subject" class="block text-xs font-bold uppercase tracking-wider text-on-surface mb-2">{pageMeta.formSubject}</label>
+          <select id="subject" name="subject" required class="w-full px-4 py-3 rounded-xl bg-surface border border-outline-variant/60 text-on-surface focus:outline-hidden focus:ring-2 focus:ring-primary focus:border-transparent text-sm transition-all cursor-pointer">
+            <option value="" disabled selected>{pageMeta.formSubjectPlaceholder}</option>
+            {pageMeta.subjects.map(s => (
+              <option value={s.value}>{s.label}</option>
+            ))}
+          </select>
+        </div>
+
+        <div>
+          <label for="message" class="block text-xs font-bold uppercase tracking-wider text-on-surface mb-2">{pageMeta.formMessage}</label>
+          <textarea id="message" name="message" required rows="5" class="w-full px-4 py-3 rounded-xl bg-surface border border-outline-variant/60 text-on-surface focus:outline-hidden focus:ring-2 focus:ring-primary focus:border-transparent text-sm transition-all resize-y" placeholder="How can we help you today?"></textarea>
+        </div>
+
+        <button type="submit" class="w-full bg-primary text-white font-bold py-3.5 px-6 rounded-xl hover:bg-primary-hover transition-all flex items-center justify-center gap-2 shadow-md hover:shadow-lg hover:-translate-y-0.5 cursor-pointer">
+          <span>{pageMeta.formSubmit}</span>
+          <span class="material-symbols-outlined text-[20px]">send</span>
+        </button>
+
+        <div id="contact-success-banner" class="hidden rounded-xl p-4 text-sm font-medium bg-emerald-50 text-emerald-700 border border-emerald-200 mt-4 flex items-center gap-2">
+          <span class="material-symbols-outlined text-emerald-600">check_circle</span>
+          <span>{pageMeta.successMsg}</span>
+        </div>
+      </form>
+    </div>
+
+    <script is:inline>
+      if (new URLSearchParams(window.location.search).get('success') === 'true') {
+        const banner = document.getElementById('contact-success-banner');
+        if (banner) {
+          banner.classList.remove('hidden');
+        }
+      }
+    </script>
+
+    <!-- Contact Info Cards -->
+    <div class="space-y-6">
+      <div class="bg-surface-container p-6 rounded-3xl border border-outline-variant/40 shadow-xs">
+        <div class="w-10 h-10 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-4">
+          <span class="material-symbols-outlined">shield</span>
+        </div>
+        <h3 class="text-base font-bold text-on-surface mb-1">{pageMeta.secureTitle}</h3>
+        <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">{pageMeta.secureDesc}</p>
+      </div>
+
+      <div class="bg-surface-container p-6 rounded-3xl border border-outline-variant/40 shadow-xs">
+        <div class="w-10 h-10 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-4">
+          <span class="material-symbols-outlined">schedule</span>
+        </div>
+        <h3 class="text-base font-bold text-on-surface mb-1">{pageMeta.responseTimeTitle}</h3>
+        <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">{pageMeta.responseTimeDesc}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQs -->
+  <div class="mt-16">
+    <h2 class="text-center mb-8">{pageMeta.faqTitle}</h2>
+    <div class="space-y-4 max-w-2xl mx-auto not-prose">
+      {pageMeta.faqs.map(faq => (
+        <details class="group bg-surface-container border border-outline-variant/40 rounded-2xl overflow-hidden shadow-xs transition-all">
+          <summary class="flex justify-between items-center font-bold cursor-pointer list-none p-5 text-on-surface hover:text-primary transition-colors text-sm sm:text-base">
+            <span>{faq.q}</span>
+            <span class="transition-transform group-open:rotate-180">
+              <span class="material-symbols-outlined text-on-surface-variant">expand_more</span>
+            </span>
+          </summary>
+          <div class="text-on-surface-variant text-xs sm:text-sm p-5 pt-0 border-t border-outline-variant/20 mt-2 leading-relaxed">
+            {faq.a}
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+</LegalLayout>

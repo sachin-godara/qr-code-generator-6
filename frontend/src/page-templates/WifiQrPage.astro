@@ -1,0 +1,381 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import QRGeneratorApp from '../react/QRGeneratorApp';
+import Footer from '../components/layout/Footer.astro';
+import { type Locale } from '../i18n/config';
+import { getLocalizedUrl, t } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const metaMap: Record<Locale, {
+  title: string;
+  desc: string;
+  badge: string;
+  specsTitle: string;
+  specs: Array<{ icon: string; title: string; desc: string }>;
+  stepsTitle: string;
+  steps: Array<{ icon: string; title: string; desc: string }>;
+  useCasesTitle: string;
+  useCases: Array<{ icon: string; title: string; desc: string }>;
+  tipsTitle: string;
+  tips: Array<{ icon: string; title: string; desc: string }>;
+  faqsTitle: string;
+  faqs: Array<{ q: string; a: string }>;
+  otherToolsTitle: string;
+  ctaTitle: string;
+  ctaDesc: string;
+  ctaBtn: string;
+}> = {
+  en: {
+    title: "Free WiFi QR Code Generator — Connect Without Typing",
+    desc: "Create a free WiFi QR code to share your network credentials instantly. Perfect for cafes, hotels, Airbnb, and guest networks. No signup required.",
+    badge: "1-Tap WiFi Connect",
+    specsTitle: "Key Technical Capabilities",
+    specs: [
+      { icon: "security", title: "WPA, WPA2 & WPA3 Support", desc: "Compatible with modern WPA3 personal encryption, standard WPA/WPA2-PSK, legacy WEP, and open unencrypted networks." },
+      { icon: "lock", title: "100% Client-Side Privacy", desc: "Network credentials and passwords never leave your browser or touch our backend. Complete zero-knowledge security." },
+      { icon: "qr_code_2", title: "Universal Camera Auto-Join", desc: "Natively recognized by iPhone Camera (iOS 11+) and Android (Android 10+) with instant 1-tap connection prompts." },
+      { icon: "print", title: "Print-Ready 300 DPI & SVG", desc: "Export in vector SVG or high-resolution PDF for table tents, acrylic stands, window decals, and guest manuals." }
+    ],
+    stepsTitle: "How to Create a WiFi QR Code in 4 Easy Steps",
+    steps: [
+      { icon: "wifi", title: "1. Select WiFi Type", desc: "Ensure WiFi is selected in the generator content tabs." },
+      { icon: "key", title: "2. Enter Network Details", desc: "Type your exact SSID network name, password, and security type." },
+      { icon: "palette", title: "3. Brand & Style", desc: "Customize dot patterns, eye frames, WiFi badge, and theme colors." },
+      { icon: "download", title: "4. Export & Display", desc: "Download high-res PNG or vector SVG and place on counters or tables." }
+    ],
+    useCasesTitle: "Where to Use WiFi QR Codes",
+    useCases: [
+      { icon: "restaurant", title: "Restaurants & Cafes", desc: "Place WiFi QR codes on tables, menus, or checkout counters so customers connect without asking staff for complicated passwords." },
+      { icon: "hotel", title: "Hotels & Airbnbs", desc: "Include in guest welcome packets or bedside frames. Guests connect in seconds without reception calls." },
+      { icon: "business", title: "Offices & Co-working", desc: "Display in meeting rooms and conference lobbies. Visitors join secure guest networks without IT assistance." },
+      { icon: "home", title: "Home Networks", desc: "Frame a stylish WiFi QR code in your living room or entryway so friends and family can connect instantly." }
+    ],
+    tipsTitle: "Best Practices for Printing & Displaying WiFi QR Codes",
+    tips: [
+      { icon: "aspect_ratio", title: "Minimum Size: 3×3 cm", desc: "Ensure printed codes on table tents and menus are at least 3×3 cm (1.2×1.2 inches) for instant camera focus." },
+      { icon: "contrast", title: "High Contrast (4.5:1+)", desc: "Maintain high contrast between dark modules and light backgrounds to guarantee readability in low cafe lighting." },
+      { icon: "layers", title: "Matte Finish Lamination", desc: "Use non-reflective matte lamination on acrylic stands to prevent harsh glare from overhead restaurant lights." },
+      { icon: "visibility", title: "Eye-Level Visibility", desc: "Place signs at natural seated eye-level on table tops or next to payment terminals for maximum scan rates." }
+    ],
+    faqsTitle: "Frequently Asked Questions About WiFi QR Codes",
+    faqs: [
+      { q: "How does a WiFi QR code work?", a: "A WiFi QR code encodes a standard WIFI: string (WIFI:T:WPA;S:MyNetwork;P:MyPassword;;). When a smartphone camera scans it, the operating system detects the network payload and displays a native 1-tap connection dialog." },
+      { q: "Is creating a WiFi QR code safe and private?", a: "Yes, 100%. The QR code generation runs entirely in your browser using local canvas and JavaScript. Your WiFi password is never transmitted across the network or stored on any server." },
+      { q: "Which smartphones support scanning WiFi QR codes?", a: "All modern smartphones support it natively: Apple iPhones running iOS 11 or later, and Android phones running Android 10 or later via the native Camera app or Google Lens." },
+      { q: "What should I do if my network has a hidden SSID?", a: "If your network SSID is hidden, select the Hidden Network checkbox in the generator settings. The QR code will include the H:true parameter so devices can join properly." },
+      { q: "Do WiFi QR codes expire?", a: "No. The QR code is static and permanent. It will work forever as long as your router's SSID and password remain unchanged." }
+    ],
+    otherToolsTitle: "Explore Other Free QR Code Tools",
+    ctaTitle: "Ready to Create Your Free WiFi QR Code?",
+    ctaDesc: "Generate high-resolution WiFi QR codes for cafes, hotels, offices, and homes in seconds. No signup required.",
+    ctaBtn: "Create WiFi QR Code Now ↑"
+  },
+  es: {
+    title: "Generador de Códigos QR para WiFi Gratis — Conectar al Instante",
+    desc: "Crea un código QR de WiFi gratis para compartir tu red al instante. Ideal para cafeterías, hoteles, oficinas y redes de invitados. Sin registro.",
+    badge: "Conexión WiFi en 1 Toque",
+    specsTitle: "Capacidades Técnicas Clave",
+    specs: [
+      { icon: "security", title: "Soporte WPA, WPA2 y WPA3", desc: "Compatible con el cifrado moderno WPA3 personal, WPA/WPA2 estándar, WEP y redes abiertas sin contraseña." },
+      { icon: "lock", title: "Privacidad 100% en el Navegador", desc: "Tus claves de red nunca salen de tu ordenador ni se envían a ningún servidor. Seguridad total sin registro." },
+      { icon: "qr_code_2", title: "Conexión Nativa en 1 Toque", desc: "Reconocido por cámaras de iPhone (iOS 11+) y Android (Android 10+) con aviso de conexión instantánea." },
+      { icon: "print", title: "Calidad Vectorial para Imprenta", desc: "Exporta en SVG vectorial o PDF a 300 DPI para carteles de mesa, peanas acrílicas y manuales de bienvenida." }
+    ],
+    stepsTitle: "Cómo Crear un Código QR de WiFi en 4 Pasos",
+    steps: [
+      { icon: "wifi", title: "1. Selecciona WiFi", desc: "Asegúrate de que la pestaña WiFi esté activa en el generador." },
+      { icon: "key", title: "2. Introduce los Datos", desc: "Escribe el nombre exacto de la red (SSID), contraseña y tipo de seguridad." },
+      { icon: "palette", title: "3. Personaliza el Diseño", desc: "Elige colores de marca, formas de puntos, marcos e icono de WiFi." },
+      { icon: "download", title: "4. Descarga e Imprime", desc: "Exporta en PNG de alta resolución o SVG para colocarlo en mesas o mostradores." }
+    ],
+    useCasesTitle: "Dónde Usar Códigos QR de WiFi",
+    useCases: [
+      { icon: "restaurant", title: "Restaurantes y Cafeterías", desc: "Coloca el QR en mesas y cartas para que tus clientes se conecten sin tener que pedir la clave al personal." },
+      { icon: "hotel", title: "Hoteles y Alojamientos", desc: "Añádelo en las tarjetas de bienvenida de las habitaciones para una conexión inmediata sin llamar a recepción." },
+      { icon: "business", title: "Oficinas y Coworking", desc: "Facilita el acceso a la red de invitados en salas de reuniones sin sobrecargar al equipo técnico." },
+      { icon: "home", title: "Uso Doméstico", desc: "Enmarca un código QR cerca del router o en la entrada para que amigos y familiares se conecten al instante." }
+    ],
+    tipsTitle: "Consejos para Imprimir y Mostrar Códigos QR de WiFi",
+    tips: [
+      { icon: "aspect_ratio", title: "Tamaño Mínimo: 3×3 cm", desc: "Garantiza que el código impreso mida al menos 3×3 cm para un enfoque fotográfico rápido." },
+      { icon: "contrast", title: "Alto Contraste (4.5:1+)", desc: "Mantén un fondo claro y módulos oscuros para una lectura fiable en locales con luz tenue." },
+      { icon: "layers", title: "Acabado Mate Antirreflejos", desc: "Usa plastificado mate en soportes acrílicos para evitar reflejos de focos y lámparas." },
+      { icon: "visibility", title: "Visibilidad a la Altura de los Ojos", desc: "Sitúa los carteles sobre las mesas o junto al TPV para maximizar la tasa de escaneo." }
+    ],
+    faqsTitle: "Preguntas Frecuentes sobre Códigos QR de WiFi",
+    faqs: [
+      { q: "¿Cómo funciona un código QR de WiFi?", a: "Codifica una cadena estándar WIFI: (WIFI:T:WPA;S:MiRed;P:MiClave;;). Al enfocar con la cámara, el sistema operativo reconoce la red y muestra un botón para unirse con 1 solo toque." },
+      { q: "¿Es seguro y privado crear un código QR de WiFi aquí?", a: "Totalmente seguro. La generación se realiza al 100% de forma local en tu navegador mediante JavaScript. Tu contraseña nunca se transmite ni almacena en servidores." },
+      { q: "¿Qué móviles pueden escanearlo?", a: "Cualquier móvil moderno con iOS 11 o superior y Android 10 o superior mediante la aplicación nativa de Cámara o Google Lens." },
+      { q: "¿Qué ocurre si mi red está oculta?", a: "Marca la casilla de 'Red Oculta' en el panel de configuración para que el código incluya el parámetro H:true correspondiente." },
+      { q: "¿Caducan los códigos QR de WiFi?", a: "No. Los códigos son estáticos y permanentes. Funcionarán para siempre mientras no cambies el nombre o la clave de tu router." }
+    ],
+    otherToolsTitle: "Explora Otras Herramientas QR Gratuitas",
+    ctaTitle: "¿Listo para Crear tu Código QR de WiFi?",
+    ctaDesc: "Genera códigos QR de alta resolución para cafeterías, hoteles, oficinas y hogares en segundos.",
+    ctaBtn: "Crear Código QR de WiFi Ahora ↑"
+  },
+  pt: {
+    title: "Gerador de QR Code para Wi-Fi Grátis — Conectar sem Senha",
+    desc: "Crie um QR code de Wi-Fi grátis para compartilhar sua rede instantaneamente. Perfeito para cafeterias, hotéis, Airbnb e convidados. Sem cadastro.",
+    badge: "Conexão Wi-Fi em 1 Toque",
+    specsTitle: "Recursos Técnicos Avançados",
+    specs: [
+      { icon: "security", title: "Suporte WPA, WPA2 e WPA3", desc: "Compatível com a proteção WPA3 moderna, WPA/WPA2-PSK corporativo, WEP e redes sem senha." },
+      { icon: "lock", title: "Privacidade 100% Local", desc: "Sua senha de Wi-Fi nunca sai do seu navegador e jamais toca em servidores. Segurança total." },
+      { icon: "qr_code_2", title: "Conexão com 1 Toque", desc: "Reconhecido nativamente no iPhone (iOS 11+) e Android (Android 10+) com aviso automático." },
+      { icon: "print", title: "Exportação em SVG e PDF 300 DPI", desc: "Arquivos gráficos de alta resolução para displays acrílicos, cardápios e plaquinhas de balcão." }
+    ],
+    stepsTitle: "Como Criar um QR Code de Wi-Fi em 4 Passos",
+    steps: [
+      { icon: "wifi", title: "1. Escolha Wi-Fi", desc: "Certifique-se de que a aba Wi-Fi esteja selecionada no estúdio." },
+      { icon: "key", title: "2. Insira os Dados", desc: "Digite o nome exato da rede (SSID), senha e tipo de segurança." },
+      { icon: "palette", title: "3. Personalize o Estilo", desc: "Defina cores da marca, formato dos pontos e molduras com ícone de Wi-Fi." },
+      { icon: "download", title: "4. Baixe e Imprima", desc: "Exporte em PNG ou SVG de alta qualidade para expor em mesas e balcões." }
+    ],
+    useCasesTitle: "Onde Utilizar QR Codes de Wi-Fi",
+    useCases: [
+      { icon: "restaurant", title: "Restaurantes e Cafés", desc: "Coloque nas mesas e cardápios para clientes conectarem sem precisar perguntar a senha ao garçom." },
+      { icon: "hotel", title: "Hotéis e Airbnb", desc: "Disponibilize no quarto para hóspedes acessarem a internet em segundos sem ligar na recepção." },
+      { icon: "business", title: "Escritórios e Coworking", desc: "Facilite o acesso à rede de visitantes em salas de reunião com total segurança e agilidade." },
+      { icon: "home", title: "Rede Doméstica", desc: "Coloque um quadrinho decorativo na sala para visitas se conectarem com máxima facilidade." }
+    ],
+    tipsTitle: "Dicas para Impressão e Exibição de QR Codes Wi-Fi",
+    tips: [
+      { icon: "aspect_ratio", title: "Tamanho Mínimo: 3×3 cm", desc: "Mantenha o tamanho de pelo menos 3×3 cm para garantir leitura rápida por qualquer smartphone." },
+      { icon: "contrast", title: "Alto Contraste (4.5:1+)", desc: "Módulos escuros sobre fundo claro facilitam a leitura em ambientes com pouca luz." },
+      { icon: "layers", title: "Acabamento Fosco Antirreflexo", desc: "Prefira laminação fosca em displays acrílicos para evitar reflexos das lâmpadas do ambiente." },
+      { icon: "visibility", title: "Posicionamento Estratégico", desc: "Posicione a plaquinha no centro da mesa ou perto do caixa para visibilidade máxima." }
+    ],
+    faqsTitle: "Dúvidas Frequentes sobre QR Code de Wi-Fi",
+    faqs: [
+      { q: "Como funciona o QR Code de Wi-Fi?", a: "Ele armazena uma string padronizada WIFI: (WIFI:T:WPA;S:MinhaRede;P:MinhaSenha;;). Ao apontar a câmera, o celular reconhece os parâmetros de rede e exibe o botão para conectar com um clique." },
+      { q: "É seguro gerar o QR Code de Wi-Fi aqui?", a: "Sim, 100% seguro. A renderização ocorre no seu próprio navegador via JavaScript. Sua senha jamais é enviada ou salva em nossos servidores." },
+      { q: "Quais celulares conseguem ler o código?", a: "Todos os smartphones modernos: iPhones com iOS 11 ou superior e celulares Android com versão 10 ou superior através do aplicativo nativo da câmera." },
+      { q: "E se minha rede Wi-Fi for oculta?", a: "Basta marcar a opção 'Rede Oculta' no painel de configurações para incluir o parâmetro H:true no código." },
+      { q: "Os QR Codes de Wi-Fi expiram?", a: "Não. Nossos QR codes são estáticos e funcionam para sempre, desde que você não mude o nome ou a senha do roteador." }
+    ],
+    otherToolsTitle: "Conheça Outras Ferramentas QR Gratuitas",
+    ctaTitle: "Pronto para Criar seu QR Code de Wi-Fi?",
+    ctaDesc: "Gere códigos QR de alta resolução para cafeterias, hotéis, escritórios e residências em segundos.",
+    ctaBtn: "Criar QR Code de Wi-Fi Agora ↑"
+  },
+  de: {
+    title: "Kostenloser WLAN QR-Code Generator — Direkt ohne Passwort tippen",
+    desc: "Erstellen Sie einen kostenlosen WLAN QR-Code für Gäste. Ideal für Cafés, Hotels, Ferienwohnungen und Büros. Ohne Registrierung.",
+    badge: "1-Klick WLAN-Verbindung",
+    specsTitle: "Wichtige technische Merkmale",
+    specs: [
+      { icon: "security", title: "WPA, WPA2 & WPA3 Unterstützung", desc: "Kompatibel mit modernem WPA3 Personal, bewährtem WPA/WPA2-PSK, WEP sowie offenen Netzen." },
+      { icon: "lock", title: "100% Client-Side Datenschutz", desc: "Ihre Passwörter verlassen niemals Ihren Browser und werden nicht auf Servern gespeichert." },
+      { icon: "qr_code_2", title: "1-Klick Kamera-Verbindung", desc: "Wird von iPhone-Kameras (iOS 11+) und Android-Smartphones (Android 10+) automatisch erkannt." },
+      { icon: "print", title: "Druckfertige Vektoren in SVG & PDF", desc: "Verlustfreie Vektordateien und 300 DPI PDF für Aufsteller, Tischkarten und Infomappen." }
+    ],
+    stepsTitle: "So erstellen Sie einen WLAN-QR-Code in 4 Schritten",
+    steps: [
+      { icon: "wifi", title: "1. WLAN-Typ wählen", desc: "Stellen Sie sicher, dass der WLAN-Reiter im Generator aktiv ist." },
+      { icon: "key", title: "2. Zugangsdaten eingeben", desc: "Tragen Sie den genauen Netzwerknamen (SSID), das Passwort und die Verschlüsselung ein." },
+      { icon: "palette", title: "3. Design & Farben gestalten", desc: "Passen Sie Punktstile, Farben und WLAN-Symbole individuell an." },
+      { icon: "download", title: "4. Herunterladen & Aufstellen", desc: "Exportieren Sie das Bild in PNG oder Vektor-SVG für Ihre Tischaufsteller." }
+    ],
+    useCasesTitle: "Einsatzmöglichkeiten für WLAN-QR-Codes",
+    useCases: [
+      { icon: "restaurant", title: "Restaurants & Cafés", desc: "Auf Tischen oder Speisekarten platzieren, damit Gäste sich sofort ohne Nachfragen verbinden." },
+      { icon: "hotel", title: "Hotels & Ferienwohnungen", desc: "In der Willkommensmappe auslegen für schnellen Internetzugang ohne Rezeptionsanruf." },
+      { icon: "business", title: "Büros & Besprechungsräume", desc: "Gäste-WLAN in Meetingräumen bereitstellen ohne manuelle IT-Unterstützung." },
+      { icon: "home", title: "Zuhause für Gäste", desc: "Eingerahmter QR-Code im Wohnbereich für Freunde und Familie." }
+    ],
+    tipsTitle: "Tipps für Druck & Platzierung von WLAN-QR-Codes",
+    tips: [
+      { icon: "aspect_ratio", title: "Mindestgröße: 3×3 cm", desc: "Drucken Sie den Code mit mindestens 3×3 cm für schnelle und fehlerfreie Kameraerfassung." },
+      { icon: "contrast", title: "Hoher Kontrast (4.5:1+)", desc: "Dunkle Punkte auf hellem Grund garantieren zuverlässiges Scannen auch bei gedimmtem Licht." },
+      { icon: "layers", title: "Matte Oberflächen nutzen", desc: "Vermeiden Sie spiegelnde Acrylflächen, um störende Lichtreflexe von Lampen zu verhindern." },
+      { icon: "visibility", title: "Sichtbar auf Tischen", desc: "Platzieren Sie den Aufsteller gut sichtbar direkt auf den Gästetischen oder an der Kasse." }
+    ],
+    faqsTitle: "Häufige Fragen zu WLAN-QR-Codes",
+    faqs: [
+      { q: "Wie funktioniert ein WLAN-QR-Code?", a: "Er enthält eine formatierte Zeichenkette nach WIFI-Standard (WIFI:T:WPA;S:MeinNetz;P:MeinPasswort;;). Die Kamera erkennt die Zugangsdaten und blendet einen 'Netzwerk beitreten'-Button ein." },
+      { q: "Ist die Erstellung des WLAN-Codes sicher?", a: "Ja, zu 100%. Die Codierung erfolgt rein lokal im Browser via JavaScript. Ihre Zugangsdaten werden niemals an Server übertragen." },
+      { q: "Welche Smartphones werden unterstützt?", a: "Alle modernen Geräte mit iOS ab Version 11 und Android ab Version 10 direkt über die integrierte Kamera oder Google Lens." },
+      { q: "Funktioniert der Code auch bei versteckter SSID?", a: "Ja, aktivieren Sie einfach das Häkchen 'Verstecktes Netzwerk', damit der Parameter H:true hinterlegt wird." },
+      { q: "Haben die WLAN-QR-Codes ein Verfallsdatum?", a: "Nein. Die Codes sind statisch und bleiben dauerhaft gültig, solange Ihre Zugangsdaten am Router unverändert bleiben." }
+    ],
+    otherToolsTitle: "Weitere kostenlose QR-Code Tools",
+    ctaTitle: "Bereit für Ihren eigenen WLAN-QR-Code?",
+    ctaDesc: "Erstellen Sie hochauflösende WLAN-QR-Codes für Cafés, Hotels, Büros und Ihr Zuhause in Sekunden.",
+    ctaBtn: "Jetzt WLAN-QR-Code erstellen ↑"
+  }
+};
+
+const pageMeta = metaMap[locale] || metaMap.en;
+
+const breadcrumbs = [
+  { name: t(locale, 'nav.generator'), url: getLocalizedUrl(locale, '/') },
+  { name: t(locale, 'footer.wifiQR'), url: getLocalizedUrl(locale, '/wifi-qr-code') }
+];
+
+const relatedTools = [
+  { icon: "link", title: "URL to QR", desc: "Website links & portfolios", url: getLocalizedUrl(locale, '/url-qr-code-generator') },
+  { icon: "contact_page", title: "vCard QR", desc: "Digital business cards", url: getLocalizedUrl(locale, '/vcard-qr-code') },
+  { icon: "image", title: "QR with Logo", desc: "Branded custom logos", url: getLocalizedUrl(locale, '/qr-code-with-logo') },
+  { icon: "event", title: "Event QR", desc: "Save dates to calendars", url: getLocalizedUrl(locale, '/event-qr-code') },
+  { icon: "mail", title: "Email QR", desc: "Pre-filled email drafts", url: getLocalizedUrl(locale, '/email-qr-code') },
+  { icon: "qr_code_scanner", title: "QR Scanner", desc: "Camera & image decoder", url: getLocalizedUrl(locale, '/qr-code-scanner') }
+];
+
+const howTo = {
+  name: pageMeta.title,
+  description: pageMeta.desc,
+  steps: pageMeta.steps.map((s, idx) => ({ name: `${idx + 1}. ${s.title}`, text: s.desc }))
+};
+
+const faqs = pageMeta.faqs;
+---
+<BaseLayout
+  locale={locale}
+  title={pageMeta.title}
+  description={pageMeta.desc}
+  breadcrumbs={breadcrumbs}
+  howTo={howTo}
+  faqs={faqs}
+>
+  <style is:global>
+    @import '../styles/global.css';
+  </style>
+
+  <main id="generator">
+    <QRGeneratorApp client:load locale={locale} />
+  </main>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-16 text-on-surface" id="about">
+    
+    <!-- Hero Header -->
+    <div class="text-center max-w-3xl mx-auto space-y-3">
+      <span class="inline-block text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-3.5 py-1.5 rounded-full">{pageMeta.badge}</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-on-surface tracking-tight">{pageMeta.title}</h1>
+      <p class="text-sm sm:text-base text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
+        {pageMeta.desc}
+      </p>
+    </div>
+
+    <!-- 1. Technical Capabilities Grid -->
+    <section class="space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.specsTitle}</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {pageMeta.specs.map((s) => (
+          <div class="p-5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/40 hover:-translate-y-1 hover:shadow-md transition-all duration-300 shadow-xs space-y-2">
+            <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+              <span class="material-symbols-outlined text-xl">{s.icon}</span>
+            </div>
+            <h3 class="font-bold text-sm text-on-surface">{s.title}</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 2. 4-Step Process Guide -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.stepsTitle}</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {pageMeta.steps.map((step, idx) => (
+          <div class="text-center p-5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/40 hover:-translate-y-1 hover:shadow-md transition-all duration-300 shadow-xs">
+            <div class="w-10 h-10 mx-auto mb-3 rounded-full bg-primary/10 text-primary font-black text-sm flex items-center justify-center">
+              {idx + 1}
+            </div>
+            <h3 class="font-bold text-sm text-on-surface mb-1">{step.title}</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 3. Where to Use Grid -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.useCasesTitle}</h2>
+      <div class="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+        {pageMeta.useCases.map((uc) => (
+          <div class="flex items-start gap-3.5 p-4.5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/30 hover:-translate-y-0.5 hover:shadow-xs transition-all duration-200">
+            <span class="material-symbols-outlined text-primary text-2xl shrink-0 mt-0.5">{uc.icon}</span>
+            <div>
+              <h3 class="font-bold text-sm text-on-surface">{uc.title}</h3>
+              <p class="text-xs text-on-surface-variant mt-1 leading-relaxed">{uc.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 4. Printing & Placement Guide -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.tipsTitle}</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {pageMeta.tips.map((tip) => (
+          <div class="p-4.5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 space-y-2">
+            <span class="material-symbols-outlined text-emerald-600 text-2xl">{tip.icon}</span>
+            <h3 class="font-bold text-sm text-on-surface">{tip.title}</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">{tip.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 5. Explore Other Tools Ribbon -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.otherToolsTitle}</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        {relatedTools.map((tool) => (
+          <a
+            href={tool.url}
+            class="p-3.5 rounded-xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/40 hover:-translate-y-1 hover:shadow-xs transition-all text-center group flex flex-col items-center justify-between"
+          >
+            <div class="w-8 h-8 rounded-lg bg-zinc-100 group-hover:bg-primary group-hover:text-white flex items-center justify-center transition-colors mb-2">
+              <span class="material-symbols-outlined text-lg">{tool.icon}</span>
+            </div>
+            <span class="font-bold text-xs text-on-surface group-hover:text-primary transition-colors block">{tool.title}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- 6. FAQs Accordion -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.faqsTitle}</h2>
+      <div class="space-y-3 max-w-3xl mx-auto">
+        {pageMeta.faqs.map((faq) => (
+          <details class="group border border-outline-variant/60 rounded-2xl bg-surface-container-lowest overflow-hidden shadow-xs transition-all">
+            <summary class="flex justify-between items-center p-4.5 cursor-pointer font-bold text-sm sm:text-base hover:bg-surface-container-low transition-colors select-none text-on-surface">
+              <span>{faq.q}</span>
+              <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-on-surface-variant">expand_more</span>
+            </summary>
+            <p class="px-4.5 pb-4.5 pt-1 text-on-surface-variant text-xs sm:text-sm leading-relaxed border-t border-outline-variant/30">
+              {faq.a}
+            </p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- 7. Bottom CTA Banner -->
+    <section class="rounded-3xl bg-linear-to-br from-zinc-900 to-zinc-950 text-white p-8 sm:p-12 text-center space-y-4 shadow-lg border border-zinc-800">
+      <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">{pageMeta.ctaTitle}</h2>
+      <p class="text-xs sm:text-sm text-zinc-400 max-w-lg mx-auto leading-relaxed">{pageMeta.ctaDesc}</p>
+      <div class="pt-2">
+        <button
+          onclick="document.getElementById('generator')?.scrollIntoView({ behavior: 'smooth' });"
+          class="px-6 py-3 rounded-full bg-white text-zinc-900 font-extrabold text-xs sm:text-sm hover:bg-zinc-100 hover:scale-105 transition-all shadow-md cursor-pointer"
+        >
+          {pageMeta.ctaBtn}
+        </button>
+      </div>
+    </section>
+
+  </div>
+
+  <Footer locale={locale} />
+</BaseLayout>

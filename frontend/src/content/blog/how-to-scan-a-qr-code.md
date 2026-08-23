@@ -9,8 +9,6 @@ readingTime: 5
 featured: true
 ---
 
-# How to Scan a QR Code on iPhone and Android
-
 QR codes are everywhere — on restaurant menus, product packaging, event tickets, and business cards. But how do you actually scan one? This guide covers every method across iPhone, Android, and desktop devices.
 
 ## Scanning QR Codes on iPhone (iOS 15+)
@@ -119,3 +117,4 @@ Ready to create your own QR code? [Generate a free custom QR code →](/)
 | From saved image | Google Lens / Photos | ✅ Yes |
 
 Whether you're using an iPhone or Android, scanning QR codes is faster than ever. And if you need to create QR codes that scan reliably across all devices, [GenerateCustomQR](/) offers 40+ styles with guaranteed scannability — 100% free.
+

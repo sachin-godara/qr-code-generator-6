@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Html5Qrcode, Html5QrcodeSupportedFormats } from 'html5-qrcode';
 import { 
   Camera, 
+  Lock,
   Image as ImageIcon, 
   Copy, 
   ExternalLink, 
@@ -306,10 +307,13 @@ export function parseQRContent(rawText: string): ParsedQRData {
   };
 }
 
+import { TranslationProvider, useTranslation } from '../../i18n/useTranslation';
+
 const STORAGE_KEY = 'genqr_scan_history_v1';
 const TAB_PREF_KEY = 'genqr_scanner_tab';
 
-export default function QRScannerApp() {
+function QRScannerAppContent() {
+  const { t } = useTranslation();
   const [scanResult, setScanResult] = useState<string | null>(null);
   const [parsedData, setParsedData] = useState<ParsedQRData | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -561,13 +565,13 @@ export default function QRScannerApp() {
       setIsScanning(false);
       const errMsg = String(err);
       if (err?.name === "NotAllowedError" || errMsg.includes("Permission") || errMsg.includes("denied")) {
-        setError("Camera permission denied. Please allow camera access in your browser settings and click Retry.");
+        setError("scanner.cameraPermissionDenied");
       } else if (err?.name === "NotFoundError" || errMsg.includes("device not found") || errMsg.includes("Requested device not found")) {
-        setError("No webcam or camera device detected on this computer. You can upload an image or press Ctrl+V to paste.");
-      } else if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
-        setError("Camera access requires HTTPS. Please ensure you are browsing on a secure connection.");
+        setError("scanner.cameraNotFound");
+      } else if (typeof location !== 'undefined' && location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+        setError("scanner.cameraHttpsRequired");
       } else {
-        setError("Camera is currently unavailable. Please verify browser permissions or upload an image instead.");
+        setError("scanner.cameraUnavailable");
       }
     } finally {
       isTransitioningRef.current = false;
@@ -979,10 +983,11 @@ export default function QRScannerApp() {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto bg-surface-container-lowest rounded-2xl sm:rounded-3xl border border-outline-variant/60 shadow-2xl overflow-hidden transition-all duration-300 relative">
-      
-      {/* Floating Toast Notification */}
-      <AnimatePresence>
+    <div className="w-full flex flex-col items-center">
+      <div className="w-full max-w-2xl mx-auto bg-white rounded-3xl sm:rounded-4xl border border-zinc-200/80 shadow-xl shadow-zinc-200/50 overflow-hidden transition-all duration-300 relative">
+        
+        {/* Floating Toast Notification */}
+        <AnimatePresence>
         {toastMessage && (
           <motion.div
             initial={{ opacity: 0, y: -20, scale: 0.95 }}
@@ -997,44 +1002,44 @@ export default function QRScannerApp() {
       </AnimatePresence>
 
       {/* Top Header & 2-Mode Segmented Tabs (Upload Image | Scan with Camera) */}
-      <div className="p-3.5 sm:p-5 md:p-6 border-b border-outline-variant/40 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4 bg-surface-container-low/40">
+      <div className="px-5 sm:px-6 py-4 border-b border-zinc-100 flex items-center justify-between gap-3 bg-white">
         
         {/* Main Segmented Mode Toggle */}
-        <div className="flex bg-surface-container rounded-xl sm:rounded-2xl p-1 border border-outline-variant/60 w-full sm:w-auto shadow-inner">
+        <div className="flex bg-zinc-100/90 rounded-2xl p-1 border border-zinc-200/50 shadow-2xs">
           
           <button
             onClick={() => handleTabChange('file')}
-            className={`relative flex-1 sm:flex-initial px-3.5 sm:px-5 py-2.5 flex items-center justify-center gap-1.5 sm:gap-2 rounded-lg sm:rounded-xl font-bold transition-all text-xs sm:text-sm outline-none cursor-pointer select-none ${
-              activeTab === 'file' ? 'text-primary shadow-xs' : 'text-on-surface-variant hover:text-on-surface'
+            className={`relative px-4 py-2 flex items-center justify-center gap-2 rounded-xl font-bold transition-all text-sm outline-none cursor-pointer select-none ${
+              activeTab === 'file' ? 'text-zinc-900 shadow-xs' : 'text-zinc-500 hover:text-zinc-800'
             }`}
           >
             {activeTab === 'file' && (
               <motion.div
                 layoutId="scanner-mode-tab"
-                className="absolute inset-0 bg-white rounded-lg sm:rounded-xl shadow-xs ring-1 ring-black/5"
+                className="absolute inset-0 bg-white rounded-xl shadow-xs border border-zinc-200/60"
                 transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
               />
             )}
-            <span className="relative z-10 flex items-center gap-1.5 sm:gap-2">
-              <ImageIcon size={16} /> <span>Upload Image</span>
+            <span className="relative z-10 flex items-center gap-2">
+              <ImageIcon size={17} /> <span>{t("scanner.uploadTab")}</span>
             </span>
           </button>
           
           <button
             onClick={() => handleTabChange('camera')}
-            className={`relative flex-1 sm:flex-initial px-3.5 sm:px-5 py-2.5 flex items-center justify-center gap-1.5 sm:gap-2 rounded-lg sm:rounded-xl font-bold transition-all text-xs sm:text-sm outline-none cursor-pointer select-none ${
-              activeTab === 'camera' ? 'text-primary shadow-xs' : 'text-on-surface-variant hover:text-on-surface'
+            className={`relative px-4 py-2 flex items-center justify-center gap-2 rounded-xl font-semibold transition-all text-sm outline-none cursor-pointer select-none ${
+              activeTab === 'camera' ? 'text-zinc-900 shadow-xs' : 'text-zinc-500 hover:text-zinc-800'
             }`}
           >
             {activeTab === 'camera' && (
               <motion.div
                 layoutId="scanner-mode-tab"
-                className="absolute inset-0 bg-white rounded-lg sm:rounded-xl shadow-xs ring-1 ring-black/5"
+                className="absolute inset-0 bg-white rounded-xl shadow-xs border border-zinc-200/60"
                 transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
               />
             )}
-            <span className="relative z-10 flex items-center gap-1.5 sm:gap-2">
-              <Camera size={16} /> <span>Scan Camera</span>
+            <span className="relative z-10 flex items-center gap-2">
+              <Camera size={17} /> <span>{t("scanner.cameraTab")}</span>
             </span>
           </button>
 
@@ -1044,18 +1049,18 @@ export default function QRScannerApp() {
         <div className="flex items-center justify-end shrink-0">
           <button
             onClick={() => setShowHistory(!showHistory)}
-            className={`flex items-center justify-center gap-1.5 px-3 sm:px-3.5 py-2 sm:py-2.5 rounded-xl border text-xs font-bold transition-all cursor-pointer min-h-[40px] ${
+            className={`flex items-center justify-center gap-2 px-4 py-2 rounded-2xl border text-sm font-semibold transition-all cursor-pointer ${
               showHistory 
                 ? 'bg-primary text-white border-primary shadow-md' 
-                : 'bg-surface-container text-on-surface border-outline-variant/60 hover:bg-surface-container-high'
+                : 'bg-zinc-100/90 text-zinc-700 border-zinc-200/50 hover:bg-zinc-200/70'
             }`}
-            title="View scan history"
+            title={t("scanner.historyTab")}
           >
-            <History size={15} />
-            <span>History</span>
+            <History size={16} />
+            <span>{t("scanner.historyTab")}</span>
             {scanHistory.length > 0 && (
-              <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-black ${
-                showHistory ? 'bg-white/25 text-white' : 'bg-primary/15 text-primary'
+              <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${
+                showHistory ? 'bg-white/25 text-white' : 'bg-zinc-200/90 text-zinc-700'
               }`}>
                 {scanHistory.length}
               </span>
@@ -1076,8 +1081,8 @@ export default function QRScannerApp() {
           >
             <AlertCircle className="shrink-0 mt-0.5 text-error" size={18} />
             <div className="text-xs sm:text-sm font-medium leading-relaxed">
-              <p className="font-bold mb-0.5">Scan Notice</p>
-              <p>{error}</p>
+              <p className="font-bold mb-0.5">{t("scanner.scanNotice")}</p>
+              <p>{error.startsWith("scanner.") ? t(error) : error}</p>
             </div>
           </motion.div>
         )}
@@ -1093,7 +1098,7 @@ export default function QRScannerApp() {
               
               {/* Camera Viewfinder Box */}
               <div 
-                className="w-full max-w-[420px] aspect-square overflow-hidden rounded-2xl sm:rounded-3xl bg-neutral-950 shadow-2xl relative border-2 border-primary/30 flex items-center justify-center group"
+                className="w-full max-w-[420px] aspect-square overflow-hidden rounded-2xl sm:rounded-3xl bg-neutral-950 shadow-2xl relative ring-2 ring-primary/30 flex items-center justify-center group"
               >
                 {/* Dedicated stable element for Html5Qrcode */}
                 <div id={readerElementId} className="w-full h-full object-cover"></div>
@@ -1106,13 +1111,13 @@ export default function QRScannerApp() {
                     </div>
                     
                     <h4 className="text-sm sm:text-base font-bold text-on-surface mb-1">
-                      {error ? 'Camera Access Required' : 'Live Camera Scanner'}
+                      {error ? t("scanner.cameraAccessRequired") : t("scanner.liveCameraScanner")}
                     </h4>
                     
                     <p className="text-[11px] sm:text-xs text-on-surface-variant max-w-[260px] leading-relaxed mb-4 sm:mb-5">
                       {error 
-                        ? 'Camera was blocked or unavailable. Check browser permissions or switch to file upload.' 
-                        : 'Scan any QR code instantly in real-time using your phone or laptop camera.'}
+                        ? t("scanner.cameraBlockedDesc")
+                        : t("scanner.cameraScanDesc")}
                     </p>
                     
                     <div className="flex flex-col sm:flex-row gap-2 sm:gap-2.5 w-full max-w-[280px]">
@@ -1121,7 +1126,7 @@ export default function QRScannerApp() {
                         className="flex-1 flex items-center justify-center gap-1.5 bg-primary text-white py-2.5 px-4 rounded-xl font-bold hover:bg-primary/90 text-xs shadow-md transition-all cursor-pointer btn-spring"
                       >
                         <RefreshCw size={13} />
-                        <span>{error ? 'Retry Camera' : 'Start Camera'}</span>
+                        <span>{error ? t("scanner.retryCamera") : t("scanner.startCamera")}</span>
                       </button>
                       
                       <button
@@ -1129,7 +1134,7 @@ export default function QRScannerApp() {
                         className="flex-1 flex items-center justify-center gap-1.5 bg-surface hover:bg-surface-container text-on-surface py-2.5 px-4 rounded-xl font-bold text-xs border border-outline-variant/60 transition-colors cursor-pointer"
                       >
                         <ImageIcon size={13} />
-                        <span>Upload File</span>
+                        <span>{t("scanner.uploadFile")}</span>
                       </button>
                     </div>
                   </div>
@@ -1208,7 +1213,7 @@ export default function QRScannerApp() {
 
               <p className="mt-4 sm:mt-5 text-center text-xs font-medium text-on-surface-variant max-w-sm flex items-center justify-center gap-1.5 px-2">
                 <ScanLine size={15} className="text-primary shrink-0" />
-                <span>Point your camera viewfinder directly at any QR code.</span>
+                <span>{t("scanner.cameraHint")}</span>
               </p>
             </div>
 
@@ -1235,7 +1240,7 @@ export default function QRScannerApp() {
                     <div className="w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent shadow-[0_0_12px_var(--color-primary)] animate-pulse absolute top-1/2 -translate-y-1/2"></div>
                   </div>
 
-                  <h4 className="text-sm sm:text-base font-black text-on-surface uppercase tracking-wider">AI Deep Scanning...</h4>
+                  <h4 className="text-sm sm:text-base font-black text-on-surface uppercase tracking-wider">{t("scanner.aiDeepScan")}...</h4>
                   <p className="text-xs text-on-surface-variant mt-1 max-w-[280px] font-medium">{deepScanStep}</p>
                 </motion.div>
               )}
@@ -1264,15 +1269,15 @@ export default function QRScannerApp() {
                   {/* Failure Badge */}
                   <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-error-container text-on-error-container text-[11px] font-bold mb-2">
                     <AlertTriangle size={13} className="text-error" />
-                    <span>No Valid QR Code Detected</span>
+                    <span>{t("scanner.noQrFound")}</span>
                   </div>
 
                   <h3 className="text-base sm:text-lg font-black text-on-surface mb-1">
-                    Could Not Read QR Code
+                    {t("scanner.couldNotRead")}
                   </h3>
 
                   <p className="text-xs text-on-surface-variant max-w-[280px] leading-relaxed mb-5">
-                    We couldn't detect a clear QR code in this image. The code may be blurry, low-contrast, or cropped.
+                    {t("scanner.couldNotReadDesc")}
                   </p>
 
                   {/* Action Buttons */}
@@ -1282,7 +1287,7 @@ export default function QRScannerApp() {
                       className="flex-1 flex items-center justify-center gap-1.5 bg-primary text-white py-3 px-4 rounded-xl font-bold hover:bg-primary/90 text-xs shadow-md transition-all cursor-pointer btn-spring min-h-[44px]"
                     >
                       <UploadCloud size={16} />
-                      <span>Try Another Image</span>
+                      <span>{t("scanner.tryAnotherImage")}</span>
                     </button>
 
                     <button
@@ -1290,7 +1295,7 @@ export default function QRScannerApp() {
                       className="flex-1 flex items-center justify-center gap-1.5 bg-surface hover:bg-surface-container text-on-surface py-3 px-4 rounded-xl font-bold text-xs border border-outline-variant/60 transition-colors cursor-pointer min-h-[44px]"
                     >
                       <Camera size={16} />
-                      <span>Scan with Camera</span>
+                      <span>{t("scanner.scanWithCamera")}</span>
                     </button>
                   </div>
 
@@ -1298,7 +1303,7 @@ export default function QRScannerApp() {
                     onClick={resetScanner}
                     className="mt-3.5 text-xs font-bold text-on-surface-variant hover:text-on-surface hover:underline cursor-pointer py-1"
                   >
-                    Clear and return to dropzone
+                    {t("scanner.clearAndReturn")}
                   </button>
 
                   <input 
@@ -1314,43 +1319,65 @@ export default function QRScannerApp() {
               {/* STATE 3: Standard Clean Dropzone Box (when no upload or after reset) */}
               {(!uploadedImagePreview || (!isDeepScanning && !error)) && (
                 <>
-                  <div 
+                  <motion.div 
                     ref={dropZoneRef}
                     onDragOver={handleDragOver}
                     onDragLeave={handleDragLeave}
                     onDrop={handleDrop}
                     onClick={() => !isDeepScanning && fileInputRef.current?.click()}
-                    className={`w-full max-w-[420px] aspect-square rounded-2xl sm:rounded-3xl border-2 border-dashed transition-all duration-200 flex flex-col items-center justify-center cursor-pointer p-4 sm:p-6 text-center select-none relative overflow-hidden group ${
+                    whileHover={{ scale: 1.012, transition: { duration: 0.2 } }}
+                    whileTap={{ scale: 0.99 }}
+                    className={`w-full max-w-[520px] rounded-3xl sm:rounded-[32px] border-2 border-dashed transition-all duration-300 flex flex-col items-center justify-center cursor-pointer p-8 sm:p-12 text-center select-none relative overflow-hidden group ${
                       isDragging 
-                        ? 'border-primary bg-primary/10 scale-[1.02] shadow-2xl' 
-                        : 'border-outline-variant/80 hover:border-primary bg-surface-container/40 hover:bg-surface-container/70 shadow-xs'
+                        ? 'border-primary bg-primary/5 scale-[1.01] shadow-xl ring-4 ring-primary/10' 
+                        : 'border-zinc-200/90 hover:border-zinc-400 hover:shadow-lg hover:shadow-zinc-200/50 bg-transparent'
                     }`}
                   >
-                    <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300 shadow-inner border border-primary/20">
-                      <ImageIcon size={30} className="sm:w-9 sm:h-9" />
-                    </div>
+                    <motion.div 
+                      className="w-20 h-20 rounded-2xl bg-zinc-100 text-zinc-800 flex items-center justify-center mb-5 shadow-2xs group-hover:bg-zinc-200/70 transition-colors"
+                      whileHover={{ scale: 1.15, rotate: [0, -5, 5, 0], transition: { duration: 0.35 } }}
+                    >
+                      <ImageIcon size={38} strokeWidth={1.75} />
+                    </motion.div>
 
-                    <h3 className="text-sm sm:text-base md:text-lg font-black text-on-surface mb-1">
-                      {isDragging ? 'Drop QR image here' : 'Tap or Drag QR image here'}
+                    <h3 className="text-lg sm:text-xl font-bold text-zinc-900 mb-2 tracking-tight group-hover:text-black transition-colors">
+                      {t("scanner.dropImage")}
                     </h3>
                     
-                    <p className="text-[11px] sm:text-xs text-on-surface-variant max-w-[240px] sm:max-w-[260px] leading-relaxed mb-3 sm:mb-4">
-                      Supports PNG, JPG, WebP, SVG, and screenshot files.
+                    <p className="text-xs sm:text-sm text-zinc-500 max-w-[320px] leading-relaxed mb-5">
+                      {t("scanner.supportsFormats")}
                     </p>
 
-                    {/* Format chips */}
-                    <div className="flex flex-wrap items-center justify-center gap-1 max-w-[280px]">
-                      <span className="px-2 py-0.5 rounded-md bg-surface border border-outline-variant/60 text-[10px] font-bold text-on-surface-variant">PNG</span>
-                      <span className="px-2 py-0.5 rounded-md bg-surface border border-outline-variant/60 text-[10px] font-bold text-on-surface-variant">JPG</span>
-                      <span className="px-2 py-0.5 rounded-md bg-surface border border-outline-variant/60 text-[10px] font-bold text-on-surface-variant">WebP</span>
-                      <span className="px-2 py-0.5 rounded-md bg-surface border border-outline-variant/60 text-[10px] font-bold text-on-surface-variant">SVG</span>
+                    {/* Format chips with interactive bounce */}
+                    <div className="flex flex-wrap items-center justify-center gap-2 mb-5">
+                      {['PNG', 'JPG', 'WebP', 'SVG'].map((fmt, idx) => (
+                        <motion.span 
+                          key={fmt}
+                          whileHover={{ y: -3, scale: 1.08 }}
+                          transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                          className="px-3 py-1 rounded-lg bg-zinc-50 border border-zinc-200/80 text-xs font-semibold text-zinc-600 shadow-2xs hover:bg-white hover:border-zinc-300 hover:text-zinc-900 cursor-pointer transition-colors"
+                        >
+                          {fmt}
+                        </motion.span>
+                      ))}
                     </div>
 
-                    {/* Ctrl+V helper badge */}
-                    <div className="mt-3 sm:mt-4 inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-surface-container-high border border-outline-variant/60 text-[10px] sm:text-[11px] font-semibold text-on-surface-variant">
-                      <Sparkles size={11} className="text-primary" />
-                      <span>Tip: Press <kbd className="font-mono font-bold text-on-surface bg-surface px-1 py-0.5 rounded border border-outline-variant">Ctrl+V</kbd> to paste</span>
-                    </div>
+                    {/* Ctrl+V helper badge with gentle pulse */}
+                    <motion.div 
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ type: "spring", stiffness: 400 }}
+                      className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-zinc-100 border border-zinc-200/60 text-xs font-medium text-zinc-600 shadow-2xs hover:bg-zinc-200/60 transition-colors"
+                    >
+                      <motion.div
+                        animate={{ rotate: [0, 15, -15, 0] }}
+                        transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+                      >
+                        <Sparkles size={13} className="text-amber-500" />
+                      </motion.div>
+                      <span>
+                        Tip: Press <kbd className="px-1.5 py-0.5 bg-white border border-zinc-300 rounded text-[11px] font-mono font-bold text-zinc-800 shadow-2xs">Ctrl+V</kbd> to paste
+                      </span>
+                    </motion.div>
 
                     <input 
                       type="file" 
@@ -1360,10 +1387,10 @@ export default function QRScannerApp() {
                       onChange={handleFileUpload}
                       disabled={isDeepScanning}
                     />
-                  </div>
+                  </motion.div>
 
-                  <p className="mt-4 sm:mt-5 text-center text-xs font-medium text-on-surface-variant px-2">
-                    Upload a saved image or screenshot to decode full contents.
+                  <p className="mt-6 text-center text-xs sm:text-sm text-zinc-500 max-w-sm">
+                    {t("scanner.uploadSavedImageDesc")}
                   </p>
                 </>
               )}
@@ -1385,7 +1412,7 @@ export default function QRScannerApp() {
             {/* Header Badge with Celebration Glow */}
             <div className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 text-emerald-600 border border-emerald-500/30 text-xs font-bold uppercase tracking-wider mb-4 sm:mb-5 shadow-xs">
               <Check size={14} className="stroke-[3]" />
-              <span>Decoded Successfully</span>
+              <span>{t("scanner.decodedSuccessfully")}</span>
             </div>
 
             {/* Smart Parsed Content Display Card */}
@@ -1592,7 +1619,7 @@ export default function QRScannerApp() {
                   className="w-full flex items-center justify-center gap-2 bg-primary text-white py-3 sm:py-3.5 px-4 rounded-xl sm:rounded-2xl font-bold hover:bg-primary/90 shadow-md transition-all btn-spring text-xs sm:text-sm min-h-[44px]"
                 >
                   <ExternalLink size={16} />
-                  <span>Open Website</span>
+                  <span>{t("scanner.openLink")}</span>
                 </a>
               )}
 
@@ -1603,7 +1630,7 @@ export default function QRScannerApp() {
                   className="w-full flex items-center justify-center gap-2 bg-primary text-white py-3 sm:py-3.5 px-4 rounded-xl sm:rounded-2xl font-bold hover:bg-primary/90 shadow-md transition-all cursor-pointer btn-spring text-xs sm:text-sm min-h-[44px]"
                 >
                   <Copy size={16} />
-                  <span>Copy Password</span>
+                  <span>{t("scanner.connectWifi")}</span>
                 </button>
               )}
 
@@ -1614,7 +1641,7 @@ export default function QRScannerApp() {
                   className="w-full flex items-center justify-center gap-2 bg-primary text-white py-3 sm:py-3.5 px-4 rounded-xl sm:rounded-2xl font-bold hover:bg-primary/90 shadow-md transition-all cursor-pointer btn-spring text-xs sm:text-sm min-h-[44px]"
                 >
                   <Download size={16} />
-                  <span>Save Contact (.vcf)</span>
+                  <span>{t("scanner.saveVCard")}</span>
                 </button>
               )}
 
@@ -1625,7 +1652,7 @@ export default function QRScannerApp() {
                   className="w-full flex items-center justify-center gap-2 bg-primary text-white py-3 sm:py-3.5 px-4 rounded-xl sm:rounded-2xl font-bold hover:bg-primary/90 shadow-md transition-all btn-spring text-xs sm:text-sm min-h-[44px]"
                 >
                   <Mail size={16} />
-                  <span>Compose Email</span>
+                  <span>{t("scanner.sendEmail")}</span>
                 </a>
               )}
 
@@ -1636,7 +1663,7 @@ export default function QRScannerApp() {
                   className="w-full flex items-center justify-center gap-2 bg-emerald-600 text-white py-3 sm:py-3.5 px-4 rounded-xl sm:rounded-2xl font-bold hover:bg-emerald-700 shadow-md transition-all btn-spring text-xs sm:text-sm min-h-[44px]"
                 >
                   <Phone size={16} />
-                  <span>Call Number</span>
+                  <span>{t("scanner.callPhone")}</span>
                 </a>
               )}
 
@@ -1649,7 +1676,7 @@ export default function QRScannerApp() {
                   className="w-full flex items-center justify-center gap-2 bg-primary text-white py-3 sm:py-3.5 px-4 rounded-xl sm:rounded-2xl font-bold hover:bg-primary/90 shadow-md transition-all btn-spring text-xs sm:text-sm min-h-[44px]"
                 >
                   <MapPin size={16} />
-                  <span>Open in Maps</span>
+                  <span>{t("scanner.openMap")}</span>
                 </a>
               )}
 
@@ -1659,7 +1686,7 @@ export default function QRScannerApp() {
                 className="w-full flex items-center justify-center gap-2 bg-surface-container hover:bg-surface-container-high text-on-surface py-3 sm:py-3.5 px-4 rounded-xl sm:rounded-2xl font-bold border border-outline-variant/60 transition-all cursor-pointer text-xs sm:text-sm min-h-[44px]"
               >
                 <Copy size={16} />
-                <span>Copy Raw Text</span>
+                <span>{t("scanner.copyContent")}</span>
               </button>
 
               {/* Universal Action: Scan Another */}
@@ -1668,7 +1695,7 @@ export default function QRScannerApp() {
                 className="w-full flex items-center justify-center gap-2 bg-surface-container hover:bg-surface-container-high text-on-surface py-3 sm:py-3.5 px-4 rounded-xl sm:rounded-2xl font-bold border border-outline-variant/60 transition-all cursor-pointer text-xs sm:text-sm min-h-[44px]"
               >
                 <RefreshCw size={16} />
-                <span>Scan Another</span>
+                <span>{t("scanner.tryAnotherImage")}</span>
               </button>
             </div>
 
@@ -1679,7 +1706,7 @@ export default function QRScannerApp() {
               <div className="flex items-center justify-between mb-3 pb-2 border-b border-outline-variant/30">
                 <span className="text-[11px] sm:text-xs font-bold text-on-surface flex items-center gap-1.5 uppercase tracking-wider">
                   <Download size={14} className="text-emerald-600" />
-                  <span>Download & Export Hub</span>
+                  <span>{t("scanner.downloadHub")}</span>
                 </span>
                 <span className="text-[10px] sm:text-[11px] text-on-surface-variant font-medium">1-Click Downloads</span>
               </div>
@@ -1753,13 +1780,13 @@ export default function QRScannerApp() {
 
             {/* Bottom Bridge Action: Customize in Generator */}
             <div className="w-full mt-5 sm:mt-6 pt-5 sm:pt-6 border-t border-outline-variant/50 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-center sm:text-left">
-              <span className="text-xs font-semibold text-on-surface-variant">Want custom frames, gradient colors, or company logos?</span>
+              <span className="text-xs font-semibold text-on-surface-variant">{t("scanner.wantCustomFrames")}</span>
               <a
                 href={getCreatorUrl()}
                 className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:text-primary/80 transition-colors shrink-0 py-1"
               >
                 <QrCode size={14} />
-                <span>Open in QR Studio</span>
+                <span>{t("scanner.openInStudio")}</span>
                 <ArrowRight size={13} />
               </a>
             </div>
@@ -1781,7 +1808,7 @@ export default function QRScannerApp() {
             <div className="flex items-center justify-between mb-3 sm:mb-4">
               <h4 className="font-bold text-on-surface text-xs sm:text-sm flex items-center gap-1.5">
                 <History size={15} className="text-primary" />
-                <span>Recent Scan History</span>
+                <span>{t("scanner.scanHistory")}</span>
               </h4>
               {scanHistory.length > 0 && (
                 <button
@@ -1789,13 +1816,13 @@ export default function QRScannerApp() {
                   className="text-xs font-bold text-error hover:underline flex items-center gap-1 cursor-pointer py-1"
                 >
                   <Trash2 size={12} />
-                  <span>Clear All</span>
+                  <span>{t("scanner.clearAll")}</span>
                 </button>
               )}
             </div>
 
             {scanHistory.length === 0 ? (
-              <p className="text-xs text-on-surface-variant py-4 text-center">No scans in history yet.</p>
+              <p className="text-xs text-on-surface-variant py-4 text-center">{t("scanner.noHistory")}</p>
             ) : (
               <div className="space-y-2 max-h-56 overflow-y-auto pr-1">
                 {scanHistory.map(item => (
@@ -1832,7 +1859,87 @@ export default function QRScannerApp() {
           </motion.div>
         )}
       </AnimatePresence>
+    </div>
+
+      {/* 4-Feature Trust Badges Row (with interactive animations) */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 mt-8 sm:mt-10 w-full max-w-4xl">
+        <motion.div 
+          whileHover={{ y: -4, scale: 1.02 }}
+          transition={{ type: "spring", stiffness: 400, damping: 20 }}
+          className="bg-white border border-zinc-200/80 rounded-2xl p-3.5 sm:p-4 flex items-center gap-3 shadow-xs hover:shadow-md hover:border-emerald-200 transition-all cursor-default group"
+        >
+          <motion.div 
+            whileHover={{ scale: 1.15, rotate: [0, -8, 8, 0] }}
+            className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 group-hover:bg-emerald-100/80 transition-colors"
+          >
+            <Lock size={19} strokeWidth={2.2} />
+          </motion.div>
+          <div className="min-w-0">
+            <p className="text-xs sm:text-sm font-bold text-zinc-900 truncate">{t("scanner.features.privateTitle")}</p>
+            <p className="text-[10px] sm:text-xs text-zinc-500 truncate">{t("scanner.features.privateDesc")}</p>
+          </div>
+        </motion.div>
+
+        <motion.div 
+          whileHover={{ y: -4, scale: 1.02 }}
+          transition={{ type: "spring", stiffness: 400, damping: 20 }}
+          className="bg-white border border-zinc-200/80 rounded-2xl p-3.5 sm:p-4 flex items-center gap-3 shadow-xs hover:shadow-md hover:border-blue-200 transition-all cursor-default group"
+        >
+          <motion.div 
+            whileHover={{ scale: 1.15, rotate: [0, -8, 8, 0] }}
+            className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 group-hover:bg-blue-100/80 transition-colors"
+          >
+            <Zap size={19} strokeWidth={2.2} />
+          </motion.div>
+          <div className="min-w-0">
+            <p className="text-xs sm:text-sm font-bold text-zinc-900 truncate">{t("scanner.features.instantTitle")}</p>
+            <p className="text-[10px] sm:text-xs text-zinc-500 truncate">{t("scanner.features.instantDesc")}</p>
+          </div>
+        </motion.div>
+
+        <motion.div 
+          whileHover={{ y: -4, scale: 1.02 }}
+          transition={{ type: "spring", stiffness: 400, damping: 20 }}
+          className="bg-white border border-zinc-200/80 rounded-2xl p-3.5 sm:p-4 flex items-center gap-3 shadow-xs hover:shadow-md hover:border-purple-200 transition-all cursor-default group"
+        >
+          <motion.div 
+            whileHover={{ scale: 1.15, rotate: [0, -8, 8, 0] }}
+            className="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center shrink-0 group-hover:bg-purple-100/80 transition-colors"
+          >
+            <Sparkles size={19} strokeWidth={2.2} />
+          </motion.div>
+          <div className="min-w-0">
+            <p className="text-xs sm:text-sm font-bold text-zinc-900 truncate">{t("scanner.features.aiTitle")}</p>
+            <p className="text-[10px] sm:text-xs text-zinc-500 truncate">{t("scanner.features.aiDesc")}</p>
+          </div>
+        </motion.div>
+
+        <motion.div 
+          whileHover={{ y: -4, scale: 1.02 }}
+          transition={{ type: "spring", stiffness: 400, damping: 20 }}
+          className="bg-white border border-zinc-200/80 rounded-2xl p-3.5 sm:p-4 flex items-center gap-3 shadow-xs hover:shadow-md hover:border-amber-200 transition-all cursor-default group"
+        >
+          <motion.div 
+            whileHover={{ scale: 1.15, rotate: [0, -8, 8, 0] }}
+            className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 group-hover:bg-amber-100/80 transition-colors"
+          >
+            <ShieldCheck size={19} strokeWidth={2.2} />
+          </motion.div>
+          <div className="min-w-0">
+            <p className="text-xs sm:text-sm font-bold text-zinc-900 truncate">{t("scanner.features.freeTitle")}</p>
+            <p className="text-[10px] sm:text-xs text-zinc-500 truncate">{t("scanner.features.freeDesc")}</p>
+          </div>
+        </motion.div>
+      </div>
 
     </div>
+  );
+}
+
+export default function QRScannerApp({ locale = 'en' }: { locale?: string }) {
+  return (
+    <TranslationProvider locale={locale}>
+      <QRScannerAppContent />
+    </TranslationProvider>
   );
 }

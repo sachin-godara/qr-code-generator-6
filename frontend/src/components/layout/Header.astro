@@ -1,11 +1,30 @@
 ---
+import { getLocaleFromUrl, getLocalizedUrl, t } from '../../i18n/utils';
+import { type Locale } from '../../i18n/config';
+import LanguageSwitcher from './LanguageSwitcher.astro';
+
+interface Props {
+  locale?: Locale;
+}
+
+const currentLocale = (Astro.props.locale || getLocaleFromUrl(Astro.url)) as Locale;
 const currentPath = Astro.url.pathname;
+
+const homeUrl = getLocalizedUrl(currentLocale, '/');
+const howToUrl = getLocalizedUrl(currentLocale, '/how-to-use');
+const blogUrl = getLocalizedUrl(currentLocale, '/blog');
+const scannerUrl = getLocalizedUrl(currentLocale, '/qr-code-scanner');
+
+const isHome = currentPath === homeUrl || currentPath === `${homeUrl}/`;
+const isHowTo = currentPath.startsWith(howToUrl);
+const isBlog = currentPath.startsWith(blogUrl);
+const isScanner = currentPath.startsWith(scannerUrl);
 ---
 <nav class="w-full top-0 z-50 bg-surface-container-lowest border-b border-outline-variant shadow-sm backdrop-blur-md bg-opacity-95 safe-top sticky">
   <div class="flex justify-between items-center h-14 sm:h-16 px-4 sm:px-6 max-w-[1400px] mx-auto w-full">
     <div class="flex items-center gap-4 sm:gap-8">
       <!-- Premium Brand Wordmark -->
-      <a href="/" class="flex items-center gap-2.5 group shrink-0" title="GenerateCustomQR — Home">
+      <a href={homeUrl} class="flex items-center gap-2.5 group shrink-0" title="GenerateCustomQR — Home">
         <div class="w-8 h-8 flex-shrink-0">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" class="w-full h-full drop-shadow-sm group-hover:drop-shadow-md transition-all">
             <defs>
@@ -35,80 +54,85 @@ const currentPath = Astro.url.pathname;
       </a>
       <div class="hidden md:flex items-center gap-5 lg:gap-6">
         <a
-          href="/"
-          class={`text-sm font-semibold transition-colors duration-200 ${currentPath === "/" ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
-          {...(currentPath === "/" ? { "aria-current": "page" } : {})}
+          href={homeUrl}
+          class={`text-sm font-semibold transition-colors duration-200 ${isHome ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
+          {...(isHome ? { "aria-current": "page" } : {})}
         >
-          Generator
+          {t(currentLocale, 'nav.generator')}
         </a>
         <a
-          href="/how-to-use"
-          class={`text-sm font-semibold transition-colors duration-200 flex items-center gap-1 ${currentPath === "/how-to-use" ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
-          {...(currentPath === "/how-to-use" ? { "aria-current": "page" } : {})}
+          href={howToUrl}
+          class={`text-sm font-semibold transition-colors duration-200 flex items-center gap-1 ${isHowTo ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
+          {...(isHowTo ? { "aria-current": "page" } : {})}
         >
           <span class="material-symbols-outlined text-[16px]">help_outline</span>
-          Guide
+          {t(currentLocale, 'nav.guide')}
         </a>
         <a
-          href="/blog"
-          class={`text-sm font-semibold transition-colors duration-200 flex items-center gap-1 ${currentPath.startsWith("/blog") ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
-          {...(currentPath.startsWith("/blog") ? { "aria-current": "page" } : {})}
+          href={blogUrl}
+          class={`text-sm font-semibold transition-colors duration-200 flex items-center gap-1 ${isBlog ? "text-on-surface border-b-2 border-primary pb-1" : "text-on-surface-variant hover:text-on-surface"}`}
+          {...(isBlog ? { "aria-current": "page" } : {})}
         >
           <span class="material-symbols-outlined text-[16px]">rss_feed</span>
-          Blog
+          {t(currentLocale, 'nav.blog')}
         </a>
         <a
-          href="/qr-code-scanner"
-          class={`text-sm font-bold transition-colors flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border ${currentPath === "/qr-code-scanner" ? "text-primary bg-primary/10 border-primary/30" : "text-on-surface hover:text-primary hover:bg-surface-container border-outline-variant/30"}`}
-          {...(currentPath === "/qr-code-scanner" ? { "aria-current": "page" } : {})}
+          href={scannerUrl}
+          class={`text-sm font-bold transition-colors flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border ${isScanner ? "text-primary bg-primary/10 border-primary/30" : "text-on-surface hover:text-primary hover:bg-surface-container border-outline-variant/30"}`}
+          {...(isScanner ? { "aria-current": "page" } : {})}
         >
           <span class="material-symbols-outlined text-[16px]">qr_code_scanner</span>
-          Scan
+          {t(currentLocale, 'nav.scan')}
         </a>
       </div>
     </div>
-    
-    <!-- Mobile Menu Button (requires client-side JS) -->
-    <button
-      id="mobile-menu-btn"
-      class="md:hidden w-10 h-10 flex items-center justify-center rounded-xl hover:bg-surface-container transition-colors touch-press"
-      aria-label="Toggle navigation menu"
-      aria-expanded="false"
-      aria-controls="mobile-menu"
-    >
-      <span class="material-symbols-outlined text-on-surface" id="menu-icon">menu</span>
-    </button>
+
+    <!-- Right Area: Language Switcher + Mobile Menu Button -->
+    <div class="flex items-center gap-2 sm:gap-3">
+      <LanguageSwitcher />
+
+      <!-- Mobile Menu Button (requires client-side JS) -->
+      <button
+        id="mobile-menu-btn"
+        class="md:hidden w-10 h-10 flex items-center justify-center rounded-xl hover:bg-surface-container transition-colors touch-press"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <span class="material-symbols-outlined text-on-surface" id="menu-icon">menu</span>
+      </button>
+    </div>
   </div>
   
   <!-- Mobile Menu Dropdown -->
   <div id="mobile-menu" class="hidden md:hidden border-t border-outline-variant bg-surface-container-lowest px-4 py-3 space-y-1 shadow-lg">
     <a
-      href="/"
-      class={`w-full flex items-center gap-3 p-2.5 rounded-xl min-h-[44px] font-bold ${currentPath === "/" ? "bg-primary/10 text-primary" : "text-on-surface-variant hover:bg-surface-container"}`}
+      href={homeUrl}
+      class={`w-full flex items-center gap-3 p-2.5 rounded-xl min-h-[44px] font-bold ${isHome ? "bg-primary/10 text-primary" : "text-on-surface-variant hover:bg-surface-container"}`}
     >
       <span class="material-symbols-outlined text-[20px]">qr_code_2</span>
-      Generator
+      {t(currentLocale, 'nav.generator')}
     </a>
     <a
-      href="/how-to-use"
-      class={`w-full flex items-center gap-3 p-2.5 rounded-xl min-h-[44px] font-bold ${currentPath === "/how-to-use" ? "bg-primary/10 text-primary" : "text-on-surface-variant hover:bg-surface-container"}`}
+      href={howToUrl}
+      class={`w-full flex items-center gap-3 p-2.5 rounded-xl min-h-[44px] font-bold ${isHowTo ? "bg-primary/10 text-primary" : "text-on-surface-variant hover:bg-surface-container"}`}
     >
       <span class="material-symbols-outlined text-[20px]">help_outline</span>
-      Guide
+      {t(currentLocale, 'nav.guide')}
     </a>
     <a
-      href="/blog"
-      class={`w-full flex items-center gap-3 p-2.5 rounded-xl min-h-[44px] font-bold ${currentPath.startsWith("/blog") ? "bg-primary/10 text-primary" : "text-on-surface-variant hover:bg-surface-container"}`}
+      href={blogUrl}
+      class={`w-full flex items-center gap-3 p-2.5 rounded-xl min-h-[44px] font-bold ${isBlog ? "bg-primary/10 text-primary" : "text-on-surface-variant hover:bg-surface-container"}`}
     >
       <span class="material-symbols-outlined text-[20px]">rss_feed</span>
-      Blog
+      {t(currentLocale, 'nav.blog')}
     </a>
     <a
-      href="/qr-code-scanner"
-      class={`w-full flex items-center gap-3 p-2.5 rounded-xl min-h-[44px] font-bold ${currentPath === "/qr-code-scanner" ? "text-primary bg-primary/5 border border-primary/20" : "text-on-surface-variant hover:bg-surface-container"}`}
+      href={scannerUrl}
+      class={`w-full flex items-center gap-3 p-2.5 rounded-xl min-h-[44px] font-bold ${isScanner ? "text-primary bg-primary/5 border border-primary/20" : "text-on-surface-variant hover:bg-surface-container"}`}
     >
       <span class="material-symbols-outlined text-[20px]">qr_code_scanner</span>
-      Scan QR Code
+      {t(currentLocale, 'nav.scanQR')}
     </a>
   </div>
 </nav>

@@ -1,0 +1,396 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import QRGeneratorApp from '../react/QRGeneratorApp';
+import Footer from '../components/layout/Footer.astro';
+import { getCollection } from 'astro:content';
+import { type Locale } from '../i18n/config';
+import { getPageSeo, getLocalizedUrl, t } from '../i18n/utils';
+import { getLocalizedPostData } from '../i18n/blogTranslations';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const seo = getPageSeo(locale, 'home');
+
+const allPosts = await getCollection('blog');
+const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const recentPosts = sortedPosts.slice(0, 3);
+
+const breadcrumbs = [
+  { name: t(locale, 'nav.generator'), url: getLocalizedUrl(locale, '/') }
+];
+
+const howTo = {
+  name: seo.howToName || "How to Create a Custom QR Code",
+  description: seo.howToDesc || "Design and generate a fully customized QR code with logo in under 2 minutes — 100% free.",
+  steps: seo.steps || []
+};
+
+const faqs = seo.faqs || [];
+
+const formatCards = [
+  {
+    id: 'url',
+    type: 'URL',
+    icon: 'link',
+    url: getLocalizedUrl(locale, '/url-qr-code-generator'),
+    title: t(locale, 'landing.formats.items.urlTitle'),
+    desc: t(locale, 'landing.formats.items.urlDesc'),
+  },
+  {
+    id: 'wifi',
+    type: 'WiFi',
+    icon: 'wifi',
+    url: getLocalizedUrl(locale, '/wifi-qr-code'),
+    title: t(locale, 'landing.formats.items.wifiTitle'),
+    desc: t(locale, 'landing.formats.items.wifiDesc'),
+  },
+  {
+    id: 'vcard',
+    type: 'vCard',
+    icon: 'contact_page',
+    url: getLocalizedUrl(locale, '/vcard-qr-code'),
+    title: t(locale, 'landing.formats.items.vcardTitle'),
+    desc: t(locale, 'landing.formats.items.vcardDesc'),
+  },
+  {
+    id: 'email',
+    type: 'Email',
+    icon: 'mail',
+    url: getLocalizedUrl(locale, '/email-qr-code'),
+    title: t(locale, 'landing.formats.items.emailTitle'),
+    desc: t(locale, 'landing.formats.items.emailDesc'),
+  },
+  {
+    id: 'sms',
+    type: 'SMS',
+    icon: 'sms',
+    url: getLocalizedUrl(locale, '/#generator'),
+    title: t(locale, 'landing.formats.items.smsTitle'),
+    desc: t(locale, 'landing.formats.items.smsDesc'),
+  },
+  {
+    id: 'phone',
+    type: 'Phone',
+    icon: 'call',
+    url: getLocalizedUrl(locale, '/#generator'),
+    title: t(locale, 'landing.formats.items.phoneTitle'),
+    desc: t(locale, 'landing.formats.items.phoneDesc'),
+  },
+  {
+    id: 'event',
+    type: 'Event',
+    icon: 'event',
+    url: getLocalizedUrl(locale, '/event-qr-code'),
+    title: t(locale, 'landing.formats.items.eventTitle'),
+    desc: t(locale, 'landing.formats.items.eventDesc'),
+  },
+  {
+    id: 'text',
+    type: 'Text',
+    icon: 'subject',
+    url: getLocalizedUrl(locale, '/#generator'),
+    title: t(locale, 'landing.formats.items.textTitle'),
+    desc: t(locale, 'landing.formats.items.textDesc'),
+  },
+  {
+    id: 'location',
+    type: 'Maps',
+    icon: 'location_on',
+    url: getLocalizedUrl(locale, '/#generator'),
+    title: t(locale, 'landing.formats.items.locationTitle'),
+    desc: t(locale, 'landing.formats.items.locationDesc'),
+  },
+  {
+    id: 'crypto',
+    type: 'Crypto',
+    icon: 'currency_bitcoin',
+    url: getLocalizedUrl(locale, '/#generator'),
+    title: t(locale, 'landing.formats.items.cryptoTitle'),
+    desc: t(locale, 'landing.formats.items.cryptoDesc'),
+  },
+  {
+    id: 'paypal',
+    type: 'PayPal',
+    icon: 'payments',
+    url: getLocalizedUrl(locale, '/#generator'),
+    title: t(locale, 'landing.formats.items.paypalTitle'),
+    desc: t(locale, 'landing.formats.items.paypalDesc'),
+  },
+  {
+    id: 'appstore',
+    type: 'App',
+    icon: 'apps',
+    url: getLocalizedUrl(locale, '/#generator'),
+    title: t(locale, 'landing.formats.items.appstoreTitle'),
+    desc: t(locale, 'landing.formats.items.appstoreDesc'),
+  },
+];
+---
+<BaseLayout
+  locale={locale}
+  title={seo.title}
+  description={seo.description}
+  keywords={seo.keywords}
+  breadcrumbs={breadcrumbs}
+  howTo={howTo}
+  faqs={faqs}
+>
+  <!-- Import global styles -->
+  <style is:global>
+    @import '../styles/global.css';
+  </style>
+
+  <!-- 
+    The entire QR Generator app loads as a React "client island".
+    client:load = hydrates immediately on page load (needed for interactive tool).
+  -->
+  <main id="generator">
+    <h1 class="sr-only">{seo.title}</h1>
+    <QRGeneratorApp client:load locale={locale} />
+  </main>
+
+  <!-- 
+    ======================================================
+    EPIC SHOWCASE SECTION (BELOW GENERATOR)
+    ======================================================
+  -->
+
+  <!-- 1. HERO STATS BAR -->
+  <section class="border-y border-outline-variant/50 bg-surface-container-lowest/80 backdrop-blur-md py-6 sm:py-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-center">
+        <div class="p-3 sm:p-4 rounded-2xl bg-surface/50 border border-outline-variant/30 hover:border-primary/30 transition-all">
+          <span class="text-2xl sm:text-4xl font-extrabold text-primary tracking-tight block">39</span>
+          <span class="text-xs sm:text-sm font-semibold text-on-surface-variant mt-1 block">{t(locale, 'landing.stats.dotStyles')}</span>
+        </div>
+        <div class="p-3 sm:p-4 rounded-2xl bg-surface/50 border border-outline-variant/30 hover:border-primary/30 transition-all">
+          <span class="text-2xl sm:text-4xl font-extrabold text-primary tracking-tight block">51</span>
+          <span class="text-xs sm:text-sm font-semibold text-on-surface-variant mt-1 block">{t(locale, 'landing.stats.frames')}</span>
+        </div>
+        <div class="p-3 sm:p-4 rounded-2xl bg-surface/50 border border-outline-variant/30 hover:border-primary/30 transition-all">
+          <span class="text-2xl sm:text-4xl font-extrabold text-primary tracking-tight block">121</span>
+          <span class="text-xs sm:text-sm font-semibold text-on-surface-variant mt-1 block">{t(locale, 'landing.stats.presets')}</span>
+        </div>
+        <div class="p-3 sm:p-4 rounded-2xl bg-surface/50 border border-outline-variant/30 hover:border-primary/30 transition-all">
+          <span class="text-2xl sm:text-4xl font-extrabold text-emerald-600 tracking-tight block">100%</span>
+          <span class="text-xs sm:text-sm font-semibold text-on-surface-variant mt-1 block">{t(locale, 'landing.stats.free')}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-16 space-y-16 sm:space-y-20">
+
+    <!-- 2. SUPPORTED FORMATS GRID -->
+    <section id="formats" class="space-y-8">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <span class="px-3 py-1 bg-surface-container-high text-on-surface text-xs font-bold rounded-full uppercase tracking-wider border border-outline-variant/40">
+          {t(locale, 'landing.formats.badge')}
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-black text-on-surface tracking-tight">
+          {t(locale, 'landing.formats.title')}
+        </h2>
+        <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+          {t(locale, 'landing.formats.sub')}
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4">
+        {formatCards.map((card) => (
+          <a
+            href={card.url}
+            onclick={`window.dispatchEvent(new CustomEvent('select-qr-content-type', { detail: { type: '${card.id}' } })); document.getElementById('generator')?.scrollIntoView({ behavior: 'smooth' });`}
+            class="p-4 sm:p-5 rounded-2xl bg-white border border-zinc-200/90 shadow-2xs hover:shadow-lg hover:border-zinc-900/40 hover:-translate-y-0.5 transition-all duration-200 group flex flex-col justify-between cursor-pointer"
+          >
+            <div>
+              <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-zinc-100 text-zinc-900 group-hover:bg-zinc-950 group-hover:text-white flex items-center justify-center transition-all duration-200 shadow-2xs">
+                <span class="material-symbols-outlined text-xl sm:text-2xl" aria-hidden="true">{card.icon}</span>
+              </div>
+              <h3 class="text-sm sm:text-base font-bold text-zinc-900 tracking-tight mt-3 group-hover:text-primary transition-colors">
+                {card.title}
+              </h3>
+              <p class="text-[11px] sm:text-xs text-zinc-500 leading-snug mt-1 line-clamp-2">
+                {card.desc}
+              </p>
+            </div>
+            
+            <div class="mt-3 pt-2 flex items-center gap-1 text-[11px] sm:text-xs font-bold text-zinc-900 group-hover:text-primary transition-all duration-200 border-t border-zinc-100">
+              <span>{t(locale, 'landing.formats.makeCta', { type: card.type })}</span>
+              <span class="material-symbols-outlined text-[14px] sm:text-[16px] group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- 3. FEATURE HIGHLIGHTS GRID -->
+    <section id="features" class="space-y-12">
+      <div class="text-center max-w-2xl mx-auto space-y-4">
+        <span class="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full uppercase tracking-wider">
+          {t(locale, 'landing.features.badge')}
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-black text-on-surface tracking-tight">
+          {t(locale, 'landing.featuresHeading')}
+        </h2>
+        <p class="text-base text-on-surface-variant leading-relaxed">
+          {t(locale, 'landing.featuresSub')}
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Card 1 -->
+        <div class="p-6 rounded-3xl bg-surface-container-lowest border border-outline-variant/60 shadow-sm hover-lift space-y-4 group">
+          <div class="w-12 h-12 rounded-2xl bg-violet-50 text-violet-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">palette</span>
+          </div>
+          <h3 class="text-lg font-bold text-on-surface">{t(locale, 'landing.features.card1Title')}</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">
+            {t(locale, 'landing.features.card1Desc')}
+          </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="p-6 rounded-3xl bg-surface-container-lowest border border-outline-variant/60 shadow-sm hover-lift space-y-4 group">
+          <div class="w-12 h-12 rounded-2xl bg-pink-50 text-pink-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">image</span>
+          </div>
+          <h3 class="text-lg font-bold text-on-surface">{t(locale, 'landing.features.card2Title')}</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">
+            {t(locale, 'landing.features.card2Desc')}
+          </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="p-6 rounded-3xl bg-surface-container-lowest border border-outline-variant/60 shadow-sm hover-lift space-y-4 group">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">download</span>
+          </div>
+          <h3 class="text-lg font-bold text-on-surface">{t(locale, 'landing.features.card3Title')}</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">
+            {t(locale, 'landing.features.card3Desc')}
+          </p>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="p-6 rounded-3xl bg-surface-container-lowest border border-outline-variant/60 shadow-sm hover-lift space-y-4 group">
+          <div class="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">crop_free</span>
+          </div>
+          <h3 class="text-lg font-bold text-on-surface">{t(locale, 'landing.features.card4Title')}</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">
+            {t(locale, 'landing.features.card4Desc')}
+          </p>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="p-6 rounded-3xl bg-surface-container-lowest border border-outline-variant/60 shadow-sm hover-lift space-y-4 group">
+          <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">style</span>
+          </div>
+          <h3 class="text-lg font-bold text-on-surface">{t(locale, 'landing.features.card5Title')}</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">
+            {t(locale, 'landing.features.card5Desc')}
+          </p>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="p-6 rounded-3xl bg-surface-container-lowest border border-outline-variant/60 shadow-sm hover-lift space-y-4 group">
+          <div class="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">dataset</span>
+          </div>
+          <h3 class="text-lg font-bold text-on-surface">{t(locale, 'landing.features.card6Title')}</h3>
+          <p class="text-sm text-on-surface-variant leading-relaxed">
+            {t(locale, 'landing.features.card6Desc')}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. STEP-BY-STEP HOW-TO -->
+    <section id="how-to-guide" class="space-y-12">
+      <div class="text-center max-w-2xl mx-auto space-y-4">
+        <span class="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full uppercase tracking-wider">
+          {t(locale, 'landing.tutorial.badge')}
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-black text-on-surface tracking-tight">
+          {howTo.name}
+        </h2>
+        <p class="text-base text-on-surface-variant leading-relaxed">
+          {howTo.description}
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-5 gap-4">
+        {howTo.steps.map((step, i) => (
+          <div class="p-6 rounded-3xl bg-surface-container-lowest border border-outline-variant/60 space-y-3 relative">
+            <div class="w-8 h-8 rounded-full bg-primary/10 text-primary font-black text-sm flex items-center justify-center">
+              {i + 1}
+            </div>
+            <h3 class="font-bold text-on-surface text-base">{step.name}</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">{step.text}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 5. FAQ ACCORDION -->
+    <section id="faq" class="space-y-8 max-w-3xl mx-auto">
+      <div class="text-center space-y-4">
+        <span class="px-3 py-1 bg-primary/10 text-primary text-xs font-bold rounded-full uppercase tracking-wider">
+          {t(locale, 'landing.faq.badge')}
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-black text-on-surface tracking-tight">
+          {t(locale, 'landing.faqHeading')}
+        </h2>
+      </div>
+
+      <div class="space-y-4">
+        {faqs.map((faq) => (
+          <details class="group bg-surface-container-lowest border border-outline-variant/60 rounded-2xl p-5 open:bg-surface-container-low transition-all">
+            <summary class="flex justify-between items-center font-bold text-on-surface cursor-pointer list-none gap-4">
+              <span>{faq.q}</span>
+              <span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform">
+                expand_more
+              </span>
+            </summary>
+            <p class="text-sm text-on-surface-variant mt-3 leading-relaxed border-t border-outline-variant/30 pt-3">
+              {faq.a}
+            </p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    {recentPosts.length > 0 && (
+      <section class="space-y-8">
+        <div class="flex items-center justify-between">
+          <h2 class="text-2xl font-black text-on-surface">{t(locale, 'blog.latestFromBlog')}</h2>
+          <a href={getLocalizedUrl(locale, '/blog')} class="text-sm font-bold text-primary hover:underline flex items-center gap-1">
+            {t(locale, 'blog.viewAllGuides')} <span class="material-symbols-outlined text-sm">arrow_forward</span>
+          </a>
+        </div>
+        <div class="grid sm:grid-cols-3 gap-6">
+          {recentPosts.map((post) => {
+            const locData = getLocalizedPostData(post.id, locale, post);
+            const catLabel = t(locale, `blog.categories.${post.data.category}`) || post.data.category;
+            return (
+              <a href={getLocalizedUrl(locale, `/blog/${post.id}`)} class="p-5 rounded-3xl bg-surface-container-lowest border border-outline-variant/60 hover-lift space-y-3 block">
+                <span class="px-2 py-0.5 rounded-md bg-surface text-[10px] font-bold text-primary uppercase">
+                  {catLabel}
+                </span>
+                <h3 class="font-bold text-on-surface text-base line-clamp-2">{locData.title}</h3>
+                <p class="text-xs text-on-surface-variant line-clamp-2">{locData.description}</p>
+              </a>
+            );
+          })}
+        </div>
+      </section>
+    )}
+
+  </div>
+
+  <Footer locale={locale} />
+</BaseLayout>

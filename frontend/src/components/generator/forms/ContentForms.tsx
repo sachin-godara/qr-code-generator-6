@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useId } from 'react';
 import { useQRStore } from '@/store/useQRStore';
+import { useTranslation } from '@/i18n/useTranslation';
 
 const Input = ({ label, id: propId, name: propName, ...props }: any) => {
   const generatedId = useId();
@@ -55,23 +56,50 @@ const Select = ({ label, children, id: propId, name: propName, ...props }: any) 
 };
 
 export const UrlForm = () => {
+  const { t } = useTranslation();
   const { settings, updateSettings } = useQRStore();
-  return <Input label="Website URL" type="url" placeholder="https://example.com" value={settings.contentData} onChange={(e: any) => updateSettings({ contentData: e.target.value })} />;
+  return (
+    <Input 
+      label={t("studio.forms.url.label")} 
+      type="url" 
+      placeholder={t("studio.forms.url.placeholder")} 
+      value={settings.contentData} 
+      onChange={(e: any) => updateSettings({ contentData: e.target.value })} 
+    />
+  );
 };
 
 export const TextForm = () => {
+  const { t } = useTranslation();
   const { settings, updateSettings } = useQRStore();
-  return <Textarea label="Plain Text" placeholder="Enter your message here..." value={settings.contentData} onChange={(e: any) => updateSettings({ contentData: e.target.value })} />;
+  return (
+    <Textarea 
+      label={t("studio.forms.text.label")} 
+      placeholder={t("studio.forms.text.placeholder")} 
+      value={settings.contentData} 
+      onChange={(e: any) => updateSettings({ contentData: e.target.value })} 
+    />
+  );
 };
 
 export const PhoneForm = () => {
+  const { t } = useTranslation();
   const { settings, updateSettings } = useQRStore();
   const [val, setVal] = useState(settings.contentData.replace('tel:', ''));
   useEffect(() => { updateSettings({ contentData: `tel:${val}` }); }, [val]);
-  return <Input label="Phone Number" type="tel" placeholder="+1234567890" value={val} onChange={(e: any) => setVal(e.target.value)} />;
+  return (
+    <Input 
+      label={t("studio.forms.phone.label")} 
+      type="tel" 
+      placeholder={t("studio.forms.phone.placeholder")} 
+      value={val} 
+      onChange={(e: any) => setVal(e.target.value)} 
+    />
+  );
 };
 
 export const SmsForm = () => {
+  const { t } = useTranslation();
   const { settings, updateSettings } = useQRStore();
   const parseSms = (str: string) => {
     const match = str.match(/^smsto:([^:]*):?(.*)$/i);
@@ -82,13 +110,25 @@ export const SmsForm = () => {
   useEffect(() => { updateSettings({ contentData: `smsto:${phone}:${msg}` }); }, [phone, msg]);
   return (
     <div className="space-y-3">
-      <Input label="Phone Number" type="tel" placeholder="+1234567890" value={phone} onChange={(e: any) => setPhone(e.target.value)} />
-      <Textarea label="Message" placeholder="Hello..." value={msg} onChange={(e: any) => setMsg(e.target.value)} />
+      <Input 
+        label={t("studio.forms.sms.phoneLabel")} 
+        type="tel" 
+        placeholder={t("studio.forms.sms.phonePlaceholder")} 
+        value={phone} 
+        onChange={(e: any) => setPhone(e.target.value)} 
+      />
+      <Textarea 
+        label={t("studio.forms.sms.messageLabel")} 
+        placeholder={t("studio.forms.sms.messagePlaceholder")} 
+        value={msg} 
+        onChange={(e: any) => setMsg(e.target.value)} 
+      />
     </div>
   );
 };
 
 export const WhatsAppForm = () => {
+  const { t } = useTranslation();
   const { settings, updateSettings } = useQRStore();
   const parseWa = (str: string) => {
     try {
@@ -103,13 +143,25 @@ export const WhatsAppForm = () => {
   }, [phone, msg]);
   return (
     <div className="space-y-3">
-      <Input label="WhatsApp Number (with country code)" type="tel" placeholder="1234567890" value={phone} onChange={(e: any) => setPhone(e.target.value)} />
-      <Textarea label="Pre-filled Message" placeholder="Hello..." value={msg} onChange={(e: any) => setMsg(e.target.value)} />
+      <Input 
+        label={t("studio.forms.whatsapp.phoneLabel")} 
+        type="tel" 
+        placeholder={t("studio.forms.whatsapp.phonePlaceholder")} 
+        value={phone} 
+        onChange={(e: any) => setPhone(e.target.value)} 
+      />
+      <Textarea 
+        label={t("studio.forms.whatsapp.messageLabel")} 
+        placeholder={t("studio.forms.whatsapp.messagePlaceholder")} 
+        value={msg} 
+        onChange={(e: any) => setMsg(e.target.value)} 
+      />
     </div>
   );
 };
 
 export const EmailForm = () => {
+  const { t } = useTranslation();
   const { settings, updateSettings } = useQRStore();
   const parseEmail = (str: string) => {
     const match = str.match(/^mailto:([^?]*)\??(.*)$/i);
@@ -131,14 +183,31 @@ export const EmailForm = () => {
 
   return (
     <div className="space-y-3">
-      <Input label="To Email Address" type="email" placeholder="example@email.com" value={to} onChange={(e: any) => setTo(e.target.value)} />
-      <Input label="Subject" placeholder="Email Subject" value={sub} onChange={(e: any) => setSub(e.target.value)} />
-      <Textarea label="Message Body" placeholder="Hello..." value={body} onChange={(e: any) => setBody(e.target.value)} />
+      <Input 
+        label={t("studio.forms.email.toLabel")} 
+        type="email" 
+        placeholder={t("studio.forms.email.toPlaceholder")} 
+        value={to} 
+        onChange={(e: any) => setTo(e.target.value)} 
+      />
+      <Input 
+        label={t("studio.forms.email.subjectLabel")} 
+        placeholder={t("studio.forms.email.subjectPlaceholder")} 
+        value={sub} 
+        onChange={(e: any) => setSub(e.target.value)} 
+      />
+      <Textarea 
+        label={t("studio.forms.email.bodyLabel")} 
+        placeholder={t("studio.forms.email.bodyPlaceholder")} 
+        value={body} 
+        onChange={(e: any) => setBody(e.target.value)} 
+      />
     </div>
   );
 };
 
 export const VCardForm = () => {
+  const { t } = useTranslation();
   const { settings, updateSettings } = useQRStore();
   const parseVcard = (str: string) => {
     const getField = (prefix: string) => {
@@ -163,23 +232,24 @@ export const VCardForm = () => {
 
   return (
     <div className="grid grid-cols-2 gap-3">
-      <Input label="First Name" placeholder="John" value={data.fName} onChange={(e: any) => set('fName', e.target.value)} />
-      <Input label="Last Name" placeholder="Doe" value={data.lName} onChange={(e: any) => set('lName', e.target.value)} />
-      <Input label="Phone" type="tel" placeholder="+1234567890" value={data.phone} onChange={(e: any) => set('phone', e.target.value)} />
-      <Input label="Email" type="email" placeholder="john@example.com" value={data.email} onChange={(e: any) => set('email', e.target.value)} />
-      <Input label="Company" placeholder="Acme Corp" value={data.org} onChange={(e: any) => set('org', e.target.value)} />
-      <Input label="Job Title" placeholder="Software Engineer" value={data.title} onChange={(e: any) => set('title', e.target.value)} />
+      <Input label={t("studio.forms.vcard.firstName")} placeholder="John" value={data.fName} onChange={(e: any) => set('fName', e.target.value)} />
+      <Input label={t("studio.forms.vcard.lastName")} placeholder="Doe" value={data.lName} onChange={(e: any) => set('lName', e.target.value)} />
+      <Input label={t("studio.forms.vcard.phone")} type="tel" placeholder="+1234567890" value={data.phone} onChange={(e: any) => set('phone', e.target.value)} />
+      <Input label={t("studio.forms.vcard.email")} type="email" placeholder="john@example.com" value={data.email} onChange={(e: any) => set('email', e.target.value)} />
+      <Input label={t("studio.forms.vcard.organization")} placeholder="Acme Corp" value={data.org} onChange={(e: any) => set('org', e.target.value)} />
+      <Input label={t("studio.forms.vcard.title")} placeholder="Software Engineer" value={data.title} onChange={(e: any) => set('title', e.target.value)} />
       <div className="col-span-2">
-        <Input label="Website URL" type="url" placeholder="https://example.com" value={data.url} onChange={(e: any) => set('url', e.target.value)} />
+        <Input label={t("studio.forms.vcard.url")} type="url" placeholder="https://example.com" value={data.url} onChange={(e: any) => set('url', e.target.value)} />
       </div>
       <div className="col-span-2">
-        <Textarea label="Address" placeholder="123 Main St, City, Country" value={data.adr} onChange={(e: any) => set('adr', e.target.value)} />
+        <Textarea label={t("studio.forms.vcard.address")} placeholder="123 Main St, City, Country" value={data.adr} onChange={(e: any) => set('adr', e.target.value)} />
       </div>
     </div>
   );
 };
 
 export const WifiForm = () => {
+  const { t } = useTranslation();
   const { settings, updateSettings } = useQRStore();
   const parseWifi = (str: string) => {
     const getField = (prefix: string) => {
@@ -200,17 +270,17 @@ export const WifiForm = () => {
 
   return (
     <div className="space-y-3">
-      <Input label="Network Name (SSID)" placeholder="MyWiFiNetwork" value={data.ssid} onChange={(e: any) => set('ssid', e.target.value)} />
-      <Input label="Password" type="password" placeholder="password123" value={data.pass} onChange={(e: any) => set('pass', e.target.value)} />
+      <Input label={t("studio.forms.wifi.ssidLabel")} placeholder={t("studio.forms.wifi.ssidPlaceholder")} value={data.ssid} onChange={(e: any) => set('ssid', e.target.value)} />
+      <Input label={t("studio.forms.wifi.passwordLabel")} type="password" placeholder={t("studio.forms.wifi.passwordPlaceholder")} value={data.pass} onChange={(e: any) => set('pass', e.target.value)} />
       <div className="grid grid-cols-2 gap-3">
-        <Select label="Encryption" value={data.type} onChange={(e: any) => set('type', e.target.value)}>
-          <option value="WPA">WPA/WPA2</option>
-          <option value="WEP">WEP</option>
-          <option value="nopass">None</option>
+        <Select label={t("studio.forms.wifi.encryptionLabel")} value={data.type} onChange={(e: any) => set('type', e.target.value)}>
+          <option value="WPA">{t("studio.forms.wifi.wpa")}</option>
+          <option value="WEP">{t("studio.forms.wifi.wep")}</option>
+          <option value="nopass">{t("studio.forms.wifi.none")}</option>
         </Select>
         <div className="flex items-center space-x-2 pt-6">
           <input type="checkbox" id="hiddenWifi" checked={data.hidden} onChange={(e: any) => set('hidden', e.target.checked)} className="rounded border-gray-300" />
-          <label htmlFor="hiddenWifi" className="text-sm font-medium">Hidden Network</label>
+          <label htmlFor="hiddenWifi" className="text-sm font-medium">{t("studio.forms.wifi.hiddenLabel")}</label>
         </div>
       </div>
     </div>
@@ -218,6 +288,7 @@ export const WifiForm = () => {
 };
 
 export const LocationForm = () => {
+  const { t } = useTranslation();
   const { settings, updateSettings } = useQRStore();
   const parseLoc = (str: string) => {
     const geoMatch = str.match(/^geo:.*?(-?\d+\.?\d*),(-?\d+\.?\d*)/);
@@ -266,15 +337,15 @@ export const LocationForm = () => {
   return (
     <div className="space-y-3">
       <div className="grid grid-cols-2 gap-3">
-        <Input label="Latitude" placeholder="40.7128" value={lat} onChange={(e: any) => setLat(e.target.value)} />
-        <Input label="Longitude" placeholder="-74.0060" value={lng} onChange={(e: any) => setLng(e.target.value)} />
+        <Input label={t("studio.forms.location.latLabel")} placeholder={t("studio.forms.location.latPlaceholder")} value={lat} onChange={(e: any) => setLat(e.target.value)} />
+        <Input label={t("studio.forms.location.lngLabel")} placeholder={t("studio.forms.location.lngPlaceholder")} value={lng} onChange={(e: any) => setLng(e.target.value)} />
       </div>
       <button 
         onClick={getLocation} 
         disabled={loading}
         className="w-full py-2.5 px-4 bg-primary/10 text-primary border border-primary/20 rounded-lg text-sm font-semibold hover:bg-primary/20 transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
       >
-        {loading ? 'Getting location...' : 'Get My Current Location'}
+        {loading ? 'Getting location...' : t("studio.forms.location.searchLabel")}
       </button>
       {error && <p className="text-xs text-red-500 font-medium">{error}</p>}
     </div>
@@ -282,6 +353,7 @@ export const LocationForm = () => {
 };
 
 export const EventForm = () => {
+  const { t } = useTranslation();
   const { settings, updateSettings } = useQRStore();
   const parseEvent = (str: string) => {
     const getField = (prefix: string) => {
@@ -312,11 +384,11 @@ export const EventForm = () => {
 
   return (
     <div className="space-y-3">
-      <Input label="Event Title" placeholder="Birthday Party" value={data.title} onChange={(e: any) => set('title', e.target.value)} />
-      <Input label="Location" placeholder="123 Party Lane" value={data.loc} onChange={(e: any) => set('loc', e.target.value)} />
+      <Input label={t("studio.forms.event.title")} placeholder="Birthday Party" value={data.title} onChange={(e: any) => set('title', e.target.value)} />
+      <Input label={t("studio.forms.event.location")} placeholder="123 Party Lane" value={data.loc} onChange={(e: any) => set('loc', e.target.value)} />
       <div className="grid grid-cols-2 gap-3">
-        <Input label="Start Time" type="datetime-local" value={data.start} onChange={(e: any) => set('start', e.target.value)} />
-        <Input label="End Time" type="datetime-local" value={data.end} onChange={(e: any) => set('end', e.target.value)} />
+        <Input label={t("studio.forms.event.startDate")} type="datetime-local" value={data.start} onChange={(e: any) => set('start', e.target.value)} />
+        <Input label={t("studio.forms.event.endDate")} type="datetime-local" value={data.end} onChange={(e: any) => set('end', e.target.value)} />
       </div>
     </div>
   );
@@ -352,6 +424,7 @@ export const UpiForm = () => {
 };
 
 export const CryptoForm = () => {
+  const { t } = useTranslation();
   const { settings, updateSettings } = useQRStore();
   const parseCrypto = (str: string) => {
     const match = str.match(/^([^:]+):([^?]+)\??(.*)$/);
@@ -370,18 +443,19 @@ export const CryptoForm = () => {
 
   return (
     <div className="space-y-3">
-      <Select label="Cryptocurrency" value={data.coin} onChange={(e: any) => set('coin', e.target.value)}>
+      <Select label={t("studio.forms.crypto.currencyLabel")} value={data.coin} onChange={(e: any) => set('coin', e.target.value)}>
         <option value="bitcoin">Bitcoin (BTC)</option>
         <option value="ethereum">Ethereum (ETH)</option>
         <option value="litecoin">Litecoin (LTC)</option>
       </Select>
-      <Input label="Wallet Address" placeholder="1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa" value={data.addr} onChange={(e: any) => set('addr', e.target.value)} />
-      <Input label="Amount (Optional)" type="number" step="0.00000001" placeholder="0.05" value={data.amount} onChange={(e: any) => set('amount', e.target.value)} />
+      <Input label={t("studio.forms.crypto.addressLabel")} placeholder="1A1zP1eP5QGefi2DMPTfTL5SLmv7DivfNa" value={data.addr} onChange={(e: any) => set('addr', e.target.value)} />
+      <Input label={t("studio.forms.crypto.amountLabel")} type="number" step="0.00000001" placeholder="0.05" value={data.amount} onChange={(e: any) => set('amount', e.target.value)} />
     </div>
   );
 };
 
 export const PaypalForm = () => {
+  const { t } = useTranslation();
   const { settings, updateSettings } = useQRStore();
   const parsePaypal = (str: string) => {
     const match = str.match(/paypal\.me\/([^/]+)\/?([^/]*)/i);
@@ -396,8 +470,8 @@ export const PaypalForm = () => {
 
   return (
     <div className="space-y-3">
-      <Input label="PayPal Username" placeholder="username" value={user} onChange={(e: any) => setUser(e.target.value)} />
-      <Input label="Amount (Optional)" type="number" placeholder="50.00" value={amount} onChange={(e: any) => setAmount(e.target.value)} />
+      <Input label={t("studio.forms.paypal.userLabel")} placeholder="username" value={user} onChange={(e: any) => setUser(e.target.value)} />
+      <Input label={t("studio.forms.paypal.amountLabel")} type="number" placeholder="50.00" value={amount} onChange={(e: any) => setAmount(e.target.value)} />
     </div>
   );
 };

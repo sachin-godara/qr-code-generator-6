@@ -1,0 +1,87 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { type Locale } from '../i18n/config';
+import { getLocalizedUrl, t } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const metaMap: Record<Locale, { title: string; desc: string; heading: string; s1Title: string; s1Text: string; s2Title: string; s2Text: string; s3Title: string; s3Text: string; lastUpdated: string }> = {
+  en: {
+    title: "Terms and Conditions — GenerateCustomQR",
+    desc: "Terms of service and usage conditions for GenerateCustomQR. Free for both personal and commercial projects with zero restrictions.",
+    heading: "Terms & Conditions",
+    lastUpdated: "January 1, 2025",
+    s1Title: "1. Acceptance of Terms",
+    s1Text: "By accessing or using GenerateCustomQR, you agree to be bound by these Terms and Conditions. If you do not agree to these terms, please do not use our service.",
+    s2Title: "2. Free & Commercial License",
+    s2Text: "All QR codes generated through GenerateCustomQR are 100% free for both personal and commercial use. You own all rights to the generated image files and may print, distribute, or publish them without royalty fees or attribution requirements.",
+    s3Title: "3. Disclaimer of Warranty",
+    s3Text: "The service is provided 'as is' and 'as available' without warranties of any kind. While we rigorously test our QR engine for scannability and compliance with ISO/IEC 18004, we advise users to test-scan all codes before initiating large-scale physical print runs."
+  },
+  es: {
+    title: "Términos y Condiciones — GenerateCustomQR",
+    desc: "Términos del servicio y condiciones de uso de GenerateCustomQR. Gratis para proyectos personales y comerciales sin restricciones.",
+    heading: "Términos y Condiciones",
+    lastUpdated: "1 de Enero de 2025",
+    s1Title: "1. Aceptación de los Términos",
+    s1Text: "Al acceder o utilizar GenerateCustomQR, aceptas quedar vinculado por estos Términos y Condiciones de uso.",
+    s2Title: "2. Licencia Gratuita y Comercial",
+    s2Text: "Todos los códigos QR generados son 100% gratuitos para uso personal y comercial. Eres el propietario exclusivo de los archivos descargados y puedes imprimirlos o distribuirlos sin pagar regalías ni incluir atribución.",
+    s3Title: "3. Descargo de Responsabilidad",
+    s3Text: "El servicio se ofrece 'tal cual'. Aunque nuestro motor se ajusta al estándar internacional ISO/IEC 18004, recomendamos realizar siempre una prueba de escaneo antes de imprimir tiradas a gran escala."
+  },
+  pt: {
+    title: "Termos de Uso — GenerateCustomQR",
+    desc: "Termos de serviço e condições de uso do GenerateCustomQR. Gratuito para uso pessoal e comercial sem restrições.",
+    heading: "Termos e Condições",
+    lastUpdated: "1 de Janeiro de 2025",
+    s1Title: "1. Aceitação dos Termos",
+    s1Text: "Ao acessar e utilizar o GenerateCustomQR, você concorda com estes Termos e Condições de Uso.",
+    s2Title: "2. Licença Gratuita para Uso Comercial",
+    s2Text: "Todos os QR codes gerados são 100% gratuitos para uso pessoal e comercial. Você detém todos os direitos sobre as imagens criadas e pode utilizá-las livremente sem cobrança de taxas.",
+    s3Title: "3. Isenção de Garantias",
+    s3Text: "O serviço é fornecido 'como está'. Embora nosso gerador siga o padrão ISO/IEC 18004, recomendamos escanear e testar o código antes de realizar impressões em grande quantidade."
+  },
+  de: {
+    title: "Nutzungsbedingungen — GenerateCustomQR",
+    desc: "Nutzungsbedingungen für GenerateCustomQR. Kostenlos für persönliche und kommerzielle Projekte ohne Einschränkungen.",
+    heading: "Nutzungsbedingungen",
+    lastUpdated: "1. Januar 2025",
+    s1Title: "1. Annahme der Bedingungen",
+    s1Text: "Durch die Nutzung von GenerateCustomQR erklären Sie sich mit diesen Nutzungsbedingungen einverstanden.",
+    s2Title: "2. Kostenlose kommerzielle Lizenz",
+    s2Text: "Alle mit GenerateCustomQR erstellten QR-Codes sind sowohl für private als auch für kommerzielle Zwecke zu 100% kostenlos. Sie besitzen alle Rechte an den generierten Dateien und dürfen diese lizenzfrei drucken und veröffentlichen.",
+    s3Title: "3. Gewährleistungsausschluss",
+    s3Text: "Der Dienst wird 'wie besehen' bereitgestellt. Obwohl unsere QR-Engine nach ISO/IEC 18004 standardkonform rendert, empfehlen wir einen Test-Scan vor dem Großdruck."
+  }
+};
+
+const pageMeta = metaMap[locale] || metaMap.en;
+
+const breadcrumbs = [
+  { name: t(locale, 'nav.generator'), url: getLocalizedUrl(locale, '/') },
+  { name: t(locale, 'footer.terms'), url: getLocalizedUrl(locale, '/terms') }
+];
+---
+<LegalLayout
+  locale={locale}
+  title={pageMeta.title}
+  description={pageMeta.desc}
+  breadcrumbs={breadcrumbs}
+  heading={pageMeta.heading}
+  lastUpdated={pageMeta.lastUpdated}
+  icon="gavel"
+>
+  <h2>{pageMeta.s1Title}</h2>
+  <p>{pageMeta.s1Text}</p>
+
+  <h2>{pageMeta.s2Title}</h2>
+  <p>{pageMeta.s2Text}</p>
+
+  <h2>{pageMeta.s3Title}</h2>
+  <p>{pageMeta.s3Text}</p>
+</LegalLayout>

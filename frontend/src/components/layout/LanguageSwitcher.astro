@@ -1,0 +1,159 @@
+---
+import { locales, localeConfig, type Locale } from '../../i18n/config';
+import { getLocaleFromUrl, getCleanPathname, getLocalizedUrl } from '../../i18n/utils';
+
+interface Props {
+  class?: string;
+}
+
+const currentLocale = getLocaleFromUrl(Astro.url);
+const cleanPath = getCleanPathname(Astro.url.pathname);
+const currentInfo = localeConfig[currentLocale];
+const className = Astro.props.class || '';
+---
+
+<div class={`relative inline-block text-left language-switcher ${className}`}>
+  <button
+    type="button"
+    id="language-switcher-btn"
+    class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold text-on-surface bg-surface-container-high/60 hover:bg-surface-container-highest border border-outline-variant/50 hover:border-primary/40 transition-all shadow-xs touch-press focus:outline-none focus:ring-2 focus:ring-primary/40 cursor-pointer"
+    aria-expanded="false"
+    aria-haspopup="true"
+    aria-label="Change language"
+  >
+    {currentLocale === 'en' && (
+      <svg class="w-4 h-4 rounded-full overflow-hidden shadow-2xs shrink-0 border border-black/10" viewBox="0 0 640 480" aria-hidden="true">
+        <path fill="#bd3d44" d="M0 0h640v480H0z"/>
+        <path stroke="#fff" stroke-width="37" d="M0 55h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640"/>
+        <path fill="#192f5d" d="M0 0h260v260H0z"/>
+        <circle cx="130" cy="130" r="10" fill="#fff"/>
+      </svg>
+    )}
+    {currentLocale === 'es' && (
+      <svg class="w-4 h-4 rounded-full overflow-hidden shadow-2xs shrink-0 border border-black/10" viewBox="0 0 640 480" aria-hidden="true">
+        <path fill="#c60b1e" d="M0 0h640v480H0z"/>
+        <path fill="#ffc400" d="M0 120h640v240H0z"/>
+      </svg>
+    )}
+    {currentLocale === 'pt' && (
+      <svg class="w-4 h-4 rounded-full overflow-hidden shadow-2xs shrink-0 border border-black/10" viewBox="0 0 640 480" aria-hidden="true">
+        <path fill="#009c3b" d="M0 0h640v480H0z"/>
+        <path fill="#ffdf00" d="M320 60l260 180-260 180L60 240z"/>
+        <circle cx="320" cy="240" r="85" fill="#002776"/>
+      </svg>
+    )}
+    {currentLocale === 'de' && (
+      <svg class="w-4 h-4 rounded-full overflow-hidden shadow-2xs shrink-0 border border-black/10" viewBox="0 0 640 480" aria-hidden="true">
+        <path fill="#000" d="M0 0h640v160H0z"/>
+        <path fill="#d00" d="M0 160h640v160H0z"/>
+        <path fill="#ffce00" d="M0 320h640v160H0z"/>
+      </svg>
+    )}
+    <span class="font-bold text-on-surface text-xs tracking-wide">{currentInfo.label}</span>
+    <span class="material-symbols-outlined text-[16px] text-on-surface-variant transition-transform duration-200" id="lang-chevron">
+      expand_more
+    </span>
+  </button>
+
+  <div
+    id="language-dropdown-menu"
+    class="hidden absolute right-0 mt-1.5 w-44 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 shadow-xl py-1.5 z-50 animate-in fade-in zoom-in-95 duration-150 backdrop-blur-md"
+    role="menu"
+    aria-orientation="vertical"
+    aria-labelledby="language-switcher-btn"
+  >
+    <div class="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-on-surface-variant/70 border-b border-outline-variant/30">
+      Language / Idioma
+    </div>
+    {
+      locales.map((loc) => {
+        const info = localeConfig[loc];
+        const isCurrent = loc === currentLocale;
+        const targetUrl = getLocalizedUrl(loc, cleanPath);
+        return (
+          <a
+            href={targetUrl}
+            class={`flex items-center justify-between px-3 py-2 text-xs font-medium transition-colors ${
+              isCurrent
+                ? 'bg-primary/10 text-primary font-bold'
+                : 'text-on-surface hover:bg-surface-container hover:text-primary'
+            }`}
+            role="menuitem"
+          >
+            <span class="flex items-center gap-2">
+              {loc === 'en' && (
+                <svg class="w-4 h-4 rounded-full overflow-hidden shadow-2xs shrink-0 border border-black/10" viewBox="0 0 640 480" aria-hidden="true">
+                  <path fill="#bd3d44" d="M0 0h640v480H0z"/>
+                  <path stroke="#fff" stroke-width="37" d="M0 55h640M0 129h640M0 203h640M0 277h640M0 351h640M0 425h640"/>
+                  <path fill="#192f5d" d="M0 0h260v260H0z"/>
+                  <circle cx="130" cy="130" r="10" fill="#fff"/>
+                </svg>
+              )}
+              {loc === 'es' && (
+                <svg class="w-4 h-4 rounded-full overflow-hidden shadow-2xs shrink-0 border border-black/10" viewBox="0 0 640 480" aria-hidden="true">
+                  <path fill="#c60b1e" d="M0 0h640v480H0z"/>
+                  <path fill="#ffc400" d="M0 120h640v240H0z"/>
+                </svg>
+              )}
+              {loc === 'pt' && (
+                <svg class="w-4 h-4 rounded-full overflow-hidden shadow-2xs shrink-0 border border-black/10" viewBox="0 0 640 480" aria-hidden="true">
+                  <path fill="#009c3b" d="M0 0h640v480H0z"/>
+                  <path fill="#ffdf00" d="M320 60l260 180-260 180L60 240z"/>
+                  <circle cx="320" cy="240" r="85" fill="#002776"/>
+                </svg>
+              )}
+              {loc === 'de' && (
+                <svg class="w-4 h-4 rounded-full overflow-hidden shadow-2xs shrink-0 border border-black/10" viewBox="0 0 640 480" aria-hidden="true">
+                  <path fill="#000" d="M0 0h640v160H0z"/>
+                  <path fill="#d00" d="M0 160h640v160H0z"/>
+                  <path fill="#ffce00" d="M0 320h640v160H0z"/>
+                </svg>
+              )}
+              <span>{info.name}</span>
+            </span>
+            {isCurrent && (
+              <span class="material-symbols-outlined text-[16px] text-primary font-bold">
+                check
+              </span>
+            )}
+          </a>
+        );
+      })
+    }
+  </div>
+</div>
+
+<script>
+  function setupLanguageSwitcher() {
+    const btn = document.getElementById('language-switcher-btn');
+    const menu = document.getElementById('language-dropdown-menu');
+    const chevron = document.getElementById('lang-chevron');
+
+    if (!btn || !menu) return;
+
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isHidden = menu.classList.contains('hidden');
+      if (isHidden) {
+        menu.classList.remove('hidden');
+        btn.setAttribute('aria-expanded', 'true');
+        chevron?.classList.add('rotate-180');
+      } else {
+        menu.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+        chevron?.classList.remove('rotate-180');
+      }
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!menu.contains(e.target as Node) && !btn.contains(e.target as Node)) {
+        menu.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+        chevron?.classList.remove('rotate-180');
+      }
+    });
+  }
+
+  setupLanguageSwitcher();
+  document.addEventListener('astro:page-load', setupLanguageSwitcher);
+</script>

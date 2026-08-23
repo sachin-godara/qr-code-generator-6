@@ -1,0 +1,266 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import { getCollection } from 'astro:content';
+import { type Locale } from '../i18n/config';
+import { getLocalizedUrl, t } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const allPosts = locale === 'es' 
+  ? await getCollection('blog_es')
+  : locale === 'pt'
+  ? await getCollection('blog_pt')
+  : locale === 'de'
+  ? await getCollection('blog_de')
+  : await getCollection('blog');
+
+const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const featuredPosts = sortedPosts.filter(p => p.data.featured);
+const regularPosts = sortedPosts.filter(p => !p.data.featured);
+
+const breadcrumbs = [
+  { name: t(locale, 'nav.generator'), url: getLocalizedUrl(locale, '/') },
+  { name: t(locale, 'nav.blog'), url: getLocalizedUrl(locale, '/blog') }
+];
+
+const categoryIconMap: Record<string, string> = {
+  'guides': 'menu_book',
+  'use-cases': 'cases',
+  'design-tips': 'palette',
+  'industry': 'business',
+  'comparisons': 'compare',
+  'news': 'newspaper',
+};
+
+const localeFormatMap: Record<Locale, string> = {
+  en: 'en-US',
+  es: 'es-ES',
+  pt: 'pt-BR',
+  de: 'de-DE'
+};
+
+function formatDate(date: Date): string {
+  return date.toLocaleDateString(localeFormatMap[locale] || 'en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+}
+---
+<BaseLayout
+  locale={locale}
+  title={t(locale, 'blog.heroTitle') + " | GenerateCustomQR"}
+  description={t(locale, 'blog.heroSub')}
+  keywords="qr code blog, qr code tips, qr code guides, qr code best practices, qr code design tips, how to use qr codes"
+  ogImage="/og-blog.jpg"
+  breadcrumbs={breadcrumbs}
+>
+  <style is:global>
+    @import '../styles/global.css';
+    @import '../styles/blog.css';
+  </style>
+
+  <div class="min-h-screen flex flex-col bg-surface">
+    <Header locale={locale} />
+
+    <main class="flex-grow">
+
+      <!-- ═══ HERO ═══ -->
+      <section class="blog-hero py-16 md:py-24 border-b border-outline-variant/50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 text-center blog-reveal">
+          <div class="inline-flex items-center gap-2 bg-surface-container-lowest border border-outline-variant/60 text-on-surface-variant text-xs font-bold px-4 py-1.5 rounded-full mb-6 shadow-xs">
+            <span class="material-symbols-outlined text-[14px]">rss_feed</span>
+            {t(locale, 'blog.heroBadge')}
+          </div>
+          <h1 class="text-4xl sm:text-5xl md:text-6xl font-black text-on-surface tracking-tight mb-5 leading-[1.1]">
+            {t(locale, 'blog.heroTitle')}
+          </h1>
+          <p class="text-on-surface-variant text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+            {t(locale, 'blog.heroSub')}
+          </p>
+        </div>
+      </section>
+
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-16 space-y-16">
+
+        <!-- ═══ FEATURED POSTS ═══ -->
+        {featuredPosts.length > 0 && (
+          <section class="blog-reveal">
+            <div class="flex items-center gap-3 mb-8">
+              <div class="w-10 h-10 rounded-xl bg-zinc-900 text-white flex items-center justify-center shadow-md">
+                <span class="material-symbols-outlined text-xl">star</span>
+              </div>
+              <div>
+                <h2 class="text-xl font-bold text-on-surface tracking-tight">{t(locale, 'blog.featuredArticles')}</h2>
+                <p class="text-xs text-on-surface-variant font-medium">{t(locale, 'blog.popularGuides')}</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {featuredPosts.map((post) => {
+                const catLabel = t(locale, `blog.categories.${post.data.category}`) || post.data.category;
+                const catIcon = categoryIconMap[post.data.category] || 'article';
+                const postUrl = getLocalizedUrl(locale, `/blog/${post.id}`);
+                return (
+                  <a
+                    href={postUrl}
+                    class="blog-card group block bg-surface-container-lowest rounded-2xl border border-outline-variant/60 overflow-hidden shadow-xs hover-lift"
+                  >
+                    {/* Gradient Header */}
+                    <div class="h-40 sm:h-48 bg-gradient-to-br from-zinc-100 via-zinc-50 to-white relative overflow-hidden">
+                      <div class="absolute inset-0 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-7xl text-zinc-200 group-hover:text-zinc-300 transition-colors">article</span>
+                      </div>
+                      <div class="absolute top-4 left-4">
+                        <span class="category-badge" data-cat={post.data.category}>
+                          <span class="material-symbols-outlined text-[12px]">{catIcon}</span>
+                          {catLabel}
+                        </span>
+                      </div>
+                      {post.data.readingTime && (
+                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm text-xs font-bold text-on-surface-variant px-2.5 py-1 rounded-full border border-outline-variant/40">
+                          {t(locale, 'blog.minRead', { min: post.data.readingTime }) || `${post.data.readingTime} min`}
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Content */}
+                    <div class="p-5 sm:p-6 space-y-3">
+                      <h3 class="text-lg sm:text-xl font-bold text-on-surface tracking-tight leading-snug group-hover:text-primary transition-colors line-clamp-2">
+                        {post.data.title}
+                      </h3>
+                      <p class="text-sm text-on-surface-variant leading-relaxed line-clamp-2">
+                        {post.data.description}
+                      </p>
+                      <div class="flex items-center justify-between pt-2">
+                        <time class="text-xs font-medium text-on-surface-variant" datetime={post.data.pubDate.toISOString()}>
+                          {formatDate(post.data.pubDate)}
+                        </time>
+                        <span class="text-xs font-bold text-primary group-hover:translate-x-1 transition-transform flex items-center gap-1">
+                          {t(locale, 'blog.readArticle')}
+                          <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                );
+              })}
+            </div>
+          </section>
+        )}
+
+        <!-- ═══ ALL POSTS ═══ -->
+        <section class="blog-reveal">
+          <div class="flex items-center gap-3 mb-8">
+            <div class="w-10 h-10 rounded-xl bg-surface-container text-on-surface-variant flex items-center justify-center border border-outline-variant/40">
+              <span class="material-symbols-outlined text-xl">library_books</span>
+            </div>
+            <div>
+              <h2 class="text-xl font-bold text-on-surface tracking-tight">{t(locale, 'blog.allArticles')}</h2>
+              <p class="text-xs text-on-surface-variant font-medium">
+                {t(locale, 'blog.postsPublished', { count: sortedPosts.length }) || `${sortedPosts.length} posts published`}
+              </p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {(regularPosts.length > 0 ? regularPosts : sortedPosts).map((post) => {
+              const catLabel = t(locale, `blog.categories.${post.data.category}`) || post.data.category;
+              const catIcon = categoryIconMap[post.data.category] || 'article';
+              const postUrl = getLocalizedUrl(locale, `/blog/${post.id}`);
+              return (
+                <a
+                  href={postUrl}
+                  class="blog-card group block bg-surface-container-lowest rounded-2xl border border-outline-variant/60 overflow-hidden shadow-xs hover-lift"
+                >
+                  {/* Mini Gradient Header */}
+                  <div class="h-32 bg-gradient-to-br from-zinc-100 via-zinc-50 to-white relative overflow-hidden">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                      <span class="material-symbols-outlined text-5xl text-zinc-200 group-hover:text-zinc-300 transition-colors">description</span>
+                    </div>
+                    <div class="absolute top-3 left-3">
+                      <span class="category-badge" data-cat={post.data.category}>
+                        <span class="material-symbols-outlined text-[11px]">{catIcon}</span>
+                        {catLabel}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div class="p-4 sm:p-5 space-y-2.5">
+                    <h3 class="text-base font-bold text-on-surface tracking-tight leading-snug group-hover:text-primary transition-colors line-clamp-2">
+                      {post.data.title}
+                    </h3>
+                    <p class="text-sm text-on-surface-variant leading-relaxed line-clamp-2">
+                      {post.data.description}
+                    </p>
+                    <div class="flex items-center justify-between pt-1.5">
+                      <div class="flex items-center gap-2 text-xs text-on-surface-variant">
+                        <time datetime={post.data.pubDate.toISOString()}>
+                          {formatDate(post.data.pubDate)}
+                        </time>
+                        {post.data.readingTime && (
+                          <>
+                            <span class="text-outline-variant">·</span>
+                            <span>{t(locale, 'blog.minRead', { min: post.data.readingTime }) || `${post.data.readingTime} min`}</span>
+                          </>
+                        )}
+                      </div>
+                      <span class="material-symbols-outlined text-[16px] text-on-surface-variant group-hover:text-primary group-hover:translate-x-0.5 transition-all">
+                        arrow_forward
+                      </span>
+                    </div>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </section>
+
+        <!-- ═══ CTA BANNER ═══ -->
+        <section class="rounded-3xl bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 text-white p-8 sm:p-12 shadow-2xl relative overflow-hidden text-center blog-reveal">
+          <div class="absolute -top-24 -right-24 w-72 h-72 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="relative z-10 max-w-2xl mx-auto space-y-4">
+            <h2 class="text-2xl sm:text-3xl font-black tracking-tight">{t(locale, 'blog.ctaTitle')}</h2>
+            <p class="text-zinc-400 text-sm sm:text-base leading-relaxed">
+              {t(locale, 'blog.ctaDesc')}
+            </p>
+            <div class="pt-3">
+              <a
+                href={getLocalizedUrl(locale, '/')}
+                class="inline-flex items-center gap-2 px-8 py-3.5 rounded-xl font-bold bg-white text-zinc-900 hover:bg-zinc-100 transition-all shadow-lg hover:scale-105 active:scale-95 text-sm"
+              >
+                <span class="material-symbols-outlined text-lg">qr_code_2</span>
+                {t(locale, 'blog.ctaButton')}
+              </a>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <Footer locale={locale} />
+  </div>
+
+  <script>
+    // Scroll reveal animation
+    const revealEls = document.querySelectorAll('.blog-reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+    revealEls.forEach(el => observer.observe(el));
+  </script>
+</BaseLayout>

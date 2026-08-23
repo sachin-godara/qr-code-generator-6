@@ -1,0 +1,225 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import QRScannerApp from '../react/scanner/QRScannerApp';
+import Footer from '../components/layout/Footer.astro';
+import { type Locale } from '../i18n/config';
+import { getPageSeo, getLocalizedUrl, t } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const seo = getPageSeo(locale, 'scanner');
+
+const breadcrumbs = [
+  { name: t(locale, 'nav.generator'), url: getLocalizedUrl(locale, '/') },
+  { name: t(locale, 'nav.scan'), url: getLocalizedUrl(locale, '/qr-code-scanner') }
+];
+
+const faqs = seo.faqs || [];
+
+const supportedTypes = [
+  { icon: "link", title: t(locale, 'scanner.formats.urlsTitle'), desc: t(locale, 'scanner.formats.urlsDesc') },
+  { icon: "wifi", title: t(locale, 'scanner.formats.wifiTitle'), desc: t(locale, 'scanner.formats.wifiDesc') },
+  { icon: "contact_page", title: t(locale, 'scanner.formats.vcardTitle'), desc: t(locale, 'scanner.formats.vcardDesc') },
+  { icon: "location_on", title: t(locale, 'scanner.formats.mapsTitle'), desc: t(locale, 'scanner.formats.mapsDesc') },
+  { icon: "event", title: t(locale, 'scanner.formats.eventsTitle'), desc: t(locale, 'scanner.formats.eventsDesc') },
+  { icon: "description", title: t(locale, 'scanner.formats.textTitle'), desc: t(locale, 'scanner.formats.textDesc') }
+];
+---
+<BaseLayout
+  locale={locale}
+  title={seo.title}
+  description={seo.description}
+  keywords={seo.keywords}
+  ogImage="/og-scanner.png"
+  breadcrumbs={breadcrumbs}
+  faqs={faqs}
+>
+  <!-- Import global styles -->
+  <style is:global>
+    @import '../styles/global.css';
+  </style>
+
+  <Header locale={locale} />
+
+  <main class="pt-6 sm:pt-10 pb-20 px-4 sm:px-6">
+    <div class="max-w-4xl mx-auto">
+
+      <!-- Hero Header (compact & focused) -->
+      <div class="text-center space-y-2.5 max-w-2xl mx-auto mb-6 sm:mb-8">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-[11px] font-bold uppercase tracking-wider">
+          <span class="material-symbols-outlined text-[15px]">qr_code_scanner</span>
+          <span>{t(locale, 'scanner.cameraTab')}</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl lg:text-[38px] font-extrabold text-on-surface tracking-tight leading-tight">
+          {seo.title}
+        </h1>
+        <p class="text-xs sm:text-sm text-on-surface-variant max-w-lg mx-auto leading-relaxed">
+          {seo.description}
+        </p>
+      </div>
+
+      <!-- React QR Scanner Interactive Island -->
+      <QRScannerApp client:load locale={locale} />
+
+      <!-- Educational Device Guides (iOS & Android) -->
+      <section class="mt-16 sm:mt-24 pt-10 sm:pt-14 border-t border-zinc-200/60 space-y-8">
+        <div class="text-center space-y-2 max-w-xl mx-auto">
+          <h2 class="text-2xl sm:text-3xl font-black text-on-surface tracking-tight">{t(locale, 'scanner.guideTitle')}</h2>
+          <p class="text-sm sm:text-base text-on-surface-variant">{t(locale, 'scanner.guideSubtitle')}</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* iOS Card */}
+          <div class="bg-surface-container-lowest rounded-3xl p-6 sm:p-8 border border-outline-variant/60 shadow-xs hover:shadow-md transition-all">
+            <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-5">
+              <span class="material-symbols-outlined text-2xl">phone_iphone</span>
+            </div>
+            <h3 class="text-lg sm:text-xl font-bold text-on-surface mb-2">{t(locale, 'scanner.iosTitle')}</h3>
+            <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed mb-4">
+              {t(locale, 'scanner.iosDesc')}
+            </p>
+            <ul class="space-y-2.5 text-xs text-on-surface-variant">
+              <li class="flex items-start gap-2.5">
+                <span class="w-5 h-5 rounded-full bg-blue-100 text-blue-700 font-bold flex items-center justify-center shrink-0 text-[10px]">1</span>
+                <span>Open your iPhone or iPad native <strong>Camera</strong> app.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="w-5 h-5 rounded-full bg-blue-100 text-blue-700 font-bold flex items-center justify-center shrink-0 text-[10px]">2</span>
+                <span>Hold your device steadily facing the QR code in the viewfinder.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="w-5 h-5 rounded-full bg-blue-100 text-blue-700 font-bold flex items-center justify-center shrink-0 text-[10px]">3</span>
+                <span>Tap the yellow notification badge that pops up to open the link.</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* Android Card */}
+          <div class="bg-surface-container-lowest rounded-3xl p-6 sm:p-8 border border-outline-variant/60 shadow-xs hover:shadow-md transition-all">
+            <div class="w-12 h-12 rounded-2xl bg-green-50 text-green-600 flex items-center justify-center mb-5">
+              <span class="material-symbols-outlined text-2xl">android</span>
+            </div>
+            <h3 class="text-lg sm:text-xl font-bold text-on-surface mb-2">{t(locale, 'scanner.androidTitle')}</h3>
+            <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed mb-4">
+              {t(locale, 'scanner.androidDesc')}
+            </p>
+            <ul class="space-y-2.5 text-xs text-on-surface-variant">
+              <li class="flex items-start gap-2.5">
+                <span class="w-5 h-5 rounded-full bg-green-100 text-green-700 font-bold flex items-center justify-center shrink-0 text-[10px]">1</span>
+                <span>Open your native <strong>Camera</strong> app and frame the QR code.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="w-5 h-5 rounded-full bg-green-100 text-green-700 font-bold flex items-center justify-center shrink-0 text-[10px]">2</span>
+                <span>If not recognized, tap the <strong>Google Lens</strong> icon in the camera interface.</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="w-5 h-5 rounded-full bg-green-100 text-green-700 font-bold flex items-center justify-center shrink-0 text-[10px]">3</span>
+                <span>Tap the URL or action pill that appears on screen.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Supported Formats Section -->
+      <section class="mt-16 sm:mt-24 pt-10 sm:pt-14 border-t border-zinc-200/60 space-y-8">
+        <div class="text-center space-y-2 max-w-xl mx-auto">
+          <h2 class="text-2xl sm:text-3xl font-black text-on-surface tracking-tight">{t(locale, 'scanner.supportedTitle')}</h2>
+          <p class="text-sm sm:text-base text-on-surface-variant">{t(locale, 'scanner.supportedSub')}</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5">
+          {supportedTypes.map((item) => (
+            <div class="flex items-start gap-4 p-4.5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 hover:border-zinc-300 hover:shadow-sm transition-all group">
+              <div class="w-11 h-11 rounded-xl bg-zinc-100 text-zinc-800 flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
+                <span class="material-symbols-outlined text-xl">{item.icon}</span>
+              </div>
+              <div class="space-y-1 min-w-0">
+                <h3 class="text-sm font-bold text-on-surface">{item.title}</h3>
+                <p class="text-xs text-on-surface-variant leading-relaxed">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      {faqs.length > 0 && (
+        <section class="mt-16 sm:mt-24 pt-10 sm:pt-14 border-t border-zinc-200/60 space-y-8">
+          <div class="text-center space-y-2">
+            <h2 class="text-2xl sm:text-3xl font-black text-on-surface tracking-tight">{t(locale, 'landing.faqHeading')}</h2>
+            <p class="text-sm text-on-surface-variant">{t(locale, 'scanner.subtitle')}</p>
+          </div>
+
+          <div class="space-y-3">
+            {faqs.map((faq: any) => (
+              <details class="group bg-surface-container-lowest border border-outline-variant/60 rounded-2xl p-5 open:bg-surface-container-low transition-all">
+                <summary class="flex justify-between items-center font-bold text-on-surface cursor-pointer list-none gap-4 text-sm sm:text-base">
+                  <span>{faq.q}</span>
+                  <span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform">
+                    expand_more
+                  </span>
+                </summary>
+                <p class="text-sm text-on-surface-variant mt-3 leading-relaxed border-t border-outline-variant/30 pt-3">
+                  {faq.a}
+                </p>
+              </details>
+            ))}
+          </div>
+        </section>
+      )}
+
+      <!-- Explore Other Tools Ribbon -->
+      <section class="mt-16 sm:mt-24 pt-10 sm:pt-14 border-t border-zinc-200/60 space-y-6">
+        <h2 class="text-2xl sm:text-3xl font-black text-center text-on-surface tracking-tight">Explore Free QR Code Generator Tools</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+          {[
+            { icon: "link", title: "URL to QR", desc: "Website links & portfolios", url: getLocalizedUrl(locale, '/url-qr-code-generator') },
+            { icon: "wifi", title: "WiFi QR", desc: "1-tap wifi connections", url: getLocalizedUrl(locale, '/wifi-qr-code') },
+            { icon: "contact_page", title: "vCard QR", desc: "Digital business cards", url: getLocalizedUrl(locale, '/vcard-qr-code') },
+            { icon: "image", title: "QR with Logo", desc: "Branded custom logos", url: getLocalizedUrl(locale, '/qr-code-with-logo') },
+            { icon: "event", title: "Event QR", desc: "Save dates to calendars", url: getLocalizedUrl(locale, '/event-qr-code') },
+            { icon: "mail", title: "Email QR", desc: "Pre-filled email drafts", url: getLocalizedUrl(locale, '/email-qr-code') }
+          ].map((tool) => (
+            <a
+              href={tool.url}
+              class="p-3.5 rounded-xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/40 hover:-translate-y-1 hover:shadow-xs transition-all text-center group flex flex-col items-center justify-between"
+            >
+              <div class="w-8 h-8 rounded-lg bg-zinc-100 group-hover:bg-primary group-hover:text-white flex items-center justify-center transition-colors mb-2">
+                <span class="material-symbols-outlined text-lg">{tool.icon}</span>
+              </div>
+              <span class="font-bold text-xs text-on-surface group-hover:text-primary transition-colors block">{tool.title}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <!-- Bottom CTA to Generator -->
+      <div class="mt-16 sm:mt-24 bg-gradient-to-r from-neutral-900 via-zinc-900 to-neutral-950 rounded-3xl p-8 sm:p-12 text-center text-white shadow-2xl relative overflow-hidden isolate border border-white/10 space-y-4">
+        <div class="absolute -top-24 -right-24 w-64 h-64 bg-emerald-500/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-primary/30 rounded-full blur-3xl pointer-events-none"></div>
+        
+        <h2 class="text-2xl sm:text-3xl font-black text-white">{t(locale, 'scanner.ctaTitle')}</h2>
+        <p class="text-sm sm:text-base text-zinc-300 max-w-xl mx-auto leading-relaxed">
+          {t(locale, 'scanner.ctaDesc')}
+        </p>
+        <div class="pt-2">
+          <a
+            href={getLocalizedUrl(locale, '/')}
+            class="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-white text-neutral-950 font-bold text-sm shadow-xl hover:bg-zinc-100 hover:scale-105 transition-all cursor-pointer"
+          >
+            <span class="material-symbols-outlined text-lg">qr_code_2</span>
+            <span>{t(locale, 'scanner.ctaButton')}</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <Footer locale={locale} />
+</BaseLayout>

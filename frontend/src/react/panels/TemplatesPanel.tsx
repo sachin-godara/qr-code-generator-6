@@ -3,23 +3,25 @@ import { motion } from "framer-motion";
 import { useQRStore } from "@/store/useQRStore";
 import { PRESET_TEMPLATES } from "@/data/templates";
 import { StylePreviewCard } from "@/components/previews/StylePreviewCard";
-
-const TEMPLATE_CATEGORIES = [
-  { id: "All", name: "All", icon: "apps" },
-  { id: "WiFi", name: "WiFi", icon: "wifi" },
-  { id: "Business", name: "Business", icon: "business_center" },
-  { id: "Marketing", name: "Marketing", icon: "campaign" },
-  { id: "Restaurant", name: "Restaurant", icon: "restaurant" },
-  { id: "Events", name: "Events", icon: "event" },
-  { id: "Social", name: "Social", icon: "share" },
-  { id: "Retail", name: "Retail", icon: "storefront" },
-  { id: "Education", name: "Education", icon: "school" },
-  { id: "Premium", name: "Premium", icon: "workspace_premium" },
-];
+import { useTranslation } from "@/i18n/useTranslation";
 
 export function TemplatesPanel() {
+  const { t } = useTranslation();
   const { settings, applyTemplate } = useQRStore();
   const [activeTemplateCategory, setActiveTemplateCategory] = useState<string>("All");
+
+  const TEMPLATE_CATEGORIES = [
+    { id: "All", name: t("studio.templateCategories.all") || "All", icon: "apps" },
+    { id: "WiFi", name: t("studio.templateCategories.wifi") || "Wi-Fi", icon: "wifi" },
+    { id: "Business", name: t("studio.templateCategories.business") || "Business", icon: "business_center" },
+    { id: "Marketing", name: t("studio.templateCategories.marketing") || "Marketing", icon: "campaign" },
+    { id: "Restaurant", name: t("studio.templateCategories.restaurant") || "Restaurant", icon: "restaurant" },
+    { id: "Events", name: t("studio.templateCategories.events") || "Events", icon: "event" },
+    { id: "Social", name: t("studio.templateCategories.social") || "Social", icon: "share" },
+    { id: "Retail", name: t("studio.templateCategories.retail") || "Retail", icon: "storefront" },
+    { id: "Education", name: t("studio.templateCategories.education") || "Education", icon: "school" },
+    { id: "Premium", name: t("studio.templateCategories.premium") || "Premium", icon: "workspace_premium" },
+  ];
 
   const filteredTemplates = PRESET_TEMPLATES.filter(t =>
     t.name === "None" || activeTemplateCategory === "All" || t.category === activeTemplateCategory

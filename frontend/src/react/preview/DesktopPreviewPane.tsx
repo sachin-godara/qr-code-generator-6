@@ -2,6 +2,7 @@ import { Loader2 } from "lucide-react";
 import { useQRStore } from "@/store/useQRStore";
 import { useDownloadStore } from "@/store/useDownloadStore";
 import { useDownloadHandlers } from "@/hooks/useDownloadHandlers";
+import { useTranslation } from "@/i18n/useTranslation";
 
 interface DesktopPreviewPaneProps {
   previewRef: React.RefObject<HTMLDivElement | null>;
@@ -34,6 +35,7 @@ export function DesktopPreviewPane({
   handleFullscreen,
   handleShare
 }: DesktopPreviewPaneProps) {
+  const { t } = useTranslation();
   const { settings } = useQRStore();
   const { downloadFormat, downloadSize } = useDownloadStore();
 
@@ -59,7 +61,7 @@ export function DesktopPreviewPane({
       <div className="bg-white rounded-3xl p-6 md:p-8 surface-ring-vercel space-y-6 sm:space-y-8 relative z-10">
 
         <div className="flex justify-between items-center">
-          <h3 className="text-sm font-semibold text-on-surface">Live Preview</h3>
+          <h3 className="text-sm font-semibold text-on-surface">{t("studio.preview.livePreview") || "Live Preview"}</h3>
           <div className="flex items-center gap-2">
             <span className="px-2 py-1 bg-surface-container text-on-surface-variant text-[10px] font-medium rounded-full flex items-center gap-1.5 tracking-wider uppercase">
               <span className="pulse-dot"></span>

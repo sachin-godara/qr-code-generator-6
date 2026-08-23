@@ -1,69 +1,83 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useQRStore } from "@/store/useQRStore";
+import { useTranslation } from "@/i18n/useTranslation";
 import {
   UrlForm, TextForm, PhoneForm, SmsForm, WhatsAppForm, EmailForm, VCardForm,
   WifiForm, LocationForm, EventForm, UpiForm, CryptoForm, PaypalForm,
   AppStoreForm, GooglePlayForm, SocialForm
 } from "@/components/generator/forms/ContentForms";
 
-const contentCategories = [
+const contentCategoryDefs = [
   {
+    id: "basic",
+    titleKey: "basic",
     title: "Basic",
     icon: "bolt",
     items: [
-      { id: "url",      label: "URL",      icon: "link",         popular: true },
-      { id: "text",    label: "Text",     icon: "subject",      popular: false },
-      { id: "phone",   label: "Phone",    icon: "phone",        popular: false },
-      { id: "sms",     label: "SMS",      icon: "sms",          popular: false },
-      { id: "whatsapp",label: "WhatsApp", icon: "chat",         popular: false },
-      { id: "email",   label: "Email",    icon: "mail",         popular: false },
-      { id: "vcard",   label: "vCard",    icon: "contact_page", popular: true },
+      { id: "url",      labelKey: "url",      label: "URL",      icon: "link",         popular: true },
+      { id: "text",    labelKey: "text",    label: "Text",     icon: "subject",      popular: false },
+      { id: "phone",   labelKey: "phone",   label: "Phone",    icon: "phone",        popular: false },
+      { id: "sms",     labelKey: "sms",     label: "SMS",      icon: "sms",          popular: false },
+      { id: "whatsapp",labelKey: "whatsapp",label: "WhatsApp", icon: "chat",         popular: false },
+      { id: "email",   labelKey: "email",   label: "Email",    icon: "mail",         popular: false },
+      { id: "vcard",   labelKey: "vcard",   label: "vCard",    icon: "contact_page", popular: true },
     ]
   },
   {
+    id: "network",
+    titleKey: "network",
     title: "Network",
     icon: "wifi",
     items: [
-      { id: "wifi", label: "Wi-Fi", icon: "wifi", popular: true },
+      { id: "wifi", labelKey: "wifi", label: "Wi-Fi", icon: "wifi", popular: true },
     ]
   },
   {
+    id: "locationEvents",
+    titleKey: "locationEvents",
     title: "Location & Events",
     icon: "location_on",
     items: [
-      { id: "location", label: "Location", icon: "location_on", popular: false },
-      { id: "event",    label: "Event",    icon: "event",        popular: false },
+      { id: "location", labelKey: "location", label: "Location", icon: "location_on", popular: false },
+      { id: "event",    labelKey: "event",    label: "Event",    icon: "event",        popular: false },
     ]
   },
   {
+    id: "payments",
+    titleKey: "payments",
     title: "Payments",
     icon: "payments",
     items: [
-      { id: "upi",    label: "UPI",    icon: "account_balance",   popular: false },
-      { id: "crypto", label: "Crypto", icon: "currency_bitcoin", popular: false },
-      { id: "paypal", label: "PayPal", icon: "payments",         popular: false },
+      { id: "upi",    labelKey: "upi",    label: "UPI",    icon: "account_balance",   popular: false },
+      { id: "crypto", labelKey: "crypto", label: "Crypto", icon: "currency_bitcoin", popular: false },
+      { id: "paypal", labelKey: "paypal", label: "PayPal", icon: "payments",         popular: false },
     ]
   },
   {
+    id: "appsSocial",
+    titleKey: "appsSocial",
     title: "Apps & Social",
     icon: "apps",
     items: [
-      { id: "appstore",   label: "App Store",   icon: "apps",       popular: false },
-      { id: "googleplay", label: "Google Play", icon: "play_arrow", popular: false },
-      { id: "social",     label: "Social",      icon: "share",      popular: false },
+      { id: "appstore",   labelKey: "appstore",   label: "App Store",   icon: "apps",       popular: false },
+      { id: "googleplay", labelKey: "googleplay", label: "Google Play", icon: "play_arrow", popular: false },
+      { id: "social",     labelKey: "social",     label: "Social",      icon: "share",      popular: false },
     ]
   },
   {
+    id: "advanced",
+    titleKey: "advanced",
     title: "Advanced",
     icon: "dataset",
     items: [
-      { id: "batch", label: "Batch CSV", icon: "dataset", popular: false, comingSoon: true },
+      { id: "batch", labelKey: "batch", label: "Batch CSV", icon: "dataset", popular: false, comingSoon: true },
     ]
   }
 ];
 
 export function ContentPanel() {
+  const { t } = useTranslation();
   const { 
     settings, 
     updateSettings,
@@ -75,12 +89,12 @@ export function ContentPanel() {
     updateBatchColumn
   } = useQRStore();
   
-  const [contentCategoryTab, setContentCategoryTab] = useState<string>('Basic');
+  const [contentCategoryTab, setContentCategoryTab] = useState<string>('basic');
 
   useEffect(() => {
-    const activeCategory = contentCategories.find(c => c.items.some(i => i.id === settings.contentType));
+    const activeCategory = contentCategoryDefs.find(c => c.items.some(i => i.id === settings.contentType));
     if (activeCategory) {
-      setContentCategoryTab(activeCategory.title);
+      setContentCategoryTab(activeCategory.id);
     }
   }, [settings.contentType]);
 
@@ -121,39 +135,43 @@ export function ContentPanel() {
       <div className="space-y-4">
         {/* Category Tabs */}
         <div className="flex gap-2 p-1.5 bg-surface-container-low rounded-xl overflow-x-auto custom-scrollbar">
-          {contentCategories.map((cat) => (
-            <button
-              key={cat.title}
-              type="button"
-              onClick={() => setContentCategoryTab(cat.title)}
-              className={`relative flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-bold transition-colors whitespace-nowrap outline-none ${
-                contentCategoryTab === cat.title
-                  ? "text-primary"
-                  : "text-on-surface-variant hover:text-on-surface hover:bg-black/5"
-              }`}
-            >
-              {contentCategoryTab === cat.title && (
-                <motion.div
-                  layoutId="content-category-tab"
-                  className="absolute inset-0 bg-white shadow-sm ring-1 ring-black/5 rounded-lg"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                />
-              )}
-              <span className="relative z-10 flex items-center gap-1.5">
-                <span className="material-symbols-outlined text-[16px]">{cat.icon}</span>
-                {cat.title}
-              </span>
-            </button>
-          ))}
+          {contentCategoryDefs.map((cat) => {
+            const categoryTitle = t(`studio.content.categories.${cat.titleKey}`) || cat.title;
+            return (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => setContentCategoryTab(cat.id)}
+                className={`relative flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm font-bold transition-colors whitespace-nowrap outline-none ${
+                  contentCategoryTab === cat.id
+                    ? "text-primary"
+                    : "text-on-surface-variant hover:text-on-surface hover:bg-black/5"
+                }`}
+              >
+                {contentCategoryTab === cat.id && (
+                  <motion.div
+                    layoutId="content-category-tab"
+                    className="absolute inset-0 bg-white shadow-sm ring-1 ring-black/5 rounded-lg"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
+                <span className="relative z-10 flex items-center gap-1.5">
+                  <span className="material-symbols-outlined text-[16px]">{cat.icon}</span>
+                  {categoryTitle}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
         {/* Category Items */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
-          {contentCategories
-            .find(c => c.title === contentCategoryTab)
+          {contentCategoryDefs
+            .find(c => c.id === contentCategoryTab)
             ?.items
             .map(type => {
               const isSelected = settings.contentType === type.id;
+              const typeLabel = t(`studio.content.types.${type.labelKey}`) || type.label;
               return (
                 <button
                   key={type.id}
@@ -170,7 +188,7 @@ export function ContentPanel() {
                 >
                   <div className="flex items-center gap-2">
                     <span className="material-symbols-outlined text-lg">{type.icon}</span>
-                    {type.label}
+                    {typeLabel}
                   </div>
                   {(type as any).comingSoon && (
                     <span className="text-[9px] font-bold bg-amber-100 text-amber-700 px-1.5 py-0.5 rounded-md uppercase tracking-wider">

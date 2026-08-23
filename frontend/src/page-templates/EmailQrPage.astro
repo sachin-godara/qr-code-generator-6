@@ -1,0 +1,377 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import QRGeneratorApp from '../react/QRGeneratorApp';
+import Footer from '../components/layout/Footer.astro';
+import { type Locale } from '../i18n/config';
+import { getLocalizedUrl, t } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const metaMap: Record<Locale, {
+  title: string;
+  desc: string;
+  badge: string;
+  specsTitle: string;
+  specs: Array<{ icon: string; title: string; desc: string }>;
+  stepsTitle: string;
+  steps: Array<{ icon: string; title: string; desc: string }>;
+  cardsTitle: string;
+  cards: Array<{ icon: string; title: string; desc: string }>;
+  tipsTitle: string;
+  tips: Array<{ icon: string; title: string; desc: string }>;
+  faqsTitle: string;
+  faqs: Array<{ q: string; a: string }>;
+  otherToolsTitle: string;
+  ctaTitle: string;
+  ctaDesc: string;
+  ctaBtn: string;
+}> = {
+  en: {
+    title: "Free Email QR Code Generator — Pre-filled Email Links",
+    desc: "Create a free email QR code with pre-filled recipient, subject, and message. Ideal for customer support, feedback forms, and instant inquiries.",
+    badge: "Pre-filled Email Links",
+    specsTitle: "Key Technical Capabilities",
+    specs: [
+      { icon: "mail", title: "Universal Mailto: Syntax", desc: "Encodes standardized mailto: links compatible with Gmail, Apple Mail, Outlook, and all default email apps." },
+      { icon: "edit_note", title: "Pre-filled Subject & Body", desc: "Automate customer support tickets, warranty registrations, and RSVP responses with preset text." },
+      { icon: "palette", title: "Brand Identity & Colors", desc: "Match your company email brand with custom dot styles, gradients, and mail icon badges." },
+      { icon: "download", title: "Lossless Vector Export", desc: "Download in SVG vector and 300 DPI PDF for receipts, packaging stickers, and manuals." }
+    ],
+    stepsTitle: "How to Create an Email QR Code in 4 Easy Steps",
+    steps: [
+      { icon: "mail", title: "1. Select Email Type", desc: "Choose Email from the generator content tabs." },
+      { icon: "edit_note", title: "2. Enter Email & Message", desc: "Add recipient email address, subject line, and optional draft body." },
+      { icon: "palette", title: "3. Style & Brand", desc: "Pick brand colors, dot styles, and email icon badge." },
+      { icon: "download", title: "4. Download & Print", desc: "Export in high-res PNG, SVG, or print-ready PDF." }
+    ],
+    cardsTitle: "Popular Use Cases for Email QR Codes",
+    cards: [
+      { icon: "support_agent", title: "Customer Support", desc: "Put on product packaging or receipts. Customers scan to send a support email with a pre-filled subject line." },
+      { icon: "rate_review", title: "Feedback Collection", desc: "Add to receipts, menus, or signage. One scan opens a feedback email ready to send." },
+      { icon: "contact_mail", title: "Business Cards", desc: "Add to your business card so people can email you instantly without typing your address." },
+      { icon: "inventory_2", title: "Product Packaging", desc: "Place on product labels for easy warranty registration, order inquiries, or return requests." }
+    ],
+    tipsTitle: "Best Practices for Email QR Codes",
+    tips: [
+      { icon: "subject", title: "Use Clear Subject Lines", desc: "Add descriptive subject lines (e.g. [Support Request #Item123]) to help filter incoming emails." },
+      { icon: "short_text", title: "Keep Body Prompts Concise", desc: "A concise bulleted draft makes it easy for customers to fill in details quickly on mobile." },
+      { icon: "contrast", title: "High Contrast (4.5:1+)", desc: "Maintain strong contrast between dark modules and light background for reliable scans." },
+      { icon: "verified", title: "Test with Multiple Mail Apps", desc: "Send a test email from both iOS Mail and Gmail on Android before printing." }
+    ],
+    faqsTitle: "Frequently Asked Questions About Email QR Codes",
+    faqs: [
+      { q: "How does an email QR code work?", a: "An email QR code encodes a mailto: link with the recipient address, subject, and body pre-filled. When someone scans it, their phone's default email app opens with a draft ready to send." },
+      { q: "Which email apps does it work with?", a: "Email QR codes work with any email app that handles standard mailto: links — Gmail, Apple Mail, Outlook, Yahoo Mail, and all standard email clients on iOS and Android." },
+      { q: "Is an email QR code free and without limits?", a: "Yes, you can generate unlimited Email QR codes with zero limits, no signup, and no expiration." },
+      { q: "Can I leave the subject or body blank?", a: "Yes. You can encode just an email address, or add a pre-filled subject line and leave the message body empty." }
+    ],
+    otherToolsTitle: "Explore Other Free QR Code Tools",
+    ctaTitle: "Ready to Create Your Email QR Code?",
+    ctaDesc: "Generate pre-filled email QR codes for customer support, feedback, and business cards in seconds.",
+    ctaBtn: "Create Email QR Code Now ↑"
+  },
+  es: {
+    title: "Generador de Códigos QR para Correo Gratis — Asunto y Mensaje",
+    desc: "Crea un código QR de correo electrónico gratis con destinatario, asunto y mensaje predefinidos. Ideal para atención al cliente y soporte.",
+    badge: "Enlaces de Correo Listos",
+    specsTitle: "Capacidades Técnicas Clave",
+    specs: [
+      { icon: "mail", title: "Sintaxis Universal Mailto:", desc: "Compatible con Gmail, Apple Mail, Outlook y cualquier app de correo predeterminada." },
+      { icon: "edit_note", title: "Asunto y Mensaje Predefinidos", desc: "Automatiza tickets de soporte, registros de garantía y consultas con texto precargado." },
+      { icon: "palette", title: "Colores y Marca Corporativa", desc: "Personaliza con colores de tu empresa, marcos llamativos e icono de sobre." },
+      { icon: "download", title: "Descarga Vectorial sin Pérdida", desc: "Exporta en SVG y PDF a 300 DPI para facturas, etiquetas y manuales de producto." }
+    ],
+    stepsTitle: "Cómo Crear un Código QR para Correo en 4 Pasos",
+    steps: [
+      { icon: "mail", title: "1. Elige Correo", desc: "Selecciona Correo en las pestañas de contenido." },
+      { icon: "edit_note", title: "2. Introduce Datos", desc: "Escribe la dirección, asunto y borrador del mensaje." },
+      { icon: "palette", title: "3. Personaliza", desc: "Añade colores corporativos y logotipo de sobre." },
+      { icon: "download", title: "4. Descarga", desc: "Exporta en PNG de alta resolución, SVG o PDF." }
+    ],
+    cardsTitle: "Casos de Uso para Códigos QR de Correo",
+    cards: [
+      { icon: "support_agent", title: "Atención al Cliente", desc: "Añádelo en envases o facturas para que tus clientes contacten al soporte técnico sin teclear." },
+      { icon: "rate_review", title: "Recogida de Opiniones", desc: "Ponlo en mesas o cartas para recibir opiniones y sugerencias directas en tu bandeja." },
+      { icon: "contact_mail", title: "Tarjetas de Presentación", desc: "Facilita que tus nuevos contactos te envíen un correo en 1 solo segundo." },
+      { icon: "inventory_2", title: "Garantías y Productos", desc: "Facilita el registro de garantía o consultas de pedidos en etiquetas de producto." }
+    ],
+    tipsTitle: "Consejos para Códigos QR de Correo",
+    tips: [
+      { icon: "subject", title: "Asuntos Claros y Descriptivos", desc: "Incluye un prefijo claro como [Consulta Soporte] para filtrar y organizar tu correo." },
+      { icon: "short_text", title: "Mensajes Breves con Guía", desc: "Un texto con puntos guía facilita que el usuario responda rápido desde el móvil." },
+      { icon: "contrast", title: "Alto Contraste Visual", desc: "Mantén un contraste nítido entre módulos oscuros y fondo claro para un escaneo veloz." },
+      { icon: "verified", title: "Prueba con Varias Apps", desc: "Prueba el envío desde iOS Mail y Gmail en Android antes de imprimir." }
+    ],
+    faqsTitle: "Preguntas Frecuentes sobre Códigos QR de Correo",
+    faqs: [
+      { q: "¿Cómo funciona un código QR de correo?", a: "Codifica un enlace mailto: con la dirección, asunto y mensaje ya completados. Al escanearlo, se abre la app de correo lista para pulsar enviar." },
+      { q: "¿Con qué apps de correo funciona?", a: "Funciona con Gmail, Apple Mail, Outlook, Yahoo Mail y cualquier app de correo estándar en iOS y Android." },
+      { q: "¿Es completamente gratuito?", a: "Sí, genera todos los códigos QR de correo que necesites sin límites ni registro." },
+      { q: "¿Puedo dejar el mensaje en blanco?", a: "Sí, puedes incluir solo la dirección o el asunto y dejar el cuerpo del mensaje vacío." }
+    ],
+    otherToolsTitle: "Explora Otras Herramientas QR Gratuitas",
+    ctaTitle: "¿Listo para Crear tu Código QR de Correo?",
+    ctaDesc: "Crea códigos QR con correos predefinidos para soporte y tarjetas de contacto en segundos.",
+    ctaBtn: "Crear Código QR de Correo Ahora ↑"
+  },
+  pt: {
+    title: "Gerador de QR Code para E-mail Grátis — Enviar Mensagens Rápidas",
+    desc: "Crie um QR code de e-mail gratuito com destinatário, assunto e mensagem preenchidos. Ideal para suporte ao cliente e formulários de contato.",
+    badge: "E-mail Pré-preenchido",
+    specsTitle: "Recursos Técnicos Avançados",
+    specs: [
+      { icon: "mail", title: "Padrão Universal Mailto:", desc: "Compatível nativamente com Apple Mail, Gmail, Outlook e clientes móveis padrão." },
+      { icon: "edit_note", title: "Assunto e Mensagem Prontos", desc: "Agilize chamados de suporte técnico, dúvidas de compras e orçamentos comerciais." },
+      { icon: "palette", title: "Identidade Visual e Cores", desc: "Personalize com cores da sua empresa, molduras elegantes e ícone de carta." },
+      { icon: "download", title: "Vetor SVG e PDF em 300 DPI", desc: "Arquivos gráficos de alta fidelidade para etiquetas, manuais e notas fiscais." }
+    ],
+    stepsTitle: "Como Criar um QR Code de E-mail em 4 Passos",
+    steps: [
+      { icon: "mail", title: "1. Escolha E-mail", desc: "Selecione E-mail nas abas de conteúdo." },
+      { icon: "edit_note", title: "2. Preencha os Campos", desc: "Digite destinatário, assunto e rascunho." },
+      { icon: "palette", title: "3. Personalize", desc: "Defina cores, moldura e ícone de carta." },
+      { icon: "download", title: "4. Baixe Grátis", desc: "Exporte em PNG de alta resolução, SVG ou PDF." }
+    ],
+    cardsTitle: "Onde Utilizar o QR Code de E-mail?",
+    cards: [
+      { icon: "support_agent", title: "Suporte ao Cliente", desc: "Coloque em manuais e embalagens para abrir chamados de suporte instantaneamente." },
+      { icon: "rate_review", title: "Coleta de Feedback", desc: "Receba avaliações e sugestões de clientes direto no seu e-mail corporativo." },
+      { icon: "contact_mail", title: "Cartões de Visita", desc: "Permita que parceiros e clientes enviem mensagens sem digitar endereços longos." },
+      { icon: "inventory_2", title: "Rótulos de Produtos", desc: "Agilize solicitações de garantia, trocas e devoluções para compradores." }
+    ],
+    tipsTitle: "Dicas para QR Codes de E-mail",
+    tips: [
+      { icon: "subject", title: "Assuntos Claros e Objetivos", desc: "Use assuntos padronizados como [Dúvida Pedido] para facilitar a triagem." },
+      { icon: "short_text", title: "Rascunho Direto ao Ponto", desc: "Um modelo estruturado facilita para o cliente preencher apenas as informações necessárias." },
+      { icon: "contrast", title: "Alto Contraste de Cores", desc: "Garanta leitura perfeita em qualquer iluminação mantendo alto contraste." },
+      { icon: "verified", title: "Teste Antes da Tiragem", desc: "Faça um envio de teste usando aparelhos iOS e Android antes de imprimir." }
+    ],
+    faqsTitle: "Dúvidas sobre QR Code de E-mail",
+    faqs: [
+      { q: "Como funciona o QR Code de e-mail?", a: "Ele armazena um link mailto: com o e-mail, assunto e texto. Ao ler o código, o app de e-mail padrão do celular se abre com o rascunho pronto." },
+      { q: "Funciona em qualquer celular?", a: "Sim, funciona nativamente no iPhone, Android e em aplicativos como Gmail, Apple Mail e Outlook." },
+      { q: "Existe limite de escaneamento?", a: "Não, nossos códigos são estáticos, sem limites de leitura e sem expiração." },
+      { q: "Posso deixar o texto em branco?", a: "Sim, você pode preencher apenas o endereço de e-mail e deixar o assunto e mensagem livres." }
+    ],
+    otherToolsTitle: "Conheça Outras Ferramentas QR Gratuitas",
+    ctaTitle: "Pronto para Criar seu QR Code de E-mail?",
+    ctaDesc: "Gere códigos QR de e-mail personalizados para atendimento e contatos em segundos.",
+    ctaBtn: "Criar QR Code de E-mail Agora ↑"
+  },
+  de: {
+    title: "Kostenloser E-Mail QR-Code Generator — Sofortnachrichten",
+    desc: "Erstellen Sie einen E-Mail QR-Code mit vorausgefüllter Adresse, Betreffzeile und Nachricht. Ideal für Kundenservice und Feedback.",
+    badge: "Vorausgefüllte E-Mail",
+    specsTitle: "Wichtige technische Merkmale",
+    specs: [
+      { icon: "mail", title: "Standardisiertes Mailto:-Format", desc: "Funktioniert mit Apple Mail, Gmail, Microsoft Outlook und allen Standard-Mailclients." },
+      { icon: "edit_note", title: "Vorausgefüllter Betreff & Text", desc: "Automatisieren Sie Support-Tickets, Garantieanfragen und Feedback-Mails mit vorbereitetem Text." },
+      { icon: "palette", title: "Markenfarben & Logos", desc: "Passen Sie den Code mit eigenen Firmenfarben, Rahmen und Brief-Symbolen an." },
+      { icon: "download", title: "Verlustfreier Vektordownload", desc: "Export als SVG und 300 DPI PDF für Rechnungen, Handbücher und Produktverpackungen." }
+    ],
+    stepsTitle: "So erstellen Sie einen E-Mail-QR-Code in 4 Schritten",
+    steps: [
+      { icon: "mail", title: "1. E-Mail wählen", desc: "E-Mail als Inhaltstyp im Generator auswählen." },
+      { icon: "edit_note", title: "2. Daten eingeben", desc: "Empfängeradresse, Betreff und Textnachricht eintragen." },
+      { icon: "palette", title: "3. Design gestalten", desc: "Firmenfarben, Punktstile und Brief-Symbol wählen." },
+      { icon: "download", title: "4. Herunterladen", desc: "Als PNG, SVG oder druckfertiges PDF exportieren." }
+    ],
+    cardsTitle: "Einsatzbereiche für E-Mail-QR-Codes",
+    cards: [
+      { icon: "support_agent", title: "Kundenservice", desc: "Auf Produktverpackungen platzieren für schnelle Support-Anfragen mit vorausgefülltem Betreff." },
+      { icon: "rate_review", title: "Kunden-Feedback", desc: "Auf Rechnungen oder Menükarten drucken, um sofortiges Feedback per E-Mail zu erhalten." },
+      { icon: "contact_mail", title: "Visitenkarten", desc: "Ermöglicht Geschäftspartnern die Kontaktaufnahme ohne Eintippen langer Adressen." },
+      { icon: "inventory_2", title: "Garantie & Service", desc: "Schnelle Registrierung von Produkten und Garantieansprüchen via Smartphone-Scan." }
+    ],
+    tipsTitle: "Tipps für E-Mail-QR-Codes",
+    tips: [
+      { icon: "subject", title: "Klare Betreffzeilen nutzen", desc: "Verwenden Sie eindeutige Präfixe wie [Support-Anfrage], um eingehende Mails zuzuordnen." },
+      { icon: "short_text", title: "Kompakte Textvorlagen", desc: "Halten Sie den Textentwurf kurz, damit Mobilnutzer schnell die Details ergänzen können." },
+      { icon: "contrast", title: "Hoher Kontrast", desc: "Dunkle Punkte auf hellem Grund sichern die Lesbarkeit bei allen Lichtverhältnissen." },
+      { icon: "verified", title: "Vorab-Funktionstest", desc: "Senden Sie eine Testnachricht von einem Smartphone, bevor Sie die Codes drucken." }
+    ],
+    faqsTitle: "Häufige Fragen zu E-Mail-QR-Codes",
+    faqs: [
+      { q: "Wie funktioniert ein E-Mail-QR-Code?", a: "Er enthält einen mailto:-Link. Beim Scannen öffnet sich die Standard-Mail-App mit einem fertigen E-Mail-Entwurf." },
+      { q: "Welche Mail-Programme werden unterstützt?", a: "Alle gängigen Apps wie Apple Mail, Gmail, Outlook und Yahoo auf iOS und Android." },
+      { q: "Ist der Code zeitlich unbegrenzt gültig?", a: "Ja, alle QR-Codes sind statisch codiert und laufen niemals ab." },
+      { q: "Kann der Nachrichtentext leer bleiben?", a: "Ja, Sie können auch nur die Empfänger-Adresse und den Betreff hinterlegen." }
+    ],
+    otherToolsTitle: "Weitere kostenlose QR-Code Tools",
+    ctaTitle: "Bereit für Ihren E-Mail-QR-Code?",
+    ctaDesc: "Erstellen Sie vorausgefüllte E-Mail-QR-Codes für Support und Visitenkarten in wenigen Sekunden.",
+    ctaBtn: "Jetzt E-Mail-QR-Code erstellen ↑"
+  }
+};
+
+const pageMeta = metaMap[locale] || metaMap.en;
+
+const breadcrumbs = [
+  { name: t(locale, 'nav.generator'), url: getLocalizedUrl(locale, '/') },
+  { name: t(locale, 'footer.emailQR'), url: getLocalizedUrl(locale, '/email-qr-code') }
+];
+
+const relatedTools = [
+  { icon: "link", title: "URL to QR", desc: "Website links & portfolios", url: getLocalizedUrl(locale, '/url-qr-code-generator') },
+  { icon: "wifi", title: "WiFi QR", desc: "1-tap wifi connections", url: getLocalizedUrl(locale, '/wifi-qr-code') },
+  { icon: "contact_page", title: "vCard QR", desc: "Digital business cards", url: getLocalizedUrl(locale, '/vcard-qr-code') },
+  { icon: "image", title: "QR with Logo", desc: "Branded custom logos", url: getLocalizedUrl(locale, '/qr-code-with-logo') },
+  { icon: "event", title: "Event QR", desc: "Save dates to calendars", url: getLocalizedUrl(locale, '/event-qr-code') },
+  { icon: "qr_code_scanner", title: "QR Scanner", desc: "Camera & image decoder", url: getLocalizedUrl(locale, '/qr-code-scanner') }
+];
+
+const howTo = {
+  name: pageMeta.title,
+  description: pageMeta.desc,
+  steps: pageMeta.steps.map((s, idx) => ({ name: `${idx + 1}. ${s.title}`, text: s.desc }))
+};
+
+const faqs = pageMeta.faqs;
+---
+<BaseLayout
+  locale={locale}
+  title={pageMeta.title}
+  description={pageMeta.desc}
+  breadcrumbs={breadcrumbs}
+  howTo={howTo}
+  faqs={faqs}
+>
+  <style is:global>
+    @import '../styles/global.css';
+  </style>
+
+  <main id="generator">
+    <QRGeneratorApp client:load locale={locale} />
+  </main>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-16 text-on-surface" id="about">
+    
+    <!-- Hero Header -->
+    <div class="text-center max-w-3xl mx-auto space-y-3">
+      <span class="inline-block text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-3.5 py-1.5 rounded-full">{pageMeta.badge}</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-on-surface tracking-tight">{pageMeta.title}</h1>
+      <p class="text-sm sm:text-base text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
+        {pageMeta.desc}
+      </p>
+    </div>
+
+    <!-- 1. Technical Capabilities Grid -->
+    <section class="space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.specsTitle}</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {pageMeta.specs.map((s) => (
+          <div class="p-5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/40 hover:-translate-y-1 hover:shadow-md transition-all duration-300 shadow-xs space-y-2">
+            <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+              <span class="material-symbols-outlined text-xl">{s.icon}</span>
+            </div>
+            <h3 class="font-bold text-sm text-on-surface">{s.title}</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 2. 4-Step Process Guide -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.stepsTitle}</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {pageMeta.steps.map((step, idx) => (
+          <div class="text-center p-5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/40 hover:-translate-y-1 hover:shadow-md transition-all duration-300 shadow-xs">
+            <div class="w-10 h-10 mx-auto mb-3 rounded-full bg-primary/10 text-primary font-black text-sm flex items-center justify-center">
+              {idx + 1}
+            </div>
+            <h3 class="font-bold text-sm text-on-surface mb-1">{step.title}</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 3. Where to Use Grid -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.cardsTitle}</h2>
+      <div class="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+        {pageMeta.cards.map((uc) => (
+          <div class="flex items-start gap-3.5 p-4.5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/30 hover:-translate-y-0.5 hover:shadow-xs transition-all duration-200">
+            <span class="material-symbols-outlined text-primary text-2xl shrink-0 mt-0.5">{uc.icon}</span>
+            <div>
+              <h3 class="font-bold text-sm text-on-surface">{uc.title}</h3>
+              <p class="text-xs text-on-surface-variant mt-1 leading-relaxed">{uc.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 4. Best Practices Guide -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.tipsTitle}</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {pageMeta.tips.map((tip) => (
+          <div class="p-4.5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 space-y-2">
+            <span class="material-symbols-outlined text-emerald-600 text-2xl">{tip.icon}</span>
+            <h3 class="font-bold text-sm text-on-surface">{tip.title}</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">{tip.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 5. Explore Other Tools Ribbon -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.otherToolsTitle}</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        {relatedTools.map((tool) => (
+          <a
+            href={tool.url}
+            class="p-3.5 rounded-xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/40 hover:-translate-y-1 hover:shadow-xs transition-all text-center group flex flex-col items-center justify-between"
+          >
+            <div class="w-8 h-8 rounded-lg bg-zinc-100 group-hover:bg-primary group-hover:text-white flex items-center justify-center transition-colors mb-2">
+              <span class="material-symbols-outlined text-lg">{tool.icon}</span>
+            </div>
+            <span class="font-bold text-xs text-on-surface group-hover:text-primary transition-colors block">{tool.title}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- 6. FAQs Accordion -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.faqsTitle}</h2>
+      <div class="space-y-3 max-w-3xl mx-auto">
+        {pageMeta.faqs.map((faq) => (
+          <details class="group border border-outline-variant/60 rounded-2xl bg-surface-container-lowest overflow-hidden shadow-xs transition-all">
+            <summary class="flex justify-between items-center p-4.5 cursor-pointer font-bold text-sm sm:text-base hover:bg-surface-container-low transition-colors select-none text-on-surface">
+              <span>{faq.q}</span>
+              <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-on-surface-variant">expand_more</span>
+            </summary>
+            <p class="px-4.5 pb-4.5 pt-1 text-on-surface-variant text-xs sm:text-sm leading-relaxed border-t border-outline-variant/30">
+              {faq.a}
+            </p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- 7. Bottom CTA Banner -->
+    <section class="rounded-3xl bg-linear-to-br from-zinc-900 to-zinc-950 text-white p-8 sm:p-12 text-center space-y-4 shadow-lg border border-zinc-800">
+      <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">{pageMeta.ctaTitle}</h2>
+      <p class="text-xs sm:text-sm text-zinc-400 max-w-lg mx-auto leading-relaxed">{pageMeta.ctaDesc}</p>
+      <div class="pt-2">
+        <button
+          onclick="document.getElementById('generator')?.scrollIntoView({ behavior: 'smooth' });"
+          class="px-6 py-3 rounded-full bg-white text-zinc-900 font-extrabold text-xs sm:text-sm hover:bg-zinc-100 hover:scale-105 transition-all shadow-md cursor-pointer"
+        >
+          {pageMeta.ctaBtn}
+        </button>
+      </div>
+    </section>
+
+  </div>
+
+  <Footer locale={locale} />
+</BaseLayout>

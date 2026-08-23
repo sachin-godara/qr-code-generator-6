@@ -9,8 +9,6 @@ readingTime: 5
 featured: false
 ---
 
-# How to Create a QR Code for Google Maps Location
-
 Want people to find your location easily? A Google Maps QR code lets anyone scan and instantly get turn-by-turn directions — no typing addresses, no searching, no spelling mistakes.
 
 This guide shows you how to create one in under 2 minutes.
@@ -151,3 +149,4 @@ Ready to make a QR code that opens Google Maps? It's free, takes 30 seconds, and
 - [Create a URL QR code →](/url-qr-code-generator)
 - [How to use the generator →](/how-to-use)
 - [Learn about QR code sizing →](/blog/qr-code-size-guide)
+

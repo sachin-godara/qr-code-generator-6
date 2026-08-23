@@ -1,0 +1,22 @@
+---
+import { getCollection, render } from 'astro:content';
+import BlogPostPage from '../../../page-templates/BlogPostPage.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog_de');
+  return posts.map(post => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const allPosts = await getCollection('blog_de');
+const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const relatedPosts = sortedPosts
+  .filter(p => p.id !== post.id)
+  .slice(0, 3);
+---
+<BlogPostPage locale="de" post={post} Content={Content} relatedPosts={relatedPosts} />

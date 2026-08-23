@@ -1,0 +1,37 @@
+{
+  "home": {
+    "title": "Kostenloser QR-Code Generator mit Logo — Ohne Wasserzeichen",
+    "description": "Erstellen Sie individuelle QR-Codes 100% kostenlos mit Logo, 40+ Punkt-Mustern und Verläufen. Download als Vektor-SVG, PDF oder hochauflösendes PNG ohne Wasserzeichen.",
+    "keywords": "qr code generator, individueller qr code mit logo, kostenloser qr code generator ohne wasserzeichen, qr code erstellen online, qr code druckfertig, qr code svg download, qr code pdf erstellen",
+    "howToName": "Einen individuellen QR-Code erstellen",
+    "howToDesc": "Gestalten und erstellen Sie einen maßgeschneiderten QR-Code mit Logo, Farben, Verläufen und Rahmen in unter 2 Minuten — 100% kostenlos.",
+    "steps": [
+      { "name": "Inhalt eingeben", "text": "Wählen Sie einen Inhaltstyp (URL, Text, WLAN, vCard, E-Mail, SMS, Termin etc.) und geben Sie Ihre Daten ein." },
+      { "name": "Design anpassen", "text": "Wählen Sie aus über 40 Punkt-Mustern, 19 Augen-Rahmen, 23 Augen-Punkten und wenden Sie individuelle Farbverläufe an." },
+      { "name": "Logo hinzufügen", "text": "Eigenes Logo hochladen oder aus 46 Markensymbolen mit automatischer Hintergrundentfernung wählen." },
+      { "name": "Rahmen auswählen", "text": "Versehen Sie Ihren QR-Code mit einem von 51 dekorativen Textrahmen mit individueller Beschriftung." },
+      { "name": "Kostenlos herunterladen", "text": "Exportieren Sie Ihren QR-Code als PNG (bis 4096px), SVG (Vektor) oder PDF (300 DPI) — ohne Registrierung und ohne Wasserzeichen." }
+    ],
+    "faqs": [
+      { "q": "Wie erstelle ich einen individuellen QR-Code?", "a": "Geben Sie Ihre URL oder Kontaktdaten ein, wählen Sie Design und Farben, fügen Sie ein Logo hinzu und laden Sie den QR-Code als PNG, SVG oder PDF herunter." },
+      { "q": "Ist dieser QR-Code Generator wirklich kostenlos?", "a": "Ja, GenerateCustomQR ist zu 100% kostenlos und ohne Einschränkungen nutzbar — ohne Anmeldung, ohne Wasserzeichen und ohne versteckte Kosten." },
+      { "q": "Welche QR-Code-Typen werden unterstützt?", "a": "Sie können QR-Codes für URLs, Text, WLAN-Zugangsdaten, vCards (digitale Visitenkarten), E-Mails, SMS, Kalendertermine, Telefonnummern, Krypto, Google Maps und PayPal erstellen." },
+      { "q": "Kann ich mein Firmenlogo einbinden?", "a": "Ja, Sie können eigene Bilddateien hochladen oder bekannte Markensymbole wie WhatsApp, Instagram, YouTube und Facebook mit automatischer Hintergrundbereinigung nutzen." },
+      { "q": "Welche Download-Formate stehen zur Verfügung?", "a": "Sie können hochauflösende PNG-Dateien, verlustfrei skalierbare Vektor-SVG-Dateien und druckfertige PDF-Dateien (300 DPI) herunterladen." },
+      { "q": "Können QR-Codes im Stapel (Batch) erstellt werden?", "a": "Ja, GenerateCustomQR unterstützt die Stapelgenerierung von bis zu 500 QR-Codes über den Upload einer CSV-Datei." },
+      { "q": "Laufen die generierten QR-Codes ab?", "a": "Nein! Alle erstellten QR-Codes sind statisch und dauerhaft gültig, da die Daten direkt im Code gespeichert sind." }
+    ]
+  },
+  "scanner": {
+    "title": "Kostenloser Online-QR-Code-Scanner — Kamera & Bild",
+    "description": "Scannen und decodieren Sie QR-Codes direkt im Browser per Kamera, Bild-Upload oder Screenshot (Strg+V). 100% kostenlos und privat.",
+    "keywords": "qr code scanner, qr code leser online, qr code mit kamera scannen, qr code von bild scannen, kostenloser qr scanner, qr code reader online",
+    "faqs": [
+      { "q": "Benötige ich eine separate Scanner-App?", "a": "Nein! Moderne Smartphones können QR-Codes direkt mit der Standard-Kamera erfassen, oder Sie nutzen unseren kostenlosen Web-Scanner." },
+      { "q": "Wie scanne ich einen QR-Code auf Android?", "a": "Öffnen Sie die Kamera-App und richten Sie sie auf den QR-Code, oder nutzen Sie Google Lens oder diesen Web-Scanner." },
+      { "q": "Wie scanne ich einen QR-Code auf dem iPhone (iOS)?", "a": "Öffnen Sie die Kamera-App, halten Sie das iPhone vor den QR-Code und tippen Sie auf die gelbe Benachrichtigung." },
+      { "q": "Kann ich QR-Codes aus Screenshots oder Fotos lesen?", "a": "Ja! Nutzen Sie den Tab 'Bild hochladen' oben oder drücken Sie Strg+V, um einen Screenshot aus der Zwischenablage einzufügen." },
+      { "q": "Ist das Scannen auf dieser Website sicher?", "a": "Ja, zu 100%. Die Decodierung erfolgt vollständig clientseitig in Ihrem Webbrowser. Es werden keine Bilder übertragen oder gespeichert." }
+    ]
+  }
+}

@@ -1,0 +1,340 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import QRGeneratorApp from '../react/QRGeneratorApp';
+import Footer from '../components/layout/Footer.astro';
+import { type Locale } from '../i18n/config';
+import { getLocalizedUrl, t } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const metaMap: Record<Locale, {
+  title: string;
+  desc: string;
+  badge: string;
+  compTitle: string;
+  compSub: string;
+  compHeaders: { feature: string; us: string; others: string };
+  compRows: Array<{ feat: string; us: string; others: string }>;
+  perksTitle: string;
+  perks: string[];
+  faqsTitle: string;
+  faqs: Array<{ q: string; a: string }>;
+}> = {
+  en: {
+    title: "100% Free QR Code Generator — No Signup & No Watermark",
+    desc: "Generate unlimited custom QR codes for free with no account, no expiration, and no watermarks. Full access to 39 dot styles, logos, frames, and 8K downloads.",
+    badge: "100% Free Forever",
+    compTitle: "How We Compare to Paid Services",
+    compSub: "See why creators and businesses switch to GenerateCustomQR.",
+    compHeaders: { feature: "Feature", us: "GenerateCustomQR", others: "Other Generators" },
+    compRows: [
+      { feat: "Price", us: "100% Free", others: "$5–$50 / month" },
+      { feat: "Signup Required", us: "No", others: "Usually required" },
+      { feat: "Watermarks", us: "None", others: "On free tier" },
+      { feat: "Dot Styles", us: "39", others: "8–15" },
+      { feat: "Text Frames", us: "51", others: "3–10" },
+      { feat: "Vector SVG & PDF", us: "Free Included", others: "Paid only" },
+      { feat: "Scan Expiration", us: "Never (Static)", others: "May expire" }
+    ],
+    perksTitle: "Everything You Get for Free",
+    perks: [
+      "39 unique dot module styles",
+      "28 eye frames + custom eyeballs",
+      "51 decorative text & CTA frames",
+      "121 ready-made templates",
+      "46 preset brand logo icons",
+      "Custom logo upload + auto clearance",
+      "PNG, SVG, and 300 DPI PDF export",
+      "Transparent background support",
+      "Linear & radial color gradients",
+      "3D shadow and neon glow effects",
+      "No account or email registration",
+      "Commercial & personal use rights"
+    ],
+    faqsTitle: "Free QR Code Generator FAQ",
+    faqs: [
+      { q: "Is it really 100% free with no hidden charges?", a: "Yes — every feature is completely free with no strings attached. No signup required, no watermarks, no usage limits, and no premium paywalls." },
+      { q: "Do the QR codes expire?", a: "No. The QR codes you create are static — the data is encoded directly into the image matrix. They will work forever without expiration." },
+      { q: "Can I use generated QR codes for commercial projects?", a: "Yes. You have full commercial ownership and rights to print or distribute all generated QR codes anywhere." },
+      { q: "Are vector SVG and print PDF downloads free?", a: "Yes. High-resolution PNG up to 8K, vector SVG, and 300 DPI PDF are completely free for all users." }
+    ],
+    otherToolsTitle: "Explore Our Free QR Code Tools",
+    ctaTitle: "Ready to Create Your Free QR Code?",
+    ctaDesc: "Generate unlimited, high-resolution custom QR codes with logos, frames, and colors in seconds.",
+    ctaBtn: "Create Free QR Code Now ↑"
+  },
+  es: {
+    title: "Generador de Códigos QR 100% Gratis — Sin Registro ni Marcas",
+    desc: "Genera códigos QR personalizados ilimitados gratis, sin registro, sin caducidad y sin marcas de agua. 39 estilos de puntos, logos y descargas en 8K.",
+    badge: "100% Gratis para Siempre",
+    compTitle: "Comparativa con Servicios de Pago",
+    compSub: "Descubre por qué miles de usuarios eligen GenerateCustomQR.",
+    compHeaders: { feature: "Característica", us: "GenerateCustomQR", others: "Otros Generadores" },
+    compRows: [
+      { feat: "Precio", us: "100% Gratis", others: "$5–$50 / mes" },
+      { feat: "Requiere Registro", us: "No", others: "Casi siempre sí" },
+      { feat: "Marcas de Agua", us: "Ninguna", others: "En versión gratis" },
+      { feat: "Estilos de Puntos", us: "39", others: "8–15" },
+      { feat: "Marcos con Texto", us: "51", others: "3–10" },
+      { feat: "Exportación SVG y PDF", us: "Gratis Incluido", others: "Solo de pago" },
+      { feat: "Caducidad de Escaneos", us: "Nunca (Estáticos)", others: "Pueden caducar" }
+    ],
+    perksTitle: "Todo lo que Obtienes Gratis",
+    perks: [
+      "39 estilos de puntos únicos",
+      "28 marcos de esquinas y centros",
+      "51 marcos con texto para llamada a la acción",
+      "121 plantillas prediseñadas",
+      "46 iconos de marcas reconocidas",
+      "Subida de logo propio con respiro automático",
+      "Exportación en PNG, SVG y PDF",
+      "Soporte para fondo transparente",
+      "Degradados lineales y radiales",
+      "Efectos de sombra 3D y brillo neón",
+      "Sin registro ni recopilación de emails",
+      "Derechos de uso comercial y personal"
+    ],
+    faqsTitle: "Preguntas Frecuentes",
+    faqs: [
+      { q: "¿Es realmente 100% gratis sin cobros ocultos?", a: "¡Sí! Todas las herramientas son completamente gratuitas sin suscripciones, sin marcas de agua y sin límites de descarga." },
+      { q: "¿Los códigos QR caducan?", a: "No. Todos los códigos son estáticos con datos grabados de forma permanente en la matriz." },
+      { q: "¿Puedo usarlos en proyectos comerciales?", a: "Sí, todos los códigos generados cuentan con derechos de uso comercial ilimitado." },
+      { q: "¿La descarga vectorial en SVG es gratuita?", a: "Sí, las descargas en SVG vectorial y PDF a 300 DPI están incluidas de forma gratuita." }
+    ],
+    otherToolsTitle: "Explora Nuestras Herramientas QR Gratuitas",
+    ctaTitle: "¿Listo para Crear tu Código QR Gratis?",
+    ctaDesc: "Crea códigos QR ilimitados con estilos personalizados, logotipo y vectores en segundos.",
+    ctaBtn: "Crear Código QR Gratis Ahora ↑"
+  },
+  pt: {
+    title: "Gerador de QR Code 100% Grátis — Sem Cadastro e Sem Marca d'Água",
+    desc: "Gere códigos QR personalizados ilimitados gratuitamente, sem expiração e sem marcas. 39 estilos de pontos, logos, molduras e exportação em 8K.",
+    badge: "100% Grátis para Sempre",
+    compTitle: "Comparativo com Serviços Pagos",
+    compSub: "Entenda por que empresas e profissionais migram para o GenerateCustomQR.",
+    compHeaders: { feature: "Recurso", us: "GenerateCustomQR", others: "Outros Geradores" },
+    compRows: [
+      { feat: "Preço", us: "100% Grátis", others: "R$ 30–250 / mês" },
+      { feat: "Exige Cadastro", us: "Não", others: "Geralmente sim" },
+      { feat: "Marcas d'Água", us: "Nenhuma", others: "Na versão grátis" },
+      { feat: "Estilos de Pontos", us: "39", others: "8–15" },
+      { feat: "Molduras com Texto", us: "51", others: "3–10" },
+      { feat: "Vetor SVG e PDF", us: "Grátis Incluído", others: "Apenas planos pagos" },
+      { feat: "Validade do Código", us: "Eterno (Estático)", others: "Pode expirar" }
+    ],
+    perksTitle: "Tudo Incluído Gratuitamente",
+    perks: [
+      "39 estilos de módulos e pontos",
+      "28 molduras de cantos e centros",
+      "51 molduras com chamada de texto",
+      "121 modelos profissionais prontos",
+      "46 ícones de marcas populares",
+      "Upload de logo com respiro de fundo",
+      "Downloads em PNG, SVG e PDF 300 DPI",
+      "Fundo transparente suportado",
+      "Degradês de cores personalizados",
+      "Efeitos de sombra 3D e brilho neon",
+      "Sem necessidade de fornecer e-mail",
+      "Direito de uso comercial e pessoal"
+    ],
+    faqsTitle: "Dúvidas Frequentes",
+    faqs: [
+      { q: "O gerador é realmente gratuito para sempre?", a: "Sim! Você tem acesso irrestrito a todos os recursos de customização, logos e vetores sem pagar nada." },
+      { q: "Os QR codes gerados expiram?", a: "Não. Nossos QR codes são estáticos e funcionam para sempre sem limites de leituras." },
+      { q: "Posso utilizar comercialmente?", a: "Sim, os códigos são 100% livres para uso em marcas, embalagens e campanhas comerciais." },
+      { q: "O download em SVG e PDF é gratuito?", a: "Sim, todos os formatos de alta resolução estão disponíveis gratuitamente." }
+    ],
+    otherToolsTitle: "Conheça Nossas Ferramentas QR Gratuitas",
+    ctaTitle: "Pronto para Criar seu QR Code Grátis?",
+    ctaDesc: "Gere códigos QR personalizados em alta resolução com logotipo e cores em segundos.",
+    ctaBtn: "Criar QR Code Grátis Agora ↑"
+  },
+  de: {
+    title: "100% Kostenloser QR-Code Generator — Ohne Anmeldung & Wasserzeichen",
+    desc: "Erstellen Sie unbegrenzt individuelle QR-Codes kostenlos. Ohne Registrierung, ohne Ablaufdatum und ohne Wasserzeichen. PNG, SVG und PDF Downloads.",
+    badge: "Dauerhaft 100% Kostenlos",
+    compTitle: "Vergleich mit kostenpflichtigen Anbietern",
+    compSub: "Sehen Sie, warum Kreative und Unternehmen auf GenerateCustomQR setzen.",
+    compHeaders: { feature: "Funktion", us: "GenerateCustomQR", others: "Andere Generatoren" },
+    compRows: [
+      { feat: "Preis", us: "100% Kostenlos", others: "5 € – 50 € / Monat" },
+      { feat: "Anmeldung nötig", us: "Nein", others: "Meist erforderlich" },
+      { feat: "Wasserzeichen", us: "Keine", others: "In der Gratis-Version" },
+      { feat: "Punktstile", us: "39", others: "8–15" },
+      { feat: "Textrahmen", us: "51", others: "3–10" },
+      { feat: "Vektor-SVG & PDF", us: "Kostenlos inklusive", others: "Nur im Abo" },
+      { feat: "Gültigkeitsdauer", us: "Dauerhaft (Statisch)", others: "Kann ablaufen" }
+    ],
+    perksTitle: "Alles, was Sie kostenlos erhalten",
+    perks: [
+      "39 einzigartige Punktmuster",
+      "28 Eckenrahmen & Mittelpunkte",
+      "51 dekorative Text- und Aktionsrahmen",
+      "121 fertige Design-Vorlagen",
+      "46 vordefinierte Marken-Icons",
+      "Eigenes Logo mit automatischem Schutzrand",
+      "Export als PNG, Vektor-SVG und 300 DPI PDF",
+      "Transparenter Hintergrund unterstützt",
+      "Lineare und radiale Farbverläufe",
+      "3D-Schatten und Neon-Glow Effekte",
+      "Keine Datenspeicherung oder E-Mail-Pflicht",
+      "Freigabe für kommerzielle Nutzung"
+    ],
+    faqsTitle: "Häufige Fragen",
+    faqs: [
+      { q: "Ist das Angebot wirklich 100% kostenlos?", a: "Ja — alle Funktionen stehen Ihnen uneingeschränkt und dauerhaft gratis zur Verfügung." },
+      { q: "Haben die QR-Codes ein Verfallsdatum?", a: "Nein. Alle erzeugten Codes sind statisch im Bild codiert und laufen niemals ab." },
+      { q: "Darf ich die Codes kommerziell nutzen?", a: "Ja, alle QR-Codes dürfen frei für geschäftliche Zwecke und Verpackungen eingesetzt werden." },
+      { q: "Ist der Vektor-Download in SVG kostenlos?", a: "Ja, SVG und 300 DPI PDF sind ohne Einschränkungen kostenlos downloadbar." }
+    ],
+    otherToolsTitle: "Weitere kostenlose QR-Code Tools",
+    ctaTitle: "Bereit für Ihren kostenlosen QR-Code?",
+    ctaDesc: "Erstellen Sie individuelle QR-Codes mit Logo und Rahmen in wenigen Sekunden.",
+    ctaBtn: "Jetzt kostenlosen QR-Code erstellen ↑"
+  }
+};
+
+const pageMeta = metaMap[locale] || metaMap.en;
+
+const breadcrumbs = [
+  { name: t(locale, 'nav.generator'), url: getLocalizedUrl(locale, '/') },
+  { name: t(locale, 'footer.freeQR'), url: getLocalizedUrl(locale, '/free-qr-code-generator') }
+];
+
+const relatedTools = [
+  { icon: "link", title: "URL to QR", desc: "Website links & portfolios", url: getLocalizedUrl(locale, '/url-qr-code-generator') },
+  { icon: "wifi", title: "WiFi QR", desc: "1-tap wifi connections", url: getLocalizedUrl(locale, '/wifi-qr-code') },
+  { icon: "contact_page", title: "vCard QR", desc: "Digital business cards", url: getLocalizedUrl(locale, '/vcard-qr-code') },
+  { icon: "image", title: "QR with Logo", desc: "Branded custom logos", url: getLocalizedUrl(locale, '/qr-code-with-logo') },
+  { icon: "event", title: "Event QR", desc: "Save dates to calendars", url: getLocalizedUrl(locale, '/event-qr-code') },
+  { icon: "qr_code_scanner", title: "QR Scanner", desc: "Camera & image decoder", url: getLocalizedUrl(locale, '/qr-code-scanner') }
+];
+
+const faqs = pageMeta.faqs;
+---
+<BaseLayout
+  locale={locale}
+  title={pageMeta.title}
+  description={pageMeta.desc}
+  breadcrumbs={breadcrumbs}
+  faqs={faqs}
+>
+  <style is:global>
+    @import '../styles/global.css';
+  </style>
+
+  <main id="generator">
+    <QRGeneratorApp client:load locale={locale} />
+  </main>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-16 text-on-surface" id="about">
+    
+    <!-- Hero Header -->
+    <div class="text-center max-w-3xl mx-auto space-y-3">
+      <span class="inline-block text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-3.5 py-1.5 rounded-full">{pageMeta.badge}</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-on-surface tracking-tight">{pageMeta.title}</h1>
+      <p class="text-sm sm:text-base text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
+        {pageMeta.desc}
+      </p>
+    </div>
+
+    <!-- Comparison Table -->
+    <section class="space-y-6">
+      <div class="text-center space-y-1">
+        <h2 class="text-2xl font-bold text-on-surface">{pageMeta.compTitle}</h2>
+        <p class="text-xs sm:text-sm text-on-surface-variant max-w-xl mx-auto">{pageMeta.compSub}</p>
+      </div>
+      
+      <div class="overflow-x-auto rounded-2xl border border-outline-variant/60 shadow-xs bg-surface-container-lowest">
+        <table class="w-full text-xs sm:text-sm">
+          <thead>
+            <tr class="bg-surface-container-low border-b border-outline-variant/60">
+              <th class="text-left py-3.5 px-4 font-bold text-on-surface">{pageMeta.compHeaders.feature}</th>
+              <th class="text-center py-3.5 px-4 font-bold text-emerald-700 bg-emerald-50/50">{pageMeta.compHeaders.us}</th>
+              <th class="text-center py-3.5 px-4 font-bold text-on-surface-variant">{pageMeta.compHeaders.others}</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-outline-variant/40">
+            {pageMeta.compRows.map((row) => (
+              <tr class="hover:bg-zinc-50/50 transition-colors">
+                <td class="py-3 px-4 font-medium text-on-surface">{row.feat}</td>
+                <td class="text-center py-3 px-4 font-bold text-emerald-600 bg-emerald-50/30">{row.us}</td>
+                <td class="text-center py-3 px-4 text-on-surface-variant">{row.others}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 12 Perks Checklist -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.perksTitle}</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3 max-w-4xl mx-auto">
+        {pageMeta.perks.map((p) => (
+          <div class="flex items-center gap-2.5 p-3 rounded-xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/30 transition-all">
+            <span class="material-symbols-outlined text-emerald-600 text-lg shrink-0">check_circle</span>
+            <span class="text-xs sm:text-sm text-on-surface font-medium">{p}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Explore Other Tools Ribbon -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.otherToolsTitle}</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        {relatedTools.map((tool) => (
+          <a
+            href={tool.url}
+            class="p-3.5 rounded-xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/40 hover:-translate-y-1 hover:shadow-xs transition-all text-center group flex flex-col items-center justify-between"
+          >
+            <div class="w-8 h-8 rounded-lg bg-zinc-100 group-hover:bg-primary group-hover:text-white flex items-center justify-center transition-colors mb-2">
+              <span class="material-symbols-outlined text-lg">{tool.icon}</span>
+            </div>
+            <span class="font-bold text-xs text-on-surface group-hover:text-primary transition-colors block">{tool.title}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- FAQs Accordion -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.faqsTitle}</h2>
+      <div class="space-y-3 max-w-3xl mx-auto">
+        {pageMeta.faqs.map((faq) => (
+          <details class="group border border-outline-variant/60 rounded-2xl bg-surface-container-lowest overflow-hidden shadow-xs transition-all">
+            <summary class="flex justify-between items-center p-4.5 cursor-pointer font-bold text-sm sm:text-base hover:bg-surface-container-low transition-colors select-none text-on-surface">
+              <span>{faq.q}</span>
+              <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-on-surface-variant">expand_more</span>
+            </summary>
+            <p class="px-4.5 pb-4.5 pt-1 text-on-surface-variant text-xs sm:text-sm leading-relaxed border-t border-outline-variant/30">
+              {faq.a}
+            </p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- Bottom CTA Banner -->
+    <section class="rounded-3xl bg-linear-to-br from-zinc-900 to-zinc-950 text-white p-8 sm:p-12 text-center space-y-4 shadow-lg border border-zinc-800">
+      <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">{pageMeta.ctaTitle}</h2>
+      <p class="text-xs sm:text-sm text-zinc-400 max-w-lg mx-auto leading-relaxed">{pageMeta.ctaDesc}</p>
+      <div class="pt-2">
+        <button
+          onclick="document.getElementById('generator')?.scrollIntoView({ behavior: 'smooth' });"
+          class="px-6 py-3 rounded-full bg-white text-zinc-900 font-extrabold text-xs sm:text-sm hover:bg-zinc-100 hover:scale-105 transition-all shadow-md cursor-pointer"
+        >
+          {pageMeta.ctaBtn}
+        </button>
+      </div>
+    </section>
+
+  </div>
+
+  <Footer locale={locale} />
+</BaseLayout>

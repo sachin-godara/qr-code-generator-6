@@ -1,0 +1,226 @@
+---
+import LegalLayout from '../layouts/LegalLayout.astro';
+import { type Locale } from '../i18n/config';
+import { getLocalizedUrl, t } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const metaMap: Record<Locale, {
+  title: string;
+  desc: string;
+  heading: string;
+  lead: string;
+  missionTitle: string;
+  missionP1: string;
+  missionP2: string;
+  diffTitle: string;
+  diffItems: Array<{ icon: string; title: string; desc: string }>;
+  ctaBtn: string;
+}> = {
+  en: {
+    title: "About Us — GenerateCustomQR",
+    desc: "Learn more about GenerateCustomQR, the free, privacy-first custom QR code generator built for creators, designers, and developers.",
+    heading: "About GenerateCustomQR",
+    lead: "Built for Creators, Designers, and Developers. We believe generating professional, fully-customized QR codes should be free, fast, and secure.",
+    missionTitle: "Our Mission",
+    missionP1: "QR codes have become an essential bridge between the physical and digital worlds. However, finding a reliable generator that doesn't hide core features behind a paywall, force you to create an account, or secretly track your users via dynamic links has become increasingly difficult.",
+    missionP2: "We built GenerateCustomQR to solve this problem. Our mission is to provide the most powerful, design-focused QR code generator on the web, completely free of charge. We empower businesses, event organizers, and everyday users to create stunning QR codes that match their brand identity.",
+    diffTitle: "What Makes Us Different?",
+    diffItems: [
+      {
+        icon: "money_off",
+        title: "Truly Free, No Subscriptions",
+        desc: "We don't do bait-and-switch. You won't spend 10 minutes designing a QR code only to be hit with a paywall when you click download."
+      },
+      {
+        icon: "no_accounts",
+        title: "No Account Required",
+        desc: "Jump straight into creating. We don't harvest your email address or force you to sign up to use our tools."
+      },
+      {
+        icon: "shield_lock",
+        title: "Privacy First",
+        desc: "We generate static QR codes. This means the data is encoded directly into the image. We don't use intermediary tracking links, and we don't store your data."
+      },
+      {
+        icon: "palette",
+        title: "Unmatched Customization",
+        desc: "With granular control over dots, eyes, frames, gradients, and logo placement, you can create a QR code that perfectly aligns with your design system."
+      }
+    ],
+    ctaBtn: "Start Creating Now"
+  },
+  es: {
+    title: "Sobre Nosotros — GenerateCustomQR",
+    desc: "Conoce más sobre GenerateCustomQR, el generador de códigos QR gratuito y centrado en la privacidad para creadores, diseñadores y empresas.",
+    heading: "Sobre GenerateCustomQR",
+    lead: "Creado para Creadores, Diseñadores y Empresas. Creemos que generar códigos QR profesionales y personalizados debe ser gratis, rápido y 100% privado.",
+    missionTitle: "Nuestra Misión",
+    missionP1: "Los códigos QR son el puente esencial entre el mundo físico y el digital. Sin embargo, encontrar un generador confiable que no cobre suscripciones abusivas, no obligue a registrarse ni rastree a los usuarios con enlaces intermedios es cada vez más difícil.",
+    missionP2: "Creamos GenerateCustomQR para resolver este problema. Nuestra misión es ofrecer el generador de códigos QR más potente y orientado al diseño de la web, totalmente gratuito y sin fecha de caducidad.",
+    diffTitle: "¿Qué nos hace diferentes?",
+    diffItems: [
+      {
+        icon: "money_off",
+        title: "Realmente Gratis, Sin Suscripciones",
+        desc: "Sin sorpresas al descargar. No perderás tiempo diseñando para encontrarte luego con un muro de pago."
+      },
+      {
+        icon: "no_accounts",
+        title: "Sin Registro Obligatorio",
+        desc: "Comienza a crear de inmediato. No recopilamos tu correo ni te obligamos a crear una cuenta."
+      },
+      {
+        icon: "shield_lock",
+        title: "Privacidad Garantizada",
+        desc: "Generamos códigos QR estáticos. La información se graba directamente en la imagen sin enlaces de rastreo intermediarios."
+      },
+      {
+        icon: "palette",
+        title: "Personalización Total",
+        desc: "Control granular sobre puntos, ojos, marcos, degradados y logos para reflejar la identidad visual de tu marca."
+      }
+    ],
+    ctaBtn: "Comenzar a Crear Ahora"
+  },
+  pt: {
+    title: "Sobre Nós — GenerateCustomQR",
+    desc: "Saiba mais sobre o GenerateCustomQR, a ferramenta gratuita e segura de geração de QR codes com logotipo e design para criadores e empresas.",
+    heading: "Sobre o GenerateCustomQR",
+    lead: "Feito para Criadores, Designers e Negócios. Acreditamos que criar QR codes profissionais e personalizados deve ser gratuito, rápido e seguro.",
+    missionTitle: "Nossa Missão",
+    missionP1: "Os códigos QR são indispensáveis para conectar o mundo físico ao digital. No entanto, a maioria dos geradores impõe planos pagos, limites de escaneamento ou intermediários com rastreamento.",
+    missionP2: "Desenvolvemos o GenerateCustomQR para transformar essa experiência. Nossa missão é disponibilizar a plataforma de QR code mais completa e flexível da web, 100% gratuita e livre de limites.",
+    diffTitle: "O Que nos Torna Diferentes?",
+    diffItems: [
+      {
+        icon: "money_off",
+        title: "100% Grátis de Verdade",
+        desc: "Sem pegadinhas. Você não perderá tempo criando um código para ser cobrado na hora do download."
+      },
+      {
+        icon: "no_accounts",
+        title: "Sem Cadastro Obrigatório",
+        desc: "Crie direto no navegador. Não coletamos seu e-mail nem exigimos formulários de cadastro."
+      },
+      {
+        icon: "shield_lock",
+        title: "Privacidade em Primeiro Lugar",
+        desc: "Geramos códigos QR estáticos diretamente na imagem, sem redirecionamentos ou rastreamento oculto."
+      },
+      {
+        icon: "palette",
+        title: "Personalização Ilimitada",
+        desc: "Ajuste fino de módulos, cantos, molduras, cores e logotipos para manter a identidade visual da sua marca."
+      }
+    ],
+    ctaBtn: "Criar QR Code Agora"
+  },
+  de: {
+    title: "Über Uns — GenerateCustomQR",
+    desc: "Erfahren Sie mehr über GenerateCustomQR, den kostenlosen, datenschutzfreundlichen QR-Code Generator für Kreative, Designer und Unternehmen.",
+    heading: "Über GenerateCustomQR",
+    lead: "Entwickelt für Kreative, Designer und Unternehmen. Wir sind überzeugt, dass professionelle, individuelle QR-Codes kostenlos, schnell und sicher sein sollten.",
+    missionTitle: "Unsere Mission",
+    missionP1: "QR-Codes sind die unverzichtbare Brücke zwischen physischer und digitaler Welt. Viele Generatoren verbergen jedoch Basisfunktionen hinter teuren Abos oder leiten Scans über fremde Tracking-Server um.",
+    missionP2: "Wir haben GenerateCustomQR geschaffen, um dies zu ändern: Ein hochmodernes, designorientiertes QR-Code-Tool für jedermann — 100% kostenlos, ohne Registrierung und mit uneingeschränkter Vektorqualität.",
+    diffTitle: "Was zeichnet uns aus?",
+    diffItems: [
+      {
+        icon: "money_off",
+        title: "Echt kostenlos, keine Abos",
+        desc: "Keine versteckten Gebühren. Sie gestalten nicht minutenlang, nur um beim Download zur Kasse gebeten zu werden."
+      },
+      {
+        icon: "no_accounts",
+        title: "Kein Account erforderlich",
+        desc: "Sofort loslegen ohne Registrierung. Wir erfassen keine E-Mail-Adressen für die Nutzung unserer Tools."
+      },
+      {
+        icon: "shield_lock",
+        title: "Datenschutz an erster Stelle",
+        desc: "Wir erzeugen statische QR-Codes. Die Daten liegen direkt im Bildmuster ohne externe Umleitungs-Server."
+      },
+      {
+        icon: "palette",
+        title: "Maximale Gestaltungsfreiheit",
+        desc: "Vollständige Kontrolle über Punkte, Rahmen, Farben und Logo-Einbettung passend zu Ihrem Corporate Design."
+      }
+    ],
+    ctaBtn: "Jetzt QR-Code erstellen"
+  }
+};
+
+const pageMeta = metaMap[locale] || metaMap.en;
+
+const breadcrumbs = [
+  { name: t(locale, 'nav.generator'), url: getLocalizedUrl(locale, '/') },
+  { name: t(locale, 'footer.about'), url: getLocalizedUrl(locale, '/about') }
+];
+---
+<LegalLayout
+  locale={locale}
+  title={pageMeta.title}
+  description={pageMeta.desc}
+  breadcrumbs={breadcrumbs}
+  heading={pageMeta.heading}
+  icon="info"
+>
+  <div class="text-center mb-12">
+    <p class="text-xl md:text-2xl font-medium text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
+      {pageMeta.lead}
+    </p>
+  </div>
+
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
+    <div class="bg-surface-container p-6 rounded-2xl text-center border border-outline-variant/30 hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 shadow-xs hover:shadow-md">
+      <span class="block text-3xl font-black text-primary mb-1">39</span>
+      <span class="text-sm font-semibold text-on-surface-variant">{t(locale, 'landing.stats.dotStyles')}</span>
+    </div>
+    <div class="bg-surface-container p-6 rounded-2xl text-center border border-outline-variant/30 hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 shadow-xs hover:shadow-md">
+      <span class="block text-3xl font-black text-primary mb-1">51</span>
+      <span class="text-sm font-semibold text-on-surface-variant">{t(locale, 'landing.stats.frames')}</span>
+    </div>
+    <div class="bg-surface-container p-6 rounded-2xl text-center border border-outline-variant/30 hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 shadow-xs hover:shadow-md">
+      <span class="block text-3xl font-black text-primary mb-1">121</span>
+      <span class="text-sm font-semibold text-on-surface-variant">{t(locale, 'landing.stats.presets')}</span>
+    </div>
+    <div class="bg-surface-container p-6 rounded-2xl text-center border border-outline-variant/30 hover:border-emerald-500/40 hover:-translate-y-1 transition-all duration-300 shadow-xs hover:shadow-md">
+      <span class="block text-3xl font-black text-emerald-600 mb-1">100%</span>
+      <span class="text-sm font-semibold text-on-surface-variant">{t(locale, 'landing.stats.free')}</span>
+    </div>
+  </div>
+
+  <h2>{pageMeta.missionTitle}</h2>
+  <p>{pageMeta.missionP1}</p>
+  <p>{pageMeta.missionP2}</p>
+
+  <h2>{pageMeta.diffTitle}</h2>
+  <div class="space-y-6 mt-6 not-prose">
+    {pageMeta.diffItems.map((item) => (
+      <div class="flex gap-4 items-start p-4 rounded-2xl bg-surface-container/50 border border-outline-variant/30 hover:border-primary/30 hover:bg-surface-container transition-all duration-200">
+        <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+          <span class="material-symbols-outlined">{item.icon}</span>
+        </div>
+        <div>
+          <h3 class="text-base font-bold text-on-surface mb-1">{item.title}</h3>
+          <p class="text-on-surface-variant text-sm leading-relaxed">{item.desc}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+
+  <div class="mt-16 text-center not-prose">
+    <a
+      href={getLocalizedUrl(locale, '/')}
+      class="inline-flex items-center gap-2 bg-primary !text-white px-8 py-4 rounded-xl font-bold hover:bg-primary-hover transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1 cursor-pointer no-underline"
+    >
+      <span class="!text-white">{pageMeta.ctaBtn}</span>
+      <span class="material-symbols-outlined text-[20px] !text-white">arrow_forward</span>
+    </a>
+  </div>
+</LegalLayout>

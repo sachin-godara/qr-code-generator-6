@@ -4,10 +4,12 @@ import { useQRStore } from "@/store/useQRStore";
 import { Slider } from "@/components/ui/Slider";
 import { ScannabilityAlert } from "@/components/ui/ScannabilityAlert";
 import { PresetLogoPreview, LOGO_ITEMS, LOGO_CATEGORIES } from "@/components/previews/SvgIcons";
+import { useTranslation } from "@/i18n/useTranslation";
 
 const logoCardShapes = ["None", "Circle", "Rounded Square"];
 
 export function LogoPanel() {
+  const { t } = useTranslation();
   const { settings, updateSettings } = useQRStore();
   const [logoSearchQuery, setLogoSearchQuery] = useState("");
   const [activeLogoCategory, setActiveLogoCategory] = useState("All");
@@ -83,7 +85,7 @@ export function LogoPanel() {
                 <span className="material-symbols-outlined text-[20px]">cloud_upload</span>
               </div>
               <div>
-                <p className="text-[13px] font-bold text-on-surface">Upload your logo</p>
+                <p className="text-[13px] font-bold text-on-surface">{t("studio.logo.uploadCustom")}</p>
                 <p className="text-[10px] text-on-surface-variant font-medium">PNG, JPG, WEBP</p>
               </div>
             </div>
@@ -93,7 +95,7 @@ export function LogoPanel() {
 
       <div className="relative flex items-center py-1">
         <div className="flex-grow border-t border-outline-variant/50"></div>
-        <span className="flex-shrink-0 mx-4 text-[10px] text-on-surface-variant uppercase font-bold tracking-wider">OR CHOOSE PRESET ICON</span>
+        <span className="flex-shrink-0 mx-4 text-[10px] text-on-surface-variant uppercase font-bold tracking-wider">{t("studio.logo.choosePreset")}</span>
         <div className="flex-grow border-t border-outline-variant/50"></div>
       </div>
       
@@ -107,9 +109,9 @@ export function LogoPanel() {
         </div>
         <div className="flex bg-surface-container rounded-lg p-1 border border-outline-variant/50">
           {[
-            { id: "badge", label: "Brand Badge" },
-            { id: "duotone", label: "Soft Glass" },
-            { id: "glyph", label: "Pure Glyph" },
+            { id: "badge", label: t("studio.logoStyles.badge") || "Brand Badge" },
+            { id: "duotone", label: t("studio.logoStyles.duotone") || "Soft Glass" },
+            { id: "glyph", label: t("studio.logoStyles.glyph") || "Pure Glyph" },
           ].map((style) => {
             const isSelected = (settings.logo_icon_style || "badge") === style.id;
             return (
@@ -148,14 +150,14 @@ export function LogoPanel() {
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div className="section-label flex items-center gap-1.5 font-bold text-on-surface">
             <span className="material-symbols-outlined text-sm text-primary">grid_view</span>
-            Preset Icon Gallery ({filteredLogos.length})
+            {t("studio.logo.choosePreset") || "Preset Icon Gallery"} ({filteredLogos.length})
             {settings.preset_logo !== "None" && !settings.logo_image && (
               <button
                 type="button"
                 onClick={() => updateSettings({ preset_logo: "None" })}
                 className="ml-1 text-[10px] bg-error/10 text-error px-2 py-0.5 rounded-full hover:bg-error/20 transition-colors"
               >
-                Clear Selection
+                {t("studio.buttons.reset") || "Clear Selection"}
               </button>
             )}
           </div>
@@ -163,7 +165,7 @@ export function LogoPanel() {
             <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant/70 text-base">search</span>
             <input name="input_field_b532f4d3" aria-label="Search icons..."
               type="text"
-              placeholder="Search icons..."
+              placeholder={t("studio.logo.searchIcons") || "Search icons..."}
               value={logoSearchQuery}
               onChange={(e) => setLogoSearchQuery(e.target.value)}
               className="w-full pl-9 pr-8 py-1.5 bg-surface/50 border border-outline-variant rounded-xl text-xs placeholder:text-on-surface-variant/70 focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary transition-all"
@@ -182,33 +184,43 @@ export function LogoPanel() {
 
         {/* Scrollable Category Filter Pills */}
         <div className="flex overflow-x-auto gap-1 p-1 bg-surface-container-low rounded-xl custom-scrollbar snap-x mb-2 border border-outline-variant/30">
-          {LOGO_CATEGORIES.map((category) => (
-            <button
-              key={category}
-              type="button"
-              onClick={() => setActiveLogoCategory(category)}
-              className={`relative px-4 py-2 rounded-lg text-[13px] font-semibold whitespace-nowrap transition-colors duration-200 flex items-center justify-center snap-start outline-none ${activeLogoCategory === category
-                  ? "text-primary"
-                  : "text-on-surface-variant hover:text-on-surface hover:bg-black/5"
-                }`}
-            >
-              {activeLogoCategory === category && (
-                <motion.div
-                  layoutId="logo-category-active-tab"
-                  className="absolute inset-0 bg-white shadow-sm ring-1 ring-black/5 rounded-lg"
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                />
-              )}
-              <div className="relative z-10 flex items-center gap-1.5">
-                {category === "All" && <span className="material-symbols-outlined text-[16px]">apps</span>}
-                {category === "Social & Apps" && <span className="material-symbols-outlined text-[16px]">share</span>}
-                {category === "Tech & Contact" && <span className="material-symbols-outlined text-[16px]">contact_page</span>}
-                {category === "Business & Pay" && <span className="material-symbols-outlined text-[16px]">payments</span>}
-                {category === "Media & More" && <span className="material-symbols-outlined text-[16px]">play_circle</span>}
-                {category}
-              </div>
-            </button>
-          ))}
+          {LOGO_CATEGORIES.map((category) => {
+            const catKeyMap: Record<string, string> = {
+              "All": "all",
+              "Social & Apps": "social",
+              "Tech & Contact": "tech",
+              "Business & Pay": "business",
+              "Media & More": "media"
+            };
+            const categoryLabel = t(`studio.logoCategories.${catKeyMap[category] || category}`) || category;
+            return (
+              <button
+                key={category}
+                type="button"
+                onClick={() => setActiveLogoCategory(category)}
+                className={`relative px-4 py-2 rounded-lg text-[13px] font-semibold whitespace-nowrap transition-colors duration-200 flex items-center justify-center snap-start outline-none ${activeLogoCategory === category
+                    ? "text-primary"
+                    : "text-on-surface-variant hover:text-on-surface hover:bg-black/5"
+                  }`}
+              >
+                {activeLogoCategory === category && (
+                  <motion.div
+                    layoutId="logo-category-active-tab"
+                    className="absolute inset-0 bg-white shadow-sm ring-1 ring-black/5 rounded-lg"
+                    transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                  />
+                )}
+                <div className="relative z-10 flex items-center gap-1.5">
+                  {category === "All" && <span className="material-symbols-outlined text-[16px]">apps</span>}
+                  {category === "Social & Apps" && <span className="material-symbols-outlined text-[16px]">share</span>}
+                  {category === "Tech & Contact" && <span className="material-symbols-outlined text-[16px]">contact_page</span>}
+                  {category === "Business & Pay" && <span className="material-symbols-outlined text-[16px]">payments</span>}
+                  {category === "Media & More" && <span className="material-symbols-outlined text-[16px]">play_circle</span>}
+                  {categoryLabel}
+                </div>
+              </button>
+            );
+          })}
         </div>
 
         {/* Reactive Icon Grid */}

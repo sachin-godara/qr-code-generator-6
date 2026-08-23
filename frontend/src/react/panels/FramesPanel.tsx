@@ -3,6 +3,7 @@ import { Slider } from "@/components/ui/Slider";
 import { StylePreviewCard } from "@/components/previews/StylePreviewCard";
 import { FRAME_STYLES, TEXT_STYLES } from "@/data/options";
 import { PremiumFontSelect } from "@/components/ui/PremiumFontSelect";
+import { useTranslation } from "@/i18n/useTranslation";
 
 const fontStyles = [
   "Outfit (Modern)",
@@ -20,12 +21,13 @@ const fontStyles = [
 ];
 
 export function FramesPanel() {
+  const { t } = useTranslation();
   const { settings, updateSettings } = useQRStore();
 
   return (
     <div className="bg-white rounded-xl border border-outline-variant space-y-6 p-6">
       <div className="space-y-3">
-        <div className="section-label block mb-1">Layout Frame Style</div>
+        <div className="section-label block mb-1">{t("studio.frames.frameStyle") || "Layout Frame Style"}</div>
         <div className="flex overflow-x-auto gap-3.5 px-3.5 pt-3.5 pb-5 custom-scrollbar snap-x scroll-smooth scroll-pl-3.5">
           {FRAME_STYLES.map((style) => (
             <div key={style} className="w-[88px] sm:w-[98px] shrink-0 snap-start p-0.5">
@@ -45,7 +47,7 @@ export function FramesPanel() {
         <div className="space-y-4 pt-4 border-t border-outline-variant/30">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <div className="block text-xs font-semibold">Frame Color</div>
+              <div className="block text-xs font-semibold">{t("studio.frames.frameColor") || "Frame Color"}</div>
               <div className="flex items-center gap-3">
                 <input name="input_field_9af21930" aria-label="Input Field"
                   type="color"
@@ -60,7 +62,7 @@ export function FramesPanel() {
 
           <div className="space-y-2">
             <div className="flex justify-between items-center">
-              <div className="text-xs font-semibold">Frame Padding</div>
+              <div className="text-xs font-semibold">{t("studio.logo.padding") || "Frame Padding"}</div>
               <span className="text-xs text-on-surface-variant">{settings.frame_padding}px</span>
             </div>
             <Slider min="0"
@@ -73,7 +75,7 @@ export function FramesPanel() {
 
           <div className="space-y-2">
             <div className="flex justify-between items-center">
-              <div className="text-xs font-semibold">Corner Radius</div>
+              <div className="text-xs font-semibold">{t("studio.logo.cardShape") || "Corner Radius"}</div>
               <span className="text-xs text-on-surface-variant">{settings.frame_radius}px</span>
             </div>
             <Slider min="0"
@@ -86,7 +88,7 @@ export function FramesPanel() {
 
           <div className="space-y-2">
             <div className="flex justify-between items-center">
-              <div className="text-xs font-semibold">Border Thickness</div>
+              <div className="text-xs font-semibold">{t("studio.advanced.quietZone") || "Border Thickness"}</div>
               <span className="text-xs text-on-surface-variant">{settings.frame_border}px</span>
             </div>
             <Slider min="0"
@@ -100,7 +102,7 @@ export function FramesPanel() {
       )}
 
       <div className="space-y-3 pt-4 border-t border-outline-variant/30">
-        <div className="section-label block mb-1">Text Style</div>
+        <div className="section-label block mb-1">{t("studio.frames.frameStyle") || "Text Style"}</div>
         <div className="flex overflow-x-auto gap-3.5 px-3.5 pt-3.5 pb-5 custom-scrollbar snap-x scroll-smooth scroll-pl-3.5">
           {TEXT_STYLES.map((style) => (
             <div key={style} className="w-[88px] sm:w-[98px] shrink-0 snap-start p-0.5">
@@ -122,9 +124,8 @@ export function FramesPanel() {
             <div className="absolute top-0 left-0 w-1 h-full bg-primary"></div>
             <div className="block text-sm font-bold text-primary flex items-center gap-2">
               <span className="material-symbols-outlined text-[18px]">edit_note</span>
-              Customize Frame Text
+              {t("studio.frames.frameText") || "Customize Frame Text"}
             </div>
-            <p className="text-xs text-on-surface-variant mb-2">This text appears directly on your selected custom frame shape.</p>
             <input name="input_field_0013c25a" aria-label="Input Field"
               type="text"
               value={settings.frame_text}
@@ -135,7 +136,7 @@ export function FramesPanel() {
           </div>
 
           <div className="space-y-3">
-            <div className="section-label block mb-1">Font Style</div>
+            <div className="section-label block mb-1">{t("studio.frames.fontFamily") || "Font Style"}</div>
             <PremiumFontSelect
               value={settings.font_name}
               onChange={(font) => updateSettings({ font_name: font as any })}
@@ -145,7 +146,7 @@ export function FramesPanel() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <div className="block text-xs font-semibold">Frame Color</div>
+              <div className="block text-xs font-semibold">{t("studio.frames.frameColor") || "Frame Color"}</div>
               <div className="flex items-center gap-3">
                 <input name="input_field_367550c4" aria-label="Input Field"
                   type="color"
@@ -157,7 +158,7 @@ export function FramesPanel() {
               </div>
             </div>
             <div className="space-y-2">
-              <div className="block text-xs font-semibold">Text Color</div>
+              <div className="block text-xs font-semibold">{t("studio.frames.textColor") || "Text Color"}</div>
               <div className="flex items-center gap-3">
                 <input name="input_field_265dbdf4" aria-label="Input Field"
                   type="color"
@@ -173,7 +174,7 @@ export function FramesPanel() {
           <div className="space-y-4 pt-4 border-t border-outline-variant/30">
             <div className="space-y-2">
               <div className="flex justify-between items-center">
-                <div className="text-xs font-semibold">Text Size</div>
+                <div className="text-xs font-semibold">{t("studio.download.resolution") || "Text Size"}</div>
                 <span className="text-xs text-on-surface-variant">{settings.frame_text_size}px</span>
               </div>
               <Slider min="20"

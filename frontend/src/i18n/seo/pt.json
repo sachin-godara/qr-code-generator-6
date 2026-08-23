@@ -1,0 +1,37 @@
+{
+  "home": {
+    "title": "Gerador de QR Code Grátis com Logo — Sem Marca d'Água",
+    "description": "Crie QR codes personalizados 100% grátis com logo, mais de 40 estilos de pontos e gradientes de cores. Baixe em vetor SVG, PDF ou PNG de alta resolução sem marca d'água.",
+    "keywords": "gerador de qr code, criar qr code personalizado com logo, qr code gratis sem marca d'agua, fazer qr code online, gerador de qr code para imprimir, baixar qr code em svg, qr code em pdf",
+    "howToName": "Como Criar um QR Code Personalizado",
+    "howToDesc": "Crie e personalize um QR code completo com logotipo, cores, gradientes e molduras em menos de 2 minutos — 100% gratuito.",
+    "steps": [
+      { "name": "Insira seu conteúdo", "text": "Escolha um tipo de conteúdo (URL, texto, Wi-Fi, vCard, e-mail, SMS, evento, etc.) e digite os dados que deseja codificar." },
+      { "name": "Personalize o design", "text": "Escolha entre mais de 40 estilos de pontos, 19 molduras de olhos, 23 formatos de centro e aplique gradientes de cores." },
+      { "name": "Adicione um logotipo", "text": "Envie seu próprio logo ou escolha entre 46 ícones de marcas consagradas com remoção automática de fundo." },
+      { "name": "Escolha uma moldura", "text": "Envolva seu QR code em uma das 51 molduras decorativas com texto personalizado de chamada para ação." },
+      { "name": "Baixe gratuitamente", "text": "Exporte seu QR code em PNG (até 4096px), SVG (vetorial) ou PDF (300 DPI) — 100% grátis e sem cadastro." }
+    ],
+    "faqs": [
+      { "q": "Como criar um QR code personalizado?", "a": "Digite sua URL ou texto, escolha os padrões de pontos e olhos, personalize as cores e gradientes, adicione um logotipo e baixe em PNG, SVG ou PDF grátis." },
+      { "q": "O gerador de QR code é gratuito?", "a": "Sim, o GenerateCustomQR é 100% gratuito com todos os recursos liberados — sem cadastro, sem marcas d'água e sem limites." },
+      { "q": "Quais tipos de QR code posso criar?", "a": "Você pode criar QR codes para URLs, texto, Wi-Fi, vCard (cartão de visita), e-mail, SMS, eventos de calendário, telefone, criptomoedas, Google Maps e PayPal." },
+      { "q": "Posso adicionar um logotipo ao QR code?", "a": "Sim, você pode enviar seu próprio logotipo ou escolher entre 46 ícones prontos como WhatsApp, Instagram, YouTube e Facebook." },
+      { "q": "Quais formatos de download estão disponíveis?", "a": "Você pode baixar em PNG de alta resolução, SVG vetorial escalável e PDF pronto para gráfica em 300 DPI." },
+      { "q": "Posso gerar QR codes em lote?", "a": "Sim, suportamos geração em massa de até 500 QR codes a partir de uma planilha CSV." },
+      { "q": "Os QR codes criados expiram?", "a": "Não! Todos os QR codes gerados são estáticos e permanentes, funcionando para sempre sem depender de servidores." }
+    ]
+  },
+  "scanner": {
+    "title": "Leitor de QR Code Online Grátis — Câmera e Imagem",
+    "description": "Escaneie e decodifique QR codes online instantaneamente. Use a câmera do celular ou PC, envie imagens ou cole capturas com Ctrl+V. 100% gratuito e seguro.",
+    "keywords": "leitor de qr code, escanear qr code online, ler qr code com camera, escanear qr code de imagem, leitor qr online gratis, ler qr code de foto",
+    "faqs": [
+      { "q": "Preciso baixar um aplicativo para ler QR Code?", "a": "Não! A maioria dos celulares modernos possui leitor de QR code na câmera padrão, ou você pode usar nosso leitor web grátis nesta página." },
+      { "q": "Como escanear um QR code no Android?", "a": "Abra a câmera do celular e aponte para o QR code, ou use o Google Lens ou nosso leitor online." },
+      { "q": "Como escanear um QR code no iPhone (iOS)?", "a": "Abra o app Câmera, aponte para o código e toque na notificação amarela que aparecer." },
+      { "q": "Posso escanear um QR code a partir de uma captura de tela?", "a": "Sim! Use a aba 'Enviar Imagem' acima ou pressione Ctrl+V para colar diretamente da área de transferência." },
+      { "q": "É seguro escanear QR codes neste site?", "a": "Sim, 100%. Toda a decodificação ocorre localmente no seu navegador sem que nenhuma imagem seja enviada ou armazenada em servidores." }
+    ]
+  }
+}

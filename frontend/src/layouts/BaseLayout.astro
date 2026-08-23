@@ -1,7 +1,10 @@
 ---
 import SEOHead from '../components/SEOHead.astro';
+import { localeConfig, type Locale } from '../i18n/config';
+import { getLocaleFromUrl } from '../i18n/utils';
 
 interface Props {
+  locale?: Locale;
   title?: string;
   description?: string;
   ogImage?: string;
@@ -16,6 +19,9 @@ interface Props {
   faqs?: { q: string; a: string }[];
 }
 
+const currentLocale = (Astro.props.locale || getLocaleFromUrl(Astro.url)) as Locale;
+const currentLocaleInfo = localeConfig[currentLocale] || localeConfig.en;
+
 const {
   title = 'GenerateCustomQR — Free Custom QR Code Generator',
   description = 'Create stunning custom QR codes with 39 dot styles, 51 text frames, 121 Templates, and logo embedding. Download in PNG, SVG, or PDF — 100% free, no signup.',
@@ -28,7 +34,7 @@ const {
 } = Astro.props;
 ---
 <!doctype html>
-<html lang="en">
+<html lang={currentLocale} dir={currentLocaleInfo.dir}>
   <head>
     <!-- Google tag (gtag.js) -->
     <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-SW78MHH9B2"></script>
@@ -78,6 +84,7 @@ const {
     
     <!-- SEO Head -->
     <SEOHead
+      locale={currentLocale}
       title={title}
       description={description}
       ogImage={ogImage}

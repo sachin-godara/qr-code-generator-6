@@ -1,5 +1,9 @@
 ---
+import { localeConfig, type Locale } from '../i18n/config';
+import { getLocaleFromUrl, getAllLocaleUrls } from '../i18n/utils';
+
 interface Props {
+  locale?: Locale;
   title: string;
   description: string;
   ogImage?: string;
@@ -15,6 +19,7 @@ interface Props {
 }
 
 const {
+  locale,
   title,
   description,
   ogImage = '/og-image.png',
@@ -25,9 +30,13 @@ const {
   faqs,
 } = Astro.props;
 
+const currentLocale = (locale || getLocaleFromUrl(Astro.url)) as Locale;
+const currentLocaleInfo = localeConfig[currentLocale] || localeConfig.en;
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://generatecustomqr.com';
 const resolvedCanonical = canonicalUrl || `${siteUrl}${Astro.url.pathname}`;
 const resolvedOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage.startsWith('/') ? '' : '/'}${ogImage}`;
+const alternateUrls = getAllLocaleUrls(Astro.url.pathname, siteUrl);
+const xDefaultUrl = alternateUrls.find((a) => a.locale === 'en')?.url || `${siteUrl}/`;
 ---
 
 <!-- Primary Meta Tags -->
@@ -40,8 +49,12 @@ const resolvedOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogIm
 <meta name="last-modified" content={new Date().toISOString()} />
 <meta name="revised" content={new Date().toISOString()} />
 <link rel="canonical" href={resolvedCanonical} />
-<link rel="alternate" hreflang="en" href={resolvedCanonical} />
-<link rel="alternate" hreflang="x-default" href={resolvedCanonical} />
+
+<!-- Internationalization (Hreflang) -->
+{alternateUrls.map((item) => (
+  <link rel="alternate" hreflang={item.hreflang} href={item.url} />
+))}
+<link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
@@ -52,7 +65,12 @@ const resolvedOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogIm
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
 <meta property="og:site_name" content="GenerateCustomQR" />
-<meta property="og:locale" content="en_US" />
+<meta property="og:locale" content={currentLocaleInfo.ogLocale} />
+{alternateUrls
+  .filter((a) => a.locale !== currentLocale)
+  .map((a) => (
+    <meta property="og:locale:alternate" content={localeConfig[a.locale].ogLocale} />
+  ))}
 <meta property="og:updated_time" content={new Date().toISOString()} />
 
 <!-- Twitter -->
@@ -67,6 +85,7 @@ const resolvedOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogIm
   "@context": "https://schema.org",
   "@type": "WebApplication",
   "name": "GenerateCustomQR",
+  "inLanguage": currentLocaleInfo.hreflang,
   "description": description,
   "url": resolvedCanonical,
   "datePublished": "2025-01-01T00:00:00Z",

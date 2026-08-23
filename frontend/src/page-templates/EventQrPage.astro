@@ -1,0 +1,377 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import QRGeneratorApp from '../react/QRGeneratorApp';
+import Footer from '../components/layout/Footer.astro';
+import { type Locale } from '../i18n/config';
+import { getLocalizedUrl, t } from '../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const metaMap: Record<Locale, {
+  title: string;
+  desc: string;
+  badge: string;
+  specsTitle: string;
+  specs: Array<{ icon: string; title: string; desc: string }>;
+  stepsTitle: string;
+  steps: Array<{ icon: string; title: string; desc: string }>;
+  useCasesTitle: string;
+  useCases: Array<{ icon: string; title: string; desc: string }>;
+  tipsTitle: string;
+  tips: Array<{ icon: string; title: string; desc: string }>;
+  faqsTitle: string;
+  faqs: Array<{ q: string; a: string }>;
+  otherToolsTitle: string;
+  ctaTitle: string;
+  ctaDesc: string;
+  ctaBtn: string;
+}> = {
+  en: {
+    title: "Free Event QR Code Generator — Add to Calendar Instantly",
+    desc: "Create an event QR code to add dates, times, and locations to Google Calendar, Apple Calendar, and Outlook with one scan. 100% free.",
+    badge: "Add to Calendar",
+    specsTitle: "Key Technical Capabilities",
+    specs: [
+      { icon: "calendar_month", title: "Universal iCalendar (.ics)", desc: "Encodes standard VEVENT payloads recognized instantly by Apple Calendar, Google Calendar, and Microsoft Outlook." },
+      { icon: "schedule", title: "Exact Start & End Timing", desc: "Support for exact start/end timestamps and timezone synchronization for global attendees." },
+      { icon: "pin_drop", title: "Venue & Online Links", desc: "Embed physical venue addresses with Google Maps links or virtual webinar Zoom/Teams URLs." },
+      { icon: "download", title: "Print-Ready Vector SVG & PDF", desc: "Download high-resolution 300 DPI exports perfect for badges, tickets, RSVPs, and posters." }
+    ],
+    stepsTitle: "How to Create an Event QR Code in 4 Easy Steps",
+    steps: [
+      { icon: "event", title: "1. Select Event Type", desc: "Choose Event (iCal) from the generator content types." },
+      { icon: "schedule", title: "2. Enter Date & Venue", desc: "Add event title, start/finish dates, time, and location address." },
+      { icon: "palette", title: "3. Theme & Brand", desc: "Customize with event brand colors, dot styles, and calendar icon." },
+      { icon: "confirmation_number", title: "4. Download & Print", desc: "Export in PNG, SVG, or PDF and print on invites, badges, and tickets." }
+    ],
+    useCasesTitle: "Popular Use Cases for Event QR Codes",
+    useCases: [
+      { icon: "campaign", title: "Conferences & Expos", desc: "Print on conference badges, programs, and banners so attendees can save keynotes to their schedule." },
+      { icon: "celebration", title: "Weddings & Celebrations", desc: "Add to wedding invitations, party flyers, and RSVPs for automatic calendar reminders." },
+      { icon: "laptop_mac", title: "Webinars & Workshops", desc: "Include in digital invitations so registrants never miss live streaming sessions." },
+      { icon: "stadium", title: "Concerts & Sports", desc: "Place on physical and digital tickets to ensure fans arrive at the venue on time." }
+    ],
+    tipsTitle: "Best Practices for Event QR Codes",
+    tips: [
+      { icon: "alarm", title: "Double-Check Timezones", desc: "Ensure your start/finish dates match the local venue timezone for out-of-town guests." },
+      { icon: "pin_drop", title: "Include Clear Venue Details", desc: "Add room numbers or virtual webinar meeting links directly into the notes field." },
+      { icon: "contrast", title: "High Contrast on Tickets", desc: "Maintain dark modules on light paper to ensure fast barcode scanning at venue turnstiles." },
+      { icon: "verified", title: "Test on iOS & Android", desc: "Scan your ticket proof to confirm the 1-tap 'Add to Calendar' prompt triggers cleanly." }
+    ],
+    faqsTitle: "Frequently Asked Questions About Event QR Codes",
+    faqs: [
+      { q: "What is an Event (iCal) QR Code?", a: "An Event QR code encodes standard calendar event data (iCalendar / .ics). When scanned, smartphones prompt users to add the event title, start/end time, location, and description directly into Apple Calendar, Google Calendar, or Outlook." },
+      { q: "Can I set an exact location and description?", a: "Yes, you can include the physical venue address or virtual meeting URL along with full event notes and start/finish dates and times." },
+      { q: "Is it completely free with no expiration?", a: "Yes, 100% free with unlimited scans and permanent validity." },
+      { q: "Do attendees need an internet connection to save the event?", a: "No. The entire event payload is stored inside the static QR code matrix, so phones can parse and add the event to their calendar even in airplane mode." }
+    ],
+    otherToolsTitle: "Explore Other Free QR Code Tools",
+    ctaTitle: "Ready to Create Your Event QR Code?",
+    ctaDesc: "Generate high-resolution calendar event QR codes for conferences, weddings, webinars, and tickets.",
+    ctaBtn: "Create Event QR Code Now ↑"
+  },
+  es: {
+    title: "Generador de Códigos QR para Eventos Gratis — Añadir al Calendario",
+    desc: "Crea un código QR de evento para añadir fechas, horas y ubicaciones a Google Calendar, Apple Calendar y Outlook en 1 escaneo. 100% gratis.",
+    badge: "Añadir a la Agenda",
+    specsTitle: "Capacidades Técnicas Clave",
+    specs: [
+      { icon: "calendar_month", title: "Formato Universal iCalendar (.ics)", desc: "Codifica eventos estándar compatibles con Google Calendar, Apple Calendar y Outlook." },
+      { icon: "schedule", title: "Horarios Precisos y Fechas", desc: "Ajuste exacto de hora de inicio y fin con sincronización horaria para asistentes." },
+      { icon: "pin_drop", title: "Recintos y Reuniones Online", desc: "Incluye direcciones físicas o enlaces directos a Zoom, Teams o Google Meet." },
+      { icon: "download", title: "Vectores SVG y PDF Listos", desc: "Exportación a 300 DPI ideal para entradas, acreditaciones y programas." }
+    ],
+    stepsTitle: "Cómo Crear un Código QR para Eventos en 4 Pasos",
+    steps: [
+      { icon: "event", title: "1. Elige Evento", desc: "Selecciona Evento (iCal) en los tipos de contenido." },
+      { icon: "schedule", title: "2. Añade los Datos", desc: "Título, fecha de inicio y fin, hora y ubicación." },
+      { icon: "palette", title: "3. Personaliza", desc: "Añade colores del evento y marcos temáticos." },
+      { icon: "confirmation_number", title: "4. Imprime en Entradas", desc: "Colócalo en invitaciones, carteles y pases." }
+    ],
+    useCasesTitle: "Casos de Uso para Códigos QR de Eventos",
+    useCases: [
+      { icon: "campaign", title: "Congresos y Conferencias", desc: "Añádelo en acreditaciones y programas para que los asistentes guarden las ponencias." },
+      { icon: "celebration", title: "Bodas y Fiestas", desc: "Ponlo en invitaciones de boda y recordatorios para que nadie olvide la fecha señalada." },
+      { icon: "laptop_mac", title: "Webinarios y Talleres", desc: "Facilita que los inscritos agreguen el enlace de videoconferencia a su agenda." },
+      { icon: "stadium", title: "Conciertos y Deporte", desc: "Imprímelo en entradas para que el público tenga la hora y dirección del recinto a mano." }
+    ],
+    tipsTitle: "Consejos para Códigos QR de Eventos",
+    tips: [
+      { icon: "alarm", title: "Verifica la Zona Horaria", desc: "Asegúrate de que la hora indicada coincide con el horario del evento presencial u online." },
+      { icon: "pin_drop", title: "Detalla la Ubicación", desc: "Indica la sala, puerta de acceso o enlace de videoconferencia en el campo de notas." },
+      { icon: "contrast", title: "Alto Contraste en Entradas", desc: "Usa módulos oscuros sobre fondo blanco para agilizar el acceso en tornos de entrada." },
+      { icon: "verified", title: "Prueba en iOS y Android", desc: "Escanea la entrada de prueba para comprobar que se añade a la agenda al instante." }
+    ],
+    faqsTitle: "Preguntas Frecuentes sobre Eventos",
+    faqs: [
+      { q: "¿Qué es un código QR de evento?", a: "Es un código que almacena los datos de una cita o evento en formato iCal. Al escanearlo, el móvil abre el calendario listo para guardar la fecha." },
+      { q: "¿Puedo incluir enlace de reunión o dirección?", a: "Sí, puedes especificar la ubicación física del recinto o el enlace de videoconferencia." },
+      { q: "¿El código caduca tras el evento?", a: "No, el código permanece activo para siempre y los asistentes pueden escanearlo en cualquier momento." },
+      { q: "¿Requiere conexión a internet para guardarse?", a: "No. Los datos del evento están codificados en la matriz del código QR y se guardan incluso sin cobertura." }
+    ],
+    otherToolsTitle: "Explora Otras Herramientas QR Gratuitas",
+    ctaTitle: "¿Listo para Crear tu Código QR de Evento?",
+    ctaDesc: "Crea códigos QR de calendario para congresos, bodas y entradas en segundos.",
+    ctaBtn: "Crear Código QR de Evento Ahora ↑"
+  },
+  pt: {
+    title: "Gerador de QR Code para Eventos Grátis — Salvar no Calendário",
+    desc: "Crie um QR code de evento para adicionar data, horário e local no Google Agenda, Apple Calendar e Outlook com 1 toque. 100% grátis.",
+    badge: "Salvar no Calendário",
+    specsTitle: "Recursos Técnicos Avançados",
+    specs: [
+      { icon: "calendar_month", title: "Padrão iCalendar (.ics)", desc: "Compatível com Google Agenda, Apple Calendar, Outlook e calendários móveis nativos." },
+      { icon: "schedule", title: "Horários e Fusos Exatos", desc: "Definição de início e término com ajuste automático para os participantes." },
+      { icon: "pin_drop", title: "Local Físico ou Online", desc: "Insira endereços físicos com mapa ou links de videoconferência para aulas ao vivo." },
+      { icon: "download", title: "Vetor SVG e PDF 300 DPI", desc: "Exportação em altíssima qualidade pronta para ingressos, crachás e convites." }
+    ],
+    stepsTitle: "Como Criar um QR Code de Evento em 4 Passos",
+    steps: [
+      { icon: "event", title: "1. Selecione Evento", desc: "Escolha Evento (iCal) nas opções de conteúdo." },
+      { icon: "schedule", title: "2. Preencha a Agenda", desc: "Título, data de início/término e endereço." },
+      { icon: "palette", title: "3. Estilize", desc: "Personalize com a identidade visual do evento." },
+      { icon: "confirmation_number", title: "4. Divulgue", desc: "Aplique em convites, ingressos e cartazes." }
+    ],
+    useCasesTitle: "Onde Utilizar o QR Code de Eventos",
+    useCases: [
+      { icon: "campaign", title: "Congressos e Feiras", desc: "Insira em crachás e agendas para os participantes salvarem palestras no calendário." },
+      { icon: "celebration", title: "Casamentos e Festas", desc: "Adicione em convites de casamento e lembretes para os convidados não perderem o dia." },
+      { icon: "laptop_mac", title: "Webinários e Aulas", desc: "Permita que alunos e inscritos adicionem a transmissão ao vivo à rotina." },
+      { icon: "stadium", title: "Shows e Festivais", desc: "Imprima em ingressos para o público ter data, horário e local sempre acessíveis." }
+    ],
+    tipsTitle: "Dicas para QR Codes de Eventos",
+    tips: [
+      { icon: "alarm", title: "Revise os Horários", desc: "Confirme se o fuso horário configurado corresponde ao horário do evento presencial." },
+      { icon: "pin_drop", title: "Inclua Sala ou Link", desc: "Coloque o número do estande, sala de convenções ou link de transmissão nas notas." },
+      { icon: "contrast", title: "Contraste para Portarias", desc: "Módulos nítidos facilitam a validação rápida em catracas e portarias de eventos." },
+      { icon: "verified", title: "Faça Leitura Prévia", desc: "Teste a adição ao calendário com iPhone e Android antes de produzir o material gráfico." }
+    ],
+    faqsTitle: "Dúvidas sobre QR Code de Eventos",
+    faqs: [
+      { q: "O que é um QR Code de Evento?", a: "É um código no formato iCalendar (.ics). Ao ser lido por qualquer celular, adiciona o compromisso na agenda do usuário com horário e local." },
+      { q: "Posso colocar link de reunião virtual?", a: "Sim, você pode inserir o endereço físico ou o link da transmissão online no campo de localização." },
+      { q: "O QR Code tem limite de participantes?", a: "Não! Não há limite de leituras e o código nunca expira." },
+      { q: "Funciona offline para os participantes?", a: "Sim! Os dados do compromisso estão armazenados no próprio código QR e são salvos na agenda mesmo sem internet." }
+    ],
+    otherToolsTitle: "Conheça Outras Ferramentas QR Gratuitas",
+    ctaTitle: "Pronto para Criar seu QR Code de Evento?",
+    ctaDesc: "Gere códigos QR de calendário para conferências, shows e convites em poucos segundos.",
+    ctaBtn: "Criar QR Code de Evento Agora ↑"
+  },
+  de: {
+    title: "Kostenloser Event QR-Code Generator — Termine im Kalender speichern",
+    desc: "Erstellen Sie einen Event-QR-Code, um Termine mit Ort und Uhrzeit direkt in Apple Kalender, Google Kalender und Outlook zu speichern. 100% kostenlos.",
+    badge: "Termin im Kalender",
+    specsTitle: "Wichtige technische Merkmale",
+    specs: [
+      { icon: "calendar_month", title: "Standardisiertes iCal-Format (.ics)", desc: "Wird nativ von Apple Kalender, Google Kalender und Microsoft Outlook verarbeitet." },
+      { icon: "schedule", title: "Präzise Uhrzeiten & Termindaten", desc: "Inklusive Start-/Endzeitpunkt und Zeitzonen-Abgleich für internationale Gäste." },
+      { icon: "pin_drop", title: "Veranstaltungsort & Meeting-Links", desc: "Hinterlegen Sie physische Adressen oder Links zu Online-Webinaren direkt im Termin." },
+      { icon: "download", title: "Druckfertige Vektoren in SVG & PDF", desc: "300 DPI Export für Einladungskarten, Badges, Tickets und Plakate." }
+    ],
+    stepsTitle: "So erstellen Sie einen Event-QR-Code in 4 Schritten",
+    steps: [
+      { icon: "event", title: "1. Event wählen", desc: "Event (iCal) als Inhaltstyp im Generator auswählen." },
+      { icon: "schedule", title: "2. Details eingeben", desc: "Titel, Start/Endzeitpunkt und Veranstaltungsort eintragen." },
+      { icon: "palette", title: "3. Design gestalten", desc: "Mit Event-Farben und Rahmen individuell anpassen." },
+      { icon: "confirmation_number", title: "4. Auf Tickets drucken", desc: "Auf Einladungen, Flyern und Eintrittskarten platzieren." }
+    ],
+    useCasesTitle: "Einsatzbereiche für Event-QR-Codes",
+    useCases: [
+      { icon: "campaign", title: "Konferenzen & Messen", desc: "Auf Teilnehmerausweisen und Programmen platzieren für sofortige Kalendereinträge." },
+      { icon: "celebration", title: "Hochzeiten & Feiern", desc: "Auf Einladungskarten drucken, damit Gäste das Datum sofort im Kalender vermerken." },
+      { icon: "laptop_mac", title: "Webinare & Online-Events", desc: "Teilnehmern ermöglichen, den Video-Stream-Link direkt in Outlook oder Google Kalender zu sichern." },
+      { icon: "stadium", title: "Konzerte & Sport", desc: "Auf Tickets für Einlasszeiten und Anfahrtsdetails zum Veranstaltungsort." }
+    ],
+    tipsTitle: "Tipps für Event-QR-Codes",
+    tips: [
+      { icon: "alarm", title: "Zeitzone kontrollieren", desc: "Prüfen Sie vorab, ob Beginn und Ende exakt zur lokalen Zeitzone des Veranstaltungsortes passen." },
+      { icon: "pin_drop", title: "Raumangaben ergänzen", desc: "Fügen Sie Raumnummern oder Video-Meeting-Links in das Notizfeld ein." },
+      { icon: "contrast", title: "Hoher Kontrast auf Tickets", desc: "Klare Kontraste beschleunigen das Einscannen an Einlasskontrollen und Drehkreuzen." },
+      { icon: "verified", title: "Funktionstest durchführen", desc: "Scannen Sie den Probedruck mit iOS und Android, um die Speicherung im Kalender zu testen." }
+    ],
+    faqsTitle: "Häufige Fragen zu Event-QR-Codes",
+    faqs: [
+      { q: "Was ist ein Event-QR-Code?", a: "Ein Kalender-Format nach iCal-Standard. Beim Scannen öffnet sich der Dialog 'Termin zum Kalender hinzufügen' mit allen Details." },
+      { q: "Kann ein Veranstaltungsort angegeben werden?", a: "Ja, sowohl physische Adressen als auch Online-Meeting-Links können hinterlegt werden." },
+      { q: "Ist die Nutzung zeitlich begrenzt?", a: "Nein, der Code bleibt dauerhaft scanbar." },
+      { q: "Funktioniert das Speichern auch offline?", a: "Ja! Alle Termindaten sind direkt im QR-Muster gespeichert und werden auch ohne Internetverbindung im Kalender gesichert." }
+    ],
+    otherToolsTitle: "Weitere kostenlose QR-Code Tools",
+    ctaTitle: "Bereit für Ihren Event-QR-Code?",
+    ctaDesc: "Erstellen Sie Kalender-QR-Codes für Tagungen, Hochzeiten und Tickets in Sekunden.",
+    ctaBtn: "Jetzt Event-QR-Code erstellen ↑"
+  }
+};
+
+const pageMeta = metaMap[locale] || metaMap.en;
+
+const breadcrumbs = [
+  { name: t(locale, 'nav.generator'), url: getLocalizedUrl(locale, '/') },
+  { name: t(locale, 'footer.eventQR'), url: getLocalizedUrl(locale, '/event-qr-code') }
+];
+
+const relatedTools = [
+  { icon: "link", title: "URL to QR", desc: "Website links & portfolios", url: getLocalizedUrl(locale, '/url-qr-code-generator') },
+  { icon: "wifi", title: "WiFi QR", desc: "1-tap wifi connections", url: getLocalizedUrl(locale, '/wifi-qr-code') },
+  { icon: "contact_page", title: "vCard QR", desc: "Digital business cards", url: getLocalizedUrl(locale, '/vcard-qr-code') },
+  { icon: "image", title: "QR with Logo", desc: "Branded custom logos", url: getLocalizedUrl(locale, '/qr-code-with-logo') },
+  { icon: "mail", title: "Email QR", desc: "Pre-filled email drafts", url: getLocalizedUrl(locale, '/email-qr-code') },
+  { icon: "qr_code_scanner", title: "QR Scanner", desc: "Camera & image decoder", url: getLocalizedUrl(locale, '/qr-code-scanner') }
+];
+
+const howTo = {
+  name: pageMeta.title,
+  description: pageMeta.desc,
+  steps: pageMeta.steps.map((s, idx) => ({ name: `${idx + 1}. ${s.title}`, text: s.desc }))
+};
+
+const faqs = pageMeta.faqs;
+---
+<BaseLayout
+  locale={locale}
+  title={pageMeta.title}
+  description={pageMeta.desc}
+  breadcrumbs={breadcrumbs}
+  howTo={howTo}
+  faqs={faqs}
+>
+  <style is:global>
+    @import '../styles/global.css';
+  </style>
+
+  <main id="generator">
+    <QRGeneratorApp client:load locale={locale} />
+  </main>
+
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12 sm:py-16 space-y-16 text-on-surface" id="about">
+    
+    <!-- Hero Header -->
+    <div class="text-center max-w-3xl mx-auto space-y-3">
+      <span class="inline-block text-xs font-bold uppercase tracking-widest text-primary bg-primary/10 px-3.5 py-1.5 rounded-full">{pageMeta.badge}</span>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-on-surface tracking-tight">{pageMeta.title}</h1>
+      <p class="text-sm sm:text-base text-on-surface-variant leading-relaxed max-w-2xl mx-auto">
+        {pageMeta.desc}
+      </p>
+    </div>
+
+    <!-- 1. Technical Capabilities Grid -->
+    <section class="space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.specsTitle}</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {pageMeta.specs.map((s) => (
+          <div class="p-5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/40 hover:-translate-y-1 hover:shadow-md transition-all duration-300 shadow-xs space-y-2">
+            <div class="w-10 h-10 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
+              <span class="material-symbols-outlined text-xl">{s.icon}</span>
+            </div>
+            <h3 class="font-bold text-sm text-on-surface">{s.title}</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 2. 4-Step Process Guide -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.stepsTitle}</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {pageMeta.steps.map((step, idx) => (
+          <div class="text-center p-5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/40 hover:-translate-y-1 hover:shadow-md transition-all duration-300 shadow-xs">
+            <div class="w-10 h-10 mx-auto mb-3 rounded-full bg-primary/10 text-primary font-black text-sm flex items-center justify-center">
+              {idx + 1}
+            </div>
+            <h3 class="font-bold text-sm text-on-surface mb-1">{step.title}</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">{step.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 3. Where to Use Grid -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.useCasesTitle}</h2>
+      <div class="grid sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
+        {pageMeta.useCases.map((uc) => (
+          <div class="flex items-start gap-3.5 p-4.5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/30 hover:-translate-y-0.5 hover:shadow-xs transition-all duration-200">
+            <span class="material-symbols-outlined text-primary text-2xl shrink-0 mt-0.5">{uc.icon}</span>
+            <div>
+              <h3 class="font-bold text-sm text-on-surface">{uc.title}</h3>
+              <p class="text-xs text-on-surface-variant mt-1 leading-relaxed">{uc.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 4. Best Practices Guide -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.tipsTitle}</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        {pageMeta.tips.map((tip) => (
+          <div class="p-4.5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 space-y-2">
+            <span class="material-symbols-outlined text-emerald-600 text-2xl">{tip.icon}</span>
+            <h3 class="font-bold text-sm text-on-surface">{tip.title}</h3>
+            <p class="text-xs text-on-surface-variant leading-relaxed">{tip.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 5. Explore Other Tools Ribbon -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.otherToolsTitle}</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
+        {relatedTools.map((tool) => (
+          <a
+            href={tool.url}
+            class="p-3.5 rounded-xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/40 hover:-translate-y-1 hover:shadow-xs transition-all text-center group flex flex-col items-center justify-between"
+          >
+            <div class="w-8 h-8 rounded-lg bg-zinc-100 group-hover:bg-primary group-hover:text-white flex items-center justify-center transition-colors mb-2">
+              <span class="material-symbols-outlined text-lg">{tool.icon}</span>
+            </div>
+            <span class="font-bold text-xs text-on-surface group-hover:text-primary transition-colors block">{tool.title}</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- 6. FAQs Accordion -->
+    <section class="border-t border-zinc-200/60 pt-12 space-y-6">
+      <h2 class="text-2xl font-bold text-center text-on-surface">{pageMeta.faqsTitle}</h2>
+      <div class="space-y-3 max-w-3xl mx-auto">
+        {pageMeta.faqs.map((faq) => (
+          <details class="group border border-outline-variant/60 rounded-2xl bg-surface-container-lowest overflow-hidden shadow-xs transition-all">
+            <summary class="flex justify-between items-center p-4.5 cursor-pointer font-bold text-sm sm:text-base hover:bg-surface-container-low transition-colors select-none text-on-surface">
+              <span>{faq.q}</span>
+              <span class="material-symbols-outlined transition-transform group-open:rotate-180 text-on-surface-variant">expand_more</span>
+            </summary>
+            <p class="px-4.5 pb-4.5 pt-1 text-on-surface-variant text-xs sm:text-sm leading-relaxed border-t border-outline-variant/30">
+              {faq.a}
+            </p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <!-- 7. Bottom CTA Banner -->
+    <section class="rounded-3xl bg-linear-to-br from-zinc-900 to-zinc-950 text-white p-8 sm:p-12 text-center space-y-4 shadow-lg border border-zinc-800">
+      <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">{pageMeta.ctaTitle}</h2>
+      <p class="text-xs sm:text-sm text-zinc-400 max-w-lg mx-auto leading-relaxed">{pageMeta.ctaDesc}</p>
+      <div class="pt-2">
+        <button
+          onclick="document.getElementById('generator')?.scrollIntoView({ behavior: 'smooth' });"
+          class="px-6 py-3 rounded-full bg-white text-zinc-900 font-extrabold text-xs sm:text-sm hover:bg-zinc-100 hover:scale-105 transition-all shadow-md cursor-pointer"
+        >
+          {pageMeta.ctaBtn}
+        </button>
+      </div>
+    </section>
+
+  </div>
+
+  <Footer locale={locale} />
+</BaseLayout>
