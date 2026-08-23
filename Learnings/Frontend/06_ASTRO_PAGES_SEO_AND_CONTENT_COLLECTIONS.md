@@ -1,42 +1,43 @@
 # 📄 06 - Astro SSG Routes, SEO Engine & Content Collections
 
-> **Comprehensive reference for Astro 5 static site generation, route topologies, automated JSON-LD schema generation (`SEOHead.astro`), Zod-validated Markdown content collections, and multi-file CSS architecture.**
+> **Comprehensive reference for Astro 5 static site generation, multi-region route topologies across 4 languages, automated JSON-LD schema generation (`SEOHead.astro`), Zod-validated Markdown content collections, and multi-file CSS architecture.**
 
 ---
 
-## 🗺️ 1. Static Route Topology (28 Pre-Rendered Pages)
+## 🗺️ 1. Multi-Region Static Route Topology (60+ Pre-Rendered Pages)
 
-Astro 5 builds all public-facing pages at compile time into static HTML/CSS with zero server runtime overhead:
+Astro 5 builds all public-facing pages at compile time into static HTML/CSS across **English (en)**, **Spanish (es)**, **German (de)**, and **Portuguese (pt)**:
 
-| Route Path | Page File | Primary Purpose & Features |
-| :--- | :--- | :--- |
-| `/` | `index.astro` | Main QR Studio generator application, hero section, feature matrix. |
-| `/free-qr-code-generator` | `free-qr-code-generator.astro` | High-intent SEO landing page targeting general search queries. |
-| `/url-qr-code-generator` | `url-qr-code-generator.astro` | Deep-linked landing page pre-configured for Web Links. |
-| `/wifi-qr-code` | `wifi-qr-code.astro` | Deep-linked landing page pre-configured for WiFi network credentials. |
-| `/vcard-qr-code` | `vcard-qr-code.astro` | Deep-linked landing page pre-configured for VCard 3.0 business cards. |
-| `/email-qr-code` | `email-qr-code.astro` | Pre-configured Email template generator page. |
-| `/event-qr-code` | `event-qr-code.astro` | Pre-configured iCalendar VEVENT generator page. |
-| `/qr-code-with-logo` | `qr-code-with-logo.astro` | Dedicated landing page showcasing vector logo overlays. |
-| `/qr-code-scanner` | `qr-code-scanner.astro` | WebRTC camera video stream & image file upload scanner tool. |
-| `/how-to-use` | `how-to-use.astro` | Interactive step-by-step documentation and tutorials. |
-| `/about` | `about.astro` | Company background, security standards, and mission statement. |
-| `/contact` | `contact.astro` | Interactive contact form with Honeypot spam defense. |
-| `/privacy-policy` | `privacy-policy.astro` | GDPR & CCPA privacy policy and data governance statement. |
-| `/terms` | `terms.astro` | Terms of service and intellectual property agreement. |
-| `/blog` | `blog/index.astro` | SEO content marketing blog index with search and tag filters. |
-| `/blog/[...slug]` (12 posts) | `blog/[...slug].astro` | 12 high-intent Markdown articles rendered via Content Collections. |
-| `/404` & `/500` | `404.astro` / `500.astro` | Custom branded error recovery pages. |
+| English (Root `/`) | Spanish (`/es/`) | German (`/de/`) | Portuguese (`/pt/`) | Underlying Template |
+| :--- | :--- | :--- | :--- | :--- |
+| `/` | `/es` | `/de` | `/pt` | `HomePage.astro` |
+| `/free-qr-code-generator` | `/es/free-qr-code-generator` | `/de/free-qr-code-generator` | `/pt/free-qr-code-generator` | `FreeGenPage.astro` |
+| `/url-qr-code-generator` | `/es/url-qr-code-generator` | `/de/url-qr-code-generator` | `/pt/url-qr-code-generator` | `UrlQrPage.astro` |
+| `/wifi-qr-code` | `/es/wifi-qr-code` | `/de/wifi-qr-code` | `/pt/wifi-qr-code` | `WifiQrPage.astro` |
+| `/vcard-qr-code` | `/es/vcard-qr-code` | `/de/vcard-qr-code` | `/pt/vcard-qr-code` | `VCardQrPage.astro` |
+| `/email-qr-code` | `/es/email-qr-code` | `/de/email-qr-code` | `/pt/email-qr-code` | `EmailQrPage.astro` |
+| `/event-qr-code` | `/es/event-qr-code` | `/de/event-qr-code` | `/pt/event-qr-code` | `EventQrPage.astro` |
+| `/qr-code-with-logo` | `/es/qr-code-with-logo` | `/de/qr-code-with-logo` | `/pt/qr-code-with-logo` | `LogoQrPage.astro` |
+| `/qr-code-scanner` | `/es/qr-code-scanner` | `/de/qr-code-scanner` | `/pt/qr-code-scanner` | `ScannerPage.astro` |
+| `/how-to-use` | `/es/how-to-use` | `/de/how-to-use` | `/pt/how-to-use` | `HowToUsePage.astro` |
+| `/about` | `/es/about` | `/de/about` | `/pt/about` | `AboutPage.astro` |
+| `/contact` | `/es/contact` | `/de/contact` | `/pt/contact` | `ContactPage.astro` |
+| `/privacy-policy` | `/es/privacy-policy` | `/de/privacy-policy` | `/pt/privacy-policy` | `PrivacyPage.astro` |
+| `/terms` | `/es/terms` | `/de/terms` | `/pt/terms` | `TermsPage.astro` |
+| `/blog` | `/es/blog` | `/de/blog` | `/pt/blog` | `BlogIndexPage.astro` |
+| `/blog/[...slug]` | `/es/blog/[...slug]` | `/de/blog/[...slug]` | `/pt/blog/[...slug]` | `BlogPostPage.astro` |
+| `/404` & `/500` | `/es/404` / `/es/500` | `/de/404` / `/de/500` | `/pt/404` / `/pt/500` | Dedicated error pages |
 
 ---
 
 ## 🔍 2. Automated SEO Engine (`SEOHead.astro`)
 
-`frontend/src/components/SEOHead.astro` injects search engine metadata and structured microdata schemas into every page:
+`frontend/src/components/SEOHead.astro` injects search engine metadata, multi-region hreflangs, and structured microdata schemas into every page:
 
-### 1. Canonical URLs & Social Meta Tags:
-- Automated canonical URL normalization.
-- High-resolution OpenGraph cards (`og:title`, `og:description`, `og:image`, `og:url`, `og:type`).
+### 1. Canonical URLs & Hreflang Tags:
+- Canonical URL normalization (ensures no trailing slash duplication).
+- Bidirectional `hreflang` tags across all 4 locales plus `x-default`.
+- OpenGraph (`og:title`, `og:description`, `og:image`, `og:url`, `og:locale`).
 - Twitter `summary_large_image` cards.
 
 ### 2. Structured JSON-LD Schemas:
@@ -60,7 +61,7 @@ Astro 5 builds all public-facing pages at compile time into static HTML/CSS with
     {
       "@type": "WebSite",
       "name": "QR Code Maker 6",
-      "url": "https://qrcodemaker.com"
+      "url": "https://generatecustomqr.com"
     },
     {
       "@type": "FAQPage",
@@ -98,26 +99,6 @@ const blog = defineCollection({
 });
 
 export const collections = { blog };
-```
-
-### Dynamic Slug Resolution (`[...slug].astro`):
-```astro
----
-export async function getStaticPaths() {
-  const posts = await getCollection('blog');
-  return posts.map(post => ({
-    params: { slug: post.slug },
-    props: post,
-  }));
-}
-const post = Astro.props;
-const { Content } = await post.render();
----
-<BaseLayout title={post.data.title} description={post.data.description}>
-  <article class="prose prose-invert max-w-4xl mx-auto py-12">
-    <Content />
-  </article>
-</BaseLayout>
 ```
 
 ---

@@ -12,8 +12,8 @@
 - **High-Precision Vector Logo Engine**: PyMuPDF-powered vector rasterization, custom file dropzone, automatic background removal with color tolerance, and custom brand badges.
 - **Enterprise-Grade Resolution & Formats**: Instant client-side preview with server-side exports in PNG, lossless SVG, and vector PDF up to **8K (8192px)** with DPI scaling and aspect ratio preservation.
 - **Batch Processing**: Ingests CSV files, maps dynamic columns, and batches up to 50 customized QR codes into a structured ZIP archive.
-- **Dual-Engine Computer Vision Scanner**: Combines deep learning (WeChat QR Caffe CNN) with an OpenCV + PyZBar waterfall filter pipeline capable of decoding inverted, blurred, low-contrast, or stylized QR codes.
-- **Hybrid SSR/SSG & Interactive Island Architecture**: Astro 5 static pages (28 pre-rendered routes, 12 SEO blog guides, 150+ keyword catalog, automated JSON-LD schemas, sitemaps, RSS feed) seamlessly hosting React 19 interactive visual studios.
+- **Dual-Engine Computer Vision Scanner**: Combines deep learning (WeChat QR Caffe CNN) with an OpenCV + PyZBar waterfall filter pipeline and client WebRTC camera stream capable of decoding inverted, blurred, low-contrast, or stylized QR codes.
+- **4-Language Internationalization & Multi-Region SEO**: 16 reusable page templates pre-rendered across English, Spanish, German, and Portuguese (60+ static pages), automated JSON-LD schemas, sitemaps, and RSS feed.
 
 ---
 
@@ -23,17 +23,18 @@
 | :--- | :--- | :--- |
 | **Frontend Framework** | **Astro 5.x** + **React 19** | Static site generation, SEO routing, dynamic blog collections, and reactive UI islands. |
 | **Styling & Animation** | **Tailwind CSS 3.4** + **Framer Motion** | Glassmorphism, dark mode tokens, micro-interactions, responsive design systems. |
-| **State Management** | **Zustand 5** | Reactive, unopinionated client stores (`useQRStore`, `useDownloadStore`). |
+| **State Management** | **Zustand 5** | Reactive, unopinionated client stores (`useQRStore`, `useDownloadStore`, `useToastStore`). |
+| **Internationalization** | **Custom Typed i18n Engine** | 4-language routing (`en`, `es`, `de`, `pt`), ~160 KB JSON dictionaries, and `useTranslation()`. |
 | **Backend API** | **FastAPI** + **Uvicorn** + **Pydantic V2** | High-concurrency async endpoints, strict payload validation, security middlewares. |
 | **QR Generation Engine** | **qrcode (Python)** + **PIL (Pillow)** + **NumPy** | Low-level matrix generation, custom module drawers, color mask blending. |
 | **Vector Engine** | **PyMuPDF (fitz)** | High-fidelity vector SVG rendering, font glyph parsing, PDF generation. |
-| **Computer Vision** | **OpenCV (cv2)** + **PyZBar** + **WeChat QR CNN** | Multi-pass image thresholding, contour extraction, stubborn QR decoding. |
+| **Computer Vision** | **OpenCV (cv2)** + **PyZBar** + **WeChat QR CNN** + **WebRTC** | Multi-pass image thresholding, contour extraction, stubborn QR decoding. |
 | **Reliability & Rate Limiting** | **SlowAPI** + In-Memory **LRU Cache** | Rate limits (120 req/min for PNG, 60 req/min for SVG/PDF, 10 req/min for Batch), thread-safe caching. |
 | **MCP Integration** | **mcp-server-qrcode-enhanced** | Model Context Protocol server exposing QR generation, styling, and validation tools. |
 
 ---
 
-## 🗺️ 3. Navigation to Learning Modules
+## 🗺️ 3. Navigation to Master Learning Modules
 
 Explore the in-depth documentation modules inside this folder:
 
@@ -57,10 +58,10 @@ Explore the in-depth documentation modules inside this folder:
    - Preset icon gallery (40+ social, tech, business, and media brands).
 
 4. [**04_FRONTEND_UI_AND_CLIENT_STATE.md**](./04_FRONTEND_UI_AND_CLIENT_STATE.md)
-   - Astro SSG structure, static pages, and Content Collections.
+   - Astro SSG structure, 16 page templates, and Content Collections.
    - React application architecture & Zustand state stores.
    - Panel components breakdown (Content, Design, Frames, Logo, Effects, Templates, Download).
-   - Real-time client-side preview rendering and canvas fallback.
+   - Real-time client-side preview rendering and WebRTC scanner.
 
 5. [**05_BATCH_PROCESSING_AND_EXPORT_PIPELINES.md**](./05_BATCH_PROCESSING_AND_EXPORT_PIPELINES.md)
    - High-resolution exports (PNG, SVG, PDF up to 8K resolution).
@@ -102,9 +103,13 @@ For a comprehensive breakdown of the frontend layers, inspect the [`Learnings/Fr
 - [**`03_PANEL_COMPONENTS_AND_DESIGN_SYSTEM.md`**](./Frontend/03_PANEL_COMPONENTS_AND_DESIGN_SYSTEM.md) — Breakdown of all 8 studio panels and reusable UI primitives.
 - [**`04_CLIENT_CANVAS_AND_SVG_PREVIEW_PIPELINE.md`**](./Frontend/04_CLIENT_CANVAS_AND_SVG_PREVIEW_PIPELINE.md) — Offscreen canvas rasterization (`SvgIcons.tsx`), desktop sticky preview, and mobile drawer.
 - [**`05_SCANNABILITY_CALCULATOR_AND_VALIDATION.md`**](./Frontend/05_SCANNABILITY_CALCULATOR_AND_VALIDATION.md) — sRGB relative luminance math, contrast ratios, and penalty algorithms.
-- [**`06_ASTRO_PAGES_SEO_AND_CONTENT_COLLECTIONS.md`**](./Frontend/06_ASTRO_PAGES_SEO_AND_CONTENT_COLLECTIONS.md) — 21+ static routes, `SEOHead.astro`, JSON-LD schemas, and Markdown collections.
-- [**`07_FRONTEND_TESTS_UTILITIES_AND_SERVICES.md`**](./Frontend/07_FRONTEND_TESTS_UTILITIES_AND_SERVICES.md) — Vitest testing suite, custom React hooks, `qrApi.ts`, `brandIcons.ts`, and clipboard/download handlers.
-- [**`08_SEO_AND_SEARCH_ENGINE_OPTIMIZATION.md`**](./Frontend/08_SEO_AND_SEARCH_ENGINE_OPTIMIZATION.md) — Master SEO reference, Core Web Vitals, Schema.org rich snippets (WebApplication, HowTo, FAQPage, BreadcrumbList), keyword intent matrix, and blog clustering.
+- [**`06_ASTRO_PAGES_SEO_AND_CONTENT_COLLECTIONS.md`**](./Frontend/06_ASTRO_PAGES_SEO_AND_CONTENT_COLLECTIONS.md) — 16 Page Templates, multi-region routing across 4 languages, `SEOHead.astro`, and Markdown collections.
+- [**`07_FRONTEND_TESTS_UTILITIES_AND_SERVICES.md`**](./Frontend/07_FRONTEND_TESTS_UTILITIES_AND_SERVICES.md) — Vitest testing suite (7 suites), custom React hooks, `qrApi.ts`, `brandIcons.ts`, scripts, and clipboard/download handlers.
+- [**`08_SEO_AND_SEARCH_ENGINE_OPTIMIZATION.md`**](./Frontend/08_SEO_AND_SEARCH_ENGINE_OPTIMIZATION.md) — Master SEO reference, Core Web Vitals, Schema.org rich snippets, keyword intent matrix, and blog clustering.
+- [**`09_I18N_AND_MULTILINGUAL_ROUTING_ARCHITECTURE.md`**](./Frontend/09_I18N_AND_MULTILINGUAL_ROUTING_ARCHITECTURE.md) — 4-language i18n system, dictionaries (~160 KB), translation hooks, hreflang tags, and parity validation.
+- [**`10_COMPUTER_VISION_SCANNER_AND_WEBRTC_PIPELINE.md`**](./Frontend/10_COMPUTER_VISION_SCANNER_AND_WEBRTC_PIPELINE.md) — 85 KB WebRTC camera scanner, 3-tier fallback decoding, multi-format payload parser, audio/vibration feedback.
+- [**`11_PAGE_TEMPLATES_AND_LANDING_PAGE_ARCHITECTURE.md`**](./Frontend/11_PAGE_TEMPLATES_AND_LANDING_PAGE_ARCHITECTURE.md) — 16 Page Templates, template-delegation architecture, and structured schema injection.
+- [**`12_TEMPLATE_PRESETS_AND_STYLE_CATALOG_SYSTEM.md`**](./Frontend/12_TEMPLATE_PRESETS_AND_STYLE_CATALOG_SYSTEM.md) — 100+ curated designer templates, options enums, 80 KB vector SVG icon library, and 1-click apply mechanics.
 
 ---
 
@@ -140,7 +145,3 @@ For a comprehensive breakdown of the Graphify static analysis engine and code gr
 - [**`02_INTERMEDIATE_DATA_SCHEMAS_AND_MANIFEST.md`**](./Graphify/02_INTERMEDIATE_DATA_SCHEMAS_AND_MANIFEST.md) — JSON schema specifications for `.graphify_ast.json`, `.graphify_analysis.json`, `graph.json`, and `manifest.json`.
 - [**`03_CENTRALITY_COMMUNITIES_AND_ARCHITECTURAL_INSIGHTS.md`**](./Graphify/03_CENTRALITY_COMMUNITIES_AND_ARCHITECTURAL_INSIGHTS.md) — 279 nodes, 535 edges, the 10 "God Nodes", 44 community clusters, and zero circular cycles.
 - [**`04_QUERY_ENGINE_AND_AI_AGENT_INTEGRATION.md`**](./Graphify/04_QUERY_ENGINE_AND_AI_AGENT_INTEGRATION.md) — Token-budgeted BFS/DFS graph traversal query engine (`query.py`) and agent refactoring workflows.
-
-
-
-

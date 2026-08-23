@@ -50,8 +50,8 @@ QR Code Maker 6 Repository Topology
 │       ├── test_performance_cache.py       # LRU cache benchmarks & latency measurement
 │       ├── test_qr_service.py              # Image/SVG generation & crisp 1:1 scaling tests
 │       ├── test_security.py                # Defensive headers, path traversal, XSS sanitization tests
-│       └── test_template_scannability.py   # 100% automated scannability gate across all 40+ presets
-├── frontend/                               # Astro 5 SSG + React 19 Interactive Studio
+│       └── test_template_scannability.py   # 100% automated scannability gate across all presets
+├── frontend/                               # Astro 5 SSG + React 19 Interactive Studio & Scanner
 │   ├── astro.config.mjs                    # Astro configuration & React/Tailwind integrations
 │   ├── vitest.config.ts                    # Vitest configuration for client testing
 │   ├── package.json                        # Frontend dependencies & scripts
@@ -60,35 +60,77 @@ QR Code Maker 6 Repository Topology
 │   ├── nginx.conf                          # Production Nginx reverse proxy configuration
 │   ├── Dockerfile                          # Frontend static build Dockerfile
 │   ├── public/                             # Static assets, favicon, preview thumbnails
+│   ├── scripts/                            # SEO & i18n analysis scripts (7 audit scripts)
+│   │   ├── audit_seo.mjs                   # Crawls build output for title/description/canonical
+│   │   ├── audit_seo_health.mjs            # H1 tag and image alt attribute health checker
+│   │   ├── compare_seo_commits.mjs         # Git commit diff analysis for SEO regressions
+│   │   ├── deep_analysis_all_pages.mjs     # Readability & keyword density auditor
+│   │   ├── fix_duplicate_h1.mjs            # AST transform script for H1 deduplication
+│   │   ├── seo_analyzer.mjs                # JSON-LD Schema.org microdata validator
+│   │   └── verify_i18n_keys.mjs            # Parity auditor ensuring 100% key symmetry (en/es/de/pt)
 │   └── src/
 │       ├── content.config.ts               # Astro Content Collection schema definitions
-│       ├── content/blog/*.md               # SEO blog posts (4 comprehensive guides)
-│       ├── layouts/BaseLayout.astro        # Master Astro layout with SEO & header/footer
-│       ├── layouts/LegalLayout.astro       # Legal pages layout (Privacy, Terms)
-│       ├── pages/*.astro                   # 14 Static SSG landing and generator pages
-│       ├── pages/blog/                     # Blog index and dynamic [...slug] routing
-│       ├── components/SEOHead.astro        # Meta tags, OpenGraph, JSON-LD Schema markup
-│       ├── components/layout/              # Header, Footer, Navbar, Sidebar
-│       ├── components/generator/forms/     # ContentForms.tsx (URL, Text, Email, VCard, WiFi, etc.)
-│       ├── components/icons/brandIcons.ts  # Social/Tech brand vector paths
-│       ├── components/previews/            # StylePreviewCard.tsx, SvgIcons.tsx (80KB master vector engine)
-│       ├── components/ui/                  # PremiumFontSelect, ScannabilityAlert, Slider
-│       ├── react/App.tsx                   # React root orchestrator & state debouncing
-│       ├── react/ErrorBoundary.tsx         # React UI crash containment boundary
-│       ├── react/QRGeneratorApp.tsx        # Studio container with responsive layout
-│       ├── react/panels/*.tsx              # 8 Studio tab panels (Content, Design, Frames, Logo, Effects, etc.)
-│       ├── react/preview/*.tsx             # DesktopPreviewPane, MobileBottomBar, FullscreenLightbox
-│       ├── react/scanner/QRScannerApp.tsx  # Browser webcam scanner + drag-and-drop decoder
-│       ├── hooks/*.ts                      # useDebounce, useDownloadHandlers, useKeyboardShortcuts, etc.
-│       ├── lib/utils.ts                    # Tailwind class merging (`clsx` + `twMerge`)
+│       ├── content/blog/                   # Multilingual Markdown articles (en, es, de, pt)
+│       ├── data/
+│       │   ├── options.ts                  # Dropdown choices (50+ dots, 25+ eyes, 40+ frames, gradients)
+│       │   └── templates.ts                # 100+ curated designer preset templates (80 KB)
+│       ├── hooks/
+│       │   ├── useDebounce.ts              # Smart 0ms discrete / 150ms continuous debounce hook
+│       │   ├── useDownloadHandlers.ts      # Multi-format download, clipboard copy, batch ZIP generation
+│       │   ├── useKeyboardShortcuts.ts     # Studio hotkeys (Ctrl+Z, Ctrl+Y, Ctrl+D, Escape)
+│       │   ├── useMiniPreview.ts           # IntersectionObserver for sticky floating preview trigger
+│       │   ├── useOnlineStatus.ts          # Window online/offline connectivity listener
+│       │   └── useToast.ts                 # Ephemeral toast notification hook
+│       ├── i18n/
+│       │   ├── config.ts                   # Locale definitions (en, es, pt, de), flags, hreflangs
+│       │   ├── utils.ts                    # URL parsers, clean pathname stripper, t() translation lookup
+│       │   ├── useTranslation.tsx          # React TranslationContext & useTranslation() hook
+│       │   ├── blogTranslations.ts         # Localized blog metadata, author cards, reading times
+│       │   ├── locales/                    # Master UI dictionaries (~160 KB total)
+│       │   │   ├── en.json / es.json / de.json / pt.json
+│       │   └── seo/                        # Localized page meta titles, descriptions & FAQs
+│       │       └── en.json / es.json / de.json / pt.json
+│       ├── layouts/
+│       │   ├── BaseLayout.astro            # Master HTML layout with fonts, theme scripts, SEOHead
+│       │   └── LegalLayout.astro           # Markdown article wrapper for Privacy, Terms, Disclaimer
+│       ├── page-templates/                 # 16 Reusable Page Templates
+│       │   ├── HomePage.astro / FreeGenPage.astro / UrlQrPage.astro / WifiQrPage.astro
+│       │   ├── VCardQrPage.astro / EmailQrPage.astro / EventQrPage.astro / LogoQrPage.astro
+│       │   ├── ScannerPage.astro / HowToUsePage.astro / BlogIndexPage.astro / BlogPostPage.astro
+│       │   └── AboutPage.astro / ContactPage.astro / PrivacyPage.astro / TermsPage.astro
+│       ├── pages/                          # Astro Static File Routing
+│       │   ├── index.astro                 # Root English Homepage
+│       │   ├── free-qr-code-generator.astro / url-qr-code-generator.astro / wifi-qr-code.astro ...
+│       │   ├── es/                         # Spanish Route Tree (14 localized pages)
+│       │   ├── de/                         # German Route Tree (14 localized pages)
+│       │   ├── pt/                         # Portuguese Route Tree (14 localized pages)
+│       │   ├── blog/[...slug].astro        # Dynamic Multilingual Blog Route
+│       │   └── 404.astro / 500.astro       # Branded error recovery pages
+│       ├── components/
+│       │   ├── SEOHead.astro               # Automated SEO meta tags, hreflang alternates, JSON-LD
+│       │   ├── generator/forms/            # Content protocol input forms (ContentForms.tsx)
+│       │   ├── layout/                     # Header.astro, Footer.astro, LanguageSwitcher.astro
+│       │   ├── previews/                   # SvgIcons.tsx (80 KB vector catalog), StylePreviewCard.tsx
+│       │   └── ui/                         # PremiumFontSelect.tsx, ScannabilityAlert.tsx, Slider.tsx
+│       ├── react/
+│       │   ├── App.tsx                     # React root orchestrator & state debouncing
+│       │   ├── QRGeneratorApp.tsx          # Studio container with responsive layout
+│       │   ├── ErrorBoundary.tsx           # React UI crash containment boundary
+│       │   ├── components/                 # ReactLanguageSwitcher.tsx
+│       │   ├── panels/*.tsx                # 8 Studio tab panels (Content, Design, Frames, Logo, etc.)
+│       │   ├── preview/*.tsx               # DesktopPreviewPane, MobileBottomBar, FullscreenLightbox
+│       │   └── scanner/QRScannerApp.tsx    # 85 KB WebRTC Camera & File Computer Vision Scanner
 │       ├── services/qrApi.ts               # Typed fetch client, abort controller, batch endpoint
-│       ├── store/useQRStore.ts             # Primary Zustand store (settings, 30-level undo/redo history)
-│       ├── store/useDownloadStore.ts       # Export format, resolution, batch settings store
-│       ├── store/useToastStore.ts          # Toast feedback notification store
-│       ├── styles/*.css                    # global.css, blog.css, how-to-use.css, legal.css
+│       ├── store/
+│       │   ├── useQRStore.ts               # Primary Zustand store (settings, 30-level undo/redo history)
+│       │   ├── useDownloadStore.ts         # Export format, resolution, batch settings store
+│       │   └── useToastStore.ts            # Ephemeral toast alert queue
+│       ├── styles/                         # global.css, blog.css, how-to-use.css, legal.css
 │       ├── types/qr.ts                     # TypeScript interfaces and default state tokens
 │       ├── utils/scannability.ts           # Relative luminance, WCAG contrast, scannability math
-│       └── tests/*.tsx                     # App.test.tsx, useQRStore.test.ts, setupTests.ts
+│       └── tests/                          # 7 Vitest Unit & Integration Test Suites
+│           ├── setupTests.ts / App.test.tsx / QRScannerApp.test.ts / i18n.test.ts
+│           └── qrApi.test.ts / scannability.test.ts / useQRStore.test.ts
 ├── mcp-server-qrcode-enhanced/             # Model Context Protocol (MCP) server
 │   ├── package.json                        # MCP server manifest & dependencies
 │   ├── tsconfig.json                       # MCP TypeScript configuration
@@ -134,13 +176,21 @@ QR Code Maker 6 Repository Topology
 | :--- | :--- | :--- | :--- | :--- |
 | `react/App.tsx` | 240 | `App: React.FC` | React, Zustand, TanStack Query | Root orchestrator, 150ms/0ms debounced preview fetching, responsive state. |
 | `react/QRGeneratorApp.tsx` | 160 | `QRGeneratorApp: React.FC` | React, Framer Motion | Main studio split-view container (left tabs panel, right preview pane). |
+| `react/scanner/QRScannerApp.tsx` | 1,946 | `QRScannerApp`, `parseQRContent` | html5-qrcode, Lucide, qrApi | 85 KB WebRTC camera scanner, 3-tier fallback decoding, multi-format parser, history. |
+| `i18n/config.ts` | 63 | `locales`, `localeConfig`, `isValidLocale` | TypeScript | Core 4-locale configuration (en, es, pt, de), flags, OpenGraph locales. |
+| `i18n/utils.ts` | 145 | `getLocaleFromUrl`, `getLocalizedUrl`, `t` | i18n locales & seo JSON | URL parsers, clean pathname stripper, t() translation engine with parameter interpolation. |
+| `i18n/useTranslation.tsx` | 48 | `TranslationProvider`, `useTranslation` | React | Context provider and custom translation hook for React islands. |
+| `data/templates.ts` | 2,682 | `PRESET_TEMPLATES: Template[]` | qr.ts | 100+ curated designer preset templates across 8 style categories (80 KB). |
+| `data/options.ts` | 206 | `DOT_STYLES`, `EYE_FRAME_STYLES`, etc. | TypeScript | Dropdown enum options (50+ dots, 25+ eyes, 20+ eyeballs, 40+ frames). |
 | `store/useQRStore.ts` | 180 | `useQRStore` | Zustand | Primary state store, 30-level undo/redo history, reset/update actions. |
 | `store/useDownloadStore.ts` | 60 | `useDownloadStore` | Zustand | Export format (PNG/SVG/PDF), resolution (64–8192px), batch items state. |
 | `services/qrApi.ts` | 190 | `fetchQRPreview`, `downloadQR`, `generateBatch` | Fetch API, SvgIcons | Typed API service communicating with FastAPI backend. |
 | `components/previews/SvgIcons.tsx` | 2,100 | `getReactLogoPngDataUrl`, `PRESET_LOGO_BRAND_COLORS` | React, Canvas API | 80KB master vector engine for instant client preview and logo rasterization. |
 | `utils/scannability.ts` | 140 | `calculateScannabilityScore` | Pure Math | Relative luminance calculation, WCAG contrast ratio, scannability scoring. |
-| `hooks/useKeyboardShortcuts.ts` | 50 | `useKeyboardShortcuts` | React | Global keyboard shortcuts (Ctrl+Z, Ctrl+Y, Ctrl+S, Ctrl+C). |
+| `hooks/useKeyboardShortcuts.ts` | 50 | `useKeyboardShortcuts` | React | Global keyboard shortcuts (Ctrl+Z, Ctrl+Y, Ctrl+D, Escape). |
 | `hooks/useDownloadHandlers.ts` | 90 | `useDownloadHandlers` | React, qrApi | Handles file download triggers, clipboard copies, and toast notifications. |
+| `tests/QRScannerApp.test.ts` | 102 | Vitest Test Suite | parseQRContent | Unit tests validating WiFi, vCard, HTTPS, mailto, tel, sms, geo, and event decoding. |
+| `tests/i18n.test.ts` | 93 | Vitest Test Suite | i18n/utils.ts | Unit tests validating translation lookup, interpolation, and multi-region hreflang URLs. |
 
 ---
 
