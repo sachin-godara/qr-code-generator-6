@@ -1,12 +1,12 @@
 # GenerateCustomQR
-> Free custom QR code generator with logo embedding, 39 matrix dot styles, 51 CTA text frames, multi-color gradients, and instant vector SVG, PDF, and high-res PNG export with no watermark.
+> Free custom QR code generator with logo embedding, 40+ matrix dot styles, 51 CTA text frames, multi-color gradients, and instant vector SVG, PDF, and high-res PNG export with no watermark.
 
 ## Core Features & Capabilities
 - **URL to QR Code**: Convert any website link into a customized QR code.
 - **WiFi QR Code**: Auto-connect guests to WPA/WPA2/WPA3 WiFi networks without typing passwords.
 - **vCard QR Code**: Share digital contact cards (vCard 3.0) directly into phone address books.
 - **Logo Embedding**: Overlay custom SVG/PNG brand logos with auto-padding and Level H error correction.
-- **Matrix Styling**: 39 module dot styles, 25 eye frames, and 20 eyeball designs.
+- **Matrix Styling**: 40+ module dot styles, 25 eye frames, and 20 eyeball designs.
 - **Print & Export Formats**: Lossless SVG vectors, 300 DPI print-ready PDFs, and ultra-high-resolution PNG up to 8192px.
 - **Batch CSV Processing**: Generate up to 500 branded QR codes from CSV in a single ZIP download.
 - **QR Code Scanner**: In-browser camera video stream and image file reader powered by computer vision.
@@ -24,7 +24,9 @@
 
 ## Knowledge Base & Guides
 - [Static vs Dynamic QR Codes](https://generatecustomqr.com/blog/static-vs-dynamic-qr-codes): Technical comparison of permanence and privacy.
+- [QR Code Trends 2026 & Beyond](https://generatecustomqr.com/blog/qr-code-trends-2025): Market statistics and GS1 Sunrise 2027 transition.
 - [QR Code Color & Contrast Guide](https://generatecustomqr.com/blog/qr-code-color-guide): 4.5:1 WCAG contrast standards.
 - [QR Code Print Sizing Guide](https://generatecustomqr.com/blog/qr-code-size-guide): Sizing formulas for print materials and billboards.
 - [QR Code Design Best Practices](https://generatecustomqr.com/blog/qr-code-design-best-practices-for-print): Quiet zones and DPI requirements.
 - [How to Scan a QR Code](https://generatecustomqr.com/blog/how-to-scan-a-qr-code): Instructions for iOS, Android, and web browsers.
+

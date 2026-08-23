@@ -2,7 +2,7 @@
   "home": {
     "title": "Free Custom QR Code Generator with Logo — No Watermark",
     "description": "Create custom QR codes 100% free with logo embedding, 40+ dot styles, and color gradients. Download in vector SVG, PDF, or high-res PNG with no watermark.",
-    "keywords": "qr code generator, custom qr code with logo, free qr code generator no watermark, qr code maker without signup, aesthetic qr code generator, printable qr code high resolution, bulk qr code generator, create qr code online",
+    "keywords": "custom qr code generator, free custom qr code with logo, qr code maker no watermark, aesthetic qr code generator, vector svg qr code, 300 dpi printable qr, client-side private qr maker, bulk qr code generator, create qr code online, printable qr code high resolution",
     "howToName": "How to Create a Custom QR Code",
     "howToDesc": "Design and generate a fully customized QR code with logo, colors, gradients, and frames in under 2 minutes — 100% free.",
     "steps": [
@@ -13,7 +13,7 @@
       { "name": "Download for free", "text": "Export your QR code in PNG (up to 4096px), SVG (vector), or PDF (300 DPI) — completely free, no watermark, no signup." }
     ],
     "faqs": [
-      { "q": "How do I create a custom QR code?", "a": "Enter your URL, text, or contact information, choose from 39 dot styles and 28 eye patterns, customize colors and gradients, add a logo from 46 presets or upload your own, pick a decorative frame, and download your QR code in PNG, SVG, or PDF format — completely free." },
+      { "q": "How do I create a custom QR code?", "a": "Enter your URL, text, or contact information, choose from 40+ dot styles and 28 eye patterns, customize colors and gradients, add a logo from 46 presets or upload your own, pick a decorative frame, and download your QR code in PNG, SVG, or PDF format — completely free." },
       { "q": "Is the QR code generator free?", "a": "Yes, GenerateCustomQR is 100% free with all features unlocked — no signup, no watermarks, no usage limits. You get full access to 40+ dot styles, 51 text frames, 121 templates, logo embedding, batch generation, and PNG/SVG/PDF export at no cost." },
       { "q": "What types of QR codes can I create?", "a": "You can create QR codes for 12 different content types: URLs, plain text, WiFi credentials, vCards (contact cards), emails, SMS messages, calendar events, phone numbers, cryptocurrency addresses, Google Maps locations, PayPal payment links, and App Store links." },
       { "q": "Can I add a logo to my QR code?", "a": "Yes, you can upload your own logo or choose from 46 preset brand icons including Instagram, WhatsApp, YouTube, Facebook, and more. Features include automatic background removal, adjustable dot clearance around the logo, multiple card shapes, and brand or custom color modes." },
@@ -23,9 +23,9 @@
     ]
   },
   "scanner": {
-    "title": "Free QR Code Scanner Online — Scan Camera & Image",
+    "title": "Free QR Code Scanner Online — Scan Camera & Image (No App)",
     "description": "Instantly scan and decode QR codes online. Use your device camera, upload an image file, or paste a screenshot with Ctrl+V. 100% free, private, and fast.",
-    "keywords": "qr code scanner, qr code reader, how to scan a qr code, scan qr code online, free qr code scanner, scan qr code from image, qr code reader online free, scan qr code from screenshot",
+    "keywords": "qr code scanner, qr code reader, scan qr code online, free qr code scanner, scan qr code from image, scan qr code on pc laptop mac, paste screenshot qr code ctrl v, online qr decoder free, how to scan a qr code",
     "faqs": [
       { "q": "Do I need to download a QR code reader app?", "a": "No! Most modern smartphones have a QR code scanner built directly into the native Camera app. Alternatively, you can use our free web-based scanner above without downloading anything or installing third-party apps." },
       { "q": "How do I scan a QR code on Android?", "a": "Open your native Camera app and point it at the QR code. You can also use Google Lens or our free web scanner right on this page." },

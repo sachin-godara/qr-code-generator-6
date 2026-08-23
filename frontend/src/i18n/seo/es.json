@@ -2,7 +2,7 @@
   "home": {
     "title": "Generador de Códigos QR Gratis con Logo — Sin Marca de Agua",
     "description": "Crea códigos QR personalizados 100% gratis con logo, más de 40 estilos de puntos y degradados de color. Descarga en SVG vectorial, PDF o PNG en alta resolución.",
-    "keywords": "generador de códigos qr, código qr personalizado con logo, crear código qr gratis, generador qr sin marca de agua, hacer código qr online, código qr vectorial svg, descargar qr en pdf",
+    "keywords": "generador de codigos qr, codigo qr personalizado con logo, crear codigo qr gratis, generador qr sin marca de agua, hacer codigo qr online, codigo qr vectorial svg, descargar qr en pdf, generador de codigos qr gratis",
     "howToName": "Cómo Crear un Código QR Personalizado",
     "howToDesc": "Diseña y genera un código QR totalmente personalizado con logo, colores, degradados y marcos en menos de 2 minutos — 100% gratis.",
     "steps": [
@@ -13,7 +13,7 @@
       { "name": "Descarga gratis", "text": "Exporta tu código QR en PNG (hasta 4096px), SVG (vectorial) o PDF (300 DPI) — completamente gratis, sin marca de agua ni registro." }
     ],
     "faqs": [
-      { "q": "¿Cómo creo un código QR personalizado?", "a": "Introduce tu URL, texto o datos de contacto, elige entre 39 estilos de puntos y 28 patrones de ojos, personaliza colores y degradados, añade un logo y descarga en PNG, SVG o PDF gratis." },
+      { "q": "¿Cómo creo un código QR personalizado?", "a": "Introduce tu URL, texto o datos de contacto, elige entre 40+ estilos de puntos y 28 patrones de ojos, personaliza colores y degradados, añade un logo y descarga en PNG, SVG o PDF gratis." },
       { "q": "¿El generador de códigos QR es realmente gratuito?", "a": "Sí, GenerateCustomQR es 100% gratuito con todas las funciones desbloqueadas: sin registro, sin marcas de agua y sin límites de uso." },
       { "q": "¿Qué tipos de códigos QR puedo crear?", "a": "Puedes crear códigos QR para 12 tipos de contenido: URLs, texto plano, credenciales WiFi, vCards (tarjetas de contacto), correos, SMS, eventos de calendario, teléfonos, criptomonedas, ubicaciones de Google Maps, PayPal y enlaces de aplicaciones." },
       { "q": "¿Puedo añadir un logotipo a mi código QR?", "a": "Sí, puedes subir tu propio logo o elegir entre 46 iconos de marcas reconocidas como Instagram, WhatsApp, YouTube y Facebook con eliminación automática de fondo." },
@@ -23,9 +23,9 @@
     ]
   },
   "scanner": {
-    "title": "Escáner de Códigos QR Gratis Online — Escanear con Cámara e Imagen",
+    "title": "Escáner de Códigos QR Gratis Online — Escanear con Cámara e Imagen (Sin App)",
     "description": "Escanea y descifra códigos QR online al instante con cámara, subida de imágenes o captura (Ctrl+V). 100% gratis, rápido y completamente privado.",
-    "keywords": "escanear código qr, lector de código qr online, escanear qr con cámara, leer código qr de imagen, escanear código qr gratis, lector qr online gratis",
+    "keywords": "escanear codigo qr online, lector de codigo qr gratis, escanear qr con camara pc, leer codigo qr de imagen, escanear codigo qr gratis, lector qr online gratis, pegar captura qr ctrl v",
     "faqs": [
       { "q": "¿Necesito descargar una app para escanear códigos QR?", "a": "¡No! La mayoría de teléfonos modernos tienen escáner integrado en la app de cámara, o puedes usar nuestro escáner web gratuito directamente en tu navegador." },
       { "q": "¿Cómo escaneo un código QR en Android?", "a": "Abre la cámara de tu teléfono y apunta al código QR, o utiliza nuestro escáner online en esta página." },

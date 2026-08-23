@@ -23,9 +23,10 @@ GenerateCustomQR is a privacy-first web application for designing, customizing, 
 12. **App Store**: Direct deep links to Apple App Store or Google Play Store apps.
 
 ## Visual Styling Matrix
-- **Module Dots (39 Styles)**: Squares, circles, rounded, diamonds, stars, heart, lotus, sparkles, waves, hexagons.
+- **Module Dots (40+ Styles)**: Squares, circles, rounded, diamonds, stars, heart, lotus, sparkles, waves, hexagons, and artistic patterns.
 - **Eye Frames (25 Styles)**: Square, rounded, leaf, gear, shield, badge, polygon.
 - **Eyeball Centers (20 Styles)**: Solid dot, diamond, star, heart, cross, ring.
 - **CTA Frames (51 Styles)**: Text callout bubble, top banner, bottom ribbon, polaroid, ticket, coffee cup.
 - **Gradients**: Linear (Vertical, Horizontal, Diagonal) and Radial gradients with dual-stop color picking.
 - **Error Correction Levels**: L (7%), M (15%), Q (25%), H (30% - used automatically when logos are added).
+

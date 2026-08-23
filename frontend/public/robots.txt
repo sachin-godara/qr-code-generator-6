@@ -5,6 +5,7 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
+# Primary Search Engine Crawlers
 User-agent: Googlebot
 Allow: /
 Disallow: /api/
@@ -17,12 +18,28 @@ User-agent: Bingbot
 Allow: /
 Disallow: /api/
 
-# AI & LLM Search Agents (GEO / Answer Engine Optimization)
+User-agent: Applebot
+Allow: /
+Disallow: /api/
+
+User-agent: DuckDuckBot
+Allow: /
+Disallow: /api/
+
+# AI & LLM Search Crawlers (GEO / Answer Engine Optimization)
+User-agent: ClaudeBot
+Allow: /
+Disallow: /api/
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /api/
+
 User-agent: GPTBot
 Allow: /
 Disallow: /api/
 
-User-agent: ClaudeBot
+User-agent: ChatGPT-User
 Allow: /
 Disallow: /api/
 
@@ -38,14 +55,32 @@ User-agent: Google-Extended
 Allow: /
 Disallow: /api/
 
+User-agent: GoogleOther
+Allow: /
+Disallow: /api/
+
+User-agent: DuckAssistBot
+Allow: /
+Disallow: /api/
+
+User-agent: Cohere-ai
+Allow: /
+Disallow: /api/
+
+User-agent: Amazonbot
+Allow: /
+Disallow: /api/
+
 # Sitemaps
 Sitemap: https://generatecustomqr.com/sitemap-index.xml
 Sitemap: https://generatecustomqr.com/sitemap-0.xml
 
-# LLM & AI Knowledge Files (GEO)
+# LLM Knowledge & Grounding Files (GEO)
 # https://generatecustomqr.com/llms.txt
 # https://generatecustomqr.com/llms-full.txt
 
 # RSS Feed
 # https://generatecustomqr.com/rss.xml
+
+
 

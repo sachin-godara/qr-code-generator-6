@@ -2,7 +2,7 @@
   "home": {
     "title": "Kostenloser QR-Code Generator mit Logo — Ohne Wasserzeichen",
     "description": "Erstellen Sie individuelle QR-Codes 100% kostenlos mit Logo, 40+ Punkt-Mustern und Verläufen. Download als Vektor-SVG, PDF oder hochauflösendes PNG ohne Wasserzeichen.",
-    "keywords": "qr code generator, individueller qr code mit logo, kostenloser qr code generator ohne wasserzeichen, qr code erstellen online, qr code druckfertig, qr code svg download, qr code pdf erstellen",
+    "keywords": "qr code generator kostenlos, qr code erstellen mit logo, qr code generator ohne wasserzeichen, qr code erstellen online, qr code druckfertig, qr code svg download, qr code pdf erstellen, qr code kostenlos ohne anmeldung",
     "howToName": "Einen individuellen QR-Code erstellen",
     "howToDesc": "Gestalten und erstellen Sie einen maßgeschneiderten QR-Code mit Logo, Farben, Verläufen und Rahmen in unter 2 Minuten — 100% kostenlos.",
     "steps": [
@@ -13,7 +13,7 @@
       { "name": "Kostenlos herunterladen", "text": "Exportieren Sie Ihren QR-Code als PNG (bis 4096px), SVG (Vektor) oder PDF (300 DPI) — ohne Registrierung und ohne Wasserzeichen." }
     ],
     "faqs": [
-      { "q": "Wie erstelle ich einen individuellen QR-Code?", "a": "Geben Sie Ihre URL oder Kontaktdaten ein, wählen Sie Design und Farben, fügen Sie ein Logo hinzu und laden Sie den QR-Code als PNG, SVG oder PDF herunter." },
+      { "q": "Wie erstelle ich einen individuellen QR-Code?", "a": "Geben Sie Ihre URL oder Kontaktdaten ein, wählen Sie aus über 40 Punkt-Mustern und Farben, fügen Sie ein Logo hinzu und laden Sie den QR-Code als PNG, SVG oder PDF herunter." },
       { "q": "Ist dieser QR-Code Generator wirklich kostenlos?", "a": "Ja, GenerateCustomQR ist zu 100% kostenlos und ohne Einschränkungen nutzbar — ohne Anmeldung, ohne Wasserzeichen und ohne versteckte Kosten." },
       { "q": "Welche QR-Code-Typen werden unterstützt?", "a": "Sie können QR-Codes für URLs, Text, WLAN-Zugangsdaten, vCards (digitale Visitenkarten), E-Mails, SMS, Kalendertermine, Telefonnummern, Krypto, Google Maps und PayPal erstellen." },
       { "q": "Kann ich mein Firmenlogo einbinden?", "a": "Ja, Sie können eigene Bilddateien hochladen oder bekannte Markensymbole wie WhatsApp, Instagram, YouTube und Facebook mit automatischer Hintergrundbereinigung nutzen." },
@@ -23,9 +23,9 @@
     ]
   },
   "scanner": {
-    "title": "Kostenloser Online-QR-Code-Scanner — Kamera & Bild",
+    "title": "Kostenloser Online-QR-Code-Scanner — Kamera & Bild (Ohne App)",
     "description": "Scannen und decodieren Sie QR-Codes direkt im Browser per Kamera, Bild-Upload oder Screenshot (Strg+V). 100% kostenlos und privat.",
-    "keywords": "qr code scanner, qr code leser online, qr code mit kamera scannen, qr code von bild scannen, kostenloser qr scanner, qr code reader online",
+    "keywords": "qr code scanner online, qr code leser kostenlos, qr code mit kamera scannen pc, qr code von bild scannen, qr code reader online, qr code screenshot strg v",
     "faqs": [
       { "q": "Benötige ich eine separate Scanner-App?", "a": "Nein! Moderne Smartphones können QR-Codes direkt mit der Standard-Kamera erfassen, oder Sie nutzen unseren kostenlosen Web-Scanner." },
       { "q": "Wie scanne ich einen QR-Code auf Android?", "a": "Öffnen Sie die Kamera-App und richten Sie sie auf den QR-Code, oder nutzen Sie Google Lens oder diesen Web-Scanner." },
