@@ -21,8 +21,18 @@ const fontStyles = [
 ];
 
 export function FramesPanel() {
-  const { t } = useTranslation();
+  const { t, dict } = useTranslation();
   const { settings, updateSettings } = useQRStore();
+
+  const ctaSuggestions: string[] = (dict?.studio as any)?.ctaSuggestions || [
+    "SCAN ME",
+    "CONNECT TO WIFI",
+    "VIEW MENU",
+    "VISIT WEBSITE",
+    "SAVE CONTACT",
+    "GET TICKET",
+    "FOLLOW US"
+  ];
 
   return (
     <div className="bg-white rounded-xl border border-outline-variant space-y-6 p-6">
@@ -131,8 +141,25 @@ export function FramesPanel() {
               value={settings.frame_text}
               onChange={(e) => updateSettings({ frame_text: e.target.value })}
               className="w-full p-4 border-2 border-primary/30 rounded-xl bg-white focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none font-bold text-lg text-center shadow-inner"
-              placeholder="e.g. SCAN ME"
+              placeholder={ctaSuggestions[0] || "SCAN ME"}
             />
+            {/* Quick CTA Suggestion Chips */}
+            <div className="flex flex-wrap gap-1.5 pt-1 justify-center">
+              {ctaSuggestions.map((suggestion) => (
+                <button
+                  key={suggestion}
+                  type="button"
+                  onClick={() => updateSettings({ frame_text: suggestion })}
+                  className={`text-[11px] font-bold px-2.5 py-1 rounded-lg border transition-all ${
+                    settings.frame_text === suggestion
+                      ? "bg-primary text-white border-primary shadow-xs"
+                      : "bg-white/80 hover:bg-white text-on-surface-variant hover:text-on-surface border-outline-variant/60 hover:border-primary/40"
+                  }`}
+                >
+                  {suggestion}
+                </button>
+              ))}
+            </div>
           </div>
 
           <div className="space-y-3">

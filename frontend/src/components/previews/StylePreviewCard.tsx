@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from '@/i18n/useTranslation';
 
 interface StylePreviewCardProps {
   title: string;
@@ -8,6 +9,13 @@ interface StylePreviewCardProps {
 }
 
 export function StylePreviewCard({ title, isSelected, onClick, children }: StylePreviewCardProps) {
+  const { t } = useTranslation();
+
+  const displayTitle = 
+    t(`studio.styleNames.${title}`) || 
+    t(`studio.templateNames.${title}`) || 
+    title.replace(/_/g, ' ');
+
   return (
     <button
       onClick={onClick}
@@ -39,7 +47,7 @@ export function StylePreviewCard({ title, isSelected, onClick, children }: Style
       <span className={`text-[9px] sm:text-[10px] font-medium text-center w-full px-1 capitalize transition-colors duration-200 leading-tight whitespace-normal break-words h-7 flex items-center justify-center
         ${isSelected ? 'text-primary font-semibold' : 'text-zinc-500 group-hover:text-zinc-700'}
       `}>
-        {title.replace(/_/g, ' ')}
+        {displayTitle}
       </span>
     </button>
   );
