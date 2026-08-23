@@ -20,6 +20,14 @@ const blogSchema = z.object({
   ]).default('guides'),
   readingTime: z.number().optional(),
   featured: z.boolean().default(false),
+  faqs: z.array(z.object({
+    q: z.string(),
+    a: z.string(),
+  })).optional(),
+  howToSteps: z.array(z.object({
+    name: z.string(),
+    text: z.string(),
+  })).optional(),
 });
 
 const blog = defineCollection({

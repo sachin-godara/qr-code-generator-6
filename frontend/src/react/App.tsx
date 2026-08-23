@@ -385,10 +385,10 @@ function App() {
         {/* Desktop Sidebar */}
         <aside className="w-20 xl:w-72 border-r border-outline-variant bg-surface-container-lowest hidden lg:flex flex-col py-6 px-2 xl:px-4 gap-2 sticky top-16 h-[calc(100vh-4rem)] transition-all duration-300">
           <div className="mb-3 px-1 xl:px-2 flex flex-col items-center xl:items-start text-center xl:text-left overflow-hidden">
-            <h2 className="text-xs xl:text-sm font-semibold text-on-surface tracking-tight truncate w-full">
+            <p className="text-xs xl:text-sm font-semibold text-on-surface tracking-tight truncate w-full">
               <span className="xl:hidden">{t("studio.labels.tools") || "Tools"}</span>
               <span className="hidden xl:inline">{t("studio.labels.customization") || "Customization"}</span>
-            </h2>
+            </p>
             <p className="hidden xl:block text-xs text-on-surface-variant mt-0.5">{t("studio.labels.personalize") || "Personalize your QR code"}</p>
           </div>
           <div className="space-y-1 flex-1 overflow-y-auto overflow-x-hidden">
@@ -444,7 +444,7 @@ function App() {
                         {t("studio.labels.step", { current: meta.step, total: sidebarTabs.length }) || `Step ${meta.step} / ${sidebarTabs.length}`}
                       </span>
                     </div>
-                    <h2 className="text-xl font-semibold text-on-surface tracking-tight panel-enter" key={`h-${activeTab}`}>{meta.headline}</h2>
+                    <h3 className="text-xl font-semibold text-on-surface tracking-tight panel-enter" key={`h-${activeTab}`}>{meta.headline}</h3>
                     <p className="text-sm text-on-surface-variant mt-1 panel-enter" key={`s-${activeTab}`}>
                       {meta.sub}
                     </p>

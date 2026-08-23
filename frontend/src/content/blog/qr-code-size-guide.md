@@ -7,6 +7,17 @@ keywords: "qr code size, qr code minimum size, qr code dimensions, qr code print
 category: "guides"
 readingTime: 6
 featured: false
+faqs:
+  - q: "What is the minimum size for a QR code?"
+    a: "The absolute minimum size for reliable scanning is 2×2 cm (0.8×0.8 inches) for QR codes scanned at close range (less than 20 cm). However, 3×3 cm is recommended as a safe minimum for most print applications. Use the rule: minimum size = scanning distance ÷ 10."
+  - q: "How big should a QR code be on a business card?"
+    a: "On a standard business card (8.5×5.5 cm), the QR code should be at least 1.5×1.5 cm, ideally 2×2 cm. Place it in a corner with at least 3mm of white quiet zone on all sides to avoid scanning errors."
+  - q: "What size QR code do I need for a billboard or outdoor signage?"
+    a: "For a billboard scanned from a car at 10 meters: minimum 100×100 cm. For pedestrian signage at 2 meters: minimum 20×20 cm. The formula is: QR size = viewing distance (cm) ÷ 10. Always use SVG or PDF export for lossless scaling."
+  - q: "Does more data in a QR code require a larger print size?"
+    a: "Yes. A QR code encoding a short URL (20 characters) has fewer modules than one encoding a full vCard (300+ characters). More data = more modules = more detail = requires larger print size for the same scan distance. Keep URLs short to enable smaller print sizes."
+  - q: "What resolution should I use when printing a QR code?"
+    a: "Always print QR codes at 300 DPI minimum for professional print quality. For high-quality print (magazines, signage), use 600 DPI. GenerateCustomQR exports SVG (infinitely scalable) and PDF (300 DPI) — both are ideal for any print size without pixelation."
 ---
 
 One of the most common questions when creating a QR code is: *"How big does it need to be?"* The answer depends on where you're placing it, how far away people will scan it, and how much data the code contains.

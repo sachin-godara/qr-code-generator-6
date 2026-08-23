@@ -29,10 +29,12 @@ const metaMap: Record<Locale, {
   ctaTitle: string;
   ctaDesc: string;
   ctaBtn: string;
+  keywords?: string;
 }> = {
   en: {
     title: "Free Event QR Code Generator — Add to Calendar Instantly",
     desc: "Create an event QR code to add dates, times, and locations to Google Calendar, Apple Calendar, and Outlook with one scan. 100% free.",
+    keywords: "event qr code generator, calendar qr code, ical qr code, add to calendar qr code, meeting qr code, invite qr code",
     badge: "Add to Calendar",
     specsTitle: "Key Technical Capabilities",
     specs: [
@@ -77,6 +79,7 @@ const metaMap: Record<Locale, {
   es: {
     title: "Generador de Códigos QR para Eventos Gratis — Añadir al Calendario",
     desc: "Crea un código QR de evento para añadir fechas, horas y ubicaciones a Google Calendar, Apple Calendar y Outlook en 1 escaneo. 100% gratis.",
+    keywords: "generador de codigo qr para eventos, qr calendario, qr anadir a calendario, crear qr evento gratis, codigo qr ical",
     badge: "Añadir a la Agenda",
     specsTitle: "Capacidades Técnicas Clave",
     specs: [
@@ -121,6 +124,7 @@ const metaMap: Record<Locale, {
   pt: {
     title: "Gerador de QR Code para Eventos Grátis — Salvar no Calendário",
     desc: "Crie um QR code de evento para adicionar data, horário e local no Google Agenda, Apple Calendar e Outlook com 1 toque. 100% grátis.",
+    keywords: "gerador de qr code para eventos, qr code agenda, qr code salvar no calendario, criar qr code evento gratis",
     badge: "Salvar no Calendário",
     specsTitle: "Recursos Técnicos Avançados",
     specs: [
@@ -165,6 +169,7 @@ const metaMap: Record<Locale, {
   de: {
     title: "Kostenloser Event QR-Code Generator — Termine im Kalender speichern",
     desc: "Erstellen Sie einen Event-QR-Code, um Termine mit Ort und Uhrzeit direkt in Apple Kalender, Google Kalender und Outlook zu speichern. 100% kostenlos.",
+    keywords: "event qr code generator, kalender qr code, ical qr code erstellen, termin qr code kostenlos",
     badge: "Termin im Kalender",
     specsTitle: "Wichtige technische Merkmale",
     specs: [
@@ -236,6 +241,7 @@ const faqs = pageMeta.faqs;
   locale={locale}
   title={pageMeta.title}
   description={pageMeta.desc}
+  keywords={pageMeta.keywords}
   breadcrumbs={breadcrumbs}
   howTo={howTo}
   faqs={faqs}

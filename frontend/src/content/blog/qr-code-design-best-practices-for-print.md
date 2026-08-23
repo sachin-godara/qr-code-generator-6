@@ -9,6 +9,17 @@ image: "/og-image.png"
 imageAlt: "Well-designed QR code printed on a business card"
 readingTime: 6
 featured: false
+faqs:
+  - q: "What file format is best for printing QR codes?"
+    a: "SVG or PDF are the best formats for printing QR codes. Both are vector formats that scale infinitely without pixelation. GenerateCustomQR exports print-ready PDF at 300 DPI and lossless SVG — use these for any professional print job."
+  - q: "How much white space (quiet zone) does a QR code need?"
+    a: "A QR code requires a quiet zone of at least 4 modules (cells) of white space on all four sides. In practical print terms, leave at least 3mm of white space around the QR code when placing it on a printed design."
+  - q: "Can I print a QR code on a dark background?"
+    a: "Yes, with care. The QR code modules must contrast with the background at 4.5:1 ratio or higher. For dark backgrounds, invert the colors (light modules on dark background) or create a white 'card' container behind the QR code to ensure scannability."
+  - q: "What error correction level should I use for printed QR codes?"
+    a: "Use Level H (30% error correction) for printed QR codes that will include a logo or may sustain physical damage. Use Level Q (25%) for clean prints without logos. Level M or L reduce code density but are only safe for pristine, undamaged applications."
+  - q: "Why does my printed QR code not scan even though it works on screen?"
+    a: "Common print scanning failures: (1) Code printed too small — ensure minimum 2cm. (2) Low contrast after printing — colors shift during printing; always test with a physical sample. (3) Reflective lamination causing glare — use matte finish. (4) Image too compressed — always use SVG/PDF, not JPG."
 ---
 
 A QR code that looks great on screen can fail completely in print. Wrong size, bad contrast, low resolution — any of these mistakes means lost scans and wasted printing costs.

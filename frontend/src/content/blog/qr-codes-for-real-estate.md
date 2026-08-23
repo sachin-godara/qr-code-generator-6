@@ -7,6 +7,17 @@ keywords: "qr code real estate, qr code for property listing, real estate qr cod
 category: "use-cases"
 readingTime: 6
 featured: false
+faqs:
+  - q: "How do real estate agents use QR codes on yard signs?"
+    a: "Real estate agents place QR codes on 'For Sale' yard signs that link directly to the property's MLS listing page or virtual tour. Drive-by buyers scan the code from their car window or on foot to instantly access listing photos, price, square footage, and agent contact information."
+  - q: "What should a real estate QR code link to?"
+    a: "A real estate QR code should link to: (1) The full MLS listing page with photos and details, (2) A 3D virtual tour (Matterport, etc.), (3) A landing page with a contact form and agent vCard, or (4) A video walkthrough on YouTube. Avoid linking to homepage-level URLs that require additional navigation."
+  - q: "How long does a real estate QR code remain valid after a property is sold?"
+    a: "Static QR codes (like those from GenerateCustomQR) work as long as the destination URL stays live. Once a listing is marked sold or removed from MLS, the URL may return a 404 error. Best practice: link to an agent's personal landing page that can be updated, or to a Google Maps pin of the property address."
+  - q: "What size should a real estate QR code be on a yard sign?"
+    a: "On a standard 24×18 inch yard sign, print the QR code at minimum 4×4 inches (10×10 cm) to allow scanning from 1-2 meters. Place it in the bottom-right corner with a clear CTA like 'Scan for Virtual Tour'. Use SVG or PDF export for lossless scaling."
+  - q: "Can I include my realtor headshot or brokerage logo in the QR code?"
+    a: "Yes. GenerateCustomQR supports logo embedding inside the QR code with automatic error correction adjustment (Level H). Place your brokerage logo or personal headshot in the center for instant brand recognition while maintaining full scannability."
 ---
 
 Real estate is one of the fastest-growing sectors for QR code adoption. From yard signs to open house flyers, QR codes bridge the gap between physical marketing and digital property information.

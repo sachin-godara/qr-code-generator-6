@@ -29,10 +29,12 @@ const metaMap: Record<Locale, {
   ctaTitle: string;
   ctaDesc: string;
   ctaBtn: string;
+  keywords?: string;
 }> = {
   en: {
     title: "URL to QR Code Generator — Convert Links Free",
     desc: "Convert any website link or URL to a custom QR code for free. Add your logo, custom colors, and action frames. Free PNG, SVG, and PDF downloads.",
+    keywords: "url to qr code, link to qr code generator, website qr code generator, create qr code from link, free link qr code",
     badge: "#1 URL QR Solution",
     specsTitle: "Key Technical Capabilities",
     specs: [
@@ -77,6 +79,7 @@ const metaMap: Record<Locale, {
   es: {
     title: "Generador de Códigos QR para URL — Convertir Enlaces Gratis",
     desc: "Convierte cualquier enlace web o URL en un código QR personalizado gratis. Añade logotipo, colores y marcos. Descarga en PNG, SVG y PDF.",
+    keywords: "convertir url a qr, generador de codigo qr para enlaces, crear qr de pagina web, link a codigo qr gratis",
     badge: "Solución QR para Enlaces",
     specsTitle: "Capacidades Técnicas Clave",
     specs: [
@@ -121,6 +124,7 @@ const metaMap: Record<Locale, {
   pt: {
     title: "Gerador de QR Code para URL — Converter Links Grátis",
     desc: "Converta qualquer link de site ou URL em um QR code personalizado gratuitamente. Adicione logo, cores e molduras com download em PNG, SVG e PDF.",
+    keywords: "converter link em qr code, gerador de qr code para site, criar qr code de link gratis, transformar url em qr code",
     badge: "Solução QR para Links",
     specsTitle: "Recursos Técnicos Avançados",
     specs: [
@@ -165,6 +169,7 @@ const metaMap: Record<Locale, {
   de: {
     title: "URL zu QR-Code Generator — Weblinks kostenlos umwandeln",
     desc: "Wandeln Sie jeden Weblink oder jede URL kostenlos in einen individuellen QR-Code um. Mit Logo, Farben und Rahmen als PNG, SVG und PDF.",
+    keywords: "url zu qr code generator, link in qr code umwandeln, website qr code erstellen, link qr-code kostenlos",
     badge: "Beste QR-Lösung für Weblinks",
     specsTitle: "Wichtige technische Merkmale",
     specs: [
@@ -234,6 +239,7 @@ const howTo = {
   locale={locale}
   title={pageMeta.title}
   description={pageMeta.desc}
+  keywords={pageMeta.keywords}
   breadcrumbs={breadcrumbs}
   howTo={howTo}
   faqs={pageMeta.faqs}

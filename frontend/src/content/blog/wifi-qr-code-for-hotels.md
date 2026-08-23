@@ -7,6 +7,26 @@ keywords: "wifi qr code hotel, airbnb wifi qr code, hotel wifi qr code, guest ne
 category: "use-cases"
 readingTime: 6
 featured: false
+faqs:
+  - q: "How does a WiFi QR code work in hotels?"
+    a: "A WiFi QR code encodes your network name (SSID), password, and security type into a standard WIFI: string. When a guest scans it with their smartphone camera, the device automatically shows a 1-tap connection prompt — no typing required."
+  - q: "Is it safe to display a WiFi QR code in public?"
+    a: "Yes, with precautions. Create a dedicated guest WiFi network separate from your main network. Use WPA2 or WPA3 security. Rotate passwords periodically (you'll need a new QR code each time). This limits exposure if the password is compromised."
+  - q: "Do WiFi QR codes work on iPhone and Android?"
+    a: "Yes. iPhone camera (iOS 11+) and Android camera (Android 10+) both natively recognize WiFi QR codes and show a 1-tap connection prompt. No app download is needed."
+  - q: "What should I do when I change my WiFi password?"
+    a: "You'll need to generate a new WiFi QR code with the updated credentials. Since it's free and instant with GenerateCustomQR, simply regenerate and reprint the code whenever you change your password."
+  - q: "What size should I print a hotel WiFi QR code?"
+    a: "For bedside cards, print at minimum 4×4 cm. For lobby signage or window displays visible from 1-2 meters, use 8×8 cm or larger. Always download in SVG or PDF format for crisp, lossless scaling."
+howToSteps:
+  - name: "Enter your WiFi credentials"
+    text: "Go to GenerateCustomQR and select the WiFi content type. Enter your exact network SSID (name), password, and security type (WPA2 is most common)."
+  - name: "Customize for your property brand"
+    text: "Add your hotel logo, choose elegant dot styles, and apply your brand colors to make the QR code match your decor and welcome materials."
+  - name: "Download in print-ready format"
+    text: "Export as SVG or PDF for professional printing. These vector formats scale from business card size to lobby signage without losing quality."
+  - name: "Place in key guest areas"
+    text: "Display in guest rooms (bedside table, desk), lobby, restaurant, and elevator panels. Frame in acrylic stands using matte finish to prevent glare."
 ---
 
 Every hotel guest and Airbnb visitor asks the same question: *"What's the WiFi password?"* A WiFi QR code eliminates this friction entirely — guests scan once and connect instantly.

@@ -13,9 +13,10 @@ interface Props {
   heading: string;
   lastUpdated?: string;
   icon?: string;
+  faqs?: { q: string; a: string }[];
 }
 
-const { locale, title, description, keywords, breadcrumbs, heading, lastUpdated, icon } = Astro.props;
+const { locale, title, description, keywords, breadcrumbs, heading, lastUpdated, icon, faqs } = Astro.props;
 ---
 <BaseLayout
   locale={locale}
@@ -23,6 +24,7 @@ const { locale, title, description, keywords, breadcrumbs, heading, lastUpdated,
   description={description}
   keywords={keywords}
   breadcrumbs={breadcrumbs}
+  faqs={faqs}
 >
   <style is:global>
     @import '../styles/global.css';

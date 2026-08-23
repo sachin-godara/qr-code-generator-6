@@ -9,6 +9,17 @@ image: "/og-image.png"
 imageAlt: "Comparison of static and dynamic QR codes side by side"
 readingTime: 5
 featured: true
+faqs:
+  - q: "What is a static QR code?"
+    a: "A static QR code encodes data (like a URL, contact info, or WiFi credentials) directly into the QR code image at creation time. The content cannot be changed after the code is printed. It works forever with no subscription required."
+  - q: "What is a dynamic QR code?"
+    a: "A dynamic QR code stores a short redirect URL in the QR pattern. The short URL points to a server that redirects to your real destination, which you can update at any time from a dashboard. Dynamic codes require a paid subscription service."
+  - q: "Do static QR codes expire?"
+    a: "No. Static QR codes never expire. They are self-contained images — once created and printed, they will function forever regardless of the tool used to create them, with no ongoing service or payment required."
+  - q: "Which type of QR code is better for privacy?"
+    a: "Static QR codes are better for privacy. Dynamic QR codes route scans through a third-party tracking server that logs when, where, and how often each code is scanned. Static codes have no server involvement — scans are completely anonymous."
+  - q: "Can I change the destination URL of a static QR code?"
+    a: "No. The URL in a static QR code is permanently encoded into the image. If you need to change the destination, you must create a new QR code. For content that changes frequently, consider using a landing page URL you control as the encoded link."
 ---
 
 If you've ever searched for a QR code generator, you've probably seen the terms "static" and "dynamic" thrown around. But what do they actually mean — and which one should you use?

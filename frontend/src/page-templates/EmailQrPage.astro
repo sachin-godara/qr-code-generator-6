@@ -29,10 +29,12 @@ const metaMap: Record<Locale, {
   ctaTitle: string;
   ctaDesc: string;
   ctaBtn: string;
+  keywords?: string;
 }> = {
   en: {
     title: "Free Email QR Code Generator — Pre-filled Email Links",
     desc: "Create a free email QR code with pre-filled recipient, subject, and message. Ideal for customer support, feedback forms, and instant inquiries.",
+    keywords: "email qr code generator, email qr code, mailto qr code, create email qr code free, email link to qr code",
     badge: "Pre-filled Email Links",
     specsTitle: "Key Technical Capabilities",
     specs: [
@@ -77,6 +79,7 @@ const metaMap: Record<Locale, {
   es: {
     title: "Generador de Códigos QR para Correo Gratis — Asunto y Mensaje",
     desc: "Crea un código QR de correo electrónico gratis con destinatario, asunto y mensaje predefinidos. Ideal para atención al cliente y soporte.",
+    keywords: "generador de codigo qr para email, qr para correo electronico, codigo qr mailto, crear qr email gratis",
     badge: "Enlaces de Correo Listos",
     specsTitle: "Capacidades Técnicas Clave",
     specs: [
@@ -121,6 +124,7 @@ const metaMap: Record<Locale, {
   pt: {
     title: "Gerador de QR Code para E-mail Grátis — Enviar Mensagens Rápidas",
     desc: "Crie um QR code de e-mail gratuito com destinatário, assunto e mensagem preenchidos. Ideal para suporte ao cliente e formulários de contato.",
+    keywords: "gerador de qr code para email, qr code email, criar qr code email gratis, qr code mailto",
     badge: "E-mail Pré-preenchido",
     specsTitle: "Recursos Técnicos Avançados",
     specs: [
@@ -165,6 +169,7 @@ const metaMap: Record<Locale, {
   de: {
     title: "Kostenloser E-Mail QR-Code Generator — Sofortnachrichten",
     desc: "Erstellen Sie einen E-Mail QR-Code mit vorausgefüllter Adresse, Betreffzeile und Nachricht. Ideal für Kundenservice und Feedback.",
+    keywords: "e-mail qr code generator, mailto qr-code erstellen, qr code fuer email, email qr code kostenlos",
     badge: "Vorausgefüllte E-Mail",
     specsTitle: "Wichtige technische Merkmale",
     specs: [
@@ -236,6 +241,7 @@ const faqs = pageMeta.faqs;
   locale={locale}
   title={pageMeta.title}
   description={pageMeta.desc}
+  keywords={pageMeta.keywords}
   breadcrumbs={breadcrumbs}
   howTo={howTo}
   faqs={faqs}

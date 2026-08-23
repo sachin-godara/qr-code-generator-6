@@ -9,6 +9,26 @@ image: "/og-image.png"
 imageAlt: "Business card with a custom branded QR code"
 readingTime: 6
 featured: false
+faqs:
+  - q: "What type of QR code is best for a business card?"
+    a: "A vCard QR code is the best choice for business cards. It encodes your full contact details (name, phone, email, company, address) and lets people save them directly to their phone's contacts with a single tap — no typing required."
+  - q: "What is the minimum size for a QR code on a business card?"
+    a: "The minimum recommended size for a business card QR code is 1.5×1.5 cm (about 0.6×0.6 inches). This ensures reliable scanning by modern smartphone cameras. Aim for 2×2 cm if space allows."
+  - q: "Does a QR code on a business card expire?"
+    a: "No. vCard QR codes generated with GenerateCustomQR are static — they encode data directly into the image and never expire. There's no subscription or server dependency."
+  - q: "Can I add my brand logo inside the QR code on my business card?"
+    a: "Yes. GenerateCustomQR lets you center your company logo inside any QR code. The generator automatically uses Level H error correction to maintain full scannability even with 30% of the code covered."
+  - q: "Where should I place the QR code on my business card?"
+    a: "Place the QR code in the bottom-right or bottom-left corner of your business card with at least 3mm of white space around it (the quiet zone). Avoid placing it on dark or patterned backgrounds."
+howToSteps:
+  - name: "Create your vCard QR code"
+    text: "Go to GenerateCustomQR and select the vCard type. Fill in your name, phone number, email, job title, and company name."
+  - name: "Customize design to match your brand"
+    text: "Choose dot styles, colors, and eye frame patterns that match your business card design. Add your logo with automatic background removal."
+  - name: "Download in high resolution"
+    text: "Export in SVG (vector) or PDF (300 DPI) format for sending to your print shop, or PNG at 4096px for digital use."
+  - name: "Place on your business card layout"
+    text: "In your design software (Canva, Illustrator, InDesign), place the QR code in a corner with at least 3mm white quiet zone on all sides."
 ---
 
 A QR code on your business card transforms a piece of paper into an interactive digital experience. Instead of manually typing your phone number, email, or website, contacts simply scan and save — instantly, with zero errors.

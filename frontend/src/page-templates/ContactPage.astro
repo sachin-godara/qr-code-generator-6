@@ -31,10 +31,12 @@ const metaMap: Record<Locale, {
   responseTimeDesc: string;
   faqTitle: string;
   faqs: Array<{ q: string; a: string }>;
+  keywords?: string;
 }> = {
   en: {
     title: "Contact Us — GenerateCustomQR Help & Feedback",
     desc: "Get in touch with the GenerateCustomQR team for support, feature requests, bug reports, and business inquiries.",
+    keywords: "contact generatecustomqr, qr code generator support, qr code feedback, generatecustomqr help, report qr code bug",
     heading: "Get in Touch",
     subtitle: "Have a question, found a bug, or want to request a new feature? We'd love to hear from you. Fill out the form below and we'll get back to you as soon as possible.",
     formName: "Name",
@@ -74,6 +76,7 @@ const metaMap: Record<Locale, {
   es: {
     title: "Contacto y Soporte — GenerateCustomQR",
     desc: "Ponte en contacto con el equipo de GenerateCustomQR para soporte técnico, sugerencias y consultas comerciales.",
+    keywords: "contacto generatecustomqr, soporte generador qr, ayuda generador codigos qr, reportar error qr",
     heading: "Ponte en Contacto",
     subtitle: "¿Tienes alguna pregunta, sugerencia o necesitas ayuda? Escríbenos y te responderemos lo antes posible.",
     formName: "Nombre",
@@ -113,6 +116,7 @@ const metaMap: Record<Locale, {
   pt: {
     title: "Contato e Suporte — GenerateCustomQR",
     desc: "Entre em contato com a equipe GenerateCustomQR para suporte, sugestões de novos recursos e dúvidas gerais.",
+    keywords: "contato generatecustomqr, suporte gerador qr, ajuda gerador de qr code, reportar problema qr",
     heading: "Fale Conosco",
     subtitle: "Dúvidas, sugestões de melhorias ou encontrou um erro? Preencha o formulário e responderemos o mais rápido possível.",
     formName: "Nome",
@@ -152,6 +156,7 @@ const metaMap: Record<Locale, {
   de: {
     title: "Kontakt & Support — GenerateCustomQR",
     desc: "Kontaktieren Sie das GenerateCustomQR-Team für Support, Feature-Anfragen, Fehlermeldungen und geschäftliche Anfragen.",
+    keywords: "kontakt generatecustomqr, qr code generator support, hilfe qr code ersteller, fehler melden qr",
     heading: "Kontakt aufnehmen",
     subtitle: "Haben Sie Fragen, Feedback oder Anregungen? Füllen Sie das Formular aus und wir melden uns schnellstmöglich bei Ihnen.",
     formName: "Name",
@@ -201,7 +206,9 @@ const breadcrumbs = [
   locale={locale}
   title={pageMeta.title}
   description={pageMeta.desc}
+  keywords={pageMeta.keywords}
   breadcrumbs={breadcrumbs}
+  faqs={pageMeta.faqs}
   heading={pageMeta.heading}
   icon="mail"
 >

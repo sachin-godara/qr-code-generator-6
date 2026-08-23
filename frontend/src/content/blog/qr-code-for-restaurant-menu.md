@@ -9,6 +9,26 @@ image: "/og-image.png"
 imageAlt: "QR code for restaurant menu displayed on a table tent"
 readingTime: 7
 featured: true
+faqs:
+  - q: "Do restaurant QR code menus expire?"
+    a: "No. Static QR codes generated with GenerateCustomQR never expire. They encode the URL directly into the image — as long as your menu URL stays live, the QR code works forever without any subscription."
+  - q: "What size should a restaurant QR code be for table tents?"
+    a: "For table tents, print QR codes at least 4×4 cm (about 1.5×1.5 inches). The absolute minimum for reliable scanning is 2×2 cm. Use SVG or PDF export from GenerateCustomQR for lossless scaling at any print size."
+  - q: "Can I add my restaurant logo to a menu QR code?"
+    a: "Yes. GenerateCustomQR lets you center your restaurant logo inside the QR code. Use error correction level H (30%) so the logo occupies up to 30% of the code area without affecting scannability."
+  - q: "Which QR code format is best for restaurant printing?"
+    a: "Use SVG or PDF format for restaurant printing. Both are vector formats that scale to any size without pixelation, ensuring crisp output at 300 DPI on table tents, menus, and window decals."
+  - q: "What if a customer's phone can't scan my QR code?"
+    a: "Test your code with both iPhone Camera (iOS 11+) and Google Lens before printing. If scans fail, increase the QR code size, improve contrast (dark dots on white background), or reduce logo size to improve scannability."
+howToSteps:
+  - name: "Prepare your menu online"
+    text: "Upload your menu to a shareable URL — use Google Sites, your restaurant website, or host a PDF on Google Drive with public viewing enabled."
+  - name: "Generate your QR code"
+    text: "Go to GenerateCustomQR, select URL type, paste your menu link, then customize dot style, colors, and add your restaurant logo."
+  - name: "Download in SVG or PDF"
+    text: "Export in SVG or PDF format for lossless print quality. These vector formats scale to any size without pixelation."
+  - name: "Print and place on tables"
+    text: "Print at minimum 4×4 cm on table tents, vinyl stickers, or acrylic stands. Place at seated eye level for maximum scan rates."
 ---
 
 QR code menus have become the new standard for restaurants worldwide. Whether you run a fine-dining establishment, a cozy café, or a quick-service counter, replacing paper menus with scannable QR codes offers real benefits: lower printing costs, instant updates, and a modern dining experience.

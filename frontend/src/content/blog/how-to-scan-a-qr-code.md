@@ -7,6 +7,24 @@ keywords: "how to scan qr code, scan qr code iphone, scan qr code android, qr co
 category: "guides"
 readingTime: 5
 featured: true
+faqs:
+  - q: "Do I need to download an app to scan QR codes?"
+    a: "No app is needed on modern smartphones. iPhones running iOS 11 or later and Android phones running Android 10 or later can scan QR codes natively using the built-in Camera app. You can also use our free web-based scanner at generatecustomqr.com/qr-code-scanner."
+  - q: "How do I scan a QR code on an iPhone?"
+    a: "Open the default Camera app (not the QR Code scanner in Control Center), point it at the QR code for 1-2 seconds, then tap the yellow notification banner that appears at the top of the screen. No need to press the shutter button."
+  - q: "How do I scan a QR code on Android?"
+    a: "Open your Camera app and point it at the QR code. On most Android phones running Android 10+, a banner or popup will appear automatically. If not, open Google Lens by long-pressing the home button or from the camera icon in Google Photos."
+  - q: "Can I scan a QR code from a screenshot or saved image?"
+    a: "Yes. Go to generatecustomqr.com/qr-code-scanner, click the Upload Image tab, and select your screenshot or saved image file. Alternatively, press Ctrl+V (Windows) or Cmd+V (Mac) anywhere on the scanner page to paste from clipboard."
+  - q: "Why won't my phone scan a QR code?"
+    a: "Common causes: (1) The QR code is too small — move closer or zoom in. (2) Poor lighting — try in better light or enable your flashlight. (3) Low contrast — if the code has unusual colors, use a third-party reader. (4) Screen glare — tilt your phone slightly."
+howToSteps:
+  - name: "Open your native Camera app"
+    text: "On iPhone, open the standard Camera app. On Android, open your Camera app (not a third-party camera). Do not press the shutter button."
+  - name: "Point camera at the QR code"
+    text: "Hold the camera steady 15-30 cm (6-12 inches) from the QR code. The camera will automatically focus within 1-2 seconds."
+  - name: "Tap the notification banner"
+    text: "On iPhone, tap the yellow banner at the top. On Android, tap the popup or link that appears. This opens the QR code destination automatically."
 ---
 
 QR codes are everywhere — on restaurant menus, product packaging, event tickets, and business cards. But how do you actually scan one? This guide covers every method across iPhone, Android, and desktop devices.

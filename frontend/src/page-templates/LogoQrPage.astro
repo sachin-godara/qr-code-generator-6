@@ -29,10 +29,12 @@ const metaMap: Record<Locale, {
   ctaTitle: string;
   ctaDesc: string;
   ctaBtn: string;
+  keywords?: string;
 }> = {
   en: {
     title: "QR Code with Logo Generator — Custom Branded QR Codes",
     desc: "Create custom QR codes with your logo embedded in the center for free. Automatically balances error correction for 100% reliable scanning.",
+    keywords: "qr code with logo, qr code logo generator, custom qr code with logo free, add logo to qr code, branded qr code generator",
     badge: "Custom Logo Embedding",
     specsTitle: "Key Technical Capabilities",
     specs: [
@@ -77,6 +79,7 @@ const metaMap: Record<Locale, {
   es: {
     title: "Generador de Códigos QR con Logo — Personaliza tu Marca",
     desc: "Crea códigos QR con el logo de tu empresa en el centro gratis. Ajuste automático de corrección de error para un escaneo 100% fiable.",
+    keywords: "generador de codigo qr con logo, crear codigo qr con logo gratis, personalizar qr con logotipo, codigo qr con imagen en el centro",
     badge: "Inserción de Logotipo",
     specsTitle: "Capacidades Técnicas Clave",
     specs: [
@@ -121,6 +124,7 @@ const metaMap: Record<Locale, {
   pt: {
     title: "Gerador de QR Code com Logotipo Grátis — Marca Personalizada",
     desc: "Crie QR codes profissionais com o logotipo da sua empresa no centro. Correção de erro inteligente para leitura 100% precisa em qualquer aparelho.",
+    keywords: "gerador de qr code com logo, criar qr code com logotipo gratis, qr code personalizado com imagem, colocar logo no qr code",
     badge: "Logotipo Personalizado",
     specsTitle: "Recursos Técnicos Avançados",
     specs: [
@@ -165,6 +169,7 @@ const metaMap: Record<Locale, {
   de: {
     title: "QR-Code mit Logo Generator — Eigenes Firmenlogo einbinden",
     desc: "Erstellen Sie kostenlose QR-Codes mit Ihrem Logo im Zentrum. Automatische Fehlerkorrektur auf Level H für 100% zuverlässige Scans.",
+    keywords: "qr code mit logo erstellen, qr code generator mit logo kostenlos, eigener qr code mit bild, gebrandeter qr-code",
     badge: "Logo-Integration",
     specsTitle: "Wichtige technische Merkmale",
     specs: [
@@ -236,6 +241,7 @@ const faqs = pageMeta.faqs;
   locale={locale}
   title={pageMeta.title}
   description={pageMeta.desc}
+  keywords={pageMeta.keywords}
   breadcrumbs={breadcrumbs}
   howTo={howTo}
   faqs={faqs}

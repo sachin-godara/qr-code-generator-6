@@ -23,10 +23,12 @@ const metaMap: Record<Locale, {
   perks: string[];
   faqsTitle: string;
   faqs: Array<{ q: string; a: string }>;
+  keywords?: string;
 }> = {
   en: {
     title: "100% Free QR Code Generator — No Signup & No Watermark",
     desc: "Generate unlimited custom QR codes for free with no account, no expiration, and no watermarks. Full access to 39 dot styles, logos, frames, and 8K downloads.",
+    keywords: "free qr code generator, free qr code maker, qr code generator no watermark, qr code generator no signup, unlimited free qr codes",
     badge: "100% Free Forever",
     compTitle: "How We Compare to Paid Services",
     compSub: "See why creators and businesses switch to GenerateCustomQR.",
@@ -70,6 +72,7 @@ const metaMap: Record<Locale, {
   es: {
     title: "Generador de Códigos QR 100% Gratis — Sin Registro ni Marcas",
     desc: "Genera códigos QR personalizados ilimitados gratis, sin registro, sin caducidad y sin marcas de agua. 39 estilos de puntos, logos y descargas en 8K.",
+    keywords: "generador de codigos qr gratis, crear qr gratis sin marca de agua, creador de codigos qr gratis sin registro, generador qr ilimitado",
     badge: "100% Gratis para Siempre",
     compTitle: "Comparativa con Servicios de Pago",
     compSub: "Descubre por qué miles de usuarios eligen GenerateCustomQR.",
@@ -113,6 +116,7 @@ const metaMap: Record<Locale, {
   pt: {
     title: "Gerador de QR Code 100% Grátis — Sem Cadastro e Sem Marca d'Água",
     desc: "Gere códigos QR personalizados ilimitados gratuitamente, sem expiração e sem marcas. 39 estilos de pontos, logos, molduras e exportação em 8K.",
+    keywords: "gerador de qr code gratis, criar qr code gratuito sem marca d'agua, gerador qr code sem cadastro, qr code gratis para sempre",
     badge: "100% Grátis para Sempre",
     compTitle: "Comparativo com Serviços Pagos",
     compSub: "Entenda por que empresas e profissionais migram para o GenerateCustomQR.",
@@ -156,6 +160,7 @@ const metaMap: Record<Locale, {
   de: {
     title: "100% Kostenloser QR-Code Generator — Ohne Anmeldung & Wasserzeichen",
     desc: "Erstellen Sie unbegrenzt individuelle QR-Codes kostenlos. Ohne Registrierung, ohne Ablaufdatum und ohne Wasserzeichen. PNG, SVG und PDF Downloads.",
+    keywords: "kostenloser qr code generator, qr code ersteller ohne wasserzeichen, qr code generator ohne anmeldung, gratis qr-codes erstellen",
     badge: "Dauerhaft 100% Kostenlos",
     compTitle: "Vergleich mit kostenpflichtigen Anbietern",
     compSub: "Sehen Sie, warum Kreative und Unternehmen auf GenerateCustomQR setzen.",
@@ -231,6 +236,7 @@ const faqs = pageMeta.faqs;
   locale={locale}
   title={pageMeta.title}
   description={pageMeta.desc}
+  keywords={pageMeta.keywords}
   breadcrumbs={breadcrumbs}
   howTo={howTo}
   faqs={faqs}

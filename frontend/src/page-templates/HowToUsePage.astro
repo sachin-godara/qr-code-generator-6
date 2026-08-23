@@ -53,10 +53,12 @@ const metaMap: Record<Locale, {
   ctaDesc: string;
   ctaStartBtn: string;
   ctaReadAgain: string;
+  keywords?: string;
 }> = {
   en: {
     title: "How to Make a QR Code — Free Step-by-Step Guide",
     desc: "Learn how to make a QR code for free in 5 simple steps. Complete guide to creating stunning custom QR codes, adding logos, and ensuring scannability.",
+    keywords: "how to make a qr code, create qr code guide, how to generate qr code, step by step qr code, how to add logo to qr code",
     heroBadge: "Complete Guide — Updated 2026",
     heroH1Pre: "Master",
     heroH1Accent: " QR Code Maker",
@@ -100,6 +102,7 @@ const metaMap: Record<Locale, {
   es: {
     title: "Cómo Crear un Código QR — Guía Paso a Paso Gratis",
     desc: "Aprende a crear un código QR gratis en 5 sencillos pasos. Guía completa para diseñar códigos QR personalizados con logos y marcos.",
+    keywords: "como hacer un codigo qr, guia para crear codigo qr, como generar codigos qr gratis, tutorial codigo qr paso a paso",
     heroBadge: "Guía Completa — Actualizada 2026",
     heroH1Pre: "Domina",
     heroH1Accent: " el Creador de QR",
@@ -143,6 +146,7 @@ const metaMap: Record<Locale, {
   pt: {
     title: "Como Criar um QR Code — Guia Completo e Gratuito",
     desc: "Aprenda a criar QR codes gratuitos em 5 passos simples. Guia definitivo com logotipos, molduras e leitura 100% garantida.",
+    keywords: "como criar um qr code, como fazer qr code gratis, guia passo a passo qr code, tutorial para gerar qr code",
     heroBadge: "Guia Completo — Atualizado 2026",
     heroH1Pre: "Domine o",
     heroH1Accent: " Gerador de QR Code",
@@ -174,7 +178,7 @@ const metaMap: Record<Locale, {
     shortcutsSub: "Acelere seu fluxo de trabalho com atalhos de teclado no estúdio gerador.",
     shortcutsNote: "O histórico de edições permanece ativo durante toda a sua sessão.",
     faqBadge: "Dúvidas Comuns",
-    faqHeading: "Perguntas Frequentes",
+    faqHeading: "Perguntas Frecuentes",
     faqSub: "Respostas transparentes para todas as suas dúvidas sobre códigos QR.",
     ctaBadge: "Grátis — Sem cadastro — Sem marcas d'água",
     ctaH2Pre: "Pronto para Criar",
@@ -186,6 +190,7 @@ const metaMap: Record<Locale, {
   de: {
     title: "So erstellen Sie einen QR-Code — Schritt-für-Schritt-Anleitung",
     desc: "Erfahren Sie, wie Sie kostenlose QR-Codes in 5 einfachen Schritten erstellen. Vollständige Anleitung mit Logos, Rahmen und Profi-Tipps.",
+    keywords: "wie erstelle ich einen qr code, qr code erstellen anleitung, schritt fuer schritt qr code generieren, qr code anleitung kostenlos",
     heroBadge: "Komplette Anleitung — Aktualisiert 2026",
     heroH1Pre: "Meistern Sie den",
     heroH1Accent: " QR-Code-Generator",
@@ -701,6 +706,7 @@ const howTo = {
   locale={locale}
   title={meta.title}
   description={meta.desc}
+  keywords={meta.keywords}
   breadcrumbs={breadcrumbs}
   howTo={howTo}
   faqs={faqs}
@@ -793,7 +799,7 @@ const howTo = {
     <h1 class="htu-reveal delay-1 text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.08] mb-6 max-w-4xl">
       {meta.heroH1Pre}
       <span class="htu-accent-text">{meta.heroH1Accent}</span>
-      <br />{meta.heroH1Post}
+      <br /> {meta.heroH1Post}
     </h1>
 
     <p class="htu-reveal delay-2 text-base sm:text-xl text-on-surface-variant max-w-2xl mb-10 leading-relaxed">
@@ -1106,7 +1112,7 @@ const howTo = {
       </div>
       <h2 class="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
         {meta.ctaH2Pre}<br/>
-        <span style="color: #a78bfa;">{meta.ctaH2Accent}</span>
+        <span style="color: #a78bfa;"> {meta.ctaH2Accent}</span>
       </h2>
       <p class="text-white/70 text-base sm:text-lg mb-10 max-w-xl mx-auto leading-relaxed">
         {meta.ctaDesc}

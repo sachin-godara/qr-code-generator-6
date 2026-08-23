@@ -9,10 +9,11 @@ interface Props {
 
 const { locale } = Astro.props;
 
-const metaMap: Record<Locale, { title: string; desc: string; heading: string; s1Title: string; s1Text: string; s2Title: string; s2Text: string; s3Title: string; s3Text: string; s4Title: string; s4Text: string; s5Title: string; s5Text: string; lastUpdated: string }> = {
+const metaMap: Record<Locale, { title: string; desc: string; heading: string; keywords?: string; s1Title: string; s1Text: string; s2Title: string; s2Text: string; s3Title: string; s3Text: string; s4Title: string; s4Text: string; s5Title: string; s5Text: string; lastUpdated: string }> = {
   en: {
     title: "Terms and Conditions — GenerateCustomQR",
     desc: "Terms of service and usage conditions for GenerateCustomQR. Free for both personal and commercial projects with zero restrictions.",
+    keywords: "qr code generator terms, commercial use qr code license, free qr code terms of service",
     heading: "Terms & Conditions",
     lastUpdated: "January 1, 2026",
     s1Title: "1. Acceptance of Terms",
@@ -29,6 +30,7 @@ const metaMap: Record<Locale, { title: string; desc: string; heading: string; s1
   es: {
     title: "Términos y Condiciones — GenerateCustomQR",
     desc: "Términos del servicio y condiciones de uso de GenerateCustomQR. Gratis para proyectos personales y comerciales sin restricciones.",
+    keywords: "terminos y condiciones generador qr, licencia comercial qr gratis, terminos de servicio qr",
     heading: "Términos y Condiciones",
     lastUpdated: "1 de Enero de 2026",
     s1Title: "1. Aceptación de los Términos",
@@ -45,6 +47,7 @@ const metaMap: Record<Locale, { title: string; desc: string; heading: string; s1
   pt: {
     title: "Termos de Uso — GenerateCustomQR",
     desc: "Termos de serviço e condições de uso do GenerateCustomQR. Gratuito para uso pessoal e comercial sem restrições.",
+    keywords: "termos de uso gerador qr code, licenca comercial qr code gratis, termos de servico qr",
     heading: "Termos e Condições",
     lastUpdated: "1 de Janeiro de 2026",
     s1Title: "1. Aceitação dos Termos",
@@ -60,19 +63,20 @@ const metaMap: Record<Locale, { title: string; desc: string; heading: string; s1
   },
   de: {
     title: "Nutzungsbedingungen — GenerateCustomQR",
-    desc: "Nutzungsbedingungen für GenerateCustomQR. Kostenlos für persönliche und kommerzielle Projekte ohne Einschränkungen.",
+    desc: "Nutzungsbedingungen und Lizenzbestimmungen von GenerateCustomQR. Kostenlos für private und gewerbliche Nutzung ohne Einschränkungen.",
+    keywords: "nutzungsbedingungen qr code generator, kommerzielle nutzung qr code lizenz, agb qr code",
     heading: "Nutzungsbedingungen",
     lastUpdated: "1. Januar 2026",
-    s1Title: "1. Annahme der Bedingungen",
-    s1Text: "Durch die Nutzung von GenerateCustomQR erklären Sie sich mit diesen Nutzungsbedingungen einverstanden.",
-    s2Title: "2. Kostenlose kommerzielle Lizenz",
-    s2Text: "Alle mit GenerateCustomQR erstellten QR-Codes sind sowohl für private als auch für kommerzielle Zwecke zu 100% kostenlos. Sie besitzen alle Rechte an den generierten Dateien und dürfen diese lizenzfrei drucken und veröffentlichen.",
-    s3Title: "3. Zulässige Nutzung & Verbotene Inhalte",
-    s3Text: "Die Erstellung von QR-Codes für betrügerische Zwecke (Phishing, Schadsoftware, Täuschung) oder rechtswidrige Inhalte ist strengstens untersagt.",
-    s4Title: "4. Gewährleistungsausschluss",
-    s4Text: "Der Dienst wird 'wie besehen' bereitgestellt. Obwohl unsere QR-Engine nach ISO/IEC 18004 standardkonform rendert, empfehlen wir einen Test-Scan vor dem Großdruck.",
-    s5Title: "5. Aktualisierungen des Dienstes",
-    s5Text: "GenerateCustomQR behält sich das Recht vor, Funktionen und Performance-Optimierungen jederzeit einzupflegen."
+    s1Title: "1. Geltungsbereich und Annahme",
+    s1Text: "Mit dem Zugriff auf GenerateCustomQR akzeptieren Sie diese Nutzungsbedingungen vollumfänglich.",
+    s2Title: "2. Kostenlose & Gewerbliche Lizenz",
+    s2Text: "Alle mit GenerateCustomQR erzeugten QR-Codes sind uneingeschränkt und lizenzfrei für private wie kommerzielle Vorhaben nutzbar. Sie besitzen alle Rechte an den Bilddateien.",
+    s3Title: "3. Unzulässige Nutzung",
+    s3Text: "Die Erstellung von QR-Codes mit betrügerischen (Phishing), schädlichen (Malware) oder gesetzeswidrigen Inhalten ist streng untersagt.",
+    s4Title: "4. Haftungsausschluss",
+    s4Text: "GenerateCustomQR arbeitet standardkonform nach ISO/IEC 18004. Wir empfehlen stets einen Probedruck und Scan vor einer Serienproduktion.",
+    s5Title: "5. Änderungen der Plattform",
+    s5Text: "GenerateCustomQR behält sich das Recht vor, Funktionen kontinuierlich zu aktualisieren und zu optimieren."
   }
 };
 
@@ -87,6 +91,7 @@ const breadcrumbs = [
   locale={locale}
   title={pageMeta.title}
   description={pageMeta.desc}
+  keywords={pageMeta.keywords}
   breadcrumbs={breadcrumbs}
   heading={pageMeta.heading}
   lastUpdated={pageMeta.lastUpdated}

@@ -78,14 +78,27 @@ const articleSchema = {
     "@id": `https://generatecustomqr.com${getLocalizedUrl(locale, `/blog/${post.id}`)}`
   }
 };
+
+// Build FAQ structured data from frontmatter if available
+const faqs = post.data.faqs || [];
+
+// Build HowTo structured data from frontmatter if available
+const howTo = post.data.howToSteps && post.data.howToSteps.length > 0 ? {
+  name: title,
+  description: description,
+  steps: post.data.howToSteps
+} : undefined;
 ---
 <BaseLayout
   locale={locale}
   title={`${title} | GenerateCustomQR Blog`}
   description={description}
-  ogImage={post.data.ogImage || "/og-blog.jpg"}
+  keywords={post.data.tags && post.data.tags.length > 0 ? post.data.tags.join(', ') : undefined}
+  ogImage={post.data.image || "/og-blog.jpg"}
   pageType="article"
   breadcrumbs={breadcrumbs}
+  faqs={faqs}
+  howTo={howTo}
 >
   <style is:global>
     @import '../styles/global.css';

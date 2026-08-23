@@ -52,12 +52,18 @@ function formatDate(date: Date): string {
     day: 'numeric'
   });
 }
+const keywordsMap: Record<Locale, string> = {
+  en: "qr code blog, qr code tips, qr code guides, qr code best practices, qr code design tips, how to use qr codes",
+  es: "blog de codigos qr, consejos para codigos qr, tutoriales qr, mejores practicas qr, diseño de codigos qr",
+  pt: "blog de qr code, dicas de qr code, tutoriais qr code, melhores praticas qr code, design de qr code",
+  de: "qr-code blog, qr-code tipps, qr-code anleitungen, best practices qr-code, qr-code gestaltung"
+};
 ---
 <BaseLayout
   locale={locale}
   title={t(locale, 'blog.heroTitle') + " | GenerateCustomQR"}
   description={t(locale, 'blog.heroSub')}
-  keywords="qr code blog, qr code tips, qr code guides, qr code best practices, qr code design tips, how to use qr codes"
+  keywords={keywordsMap[locale] || keywordsMap.en}
   ogImage="/og-blog.jpg"
   breadcrumbs={breadcrumbs}
 >

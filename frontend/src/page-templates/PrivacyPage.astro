@@ -9,10 +9,11 @@ interface Props {
 
 const { locale } = Astro.props;
 
-const metaMap: Record<Locale, { title: string; desc: string; heading: string; s1Title: string; s1Text: string; s2Title: string; s2Text: string; s3Title: string; s3Text: string; s4Title: string; s4Text: string; s5Title: string; s5Text: string; lastUpdated: string }> = {
+const metaMap: Record<Locale, { title: string; desc: string; heading: string; keywords?: string; s1Title: string; s1Text: string; s2Title: string; s2Text: string; s3Title: string; s3Text: string; s4Title: string; s4Text: string; s5Title: string; s5Text: string; lastUpdated: string }> = {
   en: {
     title: "Privacy Policy — GenerateCustomQR",
     desc: "GenerateCustomQR is a privacy-first tool. All QR code generation runs locally in your browser. We never collect or store your encoded data.",
+    keywords: "qr code privacy policy, private qr code generator, safe qr code maker, no tracking qr codes",
     heading: "Privacy Policy",
     lastUpdated: "January 1, 2026",
     s1Title: "1. Privacy First Commitment",
@@ -29,6 +30,7 @@ const metaMap: Record<Locale, { title: string; desc: string; heading: string; s1
   es: {
     title: "Política de Privacidad — GenerateCustomQR",
     desc: "GenerateCustomQR prioriza tu privacidad. La generación de códigos QR se realiza localmente en tu navegador sin almacenar datos.",
+    keywords: "politica de privacidad qr, generador qr privado, generador codigos qr seguro, privacidad qr",
     heading: "Política de Privacidad",
     lastUpdated: "1 de Enero de 2026",
     s1Title: "1. Compromiso de Privacidad Absoluta",
@@ -45,6 +47,7 @@ const metaMap: Record<Locale, { title: string; desc: string; heading: string; s1
   pt: {
     title: "Política de Privacidade — GenerateCustomQR",
     desc: "O GenerateCustomQR protege sua privacidade. A geração dos códigos QR ocorre localmente no navegador sem coleta de dados.",
+    keywords: "politica de privacidade qr code, gerador qr seguro, gerador de qr code privado, privacidade qr",
     heading: "Política de Privacidade",
     lastUpdated: "1 de Janeiro de 2026",
     s1Title: "1. Privacidade em Primeiro Lugar",
@@ -61,6 +64,7 @@ const metaMap: Record<Locale, { title: string; desc: string; heading: string; s1
   de: {
     title: "Datenschutzerklärung — GenerateCustomQR",
     desc: "GenerateCustomQR ist ein datenschutzfreundlicher Generator. Die Generierung erfolgt lokal im Browser ohne Speicherung persönlicher Daten.",
+    keywords: "datenschutzerklaerung qr code, sicherer qr code generator, privater qr code ersteller, datenschutz qr",
     heading: "Datenschutzerklärung",
     lastUpdated: "1. Januar 2026",
     s1Title: "1. Datenschutz an erster Stelle",
@@ -87,6 +91,7 @@ const breadcrumbs = [
   locale={locale}
   title={pageMeta.title}
   description={pageMeta.desc}
+  keywords={pageMeta.keywords}
   breadcrumbs={breadcrumbs}
   heading={pageMeta.heading}
   lastUpdated={pageMeta.lastUpdated}
