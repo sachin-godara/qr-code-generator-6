@@ -3,11 +3,9 @@ import { useEffect } from "react";
 interface KeyboardShortcutHandlers {
   onUndo: () => void;
   onRedo: () => void;
-  onDownload: () => void;
-  onCopy: () => void;
 }
 
-export function useKeyboardShortcuts({ onUndo, onRedo, onDownload, onCopy }: KeyboardShortcutHandlers) {
+export function useKeyboardShortcuts({ onUndo, onRedo }: KeyboardShortcutHandlers) {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       // Guard clause: Don't trigger if typing in an input
@@ -27,20 +25,11 @@ export function useKeyboardShortcuts({ onUndo, onRedo, onDownload, onCopy }: Key
         } else if (e.key === 'y') {
           e.preventDefault();
           onRedo();
-        } else if (e.key === 's') {
-          e.preventDefault();
-          onDownload();
-        } else if (e.key === 'c') {
-          const selection = window.getSelection();
-          if (selection && selection.toString().length === 0) {
-            e.preventDefault();
-            onCopy();
-          }
         }
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [onUndo, onRedo, onDownload, onCopy]);
+  }, [onUndo, onRedo]);
 }

@@ -40,6 +40,30 @@ export async function resolveLogoPayload(settings: QRSettings) {
   };
 }
 
+/** Converts a Blob to a base64 Data URL safely in both Browser and Node/test environments */
+export async function blobToDataUrl(blob: Blob): Promise<string> {
+  if (typeof FileReader !== 'undefined') {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result as string);
+      reader.onerror = reject;
+      reader.readAsDataURL(blob);
+    });
+  }
+  const arrayBuffer = await blob.arrayBuffer();
+  const base64 = typeof Buffer !== 'undefined'
+    ? Buffer.from(arrayBuffer).toString('base64')
+    : btoa(String.fromCharCode(...new Uint8Array(arrayBuffer)));
+  return `data:${blob.type || 'image/png'};base64,${base64}`;
+}
+
+/** Revoke a previously created preview blob URL (no-op for data URLs) */
+export function revokePreviewUrl(url: string | undefined) {
+  if (url && url.startsWith('blob:')) {
+    URL.revokeObjectURL(url);
+  }
+}
+
 /** Fetch QR code preview image with optional AbortSignal */
 export async function fetchQRPreview(settings: QRSettings, signal?: AbortSignal) {
   const payload = await resolveLogoPayload(settings);
@@ -65,7 +89,7 @@ export async function fetchQRPreview(settings: QRSettings, signal?: AbortSignal)
   }
 
   const blob = await response.blob();
-  const url = URL.createObjectURL(blob);
+  const url = await blobToDataUrl(blob);
 
   return {
     url,

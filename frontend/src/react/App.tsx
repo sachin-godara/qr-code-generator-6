@@ -3,6 +3,9 @@ import { motion } from "framer-motion"
 import { useQuery, keepPreviousData } from "@tanstack/react-query"
 import { useQRStore } from "@/store/useQRStore"
 import { useToast } from "@/hooks/useToast"
+import { useOnlineStatus } from "@/hooks/useOnlineStatus"
+import { useMiniPreview } from "@/hooks/useMiniPreview"
+import { useKeyboardShortcuts } from "@/hooks/useKeyboardShortcuts"
 import { useDebounce, useSmartQRSettingsDebounce } from "@/hooks/useDebounce"
 import { useDownloadHandlers } from "@/hooks/useDownloadHandlers"
 import { useDownloadStore } from "@/store/useDownloadStore"
@@ -28,6 +31,7 @@ function App() {
   const { hasComplexStyling } = useDownloadHandlers()
   const { isDownloading, isBatchGenerating, downloadSize, downloadFormat, copySuccess } = useDownloadStore()
   const { toast, setToast } = useToast()
+  const { isOffline } = useOnlineStatus()
 
   const [activeTab, setActiveTab] = useState<string>("Content")
   const [zoomLevel, setZoomLevel] = useState<number>(1)
@@ -48,24 +52,11 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [showMiniPreview, setShowMiniPreview] = useState(false)
   const previewRef = useRef<HTMLDivElement>(null)
+  const { showMiniPreview } = useMiniPreview(previewRef)
 
   const [isComparing, setIsComparing] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const [isOffline, setIsOffline] = useState(false);
-
-  useEffect(() => {
-    setIsOffline(typeof navigator !== 'undefined' ? !navigator.onLine : false);
-    const handleOnline = () => setIsOffline(false);
-    const handleOffline = () => setIsOffline(true);
-    window.addEventListener('online', handleOnline);
-    window.addEventListener('offline', handleOffline);
-    return () => {
-      window.removeEventListener('online', handleOnline);
-      window.removeEventListener('offline', handleOffline);
-    };
-  }, []);
   useEffect(() => {
     // Check URL query parameters (e.g. from QR scanner or external links)
     const urlParams = new URLSearchParams(window.location.search);
@@ -128,17 +119,6 @@ function App() {
   const [touchDistance, setTouchDistance] = useState<number | null>(null);
   const [initialZoom, setInitialZoom] = useState<number>(1);
   const [lastTap, setLastTap] = useState<number>(0);
-
-  useEffect(() => {
-    const el = previewRef.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => setShowMiniPreview(!entry.isIntersecting),
-      { threshold: 0.15 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
 
   // Smart debounce: discrete clicks (styles, colors, templates, toggles) update instantly (0ms),
   // while continuous typing (URLs/text) and continuous sliders are smoothly throttled (150ms)
@@ -247,28 +227,16 @@ function App() {
   };
 
   // Global Keyboard Shortcuts
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      const activeElement = document.activeElement as HTMLElement | null;
-      if (activeElement && (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA' || activeElement.isContentEditable)) {
-        return;
-      }
-      if (e.metaKey || e.ctrlKey) {
-        if (e.key === 'z') {
-          e.preventDefault();
-          if (e.shiftKey) {
-            redo();
-            setToast({ message: t("studio.buttons.redo"), icon: "redo" });
-          } else {
-            undo();
-            setToast({ message: t("studio.buttons.undo"), icon: "undo" });
-          }
-        }
-      }
-    };
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [undo, redo, setToast, t]);
+  useKeyboardShortcuts({
+    onUndo: () => {
+      undo();
+      setToast({ message: t("studio.buttons.undo"), icon: "undo" });
+    },
+    onRedo: () => {
+      redo();
+      setToast({ message: t("studio.buttons.redo"), icon: "redo" });
+    }
+  });
 
   // Tab-aware context metadata for dynamic headlines
   const TAB_META: Record<string, { headline: string; sub: string; step: number }> = {
@@ -286,14 +254,6 @@ function App() {
   return (
     <div className="lg:min-h-screen flex flex-col font-body-md text-on-surface bg-background antialiased pt-14 sm:pt-16">
       
-      {/* Offline Banner */}
-      {isOffline && (
-        <div className="fixed w-full top-14 sm:top-16 z-[45] bg-red-600 text-white text-center py-2 px-4 shadow-md flex items-center justify-center gap-2 text-sm font-semibold animate-in slide-in-from-top-2">
-          <span className="material-symbols-outlined text-lg">wifi_off</span>
-          You are currently offline. Features that require the server are disabled.
-        </div>
-      )}
-
       {/* TopNavBar with mobile hamburger */}
       <nav className="fixed w-full top-0 z-50 bg-surface-container-lowest border-b border-outline-variant shadow-sm backdrop-blur-md bg-opacity-95 safe-top">
         <div className="flex justify-between items-center h-14 sm:h-16 px-4 sm:px-6 max-w-[1400px] mx-auto w-full">
@@ -417,7 +377,7 @@ function App() {
       {isOffline && (
         <div className="bg-error text-error-on-container px-4 py-2 text-xs sm:text-sm font-medium flex items-center justify-center gap-2 shadow-md z-40 animate-in slide-in-from-top-2 duration-300">
           <span className="material-symbols-outlined text-[18px]">wifi_off</span>
-          You are offline. QR code updates are paused until connection is restored.
+          {t("studio.labels.offlineMessage") || "You are offline. QR code updates are paused until connection is restored."}
         </div>
       )}
       
@@ -565,8 +525,8 @@ function App() {
                     <div className="flex items-center gap-2 pb-1">
                       <div className="w-6 h-6 rounded-full bg-primary/10 text-primary border border-primary flex items-center justify-center text-xs font-black shrink-0">1</div>
                       <div>
-                        <p className="text-sm font-bold text-on-surface">Enter your content</p>
-                        <p className="text-[11px] text-on-surface-variant">Pick a type below, then fill in your data</p>
+                        <p className="text-sm font-bold text-on-surface">{t("studio.labels.enterContent") || "Enter your content"}</p>
+                        <p className="text-[11px] text-on-surface-variant">{t("studio.labels.enterContentSub") || "Pick a type below, then fill in your data"}</p>
                       </div>
                     </div>
                     {renderPanelContent('Content')}
@@ -584,8 +544,8 @@ function App() {
                     <div className="flex items-center gap-2 pb-1">
                       <div className="w-6 h-6 rounded-full bg-emerald-50 text-emerald-600 border border-emerald-400 flex items-center justify-center text-xs font-black shrink-0">✓</div>
                       <div>
-                        <p className="text-sm font-bold text-on-surface">Save your QR code</p>
-                        <p className="text-[11px] text-on-surface-variant">Choose a format and download</p>
+                        <p className="text-sm font-bold text-on-surface">{t("studio.labels.saveQR") || "Save your QR code"}</p>
+                        <p className="text-[11px] text-on-surface-variant">{t("studio.labels.saveQRSub") || "Choose a format and download"}</p>
                       </div>
                     </div>
                     {renderPanelContent('Download')}

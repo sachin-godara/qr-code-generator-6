@@ -62,7 +62,12 @@
       "tools": "Tools",
       "customization": "Customization",
       "personalize": "Personalize your QR code",
-      "step": "Step {current} / {total}"
+      "step": "Step {current} / {total}",
+      "offlineMessage": "You are offline. QR code updates are paused until connection is restored.",
+      "enterContent": "Enter your content",
+      "enterContentSub": "Pick a type below, then fill in your data",
+      "saveQR": "Save your QR code",
+      "saveQRSub": "Choose a format and download"
     },
     "templateCategories": {
       "all": "All",

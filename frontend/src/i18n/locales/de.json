@@ -62,7 +62,12 @@
       "tools": "Werkzeuge",
       "customization": "Anpassung",
       "personalize": "QR-Code individuell anpassen",
-      "step": "Schritt {current} / {total}"
+      "step": "Schritt {current} / {total}",
+      "offlineMessage": "Sie sind offline. QR-Code-Aktualisierungen sind pausiert, bis die Verbindung wiederhergestellt wird.",
+      "enterContent": "Inhalt eingeben",
+      "enterContentSub": "Wählen Sie einen Typ unten aus und geben Sie Ihre Daten ein",
+      "saveQR": "QR-Code speichern",
+      "saveQRSub": "Wählen Sie ein Format und laden Sie herunter"
     },
     "templateCategories": {
       "all": "Alle",

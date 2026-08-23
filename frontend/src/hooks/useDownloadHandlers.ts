@@ -1,7 +1,6 @@
 import { useQRStore } from "@/store/useQRStore";
 import { useDownloadStore } from "@/store/useDownloadStore";
 import { useToast } from "@/hooks/useToast";
-import { getReactLogoPngDataUrl, PRESET_LOGO_BRAND_COLORS } from "@/components/previews/SvgIcons";
 import { resolveLogoPayload, API_BASE } from "@/services/qrApi";
 
 export function useDownloadHandlers() {
@@ -52,32 +51,9 @@ export function useDownloadHandlers() {
         }, 350);
       }
 
-      const { contentData, ...rest } = settings;
-
-      let finalLogo = rest.logo_image;
-      const isPresetLogo = !finalLogo && rest.preset_logo && rest.preset_logo !== "None";
-      if (isPresetLogo) {
-        finalLogo = await getReactLogoPngDataUrl(
-          rest.preset_logo,
-          rest.logo_color_mode || "default",
-          rest.logo_custom_color || "#000000",
-          rest.dots_color || "#000000",
-          rest.logo_icon_style || "badge",
-          rest.logo_card_shape || "Rounded Square"
-        );
-      }
-
-      const color = rest.logo_color_mode === "custom"
-        ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#000000")
-        : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
-
+      const payloadBase = await resolveLogoPayload(settings);
       const payload = { 
-        ...rest, 
-        data: contentData || "Your text here...", 
-        logo_image: finalLogo, 
-        preset_logo: isPresetLogo ? "None" : rest.preset_logo, 
-        logo_card_shape: rest.logo_card_shape, 
-        preset_logo_color: color, 
+        ...payloadBase, 
         box_size: 10, 
         target_size: downloadSize, 
         no_stretching: noStretching 
@@ -131,30 +107,9 @@ export function useDownloadHandlers() {
   const handleCopyToClipboard = async () => {
     try {
       setIsCopying(true);
-      const { contentData, ...rest } = settings;
-      let finalLogo = rest.logo_image;
-      const isPresetLogo = !finalLogo && rest.preset_logo && rest.preset_logo !== "None";
-      if (isPresetLogo) {
-        finalLogo = await getReactLogoPngDataUrl(
-          rest.preset_logo,
-          rest.logo_color_mode || "default",
-          rest.logo_custom_color || "#000000",
-          rest.dots_color || "#000000",
-          rest.logo_icon_style || "badge",
-          rest.logo_card_shape || "Rounded Square"
-        );
-      }
-      const color = rest.logo_color_mode === "custom"
-        ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#000000")
-        : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
-
+      const payloadBase = await resolveLogoPayload(settings);
       const payload = { 
-        ...rest, 
-        data: contentData || "Your text here...", 
-        logo_image: finalLogo, 
-        preset_logo: isPresetLogo ? "None" : rest.preset_logo, 
-        logo_card_shape: rest.logo_card_shape, 
-        preset_logo_color: color, 
+        ...payloadBase, 
         box_size: 10, 
         target_size: downloadSize, 
         no_stretching: noStretching 
@@ -186,29 +141,7 @@ export function useDownloadHandlers() {
     if (!batchDataColumn || batchCsvRows.length === 0) return;
     setIsBatchGenerating(true);
     try {
-      const { contentData, ...rest } = settings;
-      let finalLogo = rest.logo_image;
-      const isPresetLogo = !finalLogo && rest.preset_logo && rest.preset_logo !== "None";
-      if (isPresetLogo) {
-        finalLogo = await getReactLogoPngDataUrl(
-          rest.preset_logo,
-          rest.logo_color_mode || "default",
-          rest.logo_custom_color || "#000000",
-          rest.dots_color || "#000000",
-          rest.logo_icon_style || "badge",
-          rest.logo_card_shape || "Rounded Square"
-        );
-      }
-      const color = rest.logo_color_mode === "custom"
-        ? (rest.logo_custom_color?.startsWith("#") ? rest.logo_custom_color : "#000000")
-        : (PRESET_LOGO_BRAND_COLORS[rest.preset_logo] || (rest.dots_color?.startsWith("#") ? rest.dots_color : "#000000"));
-
-      const payloadSettings = {
-        ...rest,
-        logo_image: finalLogo,
-        preset_logo: isPresetLogo ? "None" : rest.preset_logo,
-        preset_logo_color: color
-      };
+      const payloadSettings = await resolveLogoPayload(settings);
 
       const items = batchCsvRows.map(row => ({
         data: row[batchDataColumn],

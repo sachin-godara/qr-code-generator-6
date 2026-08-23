@@ -33,7 +33,7 @@ export default defineConfig({
         // Boost homepage
         if (item.url === 'https://generatecustomqr.com/') {
           item.priority = 1.0;
-          item.changefreq = 'daily';
+          item.changefreq = /** @type {any} */ ('daily');
         }
         // High-traffic landing pages
         else if (
@@ -41,17 +41,17 @@ export default defineConfig({
           item.url.includes('/qr-code-scanner')
         ) {
           item.priority = 0.9;
-          item.changefreq = 'weekly';
+          item.changefreq = /** @type {any} */ ('weekly');
         }
         // Blog posts (not the index)
         else if (item.url.includes('/blog/') && !item.url.endsWith('/blog/')) {
           item.priority = 0.6;
-          item.changefreq = 'monthly';
+          item.changefreq = /** @type {any} */ ('monthly');
         }
         // Legal / utility pages
         else if (item.url.includes('/privacy') || item.url.includes('/terms')) {
           item.priority = 0.3;
-          item.changefreq = 'yearly';
+          item.changefreq = /** @type {any} */ ('yearly');
         }
         return item;
       },

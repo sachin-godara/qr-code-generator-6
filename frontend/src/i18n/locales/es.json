@@ -62,7 +62,12 @@
       "tools": "Herramientas",
       "customization": "Personalización",
       "personalize": "Personaliza tu código QR",
-      "step": "Paso {current} / {total}"
+      "step": "Paso {current} / {total}",
+      "offlineMessage": "Estás sin conexión. Las actualizaciones del código QR están en pausa hasta que se restablezca la conexión.",
+      "enterContent": "Introduce tu contenido",
+      "enterContentSub": "Elige un tipo abajo y completa tus datos",
+      "saveQR": "Guarda tu código QR",
+      "saveQRSub": "Elige un formato y descárgalo"
     },
     "templateCategories": {
       "all": "Todos",
