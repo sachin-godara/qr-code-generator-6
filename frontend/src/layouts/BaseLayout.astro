@@ -10,6 +10,8 @@ interface Props {
   ogImage?: string;
   canonicalUrl?: string;
   keywords?: string;
+  pageType?: 'generator' | 'scanner' | 'article' | 'website';
+  googleSiteVerification?: string;
   breadcrumbs?: { name: string; url: string }[];
   howTo?: {
     name: string;
@@ -28,6 +30,8 @@ const {
   ogImage = '/og-image.png',
   canonicalUrl,
   keywords = 'QR code generator, custom QR code, QR code maker, free QR code, QR code with logo, QR code design, wifi QR code, vcard QR code, batch QR generator',
+  pageType,
+  googleSiteVerification,
   breadcrumbs,
   howTo,
   faqs,
@@ -90,6 +94,8 @@ const {
       ogImage={ogImage}
       canonicalUrl={canonicalUrl}
       keywords={keywords}
+      pageType={pageType}
+      googleSiteVerification={googleSiteVerification}
       breadcrumbs={breadcrumbs}
       howTo={howTo}
       faqs={faqs}

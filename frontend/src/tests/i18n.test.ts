@@ -79,5 +79,14 @@ describe('i18n utils', () => {
       expect(alternates.find((a) => a.locale === 'pt')?.url).toBe('https://generatecustomqr.com/pt/how-to-use');
       expect(alternates.find((a) => a.locale === 'de')?.url).toBe('https://generatecustomqr.com/de/how-to-use');
     });
+
+    it('returns exact matching canonical homepage URLs for root path', () => {
+      const alternates = getAllLocaleUrls('/', 'https://generatecustomqr.com');
+      expect(alternates).toHaveLength(4);
+      expect(alternates.find((a) => a.locale === 'en')?.url).toBe('https://generatecustomqr.com/');
+      expect(alternates.find((a) => a.locale === 'es')?.url).toBe('https://generatecustomqr.com/es');
+      expect(alternates.find((a) => a.locale === 'pt')?.url).toBe('https://generatecustomqr.com/pt');
+      expect(alternates.find((a) => a.locale === 'de')?.url).toBe('https://generatecustomqr.com/de');
+    });
   });
 });

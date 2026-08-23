@@ -134,6 +134,40 @@ locales.forEach(loc => {
   }
 });
 
+// 5. Audit Google Search Console Technical Files
+console.log('🔍 Auditing Search Console Technical Configuration (robots.txt, _redirects, _headers)...');
+const robotsFile = path.resolve('public/robots.txt');
+const redirectsFile = path.resolve('public/_redirects');
+const headersFile = path.resolve('public/_headers');
+
+totalChecks += 3;
+if (!fs.existsSync(robotsFile)) {
+  errors.push('[gsc] Missing public/robots.txt');
+} else {
+  const robotsContent = fs.readFileSync(robotsFile, 'utf8');
+  if (!robotsContent.includes('Sitemap: https://generatecustomqr.com/sitemap-index.xml')) {
+    errors.push('[gsc/robots.txt] Missing primary sitemap-index.xml directive');
+  }
+}
+
+if (!fs.existsSync(redirectsFile)) {
+  errors.push('[gsc] Missing public/_redirects');
+} else {
+  const redContent = fs.readFileSync(redirectsFile, 'utf8');
+  if (!redContent.includes('www.generatecustomqr.com')) {
+    warnings.push('[gsc/_redirects] Recommended WWW to non-WWW canonical redirect');
+  }
+}
+
+if (!fs.existsSync(headersFile)) {
+  warnings.push('[gsc] Missing public/_headers for staging noindex');
+} else {
+  const hdrContent = fs.readFileSync(headersFile, 'utf8');
+  if (!hdrContent.includes('noindex')) {
+    warnings.push('[gsc/_headers] Recommended X-Robots-Tag: noindex for preview deployments');
+  }
+}
+
 console.log('\n===================================================');
 console.log(`TOTAL AUDIT CHECKS: ${totalChecks}`);
 console.log(`ERRORS: ${errors.length}`);

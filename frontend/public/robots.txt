@@ -1,11 +1,24 @@
 # GenerateCustomQR — Robots.txt
+# https://generatecustomqr.com
 
 User-agent: *
 Allow: /
 Disallow: /api/
 
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+
+User-agent: Googlebot-Image
+Allow: /
+Disallow: /api/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+
+# Sitemaps
 Sitemap: https://generatecustomqr.com/sitemap-index.xml
-Sitemap: https://generatecustomqr.com/sitemap.xml
 Sitemap: https://generatecustomqr.com/sitemap-0.xml
 
 # LLM & AI Search Optimization (GEO)

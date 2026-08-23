@@ -67,7 +67,7 @@ export function revokePreviewUrl(url: string | undefined) {
 /** Fetch QR code preview image with optional AbortSignal */
 export async function fetchQRPreview(settings: QRSettings, signal?: AbortSignal) {
   const payload = await resolveLogoPayload(settings);
-  const finalPayload = { ...payload, box_size: 10 };
+  const finalPayload = { ...payload, box_size: 20 };
 
   // Combine caller signal with timeout if available
   let fetchSignal: AbortSignal | undefined = signal;

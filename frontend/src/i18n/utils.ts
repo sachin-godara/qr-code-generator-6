@@ -78,7 +78,7 @@ export function getAllLocaleUrls(pathname: string, siteUrl = 'https://generatecu
     return {
       locale,
       hreflang: localeConfig[locale].hreflang,
-      url: `${cleanSite}${locPath === '/' ? '' : locPath}`,
+      url: `${cleanSite}${locPath}`,
     };
   });
 }

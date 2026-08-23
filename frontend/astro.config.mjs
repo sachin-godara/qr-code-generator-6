@@ -30,22 +30,47 @@ export default defineConfig({
       lastmod: new Date(),
       filter: (page) => !page.includes('/404') && !page.includes('/500'),
       serialize: (item) => {
-        // Boost homepage
-        if (item.url === 'https://generatecustomqr.com/') {
+        const url = item.url.replace(/\/$/, '');
+        // Boost homepages (all 4 languages)
+        if (
+          url === 'https://generatecustomqr.com' ||
+          url === 'https://generatecustomqr.com/es' ||
+          url === 'https://generatecustomqr.com/pt' ||
+          url === 'https://generatecustomqr.com/de'
+        ) {
           item.priority = 1.0;
           item.changefreq = /** @type {any} */ ('daily');
         }
-        // High-traffic landing pages
+        // Core tools and high-traffic landing pages
         else if (
           item.url.includes('/free-qr-code-generator') ||
-          item.url.includes('/qr-code-scanner')
+          item.url.includes('/qr-code-scanner') ||
+          item.url.includes('/wifi-qr-code') ||
+          item.url.includes('/vcard-qr-code') ||
+          item.url.includes('/qr-code-with-logo') ||
+          item.url.includes('/url-qr-code-generator') ||
+          item.url.includes('/email-qr-code') ||
+          item.url.includes('/event-qr-code') ||
+          item.url.includes('/how-to-use')
         ) {
           item.priority = 0.9;
           item.changefreq = /** @type {any} */ ('weekly');
         }
-        // Blog posts (not the index)
+        // Blog indexes
+        else if (
+          url.endsWith('/blog')
+        ) {
+          item.priority = 0.8;
+          item.changefreq = /** @type {any} */ ('weekly');
+        }
+        // Blog post articles
         else if (item.url.includes('/blog/') && !item.url.endsWith('/blog/')) {
-          item.priority = 0.6;
+          item.priority = 0.7;
+          item.changefreq = /** @type {any} */ ('monthly');
+        }
+        // Informational pages
+        else if (item.url.includes('/about') || item.url.includes('/contact')) {
+          item.priority = 0.5;
           item.changefreq = /** @type {any} */ ('monthly');
         }
         // Legal / utility pages

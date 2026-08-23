@@ -9,6 +9,8 @@ interface Props {
   ogImage?: string;
   canonicalUrl?: string;
   keywords?: string;
+  pageType?: 'generator' | 'scanner' | 'article' | 'website';
+  googleSiteVerification?: string;
   breadcrumbs?: { name: string; url: string }[];
   howTo?: {
     name: string;
@@ -25,6 +27,8 @@ const {
   ogImage = '/og-image.png',
   canonicalUrl,
   keywords,
+  pageType,
+  googleSiteVerification,
   breadcrumbs,
   howTo,
   faqs,
@@ -37,6 +41,10 @@ const resolvedCanonical = canonicalUrl || `${siteUrl}${Astro.url.pathname}`;
 const resolvedOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage.startsWith('/') ? '' : '/'}${ogImage}`;
 const alternateUrls = getAllLocaleUrls(Astro.url.pathname, siteUrl);
 const xDefaultUrl = alternateUrls.find((a) => a.locale === 'en')?.url || `${siteUrl}/`;
+
+const isArticle = pageType === 'article' || (Astro.url.pathname.includes('/blog/') && !Astro.url.pathname.endsWith('/blog') && !Astro.url.pathname.endsWith('/blog/'));
+const isScanner = pageType === 'scanner' || Astro.url.pathname.includes('/qr-code-scanner');
+const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '/es' || Astro.url.pathname === '/pt' || Astro.url.pathname === '/de';
 ---
 
 <!-- Primary Meta Tags -->
@@ -49,6 +57,7 @@ const xDefaultUrl = alternateUrls.find((a) => a.locale === 'en')?.url || `${site
 <meta name="last-modified" content={new Date().toISOString()} />
 <meta name="revised" content={new Date().toISOString()} />
 <link rel="canonical" href={resolvedCanonical} />
+{googleSiteVerification && <meta name="google-site-verification" content={googleSiteVerification} />}
 
 <!-- Internationalization (Hreflang) -->
 {alternateUrls.map((item) => (
@@ -57,7 +66,7 @@ const xDefaultUrl = alternateUrls.find((a) => a.locale === 'en')?.url || `${site
 <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
 
 <!-- Open Graph / Facebook -->
-<meta property="og:type" content="website" />
+<meta property="og:type" content={isArticle ? "article" : "website"} />
 <meta property="og:url" content={resolvedCanonical} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
@@ -80,55 +89,109 @@ const xDefaultUrl = alternateUrls.find((a) => a.locale === 'en')?.url || `${site
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={resolvedOgImage} />
 
-<!-- JSON-LD Structured Data — WebApplication -->
+<!-- WebSite Structured Data with Sitelinks SearchAction -->
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
-  "@type": "WebApplication",
+  "@type": "WebSite",
   "name": "GenerateCustomQR",
+  "url": "https://generatecustomqr.com",
   "inLanguage": currentLocaleInfo.hreflang,
-  "description": description,
-  "url": resolvedCanonical,
-  "datePublished": "2026-01-01T00:00:00Z",
-  "dateModified": new Date().toISOString(),
-  "applicationCategory": "DesignApplication",
-  "applicationSubCategory": "QR Code Generator",
-  "operatingSystem": "All",
-  "browserRequirements": "Requires JavaScript. Works in Chrome, Firefox, Safari, Edge.",
-  "permissions": "none",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD"
-  },
-  "aggregateRating": {
-    "@type": "AggregateRating",
-    "ratingValue": "4.9",
-    "ratingCount": "2840",
-    "bestRating": "5",
-    "worstRating": "1"
-  },
-  "featureList": [
-    "40+ dot module styles including flower, star, heart, diamond, hexagon",
-    "19 eye frame shapes and 23 eyeball styles",
-    "51 decorative text and CTA frames",
-    "22 layout frame designs",
-    "121 preset QR code templates",
-    "46 preset logo icons with brand colors",
-    "Custom logo upload with background removal",
-    "Logo dot clearance control",
-    "4 gradient types: vertical, horizontal, radial, diagonal",
-    "Shadow effects: soft, elevated, neon",
-    "12 content types: URL, Text, WiFi, vCard, Email, SMS, Event, Phone, Crypto, Location, PayPal, App Store",
-    "Download as PNG (custom resolution), SVG (vector), or PDF (300 DPI)",
-    "Transparent background export",
-    "Batch generation up to 500 QR codes from CSV",
-    "Per-eye independent styling for all 3 corners",
-    "Background image with blend modes",
-    "Copy to clipboard",
-    "100% free, no signup required, no watermarks"
-  ],
-  "screenshot": resolvedOgImage
+  "description": "Free custom QR code generator with logo, 40+ dot styles, and vector SVG/PDF export.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://generatecustomqr.com/blog?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
 })} />
+
+<!-- JSON-LD Structured Data — WebApplication (Generator or Scanner) -->
+{!isArticle && (
+  <script type="application/ld+json" set:html={JSON.stringify(isScanner ? {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "GenerateCustomQR Scanner",
+    "inLanguage": currentLocaleInfo.hreflang,
+    "description": description,
+    "url": resolvedCanonical,
+    "datePublished": "2026-01-01T00:00:00Z",
+    "dateModified": new Date().toISOString(),
+    "applicationCategory": "UtilitiesApplication",
+    "applicationSubCategory": "QR Code & Barcode Scanner",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires Camera access and JavaScript. Works on iPhone, Android, Windows, Mac.",
+    "permissions": "camera",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "1940",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "featureList": [
+      "Real-time camera QR code scanning with auto-focus",
+      "Image and screenshot upload QR code reader",
+      "Barcode scanning support: EAN-13, UPC-A, Code 128, ITF, QR Code",
+      "Zero server uploads — 100% private in-browser decoding",
+      "Copy decoded content to clipboard with 1 tap",
+      "Auto-detect URLs, Wi-Fi networks, vCards, SMS, and geolocation coordinates",
+      "Torch/Flashlight toggle and front/rear camera switcher",
+      "100% free with no app downloads or registration required"
+    ],
+    "screenshot": resolvedOgImage
+  } : {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "GenerateCustomQR",
+    "inLanguage": currentLocaleInfo.hreflang,
+    "description": description,
+    "url": resolvedCanonical,
+    "datePublished": "2026-01-01T00:00:00Z",
+    "dateModified": new Date().toISOString(),
+    "applicationCategory": "DesignApplication",
+    "applicationSubCategory": "QR Code Generator",
+    "operatingSystem": "All",
+    "browserRequirements": "Requires JavaScript. Works in Chrome, Firefox, Safari, Edge.",
+    "permissions": "none",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "ratingCount": "2840",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "featureList": [
+      "40+ dot module styles including flower, star, heart, diamond, hexagon",
+      "19 eye frame shapes and 23 eyeball styles",
+      "51 decorative text and CTA frames",
+      "22 layout frame designs",
+      "121 preset QR code templates",
+      "46 preset logo icons with brand colors",
+      "Custom logo upload with background removal",
+      "Logo dot clearance control",
+      "4 gradient types: vertical, horizontal, radial, diagonal",
+      "Shadow effects: soft, elevated, neon",
+      "12 content types: URL, Text, WiFi, vCard, Email, SMS, Event, Phone, Crypto, Location, PayPal, App Store",
+      "Download as PNG (custom resolution), SVG (vector), or PDF (300 DPI)",
+      "Transparent background export",
+      "Batch generation up to 500 QR codes from CSV",
+      "Per-eye independent styling for all 3 corners",
+      "Background image with blend modes",
+      "Copy to clipboard",
+      "100% free, no signup required, no watermarks"
+    ],
+    "screenshot": resolvedOgImage
+  })} />
+)}
 
 <!-- Organization Structured Data -->
 <script type="application/ld+json" set:html={JSON.stringify({
@@ -151,7 +214,6 @@ const xDefaultUrl = alternateUrls.find((a) => a.locale === 'en')?.url || `${site
     "url": "https://generatecustomqr.com/contact"
   }
 })} />
-
 
 <!-- BreadcrumbList Structured Data (if breadcrumbs provided) -->
 {breadcrumbs && breadcrumbs.length > 0 && (
@@ -205,3 +267,4 @@ const xDefaultUrl = alternateUrls.find((a) => a.locale === 'en')?.url || `${site
     }))
   })} />
 )}
+

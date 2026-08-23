@@ -214,6 +214,17 @@ const relatedTools = [
   { icon: "qr_code_scanner", title: "QR Scanner", desc: "Camera & image decoder", url: getLocalizedUrl(locale, '/qr-code-scanner') }
 ];
 
+const howTo = {
+  name: pageMeta.title,
+  description: pageMeta.desc,
+  steps: [
+    { name: t(locale, 'landing.howTo.step1Title') || "1. Enter Content", text: t(locale, 'landing.howTo.step1Desc') || "Select your content type (URL, Text, WiFi, vCard, Email, etc.) and enter your data." },
+    { name: t(locale, 'landing.howTo.step2Title') || "2. Customize Design", text: t(locale, 'landing.howTo.step2Desc') || "Choose from 39 dot styles, custom corner eyes, and brand colors or gradients." },
+    { name: t(locale, 'landing.howTo.step3Title') || "3. Add Logo & CTA Frame", text: t(locale, 'landing.howTo.step3Desc') || "Upload your brand logo and select a stylish 'Scan Me' text frame." },
+    { name: t(locale, 'landing.howTo.step4Title') || "4. Free Instant Download", text: t(locale, 'landing.howTo.step4Desc') || "Export in high-resolution PNG, vector SVG, or 300 DPI PDF without signup." }
+  ]
+};
+
 const faqs = pageMeta.faqs;
 ---
 <BaseLayout
@@ -221,6 +232,7 @@ const faqs = pageMeta.faqs;
   title={pageMeta.title}
   description={pageMeta.desc}
   breadcrumbs={breadcrumbs}
+  howTo={howTo}
   faqs={faqs}
 >
   <style is:global>
