@@ -6,11 +6,24 @@ interface PremiumFontSelectProps {
   fonts: string[];
 }
 
+const GOOGLE_FRAME_FONTS = "https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Courier+Prime:wght@400;700&family=Dancing+Script:wght@400;700&family=Fira+Code:wght@400;700&family=Geist:wght@400;600&family=Lora:wght@400;700&family=Montserrat:wght@400;700&family=Oswald:wght@400;700&family=Outfit:wght@400;700&family=Playfair+Display:wght@400;700&family=Poppins:wght@400;700&family=Roboto:wght@400;700&family=Space+Grotesk:wght@400;700&display=swap";
+
+function loadFrameFonts() {
+  if (typeof document === "undefined") return;
+  if (document.getElementById("frame-custom-fonts")) return;
+  const link = document.createElement("link");
+  link.id = "frame-custom-fonts";
+  link.rel = "stylesheet";
+  link.href = GOOGLE_FRAME_FONTS;
+  document.head.appendChild(link);
+}
+
 export function PremiumFontSelect({ value, onChange, fonts }: PremiumFontSelectProps) {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    loadFrameFonts();
     const handleClickOutside = (event: MouseEvent) => {
       if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
         setIsOpen(false);
