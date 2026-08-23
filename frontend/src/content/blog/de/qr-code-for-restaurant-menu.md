@@ -1,7 +1,7 @@
 ---
 title: "QR-Codes für Speisekarten in Restaurants — Vollständiger Leitfaden 2025"
 description: "Erfahren Sie, wie Sie QR-Codes für Ihre Speisekarte erstellen, anpassen und drucken. Leitfaden mit Design-Tipps, Platzierungshinweisen und kostenlosen Tools."
-pubDate: 2025-08-18
+pubDate: 2026-08-18
 author: "GenerateCustomQR Team"
 keywords: "speisekarte qr code, restaurant qr code erstellen, digitale menuekarte qr, kontaktlose speisekarte"
 category: "use-cases"

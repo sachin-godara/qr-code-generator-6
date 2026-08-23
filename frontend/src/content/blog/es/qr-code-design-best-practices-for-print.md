@@ -1,7 +1,7 @@
 ---
 title: "Mejores Prácticas de Diseño de Códigos QR para Imprenta — Consejos para 2025"
 description: "Domina la impresión de códigos QR: tamaños mínimos, resolución de 300 DPI, contraste de color, zonas de silencio y materiales para un escaneo infalible."
-pubDate: 2025-08-12
+pubDate: 2026-08-12
 author: "GenerateCustomQR Team"
 keywords: "mejores practicas diseño codigo qr, tamaño qr imprimir, resolucion qr imprenta, consejos diseño qr, como imprimir codigo qr"
 category: "design-tips"

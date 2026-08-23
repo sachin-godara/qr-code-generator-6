@@ -135,20 +135,20 @@ export const blogTranslations: Record<string, Record<Locale, LocalizedBlogMeta>>
   },
   "qr-code-trends-2025": {
     en: {
-      title: "Top QR Code Trends for 2025 & 2026: AI Design, Dynamic Data, and Security",
-      description: "Explore the newest QR code design innovations, enterprise adoption patterns, and cybersecurity standards shaping 2025 and 2026."
+      title: "Top QR Code Trends for 2026 & Beyond: AI Design, Dynamic Data, and Security",
+      description: "Explore the newest QR code design innovations, enterprise adoption patterns, and cybersecurity standards shaping 2026 and beyond."
     },
     es: {
-      title: "Tendencias en Códigos QR para 2025 y 2026: Diseño con IA y Seguridad",
-      description: "Descubre las últimas innovaciones en diseño de códigos QR, adopción empresarial y estándares de ciberseguridad para 2025 y 2026."
+      title: "Tendencias en Códigos QR para 2026 y el Futuro: Diseño con IA y Seguridad",
+      description: "Descubre las últimas innovaciones en diseño de códigos QR, adopción empresarial y estándares de ciberseguridad para 2026 y el futuro."
     },
     pt: {
-      title: "Tendências de QR Code para 2025 e 2026: Design Moderno e Segurança",
+      title: "Tendências de QR Code para 2026 e o Futuro: Design Moderno e Segurança",
       description: "Conheça as principais inovações em criação de QR code, personalização visual, novos casos de uso e proteção contra golpes digitais."
     },
     de: {
-      title: "QR-Code Trends für 2025 & 2026: KI-Design, Sicherheit & Trends",
-      description: "Entdecken Sie die neuesten Innovationen im QR-Code-Design, Unternehmensanwendungen und Sicherheitsstandards für 2025 und 2026."
+      title: "QR-Code Trends für 2026 und die Zukunft: KI-Design, Sicherheit & Trends",
+      description: "Entdecken Sie die neuesten Innovationen im QR-Code-Design, Unternehmensanwendungen und Sicherheitsstandards für 2026 und die Zukunft."
     }
   },
   "qr-code-vs-barcode": {

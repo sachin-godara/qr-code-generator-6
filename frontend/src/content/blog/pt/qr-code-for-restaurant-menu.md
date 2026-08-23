@@ -1,7 +1,7 @@
 ---
 title: "Como Usar QR Codes para Cardápios de Restaurantes — Guia Completo 2025"
 description: "Aprenda a criar, personalizar e imprimir QR codes para o cardápio do seu restaurante. Guia passo a passo com suportes de mesa, dicas de design e ferramentas grátis."
-pubDate: 2025-08-18
+pubDate: 2026-08-18
 author: "GenerateCustomQR Team"
 keywords: "qr code cardapio restaurante, menu digital qr code, cardapio online qr gratis, como fazer cardapio qr code"
 category: "use-cases"

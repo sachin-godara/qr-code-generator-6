@@ -1,5 +1,5 @@
 ---
-title: "QR Code vs Barcode — What's the Difference? (2025 Guide)"
+title: "QR Code vs Barcode — What's the Difference? (2026 Guide)"
 description: "Understand the key differences between QR codes and traditional barcodes. Compare data capacity, scanning methods, use cases, and which is better for your needs."
 pubDate: 2026-08-26
 author: "GenerateCustomQR Team"

@@ -1,5 +1,5 @@
 ---
-title: "QR Code vs Código de Barras Tradicional — Qual a Diferença? (Guia 2025)"
+title: "QR Code vs Código de Barras Tradicional — Qual a Diferença? (Guia 2026)"
 description: "Descubra as diferenças essenciais entre códigos QR 2D e códigos de barras 1D: capacidade de dados, leitura por câmeras de celular e aplicações recomendadas."
 pubDate: 2026-08-26
 author: "GenerateCustomQR Team"

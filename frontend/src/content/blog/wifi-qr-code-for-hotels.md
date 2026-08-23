@@ -90,7 +90,7 @@ Some older devices can't scan WiFi QR codes. Always print the password as text a
 
 ```
 Network: HotelGuest_5G
-Password: Welcome2025!
+Password: Welcome2026!
 Or scan the QR code below to connect instantly:
 [QR CODE]
 ```

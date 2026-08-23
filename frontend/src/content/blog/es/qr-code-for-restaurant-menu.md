@@ -1,7 +1,7 @@
 ---
 title: "Cómo Usar Códigos QR para Menús de Restaurantes — Guía Completa 2025"
 description: "Aprende a crear, personalizar e imprimir códigos QR para la carta de tu restaurante. Guía paso a paso con consejos de diseño, soportes y herramientas gratis."
-pubDate: 2025-08-18
+pubDate: 2026-08-18
 author: "GenerateCustomQR Team"
 keywords: "codigo qr menu restaurante, carta digital qr restaurante, menu sin contacto qr, generador qr menu gratis"
 category: "use-cases"

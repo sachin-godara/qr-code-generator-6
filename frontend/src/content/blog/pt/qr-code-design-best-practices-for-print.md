@@ -1,7 +1,7 @@
 ---
-title: "Melhores Práticas de Design de QR Code para Impressão — Guia 2025"
+title: "Melhores Práticas de Design de QR Code para Impressão — Guia 2026"
 description: "Domine a impressão profissional de QR codes: dimensões mínimas, resolução 300 DPI, taxas de contraste, zona de silêncio e materiais para leitura perfeita."
-pubDate: 2025-08-12
+pubDate: 2026-08-12
 author: "GenerateCustomQR Team"
 keywords: "design qr code impressao, tamanho qr code imprimir, resolucao qr grafica, como imprimir qr code"
 category: "design-tips"

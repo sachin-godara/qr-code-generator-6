@@ -1,7 +1,7 @@
 ---
 title: "QR-Code Design Best Practices für den Druck — Experten-Tipps für 2025"
 description: "Druckfertige QR-Codes meistern: Optimale Mindestgrößen, 300 DPI Druckauflösung, Kontrastregeln, Ruhezonen und Materialwahl für 100% Scan-Erfolg."
-pubDate: 2025-08-12
+pubDate: 2026-08-12
 author: "GenerateCustomQR Team"
 keywords: "qr code drucken, qr code mindestgroesse druck, qr code aufloesung druck, qr code design tipps, wie qr code drucken"
 category: "design-tips"

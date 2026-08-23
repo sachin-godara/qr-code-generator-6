@@ -1,7 +1,7 @@
 ---
 title: "Códigos QR Estáticos vs Dinámicos — ¿Cuál es la Diferencia?"
 description: "Comprende las diferencias entre códigos QR estáticos y dinámicos: pros, contras, privacidad, caducidad y cuál elegir para tu proyecto o negocio."
-pubDate: 2025-08-15
+pubDate: 2026-08-15
 author: "GenerateCustomQR Team"
 keywords: "codigo qr estatico vs dinamico, diferencia qr estatico dinamico, caducan los codigos qr, qr permanente gratis"
 category: "comparisons"

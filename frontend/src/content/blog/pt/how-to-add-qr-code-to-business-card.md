@@ -1,7 +1,7 @@
 ---
 title: "Como Adicionar um QR Code ao Cartão de Visita — Guia Completo 2025"
 description: "Aprenda a criar e inserir um QR code com cartão digital vCard no seu cartão de visita. Dicas de design, tamanhos mínimos e download em alta resolução."
-pubDate: 2025-08-08
+pubDate: 2026-08-08
 author: "GenerateCustomQR Team"
 keywords: "qr code cartao de visita, vcard qr code criar, cartao de visita digital qr code, imprimir qr code cartao"
 category: "use-cases"

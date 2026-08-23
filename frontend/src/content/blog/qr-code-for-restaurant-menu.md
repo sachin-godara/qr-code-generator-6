@@ -1,7 +1,7 @@
 ---
-title: "How to Use QR Codes for Restaurant Menus — Complete Guide (2025)"
+title: "How to Use QR Codes for Restaurant Menus — Complete Guide (2026)"
 description: "Learn how to create, customize, and print QR codes for your restaurant menu. Step-by-step guide with design tips, placement advice, and free tools to go contactless."
-pubDate: 2025-08-18
+pubDate: 2026-08-18
 author: "GenerateCustomQR Team"
 keywords: "qr code for restaurant menu, restaurant qr code, digital menu qr code, contactless menu, qr code menu generator free"
 category: "use-cases"

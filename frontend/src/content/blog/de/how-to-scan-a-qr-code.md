@@ -1,5 +1,5 @@
 ---
-title: "QR-Code scannen mit iPhone und Android — Vollständige Anleitung 2025"
+title: "QR-Code scannen mit iPhone und Android — Vollständige Anleitung 2026"
 description: "Schritt-für-Schritt-Anleitung zum Scannen von QR-Codes mit iPhone, Android und PC. Nutzen Sie Kamera-App, Google Lens und browserbasierte Scanner."
 pubDate: 2026-08-20
 author: "GenerateCustomQR Team"

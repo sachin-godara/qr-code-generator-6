@@ -461,7 +461,7 @@
       {
         "route": "/de",
         "lang": "de",
-        "wordCount": 931
+        "wordCount": 933
       },
       {
         "route": "/es/blog/wifi-qr-code-for-hotels",
@@ -496,7 +496,7 @@
       {
         "route": "/pt",
         "lang": "pt",
-        "wordCount": 1126
+        "wordCount": 1127
       },
       {
         "route": "/blog/qr-code-size-guide",
@@ -521,7 +521,7 @@
       {
         "route": "/es",
         "lang": "es",
-        "wordCount": 1182
+        "wordCount": 1184
       },
       {
         "route": "/blog/qr-code-vs-barcode",
@@ -677,7 +677,7 @@
     {
       "route": "/es",
       "lang": "es",
-      "wordCount": 1182
+      "wordCount": 1184
     }
   ]
 }

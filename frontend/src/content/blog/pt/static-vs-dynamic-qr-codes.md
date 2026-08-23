@@ -1,7 +1,7 @@
 ---
-title: "QR Codes Estáticos vs Dinâmicos — Qual a Diferença Definitiva? (Guia 2025)"
+title: "QR Codes Estáticos vs Dinâmicos — Qual a Diferença Definitiva? (Guia 2026)"
 description: "Entenda as diferenças entre códigos QR estáticos e dinâmicos: prós, contras, privacidade, expiração e qual escolher para o seu negócio ou projeto."
-pubDate: 2025-08-15
+pubDate: 2026-08-15
 author: "GenerateCustomQR Team"
 keywords: "qr code estatico vs dinamico, diferenca qr estatico e dinamico, qr code permanente gratuito, qr code expira"
 category: "comparisons"

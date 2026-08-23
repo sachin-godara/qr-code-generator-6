@@ -1,7 +1,7 @@
 ---
-title: "QR-Code auf der Visitenkarte einbinden — Vollständige Anleitung 2025"
+title: "QR-Code auf der Visitenkarte einbinden — Vollständige Anleitung 2026"
 description: "Erfahren Sie, wie Sie einen individuellen vCard-QR-Code auf Ihrer Visitenkarte platzieren: Design-Tipps, Größenrichtlinien, Druckformate und kostenlose Tools."
-pubDate: 2025-08-08
+pubDate: 2026-08-08
 author: "GenerateCustomQR Team"
 keywords: "qr code visitenkarte, vcard qr code erstellen, digitale visitenkarte qr code, qr code visitenkarte drucken"
 category: "use-cases"

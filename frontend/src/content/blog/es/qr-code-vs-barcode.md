@@ -1,5 +1,5 @@
 ---
-title: "Código QR vs Código de Barras — ¿Cuál es la Diferencia? (Guía 2025)"
+title: "Código QR vs Código de Barras — ¿Cuál es la Diferencia? (Guía 2026)"
 description: "Comprende las diferencias entre códigos QR 2D y códigos de barras lineales 1D: capacidad de datos, escaneo móvil, tolerancia a fallos y casos de uso."
 pubDate: 2026-08-26
 author: "GenerateCustomQR Team"

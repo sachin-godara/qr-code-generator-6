@@ -1,7 +1,7 @@
 ---
 title: "Static vs Dynamic QR Codes — What's the Difference?"
 description: "Understand the key differences between static and dynamic QR codes. Learn when to use each type, their pros and cons, and which is better for your business needs."
-pubDate: 2025-08-15
+pubDate: 2026-08-15
 author: "GenerateCustomQR Team"
 keywords: "static vs dynamic qr code, difference between static and dynamic qr codes, static qr code, dynamic qr code, which qr code type to use"
 category: "comparisons"
