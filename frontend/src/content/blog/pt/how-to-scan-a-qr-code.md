@@ -7,6 +7,18 @@ keywords: "como escanear qr code, escanear qr code iphone, escanear qr code andr
 category: "guides"
 readingTime: 5
 featured: true
+faqs:
+  - q: "Preciso baixar um aplicativo para escanear QR Code?"
+    a: "Não. Tanto iPhones quanto celulares Android modernos possuem leitor de QR code integrado diretamente no aplicativo de Câmera padrão."
+  - q: "Como escanear um QR code no computador ou notebook?"
+    a: "Você pode utilizar o leitor online gratuito do GenerateCustomQR diretamente no navegador com a webcam ou fazendo upload de uma captura de tela."
+howToSteps:
+  - name: "Abra a câmera do seu smartphone"
+    text: "Abra o aplicativo nativo de Câmera no seu iPhone ou Android."
+  - name: "Aponte para o QR code"
+    text: "Mantenha o celular estável apontando para o código a uma distância de 15 a 30 cm."
+  - name: "Toque na notificação"
+    text: "Clique no banner que aparece na tela para abrir o link ou ação correspondente."
 ---
 
 Os códigos QR estão por toda parte: em cardápios de restaurantes, embalagens de produtos, ingressos e cartões de visita. Mas como escanear de maneira rápida e segura sem precisar baixar aplicativos cheios de anúncios? Este guia mostra o passo a passo completo.

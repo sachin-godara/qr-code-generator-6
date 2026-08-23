@@ -7,8 +7,25 @@ keywords: "codigo qr para tarjeta de visita, tarjeta de presentacion qr, vcard q
 category: "use-cases"
 image: "/og-image.png"
 imageAlt: "Tarjeta de visita con un código QR de marca personalizado"
-readingTime: 6
 featured: false
+faqs:
+  - q: "¿Qué tipo de código QR es mejor para una tarjeta de visita?"
+    a: "Un código QR vCard es la mejor opción. Codifica todos tus datos de contacto (nombre, teléfono, correo, empresa, dirección) y permite guardarlos directamente en los contactos del móvil con un solo toque."
+  - q: "¿Cuál es el tamaño mínimo para un código QR en una tarjeta de presentación?"
+    a: "El tamaño mínimo recomendado es de 1,5×1,5 cm. Para tarjetas con espacio suficiente, se aconseja 2×2 cm para garantizar un escaneo instantáneo."
+  - q: "¿Caduca el código QR de una tarjeta de visita?"
+    a: "No. Los códigos QR vCard creados con GenerateCustomQR son estáticos, contienen la información dentro de la imagen y nunca caducan."
+  - q: "¿Puedo añadir el logotipo de mi empresa al código QR?"
+    a: "Sí. GenerateCustomQR permite incrustar logotipos con corrección de errores de nivel H (hasta 30% de tolerancia) manteniendo la legibilidad total."
+howToSteps:
+  - name: "Crea tu código QR vCard"
+    text: "Accede a GenerateCustomQR, selecciona el formato vCard e introduce tus datos de contacto."
+  - name: "Personaliza el diseño con tu marca"
+    text: "Elige estilo de puntos, colores corporativos, marcos de ojos y sube tu logotipo con eliminación automática de fondo."
+  - name: "Descarga en alta resolución"
+    text: "Exporta en formato SVG o PDF para imprenta a 300 DPI, o PNG de alta resolución."
+  - name: "Colócalo en el diseño de tu tarjeta"
+    text: "Ubica el código QR en una esquina respetando una zona de silencio blanca de al menos 3 mm alrededor."
 ---
 
 Un código QR en tu tarjeta de visita transforma un simple trozo de papel en una experiencia digital interactiva. En lugar de tener que teclear manualmente tu teléfono, correo o página web, tus contactos simplemente escanean y guardan tu información al instante, sin errores tipográficos.

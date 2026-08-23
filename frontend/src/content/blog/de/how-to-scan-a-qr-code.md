@@ -7,6 +7,18 @@ keywords: "qr code scannen, wie qr code scannen iphone, qr code scannen android,
 category: "guides"
 readingTime: 5
 featured: true
+faqs:
+  - q: "Brauche ich eine zusätzliche App zum Scannen von QR-Codes?"
+    a: "Nein. Moderne Smartphones mit iOS oder Android verfügen über integrierte Scanfunktionen direkt in der Standard-Kamera-App oder via Google Lens."
+  - q: "Wie scanne ich einen QR-Code auf dem PC oder Mac?"
+    a: "Mit dem kostenlosen Online-QR-Code-Scanner von GenerateCustomQR können Sie Codes direkt im Webbrowser über Ihre Webcam oder durch Hochladen eines Screenshots scannen."
+howToSteps:
+  - name: "Kamera-App öffnen"
+    text: "Öffnen Sie die vorinstallierte Kamera-App auf Ihrem Smartphone."
+  - name: "Kamera auf den QR-Code ausrichten"
+    text: "Halten Sie das Gerät in einem Abstand von 15 bis 30 cm ruhig vor den Code."
+  - name: "Aktionsbanner antippen"
+    text: "Tippen Sie auf die erscheinende Benachrichtigung, um den Link oder die Funktion zu öffnen."
 ---
 
 QR-Codes begegnen uns überall — auf Speisekarten in Restaurants, Produktverpackungen, Konzerttickets und Visitenkarten. Doch wie scannt man sie am schnellsten? Diese Anleitung zeigt Ihnen alle Methoden für iPhone, Android und Desktop-Computer.

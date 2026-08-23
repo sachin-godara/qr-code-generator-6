@@ -7,8 +7,21 @@ keywords: "qr code visitenkarte, vcard qr code erstellen, digitale visitenkarte 
 category: "use-cases"
 image: "/og-image.png"
 imageAlt: "Visitenkarte mit individuellem QR-Code"
-readingTime: 6
 featured: false
+faqs:
+  - q: "Welcher QR-Code-Typ eignet sich am besten für eine Visitenkarte?"
+    a: "Ein vCard-QR-Code ist optimal. Er speichert alle Kontaktdaten und ermöglicht es Geschäftspartnern, Ihre Daten mit nur einem Fingertipp direkt im Smartphone-Adressbuch zu speichern."
+  - q: "Welche Mindestgröße wird für den Druck empfohlen?"
+    a: "Die empfohlene Mindestgröße beträgt 1,5×1,5 cm (besser 2,0×2,0 cm), um eine zuverlässige Lesbarkeit mit allen Smartphone-Kameras zu gewährleisten."
+  - q: "Läuft der QR-Code auf der Visitenkarte irgendwann ab?"
+    a: "Nein. Mit GenerateCustomQR erstellte statische vCard-Codes sind dauerhaft und unbegrenzt scannbar."
+howToSteps:
+  - name: "vCard-QR-Code erstellen"
+    text: "Öffnen Sie GenerateCustomQR, wählen Sie vCard und tragen Sie Ihre Kontaktdaten ein."
+  - name: "Design an Ihr Corporate Design anpassen"
+    text: "Wählen Sie Punktmuster, Markenfarben und laden Sie Ihr Firmenlogo mit automatischer Transparenz hoch."
+  - name: "Für den Druck herunterladen"
+    text: "Exportieren Sie den fertigen Code als SVG-Vektordatei oder druckfähiges PDF mit 300 DPI."
 ---
 
 Ein QR-Code auf Ihrer Visitenkarte verwandelt ein einfaches Stück Papier in eine interaktive digitale Brücke. Statt Telefonnummer, E-Mail-Adresse und Firmen-Website mühsam von Hand abzutippen, scannen Ihre Geschäftspartner den Code und speichern Ihre vollständigen Kontaktdaten in Sekundenschnelle — garantiert ohne Tippfehler.

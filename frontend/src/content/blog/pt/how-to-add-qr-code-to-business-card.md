@@ -7,8 +7,21 @@ keywords: "qr code cartao de visita, vcard qr code criar, cartao de visita digit
 category: "use-cases"
 image: "/og-image.png"
 imageAlt: "Cartão de visita com QR code personalizado"
-readingTime: 6
 featured: false
+faqs:
+  - q: "Qual o melhor tipo de QR code para cartão de visita?"
+    a: "O QR code vCard é a melhor opção para cartões de visita, pois permite que a pessoa escaneie e salve todos os seus dados diretamente na agenda do celular com 1 toque."
+  - q: "Qual o tamanho mínimo para imprimir o QR code no cartão?"
+    a: "Recomenda-se no mínimo 1,5×1,5 cm (ou 2×2 cm se houver espaço) para garantir leitura imediata em qualquer smartphone."
+  - q: "O QR code de cartão de visita expira?"
+    a: "Não. Os códigos vCard gerados no GenerateCustomQR são estáticos e nunca expiram."
+howToSteps:
+  - name: "Crie o seu QR code vCard"
+    text: "Acesse o GenerateCustomQR, selecione o tipo vCard e preencha seus dados de contato profissional."
+  - name: "Personalize o visual com sua marca"
+    text: "Escolha formatos de pontos, cores da sua identidade visual e inclua o logotipo da sua empresa."
+  - name: "Baixe em alta resolução para impressão"
+    text: "Exporte em formato vetorial SVG ou PDF a 300 DPI para enviar para a gráfica."
 ---
 
 Um QR code no cartão de visita transforma um simples pedaço de papel em um cartão de contato interativo. Em vez de digitar manualmente números, e-mails ou endereços, seus clientes e parceiros apenas apontam a câmera e salvam tudo na agenda do celular instantaneamente.

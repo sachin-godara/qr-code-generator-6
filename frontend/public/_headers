@@ -1,5 +1,61 @@
+# Cloudflare Pages Headers Configuration
+# https://generatecustomqr.com
+
+# Staging / Preview Domain Bot Protection
 https://qr-code-generator-6.pages.dev/*
   X-Robots-Tag: noindex
 
 https://*.qr-code-generator-6.pages.dev/*
   X-Robots-Tag: noindex
+
+# Global Security Headers
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(self), microphone=(), geolocation=()
+
+# Immutable Static Bundles (Astro Hashed Chunks)
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Generated Programmatic Preview Thumbnails
+/previews/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+# Brand & Preset Logos
+/preset_logos/*
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+
+# Static Images & Media
+/*.png
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/*.jpg
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/*.svg
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+/*.ico
+  Cache-Control: public, max-age=2592000, stale-while-revalidate=86400
+
+# Web App Manifest & Service Configs
+/manifest.json
+  Cache-Control: public, max-age=86400, stale-while-revalidate=3600
+
+# Search & AI Knowledge Endpoints
+/robots.txt
+  Cache-Control: public, max-age=3600, stale-while-revalidate=1800
+
+/sitemap-index.xml
+  Cache-Control: public, max-age=3600, stale-while-revalidate=1800
+
+/sitemap-0.xml
+  Cache-Control: public, max-age=3600, stale-while-revalidate=1800
+
+/llms.txt
+  Cache-Control: public, max-age=3600, stale-while-revalidate=1800
+
+/llms-full.txt
+  Cache-Control: public, max-age=3600, stale-while-revalidate=1800
