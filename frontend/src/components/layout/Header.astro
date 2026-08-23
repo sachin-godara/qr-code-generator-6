@@ -94,12 +94,17 @@ const isScanner = currentPath.startsWith(scannerUrl);
       <!-- Mobile Menu Button (requires client-side JS) -->
       <button
         id="mobile-menu-btn"
-        class="md:hidden w-10 h-10 flex items-center justify-center rounded-xl hover:bg-surface-container transition-colors touch-press"
+        class="md:hidden w-10 h-10 flex items-center justify-center rounded-xl hover:bg-surface-container transition-colors touch-press text-on-surface"
         aria-label="Toggle navigation menu"
         aria-expanded="false"
         aria-controls="mobile-menu"
       >
-        <span class="material-symbols-outlined text-on-surface" id="menu-icon">menu</span>
+        <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
       </button>
     </div>
   </div>
@@ -139,17 +144,24 @@ const isScanner = currentPath.startsWith(scannerUrl);
 
 <script>
   // Simple mobile menu toggle script for static pages
-  document.addEventListener('DOMContentLoaded', () => {
+  function setupMobileMenu() {
     const btn = document.getElementById('mobile-menu-btn');
     const menu = document.getElementById('mobile-menu');
-    const icon = document.getElementById('menu-icon');
+    const iconOpen = document.getElementById('menu-icon-open');
+    const iconClose = document.getElementById('menu-icon-close');
     
-    if (btn && menu && icon) {
+    if (btn && menu) {
       btn.addEventListener('click', () => {
         const isHidden = menu.classList.toggle('hidden');
-        icon.textContent = isHidden ? 'menu' : 'close';
+        if (iconOpen && iconClose) {
+          iconOpen.classList.toggle('hidden', !isHidden);
+          iconClose.classList.toggle('hidden', isHidden);
+        }
         btn.setAttribute('aria-expanded', isHidden ? 'false' : 'true');
       });
     }
-  });
+  }
+
+  setupMobileMenu();
+  document.addEventListener('astro:page-load', setupMobileMenu);
 </script>

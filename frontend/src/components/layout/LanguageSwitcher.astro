@@ -50,9 +50,9 @@ const className = Astro.props.class || '';
       </svg>
     )}
     <span class="font-bold text-on-surface text-xs tracking-wide">{currentInfo.label}</span>
-    <span class="material-symbols-outlined text-[16px] text-on-surface-variant transition-transform duration-200" id="lang-chevron">
-      expand_more
-    </span>
+    <svg class="w-4 h-4 text-on-surface-variant transition-transform duration-200" id="lang-chevron" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+    </svg>
   </button>
 
   <div
@@ -112,9 +112,9 @@ const className = Astro.props.class || '';
               <span>{info.name}</span>
             </span>
             {isCurrent && (
-              <span class="material-symbols-outlined text-[16px] text-primary font-bold">
-                check
-              </span>
+              <svg class="w-4 h-4 text-primary shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7" />
+              </svg>
             )}
           </a>
         );
