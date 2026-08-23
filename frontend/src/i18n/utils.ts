@@ -87,7 +87,8 @@ export function getAllLocaleUrls(pathname: string, siteUrl = 'https://generatecu
 export function t(
   locale: Locale,
   key: string,
-  params?: Record<string, string | number>
+  params?: Record<string, string | number>,
+  fallback?: string
 ): string {
   const dict = dictionaries[locale] || dictionaries[defaultLocale];
   const keys = key.split('.');
@@ -105,20 +106,20 @@ export function t(
 
   // Fallback check
   if (current === undefined && locale !== defaultLocale) {
-    let fallback: any = dictionaries[defaultLocale];
+    let fallbackDict: any = dictionaries[defaultLocale];
     for (const k of keys) {
-      if (fallback && typeof fallback === 'object' && k in fallback) {
-        fallback = fallback[k];
+      if (fallbackDict && typeof fallbackDict === 'object' && k in fallbackDict) {
+        fallbackDict = fallbackDict[k];
       } else {
-        fallback = undefined;
+        fallbackDict = undefined;
         break;
       }
     }
-    current = fallback;
+    current = fallbackDict;
   }
 
   if (typeof current !== 'string') {
-    return key;
+    return fallback !== undefined ? fallback : key;
   }
 
   let result = current;

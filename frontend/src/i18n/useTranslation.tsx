@@ -4,13 +4,13 @@ import { dictionaries, t as translateFunction } from './utils';
 
 interface TranslationContextType {
   locale: Locale;
-  t: (key: string, params?: Record<string, string | number>) => string;
+  t: (key: string, params?: Record<string, string | number>, fallback?: string) => string;
   dict: (typeof dictionaries)[Locale];
 }
 
 const TranslationContext = createContext<TranslationContextType>({
   locale: defaultLocale,
-  t: (key: string, params?: Record<string, string | number>) => translateFunction(defaultLocale, key, params),
+  t: (key: string, params?: Record<string, string | number>, fallback?: string) => translateFunction(defaultLocale, key, params, fallback),
   dict: dictionaries[defaultLocale],
 });
 
@@ -28,8 +28,8 @@ export const TranslationProvider: React.FC<TranslationProviderProps> = ({
   const value = useMemo(() => {
     return {
       locale: currentLocale,
-      t: (key: string, params?: Record<string, string | number>) =>
-        translateFunction(currentLocale, key, params),
+      t: (key: string, params?: Record<string, string | number>, fallback?: string) =>
+        translateFunction(currentLocale, key, params, fallback),
       dict: dictionaries[currentLocale] || dictionaries[defaultLocale],
     };
   }, [currentLocale]);

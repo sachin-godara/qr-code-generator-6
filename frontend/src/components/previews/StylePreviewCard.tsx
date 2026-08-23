@@ -9,11 +9,12 @@ interface StylePreviewCardProps {
 }
 
 export function StylePreviewCard({ title, isSelected, onClick, children }: StylePreviewCardProps) {
-  const { t } = useTranslation();
+  const { dict } = useTranslation();
 
+  const studioDict = (dict as any)?.studio;
   const displayTitle = 
-    t(`studio.styleNames.${title}`) || 
-    t(`studio.templateNames.${title}`) || 
+    studioDict?.styleNames?.[title] || 
+    studioDict?.templateNames?.[title] || 
     title.replace(/_/g, ' ');
 
   return (
