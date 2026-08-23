@@ -28,26 +28,26 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
     return (
       <div className="bg-surface-container-lowest p-gutter rounded-2xl border border-outline-variant shadow-sm space-y-8">
         <div>
-          <h3 className="font-headline-sm text-on-surface font-bold">Batch ZIP Export</h3>
+          <h3 className="font-headline-sm text-on-surface font-bold">{t("studio.download.batchTitle", {}, "Batch ZIP Export")}</h3>
         </div>
 
         {batchCsvRows.length === 0 ? (
           <div className="text-center py-10 border-2 border-dashed border-outline-variant rounded-xl bg-surface-container-lowest">
             <span className="material-symbols-outlined text-4xl text-outline mb-2">upload_file</span>
-            <p className="font-bold text-on-surface">No CSV Data</p>
-            <p className="text-sm text-on-surface-variant mt-1">Please upload a CSV file in the Content tab first.</p>
+            <p className="font-bold text-on-surface">{t("studio.download.noCsvData", {}, "No CSV Data")}</p>
+            <p className="text-sm text-on-surface-variant mt-1">{t("studio.download.uploadCsvFirst", {}, "Please upload a CSV file in the Content tab first.")}</p>
             <button 
               onClick={onNavigateToContent} 
               className="mt-4 text-primary font-bold hover:underline text-sm bg-primary/10 px-4 py-2 rounded-lg"
             >
-              Go to Content
+              {t("studio.download.goToContent", {}, "Go to Content")}
             </button>
           </div>
         ) : (
           <div className="space-y-6">
             <div className="grid grid-cols-2 gap-4 border-t border-outline-variant pt-6">
               <div className="space-y-3">
-                <div className="text-sm font-semibold text-on-surface">Export Format</div>
+                <div className="text-sm font-semibold text-on-surface">{t("studio.download.exportFormat", {}, "Export Format")}</div>
                 <div className="flex bg-surface-container rounded-lg p-1 border border-outline-variant/50">
                   {["PNG", "SVG", "PDF"].map(fmt => (
                     <button 
@@ -70,7 +70,7 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
               </div>
               {batchFormat === "PNG" && (
                 <div className="space-y-3">
-                  <div className="text-sm font-semibold text-on-surface">Size (px)</div>
+                  <div className="text-sm font-semibold text-on-surface">{t("studio.download.sizePx", {}, "Size (px)")}</div>
                   <div className="flex bg-surface-container rounded-lg p-1 border border-outline-variant/50">
                     {["512", "1024", "2048"].map(s => (
                       <button 
@@ -101,9 +101,9 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
               className="flex w-full py-4 rounded-xl font-bold items-center justify-center gap-2 bg-gradient-to-r from-primary to-primary-hover text-white shadow-md hover:shadow-lg disabled:opacity-50 transition-all text-base"
             >
               {isBatchGenerating ? (
-                <><Loader2 className="animate-spin w-6 h-6" /> Generating Batch Archive...</>
+                <><Loader2 className="animate-spin w-6 h-6" /> {t("studio.download.generatingBatch", {}, "Generating Batch Archive...")}</>
               ) : (
-                <><span className="material-symbols-outlined text-[24px]">bolt</span> Generate & Download ZIP ({batchCsvRows.length > 500 ? 500 : batchCsvRows.length} items)</>
+                <><span className="material-symbols-outlined text-[24px]">bolt</span> {t("studio.download.downloadZip", { count: batchCsvRows.length > 500 ? 500 : batchCsvRows.length }, `Generate & Download ZIP (${batchCsvRows.length > 500 ? 500 : batchCsvRows.length} items)`)}</>
               )}
             </button>
           </div>
@@ -115,11 +115,11 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
   return (
     <div className="bg-surface-container-lowest p-gutter rounded-2xl border border-outline-variant shadow-sm space-y-8">
       <div>
-        <h3 className="font-headline-sm text-on-surface font-bold">Export & Download</h3>
+        <h3 className="font-headline-sm text-on-surface font-bold">{t("studio.download.title", {}, "Export & Download")}</h3>
       </div>
 
       <div className="space-y-3">
-        <div className="text-sm font-semibold text-on-surface block">1. Select Format</div>
+        <div className="text-sm font-semibold text-on-surface block">{t("studio.download.selectFormat", {}, "1. Select Format")}</div>
         <div className="grid grid-cols-3 gap-3 sm:gap-4">
           {[
             { id: "PNG", icon: "image" },
@@ -145,7 +145,7 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
         <div className="space-y-3 border-t border-outline-variant pt-6">
           <div className="flex justify-between items-center">
             <div className="text-sm font-semibold text-on-surface block">
-              2. Output Resolution
+              {t("studio.download.outputResolution", {}, "2. Output Resolution")}
             </div>
             <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-lg">
               {downloadSize} x {downloadSize} px
@@ -171,7 +171,7 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
                       : "border-outline-variant bg-white text-on-surface hover:bg-surface-container-highest"
                 }`}
               >
-                {opt.label} {opt.comingSoon && <span className="block text-[8px] opacity-70 font-normal">Soon</span>}
+                {opt.label} {opt.comingSoon && <span className="block text-[8px] opacity-70 font-normal">{t("studio.download.soon", {}, "Soon")}</span>}
               </button>
             ))}
           </div>
@@ -179,7 +179,7 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
             <div className="flex items-start gap-2 text-amber-700 bg-amber-50 px-3 py-2.5 rounded-lg border border-amber-200 mt-3">
               <span className="material-symbols-outlined text-[18px] shrink-0 mt-0.5">info</span>
               <span className="text-xs font-medium leading-relaxed">
-                Generating at {downloadSize}px takes significantly more processing power. Please expect a {downloadSize === 8192 ? '10-20' : '3-5'} second delay.
+                {t("studio.download.largeSizeWarning", { size: downloadSize, delay: downloadSize === 8192 ? '10-20' : '3-5' }, `Generating at ${downloadSize}px takes significantly more processing power. Please expect a ${downloadSize === 8192 ? '10-20' : '3-5'} second delay.`)}
               </span>
             </div>
           )}
@@ -192,9 +192,9 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
                 </div>
               </div>
               <div className="flex-1">
-                <p className="text-sm font-bold text-on-surface">Native Resolution (No Stretching)</p>
+                <p className="text-sm font-bold text-on-surface">{t("studio.download.nativeResTitle", {}, "Native Resolution (No Stretching)")}</p>
                 <p className="text-xs text-on-surface-variant mt-1 leading-relaxed">
-                  Generates exact target size natively. Uncheck to use smooth upscaling for complex shapes.
+                  {t("studio.download.nativeResDesc", {}, "Generates exact target size natively. Uncheck to use smooth upscaling for complex shapes.")}
                 </p>
               </div>
             </label>
@@ -206,10 +206,10 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
         <div className="bg-primary/5 rounded-2xl p-4 border border-primary/20 space-y-2 text-xs text-on-surface-variant leading-relaxed">
           <div className="flex items-center gap-2 font-bold text-primary text-sm">
             <span className="material-symbols-outlined text-[18px]">polyline</span>
-            SVG Vector Generation Details
+            {t("studio.download.svgTitle", {}, "SVG Vector Generation Details")}
           </div>
           <p>
-            Outputs as a scalable vector graphic or 300 DPI container for maximum print quality.
+            {t("studio.download.svgDetails", {}, "Outputs as a scalable vector graphic or 300 DPI container for maximum print quality.")}
           </p>
         </div>
       )}
@@ -218,17 +218,17 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
         <div className="bg-primary/5 rounded-2xl p-4 border border-primary/20 space-y-2 text-xs text-on-surface-variant leading-relaxed">
           <div className="flex items-center gap-2 font-bold text-primary text-sm">
             <span className="material-symbols-outlined text-[18px]">picture_as_pdf</span>
-            PDF Document Generation Details
+            {t("studio.download.pdfTitle", {}, "PDF Document Generation Details")}
           </div>
           <p>
-            Outputs as a 300 DPI print-ready document with a clean background canvas.
+            {t("studio.download.pdfDetails", {}, "Outputs as a 300 DPI print-ready document with a clean background canvas.")}
           </p>
         </div>
       )}
 
       <div className="space-y-3 border-t border-outline-variant pt-6">
         <div className="text-sm font-semibold text-on-surface block">
-          {showResolutionSelector ? "3." : "2."} File Name
+          {showResolutionSelector ? "3." : "2."} {t("studio.download.fileName", {}, "File Name")}
         </div>
         <div className="relative flex items-center">
           <input name="input_field_ef2df2ae" aria-label="Input Field"
@@ -247,7 +247,7 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
       <div className="mb-6 mt-2">
         <ScannabilityAlert
           show={settings.logo_size_ratio > 0.18 || settings.logo_clear_size > 0.5 || settings.quiet_zone > 4 || settings.error_correction !== "H"}
-          message="You have modified scannability settings from their defaults. Please test the QR scan first to ensure it scans reliably."
+          message={t("studio.download.scannabilityWarning", {}, "You have modified scannability settings from their defaults. Please test the QR scan first to ensure it scans reliably.")}
         />
       </div>
       <div className="flex border-t border-outline-variant pt-6 flex-col sm:flex-row gap-4">
@@ -266,25 +266,25 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
               <Loader2 className="w-6 h-6 animate-spin" />
               <span>
                 {downloadSize >= 4096 && (downloadFormat === "PNG" || hasComplexStyling)
-                  ? `Rendering ${downloadSize === 8192 ? '8K' : '4K'} (${downloadSize}px)...`
-                  : `Rendering High-Res ${downloadFormat}...`
+                  ? t("studio.download.renderingRes", { res: downloadSize === 8192 ? '8K' : '4K', size: downloadSize }, `Rendering ${downloadSize === 8192 ? '8K' : '4K'} (${downloadSize}px)...`)
+                  : t("studio.download.rendering", { format: downloadFormat }, `Rendering High-Res ${downloadFormat}...`)
                 }
               </span>
             </>
           ) : downloadSuccess ? (
             <>
               <span className="material-symbols-outlined text-2xl animate-[spin_400ms_ease-out_1]">check_circle</span>
-              <span>Downloaded Successfully!</span>
+              <span>{t("studio.download.success", {}, "Downloaded Successfully!")}</span>
             </>
           ) : (
             <>
               <span className="material-symbols-outlined text-2xl">download</span>
               <span>
                 {downloadFormat === "PNG" 
-                  ? `${t("studio.download.downloadPng")} (${downloadSize}px)` 
+                  ? `${t("studio.download.downloadPng", {}, "Download PNG")} (${downloadSize}px)` 
                   : downloadFormat === "SVG" 
-                    ? t("studio.download.downloadSvg") 
-                    : t("studio.download.downloadPdf")
+                    ? t("studio.download.downloadSvg", {}, "Download SVG") 
+                    : t("studio.download.downloadPdf", {}, "Download PDF")
                 }
               </span>
             </>
@@ -304,17 +304,17 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
           {isCopying ? (
             <>
               <Loader2 className="w-5 h-5 animate-spin" />
-              <span>Copying...</span>
+              <span>{t("studio.download.copying", {}, "Copying...")}</span>
             </>
           ) : copySuccess ? (
             <>
               <span className="material-symbols-outlined text-xl animate-[spin_400ms_ease-out_1]">check_circle</span>
-              <span>Copied!</span>
+              <span>{t("studio.download.copied", {}, "Copied!")}</span>
             </>
           ) : (
             <>
               <span className="material-symbols-outlined text-xl">content_copy</span>
-              <span>{t("studio.download.copyClipboard")}</span>
+              <span>{t("studio.download.copyClipboard", {}, "Copy to Clipboard")}</span>
             </>
           )}
         </button>
@@ -323,9 +323,9 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
       {/* Trust Badge */}
       <div className="flex items-center justify-center gap-3 pt-2 flex-wrap">
         {[
-          { icon: "block", label: "No watermarks" },
-          { icon: "person_off", label: "No sign-up" },
-          { icon: "lock", label: "Files stay private" },
+          { icon: "block", label: t("studio.download.noWatermark", {}, "No watermarks") },
+          { icon: "person_off", label: t("studio.download.noSignup", {}, "No sign-up") },
+          { icon: "lock", label: t("studio.download.privateFiles", {}, "Files stay private") },
         ].map(({ icon, label }) => (
           <div key={label} className="flex items-center gap-1.5 text-[11px] text-on-surface-variant font-medium">
             <span className="material-symbols-outlined text-[14px] text-emerald-600">{icon}</span>

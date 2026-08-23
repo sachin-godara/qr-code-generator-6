@@ -53,7 +53,7 @@ export function DesignPanel() {
 
         {isGradientActive && (
           <div className="flex flex-col h-full">
-            <div className="section-label block mb-2">Foreground (End)</div>
+            <div className="section-label block mb-2">{t("studio.design.fgColorEnd", {}, `${t("studio.design.foreground", {}, "Foreground")} (End)`)}</div>
             <div className="flex items-center gap-2 h-11 px-1 mt-auto border border-outline-variant rounded-lg bg-white focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-shadow">
               <input name="input_field_1441b836" aria-label="Input Field"
                 type="color"

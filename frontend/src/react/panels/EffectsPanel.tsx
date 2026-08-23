@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useQRStore } from "@/store/useQRStore";
 import { Slider } from "@/components/ui/Slider";
 import { type QRSettings } from "@/types/qr";
+import { useTranslation } from "@/i18n/useTranslation";
 
 const GRADIENT_PRESETS = [
   { name: "Sunset", start: "#ff7e5f", end: "#feb47b" },
@@ -13,24 +14,25 @@ const GRADIENT_PRESETS = [
 ];
 
 export function EffectsPanel() {
+  const { t } = useTranslation();
   const { settings, updateSettings } = useQRStore();
   const [showCustomGradient, setShowCustomGradient] = useState(false);
   const [showCustomShadow, setShowCustomShadow] = useState(false);
 
   const effectsGradientOptions: Array<{ label: string; value: QRSettings['gradient_type']; icon: string }> = [
-    { label: "Solid\n(No Effect)", value: "Solid Color", icon: "format_color_fill" },
-    { label: "Vertical\nBlend", value: "Vertical Gradient", icon: "gradient" },
-    { label: "Horizontal\nBlend", value: "Horizontal Gradient", icon: "linear_scale" },
-    { label: "Diagonal\n(TL ↘ BR)", value: "Diagonal (TL to BR)", icon: "trending_down" },
-    { label: "Diagonal\n(TR ↙ BL)", value: "Diagonal (TR to BL)", icon: "call_received" },
-    { label: "Radial\nGlow", value: "Radial Gradient", icon: "blur_circular" },
+    { label: t("studio.effects.solid", {}, "Solid (No Effect)"), value: "Solid Color", icon: "format_color_fill" },
+    { label: t("studio.effects.verticalBlend", {}, "Vertical Blend"), value: "Vertical Gradient", icon: "gradient" },
+    { label: t("studio.effects.horizontalBlend", {}, "Horizontal Blend"), value: "Horizontal Gradient", icon: "linear_scale" },
+    { label: t("studio.effects.diagonalTlBr", {}, "Diagonal (TL ↘ BR)"), value: "Diagonal (TL to BR)", icon: "trending_down" },
+    { label: t("studio.effects.diagonalTrBl", {}, "Diagonal (TR ↙ BL)"), value: "Diagonal (TR to BL)", icon: "call_received" },
+    { label: t("studio.effects.radialGlow", {}, "Radial Glow"), value: "Radial Gradient", icon: "blur_circular" },
   ];
   const isEffectsGradient = settings.gradient_type !== "Solid Color";
 
   return (
     <div className="bg-surface-container-lowest p-gutter rounded-2xl border border-outline-variant shadow-sm space-y-6">
       <div>
-        <h3 className="font-headline-sm text-on-surface font-bold">Visual Effects & Finishing</h3>
+        <h3 className="font-headline-sm text-on-surface font-bold">{t("studio.effects.title", {}, "Visual Effects & Finishing")}</h3>
       </div>
 
       {/* Module Color Gradient Effect */}
@@ -38,10 +40,10 @@ export function EffectsPanel() {
         <div className="flex items-center justify-between">
           <div className="text-sm font-bold text-on-surface flex items-center gap-2">
             <span className="material-symbols-outlined text-primary text-[20px]">gradient</span>
-            Module Color Gradient Effect
+            {t("studio.effects.gradientTitle", {}, "Module Color Gradient Effect")}
           </div>
           <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-primary/10 text-primary">
-            {isEffectsGradient ? "Active Gradient" : "Solid Fill"}
+            {isEffectsGradient ? t("studio.effects.activeGradient", {}, "Active Gradient") : t("studio.effects.solidFill", {}, "Solid Fill")}
           </span>
         </div>
 
@@ -66,7 +68,7 @@ export function EffectsPanel() {
           <div className="space-y-4 pt-3 border-t border-outline-variant/60">
             {/* Presets */}
             <div>
-              <div className="text-xs font-bold text-on-surface-variant mb-2 block">Quick Blends</div>
+              <div className="text-xs font-bold text-on-surface-variant mb-2 block">{t("studio.effects.quickBlends", {}, "Quick Blends")}</div>
               <div className="flex flex-wrap gap-2">
                 {GRADIENT_PRESETS.map(preset => {
                   const isSelected = settings.dots_color === preset.start && settings.dots_color_end === preset.end;
@@ -88,7 +90,7 @@ export function EffectsPanel() {
               onClick={() => setShowCustomGradient(!showCustomGradient)}
               className="text-xs font-semibold text-primary flex items-center gap-1 hover:underline"
             >
-              {showCustomGradient ? "Hide Custom Colors" : "Custom Colors..."}
+              {showCustomGradient ? t("studio.effects.hideCustom", {}, "Hide Custom Colors") : t("studio.effects.showCustom", {}, "Custom Colors...")}
             </button>
 
             {showCustomGradient && (
@@ -96,7 +98,7 @@ export function EffectsPanel() {
                 <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
                   <span className="text-xs font-bold text-on-surface uppercase tracking-wider flex items-center gap-1.5">
                     <span className="material-symbols-outlined text-primary text-base">palette</span>
-                    Live Preview:
+                    {t("studio.effects.livePreview", {}, "Live Preview:")}
                   </span>
                   <div
                     className="w-full sm:w-64 h-6 rounded-lg border border-outline-variant shadow-inner transition-all duration-300"
@@ -116,7 +118,7 @@ export function EffectsPanel() {
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="space-y-1.5">
-                    <div className="text-xs font-bold text-on-surface-variant">Start Color</div>
+                    <div className="text-xs font-bold text-on-surface-variant">{t("studio.effects.startColor", {}, "Start Color")}</div>
                     <div className="flex items-center gap-2.5">
                       <input name="input_field_1a5c92e3" aria-label="Input Field"
                         type="color"
@@ -134,7 +136,7 @@ export function EffectsPanel() {
                   </div>
 
                   <div className="space-y-1.5">
-                    <div className="text-xs font-bold text-on-surface-variant">End Color</div>
+                    <div className="text-xs font-bold text-on-surface-variant">{t("studio.effects.endColor", {}, "End Color")}</div>
                     <div className="flex items-center gap-2.5">
                       <input name="input_field_405045f2" aria-label="Input Field"
                         type="color"
@@ -160,7 +162,7 @@ export function EffectsPanel() {
       {/* Invert Colors Toggle */}
       <div className="flex items-center justify-between p-4 bg-surface-container-low rounded-xl border border-outline-variant">
         <div>
-          <div className="text-sm font-bold text-on-surface block">Invert Colors</div>
+          <div className="text-sm font-bold text-on-surface block">{t("studio.effects.invertColors", {}, "Invert Colors")}</div>
         </div>
         <button
           type="button"
@@ -179,20 +181,20 @@ export function EffectsPanel() {
       <div className="space-y-4">
         <div className="text-sm font-semibold text-on-surface flex items-center gap-2">
           <span className="material-symbols-outlined text-primary text-[20px]">auto_fix_high</span>
-          Drop Shadow & Glow Effect
+          {t("studio.effects.shadowTitle", {}, "Drop Shadow & Glow Effect")}
         </div>
         {settings.bg_transparent && (
           <div className="flex items-center gap-2.5 p-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs">
             <span className="material-symbols-outlined text-amber-600 text-[18px] shrink-0">info</span>
-            <span>Disabled when background is transparent.</span>
+            <span>{t("studio.effects.disabledTransparent", {}, "Disabled when background is transparent.")}</span>
           </div>
         )}
         <div className={`grid grid-cols-4 gap-3 transition-opacity duration-200 ${settings.bg_transparent ? "opacity-40 pointer-events-none" : ""}`}>
           {[
-            { id: "none", name: "None" },
-            { id: "soft", name: "Soft Ambient" },
-            { id: "elevated", name: "3D Shadow" },
-            { id: "neon", name: "Neon Glow" },
+            { id: "none", name: t("studio.effects.noShadow", {}, "None") },
+            { id: "soft", name: t("studio.effects.softShadow", {}, "Soft Ambient") },
+            { id: "elevated", name: t("studio.effects.elevated", {}, "3D Shadow") },
+            { id: "neon", name: t("studio.effects.neonGlow", {}, "Neon Glow") },
           ].map((s) => (
             <button
               key={s.id}
@@ -224,12 +226,12 @@ export function EffectsPanel() {
               onClick={() => setShowCustomShadow(!showCustomShadow)}
               className="text-xs font-semibold text-primary flex items-center gap-1 hover:underline"
             >
-              {showCustomShadow ? "Hide Custom Shadow" : "Custom Shadow..."}
+              {showCustomShadow ? t("studio.effects.hideCustomShadow", {}, "Hide Custom Shadow") : t("studio.effects.showCustomShadow", {}, "Custom Shadow...")}
             </button>
             {showCustomShadow && (
               <div className="flex items-center gap-3 p-3 bg-surface rounded-xl border border-outline-variant">
                 <div className="text-xs font-semibold text-on-surface-variant w-24">
-                  {settings.effect_shadow === "neon" ? "Glow Color:" : "Shadow Color:"}
+                  {settings.effect_shadow === "neon" ? t("studio.effects.glowColor", {}, "Glow Color:") : t("studio.effects.shadowColor", {}, "Shadow Color:")}
                 </div>
                 <input name="input_field_e1179904" aria-label="Input Field"
                   type="color"
@@ -254,10 +256,10 @@ export function EffectsPanel() {
         <div className="flex justify-between items-center">
           <div className="text-sm font-semibold text-on-surface flex items-center gap-2 flex-wrap">
             <span className="material-symbols-outlined text-primary text-[20px]">rounded_corner</span>
-            <span>Canvas Corner Rounding</span>
+            <span>{t("studio.effects.cornerRounding", {}, "Canvas Corner Rounding")}</span>
             {settings.canvas_border_width > 0 && (
               <span className="text-[10px] bg-primary/10 text-primary px-2 py-0.5 rounded-full font-bold border border-primary/20">
-                Syncs with Accent Border
+                {t("studio.effects.syncAccent", {}, "Syncs with Accent Border")}
               </span>
             )}
           </div>
@@ -271,9 +273,9 @@ export function EffectsPanel() {
           onChange={(val) => updateSettings({ canvas_radius: val, canvas_border_radius: val })}
         />
         <div className="flex justify-between text-[11px] text-on-surface-variant font-semibold px-1">
-          <span>0px (Sharp)</span>
-          <span>16px (Standard)</span>
-          <span>40px (Max Round)</span>
+          <span>{t("studio.effects.sharp", {}, "0px (Sharp)")}</span>
+          <span>{t("studio.effects.standard", {}, "16px (Standard)")}</span>
+          <span>{t("studio.effects.maxRound", {}, "40px (Max Round)")}</span>
         </div>
       </div>
 
@@ -282,10 +284,10 @@ export function EffectsPanel() {
         <div className="flex justify-between items-center">
           <div className="text-sm font-semibold text-on-surface flex items-center gap-2">
             <span className="material-symbols-outlined text-primary text-[20px]">crop_free</span>
-            Outer Accent Border
+            {t("studio.effects.outerBorder", {}, "Outer Accent Border")}
           </div>
           <span className="text-xs font-bold text-primary bg-primary/10 px-2.5 py-1 rounded-lg">
-            {settings.canvas_border_width}px Width
+            {t("studio.effects.widthPx", { width: settings.canvas_border_width }, `${settings.canvas_border_width}px Width`)}
           </span>
         </div>
         <Slider min="0"
@@ -296,7 +298,7 @@ export function EffectsPanel() {
         {settings.canvas_border_width > 0 && (
           <div className="space-y-3 pt-2">
             <div className="flex items-center gap-3">
-              <div className="text-xs font-semibold text-on-surface-variant w-24">Border Color:</div>
+              <div className="text-xs font-semibold text-on-surface-variant w-24">{t("studio.effects.borderColor", {}, "Border Color:")}</div>
               <input name="input_field_1d4677bf" aria-label="Input Field"
                 type="color"
                 value={settings.canvas_border_color}
@@ -312,7 +314,7 @@ export function EffectsPanel() {
             </div>
             <p className="text-[11px] font-semibold text-on-surface-variant bg-surface-container-low p-2.5 rounded-xl border border-outline-variant/60 flex items-center gap-2 shadow-2xs">
               <span className="material-symbols-outlined text-primary text-[16px] shrink-0">info</span>
-              <span>Curves match your Canvas Corner Rounding.</span>
+              <span>{t("studio.effects.borderInfo", {}, "Curves match your Canvas Corner Rounding.")}</span>
             </p>
           </div>
         )}
