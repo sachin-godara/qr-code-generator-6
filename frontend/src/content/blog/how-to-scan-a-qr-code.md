@@ -1,7 +1,7 @@
 ---
 title: "How to Scan a QR Code on iPhone and Android — Complete Guide"
 description: "Step-by-step guide to scanning QR codes on iPhone, Android, and desktop. Learn how to use your camera app, Google Lens, and web-based scanners."
-pubDate: 2026-08-20
+pubDate: 2026-08-28
 author: "GenerateCustomQR Team"
 keywords: "how to scan qr code, scan qr code iphone, scan qr code android, qr code reader, how to scan qr code on phone, scan qr code with camera"
 category: "guides"

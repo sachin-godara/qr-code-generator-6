@@ -1,14 +1,14 @@
 ---
 title: "How to Use QR Codes for Restaurant Menus — Complete Guide (2026)"
 description: "Learn how to create, customize, and print QR codes for your restaurant menu. Step-by-step guide with design tips, placement advice, and free tools to go contactless."
-pubDate: 2026-08-18
+pubDate: 2026-08-24
 author: "GenerateCustomQR Team"
 keywords: "qr code for restaurant menu, restaurant qr code, digital menu qr code, contactless menu, qr code menu generator free"
 category: "use-cases"
 image: "/og-image.png"
 imageAlt: "QR code for restaurant menu displayed on a table tent"
 readingTime: 7
-featured: true
+featured: false
 faqs:
   - q: "Do restaurant QR code menus expire?"
     a: "No. Static QR codes generated with GenerateCustomQR never expire. They encode the URL directly into the image — as long as your menu URL stays live, the QR code works forever without any subscription."

@@ -30,3 +30,19 @@ GenerateCustomQR is a privacy-first web application for designing, customizing, 
 - **Gradients**: Linear (Vertical, Horizontal, Diagonal) and Radial gradients with dual-stop color picking.
 - **Error Correction Levels**: L (7%), M (15%), Q (25%), H (30% - used automatically when logos are added).
 
+## Knowledge Base & Engineering Guides
+1. **How to Scan a QR Code**: Native iOS Camera & Android Google Lens decoding.
+2. **How to Scan QR Code from Screenshot**: Browser clipboard Ctrl+V and client-side WebAssembly image scanning.
+3. **WhatsApp Web QR Code Troubleshooting**: Technical guide for optical screen glare, WebSocket connectivity, and 4-device sync limits.
+4. **QR Code Error Correction Explained**: Mathematical breakdown of Reed-Solomon polynomial parity bytes and logo area limits.
+5. **QR Code Size & Distance Formula**: The 10:1 distance-to-size optical ratio for print design.
+6. **Static vs Dynamic QR Codes**: Architectural differences between direct static payloads and redirect servers.
+7. **QR Code Color & Contrast Guide**: WCAG 4.5:1 minimum contrast standards and RGB inversion physics.
+8. **QR Code Design Best Practices for Print**: 300 DPI vector geometry, quiet zone isolation, and material reflectance.
+9. **WiFi QR Code for Hospitality**: WPA2 guest network isolation and acrylic table stand placement.
+10. **vCard on Business Cards**: Offline MECARD/vCard field encoding and matte cardstock printing.
+11. **QR Code for Google Maps & Reviews**: Local SEO CID/ChIJ Place ID deep linking.
+12. **QR Code for Restaurant Menus**: Digital contactless menu design and allergen accessibility.
+13. **QR Codes in Real Estate**: Yard signs, virtual tours, and agent contact distribution.
+14. **QR Code vs 1D Barcode**: Information density, 360-degree omnidirectional scanning, and GS1 Digital Link.
+15. **QR Code Trends 2026 & Beyond**: GS1 Sunrise 2027 point-of-sale migration and EU Digital Product Passport mandates.

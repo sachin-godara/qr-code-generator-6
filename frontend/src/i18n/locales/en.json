@@ -726,6 +726,8 @@
     "sampleWhatsApp": "WhatsApp",
     "sampleWifi": "WiFi",
     "sampleVCard": "vCard",
+    "pageTitle": "Online QR Code Scanner",
+    "pageSubtitle": "Upload an image, paste from clipboard (Ctrl+V), or scan with your camera.",
     "heroTrustBadge": "100% In-Browser • Zero Downloads • Private & Safe",
     "directChatReady": "Direct Chat Ready",
     "clickOpenWebsite": "Click Open Website below or copy URL.",

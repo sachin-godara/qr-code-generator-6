@@ -51,17 +51,13 @@ const supportedTypes = [
   <main class="pt-6 sm:pt-10 pb-20 px-4 sm:px-6">
     <div class="max-w-4xl mx-auto">
 
-      <!-- Hero Header (compact & focused) -->
-      <div class="text-center space-y-2.5 max-w-2xl mx-auto mb-6 sm:mb-8">
-        <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-500/10 text-emerald-700 border border-emerald-500/20 text-[11px] font-bold uppercase tracking-wider shadow-2xs">
-          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span>{t(locale, 'scanner.heroTrustBadge')}</span>
-        </div>
-        <h1 class="text-2xl sm:text-3xl lg:text-[38px] font-extrabold text-on-surface tracking-tight leading-tight">
-          {seo.title}
+      <!-- Sleek Modern Hero Header -->
+      <div class="text-center space-y-2 max-w-xl mx-auto mb-6 sm:mb-8">
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black text-on-surface tracking-tight">
+          {t(locale, 'scanner.pageTitle')}
         </h1>
-        <p class="text-xs sm:text-sm text-on-surface-variant max-w-lg mx-auto leading-relaxed">
-          {seo.description}
+        <p class="text-sm sm:text-base text-on-surface-variant leading-relaxed">
+          {t(locale, 'scanner.pageSubtitle')}
         </p>
       </div>
 
@@ -75,22 +71,22 @@ const supportedTypes = [
           <p class="text-sm sm:text-base text-on-surface-variant">{t(locale, 'scanner.guideSubtitle')}</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           {/* iOS Card */}
-          <div class="bg-surface-container-lowest rounded-3xl p-6 sm:p-8 border border-outline-variant/60 shadow-xs hover:shadow-lg hover:border-blue-200/70 hover:-translate-y-1 transition-all duration-300">
-            <div class="flex items-center justify-between mb-5">
-              <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center shadow-xs">
+          <div class="bg-surface-container-lowest rounded-3xl p-5 sm:p-8 border border-outline-variant/60 shadow-xs hover:shadow-lg hover:border-blue-200/70 hover:-translate-y-1 transition-all duration-300">
+            <div class="flex items-center justify-between mb-4 sm:mb-5">
+              <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center shadow-xs">
                 <span class="material-symbols-outlined text-2xl">phone_iphone</span>
               </div>
-              <span class="px-3 py-1 rounded-full bg-blue-50 border border-blue-200/60 text-blue-700 text-[11px] font-bold">
+              <span class="px-2.5 sm:px-3 py-1 rounded-full bg-blue-50 border border-blue-200/60 text-blue-700 text-[10px] sm:text-[11px] font-bold">
                 Built-in Camera
               </span>
             </div>
-            <h3 class="text-lg sm:text-xl font-bold text-on-surface mb-2">{t(locale, 'scanner.iosTitle')}</h3>
-            <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed mb-5">
+            <h3 class="text-base sm:text-xl font-bold text-on-surface mb-2">{t(locale, 'scanner.iosTitle')}</h3>
+            <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed mb-4 sm:mb-5">
               {t(locale, 'scanner.iosDesc')}
             </p>
-            <ul class="space-y-3 text-xs text-on-surface-variant">
+            <ul class="space-y-2.5 sm:space-y-3 text-xs text-on-surface-variant">
               <li class="flex items-start gap-2.5">
                 <span class="w-5 h-5 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center shrink-0 text-[10px] shadow-xs">1</span>
                 <span>{t(locale, 'scanner.iosStep1')}</span>
@@ -107,17 +103,17 @@ const supportedTypes = [
           </div>
 
           {/* Android Card */}
-          <div class="bg-surface-container-lowest rounded-3xl p-6 sm:p-8 border border-outline-variant/60 shadow-xs hover:shadow-lg hover:border-emerald-200/70 hover:-translate-y-1 transition-all duration-300">
-            <div class="flex items-center justify-between mb-5">
-              <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shadow-xs">
+          <div class="bg-surface-container-lowest rounded-3xl p-5 sm:p-8 border border-outline-variant/60 shadow-xs hover:shadow-lg hover:border-emerald-200/70 hover:-translate-y-1 transition-all duration-300">
+            <div class="flex items-center justify-between mb-4 sm:mb-5">
+              <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shadow-xs">
                 <span class="material-symbols-outlined text-2xl">android</span>
               </div>
-              <span class="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/60 text-emerald-700 text-[11px] font-bold">
+              <span class="px-2.5 sm:px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/60 text-emerald-700 text-[10px] sm:text-[11px] font-bold">
                 Camera / Google Lens
               </span>
             </div>
-            <h3 class="text-lg sm:text-xl font-bold text-on-surface mb-2">{t(locale, 'scanner.androidTitle')}</h3>
-            <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed mb-5">
+            <h3 class="text-base sm:text-xl font-bold text-on-surface mb-2">{t(locale, 'scanner.androidTitle')}</h3>
+            <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed mb-4 sm:mb-5">
               {t(locale, 'scanner.androidDesc')}
             </p>
             <ul class="space-y-3 text-xs text-on-surface-variant">

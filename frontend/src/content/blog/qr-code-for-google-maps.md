@@ -1,7 +1,7 @@
 ---
 title: "How to Create a QR Code for Google Maps — Location QR Code Guide"
 description: "Create a free QR code that opens a Google Maps location when scanned. Perfect for event venues, storefronts, wedding invitations, and delivery instructions."
-pubDate: 2026-08-23
+pubDate: 2026-08-20
 author: "GenerateCustomQR Team"
 keywords: "qr code for google maps, location qr code, qr code google maps location, qr code for address, map qr code generator, google maps qr code"
 category: "guides"

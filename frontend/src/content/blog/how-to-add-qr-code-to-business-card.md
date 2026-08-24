@@ -1,7 +1,7 @@
 ---
 title: "How to Add a QR Code to Your Business Card — Complete Guide"
 description: "Learn how to create and add a custom QR code to your business card. Includes design tips, vCard setup, sizing guides, and free tools for professional results."
-pubDate: 2026-08-08
+pubDate: 2026-08-26
 author: "GenerateCustomQR Team"
 keywords: "qr code for business card, business card qr code, vcard qr code, digital business card, qr code business card generator free, how to add qr code to business card"
 category: "use-cases"

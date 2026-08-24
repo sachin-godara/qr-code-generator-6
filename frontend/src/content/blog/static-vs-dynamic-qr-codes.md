@@ -1,14 +1,14 @@
 ---
 title: "Static vs Dynamic QR Codes — What's the Difference?"
 description: "Understand the key differences between static and dynamic QR codes. Learn when to use each type, their pros and cons, and which is better for your business needs."
-pubDate: 2026-08-15
+pubDate: 2026-08-18
 author: "GenerateCustomQR Team"
 keywords: "static vs dynamic qr code, difference between static and dynamic qr codes, static qr code, dynamic qr code, which qr code type to use"
 category: "comparisons"
 image: "/og-image.png"
 imageAlt: "Comparison of static and dynamic QR codes side by side"
 readingTime: 5
-featured: true
+featured: false
 faqs:
   - q: "What is a static QR code?"
     a: "A static QR code encodes data (like a URL, contact info, or WiFi credentials) directly into the QR code image at creation time. The content cannot be changed after the code is printed. It works forever with no subscription required."

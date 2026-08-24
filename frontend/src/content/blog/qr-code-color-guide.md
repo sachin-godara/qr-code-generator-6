@@ -1,12 +1,12 @@
 ---
 title: "QR Code Color Guide — Best Color Combinations for Scannability"
 description: "Which colors work best for QR codes? Learn about contrast ratios, safe color combinations, and which colors to avoid for reliable scanning."
-pubDate: 2026-08-25
+pubDate: 2026-08-21
 author: "GenerateCustomQR Team"
 keywords: "qr code colors, qr code color combinations, qr code contrast, colored qr code, qr code design colors, best colors for qr code"
 category: "design-tips"
 readingTime: 7
-featured: true
+featured: false
 faqs:
   - q: "What is the minimum contrast ratio for a scannable QR code?"
     a: "QR codes require a minimum contrast ratio of 4.5:1 between the dark modules (dots) and the light background (quiet zone) to reliably scan across all devices. This matches the WCAG AA accessibility standard and ensures performance under challenging lighting conditions."

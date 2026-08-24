@@ -1172,14 +1172,14 @@ function QRScannerAppContent() {
       </AnimatePresence>
 
       {/* Top Header & 2-Mode Segmented Tabs (Upload Image | Scan with Camera) */}
-      <div className="px-5 sm:px-6 py-4 border-b border-zinc-100 flex items-center justify-between gap-3 bg-white">
+      <div className="px-3.5 sm:px-6 py-3 sm:py-4 border-b border-zinc-100 flex items-center justify-between gap-2 sm:gap-3 bg-white">
         
         {/* Main Segmented Mode Toggle */}
         <div className="flex bg-zinc-100/90 rounded-2xl p-1 border border-zinc-200/50 shadow-2xs">
           
           <button
             onClick={() => handleTabChange('file')}
-            className={`relative px-4 py-2 flex items-center justify-center gap-2 rounded-xl font-bold transition-all text-sm outline-none cursor-pointer select-none ${
+            className={`relative px-3 sm:px-4 py-1.5 sm:py-2 flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl font-bold transition-all text-xs sm:text-sm outline-none cursor-pointer select-none ${
               activeTab === 'file' ? 'text-zinc-900 shadow-xs' : 'text-zinc-500 hover:text-zinc-800'
             }`}
           >
@@ -1190,14 +1190,14 @@ function QRScannerAppContent() {
                 transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
               />
             )}
-            <span className="relative z-10 flex items-center gap-2">
-              <ImageIcon size={17} /> <span>{t("scanner.uploadTab")}</span>
+            <span className="relative z-10 flex items-center gap-1.5 sm:gap-2">
+              <ImageIcon size={16} /> <span>{t("scanner.uploadTab")}</span>
             </span>
           </button>
           
           <button
             onClick={() => handleTabChange('camera')}
-            className={`relative px-4 py-2 flex items-center justify-center gap-2 rounded-xl font-semibold transition-all text-sm outline-none cursor-pointer select-none ${
+            className={`relative px-3 sm:px-4 py-1.5 sm:py-2 flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl font-semibold transition-all text-xs sm:text-sm outline-none cursor-pointer select-none ${
               activeTab === 'camera' ? 'text-zinc-900 shadow-xs' : 'text-zinc-500 hover:text-zinc-800'
             }`}
           >
@@ -1208,8 +1208,8 @@ function QRScannerAppContent() {
                 transition={{ type: "spring", bounce: 0.2, duration: 0.4 }}
               />
             )}
-            <span className="relative z-10 flex items-center gap-2">
-              <Camera size={17} /> <span>{t("scanner.cameraTab")}</span>
+            <span className="relative z-10 flex items-center gap-1.5 sm:gap-2">
+              <Camera size={16} /> <span>{t("scanner.cameraTab")}</span>
             </span>
           </button>
 
@@ -1219,17 +1219,17 @@ function QRScannerAppContent() {
         <div className="flex items-center justify-end shrink-0">
           <button
             onClick={() => setShowHistory(!showHistory)}
-            className={`flex items-center justify-center gap-2 px-4 py-2 rounded-2xl border text-sm font-semibold transition-all cursor-pointer ${
+            className={`flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl sm:rounded-2xl border text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
               showHistory 
                 ? 'bg-primary text-white border-primary shadow-md' 
                 : 'bg-zinc-100/90 text-zinc-700 border-zinc-200/50 hover:bg-zinc-200/70'
             }`}
             title={t("scanner.historyTab")}
           >
-            <History size={16} />
-            <span>{t("scanner.historyTab")}</span>
+            <History size={15} />
+            <span className="hidden sm:inline">{t("scanner.historyTab")}</span>
             {scanHistory.length > 0 && (
-              <span className={`px-2 py-0.5 rounded-full text-xs font-bold ${
+              <span className={`px-1.5 py-0.5 rounded-full text-[10px] sm:text-xs font-bold ${
                 showHistory ? 'bg-white/25 text-white' : 'bg-zinc-200/90 text-zinc-700'
               }`}>
                 {scanHistory.length}
@@ -1240,7 +1240,7 @@ function QRScannerAppContent() {
       </div>
 
       {/* Main Body */}
-      <div className="p-4 sm:p-6 md:p-8">
+      <div className="p-3.5 sm:p-6 md:p-8">
         
         {/* Error Alert Box (Only shown for general non-camera errors) */}
         {error && (!uploadedImagePreview && activeTab !== 'camera') && (
@@ -1619,7 +1619,7 @@ function QRScannerAppContent() {
                     onClick={() => !isDeepScanning && fileInputRef.current?.click()}
                     whileHover={{ scale: 1.008, transition: { duration: 0.25, ease: "easeOut" } }}
                     whileTap={{ scale: 0.992 }}
-                    className={`w-full rounded-3xl sm:rounded-[32px] border-2 transition-all duration-300 flex flex-col items-center justify-center cursor-pointer p-7 sm:p-11 text-center select-none relative overflow-hidden group shadow-sm ${
+                    className={`w-full rounded-3xl sm:rounded-[32px] border-2 transition-all duration-300 flex flex-col items-center justify-center cursor-pointer p-5 sm:p-8 md:p-11 text-center select-none relative overflow-hidden group shadow-sm ${
                       isDragging 
                         ? 'border-primary bg-primary/10 scale-[1.015] shadow-2xl ring-4 ring-primary/20 border-solid' 
                         : 'border-dashed border-zinc-300 hover:border-primary/60 hover:shadow-2xl hover:shadow-primary/5 bg-gradient-to-b from-zinc-50/80 via-white to-zinc-50/50'
@@ -1632,39 +1632,39 @@ function QRScannerAppContent() {
                     <span className="absolute bottom-3.5 right-3.5 w-5 h-5 border-b-2 border-r-2 border-zinc-400 group-hover:border-primary group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-all duration-300 rounded-br-lg pointer-events-none"></span>
 
                     {/* Central Animated Scanner Icon with Breathing Halo */}
-                    <div className="relative mb-4">
+                    <div className="relative mb-3.5 sm:mb-4">
                       <motion.div 
                         className="absolute -inset-2.5 rounded-2xl bg-primary/10 border border-primary/20 pointer-events-none"
                         animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.75, 0.3] }}
                         transition={{ repeat: Infinity, duration: 3.2, ease: "easeInOut" }}
                       />
                       <motion.div 
-                        className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white border border-zinc-200/90 text-zinc-900 flex items-center justify-center shadow-md relative z-10 group-hover:border-primary/50 group-hover:text-primary transition-colors"
+                        className="w-14 h-14 sm:w-20 sm:h-20 rounded-2xl bg-white border border-zinc-200/90 text-zinc-900 flex items-center justify-center shadow-md relative z-10 group-hover:border-primary/50 group-hover:text-primary transition-colors"
                         animate={{ y: [0, -3, 0] }}
                         transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
                         whileHover={{ scale: 1.12, rotate: [0, -5, 5, 0], transition: { duration: 0.3 } }}
                       >
-                        <ImageIcon size={34} strokeWidth={1.75} />
+                        <ImageIcon size={30} strokeWidth={1.75} />
                       </motion.div>
                     </div>
 
-                    <h3 className="text-lg sm:text-xl font-bold text-zinc-900 mb-1.5 tracking-tight group-hover:text-black transition-colors">
+                    <h3 className="text-base sm:text-xl font-bold text-zinc-900 mb-1 tracking-tight group-hover:text-black transition-colors">
                       {t("scanner.dropImage")}
                     </h3>
                     
-                    <p className="text-xs sm:text-sm text-zinc-500 max-w-[320px] leading-relaxed mb-5">
+                    <p className="text-xs sm:text-sm text-zinc-500 max-w-[320px] leading-relaxed mb-4 sm:mb-5">
                       {t("scanner.dropSubtitle")}
                     </p>
 
                     {/* Dual Action Primary CTA Buttons */}
-                    <div className="flex flex-col sm:flex-row items-center gap-2.5 w-full max-w-[340px] mb-5 pointer-events-auto z-20" onClick={(e) => e.stopPropagation()}>
+                    <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-2.5 w-full max-w-[340px] mb-4 sm:mb-5 pointer-events-auto z-20" onClick={(e) => e.stopPropagation()}>
                       <motion.button
                         type="button"
                         whileHover={{ scale: 1.03, y: -1 }}
                         whileTap={{ scale: 0.97 }}
                         transition={{ type: "spring", stiffness: 400, damping: 15 }}
                         onClick={() => fileInputRef.current?.click()}
-                        className="w-full sm:flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-black text-white text-xs font-bold shadow-md hover:shadow-lg transition-all cursor-pointer min-h-[42px]"
+                        className="w-full sm:flex-1 inline-flex items-center justify-center gap-2 px-3.5 sm:px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-black text-white text-xs font-bold shadow-md hover:shadow-lg transition-all cursor-pointer min-h-[42px]"
                       >
                         <UploadCloud size={15} />
                         <span>{t("scanner.browseFiles")}</span>
@@ -1676,7 +1676,7 @@ function QRScannerAppContent() {
                         whileTap={{ scale: 0.97 }}
                         transition={{ type: "spring", stiffness: 400, damping: 15 }}
                         onClick={handlePasteClipboard}
-                        className="w-full sm:flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white hover:bg-zinc-100 text-zinc-800 text-xs font-bold border border-zinc-300 shadow-2xs hover:shadow-xs transition-all cursor-pointer min-h-[42px]"
+                        className="w-full sm:flex-1 inline-flex items-center justify-center gap-2 px-3.5 sm:px-4 py-2.5 rounded-xl bg-white hover:bg-zinc-100 text-zinc-800 text-xs font-bold border border-zinc-300 shadow-2xs hover:shadow-xs transition-all cursor-pointer min-h-[42px]"
                       >
                         <Clipboard size={14} className="text-zinc-600" />
                         <span>{t("scanner.pasteButton")}</span>
@@ -1684,13 +1684,13 @@ function QRScannerAppContent() {
                     </div>
 
                     {/* Format badges with springy hover */}
-                    <div className="flex flex-wrap items-center justify-center gap-1.5">
+                    <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-1.5">
                       {['PNG', 'JPG', 'WebP', 'SVG'].map((fmt) => (
                         <motion.span 
                           key={fmt}
                           whileHover={{ scale: 1.08, y: -1 }}
                           transition={{ type: "spring", stiffness: 400 }}
-                          className="px-2.5 py-0.5 rounded-md bg-zinc-100/90 border border-zinc-200/80 text-[11px] font-semibold text-zinc-600 cursor-default"
+                          className="px-2 sm:px-2.5 py-0.5 rounded-md bg-zinc-100/90 border border-zinc-200/80 text-[10px] sm:text-[11px] font-semibold text-zinc-600 cursor-default"
                         >
                           {fmt}
                         </motion.span>
@@ -1698,7 +1698,7 @@ function QRScannerAppContent() {
                       <motion.span 
                         whileHover={{ scale: 1.08, y: -1 }}
                         transition={{ type: "spring", stiffness: 400 }}
-                        className="px-2.5 py-0.5 rounded-md bg-zinc-100/90 border border-zinc-200/80 text-[11px] font-semibold text-zinc-600 cursor-default"
+                        className="px-2 sm:px-2.5 py-0.5 rounded-md bg-zinc-100/90 border border-zinc-200/80 text-[10px] sm:text-[11px] font-semibold text-zinc-600 cursor-default"
                       >
                         {t("scanner.barcodesBadge")}
                       </motion.span>
@@ -1715,7 +1715,7 @@ function QRScannerAppContent() {
                   </motion.div>
 
                   {/* 🧪 Instant Demo Sample QR Code Bar with Tactile Pop */}
-                  <div className="w-full mt-4 p-3 rounded-2xl bg-zinc-50 border border-zinc-200/70 flex flex-col sm:flex-row items-center justify-between gap-2.5 shadow-2xs">
+                  <div className="w-full mt-3.5 sm:mt-4 p-2.5 sm:p-3 rounded-2xl bg-zinc-50 border border-zinc-200/70 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-2.5 shadow-2xs">
                     <div className="flex items-center gap-1.5 text-xs font-bold text-zinc-600">
                       <motion.div
                         animate={{ rotate: [0, 15, -15, 0] }}
@@ -1732,7 +1732,7 @@ function QRScannerAppContent() {
                         whileTap={{ scale: 0.95 }}
                         transition={{ type: "spring", stiffness: 400, damping: 15 }}
                         onClick={() => loadSampleQR('url')}
-                        className="px-2.5 py-1 rounded-lg bg-white hover:bg-blue-50 border border-zinc-200/80 hover:border-blue-300 text-[11px] font-bold text-blue-700 transition-all cursor-pointer shadow-2xs hover:shadow-blue-500/20 hover:shadow-sm"
+                        className="px-2.5 py-1 rounded-lg bg-white hover:bg-blue-50 border border-zinc-200/80 hover:border-blue-300 text-[11px] font-bold text-blue-700 transition-all cursor-pointer shadow-2xs hover:shadow-blue-500/20 hover:shadow-sm min-h-[30px] flex items-center justify-center"
                       >
                         🌐 {t("scanner.sampleWebsite")}
                       </motion.button>
@@ -1742,7 +1742,7 @@ function QRScannerAppContent() {
                         whileTap={{ scale: 0.95 }}
                         transition={{ type: "spring", stiffness: 400, damping: 15 }}
                         onClick={() => loadSampleQR('whatsapp')}
-                        className="px-2.5 py-1 rounded-lg bg-white hover:bg-emerald-50 border border-zinc-200/80 hover:border-emerald-300 text-[11px] font-bold text-emerald-700 transition-all cursor-pointer shadow-2xs hover:shadow-emerald-500/20 hover:shadow-sm"
+                        className="px-2.5 py-1 rounded-lg bg-white hover:bg-emerald-50 border border-zinc-200/80 hover:border-emerald-300 text-[11px] font-bold text-emerald-700 transition-all cursor-pointer shadow-2xs hover:shadow-emerald-500/20 hover:shadow-sm min-h-[30px] flex items-center justify-center"
                       >
                         💬 {t("scanner.sampleWhatsApp")}
                       </motion.button>
@@ -1752,7 +1752,7 @@ function QRScannerAppContent() {
                         whileTap={{ scale: 0.95 }}
                         transition={{ type: "spring", stiffness: 400, damping: 15 }}
                         onClick={() => loadSampleQR('wifi')}
-                        className="px-2.5 py-1 rounded-lg bg-white hover:bg-amber-50 border border-zinc-200/80 hover:border-amber-300 text-[11px] font-bold text-amber-700 transition-all cursor-pointer shadow-2xs hover:shadow-amber-500/20 hover:shadow-sm"
+                        className="px-2.5 py-1 rounded-lg bg-white hover:bg-amber-50 border border-zinc-200/80 hover:border-amber-300 text-[11px] font-bold text-amber-700 transition-all cursor-pointer shadow-2xs hover:shadow-amber-500/20 hover:shadow-sm min-h-[30px] flex items-center justify-center"
                       >
                         📶 {t("scanner.sampleWifi")}
                       </motion.button>
@@ -2357,11 +2357,11 @@ function QRScannerAppContent() {
     </div>
 
       {/* 4-Feature Trust Badges Row (with interactive animations) */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 mt-8 sm:mt-10 w-full max-w-4xl">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mt-6 sm:mt-10 w-full max-w-4xl">
         <motion.div 
           whileHover={{ y: -4, scale: 1.02 }}
           transition={{ type: "spring", stiffness: 400, damping: 20 }}
-          className="bg-white border border-zinc-200/80 rounded-2xl p-3.5 sm:p-4 flex items-center gap-3 shadow-xs hover:shadow-md hover:border-emerald-200 transition-all cursor-default group"
+          className="bg-white border border-zinc-200/80 rounded-2xl p-3 sm:p-4 flex items-center gap-3 shadow-xs hover:shadow-md hover:border-emerald-200 transition-all cursor-default group"
         >
           <motion.div 
             whileHover={{ scale: 1.15, rotate: [0, -8, 8, 0] }}
@@ -2378,7 +2378,7 @@ function QRScannerAppContent() {
         <motion.div 
           whileHover={{ y: -4, scale: 1.02 }}
           transition={{ type: "spring", stiffness: 400, damping: 20 }}
-          className="bg-white border border-zinc-200/80 rounded-2xl p-3.5 sm:p-4 flex items-center gap-3 shadow-xs hover:shadow-md hover:border-blue-200 transition-all cursor-default group"
+          className="bg-white border border-zinc-200/80 rounded-2xl p-3 sm:p-4 flex items-center gap-3 shadow-xs hover:shadow-md hover:border-blue-200 transition-all cursor-default group"
         >
           <motion.div 
             whileHover={{ scale: 1.15, rotate: [0, -8, 8, 0] }}
@@ -2395,7 +2395,7 @@ function QRScannerAppContent() {
         <motion.div 
           whileHover={{ y: -4, scale: 1.02 }}
           transition={{ type: "spring", stiffness: 400, damping: 20 }}
-          className="bg-white border border-zinc-200/80 rounded-2xl p-3.5 sm:p-4 flex items-center gap-3 shadow-xs hover:shadow-md hover:border-purple-200 transition-all cursor-default group"
+          className="bg-white border border-zinc-200/80 rounded-2xl p-3 sm:p-4 flex items-center gap-3 shadow-xs hover:shadow-md hover:border-purple-200 transition-all cursor-default group"
         >
           <motion.div 
             whileHover={{ scale: 1.15, rotate: [0, -8, 8, 0] }}
@@ -2412,7 +2412,7 @@ function QRScannerAppContent() {
         <motion.div 
           whileHover={{ y: -4, scale: 1.02 }}
           transition={{ type: "spring", stiffness: 400, damping: 20 }}
-          className="bg-white border border-zinc-200/80 rounded-2xl p-3.5 sm:p-4 flex items-center gap-3 shadow-xs hover:shadow-md hover:border-amber-200 transition-all cursor-default group"
+          className="bg-white border border-zinc-200/80 rounded-2xl p-3 sm:p-4 flex items-center gap-3 shadow-xs hover:shadow-md hover:border-amber-200 transition-all cursor-default group"
         >
           <motion.div 
             whileHover={{ scale: 1.15, rotate: [0, -8, 8, 0] }}

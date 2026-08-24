@@ -1,7 +1,7 @@
 ---
 title: "Cómo Añadir un Código QR a tu Tarjeta de Visita — Guía Completa"
 description: "Aprende a crear y añadir un código QR personalizado a tu tarjeta de presentación. Incluye consejos de diseño, vCard digital, tamaños y herramientas gratis."
-pubDate: 2026-08-08
+pubDate: 2026-08-26
 author: "GenerateCustomQR Team"
 keywords: "codigo qr para tarjeta de visita, tarjeta de presentacion qr, vcard qr, tarjeta digital, generador qr tarjeta de visita"
 category: "use-cases"

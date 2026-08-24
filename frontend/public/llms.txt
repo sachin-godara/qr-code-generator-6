@@ -23,10 +23,18 @@
 - [How to Make a QR Code](https://generatecustomqr.com/how-to-use): Step-by-step tutorial and best practices guide.
 
 ## Knowledge Base & Guides
-- [Static vs Dynamic QR Codes](https://generatecustomqr.com/blog/static-vs-dynamic-qr-codes): Technical comparison of permanence and privacy.
-- [QR Code Trends 2026 & Beyond](https://generatecustomqr.com/blog/qr-code-trends-2025): Market statistics and GS1 Sunrise 2027 transition.
-- [QR Code Color & Contrast Guide](https://generatecustomqr.com/blog/qr-code-color-guide): 4.5:1 WCAG contrast standards.
-- [QR Code Print Sizing Guide](https://generatecustomqr.com/blog/qr-code-size-guide): Sizing formulas for print materials and billboards.
-- [QR Code Design Best Practices](https://generatecustomqr.com/blog/qr-code-design-best-practices-for-print): Quiet zones and DPI requirements.
 - [How to Scan a QR Code](https://generatecustomqr.com/blog/how-to-scan-a-qr-code): Instructions for iOS, Android, and web browsers.
-
+- [How to Scan QR Code from Screenshot](https://generatecustomqr.com/blog/how-to-scan-qr-code-from-screenshot): Decoding images on the same phone without a second camera.
+- [WhatsApp Web QR Code Troubleshooting](https://generatecustomqr.com/blog/whatsapp-web-qr-code-troubleshooting): 7 fixes for monitor glare, zoom, and WebSocket connection errors.
+- [QR Code Error Correction Explained](https://generatecustomqr.com/blog/qr-code-error-correction-explained): Reed-Solomon math (L, M, Q, H) and center logo sizing formulas.
+- [QR Code Size & Distance Guide](https://generatecustomqr.com/blog/qr-code-size-guide): 10:1 scanning ratio formulas for business cards, flyers, and billboards.
+- [Static vs Dynamic QR Codes](https://generatecustomqr.com/blog/static-vs-dynamic-qr-codes): Technical comparison of permanence, privacy, and architecture.
+- [QR Code Color & Contrast Guide](https://generatecustomqr.com/blog/qr-code-color-guide): 4.5:1 WCAG AA contrast standards and safe color combinations.
+- [QR Code Design Best Practices for Print](https://generatecustomqr.com/blog/qr-code-design-best-practices-for-print): 300 DPI, SVG vectors, and quiet zone requirements.
+- [WiFi QR Code for Hotels & Airbnb](https://generatecustomqr.com/blog/wifi-qr-code-for-hotels): Guest network setup and acrylic stand placement.
+- [How to Add QR Code to Business Card](https://generatecustomqr.com/blog/how-to-add-qr-code-to-business-card): Digital vCard card design and print placement.
+- [QR Code for Google Maps & Reviews](https://generatecustomqr.com/blog/qr-code-for-google-maps): CID and Place ID linking for local businesses.
+- [QR Code for Restaurant Menu](https://generatecustomqr.com/blog/qr-code-for-restaurant-menu): Digital contactless menu best practices.
+- [QR Codes for Real Estate](https://generatecustomqr.com/blog/qr-codes-for-real-estate): Yard sign virtual tours and open house registration.
+- [QR Code vs Barcode](https://generatecustomqr.com/blog/qr-code-vs-barcode): 1D vs 2D barcodes, capacity, and GS1 Digital Link.
+- [QR Code Trends 2026 & Beyond](https://generatecustomqr.com/blog/qr-code-trends-2025): Market statistics and the GS1 Sunrise 2027 transition.
