@@ -1,0 +1,137 @@
+---
+import { type Locale } from '../../i18n/config';
+import { t } from '../../i18n/utils';
+
+export interface HeadingItem {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  locale: Locale;
+  headings: HeadingItem[];
+}
+
+const { locale, headings } = Astro.props;
+
+// Filter to h2 and h3 only
+const filteredHeadings = headings.filter((h) => h.depth === 2 || h.depth === 3);
+---
+
+{filteredHeadings.length > 1 && (
+  <nav class="toc-container" aria-label="Table of contents">
+    {/* Mobile Collapsible TOC */}
+    <div class="block lg:hidden bg-surface-container-lowest border border-outline-variant/70 rounded-2xl p-4 shadow-xs mb-8">
+      <details class="group">
+        <summary class="flex items-center justify-between cursor-pointer font-bold text-sm text-on-surface select-none list-none">
+          <span class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-base">format_list_bulleted</span>
+            <span>{t(locale, 'blog.tableOfContents')}</span>
+          </span>
+          <span class="material-symbols-outlined text-on-surface-variant transition-transform duration-200 group-open:rotate-180 text-base">
+            expand_more
+          </span>
+        </summary>
+        <ul class="mt-3 pt-3 border-t border-outline-variant/40 space-y-2 text-xs">
+          {filteredHeadings.map((h) => (
+            <li class={h.depth === 3 ? 'pl-3.5 border-l border-outline-variant/60' : ''}>
+              <a
+                href={`#${h.slug}`}
+                class="block py-1 text-on-surface-variant hover:text-primary transition-colors leading-snug"
+              >
+                {h.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </details>
+    </div>
+
+    {/* Desktop Sticky Sidebar TOC */}
+    <div class="hidden lg:block">
+      <div class="sticky top-28 bg-surface-container-lowest border border-outline-variant/60 rounded-3xl p-5 shadow-xs max-h-[calc(100vh-140px)] overflow-y-auto">
+        <div class="flex items-center gap-2 pb-3 mb-3 border-b border-outline-variant/40">
+          <span class="material-symbols-outlined text-primary text-lg">menu_book</span>
+          <h3 class="text-xs font-black uppercase tracking-wider text-on-surface">
+            {t(locale, 'blog.onThisPage')}
+          </h3>
+        </div>
+        
+        <ul class="space-y-1 text-xs toc-list">
+          {filteredHeadings.map((h) => (
+            <li class={`transition-colors ${h.depth === 3 ? 'pl-3 border-l border-outline-variant/50 ml-1' : ''}`}>
+              <a
+                href={`#${h.slug}`}
+                data-slug={h.slug}
+                class="toc-link block py-1.5 text-on-surface-variant hover:text-primary transition-all duration-150 leading-relaxed font-medium rounded-lg px-2 hover:bg-surface-container"
+              >
+                {h.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </nav>
+)}
+
+<script>
+  // High-performance IntersectionObserver Scrollspy
+  function initScrollSpy() {
+    const tocLinks = document.querySelectorAll('.toc-link');
+    if (!tocLinks || tocLinks.length === 0) return;
+
+    const headings = Array.from(document.querySelectorAll('article h2, article h3'));
+    if (headings.length === 0) return;
+
+    const observerCallback: IntersectionObserverCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          if (id) {
+            tocLinks.forEach((link) => {
+              if (link.getAttribute('data-slug') === id) {
+                link.classList.add('text-primary', 'font-bold', 'bg-primary/10');
+                link.classList.remove('text-on-surface-variant', 'font-medium');
+              } else {
+                link.classList.remove('text-primary', 'font-bold', 'bg-primary/10');
+                link.classList.add('text-on-surface-variant', 'font-medium');
+              }
+            });
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, {
+      rootMargin: '-80px 0px -60% 0px',
+      threshold: 0.1,
+    });
+
+    headings.forEach((h) => observer.observe(h));
+  }
+
+  // Auto-close mobile TOC on link click
+  function initMobileTocAutoClose() {
+    const mobileDetails = document.querySelector('.toc-container details');
+    if (!mobileDetails) return;
+    const links = mobileDetails.querySelectorAll('a');
+    links.forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileDetails.removeAttribute('open');
+      });
+    });
+  }
+
+  // Run on mount
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+      initScrollSpy();
+      initMobileTocAutoClose();
+    });
+  } else {
+    initScrollSpy();
+    initMobileTocAutoClose();
+  }
+</script>

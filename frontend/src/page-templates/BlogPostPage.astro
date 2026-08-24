@@ -2,6 +2,9 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Header from '../components/layout/Header.astro';
 import Footer from '../components/layout/Footer.astro';
+import TableOfContents, { type HeadingItem } from '../components/blog/TableOfContents.astro';
+import ShareBar from '../components/blog/ShareBar.astro';
+import BlogCtaWidget from '../components/blog/BlogCtaWidget.astro';
 import { type Locale } from '../i18n/config';
 import { getLocalizedUrl, t } from '../i18n/utils';
 
@@ -9,13 +12,15 @@ interface Props {
   locale: Locale;
   post: any;
   Content: any;
+  headings?: HeadingItem[];
   relatedPosts: any[];
 }
 
-const { locale, post, Content, relatedPosts } = Astro.props;
+const { locale, post, Content, headings = [], relatedPosts } = Astro.props;
 
 const title = post.data.title;
 const description = post.data.description;
+const canonicalUrl = `https://generatecustomqr.com${getLocalizedUrl(locale, `/blog/${post.id}`)}`;
 
 const breadcrumbs = [
   { name: t(locale, 'nav.generator'), url: getLocalizedUrl(locale, '/') },
@@ -75,7 +80,7 @@ const articleSchema = {
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": `https://generatecustomqr.com${getLocalizedUrl(locale, `/blog/${post.id}`)}`
+    "@id": canonicalUrl
   }
 };
 
@@ -116,11 +121,11 @@ const howTo = post.data.howToSteps && post.data.howToSteps.length > 0 ? {
       <div id="reading-progress" class="reading-progress" aria-hidden="true"></div>
 
       <!-- ═══ ARTICLE HEADER ═══ -->
-      <header class="py-12 md:py-20 border-b border-outline-variant/50 bg-surface-container-lowest">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6">
-          <div class="space-y-6">
-            <!-- Category & Reading Time -->
-            <div class="flex items-center gap-3 flex-wrap">
+      <header class="py-8 sm:py-12 md:py-16 border-b border-outline-variant/50 bg-surface-container-lowest">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+          <div class="space-y-4 sm:space-y-6">
+            <!-- Category, Reading Time & E-E-A-T Badges -->
+            <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
               <span class="category-badge" data-cat={post.data.category}>
                 <span class="material-symbols-outlined text-[12px]">{catIcon}</span>
                 {catLabel}
@@ -131,22 +136,26 @@ const howTo = post.data.howToSteps && post.data.howToSteps.length > 0 ? {
                   {t(locale, 'blog.minRead', { min: post.data.readingTime }) || `${post.data.readingTime} min read`}
                 </span>
               )}
+              <span class="text-xs font-bold text-emerald-700 bg-emerald-500/10 border border-emerald-500/20 px-2.5 py-1 rounded-full flex items-center gap-1">
+                <span class="material-symbols-outlined text-[14px]">verified</span>
+                {t(locale, 'blog.factChecked')}
+              </span>
             </div>
 
             <!-- Title -->
-            <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-on-surface tracking-tight leading-[1.15]">
+            <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-black text-on-surface tracking-tight leading-[1.2]">
               {title}
             </h1>
 
             <!-- Description / Subtitle -->
-            <p class="text-lg sm:text-xl text-on-surface-variant leading-relaxed">
+            <p class="text-sm sm:text-base md:text-lg text-on-surface-variant leading-relaxed">
               {description}
             </p>
 
             <!-- Meta Row -->
             <div class="flex items-center justify-between pt-4 border-t border-outline-variant/40 text-xs text-on-surface-variant">
               <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">
+                <div class="w-8 h-8 rounded-full bg-zinc-900 text-white flex items-center justify-center font-bold text-xs shadow-xs">
                   GC
                 </div>
                 <div>
@@ -154,35 +163,69 @@ const howTo = post.data.howToSteps && post.data.howToSteps.length > 0 ? {
                   <time datetime={post.data.pubDate.toISOString()}>{formatDate(post.data.pubDate)}</time>
                 </div>
               </div>
+              <div class="text-[11px] font-semibold text-on-surface-variant bg-surface-container px-2.5 py-1 rounded-md border border-outline-variant/40 hidden sm:block">
+                {t(locale, 'blog.updatedFor')}
+              </div>
             </div>
           </div>
         </div>
       </header>
 
-      <!-- ═══ ARTICLE BODY ═══ -->
-      <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 md:py-16 blog-prose">
-        <Content />
-      </article>
+      <!-- ═══ ARTICLE BODY WITH 2-COLUMN LAYOUT & STICKY TOC ═══ -->
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12 md:py-16">
+        <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_280px] xl:grid-cols-[minmax(0,1fr)_300px] gap-8 lg:gap-12 items-start">
+          
+          {/* Main Article Content Column */}
+          <div class="min-w-0">
+            {/* Mobile TOC */}
+            <div class="lg:hidden">
+              <TableOfContents locale={locale} headings={headings} />
+            </div>
+
+            <article class="blog-prose max-w-none">
+              <Content />
+            </article>
+
+            {/* Interactive Social Sharing */}
+            <ShareBar locale={locale} title={title} url={canonicalUrl} />
+
+            {/* Contextual Interactive Tool Widget */}
+            <BlogCtaWidget
+              locale={locale}
+              variant={
+                post.data.category === 'use-cases' && post.id.includes('card') ? 'vcard' :
+                post.id.includes('wifi') ? 'wifi' :
+                post.id.includes('scan') ? 'scanner' : 'general'
+              }
+            />
+          </div>
+
+          {/* Sticky Desktop TOC Sidebar */}
+          <aside class="hidden lg:block space-y-6">
+            <TableOfContents locale={locale} headings={headings} />
+          </aside>
+        </div>
+      </div>
 
       <!-- ═══ RELATED POSTS ═══ -->
       {relatedPosts.length > 0 && (
-        <section class="border-t border-outline-variant/50 bg-surface-container-low/30 py-12 md:py-16">
-          <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-8">
+        <section class="border-t border-outline-variant/50 bg-surface-container-low/30 py-10 sm:py-14">
+          <div class="max-w-6xl mx-auto px-4 sm:px-6 space-y-6 sm:space-y-8">
             <div class="flex items-center justify-between">
-              <h2 class="text-2xl font-black text-on-surface tracking-tight">{t(locale, 'blog.relatedGuides')}</h2>
+              <h2 class="text-xl sm:text-2xl font-black text-on-surface tracking-tight">{t(locale, 'blog.relatedGuides')}</h2>
               <a href={getLocalizedUrl(locale, '/blog')} class="text-xs font-bold text-primary hover:underline flex items-center gap-1">
                 {t(locale, 'blog.viewAll')} <span class="material-symbols-outlined text-[14px]">arrow_forward</span>
               </a>
             </div>
-            <div class="grid sm:grid-cols-3 gap-6">
+            <div class="grid sm:grid-cols-3 gap-4 sm:gap-6">
               {relatedPosts.map((p) => {
                 const relCat = t(locale, `blog.categories.${p.data.category}`) || p.data.category;
                 return (
-                  <a href={getLocalizedUrl(locale, `/blog/${p.id}`)} class="p-5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 hover-lift space-y-3 block">
+                  <a href={getLocalizedUrl(locale, `/blog/${p.id}`)} class="p-4 sm:p-5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 hover-lift space-y-2.5 block">
                     <span class="px-2 py-0.5 rounded-md bg-surface text-[10px] font-bold text-primary uppercase">
                       {relCat}
                     </span>
-                    <h3 class="font-bold text-on-surface text-base line-clamp-2">{p.data.title}</h3>
+                    <h3 class="font-bold text-on-surface text-sm sm:text-base line-clamp-2">{p.data.title}</h3>
                     <p class="text-xs text-on-surface-variant line-clamp-2">{p.data.description}</p>
                   </a>
                 );
@@ -193,18 +236,18 @@ const howTo = post.data.howToSteps && post.data.howToSteps.length > 0 ? {
       )}
 
       <!-- ═══ BOTTOM CTA ═══ -->
-      <section class="max-w-3xl mx-auto px-4 sm:px-6 pb-16">
-        <div class="rounded-3xl bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 text-white p-8 sm:p-10 shadow-2xl text-center space-y-4">
-          <h2 class="text-2xl font-black tracking-tight">{t(locale, 'blog.postCtaTitle')}</h2>
-          <p class="text-zinc-400 text-sm max-w-md mx-auto">
+      <section class="max-w-4xl mx-auto px-4 sm:px-6 pb-14">
+        <div class="rounded-3xl bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-800 text-white p-6 sm:p-10 shadow-2xl text-center space-y-4">
+          <h2 class="text-xl sm:text-3xl font-black tracking-tight">{t(locale, 'blog.postCtaTitle')}</h2>
+          <p class="text-zinc-400 text-xs sm:text-sm max-w-md mx-auto leading-relaxed">
             {t(locale, 'blog.postCtaDesc')}
           </p>
           <div class="pt-2">
             <a
               href={getLocalizedUrl(locale, '/')}
-              class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-zinc-900 font-bold text-sm hover:bg-zinc-100 shadow-md hover:scale-105 transition-all"
+              class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-zinc-900 font-bold text-xs sm:text-sm hover:bg-zinc-100 shadow-md hover:scale-105 active:scale-95 transition-all"
             >
-              <span class="material-symbols-outlined text-lg">qr_code_2</span>
+              <span class="material-symbols-outlined text-base sm:text-lg">qr_code_2</span>
               {t(locale, 'blog.postCtaButton')}
             </a>
           </div>
@@ -216,13 +259,37 @@ const howTo = post.data.howToSteps && post.data.howToSteps.length > 0 ? {
   </div>
 
   <script>
+    // Responsive table auto-wrapper
+    function wrapResponsiveTables() {
+      document.querySelectorAll('.blog-prose table').forEach((table) => {
+        if (!table.parentElement?.classList.contains('table-responsive-wrapper')) {
+          const wrapper = document.createElement('div');
+          wrapper.className = 'table-responsive-wrapper';
+          table.parentNode?.insertBefore(wrapper, table);
+          wrapper.appendChild(table);
+        }
+      });
+    }
+
     // Reading progress bar
-    window.addEventListener('scroll', () => {
+    function initReadingProgress() {
       const progressBar = document.getElementById('reading-progress');
       if (!progressBar) return;
-      const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const progress = (window.scrollY / totalHeight) * 100;
-      progressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
-    });
+      window.addEventListener('scroll', () => {
+        const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = (window.scrollY / totalHeight) * 100;
+        progressBar.style.width = `${Math.min(100, Math.max(0, progress))}%`;
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', () => {
+        wrapResponsiveTables();
+        initReadingProgress();
+      });
+    } else {
+      wrapResponsiveTables();
+      initReadingProgress();
+    }
   </script>
 </BaseLayout>

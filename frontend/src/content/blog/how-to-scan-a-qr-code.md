@@ -113,6 +113,34 @@ This is especially useful for scanning QR codes received in emails, PDFs, or scr
 | Code is damaged or partially covered | Try a dedicated scanner app with error correction support |
 | Blurry camera | Hold your phone steady and let it focus for 1–2 seconds |
 
+## Where is the WhatsApp QR Code Scanner? (WhatsApp Web Pairing)
+
+Many users search for the WhatsApp scanner to log into **WhatsApp Web** on a laptop or desktop computer. WhatsApp has a dedicated scanner built directly into the mobile app:
+
+### On iPhone:
+1. Open WhatsApp and tap the **Settings** gear icon in the bottom-right corner.
+2. Tap **Linked Devices**.
+3. Tap **Link a Device** (unlock with Face ID or Touch ID).
+4. Point your iPhone camera at the QR code shown on [web.whatsapp.com](https://web.whatsapp.com).
+
+### On Android:
+1. Open WhatsApp and tap the **Three Vertical Dots** in the top-right corner.
+2. Select **Linked Devices**.
+3. Tap **Link a Device** (authenticate with fingerprint or PIN).
+4. Frame the WhatsApp Web QR code on your computer monitor to sync messages instantly.
+
+---
+
+## Why You Should Never Download Adware QR Scanner Apps
+
+Search app stores for "QR Code Scanner" and you will find hundreds of third-party utility apps loaded with invasive full-screen video ads, tracking SDKs, and expensive subscription traps.
+
+> [!WARNING]
+> **You do not need to install third-party scanner apps.**
+> Native camera software on Apple iOS and Android OS already includes fast, secure, hardware-accelerated QR scanning without ads. For saved images and desktop scanning, use verified, client-side web tools like the [GenerateCustomQR Web Scanner](/qr-code-scanner).
+
+---
+
 ## Tips for Creating Scannable QR Codes
 
 If you're creating QR codes for others to scan, keep these best practices in mind:
@@ -131,8 +159,9 @@ Ready to create your own QR code? [Generate a free custom QR code →](/)
 | iPhone | Camera App | ✅ Yes |
 | Android (Pixel, Samsung) | Camera App / Google Lens | ✅ Yes |
 | Android (other) | Google Lens | ✅ Yes |
-| Desktop | [Web Scanner](/qr-code-scanner) | Browser-based |
-| From saved image | Google Lens / Photos | ✅ Yes |
+| WhatsApp Web Pairing | WhatsApp → Linked Devices | ✅ Yes |
+| Desktop & PC | [Web Scanner](/qr-code-scanner) | Browser-based |
+| From saved image / screenshot | [Web Scanner (Ctrl+V)](/qr-code-scanner) / Photos | ✅ Yes |
 
-Whether you're using an iPhone or Android, scanning QR codes is faster than ever. And if you need to create QR codes that scan reliably across all devices, [GenerateCustomQR](/) offers 40+ styles with guaranteed scannability — 100% free.
+Whether you're using an iPhone, Android, or PC, scanning QR codes is faster and safer than ever. And if you need to create QR codes that scan reliably across all devices, [GenerateCustomQR](/) offers 40+ styles with guaranteed scannability — 100% free.
 

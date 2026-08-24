@@ -23,15 +23,16 @@
     ]
   },
   "scanner": {
-    "title": "Free QR Code Scanner Online — Scan Camera & Image (No App)",
-    "description": "Instantly scan and decode QR codes online. Use your device camera, upload an image file, or paste a screenshot with Ctrl+V. 100% free, private, and fast.",
-    "keywords": "qr code scanner, qr code reader, scan qr code online, free qr code scanner, scan qr code from image, scan qr code on pc laptop mac, paste screenshot qr code ctrl v, online qr decoder free, how to scan a qr code",
+    "title": "Free QR Code Scanner & Reader Online — Scan from Image, Camera & PC",
+    "description": "Instantly scan and decode QR codes online with zero downloads. Read QR codes from saved photos, screenshots (Ctrl+V), webcams, or phone cameras — 100% free & private.",
+    "keywords": "qr code scanner, qr code reader online, free qr code scanner online, scan qr code from image, scan qr code from screenshot, scan qr code without app, scan qr code on pc, whatsapp web qr code scanner, how to read qr code from screenshot, barcode scanner online, scan qr code iphone, android qr code scanner",
     "faqs": [
-      { "q": "Do I need to download a QR code reader app?", "a": "No! Most modern smartphones have a QR code scanner built directly into the native Camera app. Alternatively, you can use our free web-based scanner above without downloading anything or installing third-party apps." },
-      { "q": "How do I scan a QR code on Android?", "a": "Open your native Camera app and point it at the QR code. You can also use Google Lens or our free web scanner right on this page." },
-      { "q": "How do I scan a QR code on an iPhone (iOS)?", "a": "Open the default Camera app, point it at the QR code, and tap the yellow notification banner that appears." },
-      { "q": "Can I scan a QR code from a screenshot or image?", "a": "Yes! Use the 'Upload Image' tab on our scanner above, or press Ctrl+V anywhere on the page to paste from your clipboard." },
-      { "q": "Is it safe to scan QR codes on this website?", "a": "Yes, 100%. All decoding runs client-side directly in your browser. Images and camera streams are processed locally and never stored." }
+      { "q": "How do I scan a QR code without downloading an app?", "a": "You do not need to install any app. Modern iOS and Android phones have QR readers built into their native Camera apps. On PC, Mac, laptops, or tablets, open GenerateCustomQR Web Scanner to scan instantly with your webcam, upload a photo, or paste a screenshot with Ctrl+V." },
+      { "q": "Can you scan a QR code from a screenshot or saved image?", "a": "Yes! Switch to the 'Upload Image' tab on this page to select any saved PNG, JPG, WebP, or SVG file, or simply press Ctrl+V to paste a screenshot directly from your clipboard. Our scanner decodes it in milliseconds." },
+      { "q": "How do I scan a QR code on an iPhone or iPad?", "a": "Open the native Camera app from your Home Screen or Control Center, hold your camera steadily over the QR code, and tap the yellow notification banner that appears at the bottom of the viewfinder." },
+      { "q": "How do I scan a QR code on Android and Samsung devices?", "a": "Open your native Camera app or swipe down from the top of your screen to tap 'Scan QR code' in Quick Settings. You can also use Google Lens or our free web scanner in Google Chrome." },
+      { "q": "Where is the WhatsApp Web QR code scanner?", "a": "Open WhatsApp on your phone, go to Settings (iOS) or tap the Three Dots menu (Android), tap 'Linked Devices', and tap 'Link a Device'. Point your camera at the QR code displayed on web.whatsapp.com." },
+      { "q": "Is this online QR code scanner private and secure?", "a": "Yes, 100%. All decoding runs client-side directly inside your browser via WebAssembly. Your images and video feed are processed locally on your device and are never uploaded, stored, or tracked." }
     ]
   }
 }

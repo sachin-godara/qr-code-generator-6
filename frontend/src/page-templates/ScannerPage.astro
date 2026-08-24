@@ -21,12 +21,14 @@ const breadcrumbs = [
 const faqs = seo.faqs || [];
 
 const supportedTypes = [
-  { icon: "link", title: t(locale, 'scanner.formats.urlsTitle'), desc: t(locale, 'scanner.formats.urlsDesc') },
-  { icon: "wifi", title: t(locale, 'scanner.formats.wifiTitle'), desc: t(locale, 'scanner.formats.wifiDesc') },
-  { icon: "contact_page", title: t(locale, 'scanner.formats.vcardTitle'), desc: t(locale, 'scanner.formats.vcardDesc') },
-  { icon: "location_on", title: t(locale, 'scanner.formats.mapsTitle'), desc: t(locale, 'scanner.formats.mapsDesc') },
-  { icon: "event", title: t(locale, 'scanner.formats.eventsTitle'), desc: t(locale, 'scanner.formats.eventsDesc') },
-  { icon: "description", title: t(locale, 'scanner.formats.textTitle'), desc: t(locale, 'scanner.formats.textDesc') }
+  { icon: "link", title: t(locale, 'scanner.formats.urlsTitle'), desc: t(locale, 'scanner.formats.urlsDesc'), color: "text-blue-600 bg-blue-50 border-blue-200/60", badge: "Instant Redirect" },
+  { icon: "chat", title: "WhatsApp Web & Direct Chat", desc: "Scan wa.me links to initiate chats with pre-filled messages instantly.", color: "text-emerald-600 bg-emerald-50 border-emerald-200/60", badge: "Direct Chat" },
+  { icon: "wifi", title: t(locale, 'scanner.formats.wifiTitle'), desc: t(locale, 'scanner.formats.wifiDesc'), color: "text-amber-600 bg-amber-50 border-amber-200/60", badge: "1-Tap Connect" },
+  { icon: "contact_page", title: t(locale, 'scanner.formats.vcardTitle'), desc: t(locale, 'scanner.formats.vcardDesc'), color: "text-indigo-600 bg-indigo-50 border-indigo-200/60", badge: "Phonebook .vcf" },
+  { icon: "location_on", title: t(locale, 'scanner.formats.mapsTitle'), desc: t(locale, 'scanner.formats.mapsDesc'), color: "text-rose-600 bg-rose-50 border-rose-200/60", badge: "Live GPS" },
+  { icon: "event", title: t(locale, 'scanner.formats.eventsTitle'), desc: t(locale, 'scanner.formats.eventsDesc'), color: "text-purple-600 bg-purple-50 border-purple-200/60", badge: ".ics Calendar" },
+  { icon: "barcode_scanner", title: "1D/2D Barcodes & Aztec", desc: "Read DataMatrix, UPC, EAN, Aztec, and Code-128 alongside QR codes.", color: "text-cyan-600 bg-cyan-50 border-cyan-200/60", badge: "Multi-Format" },
+  { icon: "description", title: t(locale, 'scanner.formats.textTitle'), desc: t(locale, 'scanner.formats.textDesc'), color: "text-zinc-600 bg-zinc-100 border-zinc-200/60", badge: "Raw Payload" }
 ];
 ---
 <BaseLayout
@@ -51,15 +53,9 @@ const supportedTypes = [
 
       <!-- Hero Header (compact & focused) -->
       <div class="text-center space-y-2.5 max-w-2xl mx-auto mb-6 sm:mb-8">
-        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-[11px] font-bold uppercase tracking-wider">
-          <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M3 7V5a2 2 0 0 1 2-2h2"/>
-            <path d="M17 3h2a2 2 0 0 1 2 2v2"/>
-            <path d="M21 17v2a2 2 0 0 1-2 2h-2"/>
-            <path d="M7 21H5a2 2 0 0 1-2-2v-2"/>
-            <path d="M7 12h10"/>
-          </svg>
-          <span>{t(locale, 'scanner.cameraTab')}</span>
+        <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-500/10 text-emerald-700 border border-emerald-500/20 text-[11px] font-bold uppercase tracking-wider shadow-2xs">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          <span>{t(locale, 'scanner.heroTrustBadge')}</span>
         </div>
         <h1 class="text-2xl sm:text-3xl lg:text-[38px] font-extrabold text-on-surface tracking-tight leading-tight">
           {seo.title}
@@ -81,51 +77,61 @@ const supportedTypes = [
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* iOS Card */}
-          <div class="bg-surface-container-lowest rounded-3xl p-6 sm:p-8 border border-outline-variant/60 shadow-xs hover:shadow-md transition-all">
-            <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mb-5">
-              <span class="material-symbols-outlined text-2xl">phone_iphone</span>
+          <div class="bg-surface-container-lowest rounded-3xl p-6 sm:p-8 border border-outline-variant/60 shadow-xs hover:shadow-lg hover:border-blue-200/70 hover:-translate-y-1 transition-all duration-300">
+            <div class="flex items-center justify-between mb-5">
+              <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center shadow-xs">
+                <span class="material-symbols-outlined text-2xl">phone_iphone</span>
+              </div>
+              <span class="px-3 py-1 rounded-full bg-blue-50 border border-blue-200/60 text-blue-700 text-[11px] font-bold">
+                Built-in Camera
+              </span>
             </div>
             <h3 class="text-lg sm:text-xl font-bold text-on-surface mb-2">{t(locale, 'scanner.iosTitle')}</h3>
-            <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed mb-4">
+            <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed mb-5">
               {t(locale, 'scanner.iosDesc')}
             </p>
-            <ul class="space-y-2.5 text-xs text-on-surface-variant">
+            <ul class="space-y-3 text-xs text-on-surface-variant">
               <li class="flex items-start gap-2.5">
-                <span class="w-5 h-5 rounded-full bg-blue-100 text-blue-700 font-bold flex items-center justify-center shrink-0 text-[10px]">1</span>
-                <span>Open your iPhone or iPad native <strong>Camera</strong> app.</span>
+                <span class="w-5 h-5 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center shrink-0 text-[10px] shadow-xs">1</span>
+                <span>{t(locale, 'scanner.iosStep1')}</span>
               </li>
               <li class="flex items-start gap-2.5">
-                <span class="w-5 h-5 rounded-full bg-blue-100 text-blue-700 font-bold flex items-center justify-center shrink-0 text-[10px]">2</span>
-                <span>Hold your device steadily facing the QR code in the viewfinder.</span>
+                <span class="w-5 h-5 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center shrink-0 text-[10px] shadow-xs">2</span>
+                <span>{t(locale, 'scanner.iosStep2')}</span>
               </li>
               <li class="flex items-start gap-2.5">
-                <span class="w-5 h-5 rounded-full bg-blue-100 text-blue-700 font-bold flex items-center justify-center shrink-0 text-[10px]">3</span>
-                <span>Tap the yellow notification badge that pops up to open the link.</span>
+                <span class="w-5 h-5 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center shrink-0 text-[10px] shadow-xs">3</span>
+                <span>{t(locale, 'scanner.iosStep3')}</span>
               </li>
             </ul>
           </div>
 
           {/* Android Card */}
-          <div class="bg-surface-container-lowest rounded-3xl p-6 sm:p-8 border border-outline-variant/60 shadow-xs hover:shadow-md transition-all">
-            <div class="w-12 h-12 rounded-2xl bg-green-50 text-green-600 flex items-center justify-center mb-5">
-              <span class="material-symbols-outlined text-2xl">android</span>
+          <div class="bg-surface-container-lowest rounded-3xl p-6 sm:p-8 border border-outline-variant/60 shadow-xs hover:shadow-lg hover:border-emerald-200/70 hover:-translate-y-1 transition-all duration-300">
+            <div class="flex items-center justify-between mb-5">
+              <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center shadow-xs">
+                <span class="material-symbols-outlined text-2xl">android</span>
+              </div>
+              <span class="px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/60 text-emerald-700 text-[11px] font-bold">
+                Camera / Google Lens
+              </span>
             </div>
             <h3 class="text-lg sm:text-xl font-bold text-on-surface mb-2">{t(locale, 'scanner.androidTitle')}</h3>
-            <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed mb-4">
+            <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed mb-5">
               {t(locale, 'scanner.androidDesc')}
             </p>
-            <ul class="space-y-2.5 text-xs text-on-surface-variant">
+            <ul class="space-y-3 text-xs text-on-surface-variant">
               <li class="flex items-start gap-2.5">
-                <span class="w-5 h-5 rounded-full bg-green-100 text-green-700 font-bold flex items-center justify-center shrink-0 text-[10px]">1</span>
-                <span>Open your native <strong>Camera</strong> app and frame the QR code.</span>
+                <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center shrink-0 text-[10px] shadow-xs">1</span>
+                <span>{t(locale, 'scanner.androidStep1')}</span>
               </li>
               <li class="flex items-start gap-2.5">
-                <span class="w-5 h-5 rounded-full bg-green-100 text-green-700 font-bold flex items-center justify-center shrink-0 text-[10px]">2</span>
-                <span>If not recognized, tap the <strong>Google Lens</strong> icon in the camera interface.</span>
+                <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center shrink-0 text-[10px] shadow-xs">2</span>
+                <span>{t(locale, 'scanner.androidStep2')}</span>
               </li>
               <li class="flex items-start gap-2.5">
-                <span class="w-5 h-5 rounded-full bg-green-100 text-green-700 font-bold flex items-center justify-center shrink-0 text-[10px]">3</span>
-                <span>Tap the URL or action pill that appears on screen.</span>
+                <span class="w-5 h-5 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center shrink-0 text-[10px] shadow-xs">3</span>
+                <span>{t(locale, 'scanner.androidStep3')}</span>
               </li>
             </ul>
           </div>
@@ -139,14 +145,21 @@ const supportedTypes = [
           <p class="text-sm sm:text-base text-on-surface-variant">{t(locale, 'scanner.supportedSub')}</p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-5">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3.5 sm:gap-4">
           {supportedTypes.map((item) => (
-            <div class="flex items-start gap-4 p-4.5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 hover:border-zinc-300 hover:shadow-sm transition-all group">
-              <div class="w-11 h-11 rounded-xl bg-zinc-100 text-zinc-800 flex items-center justify-center shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
-                <span class="material-symbols-outlined text-xl">{item.icon}</span>
-              </div>
-              <div class="space-y-1 min-w-0">
-                <h3 class="text-sm font-bold text-on-surface">{item.title}</h3>
+            <div class="flex flex-col justify-between p-4.5 rounded-2xl bg-surface-container-lowest border border-outline-variant/60 hover:border-zinc-300 hover:shadow-md hover:-translate-y-0.5 transition-all group">
+              <div>
+                <div class="flex items-center justify-between mb-3">
+                  <div class={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 border ${item.color} shadow-2xs group-hover:scale-105 transition-transform`}>
+                    <span class="material-symbols-outlined text-xl">{item.icon}</span>
+                  </div>
+                  {item.badge && (
+                    <span class="px-2 py-0.5 rounded-md bg-zinc-100 border border-zinc-200/70 text-[10px] font-bold text-zinc-600">
+                      {item.badge}
+                    </span>
+                  )}
+                </div>
+                <h3 class="text-sm font-bold text-on-surface mb-1">{item.title}</h3>
                 <p class="text-xs text-on-surface-variant leading-relaxed">{item.desc}</p>
               </div>
             </div>

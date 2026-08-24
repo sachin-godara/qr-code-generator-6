@@ -110,6 +110,8 @@ For a comprehensive breakdown of the frontend layers, inspect the [`Learnings/Fr
 - [**`10_COMPUTER_VISION_SCANNER_AND_WEBRTC_PIPELINE.md`**](./Frontend/10_COMPUTER_VISION_SCANNER_AND_WEBRTC_PIPELINE.md) — 85 KB WebRTC camera scanner, 3-tier fallback decoding, multi-format payload parser, audio/vibration feedback.
 - [**`11_PAGE_TEMPLATES_AND_LANDING_PAGE_ARCHITECTURE.md`**](./Frontend/11_PAGE_TEMPLATES_AND_LANDING_PAGE_ARCHITECTURE.md) — 16 Page Templates, template-delegation architecture, and structured schema injection.
 - [**`12_TEMPLATE_PRESETS_AND_STYLE_CATALOG_SYSTEM.md`**](./Frontend/12_TEMPLATE_PRESETS_AND_STYLE_CATALOG_SYSTEM.md) — 100+ curated designer templates, options enums, 80 KB vector SVG icon library, and 1-click apply mechanics.
+- [**`13_QR_SCANNER_MASTER_KEYWORD_DATASET_AND_SEARCH_INTELLIGENCE.md`**](./Frontend/13_QR_SCANNER_MASTER_KEYWORD_DATASET_AND_SEARCH_INTELLIGENCE.md) — 150+ keyword dataset across 30+ search engine intelligence captures, AnswerThePublic query models, and low-difficulty SEO targets.
+- [**`14_QR_SCANNER_COMPREHENSIVE_IMPROVEMENT_PLAN.md`**](./Frontend/14_QR_SCANNER_COMPREHENSIVE_IMPROVEMENT_PLAN.md) — Architectural roadmap for scanner upgrades: URL safety shield, 1-click action cards (WhatsApp, WiFi, Maps), camera controls, and schema blueprints.
 
 ---
 

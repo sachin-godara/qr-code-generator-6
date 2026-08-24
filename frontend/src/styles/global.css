@@ -121,22 +121,19 @@
     text-size-adjust: 100%;
   }
 
-  /* Proportional scaling for smaller mobile devices (<390px) 
-     so it doesn't look "blown up" compared to high-DPI phones */
-  @media (max-width: 389px) {
+  /* Maintain standard 100% natural font size across mobile devices */
+  html {
+    font-size: 100%;
+  }
+
+  /* Sleek, compact 90% desktop studio scaling for large screens */
+  @media (min-width: 1024px) {
     html {
-      font-size: 87.5%;
+      font-size: 93.75%;
     }
   }
 
-  /* Sleek, compact 90% desktop studio scaling */
-  @media (min-width: 922px) {
-    html {
-      font-size: 90%;
-    }
-  }
-
-  @media (min-width: 1728px) {
+  @media (min-width: 1536px) {
     html {
       font-size: 100%;
     }

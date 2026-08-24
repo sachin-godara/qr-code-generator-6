@@ -11,7 +11,7 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
 
 const allPosts = await getCollection('blog_pt');
 const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
@@ -19,4 +19,4 @@ const relatedPosts = sortedPosts
   .filter(p => p.id !== post.id)
   .slice(0, 3);
 ---
-<BlogPostPage locale="pt" post={post} Content={Content} relatedPosts={relatedPosts} />
+<BlogPostPage locale="pt" post={post} Content={Content} headings={headings} relatedPosts={relatedPosts} />

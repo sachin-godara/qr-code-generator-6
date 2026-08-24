@@ -38,6 +38,8 @@ const categoryIconMap: Record<string, string> = {
   'news': 'newspaper',
 };
 
+const categories = ['all', 'guides', 'use-cases', 'design-tips', 'industry', 'comparisons'];
+
 const localeFormatMap: Record<Locale, string> = {
   en: 'en-US',
   es: 'es-ES',
@@ -93,11 +95,51 @@ const keywordsMap: Record<Locale, string> = {
         </div>
       </section>
 
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-16 space-y-16">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12 md:py-16 space-y-14">
+
+        <!-- ═══ SEARCH & CATEGORY FILTER BAR ═══ -->
+        <section class="space-y-4">
+          <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+            {/* Search Input */}
+            <div class="relative w-full sm:w-80">
+              <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg pointer-events-none">
+                search
+              </span>
+              <input
+                type="text"
+                id="blog-search-input"
+                placeholder={t(locale, 'blog.searchPlaceholder')}
+                class="w-full pl-10 pr-4 py-2.5 bg-surface-container-lowest border border-outline-variant/70 rounded-2xl text-xs sm:text-sm text-on-surface placeholder:text-on-surface-variant/70 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-all shadow-xs"
+              />
+            </div>
+
+            {/* Category Filter Chips */}
+            <div class="flex items-center gap-2 overflow-x-auto w-full sm:w-auto pb-2 sm:pb-0 scrollbar-none touch-pan-x" id="blog-category-filters">
+              {categories.map((cat) => {
+                const label = cat === 'all' 
+                  ? t(locale, 'blog.allCategories') 
+                  : (t(locale, `blog.categories.${cat}`) || cat);
+                return (
+                  <button
+                    type="button"
+                    data-cat={cat}
+                    class={`blog-filter-btn px-4 py-2 min-h-[36px] rounded-full text-xs font-bold whitespace-nowrap transition-all cursor-pointer border select-none ${
+                      cat === 'all'
+                        ? 'bg-zinc-900 text-white border-zinc-900 shadow-xs active-cat'
+                        : 'bg-surface-container-lowest text-on-surface-variant border-outline-variant/60 hover:bg-surface-container'
+                    }`}
+                  >
+                    {label}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </section>
 
         <!-- ═══ FEATURED POSTS ═══ -->
         {featuredPosts.length > 0 && (
-          <section class="blog-reveal">
+          <section class="blog-reveal" id="featured-posts-section">
             <div class="flex items-center gap-3 mb-8">
               <div class="w-10 h-10 rounded-xl bg-zinc-900 text-white flex items-center justify-center shadow-md">
                 <span class="material-symbols-outlined text-xl">star</span>
@@ -116,13 +158,14 @@ const keywordsMap: Record<Locale, string> = {
                 return (
                   <a
                     href={postUrl}
-                    class="blog-card group block bg-surface-container-lowest rounded-2xl border border-outline-variant/60 overflow-hidden shadow-xs hover-lift"
+                    data-category={post.data.category}
+                    data-title={post.data.title.toLowerCase()}
+                    data-desc={post.data.description.toLowerCase()}
+                    class="blog-card group block bg-surface-container-lowest rounded-3xl border border-outline-variant/60 overflow-hidden shadow-xs hover-lift article-item"
                   >
                     {/* Gradient Header */}
-                    <div class="h-40 sm:h-48 bg-gradient-to-br from-zinc-100 via-zinc-50 to-white relative overflow-hidden">
-                      <div class="absolute inset-0 flex items-center justify-center">
-                        <span class="material-symbols-outlined text-7xl text-zinc-200 group-hover:text-zinc-300 transition-colors">article</span>
-                      </div>
+                    <div class="h-44 bg-gradient-to-br from-zinc-100 via-zinc-50 to-white relative overflow-hidden flex items-center justify-center">
+                      <span class="material-symbols-outlined text-7xl text-zinc-200 group-hover:text-zinc-300 transition-colors">article</span>
                       <div class="absolute top-4 left-4">
                         <span class="category-badge" data-cat={post.data.category}>
                           <span class="material-symbols-outlined text-[12px]">{catIcon}</span>
@@ -137,7 +180,7 @@ const keywordsMap: Record<Locale, string> = {
                     </div>
 
                     {/* Content */}
-                    <div class="p-5 sm:p-6 space-y-3">
+                    <div class="p-6 space-y-3">
                       <h3 class="text-lg sm:text-xl font-bold text-on-surface tracking-tight leading-snug group-hover:text-primary transition-colors line-clamp-2">
                         {post.data.title}
                       </h3>
@@ -175,7 +218,7 @@ const keywordsMap: Record<Locale, string> = {
             </div>
           </div>
 
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="blog-articles-grid">
             {(regularPosts.length > 0 ? regularPosts : sortedPosts).map((post) => {
               const catLabel = t(locale, `blog.categories.${post.data.category}`) || post.data.category;
               const catIcon = categoryIconMap[post.data.category] || 'article';
@@ -183,13 +226,14 @@ const keywordsMap: Record<Locale, string> = {
               return (
                 <a
                   href={postUrl}
-                  class="blog-card group block bg-surface-container-lowest rounded-2xl border border-outline-variant/60 overflow-hidden shadow-xs hover-lift"
+                  data-category={post.data.category}
+                  data-title={post.data.title.toLowerCase()}
+                  data-desc={post.data.description.toLowerCase()}
+                  class="blog-card group block bg-surface-container-lowest rounded-2xl border border-outline-variant/60 overflow-hidden shadow-xs hover-lift article-item"
                 >
                   {/* Mini Gradient Header */}
-                  <div class="h-32 bg-gradient-to-br from-zinc-100 via-zinc-50 to-white relative overflow-hidden">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                      <span class="material-symbols-outlined text-5xl text-zinc-200 group-hover:text-zinc-300 transition-colors">description</span>
-                    </div>
+                  <div class="h-32 bg-gradient-to-br from-zinc-100 via-zinc-50 to-white relative overflow-hidden flex items-center justify-center">
+                    <span class="material-symbols-outlined text-5xl text-zinc-200 group-hover:text-zinc-300 transition-colors">description</span>
                     <div class="absolute top-3 left-3">
                       <span class="category-badge" data-cat={post.data.category}>
                         <span class="material-symbols-outlined text-[11px]">{catIcon}</span>
@@ -227,6 +271,12 @@ const keywordsMap: Record<Locale, string> = {
               );
             })}
           </div>
+
+          {/* No Search Results Notice */}
+          <div id="no-articles-notice" class="hidden text-center py-16 bg-surface-container-lowest border border-outline-variant/60 rounded-3xl p-8 space-y-3">
+            <span class="material-symbols-outlined text-4xl text-on-surface-variant">search_off</span>
+            <p class="text-sm font-bold text-on-surface">{t(locale, 'blog.noArticlesFound')}</p>
+          </div>
         </section>
 
         <!-- ═══ CTA BANNER ═══ -->
@@ -257,6 +307,70 @@ const keywordsMap: Record<Locale, string> = {
   </div>
 
   <script>
+    // Live Client Filter & Search
+    function initBlogFilters() {
+      const searchInput = document.getElementById('blog-search-input') as HTMLInputElement | null;
+      const filterBtns = document.querySelectorAll('.blog-filter-btn');
+      const articleCards = document.querySelectorAll('.article-item') as NodeListOf<HTMLElement>;
+      const noResults = document.getElementById('no-articles-notice');
+      const featuredSection = document.getElementById('featured-posts-section');
+
+      let activeCategory = 'all';
+      let searchQuery = '';
+
+      function filterArticles() {
+        let visibleCount = 0;
+
+        articleCards.forEach((card) => {
+          const cardCat = card.getAttribute('data-category') || '';
+          const cardTitle = card.getAttribute('data-title') || '';
+          const cardDesc = card.getAttribute('data-desc') || '';
+
+          const matchesCat = activeCategory === 'all' || cardCat === activeCategory;
+          const matchesSearch = !searchQuery || cardTitle.includes(searchQuery) || cardDesc.includes(searchQuery);
+
+          if (matchesCat && matchesSearch) {
+            card.style.display = 'block';
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        if (featuredSection) {
+          featuredSection.style.display = (activeCategory !== 'all' || searchQuery.length > 0) ? 'none' : 'block';
+        }
+
+        if (noResults) {
+          noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+      }
+
+      filterBtns.forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const cat = btn.getAttribute('data-cat') || 'all';
+          activeCategory = cat;
+
+          filterBtns.forEach((b) => {
+            b.classList.remove('bg-zinc-900', 'text-white', 'border-zinc-900', 'shadow-xs', 'active-cat');
+            b.classList.add('bg-surface-container-lowest', 'text-on-surface-variant', 'border-outline-variant/60');
+          });
+
+          btn.classList.add('bg-zinc-900', 'text-white', 'border-zinc-900', 'shadow-xs', 'active-cat');
+          btn.classList.remove('bg-surface-container-lowest', 'text-on-surface-variant', 'border-outline-variant/60');
+
+          filterArticles();
+        });
+      });
+
+      if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+          searchQuery = ((e.target as HTMLInputElement).value || '').trim().toLowerCase();
+          filterArticles();
+        });
+      }
+    }
+
     // Scroll reveal animation
     const revealEls = document.querySelectorAll('.blog-reveal');
     const observer = new IntersectionObserver((entries) => {
@@ -268,5 +382,11 @@ const keywordsMap: Record<Locale, string> = {
       });
     }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
     revealEls.forEach(el => observer.observe(el));
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initBlogFilters);
+    } else {
+      initBlogFilters();
+    }
   </script>
 </BaseLayout>

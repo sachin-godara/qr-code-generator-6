@@ -37,12 +37,50 @@ import {
   SwitchCamera,
   XCircle,
   AlertTriangle,
-  UploadCloud
+  UploadCloud,
+  Clipboard,
+  Globe
 } from 'lucide-react';
 import { scanQRImageBackend, API_BASE } from '../../services/qrApi';
 
 // --- Type Definitions ---
-export type ParsedQRType = 'url' | 'wifi' | 'vcard' | 'email' | 'phone' | 'sms' | 'geo' | 'event' | 'text';
+export type ParsedQRType = 'url' | 'whatsapp' | 'wifi' | 'vcard' | 'email' | 'phone' | 'sms' | 'geo' | 'event' | 'text';
+
+export interface URLSafetyReport {
+  status: 'safe' | 'warning' | 'caution';
+  badgeColor: string;
+  badgeLabel: string;
+  reasons: string[];
+}
+
+export function evaluateURLSafety(urlStr: string): URLSafetyReport {
+  const reasons: string[] = [];
+  let isHttps = false;
+  let isShortener = false;
+  let isIP = false;
+
+  try {
+    const parsed = new URL(urlStr);
+    isHttps = parsed.protocol === 'https:';
+    isIP = /^(\d{1,3}\.){3}\d{1,3}$/.test(parsed.hostname);
+    const shortenerDomains = ['bit.ly', 'tinyurl.com', 't.co', 'rb.gy', 'is.gd', 'cutt.ly', 'shorturl.at', 'ow.ly'];
+    isShortener = shortenerDomains.includes(parsed.hostname.toLowerCase());
+
+    if (!isHttps) reasons.push('Unencrypted HTTP connection');
+    if (isIP) reasons.push('Direct IP address');
+    if (isShortener) reasons.push('Hidden destination (URL shortener)');
+
+    if (isIP || (!isHttps && isShortener)) {
+      return { status: 'caution', badgeColor: 'bg-red-500/10 text-red-600 border-red-500/20', badgeLabel: 'Caution: Unverified', reasons };
+    }
+    if (!isHttps || isShortener) {
+      return { status: 'warning', badgeColor: 'bg-amber-500/10 text-amber-600 border-amber-500/20', badgeLabel: isShortener ? 'URL Shortener' : 'HTTP Unencrypted', reasons };
+    }
+    return { status: 'safe', badgeColor: 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20', badgeLabel: 'Secure HTTPS', reasons: ['Verified SSL/TLS connection'] };
+  } catch {
+    return { status: 'safe', badgeColor: 'bg-zinc-500/10 text-zinc-600 border-zinc-500/20', badgeLabel: 'Text Content', reasons: [] };
+  }
+}
 
 export interface ParsedQRData {
   type: ParsedQRType;
@@ -51,6 +89,12 @@ export interface ParsedQRData {
   url?: string;
   domain?: string;
   isHttps?: boolean;
+  safety?: URLSafetyReport;
+  whatsapp?: {
+    phone: string;
+    message?: string;
+    chatUrl: string;
+  };
   wifi?: {
     ssid: string;
     password?: string;
@@ -126,6 +170,33 @@ function playScanSound() {
 // --- Helper: Parse Scanned Payload ---
 export function parseQRContent(rawText: string): ParsedQRData {
   const raw = rawText.trim();
+
+  // 0. WhatsApp Format: wa.me, api.whatsapp.com, or whatsapp://
+  if (raw.includes('wa.me/') || raw.includes('api.whatsapp.com/send') || raw.startsWith('whatsapp://')) {
+    let phone = '';
+    let message = '';
+    try {
+      const normalizedUrl = raw.startsWith('whatsapp://') ? raw.replace('whatsapp://', 'https://') : raw;
+      const waUrl = new URL(normalizedUrl);
+      if (waUrl.hostname.includes('wa.me')) {
+        phone = waUrl.pathname.replace(/^\//, '').split('?')[0];
+        message = waUrl.searchParams.get('text') || '';
+      } else {
+        phone = waUrl.searchParams.get('phone') || '';
+        message = waUrl.searchParams.get('text') || '';
+      }
+    } catch {
+      phone = raw.replace(/[^0-9+]/g, '');
+    }
+    const cleanPhone = phone.replace(/[^0-9]/g, '');
+    const chatUrl = `https://wa.me/${cleanPhone}${message ? `?text=${encodeURIComponent(message)}` : ''}`;
+    return {
+      type: 'whatsapp',
+      title: `WhatsApp: ${phone || 'Direct Chat'}`,
+      raw,
+      whatsapp: { phone, message, chatUrl }
+    };
+  }
 
   // 1. WiFi Format: WIFI:S:MySSID;T:WPA;P:MyPassword;H:false;;
   if (raw.startsWith('WIFI:') || raw.startsWith('wifi:')) {
@@ -248,14 +319,19 @@ export function parseQRContent(rawText: string): ParsedQRData {
   }
 
   // 6. Geo format: geo:lat,lng or Google Maps URL
-  if (raw.startsWith('geo:')) {
-    const coords = raw.substring(4).split('?')[0].split(',');
-    const lat = coords[0]?.trim() || '';
-    const lng = coords[1]?.trim() || '';
-    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+  if (raw.startsWith('geo:') || (raw.startsWith('http') && (raw.includes('maps.google.com') || raw.includes('goo.gl/maps') || raw.includes('maps.app.goo.gl')))) {
+    let lat = '';
+    let lng = '';
+    let mapsUrl = raw;
+    if (raw.startsWith('geo:')) {
+      const coords = raw.substring(4).split('?')[0].split(',');
+      lat = coords[0]?.trim() || '';
+      lng = coords[1]?.trim() || '';
+      mapsUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+    }
     return {
       type: 'geo',
-      title: `Location: ${lat}, ${lng}`,
+      title: lat && lng ? `Location: ${lat}, ${lng}` : 'Google Maps Location',
       raw,
       geo: { lat, lng, mapsUrl }
     };
@@ -278,6 +354,7 @@ export function parseQRContent(rawText: string): ParsedQRData {
 
   // 8. Standard URL / Website
   if (/^https?:\/\//i.test(raw)) {
+    const safety = evaluateURLSafety(raw);
     try {
       const parsedUrl = new URL(raw);
       return {
@@ -286,7 +363,8 @@ export function parseQRContent(rawText: string): ParsedQRData {
         raw,
         url: raw,
         domain: parsedUrl.hostname,
-        isHttps: parsedUrl.protocol === 'https:'
+        isHttps: parsedUrl.protocol === 'https:',
+        safety
       };
     } catch (e) {
       return {
@@ -294,7 +372,8 @@ export function parseQRContent(rawText: string): ParsedQRData {
         title: raw,
         raw,
         url: raw,
-        isHttps: raw.startsWith('https://')
+        isHttps: raw.startsWith('https://'),
+        safety
       };
     }
   }
@@ -337,6 +416,7 @@ function QRScannerAppContent() {
   const [facingMode, setFacingMode] = useState<'environment' | 'user'>('environment');
   const [hasTorch, setHasTorch] = useState(false);
   const [torchOn, setTorchOn] = useState(false);
+  const [permissionBrowserTab, setPermissionBrowserTab] = useState<'chrome' | 'safari' | 'android' | 'firefox'>('chrome');
 
   const scannerRef = useRef<Html5Qrcode | null>(null);
   const isTransitioningRef = useRef(false);
@@ -355,6 +435,20 @@ function QRScannerAppContent() {
   // Restore active tab & history on initial mount / reload
   useEffect(() => {
     try {
+      // 0. Auto-detect browser for camera permission guidance
+      if (typeof navigator !== 'undefined') {
+        const ua = navigator.userAgent.toLowerCase();
+        if (ua.includes('iphone') || ua.includes('ipad') || (ua.includes('safari') && !ua.includes('chrome') && !ua.includes('android'))) {
+          setPermissionBrowserTab('safari');
+        } else if (ua.includes('android')) {
+          setPermissionBrowserTab('android');
+        } else if (ua.includes('firefox')) {
+          setPermissionBrowserTab('firefox');
+        } else {
+          setPermissionBrowserTab('chrome');
+        }
+      }
+
       // 1. Check URL query or hash first (e.g. ?tab=camera or #camera)
       const urlParams = new URLSearchParams(window.location.search);
       const queryTab = urlParams.get('tab');
@@ -386,9 +480,16 @@ function QRScannerAppContent() {
     }
   }, []);
 
-  // Sync tab changes with sessionStorage
+  // Sync tab changes with sessionStorage & reset scan result
   const handleTabChange = (newTab: 'file' | 'camera') => {
     setError(null);
+    setScanResult(null);
+    setParsedData(null);
+    setShowPassword(false);
+    if (uploadedImagePreview) {
+      URL.revokeObjectURL(uploadedImagePreview);
+      setUploadedImagePreview(null);
+    }
     setActiveTab(newTab);
     try {
       sessionStorage.setItem(TAB_PREF_KEY, newTab);
@@ -508,7 +609,17 @@ function QRScannerAppContent() {
 
       if (!scannerRef.current) {
         scannerRef.current = new Html5Qrcode(readerElementId, {
-          formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
+          formatsToSupport: [
+            Html5QrcodeSupportedFormats.QR_CODE,
+            Html5QrcodeSupportedFormats.DATA_MATRIX,
+            Html5QrcodeSupportedFormats.AZTEC,
+            Html5QrcodeSupportedFormats.EAN_13,
+            Html5QrcodeSupportedFormats.EAN_8,
+            Html5QrcodeSupportedFormats.UPC_A,
+            Html5QrcodeSupportedFormats.UPC_E,
+            Html5QrcodeSupportedFormats.CODE_128,
+            Html5QrcodeSupportedFormats.CODE_39
+          ],
           verbose: false
         });
       }
@@ -647,7 +758,17 @@ function QRScannerAppContent() {
   const scanWithFallback = async (file: File): Promise<string> => {
     if (!scannerRef.current) {
       scannerRef.current = new Html5Qrcode(readerElementId, {
-        formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
+        formatsToSupport: [
+          Html5QrcodeSupportedFormats.QR_CODE,
+          Html5QrcodeSupportedFormats.DATA_MATRIX,
+          Html5QrcodeSupportedFormats.AZTEC,
+          Html5QrcodeSupportedFormats.EAN_13,
+          Html5QrcodeSupportedFormats.EAN_8,
+          Html5QrcodeSupportedFormats.UPC_A,
+          Html5QrcodeSupportedFormats.UPC_E,
+          Html5QrcodeSupportedFormats.CODE_128,
+          Html5QrcodeSupportedFormats.CODE_39
+        ],
         verbose: false
       });
     }
@@ -764,6 +885,40 @@ function QRScannerAppContent() {
   const handleFileUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) processImageFile(file);
+  };
+
+  // 1-Click Clipboard Image Reader (with Async Clipboard API)
+  const handlePasteClipboard = async () => {
+    try {
+      if (navigator.clipboard && navigator.clipboard.read) {
+        const items = await navigator.clipboard.read();
+        for (const item of items) {
+          const imageType = item.types.find(t => t.startsWith('image/'));
+          if (imageType) {
+            const blob = await item.getType(imageType);
+            const file = new File([blob], "clipboard_pasted.png", { type: imageType });
+            processImageFile(file);
+            showToast('Pasted screenshot from clipboard!');
+            return;
+          }
+        }
+      }
+      showToast('Tip: Press Ctrl+V on your keyboard to paste image');
+    } catch (e) {
+      showToast('Tip: Press Ctrl+V on your keyboard to paste image');
+    }
+  };
+
+  // 1-Click Instant Demo Sample QR Loader
+  const loadSampleQR = (type: 'url' | 'whatsapp' | 'wifi' | 'vcard') => {
+    let sample = '';
+    if (type === 'url') sample = 'https://generatecustomqr.com';
+    else if (type === 'whatsapp') sample = 'https://wa.me/15551234567?text=Hello%20from%20GenerateCustomQR!';
+    else if (type === 'wifi') sample = 'WIFI:S:GenerateCustomQR_Guest;T:WPA;P:SuperSecretPass2026;H:false;;';
+    else if (type === 'vcard') sample = 'BEGIN:VCARD\nVERSION:3.0\nFN:Alex Morgan\nTEL:+1-555-0199\nEMAIL:alex.morgan@example.com\nORG:Creative Tech Studio\nTITLE:Lead Designer\nURL:https://generatecustomqr.com\nEND:VCARD';
+    
+    handleScanSuccess(sample);
+    showToast(`Loaded live sample ${type.toUpperCase()} QR code!`);
   };
 
   // Clipboard Paste listener (Ctrl+V / Cmd+V)
@@ -919,6 +1074,19 @@ function QRScannerAppContent() {
     showToast('Contact card (.vcf) downloaded');
   };
 
+  // 2b. Generate Calendar Event (.ics) download
+  const downloadIcsFile = () => {
+    if (!scanResult) return;
+    const blob = new Blob([scanResult], { type: 'text/calendar;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${parsedData?.event?.summary?.replace(/\s+/g, '_') || 'event'}.ics`;
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('Calendar event (.ics) downloaded');
+  };
+
   // 3. Download Decoded Plain Text (.txt)
   const downloadTextFile = () => {
     if (!scanResult) return;
@@ -963,6 +1131,8 @@ function QRScannerAppContent() {
     switch (type) {
       case 'url':
         return { label: 'Website Link', icon: <ExternalLink size={15} />, color: 'bg-blue-500/10 text-blue-600 border-blue-500/20' };
+      case 'whatsapp':
+        return { label: 'WhatsApp Chat', icon: <MessageSquare size={15} />, color: 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20' };
       case 'wifi':
         return { label: 'WiFi Credentials', icon: <Wifi size={15} />, color: 'bg-amber-500/10 text-amber-600 border-amber-500/20' };
       case 'vcard':
@@ -1072,14 +1242,14 @@ function QRScannerAppContent() {
       {/* Main Body */}
       <div className="p-4 sm:p-6 md:p-8">
         
-        {/* Error Alert Box (for camera errors or general notices) */}
-        {error && (!uploadedImagePreview || activeTab === 'camera') && (
+        {/* Error Alert Box (Only shown for general non-camera errors) */}
+        {error && (!uploadedImagePreview && activeTab !== 'camera') && (
           <motion.div 
             initial={{ opacity: 0, y: -10 }} 
             animate={{ opacity: 1, y: 0 }}
-            className="w-full mb-4 sm:mb-6 p-3.5 sm:p-4 bg-error-container text-on-error-container rounded-2xl flex items-start gap-2.5 sm:gap-3 border border-error/20 shadow-xs"
+            className="w-full mb-4 sm:mb-6 p-3.5 sm:p-4 bg-amber-500/10 text-amber-900 rounded-2xl flex items-start gap-2.5 sm:gap-3 border border-amber-500/25 shadow-xs"
           >
-            <AlertCircle className="shrink-0 mt-0.5 text-error" size={18} />
+            <AlertCircle className="shrink-0 mt-0.5 text-amber-600" size={18} />
             <div className="text-xs sm:text-sm font-medium leading-relaxed">
               <p className="font-bold mb-0.5">{t("scanner.scanNotice")}</p>
               <p>{error.startsWith("scanner.") ? t(error) : error}</p>
@@ -1105,38 +1275,160 @@ function QRScannerAppContent() {
                 
                 {/* Viewfinder Idle / Permission / Error Overlay */}
                 {!isScanning && (
-                  <div className="absolute inset-0 bg-surface-container-lowest/95 backdrop-blur-md flex flex-col items-center justify-center p-4 sm:p-6 text-center z-20">
-                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-3 sm:mb-4 border border-primary/20 shadow-inner">
-                      <Camera size={28} />
-                    </div>
+                  <div className="absolute inset-0 bg-surface-container-lowest/98 backdrop-blur-md flex flex-col items-center justify-center p-4 sm:p-5 text-center z-20 overflow-y-auto">
                     
-                    <h4 className="text-sm sm:text-base font-bold text-on-surface mb-1">
-                      {error ? t("scanner.cameraAccessRequired") : t("scanner.liveCameraScanner")}
-                    </h4>
-                    
-                    <p className="text-[11px] sm:text-xs text-on-surface-variant max-w-[260px] leading-relaxed mb-4 sm:mb-5">
-                      {error 
-                        ? t("scanner.cameraBlockedDesc")
-                        : t("scanner.cameraScanDesc")}
-                    </p>
-                    
-                    <div className="flex flex-col sm:flex-row gap-2 sm:gap-2.5 w-full max-w-[280px]">
-                      <button
-                        onClick={() => startCamera(selectedCameraId || undefined)}
-                        className="flex-1 flex items-center justify-center gap-1.5 bg-primary text-white py-2.5 px-4 rounded-xl font-bold hover:bg-primary/90 text-xs shadow-md transition-all cursor-pointer btn-spring"
-                      >
-                        <RefreshCw size={13} />
-                        <span>{error ? t("scanner.retryCamera") : t("scanner.startCamera")}</span>
-                      </button>
-                      
-                      <button
-                        onClick={() => handleTabChange('file')}
-                        className="flex-1 flex items-center justify-center gap-1.5 bg-surface hover:bg-surface-container text-on-surface py-2.5 px-4 rounded-xl font-bold text-xs border border-outline-variant/60 transition-colors cursor-pointer"
-                      >
-                        <ImageIcon size={13} />
-                        <span>{t("scanner.uploadFile")}</span>
-                      </button>
-                    </div>
+                    {error ? (
+                      /* Permission Blocked Guidance Mode */
+                      <div className="w-full max-w-[340px] flex flex-col items-center">
+                        <div className="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-600 flex items-center justify-center mb-2.5 border border-amber-500/20 shadow-inner">
+                          <Lock size={22} />
+                        </div>
+                        
+                        <h4 className="text-sm sm:text-base font-black text-on-surface mb-0.5">
+                          {t("scanner.permBlockedTitle")}
+                        </h4>
+                        
+                        <p className="text-[11px] text-on-surface-variant leading-relaxed mb-3">
+                          {t("scanner.permBlockedSubtitle")}
+                        </p>
+
+                        {/* Interactive Browser Selector Tabs */}
+                        <div className="flex bg-zinc-100 p-0.5 rounded-xl border border-zinc-200/60 mb-3 w-full justify-center gap-1">
+                          <button
+                            onClick={() => setPermissionBrowserTab('chrome')}
+                            className={`px-2 py-1 rounded-lg text-[10px] font-bold transition-all cursor-pointer ${
+                              permissionBrowserTab === 'chrome' ? 'bg-white text-zinc-900 shadow-2xs' : 'text-zinc-500 hover:text-zinc-800'
+                            }`}
+                          >
+                            Chrome / Edge
+                          </button>
+                          <button
+                            onClick={() => setPermissionBrowserTab('safari')}
+                            className={`px-2 py-1 rounded-lg text-[10px] font-bold transition-all cursor-pointer ${
+                              permissionBrowserTab === 'safari' ? 'bg-white text-zinc-900 shadow-2xs' : 'text-zinc-500 hover:text-zinc-800'
+                            }`}
+                          >
+                            Safari (iOS)
+                          </button>
+                          <button
+                            onClick={() => setPermissionBrowserTab('android')}
+                            className={`px-2 py-1 rounded-lg text-[10px] font-bold transition-all cursor-pointer ${
+                              permissionBrowserTab === 'android' ? 'bg-white text-zinc-900 shadow-2xs' : 'text-zinc-500 hover:text-zinc-800'
+                            }`}
+                          >
+                            Android
+                          </button>
+                        </div>
+
+                        {/* Step-by-Step Instructions Card */}
+                        <div className="w-full bg-zinc-50 border border-zinc-200/80 rounded-xl p-2.5 text-left text-[11px] text-zinc-700 space-y-1.5 mb-3 shadow-2xs">
+                          {permissionBrowserTab === 'chrome' && (
+                            <>
+                              <p className="flex items-start gap-1.5">
+                                <span className="w-4 h-4 rounded-full bg-zinc-800 text-white font-bold flex items-center justify-center shrink-0 text-[9px] mt-0.5">1</span>
+                                <span>{t("scanner.permChromeStep1")}</span>
+                              </p>
+                              <p className="flex items-start gap-1.5">
+                                <span className="w-4 h-4 rounded-full bg-zinc-800 text-white font-bold flex items-center justify-center shrink-0 text-[9px] mt-0.5">2</span>
+                                <span>{t("scanner.permChromeStep2")}</span>
+                              </p>
+                            </>
+                          )}
+
+                          {permissionBrowserTab === 'safari' && (
+                            <>
+                              <p className="flex items-start gap-1.5">
+                                <span className="w-4 h-4 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center shrink-0 text-[9px] mt-0.5">1</span>
+                                <span>{t("scanner.permSafariStep1")}</span>
+                              </p>
+                              <p className="flex items-start gap-1.5">
+                                <span className="w-4 h-4 rounded-full bg-blue-600 text-white font-bold flex items-center justify-center shrink-0 text-[9px] mt-0.5">2</span>
+                                <span>{t("scanner.permSafariStep2")}</span>
+                              </p>
+                            </>
+                          )}
+
+                          {permissionBrowserTab === 'android' && (
+                            <>
+                              <p className="flex items-start gap-1.5">
+                                <span className="w-4 h-4 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center shrink-0 text-[9px] mt-0.5">1</span>
+                                <span>{t("scanner.permAndroidStep1")}</span>
+                              </p>
+                              <p className="flex items-start gap-1.5">
+                                <span className="w-4 h-4 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center shrink-0 text-[9px] mt-0.5">2</span>
+                                <span>{t("scanner.permAndroidStep2")}</span>
+                              </p>
+                            </>
+                          )}
+
+                          {permissionBrowserTab === 'firefox' && (
+                            <>
+                              <p className="flex items-start gap-1.5">
+                                <span className="w-4 h-4 rounded-full bg-amber-600 text-white font-bold flex items-center justify-center shrink-0 text-[9px] mt-0.5">1</span>
+                                <span>{t("scanner.permFirefoxStep1")}</span>
+                              </p>
+                              <p className="flex items-start gap-1.5">
+                                <span className="w-4 h-4 rounded-full bg-amber-600 text-white font-bold flex items-center justify-center shrink-0 text-[9px] mt-0.5">2</span>
+                                <span>{t("scanner.permFirefoxStep2")}</span>
+                              </p>
+                            </>
+                          )}
+                        </div>
+
+                        {/* Action Buttons */}
+                        <div className="flex flex-col sm:flex-row gap-2 w-full">
+                          <button
+                            onClick={() => window.location.reload()}
+                            className="flex-1 flex items-center justify-center gap-1.5 bg-zinc-900 hover:bg-black text-white py-2 px-3 rounded-xl font-bold text-xs shadow-md transition-all cursor-pointer min-h-[38px]"
+                          >
+                            <RefreshCw size={13} />
+                            <span>{t("scanner.reloadAndEnable")}</span>
+                          </button>
+                          
+                          <button
+                            onClick={() => handleTabChange('file')}
+                            className="flex-1 flex items-center justify-center gap-1.5 bg-white hover:bg-zinc-100 text-zinc-800 py-2 px-3 rounded-xl font-bold text-xs border border-zinc-300 transition-colors cursor-pointer min-h-[38px]"
+                          >
+                            <ImageIcon size={13} />
+                            <span>{t("scanner.uploadFile")}</span>
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      /* Clean Idle Mode */
+                      <div className="w-full max-w-[280px] flex flex-col items-center">
+                        <div className="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center mb-3 border border-primary/20 shadow-inner">
+                          <Camera size={28} />
+                        </div>
+                        
+                        <h4 className="text-base font-bold text-on-surface mb-1">
+                          {t("scanner.liveCameraScanner")}
+                        </h4>
+                        
+                        <p className="text-xs text-on-surface-variant leading-relaxed mb-4">
+                          {t("scanner.cameraScanDesc")}
+                        </p>
+                        
+                        <div className="flex flex-col sm:flex-row gap-2 w-full">
+                          <button
+                            onClick={() => startCamera(selectedCameraId || undefined)}
+                            className="flex-1 flex items-center justify-center gap-1.5 bg-primary text-white py-2.5 px-4 rounded-xl font-bold hover:bg-primary/90 text-xs shadow-md transition-all cursor-pointer btn-spring"
+                          >
+                            <RefreshCw size={13} />
+                            <span>{t("scanner.startCamera")}</span>
+                          </button>
+                          
+                          <button
+                            onClick={() => handleTabChange('file')}
+                            className="flex-1 flex items-center justify-center gap-1.5 bg-surface hover:bg-surface-container text-on-surface py-2.5 px-4 rounded-xl font-bold text-xs border border-outline-variant/60 transition-colors cursor-pointer"
+                          >
+                            <ImageIcon size={13} />
+                            <span>{t("scanner.uploadFile")}</span>
+                          </button>
+                        </div>
+                      </div>
+                    )}
+
                   </div>
                 )}
 
@@ -1174,7 +1466,7 @@ function QRScannerAppContent() {
                         </button>
                       )}
 
-                      {/* 2. Instant 1-Tap Camera Flip / Switch Button (Only shown when device has 2+ cameras) */}
+                      {/* 2. Instant 1-Tap Camera Flip / Switch Button */}
                       {availableCameras.length > 1 && (
                         <button
                           onClick={switchCamera}
@@ -1186,7 +1478,7 @@ function QRScannerAppContent() {
                         </button>
                       )}
 
-                      {/* 3. Multi-Lens Camera Dropdown (Only shown if 3+ lenses exist) */}
+                      {/* 3. Multi-Lens Camera Dropdown */}
                       {availableCameras.length > 2 && (
                         <select
                           value={selectedCameraId || ''}
@@ -1316,68 +1608,101 @@ function QRScannerAppContent() {
                 </motion.div>
               )}
 
-              {/* STATE 3: Standard Clean Dropzone Box (when no upload or after reset) */}
+              {/* STATE 3: Ultra-Luminous Viewfinder Dropzone with High-Tech Animations */}
               {(!uploadedImagePreview || (!isDeepScanning && !error)) && (
-                <>
+                <div className="w-full max-w-[540px] flex flex-col items-center">
                   <motion.div 
                     ref={dropZoneRef}
                     onDragOver={handleDragOver}
                     onDragLeave={handleDragLeave}
                     onDrop={handleDrop}
                     onClick={() => !isDeepScanning && fileInputRef.current?.click()}
-                    whileHover={{ scale: 1.012, transition: { duration: 0.2 } }}
-                    whileTap={{ scale: 0.99 }}
-                    className={`w-full max-w-[520px] rounded-3xl sm:rounded-[32px] border-2 border-dashed transition-all duration-300 flex flex-col items-center justify-center cursor-pointer p-8 sm:p-12 text-center select-none relative overflow-hidden group ${
+                    whileHover={{ scale: 1.008, transition: { duration: 0.25, ease: "easeOut" } }}
+                    whileTap={{ scale: 0.992 }}
+                    className={`w-full rounded-3xl sm:rounded-[32px] border-2 transition-all duration-300 flex flex-col items-center justify-center cursor-pointer p-7 sm:p-11 text-center select-none relative overflow-hidden group shadow-sm ${
                       isDragging 
-                        ? 'border-primary bg-primary/5 scale-[1.01] shadow-xl ring-4 ring-primary/10' 
-                        : 'border-zinc-200/90 hover:border-zinc-400 hover:shadow-lg hover:shadow-zinc-200/50 bg-transparent'
+                        ? 'border-primary bg-primary/10 scale-[1.015] shadow-2xl ring-4 ring-primary/20 border-solid' 
+                        : 'border-dashed border-zinc-300 hover:border-primary/60 hover:shadow-2xl hover:shadow-primary/5 bg-gradient-to-b from-zinc-50/80 via-white to-zinc-50/50'
                     }`}
                   >
-                    <motion.div 
-                      className="w-20 h-20 rounded-2xl bg-zinc-100 text-zinc-800 flex items-center justify-center mb-5 shadow-2xs group-hover:bg-zinc-200/70 transition-colors"
-                      whileHover={{ scale: 1.15, rotate: [0, -5, 5, 0], transition: { duration: 0.35 } }}
-                    >
-                      <ImageIcon size={38} strokeWidth={1.75} />
-                    </motion.div>
+                    {/* 4 Optical Corner Viewfinder Brackets with Spring Hover Movement */}
+                    <span className="absolute top-3.5 left-3.5 w-5 h-5 border-t-2 border-l-2 border-zinc-400 group-hover:border-primary group-hover:-translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300 rounded-tl-lg pointer-events-none"></span>
+                    <span className="absolute top-3.5 right-3.5 w-5 h-5 border-t-2 border-r-2 border-zinc-400 group-hover:border-primary group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300 rounded-tr-lg pointer-events-none"></span>
+                    <span className="absolute bottom-3.5 left-3.5 w-5 h-5 border-b-2 border-l-2 border-zinc-400 group-hover:border-primary group-hover:-translate-x-0.5 group-hover:translate-y-0.5 transition-all duration-300 rounded-bl-lg pointer-events-none"></span>
+                    <span className="absolute bottom-3.5 right-3.5 w-5 h-5 border-b-2 border-r-2 border-zinc-400 group-hover:border-primary group-hover:translate-x-0.5 group-hover:translate-y-0.5 transition-all duration-300 rounded-br-lg pointer-events-none"></span>
 
-                    <h3 className="text-lg sm:text-xl font-bold text-zinc-900 mb-2 tracking-tight group-hover:text-black transition-colors">
+                    {/* Central Animated Scanner Icon with Breathing Halo */}
+                    <div className="relative mb-4">
+                      <motion.div 
+                        className="absolute -inset-2.5 rounded-2xl bg-primary/10 border border-primary/20 pointer-events-none"
+                        animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.75, 0.3] }}
+                        transition={{ repeat: Infinity, duration: 3.2, ease: "easeInOut" }}
+                      />
+                      <motion.div 
+                        className="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-white border border-zinc-200/90 text-zinc-900 flex items-center justify-center shadow-md relative z-10 group-hover:border-primary/50 group-hover:text-primary transition-colors"
+                        animate={{ y: [0, -3, 0] }}
+                        transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
+                        whileHover={{ scale: 1.12, rotate: [0, -5, 5, 0], transition: { duration: 0.3 } }}
+                      >
+                        <ImageIcon size={34} strokeWidth={1.75} />
+                      </motion.div>
+                    </div>
+
+                    <h3 className="text-lg sm:text-xl font-bold text-zinc-900 mb-1.5 tracking-tight group-hover:text-black transition-colors">
                       {t("scanner.dropImage")}
                     </h3>
                     
                     <p className="text-xs sm:text-sm text-zinc-500 max-w-[320px] leading-relaxed mb-5">
-                      {t("scanner.supportsFormats")}
+                      {t("scanner.dropSubtitle")}
                     </p>
 
-                    {/* Format chips with interactive bounce */}
-                    <div className="flex flex-wrap items-center justify-center gap-2 mb-5">
-                      {['PNG', 'JPG', 'WebP', 'SVG'].map((fmt, idx) => (
+                    {/* Dual Action Primary CTA Buttons */}
+                    <div className="flex flex-col sm:flex-row items-center gap-2.5 w-full max-w-[340px] mb-5 pointer-events-auto z-20" onClick={(e) => e.stopPropagation()}>
+                      <motion.button
+                        type="button"
+                        whileHover={{ scale: 1.03, y: -1 }}
+                        whileTap={{ scale: 0.97 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                        onClick={() => fileInputRef.current?.click()}
+                        className="w-full sm:flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-zinc-900 hover:bg-black text-white text-xs font-bold shadow-md hover:shadow-lg transition-all cursor-pointer min-h-[42px]"
+                      >
+                        <UploadCloud size={15} />
+                        <span>{t("scanner.browseFiles")}</span>
+                      </motion.button>
+
+                      <motion.button
+                        type="button"
+                        whileHover={{ scale: 1.03, y: -1 }}
+                        whileTap={{ scale: 0.97 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                        onClick={handlePasteClipboard}
+                        className="w-full sm:flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-white hover:bg-zinc-100 text-zinc-800 text-xs font-bold border border-zinc-300 shadow-2xs hover:shadow-xs transition-all cursor-pointer min-h-[42px]"
+                      >
+                        <Clipboard size={14} className="text-zinc-600" />
+                        <span>{t("scanner.pasteButton")}</span>
+                      </motion.button>
+                    </div>
+
+                    {/* Format badges with springy hover */}
+                    <div className="flex flex-wrap items-center justify-center gap-1.5">
+                      {['PNG', 'JPG', 'WebP', 'SVG'].map((fmt) => (
                         <motion.span 
                           key={fmt}
-                          whileHover={{ y: -3, scale: 1.08 }}
-                          transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                          className="px-3 py-1 rounded-lg bg-zinc-50 border border-zinc-200/80 text-xs font-semibold text-zinc-600 shadow-2xs hover:bg-white hover:border-zinc-300 hover:text-zinc-900 cursor-pointer transition-colors"
+                          whileHover={{ scale: 1.08, y: -1 }}
+                          transition={{ type: "spring", stiffness: 400 }}
+                          className="px-2.5 py-0.5 rounded-md bg-zinc-100/90 border border-zinc-200/80 text-[11px] font-semibold text-zinc-600 cursor-default"
                         >
                           {fmt}
                         </motion.span>
                       ))}
-                    </div>
-
-                    {/* Ctrl+V helper badge with gentle pulse */}
-                    <motion.div 
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ type: "spring", stiffness: 400 }}
-                      className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-zinc-100 border border-zinc-200/60 text-xs font-medium text-zinc-600 shadow-2xs hover:bg-zinc-200/60 transition-colors"
-                    >
-                      <motion.div
-                        animate={{ rotate: [0, 15, -15, 0] }}
-                        transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+                      <motion.span 
+                        whileHover={{ scale: 1.08, y: -1 }}
+                        transition={{ type: "spring", stiffness: 400 }}
+                        className="px-2.5 py-0.5 rounded-md bg-zinc-100/90 border border-zinc-200/80 text-[11px] font-semibold text-zinc-600 cursor-default"
                       >
-                        <Sparkles size={13} className="text-amber-500" />
-                      </motion.div>
-                      <span>
-                        Tip: Press <kbd className="px-1.5 py-0.5 bg-white border border-zinc-300 rounded text-[11px] font-mono font-bold text-zinc-800 shadow-2xs">Ctrl+V</kbd> to paste
-                      </span>
-                    </motion.div>
+                        {t("scanner.barcodesBadge")}
+                      </motion.span>
+                    </div>
 
                     <input 
                       type="file" 
@@ -1389,10 +1714,65 @@ function QRScannerAppContent() {
                     />
                   </motion.div>
 
-                  <p className="mt-6 text-center text-xs sm:text-sm text-zinc-500 max-w-sm">
+                  {/* 🧪 Instant Demo Sample QR Code Bar with Tactile Pop */}
+                  <div className="w-full mt-4 p-3 rounded-2xl bg-zinc-50 border border-zinc-200/70 flex flex-col sm:flex-row items-center justify-between gap-2.5 shadow-2xs">
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-zinc-600">
+                      <motion.div
+                        animate={{ rotate: [0, 15, -15, 0] }}
+                        transition={{ repeat: Infinity, duration: 2.5, ease: "easeInOut" }}
+                      >
+                        <Sparkles size={14} className="text-amber-500 shrink-0" />
+                      </motion.div>
+                      <span>{t("scanner.tryLiveSample")}</span>
+                    </div>
+
+                    <div className="flex flex-wrap items-center justify-center gap-1.5">
+                      <motion.button
+                        whileHover={{ scale: 1.08, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                        onClick={() => loadSampleQR('url')}
+                        className="px-2.5 py-1 rounded-lg bg-white hover:bg-blue-50 border border-zinc-200/80 hover:border-blue-300 text-[11px] font-bold text-blue-700 transition-all cursor-pointer shadow-2xs hover:shadow-blue-500/20 hover:shadow-sm"
+                      >
+                        🌐 {t("scanner.sampleWebsite")}
+                      </motion.button>
+
+                      <motion.button
+                        whileHover={{ scale: 1.08, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                        onClick={() => loadSampleQR('whatsapp')}
+                        className="px-2.5 py-1 rounded-lg bg-white hover:bg-emerald-50 border border-zinc-200/80 hover:border-emerald-300 text-[11px] font-bold text-emerald-700 transition-all cursor-pointer shadow-2xs hover:shadow-emerald-500/20 hover:shadow-sm"
+                      >
+                        💬 {t("scanner.sampleWhatsApp")}
+                      </motion.button>
+
+                      <motion.button
+                        whileHover={{ scale: 1.08, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                        onClick={() => loadSampleQR('wifi')}
+                        className="px-2.5 py-1 rounded-lg bg-white hover:bg-amber-50 border border-zinc-200/80 hover:border-amber-300 text-[11px] font-bold text-amber-700 transition-all cursor-pointer shadow-2xs hover:shadow-amber-500/20 hover:shadow-sm"
+                      >
+                        📶 {t("scanner.sampleWifi")}
+                      </motion.button>
+
+                      <motion.button
+                        whileHover={{ scale: 1.08, y: -2 }}
+                        whileTap={{ scale: 0.95 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                        onClick={() => loadSampleQR('vcard')}
+                        className="px-2.5 py-1 rounded-lg bg-white hover:bg-indigo-50 border border-zinc-200/80 hover:border-indigo-300 text-[11px] font-bold text-indigo-700 transition-all cursor-pointer shadow-2xs hover:shadow-indigo-500/20 hover:shadow-sm"
+                      >
+                        📇 {t("scanner.sampleVCard")}
+                      </motion.button>
+                    </div>
+                  </div>
+
+                  <p className="mt-3.5 text-center text-xs text-zinc-500 max-w-sm">
                     {t("scanner.uploadSavedImageDesc")}
                   </p>
-                </>
+                </div>
               )}
             </div>
 
@@ -1430,9 +1810,15 @@ function QRScannerAppContent() {
                   );
                 })()}
 
-                {parsedData?.type === 'url' && parsedData.isHttps && (
-                  <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                    <ShieldCheck size={12} /> Secure HTTPS
+                {/* Security Badge on Top Right */}
+                {parsedData?.type === 'url' && parsedData.safety && (
+                  <span className={`inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-full border ${parsedData.safety.badgeColor}`}>
+                    <ShieldCheck size={12} /> {parsedData.safety.badgeLabel}
+                  </span>
+                )}
+                {parsedData?.type === 'whatsapp' && (
+                  <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
+                    <MessageSquare size={12} /> Direct Chat Ready
                   </span>
                 )}
               </div>
@@ -1444,6 +1830,41 @@ function QRScannerAppContent() {
                     <h4 className="font-black text-on-surface text-base sm:text-lg break-all">{parsedData.domain || 'Website'}</h4>
                     <p className="text-xs text-on-surface-variant mt-0.5">Click Open Website below or copy URL.</p>
                   </div>
+
+                  {parsedData.safety && parsedData.safety.status !== 'safe' && (
+                    <div className="p-2.5 bg-amber-500/10 border border-amber-500/30 rounded-xl flex items-start gap-2 text-xs text-amber-800">
+                      <AlertTriangle size={15} className="shrink-0 mt-0.5 text-amber-600" />
+                      <div>
+                        <p className="font-bold">Security Notice:</p>
+                        <ul className="list-disc list-inside mt-0.5 space-y-0.5">
+                          {parsedData.safety.reasons.map((r, i) => (
+                            <li key={i}>{r}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="p-3 bg-surface rounded-xl border border-outline-variant/60 break-all font-mono text-xs sm:text-sm text-on-surface select-all shadow-inner">
+                    {scanResult}
+                  </div>
+                </div>
+              )}
+
+              {/* Type 1b: WhatsApp Direct Chat */}
+              {parsedData?.type === 'whatsapp' && (
+                <div className="space-y-2.5 sm:space-y-3">
+                  <div>
+                    <p className="text-[11px] sm:text-xs font-bold text-emerald-600 uppercase tracking-wider">WhatsApp Contact</p>
+                    <h4 className="font-black text-on-surface text-base sm:text-lg">{parsedData.whatsapp?.phone || 'Direct Chat'}</h4>
+                  </div>
+
+                  {parsedData.whatsapp?.message && (
+                    <div className="bg-emerald-50/60 p-3 rounded-xl border border-emerald-200/80 text-xs sm:text-sm space-y-1">
+                      <p className="text-[10px] font-bold text-emerald-700 uppercase">Pre-filled Message:</p>
+                      <p className="text-emerald-900 break-words font-medium">"{parsedData.whatsapp.message}"</p>
+                    </div>
+                  )}
 
                   <div className="p-3 bg-surface rounded-xl border border-outline-variant/60 break-all font-mono text-xs sm:text-sm text-on-surface select-all shadow-inner">
                     {scanResult}
@@ -1610,6 +2031,19 @@ function QRScannerAppContent() {
             {/* Smart Context Primary Action Buttons Row (Responsive 1/2 col grid on mobile) */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 mt-4 sm:mt-6 w-full">
               
+              {/* Context Action 0: Chat on WhatsApp */}
+              {parsedData?.type === 'whatsapp' && (
+                <a
+                  href={parsedData.whatsapp?.chatUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full flex items-center justify-center gap-2 bg-[#25D366] text-white py-3 sm:py-3.5 px-4 rounded-xl sm:rounded-2xl font-bold hover:bg-[#20ba59] shadow-md transition-all btn-spring text-xs sm:text-sm min-h-[44px]"
+                >
+                  <MessageSquare size={16} />
+                  <span>Chat on WhatsApp</span>
+                </a>
+              )}
+
               {/* Context Action 1: Open URL */}
               {parsedData?.type === 'url' && (
                 <a
@@ -1636,40 +2070,66 @@ function QRScannerAppContent() {
 
               {/* Context Action 3: Save vCard */}
               {parsedData?.type === 'vcard' && (
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.02, y: -1 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 15 }}
                   onClick={downloadVCardFile}
                   className="w-full flex items-center justify-center gap-2 bg-primary text-white py-3 sm:py-3.5 px-4 rounded-xl sm:rounded-2xl font-bold hover:bg-primary/90 shadow-md transition-all cursor-pointer btn-spring text-xs sm:text-sm min-h-[44px]"
                 >
                   <Download size={16} />
                   <span>{t("scanner.saveVCard")}</span>
-                </button>
+                </motion.button>
+              )}
+
+              {/* Context Action 3b: Save Calendar Event */}
+              {parsedData?.type === 'event' && (
+                <motion.button
+                  whileHover={{ scale: 1.02, y: -1 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                  onClick={downloadIcsFile}
+                  className="w-full flex items-center justify-center gap-2 bg-purple-600 text-white py-3 sm:py-3.5 px-4 rounded-xl sm:rounded-2xl font-bold hover:bg-purple-700 shadow-md transition-all cursor-pointer btn-spring text-xs sm:text-sm min-h-[44px]"
+                >
+                  <Calendar size={16} />
+                  <span>Add to Calendar (.ics)</span>
+                </motion.button>
               )}
 
               {/* Context Action 4: Compose Email */}
               {parsedData?.type === 'email' && (
-                <a
+                <motion.a
+                  whileHover={{ scale: 1.02, y: -1 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 15 }}
                   href={`mailto:${parsedData.email?.to}${parsedData.email?.subject ? `?subject=${encodeURIComponent(parsedData.email.subject)}` : ''}`}
                   className="w-full flex items-center justify-center gap-2 bg-primary text-white py-3 sm:py-3.5 px-4 rounded-xl sm:rounded-2xl font-bold hover:bg-primary/90 shadow-md transition-all btn-spring text-xs sm:text-sm min-h-[44px]"
                 >
                   <Mail size={16} />
                   <span>{t("scanner.sendEmail")}</span>
-                </a>
+                </motion.a>
               )}
 
               {/* Context Action 5: Call Phone */}
               {parsedData?.type === 'phone' && (
-                <a
+                <motion.a
+                  whileHover={{ scale: 1.02, y: -1 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 15 }}
                   href={`tel:${parsedData.phone?.number}`}
                   className="w-full flex items-center justify-center gap-2 bg-emerald-600 text-white py-3 sm:py-3.5 px-4 rounded-xl sm:rounded-2xl font-bold hover:bg-emerald-700 shadow-md transition-all btn-spring text-xs sm:text-sm min-h-[44px]"
                 >
                   <Phone size={16} />
                   <span>{t("scanner.callPhone")}</span>
-                </a>
+                </motion.a>
               )}
 
               {/* Context Action 6: Open Maps */}
               {parsedData?.type === 'geo' && (
-                <a
+                <motion.a
+                  whileHover={{ scale: 1.02, y: -1 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 15 }}
                   href={parsedData.geo?.mapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -1677,26 +2137,32 @@ function QRScannerAppContent() {
                 >
                   <MapPin size={16} />
                   <span>{t("scanner.openMap")}</span>
-                </a>
+                </motion.a>
               )}
 
               {/* Universal Action: Copy Raw Text */}
-              <button
+              <motion.button
+                whileHover={{ scale: 1.02, y: -1 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 15 }}
                 onClick={() => copyToClipboard()}
                 className="w-full flex items-center justify-center gap-2 bg-surface-container hover:bg-surface-container-high text-on-surface py-3 sm:py-3.5 px-4 rounded-xl sm:rounded-2xl font-bold border border-outline-variant/60 transition-all cursor-pointer text-xs sm:text-sm min-h-[44px]"
               >
                 <Copy size={16} />
                 <span>{t("scanner.copyContent")}</span>
-              </button>
+              </motion.button>
 
               {/* Universal Action: Scan Another */}
-              <button
+              <motion.button
+                whileHover={{ scale: 1.02, y: -1 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ type: "spring", stiffness: 400, damping: 15 }}
                 onClick={resetScanner}
                 className="w-full flex items-center justify-center gap-2 bg-surface-container hover:bg-surface-container-high text-on-surface py-3 sm:py-3.5 px-4 rounded-xl sm:rounded-2xl font-bold border border-outline-variant/60 transition-all cursor-pointer text-xs sm:text-sm min-h-[44px]"
               >
                 <RefreshCw size={16} />
                 <span>{t("scanner.tryAnotherImage")}</span>
-              </button>
+              </motion.button>
             </div>
 
             {/* ╔══════════════════════════════════════════╗ */}
@@ -1714,7 +2180,10 @@ function QRScannerAppContent() {
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
                 
                 {/* Download Option 1: Clean QR PNG */}
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.96 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 15 }}
                   onClick={downloadCleanQRImage}
                   disabled={isGeneratingDownloadQR}
                   className="flex flex-col items-center justify-center p-2.5 sm:p-3 rounded-xl bg-surface-container hover:bg-surface-container-high border border-outline-variant/50 transition-all text-center cursor-pointer group min-h-[72px]"
@@ -1724,10 +2193,13 @@ function QRScannerAppContent() {
                   </div>
                   <span className="text-[11px] sm:text-xs font-bold text-on-surface">QR Image</span>
                   <span className="text-[9px] sm:text-[10px] text-on-surface-variant">PNG 1024px</span>
-                </button>
+                </motion.button>
 
                 {/* Download Option 2: Plain Text */}
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.96 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 15 }}
                   onClick={downloadTextFile}
                   className="flex flex-col items-center justify-center p-2.5 sm:p-3 rounded-xl bg-surface-container hover:bg-surface-container-high border border-outline-variant/50 transition-all text-center cursor-pointer group min-h-[72px]"
                 >
@@ -1736,10 +2208,13 @@ function QRScannerAppContent() {
                   </div>
                   <span className="text-[11px] sm:text-xs font-bold text-on-surface">Raw Text</span>
                   <span className="text-[9px] sm:text-[10px] text-on-surface-variant">.TXT File</span>
-                </button>
+                </motion.button>
 
                 {/* Download Option 3: Structured JSON */}
-                <button
+                <motion.button
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.96 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 15 }}
                   onClick={downloadJsonFile}
                   className="flex flex-col items-center justify-center p-2.5 sm:p-3 rounded-xl bg-surface-container hover:bg-surface-container-high border border-outline-variant/50 transition-all text-center cursor-pointer group min-h-[72px]"
                 >
@@ -1748,11 +2223,14 @@ function QRScannerAppContent() {
                   </div>
                   <span className="text-[11px] sm:text-xs font-bold text-on-surface">Metadata</span>
                   <span className="text-[9px] sm:text-[10px] text-on-surface-variant">.JSON Object</span>
-                </button>
+                </motion.button>
 
-                {/* Download Option 4: vCard / Contact Card */}
+                {/* Download Option 4: Dynamic (vCard / Event / Vector SVG) */}
                 {parsedData?.type === 'vcard' ? (
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.96 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
                     onClick={downloadVCardFile}
                     className="flex flex-col items-center justify-center p-2.5 sm:p-3 rounded-xl bg-surface-container hover:bg-surface-container-high border border-outline-variant/50 transition-all text-center cursor-pointer group min-h-[72px]"
                   >
@@ -1761,18 +2239,35 @@ function QRScannerAppContent() {
                     </div>
                     <span className="text-[11px] sm:text-xs font-bold text-on-surface">vCard File</span>
                     <span className="text-[9px] sm:text-[10px] text-on-surface-variant">.VCF Contact</span>
-                  </button>
+                  </motion.button>
+                ) : parsedData?.type === 'event' ? (
+                  <motion.button
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.96 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                    onClick={downloadIcsFile}
+                    className="flex flex-col items-center justify-center p-2.5 sm:p-3 rounded-xl bg-surface-container hover:bg-surface-container-high border border-outline-variant/50 transition-all text-center cursor-pointer group min-h-[72px]"
+                  >
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-purple-500/10 text-purple-600 flex items-center justify-center mb-1 group-hover:scale-110 transition-transform">
+                      <Calendar size={14} />
+                    </div>
+                    <span className="text-[11px] sm:text-xs font-bold text-on-surface">Calendar</span>
+                    <span className="text-[9px] sm:text-[10px] text-on-surface-variant">.ICS Event</span>
+                  </motion.button>
                 ) : (
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.05, y: -2 }}
+                    whileTap={{ scale: 0.96 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
                     onClick={downloadSvgQR}
                     className="flex flex-col items-center justify-center p-2.5 sm:p-3 rounded-xl bg-surface-container hover:bg-surface-container-high border border-outline-variant/50 transition-all text-center cursor-pointer group min-h-[72px]"
                   >
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-amber-500/10 text-amber-600 flex items-center justify-center mb-1 group-hover:scale-110 transition-transform">
+                    <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-cyan-500/10 text-cyan-600 flex items-center justify-center mb-1 group-hover:scale-110 transition-transform">
                       <FileDown size={14} />
                     </div>
                     <span className="text-[11px] sm:text-xs font-bold text-on-surface">Vector SVG</span>
-                    <span className="text-[9px] sm:text-[10px] text-on-surface-variant">Infinite Scale</span>
-                  </button>
+                    <span className="text-[9px] sm:text-[10px] text-on-surface-variant">Scalable</span>
+                  </motion.button>
                 )}
 
               </div>

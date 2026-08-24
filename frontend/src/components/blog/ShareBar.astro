@@ -1,0 +1,117 @@
+---
+import { type Locale } from '../../i18n/config';
+import { t } from '../../i18n/utils';
+
+interface Props {
+  locale: Locale;
+  title: string;
+  url: string;
+}
+
+const { locale, title, url } = Astro.props;
+
+const encodedUrl = encodeURIComponent(url);
+const encodedTitle = encodeURIComponent(title);
+
+const twitterUrl = `https://twitter.com/intent/tweet?text=${encodedTitle}&url=${encodedUrl}`;
+const whatsappUrl = `https://api.whatsapp.com/send?text=${encodedTitle}%20${encodedUrl}`;
+const linkedinUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodedUrl}`;
+---
+
+<div class="share-bar-container py-4 sm:py-5 border-y border-outline-variant/50 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 my-8 bg-surface-container-lowest/70 rounded-2xl px-4 sm:px-5">
+  <div class="flex items-center gap-2 text-xs font-bold text-on-surface">
+    <span class="material-symbols-outlined text-primary text-base">share</span>
+    <span>{t(locale, 'blog.shareArticle')}</span>
+  </div>
+
+  <div class="flex items-center gap-2 flex-wrap w-full sm:w-auto">
+    {/* Copy Link Button */}
+    <button
+      type="button"
+      id="copy-post-link-btn"
+      data-url={url}
+      data-msg={t(locale, 'blog.linkCopied')}
+      class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 min-h-[38px] rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface text-xs font-semibold border border-outline-variant/60 transition-all cursor-pointer hover:scale-105 active:scale-95 flex-1 sm:flex-none"
+      title={t(locale, 'blog.copyLink')}
+    >
+      <span class="material-symbols-outlined text-[15px]">link</span>
+      <span>{t(locale, 'blog.copyLink')}</span>
+    </button>
+
+    {/* WhatsApp */}
+    <a
+      href={whatsappUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 min-h-[38px] rounded-xl bg-emerald-500/10 hover:bg-emerald-500/20 text-emerald-700 text-xs font-semibold border border-emerald-500/20 transition-all hover:scale-105 active:scale-95 flex-1 sm:flex-none"
+      title={t(locale, 'blog.shareOnWhatsApp')}
+    >
+      <span class="material-symbols-outlined text-[15px]">chat</span>
+      <span>WhatsApp</span>
+    </a>
+
+    {/* X / Twitter */}
+    <a
+      href={twitterUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 min-h-[38px] rounded-xl bg-zinc-900 hover:bg-black text-white text-xs font-semibold transition-all hover:scale-105 active:scale-95 shadow-xs flex-1 sm:flex-none"
+      title={t(locale, 'blog.shareOnTwitter')}
+    >
+      <span class="font-black text-xs">𝕏</span>
+      <span>Post</span>
+    </a>
+
+    {/* LinkedIn */}
+    <a
+      href={linkedinUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 min-h-[38px] rounded-xl bg-blue-500/10 hover:bg-blue-500/20 text-blue-700 text-xs font-semibold border border-blue-500/20 transition-all hover:scale-105 active:scale-95 flex-1 sm:flex-none"
+      title={t(locale, 'blog.shareOnLinkedIn')}
+    >
+      <span class="material-symbols-outlined text-[15px]">work</span>
+      <span>LinkedIn</span>
+    </a>
+  </div>
+</div>
+
+<div id="share-toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none bg-zinc-900 text-white px-4 py-2.5 rounded-2xl shadow-xl border border-zinc-700 text-xs font-bold flex items-center gap-2">
+  <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+  <span id="share-toast-msg">{t(locale, 'blog.linkCopied')}</span>
+</div>
+
+<script>
+  function initShareBar() {
+    const copyBtn = document.getElementById('copy-post-link-btn');
+    const toast = document.getElementById('share-toast');
+    const toastMsg = document.getElementById('share-toast-msg');
+
+    if (copyBtn && toast) {
+      copyBtn.addEventListener('click', async () => {
+        const postUrl = copyBtn.getAttribute('data-url') || window.location.href;
+        const msg = copyBtn.getAttribute('data-msg') || 'Link copied to clipboard!';
+        
+        try {
+          await navigator.clipboard.writeText(postUrl);
+          if (toastMsg) toastMsg.textContent = msg;
+          toast.classList.remove('translate-y-20', 'opacity-0');
+          toast.classList.add('translate-y-0', 'opacity-100');
+
+          setTimeout(() => {
+            toast.classList.remove('translate-y-0', 'opacity-100');
+            toast.classList.add('translate-y-20', 'opacity-0');
+          }, 2400);
+        } catch (e) {
+          // Fallback
+        }
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initShareBar);
+  } else {
+    initShareBar();
+  }
+</script>

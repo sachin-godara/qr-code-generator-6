@@ -92,6 +92,45 @@ END:VEVENT`;
     expect(parsed.event?.location).toBe('San Francisco, CA');
   });
 
+  it('correctly parses WhatsApp chat links (wa.me and api.whatsapp.com)', () => {
+    const waRaw = 'https://wa.me/15551234567?text=Hello%20there!';
+    const parsed = parseQRContent(waRaw);
+    expect(parsed.type).toBe('whatsapp');
+    expect(parsed.whatsapp?.phone).toBe('15551234567');
+    expect(parsed.whatsapp?.message).toBe('Hello there!');
+    expect(parsed.whatsapp?.chatUrl).toContain('wa.me/15551234567');
+
+    const waApiRaw = 'https://api.whatsapp.com/send?phone=919876543210&text=Booking%20Inquiry';
+    const parsedApi = parseQRContent(waApiRaw);
+    expect(parsedApi.type).toBe('whatsapp');
+    expect(parsedApi.whatsapp?.phone).toBe('919876543210');
+    expect(parsedApi.whatsapp?.message).toBe('Booking Inquiry');
+  });
+
+  it('correctly evaluates URL safety reports', () => {
+    const httpsUrl = 'https://generatecustomqr.com';
+    const httpsParsed = parseQRContent(httpsUrl);
+    expect(httpsParsed.safety?.status).toBe('safe');
+    expect(httpsParsed.safety?.badgeLabel).toBe('Secure HTTPS');
+
+    const httpUrl = 'http://unsecured-domain.com/login';
+    const httpParsed = parseQRContent(httpUrl);
+    expect(httpParsed.safety?.status).toBe('warning');
+    expect(httpParsed.safety?.badgeLabel).toBe('HTTP Unencrypted');
+
+    const shortenerUrl = 'https://bit.ly/3xY9z';
+    const shortenerParsed = parseQRContent(shortenerUrl);
+    expect(shortenerParsed.safety?.status).toBe('warning');
+    expect(shortenerParsed.safety?.badgeLabel).toBe('URL Shortener');
+  });
+
+  it('correctly parses Google Maps web links', () => {
+    const mapsRaw = 'https://maps.google.com/?q=40.7128,-74.0060';
+    const parsed = parseQRContent(mapsRaw);
+    expect(parsed.type).toBe('geo');
+    expect(parsed.geo?.mapsUrl).toBe(mapsRaw);
+  });
+
   it('correctly falls back to plain text for generic content', () => {
     const textRaw = 'Just some random free-form notes or serial number SN-998271';
     const parsed = parseQRContent(textRaw);
@@ -99,3 +138,4 @@ END:VEVENT`;
     expect(parsed.raw).toBe(textRaw);
   });
 });
+

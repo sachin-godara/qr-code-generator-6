@@ -1,0 +1,80 @@
+---
+import { type Locale } from '../../i18n/config';
+import { getLocalizedUrl, t } from '../../i18n/utils';
+
+interface Props {
+  locale: Locale;
+  variant?: 'vcard' | 'wifi' | 'scanner' | 'general';
+  title?: string;
+  desc?: string;
+}
+
+const { locale, variant = 'general', title, desc } = Astro.props;
+
+const config = {
+  vcard: {
+    icon: 'contact_page',
+    color: 'from-indigo-600 to-blue-600',
+    badge: 'vCard Studio',
+    defaultTitle: 'Create Your Digital Business Card QR',
+    defaultDesc: 'Embed phone numbers, emails, addresses, and company info into a permanent scannable card with logo.',
+    btnLabel: 'Make vCard QR',
+    url: getLocalizedUrl(locale, '/vcard-qr-code')
+  },
+  wifi: {
+    icon: 'wifi',
+    color: 'from-amber-600 to-orange-600',
+    badge: 'WiFi Connect',
+    defaultTitle: 'Make Instant Connect WiFi QR Stickers',
+    defaultDesc: 'Allow guests and customers to join your encrypted network in 1 tap without typing passwords.',
+    btnLabel: 'Make WiFi QR',
+    url: getLocalizedUrl(locale, '/wifi-qr-code')
+  },
+  scanner: {
+    icon: 'qr_code_scanner',
+    color: 'from-emerald-600 to-teal-600',
+    badge: 'Online Scanner',
+    defaultTitle: 'Scan Any QR Code in Your Browser',
+    defaultDesc: 'Free in-browser scanner. Decodes camera feeds, uploaded image files, and clipboard screenshots with 0 installs.',
+    btnLabel: 'Launch QR Scanner',
+    url: getLocalizedUrl(locale, '/qr-code-scanner')
+  },
+  general: {
+    icon: 'qr_code_2',
+    color: 'from-zinc-900 to-zinc-800',
+    badge: 'QR Studio',
+    defaultTitle: t(locale, 'blog.postCtaTitle') || 'Create Your Custom QR Code Now',
+    defaultDesc: t(locale, 'blog.postCtaDesc') || 'Design free high-resolution QR codes with logos, colors, and frames in under 2 minutes.',
+    btnLabel: t(locale, 'blog.postCtaButton') || 'Open QR Generator',
+    url: getLocalizedUrl(locale, '/')
+  }
+}[variant];
+---
+
+<aside class="my-10 rounded-3xl bg-surface-container-lowest border border-outline-variant/70 p-6 sm:p-8 shadow-md relative overflow-hidden group">
+  {/* Ambient background glow */}
+  <div class="absolute -right-12 -bottom-12 w-48 h-48 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+  
+  <div class="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+    <div class="space-y-2 max-w-lg">
+      <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-on-surface text-[11px] font-bold tracking-wider uppercase border border-outline-variant/60">
+        <span class="material-symbols-outlined text-[13px] text-primary">{config.icon}</span>
+        <span>{config.badge}</span>
+      </div>
+      <h3 class="text-lg sm:text-xl font-black text-on-surface tracking-tight leading-snug">
+        {title || config.defaultTitle}
+      </h3>
+      <p class="text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+        {desc || config.defaultDesc}
+      </p>
+    </div>
+
+    <a
+      href={config.url}
+      class="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-zinc-900 hover:bg-black text-white text-xs sm:text-sm font-bold shadow-md hover:shadow-xl hover:scale-105 active:scale-95 transition-all w-full sm:w-auto shrink-0 cursor-pointer min-h-[44px]"
+    >
+      <span class="material-symbols-outlined text-base">arrow_forward</span>
+      <span>{config.btnLabel}</span>
+    </a>
+  </div>
+</aside>

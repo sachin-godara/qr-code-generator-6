@@ -27,6 +27,66 @@ describe('i18n utils', () => {
       expect(t('de', 'studio.labels.step', { current: 3, total: 8 })).toBe('Schritt 3 / 8');
     });
 
+    it('translates scanner keys across all 4 locales without fallback', () => {
+      // English
+      expect(t('en', 'scanner.dropSubtitle')).toBe('Drop your saved QR code, barcode, or screenshot file');
+      expect(t('en', 'scanner.browseFiles')).toBe('Browse Files');
+      expect(t('en', 'scanner.pasteButton')).toBe('Paste (Ctrl+V)');
+      expect(t('en', 'scanner.tryLiveSample')).toBe('Try Live Sample:');
+
+      // Spanish
+      expect(t('es', 'scanner.dropSubtitle')).toBe('Arrastra tu código QR, código de barras o captura de pantalla');
+      expect(t('es', 'scanner.browseFiles')).toBe('Buscar Archivos');
+      expect(t('es', 'scanner.pasteButton')).toBe('Pegar (Ctrl+V)');
+      expect(t('es', 'scanner.tryLiveSample')).toBe('Probar Ejemplo en Vivo:');
+
+      // German
+      expect(t('de', 'scanner.dropSubtitle')).toBe('Ziehe dein QR-Code-Bild, Barcode oder Screenshot hierher');
+      expect(t('de', 'scanner.browseFiles')).toBe('Dateien Durchsuchen');
+      expect(t('de', 'scanner.pasteButton')).toBe('Einfügen (Strg+V)');
+      expect(t('de', 'scanner.tryLiveSample')).toBe('Live-Beispiel Testen:');
+
+      // Portuguese
+      expect(t('pt', 'scanner.dropSubtitle')).toBe('Arraste sua imagem de QR code, código de barras ou captura');
+      expect(t('pt', 'scanner.browseFiles')).toBe('Procurar Arquivos');
+      expect(t('pt', 'scanner.pasteButton')).toBe('Colar (Ctrl+V)');
+      expect(t('pt', 'scanner.tryLiveSample')).toBe('Testar Exemplo:');
+    });
+
+    it('translates blog keys across all 4 locales without fallback', () => {
+      // English
+      expect(t('en', 'blog.tableOfContents')).toBe('Table of Contents');
+      expect(t('en', 'blog.onThisPage')).toBe('On This Page');
+      expect(t('en', 'blog.shareArticle')).toBe('Share Article');
+      expect(t('en', 'blog.copyLink')).toBe('Copy Link');
+      expect(t('en', 'blog.factChecked')).toBe('Fact-Checked & Verified');
+      expect(t('en', 'blog.allCategories')).toBe('All');
+
+      // Spanish
+      expect(t('es', 'blog.tableOfContents')).toBe('Tabla de Contenidos');
+      expect(t('es', 'blog.onThisPage')).toBe('En Esta Página');
+      expect(t('es', 'blog.shareArticle')).toBe('Compartir Artículo');
+      expect(t('es', 'blog.copyLink')).toBe('Copiar Enlace');
+      expect(t('es', 'blog.factChecked')).toBe('Verificado y Comprobado');
+      expect(t('es', 'blog.allCategories')).toBe('Todos');
+
+      // German
+      expect(t('de', 'blog.tableOfContents')).toBe('Inhaltsverzeichnis');
+      expect(t('de', 'blog.onThisPage')).toBe('Auf Dieser Seite');
+      expect(t('de', 'blog.shareArticle')).toBe('Artikel Teilen');
+      expect(t('de', 'blog.copyLink')).toBe('Link Kopieren');
+      expect(t('de', 'blog.factChecked')).toBe('Geprüft & Verifiziert');
+      expect(t('de', 'blog.allCategories')).toBe('Alle');
+
+      // Portuguese
+      expect(t('pt', 'blog.tableOfContents')).toBe('Índice do Artigo');
+      expect(t('pt', 'blog.onThisPage')).toBe('Nesta Página');
+      expect(t('pt', 'blog.shareArticle')).toBe('Compartilhar Artigo');
+      expect(t('pt', 'blog.copyLink')).toBe('Copiar Link');
+      expect(t('pt', 'blog.factChecked')).toBe('Revisado e Verificado');
+      expect(t('pt', 'blog.allCategories')).toBe('Todos');
+    });
+
     it('falls back to English when key is missing in other languages', () => {
       // Non-existent key in sub-object falls back to fallback or key name
       expect(t('es', 'non.existent.key.xyz', undefined, 'Fallback Text')).toBe('Fallback Text');
