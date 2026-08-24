@@ -47,9 +47,49 @@ Confira as diretrizes essenciais para garantir leitura imediata em qualquer mate
 
 ## 3. Contraste e a Regra do 4.5:1
 
-- ✅ **Pontos escuros sobre fundo claro** (Preto no branco, azul marinho no bege).
-- ❌ **Evite pontos claros sobre fundo branco** (amarelo, cinza claro, tons pastéis).
-- ❌ **Acabamentos brilhantes reflexivos**: Prefira acabamento fosco (matte) para evitar reflexos de lâmpadas.
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Boas Práticas na Gráfica (Fazer)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Preto profundo ou azul marinho em fundo branco puro (21:1)
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Verde escuro em papel cartão marfim ou creme
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Acabamento fosco (matte) para evitar reflexos
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Erros Frequentes (Evitar)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Amarelo, cinza claro ou tons pastéis em papel branco
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Laminados com alto brilho e reflexo
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Cortes ou textos invadindo a quiet zone de 4 módulos
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 

@@ -28,13 +28,49 @@ QR code scanners work by detecting **contrast** between the dark modules (data) 
 
 > **Dark-colored dots on a light background. Always.**
 
-This means:
-- ✅ Dark blue dots on white background
-- ✅ Black dots on light yellow background
-- ✅ Deep purple dots on cream background
-- ❌ White dots on black background (inverted)
-- ❌ Yellow dots on white background (low contrast)
-- ❌ Light gray dots on light gray background
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Safe &amp; High-Contrast (Do)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Dark blue or black dots on crisp white background
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Charcoal modules on warm cream or soft gray background
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Deep forest green on off-white (5.5:1+ contrast)
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Unscannable Traps (Don't)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Light yellow, baby blue, or pastel pink on white (1.1:1)
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Inverted white dots on black without proper border
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Red dots on dark brown or low-contrast textured surfaces
+      </li>
+    </ul>
+  </div>
+</div>
 
 ## Understanding Contrast Ratios
 

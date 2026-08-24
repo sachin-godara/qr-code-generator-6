@@ -24,13 +24,28 @@ Dieser Leitfaden liefert präzise Größenempfehlungen für alle gängigen Praxi
 
 ## Die goldene Formel: Scan-Distanz ÷ 10
 
-Die einfachste und zuverlässigste Formel zur Berechnung der QR-Code-Größe lautet:
+Die optische Grundregel für zuverlässige Schärfentiefe und schnelles Fokussieren:
 
-> **Mindestgröße des QR-Codes = Scan-Abstand ÷ 10**
+<div class="blog-equation-card">
+  <div class="blog-equation-segment data">
+    <span class="segment-label">Scan-Abstand</span>
+    <span class="segment-val">Distanz (cm)</span>
+  </div>
+  <span class="blog-equation-op">÷</span>
+  <div class="blog-equation-segment parity">
+    <span class="segment-label">Optische Konstante</span>
+    <span class="segment-val">10</span>
+  </div>
+  <span class="blog-equation-op">=</span>
+  <div class="blog-equation-segment total">
+    <span class="segment-label">Mindestbreite QR</span>
+    <span class="segment-val">Druckgröße (cm)</span>
+  </div>
+</div>
 
-- **Scan-Abstand 30 cm** (z. B. Visitenkarte in der Hand): Mindestgröße **3 cm × 3 cm**.
-- **Scan-Abstand 3 Meter** (z. B. Wandplakat): Mindestgröße **30 cm × 30 cm**.
-- **Scan-Abstand 10 Meter** (z. B. Werbebanner an einer Fassade): Mindestgröße **100 cm × 100 cm**.
+- **Scan-Abstand 30 cm** (z. B. Visitenkarte in der Hand): Mindestgröße **3 × 3 cm**.
+- **Scan-Abstand 3 Meter** (z. B. Wandplakat): Mindestgröße **30 × 30 cm**.
+- **Scan-Abstand 10 Meter** (z. B. Werbebanner an einer Fassade): Mindestgröße **100 × 100 cm**.
 
 ---
 

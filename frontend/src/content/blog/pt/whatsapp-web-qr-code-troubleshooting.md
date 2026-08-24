@@ -31,7 +31,31 @@ Confira as **7 soluções comprovadas** para resolver erros de escaneamento no W
 
 ## Como Funciona a Conexão do WhatsApp Web
 
-Ao carregar `web.whatsapp.com`, o WhatsApp gera uma chave criptográfica temporária em formato de matriz 2D que se atualiza a cada 20 segundos. 
+Ao abrir `web.whatsapp.com`, o WhatsApp inicializa um aperto de mão criptográfico seguro de ponta a ponta:
+
+<div class="blog-flow-grid">
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">1</span>
+      <h4 class="blog-flow-title">Chave no Navegador</h4>
+    </div>
+    <p class="blog-flow-desc">O computador gera uma matriz criptográfica temporária válida por 20 segundos.</p>
+  </div>
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">2</span>
+      <h4 class="blog-flow-title">Assinatura Óptica</h4>
+    </div>
+    <p class="blog-flow-desc">A câmera escaneia o código e assina a sessão com a chave privada do celular.</p>
+  </div>
+  <div class="blog-flow-card highlight">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">3</span>
+      <h4 class="blog-flow-title">Sync Criptografado</h4>
+    </div>
+    <p class="blog-flow-desc">O WebSocket seguro (`wss://`) sincroniza as conversas com criptografia total.</p>
+  </div>
+</div>
 
 Quando a câmera do seu celular lê esse código, ela estabelece uma conexão segura de ponta a ponta via WebSockets (`wss://`). Qualquer reflexo na tela ou bloqueio de rede interrompe essa validação.
 
@@ -94,6 +118,52 @@ Extensões de privacidade e VPNs podem bloquear o protocolo **WebSockets (`wss:/
 - **Verifique a Permissão da Câmera**:
   - *No iPhone*: Vá em **Ajustes → WhatsApp** e certifique-se de que a **Câmera** está ativada.
   - *No Android*: Vá em **Configurações → Apps → WhatsApp → Permissões → Câmera: Permitir**.
+
+## Lista de Diagnóstico Rápido do WhatsApp Web
+
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Boas Práticas (Fazer)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Restaure o zoom da tela com Ctrl+0 / Cmd+0
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Segure o celular a 15–25 cm e incline 15° contra reflexos
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Desconecte sessões antigas em Aparelhos Conectados
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Erros a Evitar (Don't)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Não aproxime a menos de 10 cm (perde o foco da lente)
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Não use VPNs ou bloqueadores que fechem conexões WebSocket
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Não escaneie com a câmera padrão: acesse pelo próprio WhatsApp
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 

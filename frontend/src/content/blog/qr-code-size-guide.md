@@ -26,13 +26,27 @@ This guide provides definitive sizing recommendations for every common use case.
 
 ## The Golden Rule: Scan Distance ÷ 10
 
-The simplest formula for QR code sizing:
+The golden optical rule for reliable smartphone focusing:
 
-> **Minimum QR code size = scanning distance ÷ 10**
+<div class="blog-equation-card">
+  <div class="blog-equation-segment data">
+    <span class="segment-label">Scanning Distance</span>
+    <span class="segment-val">Distance (cm)</span>
+  </div>
+  <span class="blog-equation-op">÷</span>
+  <div class="blog-equation-segment parity">
+    <span class="segment-label">Optical Constant</span>
+    <span class="segment-val">10</span>
+  </div>
+  <span class="blog-equation-op">=</span>
+  <div class="blog-equation-segment total">
+    <span class="segment-label">Minimum QR Width</span>
+    <span class="segment-val">Print Size (cm)</span>
+  </div>
+</div>
 
-If someone will scan the QR code from **30 cm away** (a typical business card distance), the minimum size is **3 cm × 3 cm** (about 1.2 inches).
-
-If they'll scan from **3 meters away** (a poster on a wall), the minimum size is **30 cm × 30 cm** (about 12 inches).
+- **30 cm distance** (Business card held at arm's length) → **3 × 3 cm** minimum.
+- **3 meters distance** (Storefront poster or directional sign) → **30 × 30 cm** minimum.
 
 ## Size Chart by Use Case
 

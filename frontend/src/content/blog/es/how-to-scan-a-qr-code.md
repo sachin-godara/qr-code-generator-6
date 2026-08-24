@@ -35,11 +35,31 @@ Esta guía cubre todos los métodos en iPhone, Android, ordenadores y WhatsApp W
 
 Apple integra la lectura de códigos QR directamente en la **app Cámara**. No necesitas descargar ninguna app extra.
 
-### Pasos:
-1. **Abre la app Cámara** desde la pantalla de bloqueo o el centro de control.
-2. **Apunta hacia el código QR** a una distancia de 15 a 30 cm.
-3. **Pulsa la notificación amarilla** que aparece sobre el visor con el contenido del código.
-4. **¡Listo!** El enlace se abrirá directamente en Safari o en la app correspondiente.
+### Flujo Universal de Escaneo Nativo
+
+<div class="blog-flow-grid">
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">1</span>
+      <h4 class="blog-flow-title">Abre la Cámara</h4>
+    </div>
+    <p class="blog-flow-desc">Inicia la app Cámara predeterminada desde la pantalla de bloqueo o inicio.</p>
+  </div>
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">2</span>
+      <h4 class="blog-flow-title">Enfoca el Código</h4>
+    </div>
+    <p class="blog-flow-desc">Mantén el móvil a 15–30 cm. No hace falta pulsar el botón de disparo.</p>
+  </div>
+  <div class="blog-flow-card highlight">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">3</span>
+      <h4 class="blog-flow-title">Toca el Banner</h4>
+    </div>
+    <p class="blog-flow-desc">Aparece un botón amarillo emergente con el enlace directo. Pulsa y accede.</p>
+  </div>
+</div>
 
 ### ¿Qué hacer si no se lee en iPhone?
 - Ve a **Ajustes → Cámara** y asegúrate de que la opción **Escanear códigos QR** esté activada.
@@ -95,6 +115,54 @@ Muchas apps gratuitas de escáner en Google Play y App Store son adware: contien
 
 > [!WARNING]
 > Tu teléfono ya cuenta con escáner nativo rápido, privado y gratuito integrado en el sistema operativo. No descargues aplicaciones de terceros innecesarias.
+
+---
+
+## Consejos para un Escaneo 100% Fiable y Seguro
+
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Buenas Prácticas (Hacer)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Utiliza siempre la cámara integrada del sistema operativo
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Limpia la lente de la cámara si la imagen se ve borrosa
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Verifica la URL previa antes de introducir datos bancarios
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Peligros a Evitar (Don't)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        No instales aplicaciones de escáner de terceros con publicidad invasiva
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        No escanees códigos adhesivos superpuestos en parquímetros sospechosos
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        No otorgues permisos de ubicación o contactos a apps de escaneo
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 

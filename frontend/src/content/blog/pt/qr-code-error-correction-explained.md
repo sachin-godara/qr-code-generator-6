@@ -44,9 +44,22 @@ Neste guia, explicamos como a correção de erro funciona e qual nível escolher
 
 ## Como a Matemática Reed-Solomon Opera
 
-```
-[ Seus Dados Codificados: 70% ] + [ Polinômios de Paridade Reed-Solomon: 30% ] = Matriz Completa (Nível H)
-```
+<div class="blog-equation-card">
+  <div class="blog-equation-segment data">
+    <span class="segment-label">Dados Codificados</span>
+    <span class="segment-val">70%</span>
+  </div>
+  <span class="blog-equation-op">+</span>
+  <div class="blog-equation-segment parity">
+    <span class="segment-label">Paridade Reed-Solomon</span>
+    <span class="segment-val">30%</span>
+  </div>
+  <span class="blog-equation-op">=</span>
+  <div class="blog-equation-segment total">
+    <span class="segment-label">Matriz Completa</span>
+    <span class="segment-val">Nível H (100%)</span>
+  </div>
+</div>
 
 Durante a leitura, a câmera calcula os dados ausentes através de equações polinomiais, reconstruindo o endereço web com zero perda de informação.
 

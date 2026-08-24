@@ -26,6 +26,29 @@ Here is your complete guide to the major QR code trends shaping 2026 and beyond.
 
 The QR code market continues its rapid double-digit expansion:
 
+<div class="blog-stat-grid">
+  <div class="blog-stat-card">
+    <span class="stat-number">10B+</span>
+    <span class="stat-title">Annual Scans</span>
+    <span class="stat-desc">Up from 1.5B in 2019</span>
+  </div>
+  <div class="blog-stat-card">
+    <span class="stat-number">88%+</span>
+    <span class="stat-title">User Adoption</span>
+    <span class="stat-desc">Of global smartphone owners</span>
+  </div>
+  <div class="blog-stat-card">
+    <span class="stat-number">72%+</span>
+    <span class="stat-title">Business Usage</span>
+    <span class="stat-desc">Integrated across retail &amp; menus</span>
+  </div>
+  <div class="blog-stat-card">
+    <span class="stat-number">$5.1B+</span>
+    <span class="stat-title">Market Value</span>
+    <span class="stat-desc">Global 2D data infrastructure</span>
+  </div>
+</div>
+
 | Metric | 2019 | 2023 | 2026 (est.) |
 |--------|------|------|-------------|
 | **Global QR code scans** | 1.5 billion | 5.3 billion | 10+ billion |

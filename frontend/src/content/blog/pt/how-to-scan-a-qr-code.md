@@ -29,10 +29,31 @@ Os códigos QR estão por toda parte: cardápios, embalagens, cartões de visita
 
 O iOS lê códigos QR diretamente pelo aplicativo **Câmera**:
 
-1. **Abra a Câmera** (pela tela de bloqueio ou Central de Controle).
-2. **Aponte a câmera para o código QR** a uma distância de 15 a 30 cm.
-3. **Toque na notificação amarela** que surge na tela com o endereço do site.
-4. O link abrirá instantaneamente no Safari.
+### Fluxo Universal de Leitura Nativa
+
+<div class="blog-flow-grid">
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">1</span>
+      <h4 class="blog-flow-title">Abrir a Câmera</h4>
+    </div>
+    <p class="blog-flow-desc">Abra o app Câmera nativo pela tela de bloqueio ou início.</p>
+  </div>
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">2</span>
+      <h4 class="blog-flow-title">Apontar pro Código</h4>
+    </div>
+    <p class="blog-flow-desc">Mantenha a 15–30 cm. Não é necessário tirar foto.</p>
+  </div>
+  <div class="blog-flow-card highlight">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">3</span>
+      <h4 class="blog-flow-title">Tocar no Balão</h4>
+    </div>
+    <p class="blog-flow-desc">Um balão amarelo surge na tela. Basta tocar para acessar o link.</p>
+  </div>
+</div>
 
 > **Ajuste:** Caso não apareça a notificação, verifique em *Ajustes → Câmera* se a opção *Escanear Códigos QR* está ativada.
 
@@ -70,9 +91,51 @@ Deslize de cima para baixo na tela e toque no ícone **Ler código QR**.
 
 ---
 
-## ⚠️ Cuidado com Aplicativos de Leitura Cheios de Anúncios
+## Dicas para Leitura Segura e Sem Erros
 
-Evite instalar aplicativos de leitura da Play Store ou App Store. Quase todos são repletos de propagandas invasivas e cobranças indevidas. Seu celular já faz a leitura de forma nativa e segura.
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Boas Práticas (Fazer)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Utilize a câmera nativa ou o Google Lens
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Limpe a lente da câmera se o foco estiver demorando
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Confira a URL do site antes de inserir senhas ou dados
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Cuidados (Evitar)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Não instale apps de leitura da Play Store cheios de anúncios
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Não escaneie adesivos colados por cima de totens oficiais
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Nunca conceda permissão de agenda para apps de terceiros
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 

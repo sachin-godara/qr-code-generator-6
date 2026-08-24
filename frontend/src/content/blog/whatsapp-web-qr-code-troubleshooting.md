@@ -33,7 +33,31 @@ Here are the **7 proven fixes** to solve WhatsApp Web QR code errors quickly.
 
 ## How the WhatsApp Web QR Handshake Works
 
-When you load `web.whatsapp.com`, WhatsApp generates an ephemeral, cryptographically salted 2D matrix code that refreshes every 20 seconds. 
+When you load `web.whatsapp.com`, WhatsApp establishes an end-to-end encrypted session using a multi-step cryptographic handshake:
+
+<div class="blog-flow-grid">
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">1</span>
+      <h4 class="blog-flow-title">Browser Keygen</h4>
+    </div>
+    <p class="blog-flow-desc">Desktop generates a 20-second ephemeral 2D cryptographic key matrix.</p>
+  </div>
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">2</span>
+      <h4 class="blog-flow-title">Optical Signature</h4>
+    </div>
+    <p class="blog-flow-desc">Phone camera scans matrix and signs session with account private key.</p>
+  </div>
+  <div class="blog-flow-card highlight">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">3</span>
+      <h4 class="blog-flow-title">Encrypted Sync</h4>
+    </div>
+    <p class="blog-flow-desc">Persistent Secure WebSocket (`wss://`) syncs chats directly to desktop.</p>
+  </div>
+</div>
 
 When your phone's camera reads this matrix, it signs a secure public key exchange that authenticates your desktop browser session directly with WhatsApp's end-to-end encrypted servers. If anything degrades the optical clarity of the code or interrupts the WebSocket connection, the link will fail.
 
@@ -111,6 +135,52 @@ Fingerprint oil and pocket lint on your phone's camera lens cause diffuse light 
 While WhatsApp Web supports dark mode, some older TN-panel office monitors produce low gray-to-black contrast. If WhatsApp's dark background blends with the dark modules, camera algorithms will struggle to calculate the quiet zone perimeter.
 
 - Switch your desktop browser or OS appearance to **Light Mode** temporarily until the initial handshake is established.
+
+## WhatsApp Web Quick Diagnostics Checklist
+
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Quick Diagnostics (Do)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Reset browser zoom with Ctrl+0 / Cmd+0
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Keep phone 15–25 cm away and tilt 15° to cancel screen glare
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Log out of unused devices in WhatsApp > Linked Devices
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Troubleshooting Traps (Don't)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Don't hold phone closer than 10 cm (blurs optical autofocus)
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Don't leave strict VPN / ad-blockers blocking WebSocket wss://
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Don't scan with generic camera app — must use Linked Devices
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 

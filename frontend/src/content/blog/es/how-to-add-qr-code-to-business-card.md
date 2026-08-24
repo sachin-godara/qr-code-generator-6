@@ -36,9 +36,33 @@ Aquí te explicamos paso a paso cómo crear un código QR profesional para tu ta
 
 Antes de diseñarlo, decide qué sucederá cuando alguien escanee tu tarjeta. Estas son las opciones más eficaces:
 
-### Opción 1: vCard (Tarjeta de Contacto Digital) ⭐ Recomendada
+### Opción 1: vCard (Tarjeta de Contacto Digital)
 
-Un **código QR vCard** codifica todos tus datos profesionales (nombre, teléfono, correo electrónico, empresa, cargo, web y dirección física) directamente en los módulos del código. Al escanearlo, el smartphone abre la libreta de contactos y ofrece guardarlo con un solo toque.
+Un **código QR vCard** codifica todos tus datos profesionales (nombre, teléfono, correo electrónico, empresa, cargo, web y dirección física) directamente en los módulos del código.
+
+<div class="blog-flow-grid">
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">1</span>
+      <h4 class="blog-flow-title">Entrega de Tarjeta</h4>
+    </div>
+    <p class="blog-flow-desc">El contacto apunta la cámara de su móvil al código QR vCard de tu tarjeta.</p>
+  </div>
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">2</span>
+      <h4 class="blog-flow-title">Aviso Automático</h4>
+    </div>
+    <p class="blog-flow-desc">Aparece la notificación nativa de contacto en iOS o Android sin escribir nada.</p>
+  </div>
+  <div class="blog-flow-card highlight">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">3</span>
+      <h4 class="blog-flow-title">Guardar en 1 Toque</h4>
+    </div>
+    <p class="blog-flow-desc">Nombre, teléfono, cargo y web se guardan directamente en la agenda sin fallos.</p>
+  </div>
+</div>
 
 **Por qué vCard es la mejor opción para tarjetas de presentación:**
 - Los datos se guardan directamente, sin depender de conexión a internet.
@@ -140,17 +164,59 @@ Cuando entregues el diseño a la imprenta:
 4. **Elige acabado mate o satinado** — Los acabados con brillo intenso pueden producir reflejos que dificulten la lectura de la cámara.
 5. **Solicita una prueba de impresión** y pruébalo con tu smartphone antes de ordenar el tiraje completo.
 
-## Errores Frecuentes que Debes Evitar
+## Buenas Prácticas y Errores a Evitar
 
-❌ **Tamaño inferior a 1.5 cm** — Dificulta el enfoque en teléfonos con cámaras básicas.
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Recomendaciones (Hacer)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Mantener un tamaño de al menos 2 × 2 cm
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Exportar en SVG vectorial o PDF a 300 DPI
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Optar por acabado mate o satinado antirreflejos
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Respetar un margen blanco de 2 a 3 mm alrededor
+      </li>
+    </ul>
+  </div>
 
-❌ **Imágenes PNG pixeladas** — Utiliza siempre archivos vectoriales SVG para evitar bordes borrosos en la tinta.
-
-❌ **Papeles con brillo extremo** — Los reflejos de la luz ambiental pueden impedir la lectura del código.
-
-❌ **Exceso de datos en el vCard** — Direcciones excesivamente largas aumentan la densidad de puntos. Mantén los datos esenciales.
-
-❌ **Eliminar el margen perimetral** — Colocar el código al ras de un borde o sobre texturas destruye la detección automática.
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Errores Comunes (Evitar)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Imprimir por debajo de 1.5 cm (provoca fallos de enfoque)
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Usar imágenes PNG pixeladas a 72 DPI
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Plastificados con brillo extremo que ciegan la cámara
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Sobrecargar el vCard con párrafos de notas innecesarios
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 

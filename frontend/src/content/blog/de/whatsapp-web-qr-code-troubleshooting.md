@@ -31,7 +31,31 @@ Wenn der QR-Code jedoch nicht lädt, sich in einer endlosen Neuladeschleife verf
 
 ## So funktioniert der WhatsApp Web Handshake
 
-Beim Laden von `web.whatsapp.com` erzeugt WhatsApp einen kryptografisch gesicherten 2D-Matrixcode, der sich alle 20 Sekunden aktualisiert. 
+Beim Laden von `web.whatsapp.com` initialisiert WhatsApp einen mehrstufigen Ende-zu-Ende-verschlüsselten Verbindungsaufbau:
+
+<div class="blog-flow-grid">
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">1</span>
+      <h4 class="blog-flow-title">Browser-Schlüssel</h4>
+    </div>
+    <p class="blog-flow-desc">PC erzeugt eine flüchtige 2D-Schlüsselmatrix mit 20 Sekunden Gültigkeit.</p>
+  </div>
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">2</span>
+      <h4 class="blog-flow-title">Optische Signatur</h4>
+    </div>
+    <p class="blog-flow-desc">Handykamera scannt Matrix und signiert Sitzung mit privatem Geräteschlüssel.</p>
+  </div>
+  <div class="blog-flow-card highlight">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">3</span>
+      <h4 class="blog-flow-title">Verschlüsselter Sync</h4>
+    </div>
+    <p class="blog-flow-desc">Sicherer WebSocket (`wss://`) synchronisiert Chats Ende-zu-Ende verschlüsselt.</p>
+  </div>
+</div>
 
 Liest Ihre Handykamera diesen Code, autorisiert sie über eine sichere Ende-zu-Ende-verschlüsselte WebSocket-Verbindung (`wss://`) die Browsersitzung auf Ihrem PC. Störungen bei der optischen Erkennung oder Netzwerkblockaden führen zum Verbindungsabbruch.
 
@@ -100,6 +124,52 @@ WhatsApp Web benötigt permanente **Secure WebSockets (`wss://`)**. Manche Track
 ## Fix 7: Dunkelmodus auf älteren Monitoren anpassen
 
 Einige ältere TN-Bildschirme haben im Dunkelmodus einen geringen Kontrast zwischen Hintergrund und Code-Mustern. Schalten Sie den Browser oder das Betriebssystem kurzfristig auf **Hellmodus** um.
+
+## WhatsApp Web Schnell-Checkliste
+
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Empfohlene Schritte (Do)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Browser-Zoom mit Strg+0 / Cmd+0 zurücksetzen
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Handy 15–25 cm entfernt halten und um 15° gegen Lichtreflexe neigen
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Ungenutzte Sitzungen unter Verknüpfte Geräte abmelden
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Häufige Fehler (Don't)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Handy nicht näher als 10 cm halten (verhindert Scharfstellen)
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Keine strengen VPNs/Adblocker nutzen, die WebSocket wss:// blockieren
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Nicht mit der Standard-Kamera scannen – Verknüpfung in WhatsApp nutzen
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 

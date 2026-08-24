@@ -21,7 +21,31 @@ howToSteps:
     text: "Abre WhatsApp → Ajustes → Dispositivos Vinculados → Vincular un dispositivo y enfoca el código QR en la pantalla."
 ---
 
-Conectar WhatsApp Web a tu ordenador suele ser instantáneo: abres `web.whatsapp.com`, apuntas con la cámara de tu móvil y tus chats se sincronizan de inmediato.
+Conectar WhatsApp Web a tu ordenador suele ser instantáneo: abres `web.whatsapp.com`, apuntas con la cámara de tu móvil y tus chats se sincronizan de inmediato mediante un proceso de autenticación cifrado:
+
+<div class="blog-flow-grid">
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">1</span>
+      <h4 class="blog-flow-title">Clave en Navegador</h4>
+    </div>
+    <p class="blog-flow-desc">El ordenador genera una matriz criptográfica efímera que dura 20 segundos.</p>
+  </div>
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">2</span>
+      <h4 class="blog-flow-title">Firma Óptica</h4>
+    </div>
+    <p class="blog-flow-desc">La cámara escanea la matriz y firma la sesión con la clave privada de tu móvil.</p>
+  </div>
+  <div class="blog-flow-card highlight">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">3</span>
+      <h4 class="blog-flow-title">Sincronización Cifrada</h4>
+    </div>
+    <p class="blog-flow-desc">El WebSocket seguro (`wss://`) transmite los chats cifrados de extremo a extremo.</p>
+  </div>
+</div>
 
 Sin embargo, cuando el código QR de WhatsApp Web no carga, se queda en un bucle infinito de recarga o tu teléfono no lo reconoce en el monitor, puede resultar frustrante.
 
@@ -76,6 +100,52 @@ WhatsApp Web utiliza **WebSockets Seguros (`wss://`)**. Algunas extensiones de p
 2. Selecciona **Cookies y datos del sitio**.
 3. Haz clic en **Borrar Datos**.
 4. Recarga la página (`Ctrl + F5`) para generar un código QR nuevo.
+
+## Lista de Diagnóstico Rápido para WhatsApp Web
+
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Diagnóstico Rápido (Hacer)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Restablece el zoom de pantalla con Ctrl+0 / Cmd+0
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Mantén el móvil a 15–25 cm e inclina 15° contra reflejos
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Cierra sesiones antiguas en Dispositivos Vinculados
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Errores Comunes (Evitar)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        No acerques el móvil a menos de 10 cm (desenfoca la lente)
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        No mantengas VPNs o bloqueadores que corten WebSockets
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        No uses la cámara normal: debes escanear desde WhatsApp
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 

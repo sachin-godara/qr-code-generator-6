@@ -39,9 +39,33 @@ Here's how to create a professional QR code for your business card, step by step
 
 Before designing, decide what happens when someone scans your card. Here are the most popular options:
 
-### Option 1: vCard (Digital Contact Card) ⭐ Recommended
+### Option 1: vCard (Digital Contact Card)
 
-A **vCard QR code** encodes your full contact information — name, phone, email, company, title, website, and address — directly into the QR code. When scanned, the contact info is saved to the phone's address book in one tap.
+A **vCard QR code** encodes your full contact information — name, phone, email, company, title, website, and address — directly into the QR code matrix.
+
+<div class="blog-flow-grid">
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">1</span>
+      <h4 class="blog-flow-title">Hand Out Card</h4>
+    </div>
+    <p class="blog-flow-desc">Recipient points their phone camera at the vCard QR code on your card.</p>
+  </div>
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">2</span>
+      <h4 class="blog-flow-title">Auto-Prompt</h4>
+    </div>
+    <p class="blog-flow-desc">Native contact card prompt appears on iOS or Android automatically.</p>
+  </div>
+  <div class="blog-flow-card highlight">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">3</span>
+      <h4 class="blog-flow-title">1-Tap Save</h4>
+    </div>
+    <p class="blog-flow-desc">Name, phone, email, company, and website saved directly with 0 typos.</p>
+  </div>
+</div>
 
 **Why vCard is best for business cards:**
 - Contact info is saved directly — no internet connection needed
@@ -143,17 +167,59 @@ When submitting your design to a print shop:
 4. **Choose matte finish** — Glossy cards can create glare that interferes with scanning
 5. **Request a proof** — Print a single copy first and test-scan before ordering the full batch
 
-## Common Mistakes
+## Business Card QR Code Do's & Don'ts
 
-❌ **Too small** — Under 1.5cm, scanning becomes unreliable, especially with logos
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Best Practices (Do)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Maintain at least 2 × 2 cm print dimensions
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Export in vector SVG or 300 DPI PDF for crisp print
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Choose matte or satin finish to eliminate camera glare
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Keep a 2–3mm quiet zone margin around the QR code
+      </li>
+    </ul>
+  </div>
 
-❌ **Low resolution PNG** — A 200px PNG will look pixelated on a professional card. Use SVG.
-
-❌ **Glossy card stock** — Shiny surfaces create reflections that block the camera. Matte or satin finish is safer.
-
-❌ **Encoding too much data** — vCards with extremely long addresses or notes create dense QR patterns. Keep data concise.
-
-❌ **No quiet zone** — Placing the QR code flush against a border or other design element breaks scanning.
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Common Mistakes (Don't)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Printing below 1.5 cm (causes lens focus failure)
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Using low-resolution 72 DPI raster PNG files
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        High-gloss reflective lamination that blinds sensors
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Overloading vCard with paragraphs of text notes
+      </li>
+    </ul>
+  </div>
+</div>
 
 ## The Result
 

@@ -26,7 +26,29 @@ El sector inmobiliario es uno de los que más rápido ha adoptado los códigos Q
 
 La publicidad física tradicional tiene un límite de espacio: en un cartel exterior solo caben un teléfono y pocas palabras. Sin embargo, los compradores quieren ver fotos del interior, planos, precios y visitas virtuales.
 
-Los códigos QR resuelven esto convirtiendo cualquier soporte en una puerta de entrada a contenidos enriquecidos:
+<div class="blog-flow-grid">
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">1</span>
+      <h4 class="blog-flow-title">Cartel Exterior</h4>
+    </div>
+    <p class="blog-flow-desc">Banderola o cartel 'Se Vende' visible desde la acera y el coche.</p>
+  </div>
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">2</span>
+      <h4 class="blog-flow-title">Escaneo al Paso</h4>
+    </div>
+    <p class="blog-flow-desc">El comprador enfoca desde el móvil y abre la ficha en 1 segundo.</p>
+  </div>
+  <div class="blog-flow-card highlight">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">3</span>
+      <h4 class="blog-flow-title">Tour Virtual 3D</h4>
+    </div>
+    <p class="blog-flow-desc">Acceso a 40+ fotos HD, planos, precio y contacto directo con el agente.</p>
+  </div>
+</div>
 
 - **Carteles 'Se Vende'** → Enlace a la galería con más de 40 fotos en alta resolución.
 - **Tarjetas de visita** → Guardado automático de los datos del agente en el móvil con vCard.
@@ -73,13 +95,51 @@ Dado que los carteles se escanean a distancias de **2 a 5 metros**, respeta esta
 
 ---
 
-## La Importancia de la Llamada a la Acción (CTA)
+## Buenas Prácticas y Errores en Marketing Inmobiliario
 
-Nunca pongas un código QR solitario sin texto. Añade siempre una instrucción clara:
-- ✅ *"Escanear para Ver Fotos y Precio"*
-- ✅ *"Tour Virtual 3D"*
-- ✅ *"Guardar Contacto del Agente"*
-- ❌ *"Escanéame"* (demasiado genérico)
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Llamadas a la Acción Efectivas (Hacer)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        "Escanear para Ver Fotos, Planos y Precio"
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        "Visita Virtual 3D y Contacto con el Agente"
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Imprimir al menos a 10 × 10 cm en carteles exteriores
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Errores a Evitar (Don't)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Textos genéricos como "Escanéame" sin propuesta de valor
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Imprimir códigos de menos de 8 cm en carteles exteriores
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Enlazar a la página de inicio genérica de la agencia
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 

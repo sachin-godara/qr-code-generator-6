@@ -20,6 +20,29 @@ QR-Codes sind längst kein kurzfristiger Trend mehr, sondern unverzichtbare glob
 
 ## Marktzahlen und Statistiken
 
+<div class="blog-stat-grid">
+  <div class="blog-stat-card">
+    <span class="stat-number">+10 Mrd.</span>
+    <span class="stat-title">Jährliche Scans</span>
+    <span class="stat-desc">Verglichen mit 1,5 Mrd. in 2019</span>
+  </div>
+  <div class="blog-stat-card">
+    <span class="stat-number">+88%</span>
+    <span class="stat-title">Smartphone-Nutzer</span>
+    <span class="stat-desc">Mit aktiver QR-Code-Nutzung</span>
+  </div>
+  <div class="blog-stat-card">
+    <span class="stat-number">+72%</span>
+    <span class="stat-title">Unternehmensanteil</span>
+    <span class="stat-desc">Im Handel und Gastgewerbe</span>
+  </div>
+  <div class="blog-stat-card">
+    <span class="stat-number">+5,1 Mrd. $</span>
+    <span class="stat-title">Marktvolumen</span>
+    <span class="stat-desc">Globale 2D-Infrastruktur</span>
+  </div>
+</div>
+
 | Kennzahl | 2019 | 2023 | 2026 (Prognose) |
 | :--- | :--- | :--- | :--- |
 | **Weltweite QR-Code Scans** | 1,5 Mrd. | 5,3 Mrd. | **+10 Mrd.** |

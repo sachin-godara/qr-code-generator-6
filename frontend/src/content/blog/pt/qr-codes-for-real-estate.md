@@ -24,7 +24,29 @@ O mercado imobiliário é um dos setores que mais se beneficia do uso de código
 
 Placas tradicionais têm espaço reduzido: apenas um número de telefone e logotipo. Mas quem está procurando imóvel quer ver fotos internas, planta baixa, taxas e visitas em 3D imediatamente.
 
-Os códigos QR transformam qualquer superfície em um portal de informações:
+<div class="blog-flow-grid">
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">1</span>
+      <h4 class="blog-flow-title">Placa na Fachada</h4>
+    </div>
+    <p class="blog-flow-desc">Faixa ou placa 'Vende-se' com QR code legível da calçada ou do carro.</p>
+  </div>
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">2</span>
+      <h4 class="blog-flow-title">Leitura Rápida</h4>
+    </div>
+    <p class="blog-flow-desc">O comprador aponta a câmera e abre o anúncio em 1 segundo.</p>
+  </div>
+  <div class="blog-flow-card highlight">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">3</span>
+      <h4 class="blog-flow-title">Tour 3D Completo</h4>
+    </div>
+    <p class="blog-flow-desc">Galeria com 40+ fotos, planta, valores e contato direto com o corretor.</p>
+  </div>
+</div>
 
 - **Placas 'Vende-se' / 'Aluga-se'** → Link direto para a galeria com dezenas de fotos em alta resolução.
 - **Cartões de visita** → Salvamento imediato do contato do corretor na agenda do celular (vCard).
@@ -56,12 +78,51 @@ Os códigos QR transformam qualquer superfície em um portal de informações:
 
 ---
 
-## Inclua Sempre uma Chamada de Ação (CTA)
+## Boas Práticas e Cuidados em Anúncios de Imóveis
 
-Evite colocar apenas o código isolado. Adicione uma moldura de texto convidativa:
-- ✅ *"Escaneie para Ver Fotos e Valores"*
-- ✅ *"Tour Virtual 3D"*
-- ✅ *"Fale com o Corretor"*
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Chamadas de Alta Conversão (Fazer)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        "Escaneie para Ver Fotos, Planta e Preço"
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        "Tour Virtual 3D e Contato Direto com o Corretor"
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Imprimir com no mínimo 10 × 10 cm em placas de rua
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Erros Comuns (Evitar)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Textos genéricos como "Escaneie Aqui" sem proposta de valor
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Códigos menores que 8 cm em muros ou calçadas
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Direcionar para a home page genérica da imobiliária
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 

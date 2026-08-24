@@ -28,13 +28,27 @@ Esta guía ofrece recomendaciones de tamaño definitivas para cada uso común.
 
 ## La Regla de Oro: Distancia de Escaneo ÷ 10
 
-La fórmula más simple y efectiva para calcular el tamaño de un código QR:
+La fórmula óptica fundamental para un enfoque instantáneo desde el teléfono:
 
-> **Tamaño mínimo del código QR = Distancia de escaneo ÷ 10**
+<div class="blog-equation-card">
+  <div class="blog-equation-segment data">
+    <span class="segment-label">Distancia de Escaneo</span>
+    <span class="segment-val">Distancia (cm)</span>
+  </div>
+  <span class="blog-equation-op">÷</span>
+  <div class="blog-equation-segment parity">
+    <span class="segment-label">Constante Óptica</span>
+    <span class="segment-val">10</span>
+  </div>
+  <span class="blog-equation-op">=</span>
+  <div class="blog-equation-segment total">
+    <span class="segment-label">Ancho Mínimo QR</span>
+    <span class="segment-val">Tamaño (cm)</span>
+  </div>
+</div>
 
-Si alguien va a escanear el código QR desde **30 cm de distancia** (distancia típica en tarjetas de visita), el tamaño mínimo es **3 cm × 3 cm**.
-
-Si lo van a escanear desde **3 metros de distancia** (un cartel en una pared), el tamaño mínimo es **30 cm × 30 cm**.
+- **30 cm de distancia** (Tarjeta de visita en la mano) → **3 × 3 cm** mínimo.
+- **3 metros de distancia** (Cartel en pared o escaparate) → **30 × 30 cm** mínimo.
 
 ---
 

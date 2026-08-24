@@ -340,3 +340,613 @@
     font-size: 1rem;
   }
 }
+
+/* --- Modern Blog Visual Workflow & Step Flow --- */
+.blog-flow-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin: 1.75rem 0;
+}
+
+.blog-flow-card {
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 16px;
+  padding: 1.25rem;
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-flow-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.08);
+  border-color: #d4d4d8;
+}
+
+.blog-flow-card.highlight {
+  background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 100%);
+  border-color: #86efac;
+}
+
+.blog-flow-card.highlight:hover {
+  border-color: #4ade80;
+}
+
+.blog-flow-header {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-bottom: 0.5rem;
+}
+
+.blog-flow-step {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 9999px;
+  background: #18181b;
+  color: #ffffff;
+  font-size: 0.8125rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.blog-flow-card.highlight .blog-flow-step {
+  background: #16a34a;
+}
+
+.blog-flow-title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: #18181b;
+  margin: 0 !important;
+  line-height: 1.3;
+}
+
+.blog-flow-desc {
+  font-size: 0.8125rem;
+  color: #52525b;
+  margin: 0 !important;
+  line-height: 1.45;
+}
+
+/* --- Formula / Equation Card (e.g. Error Correction Math) --- */
+.blog-equation-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.75rem 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.blog-equation-segment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.25rem;
+  border-radius: 12px;
+  text-align: center;
+  min-width: 140px;
+}
+
+.blog-equation-segment.data {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+}
+
+.blog-equation-segment.data .segment-val {
+  color: #1d4ed8;
+}
+
+.blog-equation-segment.parity {
+  background: #fef3c7;
+  border: 1px solid #fde68a;
+}
+
+.blog-equation-segment.parity .segment-val {
+  color: #b45309;
+}
+
+.blog-equation-segment.total {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+}
+
+.blog-equation-segment.total .segment-val {
+  color: #15803d;
+}
+
+.blog-equation-segment .segment-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  margin-bottom: 0.25rem;
+}
+
+.blog-equation-segment .segment-val {
+  font-size: 1.125rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.blog-equation-op {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #94a3b8;
+}
+
+/* --- Realistic Physical Mockup Preview Card (e.g. WiFi Table Tent) --- */
+.blog-mockup-card {
+  background: linear-gradient(145deg, #ffffff 0%, #f9fafb 100%);
+  border: 1px solid #e4e4e7;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin: 1.75rem auto;
+  max-width: 440px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+  text-align: center;
+}
+
+.blog-mockup-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  background: #f4f4f5;
+  color: #52525b;
+  margin-bottom: 1rem;
+}
+
+.blog-mockup-details {
+  background: #ffffff;
+  border: 1px dashed #d4d4d8;
+  border-radius: 12px;
+  padding: 0.875rem 1.25rem;
+  margin-bottom: 0.875rem;
+  text-align: left;
+}
+
+.blog-mockup-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.35rem 0;
+  font-size: 0.875rem;
+}
+
+.blog-mockup-row:not(:last-child) {
+  border-bottom: 1px solid #f4f4f5;
+}
+
+.blog-mockup-label {
+  font-weight: 600;
+  color: #71717a;
+}
+
+.blog-mockup-value {
+  font-family: 'Courier Prime', monospace;
+  font-weight: 700;
+  color: #18181b;
+  background: #f4f4f5;
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.blog-mockup-footer {
+  font-size: 0.8125rem;
+  color: #71717a;
+  font-weight: 500;
+}
+
+/* --- Architecture Comparison Card (e.g. Static vs Dynamic Routing) --- */
+.blog-arch-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+
+.blog-arch-card {
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid #e4e4e7;
+  background: #ffffff;
+  box-shadow: 0 2px 8px -2px rgba(0, 0, 0, 0.04);
+}
+
+.blog-arch-card.static {
+  border-color: #86efac;
+  background: linear-gradient(145deg, #f0fdf4 0%, #ffffff 100%);
+}
+
+.blog-arch-card.dynamic {
+  border-color: #fed7aa;
+  background: linear-gradient(145deg, #fff7ed 0%, #ffffff 100%);
+}
+
+.blog-arch-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.blog-arch-badge {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.blog-arch-card.static .blog-arch-badge {
+  background: #dcfce7;
+  color: #15803d;
+  border: 1px solid #bbf7d0;
+}
+
+.blog-arch-card.dynamic .blog-arch-badge {
+  background: #ffedd5;
+  color: #c2410c;
+  border: 1px solid #fed7aa;
+}
+
+.blog-arch-flow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.blog-arch-node {
+  background: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 10px;
+  padding: 0.5rem 0.875rem;
+  font-weight: 700;
+  font-size: 0.875rem;
+  color: #18181b;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.blog-arch-node.middleman {
+  border-color: #fdba74;
+  background: #fffaf5;
+  color: #9a3412;
+}
+
+.blog-arch-node.destination {
+  border-color: #86efac;
+  background: #f6fef9;
+  color: #166534;
+}
+
+.blog-arch-arrow {
+  color: #a1a1aa;
+  font-weight: 800;
+  font-size: 1.125rem;
+}
+
+.blog-arch-benefits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.blog-arch-benefit-item {
+  font-size: 0.8125rem;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-weight: 600;
+}
+
+.blog-arch-card.static .blog-arch-benefit-item {
+  color: #166534;
+}
+
+.blog-arch-card.dynamic .blog-arch-benefit-item {
+  color: #9a3412;
+}
+
+/* --- Clean URL / API Scheme Endpoint Box --- */
+.blog-endpoint-box {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  margin: 1.25rem 0;
+  overflow-x: auto;
+}
+
+.blog-endpoint-tag {
+  font-size: 0.6875rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: #18181b;
+  color: #ffffff;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.blog-endpoint-url {
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #0f172a;
+  white-space: nowrap;
+}
+
+/* --- Checklist / Do's and Don'ts Grid --- */
+.blog-checklist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.25rem;
+  margin: 2rem 0;
+}
+
+.blog-checklist-card {
+  border-radius: 16px;
+  padding: 1.25rem 1.5rem;
+  border: 1px solid #e4e4e7;
+  background: #ffffff;
+}
+
+.blog-checklist-card.do {
+  border-color: #86efac;
+  background: #fcfdfc;
+}
+
+.blog-checklist-card.dont {
+  border-color: #fca5a5;
+  background: #fdfcfc;
+}
+
+.blog-checklist-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9375rem;
+  font-weight: 800;
+  margin-bottom: 0.875rem;
+}
+
+.blog-checklist-card.do .blog-checklist-header {
+  color: #15803d;
+}
+
+.blog-checklist-card.dont .blog-checklist-header {
+  color: #b91c1c;
+}
+
+.blog-checklist-list {
+  list-style: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.blog-checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #3f3f46;
+  line-height: 1.5;
+}
+
+.blog-checklist-item .icon-check {
+  color: #16a34a;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.blog-checklist-item .icon-cross {
+  color: #dc2626;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* --- Key Stats & ROI Grid --- */
+.blog-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.blog-stat-card {
+  background: #ffffff;
+  border: 1px solid #e4e4e7;
+  border-radius: 16px;
+  padding: 1.25rem;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.blog-stat-value {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: #18181b;
+  line-height: 1.1;
+  margin-bottom: 0.25rem;
+}
+
+.blog-stat-label {
+  font-size: 0.8125rem;
+  color: #71717a;
+  font-weight: 600;
+}
+
+/* --- YouTube & Platform Modal Mockup --- */
+.blog-modal-preview {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  max-width: 440px;
+  margin: 1.75rem auto;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+.blog-modal-top {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.25rem;
+  background: #f8fafc;
+  border-bottom: 1px solid #f1f5f9;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+.blog-modal-body {
+  padding: 1.5rem 1.25rem 0.5rem;
+  text-align: center;
+}
+
+.blog-modal-title {
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 0.375rem;
+}
+
+.blog-modal-text {
+  font-size: 0.9375rem;
+  color: #64748b;
+  margin-bottom: 1rem;
+}
+
+.blog-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem 1.25rem;
+}
+
+.blog-modal-btn {
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blog-modal-btn.cancel {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+.blog-modal-btn.confirm-yt {
+  background: #ff0000;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(255, 0, 0, 0.28);
+}
+
+/* --- Security & Quishing Threat Flow --- */
+.blog-threat-container {
+  background: #fffafa;
+  border: 1px solid #fee2e2;
+  border-radius: 18px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.blog-threat-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 800;
+  color: #991b1b;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.blog-threat-flow {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1rem;
+}
+
+.blog-threat-card {
+  background: #ffffff;
+  border: 1px solid #fecaca;
+  border-radius: 14px;
+  padding: 1.125rem;
+  box-shadow: 0 2px 6px rgba(153, 27, 27, 0.05);
+}
+
+.blog-threat-tag {
+  font-size: 0.6875rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 6px;
+  background: #fee2e2;
+  color: #991b1b;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+}
+
+.blog-threat-title {
+  font-size: 0.9375rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 0.375rem;
+}
+
+.blog-threat-desc {
+  font-size: 0.8125rem;
+  color: #475569;
+  line-height: 1.45;
+  margin: 0;
+}
+
+
+

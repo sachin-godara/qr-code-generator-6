@@ -49,9 +49,12 @@ Esta guía te muestra cómo crearlo en menos de 2 minutos.
 
 ### Opción C: Usando Coordenadas GPS Directas
 Si dispones de las coordenadas de latitud y longitud exactas:
-```
-https://www.google.com/maps?q=LATITUD,LONGITUD
-```
+
+<div class="blog-endpoint-box">
+  <span class="blog-endpoint-tag">Formato GPS</span>
+  <span class="blog-endpoint-url">https://www.google.com/maps?q=LATITUD,LONGITUD</span>
+</div>
+
 Ejemplo: `https://www.google.com/maps?q=40.4168,-3.7038` (Puerta del Sol, Madrid).
 
 ---

@@ -37,8 +37,33 @@ Confira o passo a passo completo para criar um cartão de visitas moderno e prof
 
 ## Para Onde Deve Apontar o QR Code do seu Cartão?
 
-### Opção 1: Cartão de Contato vCard ⭐ Recomendado
+### Opção 1: Cartão de Contato vCard
 O **QR code vCard** armazena todos os seus dados profissionais — nome completo, cargo, empresa, telefones, e-mail, site e endereço — dentro do próprio código.
+
+<div class="blog-flow-grid">
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">1</span>
+      <h4 class="blog-flow-title">Entregar Cartão</h4>
+    </div>
+    <p class="blog-flow-desc">O cliente aponta a câmera do celular para o código vCard no cartão.</p>
+  </div>
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">2</span>
+      <h4 class="blog-flow-title">Reconhecimento</h4>
+    </div>
+    <p class="blog-flow-desc">O smartphone detecta o contato automaticamente no iOS ou Android.</p>
+  </div>
+  <div class="blog-flow-card highlight">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">3</span>
+      <h4 class="blog-flow-title">Salvar com 1 Toque</h4>
+    </div>
+    <p class="blog-flow-desc">Nome, telefone, e-mail e empresa são salvos direto na agenda sem digitação.</p>
+  </div>
+</div>
+
 - **Funciona 100% offline** (não necessita de internet na hora do escaneamento).
 - Salva o contato na agenda com 1 toque.
 - Elimina erros de digitação de e-mails ou números longos.
@@ -104,12 +129,59 @@ Exporte sempre em formatos profissionais de alta definição:
 
 ---
 
-## Passo 5: Cuidados na Impressão e Erros Comuns
+## Boas Práticas e Erros na Impressão
 
-1. **Margem de Respiro**: Mantenha pelo menos 2 mm de espaço branco ao redor do código.
-2. **Acabamento Fosco (Matte)**: Evite verniz com brilho espelhado que cause reflexos na lente da câmera.
-3. **Faça um Teste Real**: Antes de rodar o lote de 1.000 unidades, imprima uma prova física e escaneie com seu celular.
-4. **Não Exagere nos Dados**: Seja conciso nas informações do vCard para manter os pontos bem espaçados.
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Boas Práticas (Fazer)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Tamanho mínimo recomendado de 2 × 2 cm
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Exportar em vetor SVG ou PDF em 300 DPI
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Optar por papel fosco (matte) antirreflexo
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Manter 2 mm de margem branca de segurança
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Erros Comuns (Evitar)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Imprimir abaixo de 1.5 cm (gera falhas de foco)
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Usar imagens PNG pixeladas a 72 DPI
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Laminação com alto brilho espelhado
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Campos de texto longos demais no vCard
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 

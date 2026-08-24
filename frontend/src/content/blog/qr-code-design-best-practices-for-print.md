@@ -59,19 +59,49 @@ This is where most design-focused QR codes fail. Beautiful gradients and brand c
 
 QR code scanners work by detecting the contrast between dark modules (dots) and the light background. The **minimum contrast ratio** for reliable scanning is **4.5:1** — the same standard used for web accessibility (WCAG AA).
 
-### What Works
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      What Works in Print (Do)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Deep black on pure white (universal 21:1 contrast)
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Dark navy or forest green on warm cream cardstock
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Dark-to-darker subtle gradients with matte lamination
+      </li>
+    </ul>
+  </div>
 
-✅ Dark dots on white/light background  
-✅ Black on white (always safest)  
-✅ Dark navy on cream  
-✅ Dark purple on light gray  
-
-### What Fails
-
-❌ Light gray on white  
-❌ Yellow on white  
-❌ Dark green on dark brown  
-❌ Red on green (also an accessibility issue)  
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      What Fails in Print (Don't)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Light gray or yellow dots on white paper
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Dark green on brown cardboard (washes out under warm lighting)
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Cropping into the 4-module quiet zone margin
+      </li>
+    </ul>
+  </div>
+</div>  
 
 ### Color Gradient Tips
 

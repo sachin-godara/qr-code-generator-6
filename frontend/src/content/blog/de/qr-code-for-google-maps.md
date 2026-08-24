@@ -45,9 +45,12 @@ In dieser Anleitung erfahren Sie, wie Sie Ihren Standort-QR-Code in unter 2 Minu
 3. Tippen Sie auf **Teilen** und anschließend auf **In die Zwischenablage kopieren**.
 
 ### Option C: Direkte GPS-Koordinaten
-```
-https://www.google.com/maps?q=BREITENGRAD,LAENGENGRAD
-```
+
+<div class="blog-endpoint-box">
+  <span class="blog-endpoint-tag">GPS-Format</span>
+  <span class="blog-endpoint-url">https://www.google.com/maps?q=BREITENGRAD,LAENGENGRAD</span>
+</div>
+
 Beispiel: `https://www.google.com/maps?q=52.5163,13.3777` (Brandenburger Tor, Berlin).
 
 ---

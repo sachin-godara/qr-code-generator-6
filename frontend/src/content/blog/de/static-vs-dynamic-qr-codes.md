@@ -37,6 +37,85 @@ In diesem Leitfaden stellen wir die Vor- und Nachteile beider Systeme gegenüber
 | **Kosten** | **100% Kostenlos** | Meist monatliches Abonnement nötig |
 | **Bester Einsatz** | Visitenkarten, Speisekarten, Produktverpackungen | Werbekampagnen, A/B-Tests, zeitlich befristete Aktionen |
 
+<div class="blog-arch-container">
+  <!-- Statische QR-Architektur -->
+  <div class="blog-arch-card static">
+    <div class="blog-arch-header">
+      <span class="blog-arch-badge">
+        <span class="material-symbols-outlined text-[14px]">bolt</span>
+        Statischer QR: Direkte Matrix
+      </span>
+      <span class="text-xs font-bold text-emerald-700">100% Kostenlos & Dauerhaft</span>
+    </div>
+    <div class="blog-arch-flow">
+      <div class="blog-arch-node">
+        <span class="material-symbols-outlined text-[16px] text-zinc-500">photo_camera</span>
+        Kamera-Scan
+      </div>
+      <span class="blog-arch-arrow">────────────────►</span>
+      <div class="blog-arch-node destination">
+        <span class="material-symbols-outlined text-[16px] text-emerald-600">language</span>
+        Ihre Website (Direkt)
+      </div>
+    </div>
+    <div class="blog-arch-benefits">
+      <div class="blog-arch-benefit-item">
+        <span class="material-symbols-outlined text-[15px] text-emerald-600">check_circle</span>
+        100% direkte Nutzdaten
+      </div>
+      <div class="blog-arch-benefit-item">
+        <span class="material-symbols-outlined text-[15px] text-emerald-600">check_circle</span>
+        Null Server-Abhängigkeit
+      </div>
+      <div class="blog-arch-benefit-item">
+        <span class="material-symbols-outlined text-[15px] text-emerald-600">check_circle</span>
+        Funktioniert für immer (Kein Ablauf)
+      </div>
+    </div>
+  </div>
+
+  <!-- Dynamische QR-Architektur -->
+  <div class="blog-arch-card dynamic">
+    <div class="blog-arch-header">
+      <span class="blog-arch-badge">
+        <span class="material-symbols-outlined text-[14px]">sync_alt</span>
+        Dynamischer QR: Weiterleitung
+      </span>
+      <span class="text-xs font-bold text-amber-700">Erfordert Aktives Abo</span>
+    </div>
+    <div class="blog-arch-flow">
+      <div class="blog-arch-node">
+        <span class="material-symbols-outlined text-[16px] text-zinc-500">photo_camera</span>
+        Kamera-Scan
+      </div>
+      <span class="blog-arch-arrow">──►</span>
+      <div class="blog-arch-node middleman">
+        <span class="material-symbols-outlined text-[16px] text-amber-600">dns</span>
+        Drittanbieter-Server
+      </div>
+      <span class="blog-arch-arrow">──►</span>
+      <div class="blog-arch-node destination">
+        <span class="material-symbols-outlined text-[16px] text-zinc-600">language</span>
+        Ihre Website
+      </div>
+    </div>
+    <div class="blog-arch-benefits">
+      <div class="blog-arch-benefit-item">
+        <span class="material-symbols-outlined text-[15px] text-amber-600">warning</span>
+        Paywall-Gefahr bei Kündigung
+      </div>
+      <div class="blog-arch-benefit-item">
+        <span class="material-symbols-outlined text-[15px] text-amber-600">warning</span>
+        Verzögerung durch Server-Hop
+      </div>
+      <div class="blog-arch-benefit-item">
+        <span class="material-symbols-outlined text-[15px] text-amber-600">warning</span>
+        Besucherdaten werden protokolliert
+      </div>
+    </div>
+  </div>
+</div>
+
 ---
 
 ## Was ist ein statischer QR-Code?

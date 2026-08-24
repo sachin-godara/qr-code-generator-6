@@ -31,10 +31,31 @@ Dieser Leitfaden erklärt alle Methoden für iPhone, Android, Computer und Whats
 
 Apple hat die QR-Code-Erkennung direkt in die **Kamera-App** integriert.
 
-1. **Kamera-App öffnen** (über den Sperrbildschirm oder das Kontrollzentrum).
-2. **Kamera auf den QR-Code richten** (Abstand ca. 15 bis 30 cm).
-3. **Auf das gelbe Banner tippen**, das oberhalb des Kamerasuchers erscheint.
-4. Die verlinkte Webseite öffnet sich sofort in Safari.
+### Universeller nativer Scan-Ablauf
+
+<div class="blog-flow-grid">
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">1</span>
+      <h4 class="blog-flow-title">Kamera öffnen</h4>
+    </div>
+    <p class="blog-flow-desc">Standard-Kamera-App über Sperrbildschirm oder Startbildschirm starten.</p>
+  </div>
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">2</span>
+      <h4 class="blog-flow-title">Code anvisieren</h4>
+    </div>
+    <p class="blog-flow-desc">15–30 cm Abstand halten. Kein Auslöser-Tippen erforderlich.</p>
+  </div>
+  <div class="blog-flow-card highlight">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">3</span>
+      <h4 class="blog-flow-title">Banner antippen</h4>
+    </div>
+    <p class="blog-flow-desc">Ein gelbes Banner erscheint. Ein Fingertipp öffnet den Link direkt.</p>
+  </div>
+</div>
 
 > **Tipp:** Falls kein Banner erscheint: Unter *Einstellungen → Kamera* prüfen, ob *QR-Codes scannen* aktiviert ist.
 
@@ -72,9 +93,51 @@ Wischen Sie vom oberen Bildschirmrand nach unten und tippen Sie auf die Kachel *
 
 ---
 
-## ⚠️ Warnung vor unseriösen Scanner-Apps
+## Tipps für sicheres & zuverlässiges Scannen
 
-Im App Store und Play Store gibt es hunderte "Kostenlose QR-Scanner-Apps", die voller Werbung, Tracker und Abo-Fallen stecken. Installieren Sie keine Drittanbieter-Apps — Ihr Smartphone kann QR-Codes bereits ab Werk scannen.
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Empfehlungen (Do)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Vorinstallierte System-Kamera oder Google Lens nutzen
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Kameralinse kurz mit einem Tuch von Fingerabdrücken befreien
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Ziel-URL vor der Eingabe von Passwörtern kurz prüfen
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Gefahren (Don't)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Keine werbeüberladenen Scanner-Apps aus dem App Store laden
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Keine verdächtigen Aufkleber über offiziellen Parkscheinautomaten scannen
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Drittanbieter-Apps keine Berechtigungen für Kontakte erteilen
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 

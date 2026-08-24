@@ -41,8 +41,33 @@ In dieser Anleitung zeigen wir Ihnen Schritt für Schritt, wie Sie Ihre Visitenk
 
 Bevor Sie mit dem Layout beginnen, entscheiden Sie über das Ziel des Scans:
 
-### Option 1: vCard (Digitale Kontaktkarte) ⭐ Empfohlen
+### Option 1: vCard (Digitale Kontaktkarte)
 Ein **vCard-QR-Code** codiert alle Ihre beruflichen Kontaktdaten — vollständiger Name, Position, Unternehmen, Direktwahl, Mobilnummer, E-Mail, Website und Adresse — direkt in das Bildmuster.
+
+<div class="blog-flow-grid">
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">1</span>
+      <h4 class="blog-flow-title">Karte übergeben</h4>
+    </div>
+    <p class="blog-flow-desc">Geschäftspartner richtet die Smartphone-Kamera auf den QR-Code.</p>
+  </div>
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">2</span>
+      <h4 class="blog-flow-title">Auto-Erkennung</h4>
+    </div>
+    <p class="blog-flow-desc">Das Smartphone erkennt die vCard-Visitenkarte sofort nativ.</p>
+  </div>
+  <div class="blog-flow-card highlight">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">3</span>
+      <h4 class="blog-flow-title">1-Klick Speichern</h4>
+    </div>
+    <p class="blog-flow-desc">Alle Kontaktdaten landen ohne Tippfehler direkt im Adressbuch.</p>
+  </div>
+</div>
+
 - **Funktioniert 100% offline** (die Daten liegen direkt im QR-Code, kein Internetempfang beim Scannen nötig).
 - Speichert den Kontakt mit einem Klick im Adressbuch des Smartphones.
 - Schließt lästige Tippfehler bei E-Mail und Namen aus.
@@ -108,12 +133,59 @@ Verwenden Sie für Drucksachen **ausschließlich Vektorformate oder 300 DPI**:
 
 ---
 
-## Schritt 5: Druckabnahme und typische Fehler vermeiden
+## Visitenkarten-Druck: Best Practices & Fehler vermeiden
 
-1. **Ruhezone einhalten**: Mindestens 2 mm weißer Rand um den Code.
-2. **Mattlackierung wählen**: Hochglänzende Visitenkarten erzeugen Spiegelungen, die den Kamera-Autofokus blenden können.
-3. **Probedruck testen**: Vor der Bestellung von 1.000 Stück einen Probedruck mit dem eigenen Smartphone scannen.
-4. **Nicht zu viele Daten codieren**: Halten Sie vCard-Angaben kompakt, um das Raster angenehm lesbar zu halten.
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Empfehlungen (Do)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Mindestgröße von 2 × 2 cm für sicheren Scan einhalten
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Als Vektor-SVG oder 300 DPI PDF exportieren
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Matt- oder Seidenmattlackierung gegen störende Reflexe wählen
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Mindestens 2 mm weiße Ruhezone um den Code belassen
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Fehler (Don't)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Druck unter 1,5 cm (Fokussierprobleme bei Kameras)
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Pixelige PNG-Grafiken mit 72 DPI für den Druck
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Hochglänzende Folienkaschierung mit Spiegelungen
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Unnötig lange Texte im vCard-Speicher
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 

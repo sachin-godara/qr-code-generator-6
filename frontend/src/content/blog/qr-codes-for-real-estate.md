@@ -24,15 +24,37 @@ Real estate is one of the fastest-growing sectors for QR code adoption. From yar
 
 ## Why Real Estate Agents Need QR Codes
 
-Traditional real estate marketing has a major limitation: physical materials can only hold so much information. A yard sign shows an address and phone number — but buyers want photos, virtual tours, floor plans, pricing history, and neighborhood data.
+Traditional physical marketing limits property exposure. A yard sign only displays an address and phone number, but drive-by buyers want instant HD photos, 3D Matterport walkthroughs, floor plans, and pricing history.
 
-QR codes solve this by turning any physical surface into a portal to rich digital content:
+<div class="blog-flow-grid">
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">1</span>
+      <h4 class="blog-flow-title">Yard Sign Rider</h4>
+    </div>
+    <p class="blog-flow-desc">High-contrast QR sign rider placed at curb-height on the For-Sale sign.</p>
+  </div>
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">2</span>
+      <h4 class="blog-flow-title">Drive-By Scan</h4>
+    </div>
+    <p class="blog-flow-desc">Buyer scans from car window or sidewalk. Instant optical auto-focus.</p>
+  </div>
+  <div class="blog-flow-card highlight">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">3</span>
+      <h4 class="blog-flow-title">3D Virtual Tour</h4>
+    </div>
+    <p class="blog-flow-desc">Opens MLS listing, 50+ photos, video walkthrough, and 1-tap agent contact.</p>
+  </div>
+</div>
 
-- **Yard signs** → Link to the full MLS listing with 50+ photos
-- **Business cards** → Save agent contact info instantly via vCard
-- **Open house flyers** → Direct to a 3D virtual tour
-- **Window displays** → Show available properties 24/7, even after hours
-- **Print ads** → Track engagement and measure ROI
+- **Yard signs** → Link to the full MLS listing with 50+ photos and floor plans
+- **Business cards** → Save agent contact info instantly via [vCard QR codes](/vcard-qr-code)
+- **Open house flyers** → Direct buyers to a 3D Matterport virtual walkthrough
+- **Storefront displays** → Showcase available inventory 24/7, even after office hours
+- **Print flyers** → Track localized neighborhood engagement with UTM parameters
 
 ## 7 QR Code Use Cases for Real Estate
 
@@ -99,16 +121,51 @@ Yard signs are typically scanned from **3–10 meters away** (car window or side
 
 **Pro tip:** Export as SVG for crisp edges at any print size. [Learn more about sizing →](/blog/qr-code-size-guide)
 
-### Adding a Call-to-Action
+### Real Estate CTA Best Practices: Do's & Don'ts
 
-Never place a bare QR code without context. Always include a clear label:
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      High-Converting Callouts (Do)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        "Scan for Photos, Floor Plans &amp; Price"
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        "Take a 3D Virtual Walkthrough"
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        "Save Agent vCard &amp; Text Listing Details"
+      </li>
+    </ul>
+  </div>
 
-- ✅ *"Scan for Photos & Pricing"*
-- ✅ *"View Virtual Tour"*
-- ✅ *"Save My Contact Info"*
-- ❌ *"Scan Me"* (too vague — buyers won't bother)
-
-GenerateCustomQR includes **51 CTA text frames** that you can customize with your own text, font, and color.
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Low-Conversion Mistakes (Don't)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Vague labels like "Scan Me" with no value proposition
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Placing QR below 8×8 cm on outdoor yard signs (too small for cars)
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Linking to generic agency homepages requiring search
+      </li>
+    </ul>
+  </div>
+</div>
 
 ## Tracking QR Code Performance
 

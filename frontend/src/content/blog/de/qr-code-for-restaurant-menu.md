@@ -33,9 +33,35 @@ In dieser Anleitung zeigen wir Ihnen Schritt für Schritt, wie Sie Ihre digitale
 
 ## Warum Gastronomen auf QR-Code-Karten setzen
 
+Der Umstieg auf digitale Speisekarten senkt Betriebskosten und begeistert Gäste:
+
+<div class="blog-flow-grid">
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">1</span>
+      <h4 class="blog-flow-title">Tischaufsteller</h4>
+    </div>
+    <p class="blog-flow-desc">Acryl- oder Holzaufsteller direkt auf Augenhöhe des sitzenden Gastes.</p>
+  </div>
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">2</span>
+      <h4 class="blog-flow-title">1-Sekunden Scan</h4>
+    </div>
+    <p class="blog-flow-desc">Gast öffnet die normale iPhone- oder Android-Kamera ohne App-Installation.</p>
+  </div>
+  <div class="blog-flow-card highlight">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">3</span>
+      <h4 class="blog-flow-title">Digitale Speisekarte</h4>
+    </div>
+    <p class="blog-flow-desc">Hochauflösende Fotos, Allergenfilter und automatische Sprachübersetzung.</p>
+  </div>
+</div>
+
 - **Echtzeit-Aktualisierung**: Passen Sie Preise an, ergänzen Sie Saisonkarten oder streichen Sie ausverkaufte Weine — ohne eine einzige Karte neu zu drucken.
 - **Keine Druckkosten**: Ein statischer QR-Code verfällt nie und verursacht keinerlei Folgekosten.
-- **Schnellere Tischbelegung**: Gäste können sofort nach dem Hinsetzen stöbern, was Wartezeiten beim Servicepersonal spürbar verkürzt.
+- **Schnellere Tischbelegung**: Gäste können sofort nach dem Hinsetzen stöbern, was Wartezeiten beim Servicepersonal um 15–20% verkürzt.
 - **Mehrsprachigkeit**: Verlinken Sie auf eine Speisekarte mit Sprachauswahl für internationale Gäste.
 - **Perfekte Hygiene**: Keine verschütteten Getränke auf teuren Lederkarten oder ständiges Desinfizieren.
 
@@ -74,12 +100,51 @@ In dieser Anleitung zeigen wir Ihnen Schritt für Schritt, wie Sie Ihre digitale
 
 ---
 
-## Typische Fehler vermeiden
+## Gastronomie Best Practices & Typische Fehler
 
-- ❌ **Ablaufende dynamische QR-Codes**: Nutzen Sie die dauerhaft kostenlosen statischen Codes von GenerateCustomQR.
-- ❌ **Zu kleine Abmessungen**: Unter 3×3 cm scannen Handys bei Kerzenschein am Abend nur mühsam.
-- ❌ **Fehlender Kontrast**: Dunkelblaue Punkte auf dunklem Holzuntergrund lassen sich kaum fokussieren.
-- ❌ **Langsame PDF-Dateien**: Komprimieren Sie Ihr Speisekarten-PDF vor dem Upload auf unter 5 MB.
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Gastronomie-Tipps (Do)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Dauerhaft kostenlose statische QR-Codes ohne Abo nutzen
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Mindestens 4 × 4 cm auf Tischaufstellern drucken
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Aufforderung ergänzen: "Hier Speisekarte & Tageskarte scannen"
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Fehler (Don't)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Ablaufende dynamische Codes während der Schicht vermeiden
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Keine dunklen Punkte auf dunklem Holz ohne weiße Schutzkarte
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Keine riesigen 50MB-PDFs mit langen Ladezeiten verlinken
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 

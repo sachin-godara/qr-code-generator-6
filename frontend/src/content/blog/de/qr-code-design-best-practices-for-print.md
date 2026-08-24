@@ -47,9 +47,49 @@ Dieser Leitfaden fasst die wichtigsten technischen Druck-Standards zusammen.
 
 ## 3. Kontrast und die 4.5:1 Regel
 
-- ✅ **Dunkle Punkte auf hellem Hintergrund** (Schwarz auf Weiß, Marineblau auf Creme).
-- ❌ **Keine hellen Punkte auf hellem Grund** (Gelb, Hellgrau, Pastelltöne).
-- ❌ **Keine spiegelnden Glanzlacke**: Matte Oberflächen verhindern störende Lichtreflexe auf Smartphone-Sensoren.
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Druck-Empfehlungen (Do)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Schwarz oder Marineblau auf reinem Weiß (21:1)
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Dunkelgrün auf Cremekarton
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Mattes Laminat gegen störende Lichtreflexe
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Druck-Fehler (Don't)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Gelb, Hellgrau oder Pastellfarben auf weißem Papier
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Stark spiegelnde Hochglanzfolien
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Beschnitt der 4-Modul-Ruhezone
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 

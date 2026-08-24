@@ -53,9 +53,49 @@ La resolución estándar de pantalla (72-96 DPI) es insuficiente para imprenta. 
 
 Los sensores ópticos detectan la diferencia de luminosidad entre los puntos y el fondo:
 
-- ✅ **Puntos oscuros sobre fondo claro** (Negro sobre blanco, azul marino sobre crema).
-- ❌ **Evita puntos claros sobre fondo blanco** (amarillos, rosas pastel o grises claros).
-- ❌ **Evita rojo sobre verde** o azul sobre morado (confunde los algoritmos de cámara).
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Impresión Correcta (Hacer)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Negro profundo sobre blanco puro (21:1)
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Azul marino o verde oscuro sobre papel crema
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Acabado laminado mate para evitar reflejos
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Errores en Imprenta (Evitar)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Puntos amarillos, rosas o grises sobre fondo blanco
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Rojo sobre verde o azul sobre morado
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Recortar la zona de silencio de 4 módulos
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 

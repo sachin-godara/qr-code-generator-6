@@ -41,19 +41,59 @@ Utilizam combinações de barras com diferentes espessuras:
 - **EAN-13 / UPC-A**: Identificação de produtos de supermercado.
 - **Code 128**: Rastreamento de pacotes e logística de correios.
 
-### Limitações do Código de Barras
-- Não armazena links de internet ou contatos.
-- Não suporta logotipos ou personalização de cores.
-- Não tolera danos físicos ou manchas.
+## Comparativo Estrutural e Tecnológico
 
----
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">qr_code_2</span>
+      Códigos QR 2D (Padrão Moderno)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Alta capacidade: Guarda até 4.296 caracteres alfanuméricos
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Codifica links da web, redes Wi-Fi e contatos vCard completos
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Leitura em 360° diretamente com a câmera do smartphone
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Correção de erros que recupera até 30% da imagem danificada
+      </li>
+    </ul>
+  </div>
 
-## Vantagens dos Códigos QR (2D)
-
-- **Alta Capacidade**: Armazena até 7.089 números ou textos longos.
-- **Variedade de Aplicações**: Abre sites, conecta ao Wi-Fi sem senha, adiciona contatos na agenda e inicia conversas no WhatsApp.
-- **Leitura em Qualquer Posição**: A câmera reconhece o código mesmo inclinado ou de cabeça para baixo.
-- **Tolerância a Danos (Reed-Solomon)**: Permite inserir o logotipo da sua marca no centro sem atrapalhar o escaneamento.
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">barcode</span>
+      Códigos de Barras 1D (Padrão Tradicional)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Baixa capacidade: Limite de 20–25 números
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Apenas números: Sem suporte a sites ou conteúdo interativo
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Exige leitores a laser específicos no caixa
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Sem tolerância a falhas: Qualquer rasgo impede a leitura
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 

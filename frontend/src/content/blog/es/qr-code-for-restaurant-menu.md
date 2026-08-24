@@ -35,9 +35,35 @@ En esta guía te explicamos paso a paso cómo crear y diseñar el código QR par
 
 ## Por qué los Restaurantes Usan Códigos QR para sus Cartas
 
+La digitalización de cartas optimiza los costes operativos y la experiencia del comensal:
+
+<div class="blog-flow-grid">
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">1</span>
+      <h4 class="blog-flow-title">Caballete en Mesa</h4>
+    </div>
+    <p class="blog-flow-desc">Soporte acrílico o adhesivo de vinilo situado a la altura de los ojos.</p>
+  </div>
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">2</span>
+      <h4 class="blog-flow-title">Escaneo en 1 Segundo</h4>
+    </div>
+    <p class="blog-flow-desc">El cliente enfoca con la cámara de su iPhone o Android sin descargar apps.</p>
+  </div>
+  <div class="blog-flow-card highlight">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">3</span>
+      <h4 class="blog-flow-title">Carta Digital Inmediata</h4>
+    </div>
+    <p class="blog-flow-desc">Fotografías en alta definición, filtros de alérgenos y traducción a varios idiomas.</p>
+  </div>
+</div>
+
 - **Actualizaciones al Instante**: Cambia precios, añade platos del día o retira productos agotados sin tener que volver a imprimir ninguna carta.
 - **Cero Costes de Reimpresión**: Un código QR estático que enlaza a tu menú web nunca caduca y no tiene gastos de mantenimiento.
-- **Mayor Rotación de Mesas**: Los clientes pueden consultar la carta nada más sentarse, reduciendo los tiempos de espera del personal.
+- **Mayor Rotación de Mesas**: Los clientes pueden consultar la carta nada más sentarse, reduciendo los tiempos de espera del personal en un 15-20%.
 - **Soporte Multilingüe**: Enlaza a una página con selector de idiomas o traducción automática para turistas.
 - **Higiene Total**: Evita el desgaste y la desinfección constante de cartas físicas de mano en mano.
 
@@ -91,12 +117,51 @@ Antes de generar el código QR, tu menú debe estar publicado en internet. Estas
 
 ---
 
-## Errores Comunes que Debes Evitar
+## Buenas Prácticas y Errores en Cartas de Restaurante
 
-- ❌ **Usar códigos QR dinámicos que caducan**: Los códigos estáticos de GenerateCustomQR nunca expiran.
-- ❌ **Hacer el código demasiado pequeño**: Por debajo de 3 cm, los móviles tienen dificultades para enfocar en mesas con poca luz.
-- ❌ **Colores sin contraste**: Un código marrón oscuro sobre una madera oscura no se podrá escanear. Mantén un contraste de al menos 4.5:1.
-- ❌ **No revisar el enlace**: Comprueba siempre que el enlace web no dé error 404 antes de encargar la tirada de imprenta.
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Hostelería: Recomendaciones (Hacer)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Utiliza códigos estáticos que nunca caducan ni cobran mensualidades
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Imprime al menos a 4 × 4 cm en los caballetes de mesa
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Añade un texto claro: "Escanea para ver la Carta y Sugerencias"
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Errores Habituales (Evitar)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        No uses códigos dinámicos con fecha de caducidad durante el servicio
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        No coloques códigos oscuros sobre madera oscura sin tarjeta blanca
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        No enlaces a archivos PDF pesados de 50MB que tarden en cargar
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 

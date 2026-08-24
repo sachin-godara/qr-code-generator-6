@@ -33,9 +33,35 @@ Veja como configurar o cardápio com QR code do seu estabelecimento.
 
 ## Por que os Restaurantes Usam Cardápio por QR Code?
 
+A digitalização do cardápio reduz custos operacionais e melhora a experiência do cliente:
+
+<div class="blog-flow-grid">
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">1</span>
+      <h4 class="blog-flow-title">Display na Mesa</h4>
+    </div>
+    <p class="blog-flow-desc">Totem acrílico ou adesivo vinílico posicionado na altura dos olhos.</p>
+  </div>
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">2</span>
+      <h4 class="blog-flow-title">Leitura em 1 Segundo</h4>
+    </div>
+    <p class="blog-flow-desc">O cliente aponta a câmera do iPhone ou Android sem instalar nada.</p>
+  </div>
+  <div class="blog-flow-card highlight">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">3</span>
+      <h4 class="blog-flow-title">Cardápio Digital</h4>
+    </div>
+    <p class="blog-flow-desc">Fotos em alta definição, filtros de alérgenos e opções em vários idiomas.</p>
+  </div>
+</div>
+
 - **Atualizações Imediatas**: Altere preços, inclua pratos sazonais e retire itens esgotados sem reimprimir folhas de papel.
 - **Sem Custos Recorrentes**: Um QR code estático direcionado para o seu cardápio online nunca expira e não tem taxas de mensalidade.
-- **Maior Rotatividade nas Mesas**: O cliente senta e já visualiza o cardápio imediatamente, reduzindo o tempo de espera dos garçons.
+- **Maior Rotatividade nas Mesas**: O cliente senta e já visualiza o cardápio imediatamente, reduzindo o tempo de espera dos garçons em 15–20%.
 - **Cardápio Multilíngue**: Facilita a vida de turistas ao direcionar para versões traduzidas.
 - **Higiene Garantida**: Elimina a necessidade de higienizar cardápios engordurados entre clientes.
 
@@ -74,11 +100,51 @@ Veja como configurar o cardápio com QR code do seu estabelecimento.
 
 ---
 
-## Erros Frequentes para Evitar
+## Boas Práticas e Cuidados no Restaurante
 
-- ❌ **Usar QR codes dinâmicos que cobram mensalidade**: Os códigos estáticos do GenerateCustomQR nunca expiram.
-- ❌ **Tamanho menor que 3 cm**: Em ambientes à meia-luz, celulares demoram para focar códigos muito pequenos.
-- ❌ **Contraste insuficiente**: Pontos escuros sobre madeira escura prejudicam a leitura da câmera.
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Boas Práticas (Fazer)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Utilize códigos estáticos permanentes que nunca expiram
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Imprima com no mínimo 4 × 4 cm nos displays de mesa
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Inclua chamada clara: "Aponte a câmera para ver o Cardápio"
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Erros Comuns (Evitar)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Evite códigos dinâmicos com limite de leituras ou mensalidade
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Não cole códigos escuros em mesas de madeira sem fundo branco
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Não suba PDFs pesados de 50MB que demorem para abrir no 4G
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 

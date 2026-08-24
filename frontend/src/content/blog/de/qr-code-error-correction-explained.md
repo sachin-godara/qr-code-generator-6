@@ -42,9 +42,22 @@ Das Geheimnis ist die **Reed-Solomon-Fehlerkorrektur** — ein mathematisches Ve
 
 ## Funktionsweise der Reed-Solomon-Polynome
 
-```
-[ Ihre codierten Daten: 70% ] + [ Reed-Solomon Paritätsblöcke: 30% ] = Gesamte Matrix (Level H)
-```
+<div class="blog-equation-card">
+  <div class="blog-equation-segment data">
+    <span class="segment-label">Codierte Daten</span>
+    <span class="segment-val">70%</span>
+  </div>
+  <span class="blog-equation-op">+</span>
+  <div class="blog-equation-segment parity">
+    <span class="segment-label">Reed-Solomon-Parität</span>
+    <span class="segment-val">30%</span>
+  </div>
+  <span class="blog-equation-op">=</span>
+  <div class="blog-equation-segment total">
+    <span class="segment-label">Gesamte Matrix</span>
+    <span class="segment-val">Level H (100%)</span>
+  </div>
+</div>
 
 Beim Scan ermittelt die Kamera über mathematische Gleichungen die fehlenden oder durch ein Logo verdeckten Datenpunkte, sodass der Inhalt zu 100% fehlerfrei decodiert wird.
 

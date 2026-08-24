@@ -24,6 +24,29 @@ A continuación te presentamos las 7 tendencias clave que marcarán el sector.
 
 ## Estadísticas de Adopción Global
 
+<div class="blog-stat-grid">
+  <div class="blog-stat-card">
+    <span class="stat-number">+10.000M</span>
+    <span class="stat-title">Escaneos Anuales</span>
+    <span class="stat-desc">Frente a 1.500M en 2019</span>
+  </div>
+  <div class="blog-stat-card">
+    <span class="stat-number">+88%</span>
+    <span class="stat-title">Adopción Móvil</span>
+    <span class="stat-desc">De usuarios globales de smartphone</span>
+  </div>
+  <div class="blog-stat-card">
+    <span class="stat-number">+72%</span>
+    <span class="stat-title">Uso en Negocios</span>
+    <span class="stat-desc">Integrado en comercio y hostelería</span>
+  </div>
+  <div class="blog-stat-card">
+    <span class="stat-number">+5.100M$</span>
+    <span class="stat-title">Valor de Mercado</span>
+    <span class="stat-desc">Infraestructura digital 2D</span>
+  </div>
+</div>
+
 | Métrica | 2019 | 2023 | 2026 (Est.) |
 | :--- | :--- | :--- | :--- |
 | **Escaneos globales de QR** | 1.500 millones | 5.300 millones | **+10.000 millones** |

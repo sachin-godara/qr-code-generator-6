@@ -35,11 +35,29 @@ Hier ist die vollständige Anleitung für iPhone, Android, Windows und Mac.
 
 Die einfachste Methode ohne Installation ist ein browserbasierter QR-Decoder wie **[GenerateCustomQR Scanner](/de/qr-code-scanner)**.
 
-```
-+---------------------------------------------------------------+
-| 1. Screenshot erstellen -> 2. Einfügen (Strg+V) -> 3. Öffnen  |
-+---------------------------------------------------------------+
-```
+<div class="blog-flow-grid">
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">1</span>
+      <h4 class="blog-flow-title">Screenshot erstellen</h4>
+    </div>
+    <p class="blog-flow-desc">Speichern Sie den Screenshot auf iPhone, Android, PC oder Mac.</p>
+  </div>
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">2</span>
+      <h4 class="blog-flow-title">Einfügen (Strg+V) / Upload</h4>
+    </div>
+    <p class="blog-flow-desc">Bild per Drag & Drop oder direkt aus der Zwischenablage einfügen.</p>
+  </div>
+  <div class="blog-flow-card highlight">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">3</span>
+      <h4 class="blog-flow-title">Sofortige Aktion</h4>
+    </div>
+    <p class="blog-flow-desc">Mit 1 Klick Link öffnen, WLAN verbinden oder Kontakt speichern.</p>
+  </div>
+</div>
 
 ### Schritte:
 1. Öffnen Sie **[generatecustomqr.com/de/qr-code-scanner](/de/qr-code-scanner)** in Chrome, Safari, Edge oder Firefox.
@@ -98,6 +116,54 @@ Apple hat **Live-Text & QR-Erkennung** direkt in die Fotos-App integriert:
 2. **Ruhezone abgeschnitten**: Ein QR-Code benötigt mindestens 20px weißen Rand an allen 4 Seiten.
 3. **Komprimierung in Chat-Apps**: WhatsApp komprimiert JPEG-Dateien stark. Bitten Sie um Zusendung als "Dokument".
 4. **Zu niedrige Auflösung (< 150x150 px)**: Zoomen Sie vor dem Screenshot näher heran.
+
+---
+
+## Screenshot-Scan Best Practices: Do's & Don'ts
+
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Screenshot Best Practices (Do)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Mindestens 20 px Ruhezone (weißer Rand) um den Code belassen
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Vor dem Screenshot heranzoomen für mindestens 300 × 300 px Auflösung
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Web-Scanner mit direktem Strg+V Einfügen aus der Zwischenablage nutzen
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Häufige Fehler (Don't)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Kein bündiges Abschneiden an den Eck-Positionsmarkierungen
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Keine komprimierten JPEG-Screenshots aus Chat-Gruppen verwenden
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Keine invertierten weißen Punkte auf dunklem Grund ohne KI-Tools
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 

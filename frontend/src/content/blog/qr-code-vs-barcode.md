@@ -44,28 +44,59 @@ Traditional barcodes (also called **1D barcodes** or **linear barcodes**) encode
 - **Code 128**: Variable length — used in shipping and logistics
 - **Code 39**: Alphanumeric — used in military and healthcare
 
-### Barcode Limitations
+## Direct Architecture & Capabilities Comparison
 
-1. **Numbers only** (most formats) — you can't encode a URL or contact info
-2. **Low data capacity** — typically 20–25 characters maximum
-3. **Requires a laser scanner** — standard phone cameras can't read them easily
-4. **Orientation-sensitive** — must be scanned horizontally
-5. **No error correction** — any damage, smudge, or fold makes it unreadable
-6. **No design customization** — colors, logos, and styling will break the code
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">qr_code_2</span>
+      2D QR Codes (Modern Standard)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        High capacity: Stores up to 4,296 alphanumeric characters
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Encodes full URLs, WiFi networks, and vCard contacts
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Omnidirectional 360° scanning directly on smartphone cameras
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Built-in Reed-Solomon error correction (up to 30% recovery)
+      </li>
+    </ul>
+  </div>
 
-## How QR Codes Work
-
-QR codes (Quick Response codes) are **2D matrix barcodes** that store data in both horizontal and vertical patterns. This gives them vastly more capacity and flexibility.
-
-### QR Code Advantages
-
-1. **High data capacity**: Up to 4,296 alphanumeric characters (vs. 25 for barcodes)
-2. **Multiple data types**: URLs, plain text, WiFi credentials, vCards, calendar events, email, SMS, phone numbers, GPS coordinates, cryptocurrency addresses
-3. **Phone camera scanning**: Built into iPhone and Android cameras — no special hardware needed
-4. **Omnidirectional scanning**: Works from any angle, even upside down
-5. **Error correction**: Four levels (L/M/Q/H) that recover data even if 7–30% of the code is damaged
-6. **Logo embedding**: Error correction H allows a logo to cover part of the code without losing data
-7. **Full design customization**: Colors, dot shapes, eye frames, gradients, backgrounds, CTA text frames
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">barcode</span>
+      1D Barcodes (Legacy Standard)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Low capacity: Maximum 20–25 numeric digits
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Numbers only — cannot encode websites or interactive media
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Requires red laser hardware or specialized scanning apps
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Zero error correction: smudges or folds cause total failure
+      </li>
+    </ul>
+  </div>
+</div>
 
 ## Data Capacity Comparison
 

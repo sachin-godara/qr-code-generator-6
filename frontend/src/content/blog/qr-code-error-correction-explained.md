@@ -48,9 +48,22 @@ The international QR code standard (ISO/IEC 18004) defines **four discrete error
 
 When a generator creates a QR code, it doesn't just convert your URL characters into binary 1s and 0s. It calculates **polynomial parity codewords**:
 
-```
-[ Your Encoded Data: 70% ] + [ Reed-Solomon Parity Polynomials: 30% ] = Full Matrix (Level H)
-```
+<div class="blog-equation-card">
+  <div class="blog-equation-segment data">
+    <span class="segment-label">Encoded Data</span>
+    <span class="segment-val">70%</span>
+  </div>
+  <span class="blog-equation-op">+</span>
+  <div class="blog-equation-segment parity">
+    <span class="segment-label">Reed-Solomon Parity</span>
+    <span class="segment-val">30%</span>
+  </div>
+  <span class="blog-equation-op">=</span>
+  <div class="blog-equation-segment total">
+    <span class="segment-label">Complete Matrix</span>
+    <span class="segment-val">Level H (100%)</span>
+  </div>
+</div>
 
 When a smartphone camera scans the code:
 1. The camera locates the **3 corner finder eyes** to establish orientation and perspective correction.

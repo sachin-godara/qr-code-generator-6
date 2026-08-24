@@ -35,11 +35,29 @@ Fortunately, you do not need a second device or a printout. Here is the complete
 
 The easiest, zero-installation method on any device is using an in-browser client-side QR decoder like **[GenerateCustomQR Scanner](/qr-code-scanner)**.
 
-```
-+-------------------------------------------------------------+
-| 1. Capture Screenshot -> 2. Paste (Ctrl+V) -> 3. Open Link |
-+-------------------------------------------------------------+
-```
+<div class="blog-flow-grid">
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">1</span>
+      <h4 class="blog-flow-title">Capture Screenshot</h4>
+    </div>
+    <p class="blog-flow-desc">Save screenshot on your iPhone, Android, PC, or Mac.</p>
+  </div>
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">2</span>
+      <h4 class="blog-flow-title">Paste (Ctrl+V) / Upload</h4>
+    </div>
+    <p class="blog-flow-desc">Drop image into web scanner or paste directly from clipboard.</p>
+  </div>
+  <div class="blog-flow-card highlight">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">3</span>
+      <h4 class="blog-flow-title">Instant Action</h4>
+    </div>
+    <p class="blog-flow-desc">1-click to open website, join WiFi, or save contact.</p>
+  </div>
+</div>
 
 ### Steps:
 1. Open **[generatecustomqr.com/qr-code-scanner](/qr-code-scanner)** in Safari, Chrome, Edge, or Firefox.
@@ -128,8 +146,54 @@ If your screenshot is not reading correctly, check these four common technical c
 
 ---
 
-## Summary Checklist
+## Screenshot Scanning Best Practices: Do's & Don'ts
 
-- [x] **On the same smartphone?** Take a screenshot and open it in Apple Photos (Live Text) or Google Photos (Lens).
-- [x] **On desktop PC or Mac?** Snip the QR code and press `Ctrl+V` on **[GenerateCustomQR Scanner](/qr-code-scanner)**.
-- [x] **Need to share a clean version?** Use our **[Free QR Code Generator](/)** to rebuild a high-resolution 300 DPI vector QR code from the decoded link in seconds.
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Screenshot Best Practices (Do)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Include at least 20px of quiet zone (white border) around the code
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Zoom in to capture at least 300 × 300 px of clean module resolution
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Use in-browser client-side WebAssembly scanner with Ctrl+V pasting
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Common Mistakes (Don't)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Don't crop tightly to the corner eyes (destroys quiet zone detection)
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Don't use compressed JPEG screenshots from messaging group chats
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Don't invert to white dots on dark backgrounds without AI scan tools
+      </li>
+    </ul>
+  </div>
+</div>
+
+---
+
+## Create Clean, Scannable Vector QR Codes
+
+Need to share a clean version of a decoded link? Use our **[Free QR Code Generator](/)** to rebuild a crisp 300 DPI vector QR code in SVG or PDF format in seconds.

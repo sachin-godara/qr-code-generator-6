@@ -35,11 +35,29 @@ No necesitas un segundo dispositivo ni imprimirlo en papel. Aquí tienes la guí
 
 La forma más rápida y sin instalar nada es usar un decodificador web en el navegador como **[GenerateCustomQR Escáner](/es/qr-code-scanner)**.
 
-```
-+---------------------------------------------------------------+
-| 1. Tomar Captura -> 2. Pegar (Ctrl+V) -> 3. Abrir Enlace      |
-+---------------------------------------------------------------+
-```
+<div class="blog-flow-grid">
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">1</span>
+      <h4 class="blog-flow-title">Tomar Captura</h4>
+    </div>
+    <p class="blog-flow-desc">Guarda la captura en tu iPhone, Android, PC o Mac.</p>
+  </div>
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">2</span>
+      <h4 class="blog-flow-title">Pegar (Ctrl+V) / Subir</h4>
+    </div>
+    <p class="blog-flow-desc">Arrastra la imagen o pégala directamente desde el portapapeles.</p>
+  </div>
+  <div class="blog-flow-card highlight">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">3</span>
+      <h4 class="blog-flow-title">Acción Inmediata</h4>
+    </div>
+    <p class="blog-flow-desc">1 clic para abrir la web, conectar a Wi-Fi o guardar contacto.</p>
+  </div>
+</div>
 
 ### Pasos:
 1. Abre **[generatecustomqr.com/es/qr-code-scanner](/es/qr-code-scanner)** en Safari, Chrome, Edge o Firefox.
@@ -100,3 +118,55 @@ En Android dispones de dos opciones principales: **Google Fotos (Google Lens)** 
 2. **Zona de Silencio Recortada**: Todo código QR necesita un margen blanco alrededor de sus 4 bordes. Deja al menos 20px de espacio libre.
 3. **Compresión en Apps de Mensajería**: Enviar capturas por WhatsApp comprime la imagen. Pide el archivo como "Documento".
 4. **Baja Resolución (< 150x150 px)**: Haz zoom en la pantalla antes de tomar la captura para que el código tenga suficiente nitidez.
+
+---
+
+## Consejos para Escaneo de Capturas: Qué Hacer y Qué Evitar
+
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Buenas Prácticas (Hacer)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Deja al menos 20 px de zona de silencio (margen blanco) alrededor del QR
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Haz zoom previo para capturar una resolución mínima de 300 × 300 px
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Utiliza el escáner web con pegado directo (Ctrl+V) sin instalar nada
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Errores a Evitar (Don't)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        No recortes justo al borde de las esquinas detectoras
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        No utilices capturas comprimidas reenviadas en grupos de chat
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        No inviertas a puntos blancos sobre fondo oscuro sin escáner IA
+      </li>
+    </ul>
+  </div>
+</div>
+
+---
+
+¿Necesitas compartir una versión limpia del enlace? Utiliza nuestro **[Generador de Códigos QR](/es)** para recrear un código vectorial en SVG o PDF a 300 DPI en segundos.

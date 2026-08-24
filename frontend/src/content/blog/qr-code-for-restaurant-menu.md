@@ -37,13 +37,36 @@ In this guide, we'll walk you through everything — from creating your first me
 
 ## Why Restaurants Use QR Code Menus
 
-The shift to digital menus accelerated during 2020, but QR code menus have stuck around because they genuinely improve operations:
+The shift to digital menus permanently improves restaurant operations and guest satisfaction:
 
-- **Instant updates** — Change prices, add seasonal specials, or remove sold-out items without reprinting a single menu.
-- **Zero printing costs** — A static QR code pointing to your online menu never expires and costs nothing to maintain.
-- **Faster table turns** — Guests can scan and browse immediately, reducing wait times for servers.
-- **Multilingual support** — Link to a menu page with built-in Google Translate or multiple language versions.
-- **Hygiene** — No shared physical menus to sanitize between guests.
+<div class="blog-flow-grid">
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">1</span>
+      <h4 class="blog-flow-title">Table Tent Display</h4>
+    </div>
+    <p class="blog-flow-desc">Acrylic table standee or vinyl decal placed directly at seated eye level.</p>
+  </div>
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">2</span>
+      <h4 class="blog-flow-title">1-Second Camera Scan</h4>
+    </div>
+    <p class="blog-flow-desc">Guest opens native iPhone or Android camera. Zero app install required.</p>
+  </div>
+  <div class="blog-flow-card highlight">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">3</span>
+      <h4 class="blog-flow-title">Instant Digital Menu</h4>
+    </div>
+    <p class="blog-flow-desc">High-res photos, allergens, dietary filters, and multi-language support.</p>
+  </div>
+</div>
+
+- **Instant price & special updates** — Update sold-out specials online without reprinting a single menu.
+- **Faster table turns** — Guests can browse and decide immediately, speeding up orders by 15–20%.
+- **Zero recurring paper waste** — Static direct QR codes never expire and cost nothing to maintain.
+- **Multilingual translation** — Let international tourists read menus in their native language.
 
 ## Step 1: Prepare Your Menu Online
 
@@ -100,15 +123,51 @@ Before printing hundreds of copies:
 2. **Test in restaurant lighting** — Scan in actual ambient conditions (dim lighting can affect dark-on-dark designs)
 3. **Test the landing page** — Make sure your menu loads fast on mobile and is readable without zooming
 
-## Common Mistakes to Avoid
+## Restaurant QR Code Best Practices: Do's & Don'ts
 
-❌ **Using a dynamic QR code that expires** — Static QR codes from GenerateCustomQR never expire, so your menu links work forever.
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Restaurant Best Practices (Do)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Use permanent static QR codes that never expire or pay monthly fees
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Print at minimum 4 × 4 cm on table tents for easy reach
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Include a clear CTA: "Scan for Menu & Daily Specials"
+      </li>
+    </ul>
+  </div>
 
-❌ **Making the QR code too small** — Under 2cm, phones struggle to focus and scan reliably.
-
-❌ **Low contrast colors** — A dark green QR code on a dark brown table tent is nearly impossible to scan. Maintain at least a 4.5:1 contrast ratio.
-
-❌ **Not testing the URL** — A broken link means frustrated guests. Always verify before printing.
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Common Restaurant Mistakes (Don't)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Don't use expiring dynamic codes that break during dinner service
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Don't print dark green on dark wood without a white background card
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Don't link to giant 50MB PDFs that fail on slow cellular connections
+      </li>
+    </ul>
+  </div>
+</div>
 
 ## Bonus: Multi-Location Strategy
 

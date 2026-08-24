@@ -51,9 +51,12 @@ This guide shows you how to create one in under 2 minutes.
 ### Option C: Using Coordinates
 
 If you have exact GPS coordinates, create the URL manually:
-```
-https://www.google.com/maps?q=LATITUDE,LONGITUDE
-```
+
+<div class="blog-endpoint-box">
+  <span class="blog-endpoint-tag">GPS Format</span>
+  <span class="blog-endpoint-url">https://www.google.com/maps?q=LATITUDE,LONGITUDE</span>
+</div>
+
 For example: `https://www.google.com/maps?q=48.8584,2.2945` (Eiffel Tower)
 
 ## Step 2: Generate the QR Code
@@ -110,24 +113,31 @@ Hotels, tour companies, and travel guides can use QR codes to:
 ### Use Google Maps Plus Codes
 
 For locations without a street address, use a [Plus Code](https://plus.codes/):
-```
-https://www.google.com/maps?q=plus+code+here
-```
+
+<div class="blog-endpoint-box">
+  <span class="blog-endpoint-tag">Plus Code</span>
+  <span class="blog-endpoint-url">https://www.google.com/maps?q=plus+code+here</span>
+</div>
 
 ### Add Custom Labels
 
 You can include a label in the Google Maps URL:
-```
-https://www.google.com/maps/search/?api=1&query=Central+Park+New+York
-```
+
+<div class="blog-endpoint-box">
+  <span class="blog-endpoint-tag">Query Label</span>
+  <span class="blog-endpoint-url">https://www.google.com/maps/search/?api=1&amp;query=Central+Park+New+York</span>
+</div>
+
 This displays the location name when the map opens.
 
 ### Use Apple Maps as Fallback
 
 If your audience is primarily iPhone users, consider creating a universal link that works with both:
-```
-https://maps.apple.com/?q=40.7580,-73.9855
-```
+
+<div class="blog-endpoint-box">
+  <span class="blog-endpoint-tag">Apple Maps</span>
+  <span class="blog-endpoint-url">https://maps.apple.com/?q=40.7580,-73.9855</span>
+</div>
 Or use a service like `maps.google.com` which works on all platforms — Google Maps will open in the browser even for iPhone users who don't have the app installed.
 
 ### Add a CTA Frame

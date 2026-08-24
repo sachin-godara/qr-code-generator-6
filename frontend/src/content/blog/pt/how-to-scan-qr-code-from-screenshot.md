@@ -35,11 +35,29 @@ Aqui está o guia completo para iPhone, Android, Windows e Mac.
 
 A forma mais simples sem instalar nenhum aplicativo é usar um decodificador no navegador como o **[GenerateCustomQR Leitor](/pt/qr-code-scanner)**.
 
-```
-+---------------------------------------------------------------+
-| 1. Tirar Print -> 2. Colar (Ctrl+V) -> 3. Abrir Link          |
-+---------------------------------------------------------------+
-```
+<div class="blog-flow-grid">
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">1</span>
+      <h4 class="blog-flow-title">Tirar Print</h4>
+    </div>
+    <p class="blog-flow-desc">Salve a captura no seu iPhone, Android, PC ou Mac.</p>
+  </div>
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">2</span>
+      <h4 class="blog-flow-title">Colar (Ctrl+V) / Enviar</h4>
+    </div>
+    <p class="blog-flow-desc">Arraste a imagem ou cole diretamente da área de transferência.</p>
+  </div>
+  <div class="blog-flow-card highlight">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">3</span>
+      <h4 class="blog-flow-title">Ação Imediata</h4>
+    </div>
+    <p class="blog-flow-desc">1 clique para abrir o link, conectar ao Wi-Fi ou salvar contato.</p>
+  </div>
+</div>
 
 ### Passos:
 1. Abra **[generatecustomqr.com/pt/qr-code-scanner](/pt/qr-code-scanner)** no Safari, Chrome, Edge ou Firefox.
@@ -98,6 +116,54 @@ O iOS possui detecção nativa de **Texto ao Vivo e QR Codes** no aplicativo Fot
 2. **Margem de Respiro Cortada**: Deixe sempre pelo menos 20px de margem branca ao redor do código.
 3. **Compressão em Mensagens**: O WhatsApp comprime imagens JPEG; peça o arquivo enviado como "Documento".
 4. **Baixa Resolução (< 150x150 px)**: Dê zoom na tela antes de tirar o print.
+
+---
+
+## Boas Práticas para Leitura de Prints: O Que Fazer e Evitar
+
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Boas Práticas (Fazer)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Deixe pelo menos 20 px de margem branca de respiro ao redor do código
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Dê zoom antes do print para capturar resolução mínima de 300 × 300 px
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Use o leitor web com colagem rápida via Ctrl+V sem instalar apps
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Erros a Evitar (Don't)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Não corte a imagem rente aos olhos de localização nos cantos
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Não use prints comprimidos reenviados em grupos de mensagens
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Não inverta para pontos brancos em fundo escuro sem leitor com IA
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 

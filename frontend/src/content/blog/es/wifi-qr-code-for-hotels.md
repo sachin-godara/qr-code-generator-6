@@ -71,6 +71,78 @@ Todos los huéspedes de hotel y viajeros de Airbnb hacen siempre la misma pregun
 2. **Cifrado WPA2 / WPA3**: Ofrece el equilibrio perfecto entre seguridad y compatibilidad universal con todos los teléfonos.
 3. **Incluye la clave en texto como alternativa**: Escribe debajo del código el nombre y la clave para dispositivos muy antiguos.
 
+<div class="blog-mockup-card">
+  <div class="blog-mockup-badge">
+    <span class="material-symbols-outlined text-[14px]">wifi</span>
+    Ejemplo de Cartel para Huéspedes
+  </div>
+  <div class="blog-mockup-details">
+    <div class="blog-mockup-row">
+      <span class="blog-mockup-label">Red Wi-Fi (SSID):</span>
+      <span class="blog-mockup-value">HotelGuest_5G</span>
+    </div>
+    <div class="blog-mockup-row">
+      <span class="blog-mockup-label">Contraseña:</span>
+      <span class="blog-mockup-value">Bienvenido2026!</span>
+    </div>
+  </div>
+  <div class="blog-mockup-footer">
+    📱 O enfoca la cámara de tu smartphone al código QR para conectar al instante
+  </div>
+</div>
+
+---
+
+## Lista de Verificación para Alojamientos: Qué Hacer y Qué Evitar
+
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Hostelería: Recomendaciones (Hacer)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Crea una red de invitados aislada (SSID Guest) sin acceso a sistemas internos
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Utiliza cifrado WPA2 para máxima compatibilidad con móviles de todo el mundo
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Imprime al menos a 5 × 5 cm en expositores acrílicos antirreflejos
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Muestra la contraseña escrita debajo como alternativa para portátiles
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Errores Comunes (Evitar)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Nunca compartas la red de administración o del TPV con los clientes
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        No uses papel brillante bajo focos de luz directos (crea reflejos molestos)
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        No olvides volver a imprimir el código si cambias la clave del router
+      </li>
+    </ul>
+  </div>
+</div>
+
 ---
 
 Crea tu código QR de Wi-Fi para hoteles gratis en **[GenerateCustomQR](/es)**.

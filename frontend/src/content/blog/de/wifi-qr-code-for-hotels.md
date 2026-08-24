@@ -69,6 +69,78 @@ Fast jeder Hotelgast oder Airbnb-Urlauber fragt bei der Ankunft: *"Wie lautet da
 2. **WPA2-Verschlüsselung**: Bietet die beste Kombination aus Sicherheit und weltweiter Gerätekompatibilität.
 3. **Passwort zusätzlich als Text abdrucken**: Für ältere Endgeräte sollte das Passwort unter dem QR-Code in Klarschrift stehen.
 
+<div class="blog-mockup-card">
+  <div class="blog-mockup-badge">
+    <span class="material-symbols-outlined text-[14px]">wifi</span>
+    Mustervorlage: Aufsteller für Gäste
+  </div>
+  <div class="blog-mockup-details">
+    <div class="blog-mockup-row">
+      <span class="blog-mockup-label">WLAN-Name (SSID):</span>
+      <span class="blog-mockup-value">HotelGuest_5G</span>
+    </div>
+    <div class="blog-mockup-row">
+      <span class="blog-mockup-label">Passwort:</span>
+      <span class="blog-mockup-value">Willkommen2026!</span>
+    </div>
+  </div>
+  <div class="blog-mockup-footer">
+    📱 Oder Smartphone-Kamera auf den QR-Code richten für Sofortverbindung
+  </div>
+</div>
+
+---
+
+## Checkliste für Hotellerie & Gastgeber: Do's & Don'ts
+
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Empfehlungen (Do)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Isolierte Gast-SSID ohne Zugriff auf interne Hotelverwaltungs-Systeme
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        WPA2-Verschlüsselung für weltweite Smartphone-Kompatibilität
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Mindestens 5 × 5 cm auf matten Acryl-Nachttischaufstellern drucken
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Klartext-Passwort für ältere Laptops als Fallback beifügen
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Fehler (Don't)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Niemals das Haupt-WLAN der Kasse oder Verwaltung mit Gästen teilen
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Kein Hochglanzpapier unter Deckenstrahlern verwenden (Reflexionsgefahr)
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Codes neu drucken, falls das Router-Passwort geändert wird
+      </li>
+    </ul>
+  </div>
+</div>
+
 ---
 
 Erstellen Sie Ihren Hotel-WLAN-QR-Code jetzt kostenlos auf **[GenerateCustomQR](/de)**.

@@ -41,22 +41,59 @@ Sowohl Barcodes als auch QR-Codes speichern Daten in visuellen Mustern. Technisc
 - **EAN-13 / UPC-A**: Für Supermarktartikel im Einzelhandel.
 - **Code 128**: Für Logistik und Paketverfolgung.
 
-### Grenzen des Strichcodes
-- Speichert keine Web-Links oder Kontaktdaten.
-- Funktioniert nur mit Laser-Scannern zuverlässig.
-- Besitzt keine Fehlerkorrektur.
+## Struktureller & Funktionaler Vergleich
 
----
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">qr_code_2</span>
+      2D QR-Codes (Moderner Standard)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Riesige Kapazität: Bis zu 4.296 alfanumerische Zeichen
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Speichert Webseiten-Links, WLAN-Passwörter und vCard-Kontakte
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Omnidirektionales Scannen aus jedem Winkel direkt mit der Smartphone-Kamera
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Integrierte Reed-Solomon-Fehlerkorrektur bis zu 30%
+      </li>
+    </ul>
+  </div>
 
-## Wie QR-Codes (2D) funktionieren
-
-QR-Codes speichern Informationen sowohl in horizontaler als auch vertikaler Richtung in einem feinen Raster:
-
-### Vorteile des QR-Codes
-- **Riesige Datenmenge**: Bis zu 7.089 Ziffern.
-- **Vielseitige Datentypen**: Webseiten-URLs, WLAN-Zugänge, vCards, E-Mails, WhatsApp-Direktchats.
-- **Omnidirektionales Scannen**: Funktioniert auch bei schräger Haltung oder kopfüber.
-- **Fehlerkorrektur**: Das Reed-Solomon-Verfahren erlaubt es, bis zu 30% des Codes durch ein Firmenlogo zu überdecken, ohne dass die Lesbarkeit leidet.
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">barcode</span>
+      1D Strichcodes (Klassischer Standard)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Minimale Kapazität: Nur 20–25 Ziffern
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Ausschließlich Zahlen: Keine Weblinks oder Kontaktdaten
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Erfordert spezielle Laser-Scanner an Kassen
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Keine Fehlerkorrektur: Knicke oder Flecken führen zu Abbruch
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 

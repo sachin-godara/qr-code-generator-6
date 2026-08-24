@@ -30,12 +30,49 @@ Los lectores de códigos QR funcionan detectando el **contraste óptico** entre 
 
 > **Puntos oscuros sobre fondo claro. Siempre.**
 
-- ✅ Puntos azul marino sobre fondo blanco
-- ✅ Puntos negros sobre fondo amarillo pastel
-- ✅ Puntos morado oscuro sobre fondo crema
-- ❌ Puntos blancos sobre fondo negro (invertido)
-- ❌ Puntos amarillos sobre fondo blanco (bajo contraste)
-- ❌ Puntos gris claro sobre fondo gris medio
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Alto Contraste y Seguro (Recomendado)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Puntos azul marino o negro sobre fondo blanco puro
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Módulos gris carbón sobre fondo crema o gris claro
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Verde bosque sobre fondo marfil (Contraste 5.5:1+)
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Combinaciones Inescaneables (Evitar)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Amarillo pastel, celeste o rosa claro sobre blanco (1.1:1)
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Puntos blancos sobre fondo negro sin marco de zona de silencio
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Puntos rojos sobre fondo marrón oscuro o texturizado
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 

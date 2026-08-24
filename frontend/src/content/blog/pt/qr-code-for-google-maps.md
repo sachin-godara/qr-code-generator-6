@@ -45,9 +45,12 @@ Veja como criar o seu em menos de 2 minutos.
 3. Toque em **Compartilhar** e selecione **Copiar para a área de transferência**.
 
 ### Opção C: Usando Coordenadas de GPS
-```
-https://www.google.com/maps?q=LATITUDE,LONGITUDE
-```
+
+<div class="blog-endpoint-box">
+  <span class="blog-endpoint-tag">Formato GPS</span>
+  <span class="blog-endpoint-url">https://www.google.com/maps?q=LATITUDE,LONGITUDE</span>
+</div>
+
 Exemplo: `https://www.google.com/maps?q=-23.5505,-46.6333` (Marco Zero, São Paulo).
 
 ---

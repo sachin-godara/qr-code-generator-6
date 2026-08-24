@@ -44,24 +44,59 @@ Los códigos de barras lineales codifican números mediante la alternancia de ba
 - **EAN-13**: 13 dígitos (estándar minorista en Europa y el resto del mundo).
 - **Code 128**: Longitud variable para paquetería y logística.
 
-### Limitaciones del Código de Barras
-1. **Capacidad mínima**: No puede almacenar URLs web ni datos de contacto.
-2. **Exige escáner láser**: Las cámaras convencionales tardan en enfocarlo.
-3. **Sin tolerancia a fallos**: Si se arruga o ensucia, el escáner falla.
-4. **Sin diseño estético**: No admite colores ni logotipos de marca.
+## Comparativa Estructural y Funcional
 
----
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">qr_code_2</span>
+      Códigos QR 2D (Estándar Moderno)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Gran capacidad: almacena hasta 4.296 caracteres alfanuméricos
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Codifica páginas web, redes Wi-Fi y tarjetas de contacto vCard
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Lectura omnidireccional en 360° con la cámara del smartphone
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Corrección de errores integrada que tolera hasta un 30% de daño
+      </li>
+    </ul>
+  </div>
 
-## Cómo Funcionan los Códigos QR (2D)
-
-Los códigos QR codifican datos tanto horizontal como verticalmente, lo que multiplica de forma exponencial su capacidad de almacenamiento:
-
-### Ventajas del Código QR
-1. **Gran Capacidad**: Hasta 7.089 números o 4.296 caracteres de texto.
-2. **Múltiples Formatos**: Enlaza a sitios web, conecta a Wi-Fi, añade eventos al calendario y abre chats de WhatsApp.
-3. **Lectura Omnidireccional**: Se puede escanear en cualquier ángulo, incluso boca abajo.
-4. **Corrección de Errores Reed-Solomon**: Permite colocar un logotipo en el centro cubriendo hasta el 30% de la superficie sin perder legibilidad.
-5. **Personalización Total**: Gradientes, colores corporativos y marcos con llamadas a la acción.
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">barcode</span>
+      Códigos de Barras 1D (Estándar Tradicional)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Capacidad reducida: máximo de 20–25 caracteres numéricos
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Solo números: no permite abrir páginas web ni contenido digital
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Exige lectores láser dedicados o aplicaciones específicas
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Cero tolerancia a fallos: una arruga o mancha impide la lectura
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 

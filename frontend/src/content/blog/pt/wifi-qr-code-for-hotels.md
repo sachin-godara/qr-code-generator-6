@@ -69,6 +69,78 @@ Praticamente todo hóspede de hotel ou viajante de Airbnb faz a mesma pergunta l
 2. **Criptografia WPA2**: Compatível com 100% dos smartphones modernos.
 3. **Mantenha a senha impressa em texto abaixo do QR code**: Como alternativa para celulares muito antigos.
 
+<div class="blog-mockup-card">
+  <div class="blog-mockup-badge">
+    <span class="material-symbols-outlined text-[14px]">wifi</span>
+    Exemplo de Placa para Hóspedes
+  </div>
+  <div class="blog-mockup-details">
+    <div class="blog-mockup-row">
+      <span class="blog-mockup-label">Rede Wi-Fi (SSID):</span>
+      <span class="blog-mockup-value">HotelGuest_5G</span>
+    </div>
+    <div class="blog-mockup-row">
+      <span class="blog-mockup-label">Senha:</span>
+      <span class="blog-mockup-value">BemVindo2026!</span>
+    </div>
+  </div>
+  <div class="blog-mockup-footer">
+    📱 Ou aponte a câmera do seu celular para o código QR para conectar na hora
+  </div>
+</div>
+
+---
+
+## Lista de Verificação para Hotelaria: Boas Práticas e Cuidados
+
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Boas Práticas (Fazer)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Crie uma rede de hóspedes isolada sem acesso a sistemas internos
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Utilize criptografia WPA2 para compatibilidade universal com qualquer celular
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Imprima com no mínimo 5 × 5 cm em totens acrílicos foscos
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Inclua a senha em texto abaixo do código como opção para notebooks
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Erros Comuns (Evitar)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Nunca compartilhe a rede administrativa ou das máquinas de cartão com clientes
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Evite papéis com brilho excessivo sob iluminação direta do teto
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Lembre-se de gerar novos códigos caso altere a senha do roteador
+      </li>
+    </ul>
+  </div>
+</div>
+
 ---
 
 Crie seu QR code de Wi-Fi para hotéis grátis no **[GenerateCustomQR](/pt)**.

@@ -28,12 +28,49 @@ QR-Code-Scanner erfassen **optische Helligkeitsunterschiede**. Die wichtigste Re
 
 > **Immer dunkle Datenpunkte auf hellem Hintergrund.**
 
-- ✅ Dunkelblau auf Weiß
-- ✅ Schwarz auf Cremeweiß
-- ✅ Dunkelgrün auf Hellgrau
-- ❌ Gelb auf Weiß (zu geringer Kontrast)
-- ❌ Weiß auf Schwarz (invertiert)
-- ❌ Hellrosa auf Weiß
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Hoher Kontrast &amp; Zuverlässig (Empfohlen)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Dunkelblau oder Schwarz auf reinem Weiß
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Anthrazit auf Cremeweiß oder Hellgrau
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Dunkles Waldgrün auf Elfenbein (5.5:1+ Kontrast)
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Fehleranfällige Kombinationen (Vermeiden)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Hellgelb, Pastellrosa oder Hellblau auf Weiß (1.1:1)
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Invertierte weiße Punkte auf schwarzem Hintergrund
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Rote Module auf dunkelbraunen oder gemusterten Oberflächen
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 

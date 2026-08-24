@@ -48,9 +48,22 @@ El estándar internacional ISO/IEC 18004 define **cuatro niveles de corrección*
 
 Al generar un código QR, el sistema no solo convierte tus caracteres en 1s y 0s, sino que calcula **polinomios de paridad**:
 
-```
-[ Tus Datos Codificados: 70% ] + [ Polinomios de Paridad Reed-Solomon: 30% ] = Matriz Completa (Nivel H)
-```
+<div class="blog-equation-card">
+  <div class="blog-equation-segment data">
+    <span class="segment-label">Datos Codificados</span>
+    <span class="segment-val">70%</span>
+  </div>
+  <span class="blog-equation-op">+</span>
+  <div class="blog-equation-segment parity">
+    <span class="segment-label">Paridad Reed-Solomon</span>
+    <span class="segment-val">30%</span>
+  </div>
+  <span class="blog-equation-op">=</span>
+  <div class="blog-equation-segment total">
+    <span class="segment-label">Matriz Completa</span>
+    <span class="segment-val">Nivel H (100%)</span>
+  </div>
+</div>
 
 Cuando la cámara escanea el código:
 1. Localiza los **3 ojos de las esquinas** para corregir la perspectiva.

@@ -108,12 +108,25 @@ Use GenerateCustomQR's **CTA text frames** to add this label directly onto the Q
 
 Some older devices can't scan WiFi QR codes. Always print the password as text alongside the QR code as a fallback:
 
-```
-Network: HotelGuest_5G
-Password: Welcome2026!
-Or scan the QR code below to connect instantly:
-[QR CODE]
-```
+<div class="blog-mockup-card">
+  <div class="blog-mockup-badge">
+    <span class="material-symbols-outlined text-[14px]">wifi</span>
+    Signage Mockup Preview
+  </div>
+  <div class="blog-mockup-details">
+    <div class="blog-mockup-row">
+      <span class="blog-mockup-label">Network (SSID):</span>
+      <span class="blog-mockup-value">HotelGuest_5G</span>
+    </div>
+    <div class="blog-mockup-row">
+      <span class="blog-mockup-label">Password:</span>
+      <span class="blog-mockup-value">Welcome2026!</span>
+    </div>
+  </div>
+  <div class="blog-mockup-footer">
+    📱 Or point smartphone camera at QR code to join instantly
+  </div>
+</div>
 
 ## Security Best Practices
 
@@ -167,17 +180,59 @@ For a polished look, consider:
 2. Print on card stock (at least 200gsm for durability).
 3. Laminate if placing in bathrooms or outdoor areas.
 
-## Guest WiFi QR Code Checklist
+## Guest WiFi Deployment Checklist: Do's & Don'ts
 
-✅ Create a separate guest network (don't share your main WiFi)
-✅ Use WPA2 encryption for maximum compatibility
-✅ Double-check SSID spelling (case-sensitive!)
-✅ Use Error Correction **M** or **H** for printed codes
-✅ Include the password as text alongside the QR code
-✅ Add a descriptive CTA: "Scan to Connect to WiFi"
-✅ Test with both iPhone and Android before deploying
-✅ Print at minimum 3 cm × 3 cm for close-up scanning
-✅ Place in multiple visible locations
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Hospitality WiFi Best Practices (Do)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Create an isolated guest SSID (separate from property management devices)
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Use WPA2/WPA3 encryption for maximum device compatibility
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Print at minimum 5 × 5 cm in matte acrylic bedside table tents
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Include human-readable fallback password text for older laptops
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Common Mistakes to Avoid (Don't)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Never share primary admin or POS router network with guests
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Don't use glossy photo paper under direct spotlights (causes scan glare)
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Don't omit the SSID/Password text card beside the QR code
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Don't forget to regenerate QR codes if the router password is changed
+      </li>
+    </ul>
+  </div>
+</div>
 
 ## Create Your WiFi QR Code
 

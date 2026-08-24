@@ -20,6 +20,29 @@ Os códigos QR deixaram de ser apenas uma alternativa rápida e se consolidaram 
 
 ## Estatísticas Globais de Uso
 
+<div class="blog-stat-grid">
+  <div class="blog-stat-card">
+    <span class="stat-number">+10 bi</span>
+    <span class="stat-title">Leituras Anuais</span>
+    <span class="stat-desc">Comparado a 1,5 bi em 2019</span>
+  </div>
+  <div class="blog-stat-card">
+    <span class="stat-number">+88%</span>
+    <span class="stat-title">Usuários de Celular</span>
+    <span class="stat-desc">Com uso ativo de códigos QR</span>
+  </div>
+  <div class="blog-stat-card">
+    <span class="stat-number">+72%</span>
+    <span class="stat-title">Uso Comercial</span>
+    <span class="stat-desc">Presente no varejo e cardápios</span>
+  </div>
+  <div class="blog-stat-card">
+    <span class="stat-number">+US$ 5,1 bi</span>
+    <span class="stat-title">Valor do Mercado</span>
+    <span class="stat-desc">Infraestrutura global 2D</span>
+  </div>
+</div>
+
 | Indicador | 2019 | 2023 | 2026 (Estimativa) |
 | :--- | :--- | :--- | :--- |
 | **Leituras globais de QR code** | 1,5 bilhão | 5,3 bilhões | **+10 bilhões** |

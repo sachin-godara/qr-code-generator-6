@@ -26,12 +26,49 @@ As câmeras identificam o código QR pela **diferença de contraste**. Por isso:
 
 > **Sempre utilize pontos escuros sobre um fundo claro.**
 
-- ✅ Azul marinho em fundo branco
-- ✅ Preto em fundo bege/creme
-- ✅ Verde escuro em fundo cinza claro
-- ❌ Amarelo em fundo branco (contraste insuficiente)
-- ❌ Branco em fundo preto (invertido)
-- ❌ Vermelho em fundo verde (confunde os sensores)
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Alto Contraste e Seguro (Recomendado)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Azul marinho ou preto sobre fundo branco puro
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Módulos grafite sobre bege, creme ou cinza claro
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Verde escuro sobre marfim (Contraste 5.5:1+)
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Combinações Inadequadas (Evitar)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Amarelo claro, azul bebê ou rosa pastel sobre branco (1.1:1)
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Pontos brancos sobre fundo preto sem borda protetora
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Pontos vermelhos sobre fundo verde ou marrom escuro
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 

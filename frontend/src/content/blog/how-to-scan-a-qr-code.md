@@ -33,12 +33,31 @@ QR codes are everywhere — on restaurant menus, product packaging, event ticket
 
 Apple has built QR code scanning directly into the **Camera app** since iOS 11. No extra app needed.
 
-### Steps:
+### Universal Native Scanning Flow
 
-1. **Open the Camera app** — swipe left from the lock screen or tap the Camera icon.
-2. **Point the camera at the QR code** — hold your phone steady about 10–30 cm away.
-3. **Tap the notification banner** — a yellow banner will appear at the top with the QR code's content (URL, text, WiFi credentials, etc.).
-4. **Done!** — you'll be taken to the linked website, WiFi settings, or contact card automatically.
+<div class="blog-flow-grid">
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">1</span>
+      <h4 class="blog-flow-title">Open Native Camera</h4>
+    </div>
+    <p class="blog-flow-desc">Launch the default Camera app from your lock screen or home screen.</p>
+  </div>
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">2</span>
+      <h4 class="blog-flow-title">Frame the QR Code</h4>
+    </div>
+    <p class="blog-flow-desc">Hold steady 15–30 cm away. No need to press the shutter button.</p>
+  </div>
+  <div class="blog-flow-card highlight">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">3</span>
+      <h4 class="blog-flow-title">Tap the Banner</h4>
+    </div>
+    <p class="blog-flow-desc">A yellow pill banner pops up instantly. Tap to launch the destination link.</p>
+  </div>
+</div>
 
 ### Troubleshooting iPhone Scanning
 
@@ -141,14 +160,51 @@ Search app stores for "QR Code Scanner" and you will find hundreds of third-part
 
 ---
 
-## Tips for Creating Scannable QR Codes
+## Tips for Creating 100% Scannable QR Codes
 
-If you're creating QR codes for others to scan, keep these best practices in mind:
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Scannability Best Practices (Do)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Use Error Correction Level H when adding a central logo
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Maintain at least 4.5:1 contrast between foreground dots and background
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Keep a 4-module white quiet zone perimeter around all sides
+      </li>
+    </ul>
+  </div>
 
-- **Use Error Correction Level H** when adding a logo — it recovers up to 30% of the code even if partially obscured.
-- **Maintain a 4.5:1 contrast ratio** between dots and background for reliable scanning.
-- **Keep the quiet zone** (white border) at least 4 modules wide.
-- **Test with 3+ scanner apps** before printing large batches.
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      What Breaks Scanning (Don't)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Don't use inverted colors without testing (white dots on dark backgrounds)
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Don't download spammy adware third-party scanner apps
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Don't crop into the white border when placing in print designs
+      </li>
+    </ul>
+  </div>
+</div>
 
 Ready to create your own QR code? [Generate a free custom QR code →](/)
 

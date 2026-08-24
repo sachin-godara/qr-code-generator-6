@@ -24,7 +24,29 @@ Die Immobilienbranche ist einer der stärksten Treiber für den Einsatz moderner
 
 Gedruckte Maklerschilder bieten nur begrenzten Platz: Adresse und Telefonnummer reichen Interessenten heute nicht mehr aus. Kaufinteressenten möchten sofort Bilder, Raumaufteilungen, Quadratmeterpreise und Videos sehen.
 
-QR-Codes verwandeln jedes Schild in ein interaktives Portal:
+<div class="blog-flow-grid">
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">1</span>
+      <h4 class="blog-flow-title">Maklerschild</h4>
+    </div>
+    <p class="blog-flow-desc">Kontrastreiches QR-Zusatzschild am 'Zu Verkaufen'-Schild.</p>
+  </div>
+  <div class="blog-flow-card">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">2</span>
+      <h4 class="blog-flow-title">Scan im Vorbeigehen</h4>
+    </div>
+    <p class="blog-flow-desc">Interessent scannt vom Gehweg oder Auto in Sekunden.</p>
+  </div>
+  <div class="blog-flow-card highlight">
+    <div class="blog-flow-header">
+      <span class="blog-flow-step">3</span>
+      <h4 class="blog-flow-title">3D-Besichtigung</h4>
+    </div>
+    <p class="blog-flow-desc">Sofortiger Zugriff auf 40+ Fotos, Grundrisse und Makler-Kontakt.</p>
+  </div>
+</div>
 
 - **Verkaufsschilder vor Ort** → Führen direkt zur Fotogalerie mit über 40 Aufnahmen.
 - **Visitenkarten** → Speichern die Kontaktdaten des Maklers als digitale vCard im Adressbuch.
@@ -56,12 +78,51 @@ QR-Codes verwandeln jedes Schild in ein interaktives Portal:
 
 ---
 
-## Klare Handlungsaufforderung (CTA)
+## Makler-Praxis: Handlungsempfehlungen & Fehler
 
-Vermeiden Sie QR-Codes ohne Beschreibung. Platzieren Sie immer einen klaren Textrahmen:
-- ✅ *"Scannen für Fotos & Grundrisse"*
-- ✅ *"Virtueller 3D-Rundgang"*
-- ✅ *"Maklerkontakt speichern"*
+<div class="blog-checklist-grid">
+  <div class="blog-checklist-card do">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-check">check_circle</span>
+      Klare CTAs &amp; Best Practices (Do)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        "Scannen für Fotos, Grundrisse &amp; Preis"
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        "Virtueller 3D-Rundgang &amp; Maklerkontakt"
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-check text-[18px]">check</span>
+        Mindestens 10 × 10 cm auf Außenschildern drucken
+      </li>
+    </ul>
+  </div>
+
+  <div class="blog-checklist-card dont">
+    <div class="blog-checklist-header">
+      <span class="material-symbols-outlined icon-cross">cancel</span>
+      Fehler (Don't)
+    </div>
+    <ul class="blog-checklist-list">
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Nichtssagende Texte wie "Hier scannen" ohne Nutzen
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Zu kleine Codes unter 8 cm auf Zäunen oder Fassaden
+      </li>
+      <li class="blog-checklist-item">
+        <span class="material-symbols-outlined icon-cross text-[18px]">close</span>
+        Verlinkung auf die allgemeine Agentur-Startseite
+      </li>
+    </ul>
+  </div>
+</div>
 
 ---
 
