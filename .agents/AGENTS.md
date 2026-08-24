@@ -32,3 +32,4 @@ This document defines the high-priority skills, coding standards, and quality ga
 2. **Logo Padding**: Logo cards must include clean white or background-matched padding to keep quiet zones intact.
 3. **No Breaking Changes**: Use `graphify` to verify API route dependencies before modifying core signatures in `qr_engine.py` or `qr_service.py`.
 4. **Empirical Verification**: Never declare a feature or fix done without running automated test suites (`pytest`, preview generators) to verify clean execution.
+5. **No Fake/Static AggregateRating Schema**: Never hardcode static `aggregateRating` or unverified review schemas in JSON-LD structured data. All structured markup must strictly follow Google Search Central guidelines (only authentic, visually present, user-accessible reviews are permitted) to prevent Spammy Structured Markup manual penalties.

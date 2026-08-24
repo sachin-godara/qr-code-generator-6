@@ -21,137 +21,137 @@
       {
         "route": "/404",
         "lang": "en",
-        "wordCount": 124
+        "wordCount": 121
       },
       {
         "route": "/500",
         "lang": "en",
-        "wordCount": 124
-      },
-      {
-        "route": "/de/privacy-policy",
-        "lang": "de",
-        "wordCount": 213
+        "wordCount": 121
       },
       {
         "route": "/de/terms",
         "lang": "de",
-        "wordCount": 215
+        "wordCount": 194
       },
       {
-        "route": "/de/contact",
+        "route": "/de/privacy-policy",
         "lang": "de",
-        "wordCount": 236
+        "wordCount": 210
       },
       {
         "route": "/de/about",
         "lang": "de",
-        "wordCount": 262
+        "wordCount": 233
+      },
+      {
+        "route": "/de/contact",
+        "lang": "de",
+        "wordCount": 233
       },
       {
         "route": "/pt/terms",
         "lang": "pt",
-        "wordCount": 263
+        "wordCount": 260
       },
       {
         "route": "/pt/privacy-policy",
         "lang": "pt",
-        "wordCount": 266
+        "wordCount": 263
       },
       {
         "route": "/es/terms",
         "lang": "es",
+        "wordCount": 265
+      },
+      {
+        "route": "/pt/about",
+        "lang": "pt",
         "wordCount": 268
       },
       {
         "route": "/pt/contact",
         "lang": "pt",
-        "wordCount": 282
+        "wordCount": 279
       },
       {
         "route": "/es/contact",
         "lang": "es",
-        "wordCount": 288
+        "wordCount": 285
       },
       {
         "route": "/es/privacy-policy",
         "lang": "es",
-        "wordCount": 291
-      },
-      {
-        "route": "/terms",
-        "lang": "en",
-        "wordCount": 304
-      },
-      {
-        "route": "/pt/about",
-        "lang": "pt",
-        "wordCount": 305
-      },
-      {
-        "route": "/privacy-policy",
-        "lang": "en",
-        "wordCount": 321
+        "wordCount": 288
       },
       {
         "route": "/es/about",
         "lang": "es",
-        "wordCount": 326
+        "wordCount": 295
+      },
+      {
+        "route": "/terms",
+        "lang": "en",
+        "wordCount": 301
+      },
+      {
+        "route": "/privacy-policy",
+        "lang": "en",
+        "wordCount": 318
       },
       {
         "route": "/about",
         "lang": "en",
-        "wordCount": 360
+        "wordCount": 357
       },
       {
         "route": "/contact",
         "lang": "en",
-        "wordCount": 362
+        "wordCount": 359
       },
       {
         "route": "/de/blog/static-vs-dynamic-qr-codes",
         "lang": "de",
-        "wordCount": 423
+        "wordCount": 428
       },
       {
         "route": "/de/blog/qr-code-for-google-maps",
         "lang": "de",
-        "wordCount": 478
+        "wordCount": 483
       },
       {
         "route": "/de/blog/qr-code-for-restaurant-menu",
         "lang": "de",
-        "wordCount": 507
-      },
-      {
-        "route": "/pt/blog/static-vs-dynamic-qr-codes",
-        "lang": "pt",
-        "wordCount": 526
+        "wordCount": 512
       },
       {
         "route": "/es/blog/static-vs-dynamic-qr-codes",
         "lang": "es",
-        "wordCount": 528
+        "wordCount": 530
+      },
+      {
+        "route": "/pt/blog/static-vs-dynamic-qr-codes",
+        "lang": "pt",
+        "wordCount": 530
       },
       {
         "route": "/de/free-qr-code-generator",
         "lang": "de",
-        "wordCount": 533
+        "wordCount": 535
       },
       {
         "route": "/de/blog/qr-code-size-guide",
         "lang": "de",
-        "wordCount": 537
+        "wordCount": 542
       },
       {
         "route": "/de/blog/qr-codes-for-real-estate",
         "lang": "de",
-        "wordCount": 554
+        "wordCount": 559
       },
       {
         "route": "/de/blog/qr-code-vs-barcode",
         "lang": "de",
-        "wordCount": 577
+        "wordCount": 582
       },
       {
         "route": "/de/qr-code-scanner",
@@ -159,44 +159,39 @@
         "wordCount": 583
       },
       {
-        "route": "/pt/blog/qr-code-vs-barcode",
-        "lang": "pt",
-        "wordCount": 587
-      },
-      {
         "route": "/es/blog/qr-code-for-google-maps",
         "lang": "es",
-        "wordCount": 589
+        "wordCount": 591
+      },
+      {
+        "route": "/pt/blog/qr-code-vs-barcode",
+        "lang": "pt",
+        "wordCount": 591
       },
       {
         "route": "/pt/blog/qr-code-for-google-maps",
         "lang": "pt",
-        "wordCount": 598
+        "wordCount": 602
       },
       {
         "route": "/es/blog/qr-code-size-guide",
         "lang": "es",
-        "wordCount": 601
+        "wordCount": 603
       },
       {
         "route": "/pt/free-qr-code-generator",
         "lang": "pt",
-        "wordCount": 612
-      },
-      {
-        "route": "/de/email-qr-code",
-        "lang": "de",
-        "wordCount": 614
+        "wordCount": 611
       },
       {
         "route": "/es/free-qr-code-generator",
         "lang": "es",
-        "wordCount": 615
+        "wordCount": 614
       },
       {
-        "route": "/de/blog",
+        "route": "/de/email-qr-code",
         "lang": "de",
-        "wordCount": 623
+        "wordCount": 616
       },
       {
         "route": "/free-qr-code-generator",
@@ -204,59 +199,54 @@
         "wordCount": 623
       },
       {
+        "route": "/de/blog",
+        "lang": "de",
+        "wordCount": 624
+      },
+      {
         "route": "/de/vcard-qr-code",
         "lang": "de",
-        "wordCount": 625
+        "wordCount": 627
       },
       {
         "route": "/de/qr-code-with-logo",
         "lang": "de",
-        "wordCount": 630
+        "wordCount": 632
       },
       {
         "route": "/es/blog/qr-code-for-restaurant-menu",
         "lang": "es",
-        "wordCount": 635
+        "wordCount": 637
       },
       {
         "route": "/pt/blog/qr-code-for-restaurant-menu",
         "lang": "pt",
-        "wordCount": 637
+        "wordCount": 641
       },
       {
         "route": "/de/event-qr-code",
         "lang": "de",
-        "wordCount": 642
+        "wordCount": 650
       },
       {
         "route": "/de/url-qr-code-generator",
         "lang": "de",
-        "wordCount": 646
+        "wordCount": 652
       },
       {
         "route": "/de/blog/qr-code-trends-2025",
         "lang": "de",
-        "wordCount": 660
+        "wordCount": 669
       },
       {
         "route": "/pt/blog/how-to-scan-a-qr-code",
         "lang": "pt",
-        "wordCount": 669
+        "wordCount": 673
       },
       {
         "route": "/pt/blog/qr-code-size-guide",
         "lang": "pt",
-        "wordCount": 672
-      },
-      {
-        "route": "/pt/blog/qr-code-trends-2025",
-        "lang": "pt",
         "wordCount": 676
-      },
-      {
-        "route": "/pt/blog/qr-codes-for-real-estate",
-        "lang": "pt",
-        "wordCount": 684
       },
       {
         "route": "/pt/qr-code-scanner",
@@ -264,9 +254,19 @@
         "wordCount": 686
       },
       {
+        "route": "/pt/blog/qr-codes-for-real-estate",
+        "lang": "pt",
+        "wordCount": 688
+      },
+      {
         "route": "/qr-code-scanner",
         "lang": "en",
         "wordCount": 692
+      },
+      {
+        "route": "/pt/blog/qr-code-trends-2025",
+        "lang": "pt",
+        "wordCount": 693
       },
       {
         "route": "/es/qr-code-scanner",
@@ -276,97 +276,97 @@
       {
         "route": "/pt/blog/how-to-add-qr-code-to-business-card",
         "lang": "pt",
-        "wordCount": 700
+        "wordCount": 699
       },
       {
         "route": "/es/blog/qr-codes-for-real-estate",
         "lang": "es",
-        "wordCount": 708
+        "wordCount": 710
       },
       {
         "route": "/de/wifi-qr-code",
         "lang": "de",
-        "wordCount": 720
+        "wordCount": 722
       },
       {
         "route": "/es/blog/qr-code-vs-barcode",
         "lang": "es",
-        "wordCount": 721
+        "wordCount": 723
       },
       {
         "route": "/de/blog/how-to-add-qr-code-to-business-card",
         "lang": "de",
-        "wordCount": 723
+        "wordCount": 724
       },
       {
         "route": "/es/blog/qr-code-trends-2025",
         "lang": "es",
-        "wordCount": 725
+        "wordCount": 739
       },
       {
         "route": "/pt/email-qr-code",
         "lang": "pt",
-        "wordCount": 740
+        "wordCount": 739
       },
       {
         "route": "/de/blog/how-to-scan-a-qr-code",
         "lang": "de",
-        "wordCount": 748
-      },
-      {
-        "route": "/pt/url-qr-code-generator",
-        "lang": "pt",
-        "wordCount": 751
+        "wordCount": 753
       },
       {
         "route": "/pt/qr-code-with-logo",
         "lang": "pt",
-        "wordCount": 754
+        "wordCount": 753
       },
       {
-        "route": "/blog",
-        "lang": "en",
-        "wordCount": 755
+        "route": "/pt/url-qr-code-generator",
+        "lang": "pt",
+        "wordCount": 756
       },
       {
         "route": "/pt/vcard-qr-code",
         "lang": "pt",
-        "wordCount": 758
+        "wordCount": 757
+      },
+      {
+        "route": "/blog",
+        "lang": "en",
+        "wordCount": 759
       },
       {
         "route": "/pt/event-qr-code",
         "lang": "pt",
-        "wordCount": 761
+        "wordCount": 766
       },
       {
         "route": "/es/email-qr-code",
         "lang": "es",
-        "wordCount": 770
+        "wordCount": 769
       },
       {
         "route": "/es/url-qr-code-generator",
         "lang": "es",
-        "wordCount": 772
-      },
-      {
-        "route": "/es/event-qr-code",
-        "lang": "es",
-        "wordCount": 778
+        "wordCount": 779
       },
       {
         "route": "/es/vcard-qr-code",
         "lang": "es",
-        "wordCount": 783
+        "wordCount": 782
       },
       {
-        "route": "/pt/blog/qr-code-color-guide",
-        "lang": "pt",
-        "wordCount": 786
+        "route": "/es/event-qr-code",
+        "lang": "es",
+        "wordCount": 783
       },
       {
         "route": "/es/qr-code-with-logo",
         "lang": "es",
-        "wordCount": 788
+        "wordCount": 787
+      },
+      {
+        "route": "/pt/blog/qr-code-color-guide",
+        "lang": "pt",
+        "wordCount": 790
       },
       {
         "route": "/event-qr-code",
@@ -379,24 +379,9 @@
         "wordCount": 800
       },
       {
-        "route": "/de/blog/qr-code-color-guide",
-        "lang": "de",
-        "wordCount": 816
-      },
-      {
         "route": "/es/blog",
         "lang": "es",
-        "wordCount": 817
-      },
-      {
-        "route": "/url-qr-code-generator",
-        "lang": "en",
-        "wordCount": 818
-      },
-      {
-        "route": "/de/blog/qr-code-design-best-practices-for-print",
-        "lang": "de",
-        "wordCount": 820
+        "wordCount": 814
       },
       {
         "route": "/qr-code-with-logo",
@@ -404,19 +389,29 @@
         "wordCount": 820
       },
       {
+        "route": "/de/blog/qr-code-color-guide",
+        "lang": "de",
+        "wordCount": 821
+      },
+      {
+        "route": "/url-qr-code-generator",
+        "lang": "en",
+        "wordCount": 822
+      },
+      {
         "route": "/pt/blog",
         "lang": "pt",
-        "wordCount": 824
+        "wordCount": 823
+      },
+      {
+        "route": "/de/blog/qr-code-design-best-practices-for-print",
+        "lang": "de",
+        "wordCount": 825
       },
       {
         "route": "/es/blog/how-to-scan-a-qr-code",
         "lang": "es",
-        "wordCount": 828
-      },
-      {
-        "route": "/pt/blog/qr-code-design-best-practices-for-print",
-        "lang": "pt",
-        "wordCount": 837
+        "wordCount": 830
       },
       {
         "route": "/vcard-qr-code",
@@ -424,19 +419,19 @@
         "wordCount": 837
       },
       {
+        "route": "/pt/blog/qr-code-design-best-practices-for-print",
+        "lang": "pt",
+        "wordCount": 841
+      },
+      {
         "route": "/pt/wifi-qr-code",
         "lang": "pt",
-        "wordCount": 861
+        "wordCount": 860
       },
       {
         "route": "/pt/blog/wifi-qr-code-for-hotels",
         "lang": "pt",
-        "wordCount": 872
-      },
-      {
-        "route": "/es/blog/qr-code-color-guide",
-        "lang": "es",
-        "wordCount": 891
+        "wordCount": 876
       },
       {
         "route": "/wifi-qr-code",
@@ -444,89 +439,94 @@
         "wordCount": 892
       },
       {
+        "route": "/es/blog/qr-code-color-guide",
+        "lang": "es",
+        "wordCount": 893
+      },
+      {
         "route": "/de/blog/wifi-qr-code-for-hotels",
         "lang": "de",
-        "wordCount": 896
+        "wordCount": 901
       },
       {
         "route": "/es/wifi-qr-code",
         "lang": "es",
-        "wordCount": 905
+        "wordCount": 904
       },
       {
         "route": "/es/blog/qr-code-design-best-practices-for-print",
         "lang": "es",
-        "wordCount": 929
-      },
-      {
-        "route": "/de",
-        "lang": "de",
-        "wordCount": 933
+        "wordCount": 931
       },
       {
         "route": "/es/blog/wifi-qr-code-for-hotels",
         "lang": "es",
-        "wordCount": 935
+        "wordCount": 937
+      },
+      {
+        "route": "/de",
+        "lang": "de",
+        "wordCount": 938
       },
       {
         "route": "/blog/qr-code-for-google-maps",
         "lang": "en",
-        "wordCount": 971
+        "wordCount": 975
       },
       {
         "route": "/blog/static-vs-dynamic-qr-codes",
         "lang": "en",
-        "wordCount": 1029
+        "wordCount": 1033
       },
       {
         "route": "/blog/qr-code-for-restaurant-menu",
         "lang": "en",
-        "wordCount": 1050
+        "wordCount": 1054
       },
       {
         "route": "/blog/how-to-scan-a-qr-code",
         "lang": "en",
-        "wordCount": 1110
+        "wordCount": 1114
       },
       {
         "route": "/blog/qr-codes-for-real-estate",
         "lang": "en",
-        "wordCount": 1110
+        "wordCount": 1114
       },
       {
         "route": "/pt",
         "lang": "pt",
-        "wordCount": 1127
+        "wordCount": 1132
       },
       {
         "route": "/blog/qr-code-size-guide",
         "lang": "en",
-        "wordCount": 1133
+        "wordCount": 1137
       },
       {
         "route": "/blog/wifi-qr-code-for-hotels",
         "lang": "en",
-        "wordCount": 1134
+        "wordCount": 1138
       },
       {
         "route": "/de/how-to-use",
         "lang": "de",
-        "wordCount": 1169
+        "wordCount": 1166
       },
       {
         "route": "/blog/how-to-add-qr-code-to-business-card",
         "lang": "en",
-        "wordCount": 1173
+        "wordCount": 1177
       },
       {
         "route": "/es",
         "lang": "es",
-        "wordCount": 1184
+        "wordCount": 1183
       },
       {
         "route": "/blog/qr-code-vs-barcode",
         "lang": "en",
-        "wordCount": 1210
+        "wordCount": 1214
       },
       {
         "route": "/",
@@ -536,133 +536,133 @@
       {
         "route": "/blog/qr-code-design-best-practices-for-print",
         "lang": "en",
-        "wordCount": 1234
+        "wordCount": 1238
       },
       {
         "route": "/blog/qr-code-color-guide",
         "lang": "en",
-        "wordCount": 1273
+        "wordCount": 1277
       },
       {
         "route": "/blog/qr-code-trends-2025",
         "lang": "en",
-        "wordCount": 1280
+        "wordCount": 1297
       },
       {
         "route": "/es/blog/how-to-add-qr-code-to-business-card",
         "lang": "es",
-        "wordCount": 1308
+        "wordCount": 1305
       },
       {
         "route": "/pt/how-to-use",
         "lang": "pt",
-        "wordCount": 1417
+        "wordCount": 1414
       },
       {
         "route": "/es/how-to-use",
         "lang": "es",
-        "wordCount": 1459
+        "wordCount": 1456
       },
       {
         "route": "/how-to-use",
         "lang": "en",
-        "wordCount": 1576
+        "wordCount": 1573
       }
     ],
     "issues": [],
     "warnings": [],
     "internalLinksAudited": 3479,
     "imagesAudited": 64,
-    "schemasAudited": 448,
+    "schemasAudited": 547,
     "hreflangAudited": 540
   },
   "shortestPages": [
     {
       "route": "/404",
       "lang": "en",
-      "wordCount": 124
+      "wordCount": 121
     },
     {
       "route": "/500",
       "lang": "en",
-      "wordCount": 124
-    },
-    {
-      "route": "/de/privacy-policy",
-      "lang": "de",
-      "wordCount": 213
+      "wordCount": 121
     },
     {
       "route": "/de/terms",
       "lang": "de",
-      "wordCount": 215
+      "wordCount": 194
     },
     {
-      "route": "/de/contact",
+      "route": "/de/privacy-policy",
       "lang": "de",
-      "wordCount": 236
+      "wordCount": 210
     },
     {
       "route": "/de/about",
       "lang": "de",
-      "wordCount": 262
+      "wordCount": 233
+    },
+    {
+      "route": "/de/contact",
+      "lang": "de",
+      "wordCount": 233
     },
     {
       "route": "/pt/terms",
       "lang": "pt",
-      "wordCount": 263
+      "wordCount": 260
     },
     {
       "route": "/pt/privacy-policy",
       "lang": "pt",
-      "wordCount": 266
+      "wordCount": 263
     },
     {
       "route": "/es/terms",
       "lang": "es",
-      "wordCount": 268
+      "wordCount": 265
     },
     {
-      "route": "/pt/contact",
+      "route": "/pt/about",
       "lang": "pt",
-      "wordCount": 282
+      "wordCount": 268
     }
   ],
   "longestPages": [
     {
       "route": "/how-to-use",
       "lang": "en",
-      "wordCount": 1576
+      "wordCount": 1573
     },
     {
       "route": "/es/how-to-use",
       "lang": "es",
-      "wordCount": 1459
+      "wordCount": 1456
     },
     {
       "route": "/pt/how-to-use",
       "lang": "pt",
-      "wordCount": 1417
+      "wordCount": 1414
     },
     {
       "route": "/es/blog/how-to-add-qr-code-to-business-card",
       "lang": "es",
-      "wordCount": 1308
+      "wordCount": 1305
     },
     {
       "route": "/blog/qr-code-trends-2025",
       "lang": "en",
-      "wordCount": 1280
+      "wordCount": 1297
     },
     {
       "route": "/blog/qr-code-color-guide",
       "lang": "en",
-      "wordCount": 1273
+      "wordCount": 1277
     },
     {
       "route": "/blog/qr-code-design-best-practices-for-print",
       "lang": "en",
-      "wordCount": 1234
+      "wordCount": 1238
     },
     {
       "route": "/",
@@ -672,12 +672,12 @@
     {
       "route": "/blog/qr-code-vs-barcode",
       "lang": "en",
-      "wordCount": 1210
+      "wordCount": 1214
     },
     {
       "route": "/es",
       "lang": "es",
-      "wordCount": 1184
+      "wordCount": 1183
     }
   ]
 }

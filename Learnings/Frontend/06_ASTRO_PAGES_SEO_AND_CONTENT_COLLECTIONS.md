@@ -51,12 +51,7 @@ Astro 5 builds all public-facing pages at compile time into static HTML/CSS acro
       "name": "QR Code Maker 6",
       "applicationCategory": "DesignApplication",
       "operatingSystem": "All",
-      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "1250"
-      }
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
     },
     {
       "@type": "WebSite",
