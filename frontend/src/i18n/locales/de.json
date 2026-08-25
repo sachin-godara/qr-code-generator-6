@@ -352,7 +352,9 @@
       "goToContent": "Zu Inhalt wechseln",
       "sizePx": "Größe (px)",
       "generatingBatch": "Stapel-Archiv wird erstellt...",
-      "downloadZip": "ZIP Erstellen & Herunterladen ({count} Einträge)"
+      "downloadZip": "ZIP Erstellen & Herunterladen ({count} Einträge)",
+      "advisoryTitle": "Wichtiger Hinweis",
+      "advisoryDesc": "Der Download individueller Designs erfolgt auf eigene Verantwortung. Führen Sie vor dem Herunterladen stets einen Test-Scan mit mindestens zwei verschiedenen Geräten durch."
     },
     "preview": {
       "livePreview": "Live-Vorschau",

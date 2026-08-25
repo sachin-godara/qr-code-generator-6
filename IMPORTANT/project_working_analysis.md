@@ -81,15 +81,53 @@ graph TD
 
 ---
 
-### C. 🔍 Computer Vision Deep Scanning & Scannability Assurance
-1. **Frontend Real-time Scannability Score**:
-   - Calculates **WCAG 2.2 contrast ratio** between foreground/gradient colors and background.
-   - Verifies error correction level (enforces `H` when logos are embedded).
-   - Flags module density and risky dot/eye styles.
-   - Visual indicator: *Excellent* (Emerald), *Good* (Yellow), *Fair* (Orange), *Poor* (Red).
-2. **Backend Dual-Engine Deep Scan**:
-   - **WeChat QR CNN Deep Learning Model**: OpenCV DNN detector and Super-Resolution model trained on millions of real-world warped and styled QR codes.
-   - **PyZBar / OpenCV Computer Vision Waterfall**: Grayscale $\to$ Thresholding $\to$ Adaptive Thresholding $\to$ Gaussian Blur $\to$ Morphological Close $\to$ Color Inversion $\to$ Multi-scale Area Resizing.
+### C. 🔍 The Scannability Reality, Device Compatibility Matrix & The Safety-First Approach
+
+#### 1. The Industry Reality: Custom vs. Standard QR Codes
+Standard ISO/IEC 18004 QR codes are high-contrast black-and-white square grids designed for instantaneous recognition by legacy hardware binarizers and basic camera sensors. When applying modern visual customization (custom dot shapes, gradients, brand logos, themed frames, non-standard eye contours), optical tolerance naturally decreases. 
+
+On high-end modern smartphones (e.g., iPhone 15/16 Pro, Samsung Galaxy S24/S25 Ultra with computational photography and neural ISP), customized QR codes scan instantaneously. However, on **budget smartphones, legacy devices (5+ years old), low-light environments, or handheld motion**, certain custom styling choices can lead to scanning degradation if design guardrails are breached:
+- **Module Mass Erosion**: Decorative dot styles (e.g. `star`, `heart`, `crossstitch`) reduce the solid module fill area by 30–50%, making module centroids harder to resolve for lower-resolution lenses.
+- **Finder Pattern Confusion**: Overly complex eye frames or eyeballs can obscure the mathematical $1:1:3:1:1$ finder ratio required by standard decoders.
+- **Color Inversion / Low Contrast**: Light pastel foregrounds or weak gradients on white backgrounds violate minimum luminance thresholds.
+- **Logo Occlusion**: Center logos physically destroy underlying data modules, demanding high Reed-Solomon redundancy.
+- **Quiet Zone Breaches**: Removing the standard 4-module white border around the matrix causes edge binarizers to misinterpret surrounding artwork as QR data.
+
+---
+
+#### 2. The Multi-Layered Safety-First Engineering Architecture
+To guarantee maximum scannability without sacrificing visual elegance, **Custom QR Studio 6** implements a 5-layer safety architecture:
+
+```mermaid
+graph TD
+    A["User Inputs / Style Selections"] --> B["Layer 1: Real-Time WCAG 2.2 & Mass Scannability Engine"]
+    B --> C["Layer 2: Auto-Redundancy Promotion (Auto-H Error Correction)"]
+    C --> D["Layer 3: Automatic Logo Padding Card & Quiet Zone Guard"]
+    D --> E["Layer 4: Dual-Engine Backend CV Quality Gate (WeChat QR CNN + PyZBar)"]
+    E --> F["Layer 5: User-Facing Pre-Print Test Scans & Print Size Guidelines"]
+```
+
+1. **Layer 1 — Real-Time Client-Side Scannability Math**:
+   - Calculates **WCAG 2.2 sRGB contrast ratio** between foreground/gradient colors and background canvas.
+   - Evaluates module density, eye frame complexity, and logo presence to produce a real-time health score ($0–100\%$).
+   - Displays live color-coded indicators: **Excellent (Emerald, 90-100)**, **Good (Yellow, 70-89)**, **Fair (Orange, 50-69)**, **Poor (Red, <50)** with specific remediation tips.
+
+2. **Layer 2 — Algorithmic Redundancy Auto-Promotion**:
+   - The engine automatically elevates Error Correction to **Level H (30% data recovery)** whenever a logo or image is embedded, ensuring that even if 25% of the central matrix is blocked, the code remains 100% reconstructible.
+
+3. **Layer 3 — Geometric Quiet Zone & Logo Padding Cards**:
+   - Preserves a minimum 4-module quiet zone around the QR perimeter.
+   - Automatically renders solid background-matched or clean white padding cards behind center logos to isolate them from surrounding data modules.
+
+4. **Layer 4 — Dual-Engine Computer Vision Quality Gate**:
+   - **WeChat QR CNN Model**: Deep learning convolutional network with Super-Resolution upscaling trained on millions of deformed/warped QR codes.
+   - **PyZBar Multi-Pass Waterfall**: 4-stage computer vision filter pipeline (Binary Threshold $\to$ Adaptive Gaussian $\to$ Gaussian Blur $\to$ Morphological Close $\to$ Bitwise Inversion).
+   - 100% of all built-in curated templates are pre-validated through this automated pipeline.
+
+5. **Layer 5 — Real-World Verification Guidelines & Print Protocol**:
+   - **10:1 Distance-to-Size Print Rule**: For every 10 inches/cm of intended scanning distance, the printed QR code must be at least 1 inch/cm wide (e.g., 3-meter billboard = minimum 30 cm QR code).
+   - **Multi-Device Physical Scan Recommendation**: Users are explicitly prompted to perform a physical test scan across at least two different mobile platforms (e.g. native iOS Camera + Android Google Lens) prior to commercial print runs.
+   - **Lossless Vector Export**: Recommending SVG and 300 DPI PDF exports for physical printing to prevent pixel blurring.
 
 ---
 

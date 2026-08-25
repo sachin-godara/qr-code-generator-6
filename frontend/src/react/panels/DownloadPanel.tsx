@@ -250,6 +250,7 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
           message={t("studio.download.scannabilityWarning", {}, "You have modified scannability settings from their defaults. Please test the QR scan first to ensure it scans reliably.")}
         />
       </div>
+
       <div className="flex border-t border-outline-variant pt-6 flex-col sm:flex-row gap-4">
         <button
           onClick={handleDownloadCustom}
@@ -320,15 +321,26 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
         </button>
       </div>
 
+      {/* Clean Monochromatic Notice */}
+      <div className="pt-2 border-t border-outline-variant/60">
+        <div className="flex items-start gap-2.5 px-3.5 py-3 rounded-xl bg-surface-container border border-outline-variant text-xs text-on-surface-variant">
+          <span className="material-symbols-outlined text-[16px] text-on-surface shrink-0 mt-0.5">info</span>
+          <p className="text-[11px] sm:text-xs leading-relaxed">
+            <strong className="text-on-surface font-semibold">{t("studio.download.advisoryTitle", {}, "Important Notice")}:</strong>{" "}
+            {t("studio.download.advisoryDesc", {}, "Custom styling is downloaded at your own discretion. Always test-scan with at least two different devices before downloading.")}
+          </p>
+        </div>
+      </div>
+
       {/* Trust Badge */}
-      <div className="flex items-center justify-center gap-3 pt-2 flex-wrap">
+      <div className="flex items-center justify-center gap-4 pt-1 flex-wrap">
         {[
           { icon: "block", label: t("studio.download.noWatermark", {}, "No watermarks") },
           { icon: "person_off", label: t("studio.download.noSignup", {}, "No sign-up") },
           { icon: "lock", label: t("studio.download.privateFiles", {}, "Files stay private") },
         ].map(({ icon, label }) => (
           <div key={label} className="flex items-center gap-1.5 text-[11px] text-on-surface-variant font-medium">
-            <span className="material-symbols-outlined text-[14px] text-emerald-600">{icon}</span>
+            <span className="material-symbols-outlined text-[14px] text-on-surface">{icon}</span>
             {label}
           </div>
         ))}

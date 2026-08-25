@@ -352,7 +352,9 @@
       "goToContent": "Go to Content",
       "sizePx": "Size (px)",
       "generatingBatch": "Generating Batch Archive...",
-      "downloadZip": "Generate & Download ZIP ({count} items)"
+      "downloadZip": "Generate & Download ZIP ({count} items)",
+      "advisoryTitle": "Important Notice",
+      "advisoryDesc": "Custom styling is downloaded at your own discretion. Always test-scan with at least two different devices before downloading."
     },
     "preview": {
       "livePreview": "Live Preview",

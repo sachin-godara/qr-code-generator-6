@@ -352,7 +352,9 @@
       "goToContent": "Ir para Conteúdo",
       "sizePx": "Tamanho (px)",
       "generatingBatch": "Gerando arquivo ZIP...",
-      "downloadZip": "Gerar e Baixar ZIP ({count} itens)"
+      "downloadZip": "Gerar e Baixar ZIP ({count} itens)",
+      "advisoryTitle": "Aviso Importante",
+      "advisoryDesc": "O download de estilos personalizados é de sua própria responsabilidade. Sempre teste a leitura com pelo menos dois dispositivos diferentes antes de baixar."
     },
     "preview": {
       "livePreview": "Pré-visualização em Tempo Real",
