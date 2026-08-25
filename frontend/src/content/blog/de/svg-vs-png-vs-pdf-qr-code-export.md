@@ -89,6 +89,15 @@ PDF bettet Vektorgeometrie in ein universelles Dokumentformat ein.
 
 ---
 
+## 4. Reine Vektoren vs. Hochauflösende 300-DPI-Container
+
+Bei der Gestaltung von QR-Codes ist es für Designer und Druckexperten wichtig zu verstehen, wie sich individuelle Stile auf die Dateistruktur auswirken:
+
+- **Klassische QR-Codes (Reine Vektoren `<path>`):** Bei der Erstellung klassischer Schwarz-Weiß- oder einfarbiger QR-Codes mit quadratischen Modulen erzeugt der SVG-Export reine mathematische XML-`<path>`-Elemente. Diese lassen sich ohne Pixelierung verlustfrei auf Plakatgröße skalieren und in Adobe Illustrator oder Figma direkt bearbeiten.
+- **Individuell Gestaltete QR-Codes (300-DPI-High-Fidelity-Container):** Wenn Sie visuelle Anpassungen wählen (wie abgerundete Punkte, geschwungene Positionsmarken, Farbverläufe, Schatten oder Logos), erzeugen Grafik-Engines kantengeglättete Grafiken in **hochauflösenden 300 DPI** innerhalb von SVG- (`<image>`) und PDF-Containern. Dadurch werden Farbverläufe und organische Formen mit maximaler Druckschärfe und 100% Scanbarkeit auf Smartphones wiedergegeben.
+
+---
+
 ## Format-Auswahlmatrix: Welches Format für welches Projekt?
 
 <div class="blog-checklist-grid">

@@ -89,6 +89,15 @@ El formato PDF encapsula la geometría vectorial dentro de un documento estructu
 
 ---
 
+## 4. Vectores Puros frente a Contenedores de Alta Fidelidad a 300 DPI
+
+Al diseñar códigos QR personalizados, es fundamental que diseñadores e impresores conozcan cómo el diseño influye en la estructura del archivo:
+
+- **Códigos QR Estándar (Vectores Puros `<path>`):** Al generar un código QR clásico monocromo con módulos cuadrados, la exportación SVG genera elementos XML `<path>` matemáticos puros. Estos se escalan de forma infinita a cualquier tamaño de valla publicitaria sin pixelación y permiten la edición directa de nodos en Illustrator o Figma.
+- **Códigos QR Personalizados (Contenedores a 300 DPI de Alta Fidelidad):** Al activar personalizaciones visuales avanzadas (como puntos redondeados, marcos de ojos en forma de hoja, degradados de color, sombras suaves o logotipos en el centro), el motor gráfico genera ilustraciones suavizadas a **300 DPI de alta resolución** dentro de contenedores SVG (`<image>`) y PDF. Esto garantiza que las transiciones de color y los bordes orgánicos se impriman con máxima nitidez y mantengan una lectura óptica del 100% en todos los teléfonos móviles.
+
+---
+
 ## Matriz de Decisión: ¿Qué Formato Debes Elegir?
 
 <div class="blog-checklist-grid">

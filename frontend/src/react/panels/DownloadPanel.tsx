@@ -206,10 +206,14 @@ export function DownloadPanel({ onNavigateToContent }: DownloadPanelProps) {
         <div className="bg-primary/5 rounded-2xl p-4 border border-primary/20 space-y-2 text-xs text-on-surface-variant leading-relaxed">
           <div className="flex items-center gap-2 font-bold text-primary text-sm">
             <span className="material-symbols-outlined text-[18px]">polyline</span>
-            {t("studio.download.svgTitle", {}, "SVG Vector Generation Details")}
+            {hasComplexStyling
+              ? t("studio.download.svgTitleCustom", {}, "SVG Custom Style Mode (300 DPI Container)")
+              : t("studio.download.svgTitlePure", {}, "SVG Pure Vector Mode (<path>)")}
           </div>
           <p>
-            {t("studio.download.svgDetails", {}, "Outputs as a scalable vector graphic or 300 DPI container for maximum print quality.")}
+            {hasComplexStyling
+              ? t("studio.download.svgDetailsCustom", {}, "Custom styling active. Exports as a high-fidelity 300 DPI container to preserve custom dot curves, gradients, and logos with maximum print clarity.")
+              : t("studio.download.svgDetailsPure", {}, "Standard QR code active. Outputs pure mathematical vector XML (<path>) with zero pixelation and infinite scaling.")}
           </p>
         </div>
       )}

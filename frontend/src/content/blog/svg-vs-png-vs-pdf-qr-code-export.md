@@ -89,6 +89,15 @@ PDF embeds clean vector geometry inside a standardized document container.
 
 ---
 
+## 4. Pure Vectors vs. 300 DPI High-Resolution Containers
+
+When designing custom QR codes, it is vital for designers and print specialists to understand how styling impacts file structure:
+
+- **Standard / Plain QR Codes (Pure Vector `<path>`):** When generating a classic black-and-white or solid-color QR code with square dots, the SVG export generates pure mathematical XML `<path>` elements. These scale infinitely to any billboard size with zero pixelation and allow direct node-level editing in Adobe Illustrator or Figma.
+- **Custom-Styled QR Codes (300 DPI High-Fidelity Containers):** When you enable advanced visual customizations (such as rounded dot geometries, leaf eye frames, smooth multi-stop gradients, drop shadows, CTA text frames, or embedded center logos), graphics engines generate pixel-precise antialiased artwork packaged at **300 DPI high resolution** inside SVG (`<image>`) and PDF containers. This ensures intricate gradient blending, transparent shadows, and organic dot contours print with maximum optical scannability and zero rendering artifacts across commercial pre-press systems.
+
+---
+
 ## Export Decision Matrix: Which Format Should You Choose?
 
 <div class="blog-checklist-grid">

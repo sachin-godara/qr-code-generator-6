@@ -9,74 +9,1074 @@ interface Props {
 
 const { locale } = Astro.props;
 
-const metaMap: Record<Locale, { title: string; desc: string; heading: string; keywords?: string; s1Title: string; s1Text: string; s2Title: string; s2Text: string; s3Title: string; s3Text: string; s4Title: string; s4Text: string; s5Title: string; s5Text: string; lastUpdated: string }> = {
+interface PageData {
+  title: string;
+  desc: string;
+  keywords: string;
+  heading: string;
+  badge: string;
+  lastUpdated: string;
+  tocTitle: string;
+  highlights: Array<{ icon: string; title: string; desc: string }>;
+  toc: Array<{ id: string; title: string }>;
+  s1Title: string;
+  s1P1: string;
+  s1P2: string;
+  s2Title: string;
+  s2Lead: string;
+  s2Items: Array<{ title: string; desc: string }>;
+  s3Title: string;
+  s3Lead: string;
+  s3Items: Array<{ title: string; desc: string }>;
+  s4Title: string;
+  s4Lead: string;
+  s4Items: Array<{ title: string; desc: string }>;
+  s5Title: string;
+  s5Lead: string;
+  s5Items: Array<{ title: string; desc: string }>;
+  s6Title: string;
+  s6Lead: string;
+  s6Items: Array<{ title: string; desc: string }>;
+  s7Title: string;
+  s7Lead: string;
+  matrixHeaders: { medium: string; minSize: string; distance: string; format: string; tip: string };
+  matrixRows: Array<{ medium: string; minSize: string; distance: string; format: string; tip: string }>;
+  s8Title: string;
+  s8Lead: string;
+  s8Items: Array<{ title: string; desc: string }>;
+  s9Title: string;
+  s9Text: string;
+  s10Title: string;
+  s10Text: string;
+  s11Title: string;
+  s11Text: string;
+  s12Title: string;
+  s12Text: string;
+  s13Title: string;
+  s13Text: string;
+  faqTitle: string;
+  faqs: Array<{ q: string; a: string }>;
+  ctaTitle: string;
+  ctaDesc: string;
+  ctaBtn: string;
+}
+
+const metaMap: Record<Locale, PageData> = {
   en: {
     title: "Terms and Conditions — GenerateCustomQR",
-    desc: "Terms of service and usage conditions for GenerateCustomQR. Free for both personal and commercial projects with zero restrictions.",
-    keywords: "qr code generator terms, commercial use qr code license, free qr code terms of service",
+    desc: "Terms of service, commercial licensing rights, acceptable use policy, and pre-press print guidelines for GenerateCustomQR. 100% free for commercial use.",
+    keywords: "qr code generator terms, commercial use qr code license, free qr code terms of service, qr code print guidelines, static qr code license",
     heading: "Terms & Conditions",
-    lastUpdated: "January 1, 2026",
-    s1Title: "1. Acceptance of Terms",
-    s1Text: "By accessing or using GenerateCustomQR, you agree to be bound by these Terms and Conditions. If you do not agree to these terms, please do not use our service.",
-    s2Title: "2. Free & Commercial License",
-    s2Text: "All QR codes generated through GenerateCustomQR are 100% free for both personal and commercial use. You own all rights to the generated image files and may print, distribute, or publish them without royalty fees or attribution requirements.",
-    s3Title: "3. Acceptable Use & Prohibited Content",
-    s3Text: "You agree not to use GenerateCustomQR to encode malicious URLs (phishing, malware distribution, scams), deceptive content, or unlawful materials. We reserve the right to block malicious automated abuse.",
-    s4Title: "4. Scannability, Device Compatibility & Warranty Disclaimer",
-    s4Text: "The service is provided 'as is' and 'as available' without warranties of any kind. While our QR engine strictly conforms to ISO/IEC 18004 standards and employs automated computer vision quality checks, physical device hardware (including camera sensor resolution, optical quality, lighting conditions, and ambient glare) and user-selected custom styling (such as low contrast, custom dot geometries, or embedded logos) can affect scannability across certain legacy or budget devices. Users bear sole responsibility for conducting physical test-scans across multiple smartphone cameras prior to commercial, bulk, or permanent print production.",
-    s5Title: "5. Modifications to Service",
-    s5Text: "GenerateCustomQR reserves the right to enhance, modify, or update features at any time to improve system speed, security, and user experience."
+    badge: "100% Free Commercial License & Open Terms",
+    lastUpdated: "Effective Date: January 1, 2026",
+    tocTitle: "Table of Contents",
+    highlights: [
+      {
+        icon: "verified",
+        title: "100% Free Commercial Use",
+        desc: "All generated QR codes are free for commercial products, packaging, billboards, and client deliverables."
+      },
+      {
+        icon: "workspace_premium",
+        title: "Full Asset Ownership",
+        desc: "You own all right, title, and interest to downloaded PNG, SVG, and PDF graphics with zero royalties."
+      },
+      {
+        icon: "all_inclusive",
+        title: "Permanent Static Codes",
+        desc: "Data is encoded directly into matrix pixels. Codes never expire and never depend on our servers staying online."
+      },
+      {
+        icon: "print",
+        title: "Pre-Press Testing Duty",
+        desc: "Users are responsible for physical test-scanning proofs across multiple smartphone devices prior to mass printing."
+      }
+    ],
+    toc: [
+      { id: "section-1", title: "1. Agreement to Terms & Contractual Scope" },
+      { id: "section-2", title: "2. Commercial License & Ownership of Outputs" },
+      { id: "section-3", title: "3. Platform Intellectual Property Rights" },
+      { id: "section-4", title: "4. Acceptable Use Policy & Prohibited Conduct" },
+      { id: "section-5", title: "5. Nature of Static QR Codes & Lifespan" },
+      { id: "section-6", title: "6. Pre-Press Print Standards & Guidelines" },
+      { id: "section-7", title: "7. Print Standards & Sizing Matrix" },
+      { id: "section-8", title: "8. Warranty Disclaimer (As-Is Service)" },
+      { id: "section-9", title: "9. Limitation of Liability" },
+      { id: "section-10", title: "10. Indemnification Obligations" },
+      { id: "section-11", title: "11. Third-Party Destinations & User Content" },
+      { id: "section-12", title: "12. Service & Terms Modifications" },
+      { id: "section-13", title: "13. Governing Law, Severability & Contact" }
+    ],
+    s1Title: "1. Agreement to Terms & Contractual Scope",
+    s1P1: "These Terms and Conditions constitute a legally binding agreement between you (whether individually or on behalf of an entity) and GenerateCustomQR Media & Software Technologies ('GenerateCustomQR', 'we', 'us', or 'our', accessible via generatecustomqr.com) governing your access to and use of the GenerateCustomQR web application, vector rendering tools, and related services.",
+    s1P2: "By accessing our website, creating QR codes, or downloading generated graphics, you expressly acknowledge that you have read, understood, and agreed to be bound by all of these Terms. If you do not agree with any part of these Terms, you must immediately discontinue use of the service.",
+    s2Title: "2. Commercial License & Ownership of Outputs",
+    s2Lead: "We believe in empowering creators, agencies, and businesses without legal friction. We grant you broad, unrestricted commercial rights over the assets you generate:",
+    s2Items: [
+      {
+        title: "Perpetual Commercial & Personal License",
+        desc: "All QR code graphics (including PNG raster files, SVG vector paths, and PDF print files) generated using our service are 100% royalty-free for both personal and commercial use worldwide in perpetuity."
+      },
+      {
+        title: "Ownership of Generated Output",
+        desc: "You retain all intellectual property rights and ownership over the customized image files you create. GenerateCustomQR claims no copyright or proprietary interest in your generated barcodes."
+      },
+      {
+        title: "No Royalties or Recurring Fees",
+        desc: "You may print, publish, distribute, broadcast, broadcast on television, or incorporate your generated QR codes into commercial products without paying licensing fees or recurring royalties."
+      },
+      {
+        title: "No Attribution Requirement",
+        desc: "You are not required to display watermarks, logos, or attribution linking back to GenerateCustomQR on your physical print materials, packaging, or digital media (though word-of-mouth recommendations are always appreciated)."
+      }
+    ],
+    s3Title: "3. Platform Intellectual Property Rights",
+    s3Lead: "While you own the specific output files you generate, GenerateCustomQR retains exclusive ownership of the underlying software platform:",
+    s3Items: [
+      {
+        title: "Platform Software & Codebase",
+        desc: "The source code, algorithmic matrix math, web styling, user interface design, logos, and custom SVG frame geometries remain the exclusive intellectual property of GenerateCustomQR."
+      },
+      {
+        title: "Prohibition Against Platform Cloning",
+        desc: "You may not copy, reverse-engineer, decompile, or redistribute the web application interface to operate a competing commercial clone using our proprietary branding or assets."
+      }
+    ],
+    s4Title: "4. Acceptable Use Policy & Prohibited Conduct",
+    s4Lead: "To safeguard internet security and prevent fraudulent misuse of QR barcodes, you agree not to use GenerateCustomQR for unlawful or harmful purposes. You may NOT generate QR codes that encode:",
+    s4Items: [
+      {
+        title: "Malicious URLs & Phishing Portals",
+        desc: "Links designed to deceive users into revealing banking credentials, passwords, or personal identity, or links that initiate drive-by malware, ransomware, or spyware downloads ('Quishing')."
+      },
+      {
+        title: "Fraudulent & Scam Content",
+        desc: "Destinations facilitating cryptocurrency scams, deceptive lottery schemes, pyramid fraud, or unlawful financial solicitations."
+      },
+      {
+        title: "Illegal Contraband & Defamatory Material",
+        desc: "Content that promotes illegal substances, hate speech, terrorism, harassment, child sexual exploitation, or copyright infringement."
+      },
+      {
+        title: "Automated Platform Abuse",
+        desc: "Launching automated scrapers, denial-of-service (DDoS) flood attacks, or excessive rapid requests intended to overload or degrade our hosting infrastructure."
+      }
+    ],
+    s5Title: "5. Nature of Static QR Codes & Lifespan Guarantee",
+    s5Lead: "Understanding the technical nature of static QR codes is vital to ensuring successful deployment:",
+    s5Items: [
+      {
+        title: "Direct Matrix Encoding (Static)",
+        desc: "GenerateCustomQR generates authentic static QR codes conforming to ISO/IEC 18004. Your payload (URL, text, Wi-Fi password) is directly mathematically encoded into the 2D black-and-white module pattern."
+      },
+      {
+        title: "No Dependency on Our Servers",
+        desc: "Because the data resides directly inside the image pixels, scanning a generated code communicates directly between the scanning smartphone and your destination server. The code never routes through our servers and will continue scanning forever even if GenerateCustomQR is temporarily offline."
+      },
+      {
+        title: "No Remote Modifiability",
+        desc: "Because static QR codes contain the raw destination payload, they cannot be edited after printing. If you print a QR code and later change your website URL or Wi-Fi password, you must generate and print a new code. We strongly urge checking all URLs before printing."
+      }
+    ],
+    s6Title: "6. Pre-Press Print Standards & Scannability Guidelines",
+    s6Lead: "QR code scannability is fundamentally determined by physical optics, contrast ratios, and environmental lighting. Users are strictly required to adhere to the following pre-press production standards:",
+    s6Items: [
+      {
+        title: "Minimum Contrast Ratio (≥ 4.5:1)",
+        desc: "Always maintain high contrast between the dark foreground modules and the light background. Avoid low-contrast pairings (e.g., light gray on white, or dark purple on black)."
+      },
+      {
+        title: "Quiet Zone Preservation (4 Modules)",
+        desc: "Maintain a clean, uninterrupted quiet border of at least 4 modules (or 2 modules for Micro QR) around all four sides of the matrix. Do not bleed background artwork into the quiet zone."
+      },
+      {
+        title: "Scanning Distance Formula (10:1 Ratio)",
+        desc: "As a general rule, the physical width of the QR code should be at least 1/10th of the expected scanning distance. For a handheld brochure scanned from 20cm away, the QR code must be at least 2cm x 2cm. For a billboard scanned from 10 meters away, the QR code must be at least 1 meter wide."
+      },
+      {
+        title: "Center Logo Sizing Constraints",
+        desc: "When embedding a brand logo, ensure it does not cover more than 25% to 30% of the total matrix area. Always select Error Correction Level 'H' (High - 30% recovery) or Level 'Q' (Quartile - 25% recovery) to compensate for the obscured modules."
+      },
+      {
+        title: "Export Formats & Vector Architecture",
+        desc: "Standard unstyled QR codes export as mathematical vector XML (<path>). Customized QR codes (featuring custom dot geometries, gradients, drop shadows, CTA frames, or embedded brand logos) package high-resolution 300 DPI graphics within the SVG and PDF containers for maximum visual fidelity, antialiased edge smoothing, and reliable smartphone optical decoding."
+      },
+      {
+        title: "Mandatory Physical Proof Testing",
+        desc: "You bear sole responsibility for conducting physical test-scans of hardcopy printed proofs across multiple smartphone models (iOS Camera, Android Google Lens, Samsung Camera, and budget optical sensors) in real-world lighting conditions prior to committing to mass commercial print runs."
+      }
+    ],
+    s7Title: "7. Print Standards & Sizing Matrix",
+    s7Lead: "Reference our production sizing matrix before sending your graphics to commercial printers:",
+    matrixHeaders: {
+      medium: "Application / Medium",
+      minSize: "Recommended Minimum Size",
+      distance: "Optimal Scan Distance",
+      format: "Recommended Export Format",
+      tip: "Key Technical Tip"
+    },
+    matrixRows: [
+      {
+        medium: "Business Cards & vCards",
+        minSize: "20 mm × 20 mm (0.8″ × 0.8″)",
+        distance: "15 cm – 30 cm",
+        format: "SVG Vector / 300 DPI PNG",
+        tip: "Use simple square dots and keep contact fields concise."
+      },
+      {
+        medium: "Restaurant Table Menus",
+        minSize: "30 mm × 30 mm (1.2″ × 1.2″)",
+        distance: "30 cm – 50 cm",
+        format: "SVG Vector / High-Res PNG",
+        tip: "Add a laminated matte finish to eliminate table glare."
+      },
+      {
+        medium: "Retail Product Packaging",
+        minSize: "25 mm × 25 mm (1.0″ × 1.0″)",
+        distance: "20 cm – 40 cm",
+        format: "SVG Vector (Infinite Scale)",
+        tip: "Ensure a clean 4-module white quiet zone on dark boxes."
+      },
+      {
+        medium: "Flyers & Posters (A4 / A3)",
+        minSize: "50 mm × 50 mm (2.0″ × 2.0″)",
+        distance: "0.5 m – 1.5 m",
+        format: "Print-Ready PDF / SVG",
+        tip: "Pair with a bold call-to-action frame (e.g., 'SCAN FOR 20% OFF')."
+      },
+      {
+        medium: "Banners & Trade Show Booths",
+        minSize: "150 mm × 150 mm (6.0″ × 6.0″)",
+        distance: "1.5 m – 3.0 m",
+        format: "SVG Vector (Infinite Scale)",
+        tip: "Position at eye level (1.2m – 1.6m from floor) for easy access."
+      },
+      {
+        medium: "Outdoor Billboards",
+        minSize: "100 cm × 100 cm (3.3 ft × 3.3 ft)",
+        distance: "10 m – 15 m",
+        format: "SVG Vector Export",
+        tip: "Use Error Correction Level 'H' and high-contrast black on white."
+      }
+    ],
+    s8Title: "8. Warranty Disclaimer (As-Is Service)",
+    s8Lead: "GenerateCustomQR is provided on an 'as-is' and 'as-available' basis without warranties of any kind:",
+    s8Items: [
+      {
+        title: "No Implied Warranties",
+        desc: "To the maximum extent permitted by applicable law, we expressly disclaim all warranties, whether express, statutory, or implied, including the implied warranties of merchantability, fitness for a particular purpose, and non-infringement."
+      },
+      {
+        title: "No Optical Hardware Guarantee",
+        desc: "While our QR matrix generation strictly complies with ISO/IEC 18004 standards, we do not warrant that all third-party camera hardware, damaged smartphone lenses, low-resolution optical sensors, or non-standard scanner apps will decode every custom design."
+      },
+      {
+        title: "Uptime & Uninterrupted Access",
+        desc: "We do not guarantee that the web service will be 100% uninterrupted, error-free, or free of temporary server maintenance downtimes."
+      }
+    ],
+    s9Title: "9. Limitation of Liability",
+    s9Text: "To the fullest extent permitted by law, GenerateCustomQR, its creators, contributors, hosting infrastructure providers, and affiliates shall not be liable for any direct, indirect, incidental, special, consequential, or punitive damages. This includes, without limitation, lost profits, lost revenue, commercial printing costs, wasted manufacturing expenses, advertising spend, loss of data, or business interruption arising out of your use of or inability to use the service, even if advised of the possibility of such damages.",
+    s10Title: "10. Indemnification Obligations",
+    s10Text: "You agree to defend, indemnify, and hold harmless GenerateCustomQR and its operators from and against any third-party claims, liabilities, damages, judgments, awards, losses, costs, and expenses (including reasonable legal fees) arising out of or relating to your violation of these Terms, the content or destination URLs encoded into your QR codes, or your infringement of any third-party intellectual property or privacy rights.",
+    s11Title: "11. Third-Party Destinations & User Content",
+    s11Text: "GenerateCustomQR does not host, control, inspect, or endorse third-party web destinations linked through generated QR codes. We disclaim all responsibility for the availability, security, accuracy, or legality of any external websites or services linked via barcodes created by our users.",
+    s12Title: "12. Service & Terms Modifications",
+    s12Text: "We reserve the right to modify, enhance, update, or discontinue features of GenerateCustomQR at any time to improve performance, user experience, and security. We may also revise these Terms periodically. Continued use of the platform following the publication of revised terms constitutes your acceptance of the updated Terms.",
+    s13Title: "13. Governing Law, Severability & Contact",
+    s13Text: "If any provision of these Terms is found to be unlawful, void, or unenforceable, that provision shall be deemed severable and shall not affect the validity and enforceability of any remaining provisions. In the event of a merger, acquisition, or sale of company assets, these terms and intellectual property rights may be assigned to the acquiring entity. For any legal inquiries, copyright notices (DMCA), or licensing questions, please contact our legal desk at legal@generatecustomqr.com or via our Contact Page at /contact.",
+    faqTitle: "Frequently Asked Terms & Licensing Questions",
+    faqs: [
+      {
+        q: "Can I use GenerateCustomQR to create QR codes for commercial client projects and products?",
+        a: "Yes, absolutely. All generated QR codes are 100% free for commercial use. You own all rights to the downloaded image files (PNG, SVG, PDF) and may print or sell them without royalty fees or attribution."
+      },
+      {
+        q: "Do the QR codes generated here expire after 30 days or a year?",
+        a: "No. GenerateCustomQR creates permanent static QR codes. The payload is directly encoded into the matrix pixels, meaning they have no expiration date and will work forever as long as your destination URL or data remains active."
+      },
+      {
+        q: "Do I need to include a watermark or credit link back to GenerateCustomQR?",
+        a: "No. We never insert watermarks, branding logos, or mandatory attribution requirements on your generated QR codes."
+      },
+      {
+        q: "Can I change the destination link of my QR code after it has been printed?",
+        a: "No. Because these are static QR codes, the destination data is permanently embedded in the black and white pixel pattern. To change the destination, you must generate and print a new QR code."
+      },
+      {
+        q: "Who is responsible for printing errors or unscannable printed materials?",
+        a: "You as the user bear sole responsibility for verifying and physically test-scanning hardcopy proofs across multiple smartphone cameras prior to bulk commercial printing. GenerateCustomQR is not liable for printing expenses."
+      },
+      {
+        q: "Are there any scan limits on the QR codes I create?",
+        a: "No. Because our QR codes are static and do not pass through our servers, you get unlimited scans forever with zero scan caps."
+      }
+    ],
+    ctaTitle: "Ready to Create Your Print-Ready QR Code?",
+    ctaDesc: "Join thousands of designers, marketers, and businesses building custom, high-contrast QR codes with our 100% free studio.",
+    ctaBtn: "Launch QR Generator"
   },
   es: {
     title: "Términos y Condiciones — GenerateCustomQR",
-    desc: "Términos del servicio y condiciones de uso de GenerateCustomQR. Gratis para proyectos personales y comerciales sin restricciones.",
-    keywords: "terminos y condiciones generador qr, licencia comercial qr gratis, terminos de servicio qr",
+    desc: "Términos del servicio, licencia de uso comercial, política de uso aceptable y directrices de impresión para GenerateCustomQR. 100% gratis para uso comercial.",
+    keywords: "terminos y condiciones generador qr, licencia comercial qr gratis, directrices impresion qr, licencia qr estatico, terminos de servicio qr",
     heading: "Términos y Condiciones",
-    lastUpdated: "1 de Enero de 2026",
-    s1Title: "1. Aceptación de los Términos",
-    s1Text: "Al acceder o utilizar GenerateCustomQR, aceptas quedar vinculado por estos Términos y Condiciones de uso.",
-    s2Title: "2. Licencia Gratuita y Comercial",
-    s2Text: "Todos los códigos QR generados son 100% gratuitos para uso personal y comercial. Eres el propietario exclusivo de los archivos descargados y puedes imprimirlos o distribuirlos sin pagar regalías ni incluir atribución.",
-    s3Title: "3. Uso Aceptable y Contenido Prohibido",
-    s3Text: "Te comprometes a no utilizar GenerateCustomQR para codificar enlaces fraudulentos (phishing, malware, estafas) ni contenidos ilegales.",
-    s4Title: "4. Escaneabilidad, Compatibilidad de Dispositivos y Descargo de Responsabilidad",
-    s4Text: "El servicio se ofrece 'tal cual' y según disponibilidad. Aunque nuestro motor cumple rigurosamente con el estándar ISO/IEC 18004 e implementa controles de visión artificial, las variaciones ópticas de los dispositivos (sensores de cámara, iluminación, reflejos) y las personalizaciones elegidas por el usuario (contrastes reducidos, puntos personalizados o logotipos) pueden influir en la lectura en teléfonos antiguos o de gama de entrada. El usuario es el único responsable de realizar pruebas de escaneo físicas con múltiples dispositivos móviles antes de iniciar tiradas de impresión comercial o masiva.",
-    s5Title: "5. Modificaciones del Servicio",
-    s5Text: "GenerateCustomQR se reserva el derecho de añadir nuevas funciones y mejoras continuas para optimizar la experiencia de usuario."
+    badge: "Licencia Comercial 100% Gratuita y Términos Transparentes",
+    lastUpdated: "Fecha de Entrada en Vigor: 1 de Enero de 2026",
+    tocTitle: "Índice de Contenidos",
+    highlights: [
+      {
+        icon: "verified",
+        title: "Uso Comercial 100% Gratis",
+        desc: "Todos los códigos QR son gratuitos para productos comerciales, packaging, vallas publicitarias y proyectos de clientes."
+      },
+      {
+        icon: "workspace_premium",
+        title: "Propiedad Total de los Archivos",
+        desc: "Eres el dueño exclusivo de los archivos PNG, SVG y PDF descargados sin pagar regalías ni derechos de autor."
+      },
+      {
+        icon: "all_inclusive",
+        title: "Códigos Estáticos Permanentes",
+        desc: "Los datos se codifican directamente en la matriz del código. No caducan nunca ni dependen de nuestros servidores."
+      },
+      {
+        icon: "print",
+        title: "Obligación de Prueba de Impresión",
+        desc: "El usuario es responsable de realizar pruebas de escaneo físicas con múltiples smartphones antes de imprimir en masa."
+      }
+    ],
+    toc: [
+      { id: "section-1", title: "1. Aceptación de los Términos y Ámbito" },
+      { id: "section-2", title: "2. Licencia Comercial y Propiedad de Archivos" },
+      { id: "section-3", title: "3. Propiedad Intelectual de la Plataforma" },
+      { id: "section-4", title: "4. Política de Uso Aceptable y Prohibiciones" },
+      { id: "section-5", title: "5. Naturaleza de los Códigos QR Estáticos" },
+      { id: "section-6", title: "6. Estándares de Impresión y Escaneabilidad" },
+      { id: "section-7", title: "7. Matriz de Dimensiones e Impresión" },
+      { id: "section-8", title: "8. Descargo de Responsabilidad (Servicio 'Tal Cual')" },
+      { id: "section-9", title: "9. Limitación de Responsabilidad" },
+      { id: "section-10", title: "10. Indemnización" },
+      { id: "section-11", title: "11. Enlaces a Terceros y Contenido Externo" },
+      { id: "section-12", title: "12. Modificaciones del Servicio" },
+      { id: "section-13", title: "13. Legislación Aplicable y Contacto" }
+    ],
+    s1Title: "1. Aceptación de los Términos y Ámbito Contractual",
+    s1P1: "Los presentes Términos y Condiciones constituyen un contrato legal vinculante entre tú (a título personal o en representación de una entidad comercial) y GenerateCustomQR Media & Software Technologies ('GenerateCustomQR', 'nosotros' o 'nuestro', accesible en generatecustomqr.com) para regular el acceso y uso de nuestras herramientas de generación y vectorización de códigos QR.",
+    s1P2: "Al acceder a nuestro sitio web, diseñar códigos QR o descargar archivos gráficos, reconoces expresamente haber leído, comprendido y aceptado quedar vinculado por la totalidad de estas condiciones. Si no estás de acuerdo, debes cesar el uso de la plataforma de inmediato.",
+    s2Title: "2. Licencia Comercial y Propiedad de los Archivos Generados",
+    s2Lead: "Nuestro compromiso es facilitar el trabajo de diseñadores, agencias y empresas con total libertad legal:",
+    s2Items: [
+      {
+        title: "Licencia Comercial y Personal Perpetua",
+        desc: "Todos los archivos gráficos generados (PNG rasterizados, vectores SVG y documentos PDF) son 100% libres de regalías para uso personal y comercial en todo el mundo de forma ilimitada."
+      },
+      {
+        title: "Propiedad Exclusiva de los Resultados",
+        desc: "Conservas todos los derechos de propiedad intelectual sobre las imágenes descargadas. GenerateCustomQR no reclama derechos de autor sobre tus códigos generados."
+      },
+      {
+        title: "Sin Regalías ni Pagos Recurrentes",
+        desc: "Puedes imprimir, distribuir, publicar o incluir tus códigos QR en envases, libros, ropa, emisiones televisivas o aplicaciones sin abonar tarifas de licencia."
+      },
+      {
+        title: "Sin Obligación de Atribución",
+        desc: "No exigimos incluir marcas de agua ni enlaces de crédito hacia nuestra plataforma en tus materiales físicos o digitales."
+      }
+    ],
+    s3Title: "3. Propiedad Intelectual de la Plataforma",
+    s3Lead: "Mientras que los archivos que descargas son de tu propiedad, GenerateCustomQR conserva los derechos sobre la plataforma:",
+    s3Items: [
+      {
+        title: "Software y Código Fuente",
+        desc: "El código de la aplicación, algoritmos matemáticos de matriz, diseño de interfaz, logotipos y geometrías de marcos SVG son propiedad exclusiva de GenerateCustomQR."
+      },
+      {
+        title: "Prohibición de Clonación Comercial",
+        desc: "Está prohibido copiar, descompilar o redistribuir el código o la interfaz para operar un clon comercial competidor utilizando nuestra marca o activos."
+      }
+    ],
+    s4Title: "4. Política de Uso Aceptable y Conductas Prohibidas",
+    s4Lead: "Para proteger la seguridad de los usuarios de internet, queda estrictamente prohibido utilizar GenerateCustomQR para codificar:",
+    s4Items: [
+      {
+        title: "Enlaces Fraudulentos y Phishing (Quishing)",
+        desc: "Direcciones web creadas para robar contraseñas, datos bancarios o identidades, así como enlaces que inicien descargas automáticas de virus, malware o ransomware."
+      },
+      {
+        title: "Estafas y Esquemas Ilegales",
+        desc: "Destinos que promocionen fraudes piramidales, timos de criptomonedas o captación ilícita de fondos."
+      },
+      {
+        title: "Contrabando y Contenido Ilícito",
+        desc: "Contenido que promueva actividades ilegales, discursos de odio, difamación, explotación de menores o vulneración de derechos de autor."
+      },
+      {
+        title: "Abuso Automatizado del Sistema",
+        desc: "Uso de bots masivos, scrapers o ataques de denegación de servicio (DDoS) para saturar o perjudicar los servidores de la plataforma."
+      }
+    ],
+    s5Title: "5. Naturaleza de los Códigos QR Estáticos y Vida Útil",
+    s5Lead: "Comprender el funcionamiento técnico de los códigos estáticos es indispensable para su correcta implementación:",
+    s5Items: [
+      {
+        title: "Codificación Directa en Matriz (Estático)",
+        desc: "GenerateCustomQR genera códigos estáticos conformes a la norma ISO/IEC 18004. Tu enlace o texto queda grabado directamente en el dibujo de módulos geométricos."
+      },
+      {
+        title: "Independencia Absoluta de Servidores",
+        desc: "El escaneo se realiza directamente entre la cámara del smartphone y tu servidor de destino. Los códigos no pasan por nuestros servidores y funcionarán para siempre de forma ilimitada."
+      },
+      {
+        title: "Inmutabilidad del Contenido Impreso",
+        desc: "Un código QR estático no puede modificarse tras su impresión. Si cambias de URL o de clave WiFi, deberás generar e imprimir un nuevo código. Verifica siempre los enlaces antes de imprimir."
+      }
+    ],
+    s6Title: "6. Estándares de Impresión y Directrices de Escaneabilidad",
+    s6Lead: "La legibilidad de un código QR depende de factores ópticos, contrastes e iluminación. El usuario debe cumplir las siguientes pautas técnicas:",
+    s6Items: [
+      {
+        title: "Contraste Mínimo (≥ 4.5:1)",
+        desc: "Mantén siempre un contraste elevado entre los puntos oscuros y el fondo claro. Evita combinaciones de bajo contraste (como gris sobre blanco o morado oscuro sobre negro)."
+      },
+      {
+        title: "Zona de Silencio (Margen de 4 Módulos)",
+        desc: "Conserva un margen en blanco de al menos 4 módulos alrededor del código sin invasión de ilustraciones o textos."
+      },
+      {
+        title: "Fórmula de Distancia de Escaneo (10:1)",
+        desc: "El ancho del código debe ser al menos la décima parte de la distancia estimada de escaneo. Para folletos leídos a 20 cm, el QR debe medir al menos 2 cm × 2 cm."
+      },
+      {
+        title: "Tamaño Adecuado del Logotipo Central",
+        desc: "El logo no debe ocupar más del 25% al 30% del área del código y requiere usar el nivel de corrección de error 'H' (Alto) o 'Q' (Cuartil)."
+      },
+      {
+        title: "Arquitectura de Formatos de Exportación",
+        desc: "Los códigos QR estándar sin estilo se exportan como vectores matemáticos puros (<path>). Los códigos personalizados (con puntos redondos, degradados, sombras o logos) empaquetan gráficos de alta fidelidad a 300 DPI dentro del contenedor SVG/PDF para máxima nitidez visual y decodificación óptica fiable."
+      },
+      {
+        title: "Obligación de Prueba de Escaneo Física",
+        desc: "El usuario asume la responsabilidad exclusiva de realizar pruebas de escaneo en pruebas impresas reales con diferentes modelos de teléfono móvil (iOS, Android, cámaras de gama media) antes de imprimir tiradas comerciales masivas."
+      }
+    ],
+    s7Title: "7. Matriz de Dimensiones y Estándares de Impresión",
+    s7Lead: "Consulta nuestra tabla técnica recomendada antes de enviar tus archivos a imprenta:",
+    matrixHeaders: {
+      medium: "Soporte / Aplicación",
+      minSize: "Tamaño Mínimo Recomendado",
+      distance: "Distancia Óptima de Escaneo",
+      format: "Formato de Exportación",
+      tip: "Consejo Técnico Clave"
+    },
+    matrixRows: [
+      {
+        medium: "Tarjetas de Visita (vCard)",
+        minSize: "20 mm × 20 mm",
+        distance: "15 cm – 30 cm",
+        format: "Vector SVG / PNG a 300 DPI",
+        tip: "Utiliza puntos cuadrados clásicos y limita los campos de contacto."
+      },
+      {
+        medium: "Cartas y Menús de Mesa",
+        minSize: "30 mm × 30 mm",
+        distance: "30 cm – 50 cm",
+        format: "Vector SVG / PNG Alta Resolución",
+        tip: "Añade un acabado mate plastificado para evitar reflejos de luz."
+      },
+      {
+        medium: "Packaging y Etiquetas de Producto",
+        minSize: "25 mm × 25 mm",
+        distance: "20 cm – 40 cm",
+        format: "Vector SVG (Escala Infinita)",
+        tip: "Garantiza un margen blanco de 4 módulos en cajas oscuras."
+      },
+      {
+        medium: "Folletos y Pósteres (A4 / A3)",
+        minSize: "50 mm × 50 mm",
+        distance: "0.5 m – 1.5 m",
+        format: "PDF Listo para Imprenta / SVG",
+        tip: "Acompaña el código con un marco y llamada a la acción clara."
+      },
+      {
+        medium: "Stands de Ferias y Roll-ups",
+        minSize: "150 mm × 150 mm",
+        distance: "1.5 m – 3.0 m",
+        format: "Vector SVG (Escala Infinita)",
+        tip: "Sitúa el código a la altura de los ojos (1.3 m – 1.6 m del suelo)."
+      },
+      {
+        medium: "Vallas Publicitarias y Lonas",
+        minSize: "100 cm × 100 cm",
+        distance: "10 m – 15 m",
+        format: "Exportación Vectorial SVG",
+        tip: "Aplica corrección de error 'H' y máximo contraste negro sobre blanco."
+      }
+    ],
+    s8Title: "8. Descargo de Responsabilidad (Servicio 'Tal Cual')",
+    s8Lead: "GenerateCustomQR se proporciona 'tal cual' y según disponibilidad sin garantías de ningún tipo:",
+    s8Items: [
+      {
+        title: "Exclusión de Garantías Implícitas",
+        desc: "En la medida permitida por la ley, excluimos cualquier garantía expresa o implícita de comerciabilidad, idoneidad para un fin determinado o ausencia de infracción."
+      },
+      {
+        title: "Compatibilidad con Sensores Ópticos",
+        desc: "Aunque nuestro motor cumple con la norma ISO/IEC 18004, no garantizamos que dispositivos con lentes dañadas o cámaras antiguas decodifiquen diseños con contraste reducido."
+      },
+      {
+        title: "Disponibilidad Continua",
+        desc: "No garantizamos que el servicio web funcione de forma ininterrumpida o libre de pausas técnicas de mantenimiento."
+      }
+    ],
+    s9Title: "9. Limitación de Responsabilidad",
+    s9Text: "En la máxima medida legal aplicable, GenerateCustomQR, sus desarrolladores, proveedores de infraestructura y afiliados no serán responsables de daños directos, indirectos, consecuentes, punitivos o especiales, incluyendo costes de imprenta, pérdidas de ingresos, campañas publicitarias fallidas o interrupción de negocios derivados del uso del servicio.",
+    s10Title: "10. Obligación de Indemnización",
+    s10Text: "Aceptas indemnizar y mantener indemne a GenerateCustomQR frente a cualquier reclamación de terceros, costes o daños derivados del contenido de tus códigos QR, el uso de marcas registradas en logos subidos o el incumplimiento de estos términos.",
+    s11Title: "11. Enlaces a Terceros y Contenido Externo",
+    s11Text: "GenerateCustomQR no supervisa ni avala los sitios web o recursos a los que enlazan los códigos QR creados por los usuarios, declinando cualquier responsabilidad sobre su seguridad o legalidad.",
+    s12Title: "12. Modificaciones del Servicio y de los Términos",
+    s12Text: "Nos reservamos el derecho de actualizar o mejorar la plataforma en cualquier momento. El uso continuado del sitio tras la publicación de cambios implicará la aceptación de los nuevos términos.",
+    s13Title: "13. Legislación Aplicable, Cesión y Contacto Legal",
+    s13Text: "Si alguna disposición resulta inaplicable, el resto permanecerá en pleno vigor. En caso de fusión, adquisición o transmisión de activos, estos términos y derechos podrán cederse a la entidad adquirente. Para cualquier consulta legal, aviso de derechos de autor (DMCA) o dudas sobre licencias, contáctanos en legal@generatecustomqr.com o a través de nuestra página de contacto en /contact.",
+    faqTitle: "Preguntas Frecuentes sobre Licencias y Términos",
+    faqs: [
+      {
+        q: "¿Puedo usar GenerateCustomQR para proyectos comerciales y venta de productos?",
+        a: "Sí, totalmente. Todos los códigos generados son 100% gratuitos para uso comercial. Eres el dueño de los archivos y puedes venderlos o imprimirlos sin pagar regalías."
+      },
+      {
+        q: "¿Caducan los códigos QR generados pasado un tiempo?",
+        a: "No. Generamos códigos estáticos donde la información está grabada en los píxeles. No caducan nunca y funcionarán de por vida."
+      },
+      {
+        q: "¿Es necesario poner marcas de agua o enlaces de crédito?",
+        a: "No. Nunca añadimos marcas de agua ni exigimos enlaces de atribución en tus códigos QR."
+      },
+      {
+        q: "¿Puedo cambiar el enlace de un código QR ya impreso?",
+        a: "No. Al ser códigos estáticos, la información no se puede modificar a distancia. Si cambias de enlace, debes crear e imprimir un código nuevo."
+      },
+      {
+        q: "¿Quién responde por costes de imprenta si un código no escanea bien?",
+        a: "El usuario es el único responsable de verificar y probar físicamente las muestras impresas antes de imprimir tiradas grandes. GenerateCustomQR no asume costes de impresión."
+      },
+      {
+        q: "¿Hay límite en la cantidad de escaneos permitidos?",
+        a: "No. Al ser códigos estáticos que no pasan por nuestros servidores, dispones de escaneos ilimitados para siempre."
+      }
+    ],
+    ctaTitle: "¿Listo para diseñar tu código QR listo para imprimir?",
+    ctaDesc: "Crea códigos QR profesionales de alto contraste con nuestra herramienta 100% gratuita y sin registro.",
+    ctaBtn: "Abrir Generador de Códigos QR"
   },
   pt: {
     title: "Termos de Uso — GenerateCustomQR",
-    desc: "Termos de serviço e condições de uso do GenerateCustomQR. Gratuito para uso pessoal e comercial sem restrições.",
-    keywords: "termos de uso gerador qr code, licenca comercial qr code gratis, termos de servico qr",
-    heading: "Termos e Condições",
-    lastUpdated: "1 de Janeiro de 2026",
-    s1Title: "1. Aceitação dos Termos",
-    s1Text: "Ao acessar e utilizar o GenerateCustomQR, você concorda com estes Termos e Condições de Uso.",
-    s2Title: "2. Licença Gratuita para Uso Comercial",
-    s2Text: "Todos os QR codes gerados são 100% gratuitos para uso pessoal e comercial. Você detém todos os direitos sobre as imagens criadas e pode utilizá-las livremente sem cobrança de taxas.",
-    s3Title: "3. Uso Aceitável e Conteúdo Proibido",
-    s3Text: "É expressamente proibido utilizar o gerador para criar links maliciosos, golpes virtuais, vírus ou distribuição de conteúdo ilegal.",
-    s4Title: "4. Escaneabilidade, Compatibilidade de Dispositivos e Isenção de Garantias",
-    s4Text: "O serviço é fornecido 'como está' e 'conforme disponível'. Embora nosso gerador siga rigorosamente o padrão ISO/IEC 18004 e utilize verificação por visão computacional, fatores físicos de hardware (resolução da câmera, qualidade óptica, iluminação ambiente) e customizações visuais definidas pelo usuário (baixo contraste, formatos artísticos de pontos ou inclusão de logotipos) podem afetar a leitura em aparelhos legados ou de entrada. É de responsabilidade exclusiva do usuário realizar testes práticos de escaneamento em múltiplos smartphones antes de qualquer produção gráfica ou distribuição em massa.",
-    s5Title: "5. Atualizações da Plataforma",
-    s5Text: "O GenerateCustomQR reserva-se o direito de aprimorar ferramentas e recursos constantemente visando a melhor performance."
+    desc: "Termos de serviço, direitos de uso comercial, política de uso aceitável e diretrizes de impressão do GenerateCustomQR. 100% gratuito para uso comercial.",
+    keywords: "termos de uso gerador qr code, licenca comercial qr code gratis, diretrizes de impressao qr code, licenca qr estatico, termos de servico qr",
+    heading: "Termos e Condições de Uso",
+    badge: "Licença Comercial 100% Gratuita e Termos Abertos",
+    lastUpdated: "Vigência: 1 de Janeiro de 2026",
+    tocTitle: "Índice do Documento",
+    highlights: [
+      {
+        icon: "verified",
+        title: "Uso Comercial 100% Grátis",
+        desc: "Todos os QR codes gerados são gratuitos para produtos comerciais, embalagens, outdoors e entregas a clientes."
+      },
+      {
+        icon: "workspace_premium",
+        title: "Propriedade Integral dos Arquivos",
+        desc: "Você possui todos os direitos sobre as imagens PNG, SVG e PDF baixadas, sem cobrança de royalties."
+      },
+      {
+        icon: "all_inclusive",
+        title: "Códigos Estáticos Permanentes",
+        desc: "Os dados são gravados diretamente na matriz. Os códigos nunca expiram e não dependem dos nossos servidores."
+      },
+      {
+        icon: "print",
+        title: "Responsabilidade de Prova de Impressão",
+        desc: "O usuário é responsável por testar fisicamente as provas impressas em múltiplos celulares antes da produção em massa."
+      }
+    ],
+    toc: [
+      { id: "section-1", title: "1. Aceitação dos Termos e Escopo Contratual" },
+      { id: "section-2", title: "2. Licença Comercial e Titularidade de Arquivos" },
+      { id: "section-3", title: "3. Propriedade Intelectual da Plataforma" },
+      { id: "section-4", title: "4. Política de Uso Aceitável e Proibições" },
+      { id: "section-5", title: "5. Natureza dos QR Codes Estáticos" },
+      { id: "section-6", title: "6. Normas de Impressão e Legibilidade" },
+      { id: "section-7", title: "7. Matriz de Dimensões e Impressão" },
+      { id: "section-8", title: "8. Isenção de Garantias (Serviço 'Como Está')" },
+      { id: "section-9", title: "9. Limitação de Responsabilidade" },
+      { id: "section-10", title: "10. Obrigações de Indenização" },
+      { id: "section-11", title: "11. Destinos de Terceiros e Links Externos" },
+      { id: "section-12", title: "12. Atualizações da Plataforma" },
+      { id: "section-13", title: "13. Legislação Aplicável e Contato" }
+    ],
+    s1Title: "1. Aceitação dos Termos e Escopo Contratual",
+    s1P1: "Estes Termos e Condições constituem um contrato vinculante entre você (individualmente ou representando uma empresa) e a GenerateCustomQR Media & Software Technologies ('GenerateCustomQR', 'nós' ou 'nosso', acessível em generatecustomqr.com), regulando a utilização do nosso gerador e ferramentas de vetorização de QR code.",
+    s1P2: "Ao utilizar nossos serviços ou baixar arquivos gráficos gerados, você declara ter lido, compreendido e concordado integralmente com estes Termos. Caso discorde de qualquer cláusula, solicitamos que interrompa o uso do serviço imediatamente.",
+    s2Title: "2. Licença Comercial e Titularidade dos Arquivos Gerados",
+    s2Lead: "Nossa missão é impulsionar designers, desenvolvedores e negócios com total segurança jurídica:",
+    s2Items: [
+      {
+        title: "Licença Comercial e Pessoal Perpétua",
+        desc: "Todas as imagens e vetores gerados (PNG, SVG e PDF) são 100% livres de royalties para uso pessoal e comercial em âmbito global e perpétuo."
+      },
+      {
+        title: "Propriedade Exclusiva dos Resultados",
+        desc: "Você detém todos os direitos de propriedade intelectual sobre os arquivos criados. O GenerateCustomQR não reivindica direitos autorais sobre seus códigos."
+      },
+      {
+        title: "Sem Royalties ou Cobranças Futuras",
+        desc: "Você pode imprimir, estampar em embalagens, veicular em comerciais de TV ou distribuir sem taxas de licenciamento."
+      },
+      {
+        title: "Sem Exigência de Atribuição",
+        desc: "Não exigimos marcas d'água nem créditos obrigatórios nos seus materiais impressos ou mídias digitais."
+      }
+    ],
+    s3Title: "3. Propriedade Intelectual da Plataforma",
+    s3Lead: "Embora os arquivos baixados sejam de sua propriedade, o GenerateCustomQR detém a propriedade exclusiva da plataforma:",
+    s3Items: [
+      {
+        title: "Código e Tecnologia do Sistema",
+        desc: "O código-fonte, algoritmos de cálculo matricial, interface de usuário, logotipos e molduras SVG pertencem exclusivamente ao GenerateCustomQR."
+      },
+      {
+        title: "Vedação à Clonagem Comercial",
+        desc: "É expressamente proibido clonar, descompilar ou redistribuir nossa aplicação para operar um serviço concorrente com nossa identidade visual."
+      }
+    ],
+    s4Title: "4. Política de Uso Aceitável e Condutas Proibidas",
+    s4Lead: "Para preservar a segurança digital e combater fraudes, é estritamente proibido criar QR codes que apontem para:",
+    s4Items: [
+      {
+        title: "Golpes Virtuais e Phishing ('Quishing')",
+        desc: "Páginas falsas criadas para roubar senhas bancárias ou dados pessoais, ou que iniciem o download automático de vírus e malwares."
+      },
+      {
+        title: "Fraudes Financeiras e Esquemas Ilícitos",
+        desc: "Páginas de golpes de pirâmide, fraudes com criptomoedas ou captação ilegal de recursos."
+      },
+      {
+        title: "Conteúdo Ilegal e Ofensivo",
+        desc: "Materiais que promovam atividades criminosas, discurso de ódio, pedofilia ou violação de propriedade intelectual de terceiros."
+      },
+      {
+        title: "Ataques Automatizados",
+        desc: "Uso de scripts de sobrecarga, raspagem de dados ou ataques de negação de serviço (DDoS) contra nossa infraestrutura."
+      }
+    ],
+    s5Title: "5. Natureza dos QR Codes Estáticos e Vida Útil",
+    s5Lead: "O entendimento técnico dos códigos estáticos é fundamental para sua aplicação prática:",
+    s5Items: [
+      {
+        title: "Codificação Direta na Matriz (Estático)",
+        desc: "Geramos códigos estáticos segundo a norma ISO/IEC 18004. As informações ficam gravadas diretamente nos módulos geométricos pretos e brancos."
+      },
+      {
+        title: "Independência Total dos Nossos Servidores",
+        desc: "A leitura ocorre diretamente entre o smartphone e o site de destino, sem passar pelos nossos servidores. Os códigos funcionarão para sempre de forma ilimitada."
+      },
+      {
+        title: "Imutabilidade Pós-Impressão",
+        desc: "Um QR code estático não pode ser alterado após a impressão gráfica. Caso seu site mude de endereço, será necessário gerar e imprimir um novo código."
+      }
+    ],
+    s6Title: "6. Normas de Impressão e Diretrizes de Legibilidade",
+    s6Lead: "A leitura do QR code depende de contraste óptico e iluminação ambiente. O usuário deve seguir as recomendações técnicas:",
+    s6Items: [
+      {
+        title: "Contraste Mínimo (≥ 4.5:1)",
+        desc: "Mantenha sempre alto contraste entre os módulos escuros e o fundo claro. Evite combinações de baixo contraste."
+      },
+      {
+        title: "Área de Silêncio (Margem de 4 Módulos)",
+        desc: "Mantenha uma borda livre de pelo menos 4 módulos ao redor de todo o QR code, sem interferência de elementos gráficos."
+      },
+      {
+        title: "Regra da Distância de Leitura (10:1)",
+        desc: "A largura física do código deve ter no mínimo 1/10 da distância esperada de leitura. Para cardápios a 20 cm, use pelo menos 2 cm × 2 cm."
+      },
+      {
+        title: "Dimensionamento do Logotipo Central",
+        desc: "O logotipo central não deve cobrir mais de 25% a 30% da área total e exige nível de correção de erro 'H' (Alto) ou 'Q' (Quartil)."
+      },
+      {
+        title: "Arquitetura dos Formatos de Exportação",
+        desc: "Códigos QR padrão sem personalização são exportados em vetores matemáticos puros (<path>). Códigos personalizados (com pontos estilizados, gradientes, sombras ou logos) integram gráficos de alta fidelidade a 300 DPI nos formatos SVG/PDF para máxima nitidez e leitura óptica precisa."
+      },
+      {
+        title: "Obrigação de Teste Prático de Impressão",
+        desc: "O usuário é exclusivamente responsável por testar impressões físicas reais com múltiplos modelos de smartphone antes de rodar tiragens gráficas comerciais em larga escala."
+      }
+    ],
+    s7Title: "7. Matriz de Dimensões e Padrões de Impressão",
+    s7Lead: "Confira nossa tabela de especificações antes de enviar arquivos para a gráfica:",
+    matrixHeaders: {
+      medium: "Aplicação / Suporte",
+      minSize: "Tamanho Mínimo Recomendado",
+      distance: "Distância Óptima de Leitura",
+      format: "Formato de Exportação",
+      tip: "Dica Técnica Fundamental"
+    },
+    matrixRows: [
+      {
+        medium: "Cartões de Visita (vCard)",
+        minSize: "20 mm × 20 mm",
+        distance: "15 cm – 30 cm",
+        format: "Vetor SVG / PNG 300 DPI",
+        tip: "Utilize pontos quadrados simples e limite a quantidade de campos."
+      },
+      {
+        medium: "Cardápios de Restaurante",
+        minSize: "30 mm × 30 mm",
+        distance: "30 cm – 50 cm",
+        format: "Vetor SVG / PNG Alta Resolução",
+        tip: "Aplique laminação fosca para eliminar reflexos de iluminação."
+      },
+      {
+        medium: "Embalagens de Produtos",
+        minSize: "25 mm × 25 mm",
+        distance: "20 cm – 40 cm",
+        format: "Vetor SVG (Escala Infinita)",
+        tip: "Garanta uma margem branca de 4 módulos em caixas escuras."
+      },
+      {
+        medium: "Panfletos e Cartazes (A4 / A3)",
+        minSize: "50 mm × 50 mm",
+        distance: "0.5 m – 1.5 m",
+        format: "PDF Gráfico / Vetor SVG",
+        tip: "Acompanhe de moldura com chamada clara ('ESCANEIE AQUI')."
+      },
+      {
+        medium: "Banners de Eventos e Roll-ups",
+        minSize: "150 mm × 150 mm",
+        distance: "1.5 m – 3.0 m",
+        format: "Vetor SVG (Escala Infinita)",
+        tip: "Posicione na altura dos olhos (1.3 m – 1.6 m do chão)."
+      },
+      {
+        medium: "Outdoors e Fachadas",
+        minSize: "100 cm × 100 cm",
+        distance: "10 m – 15 m",
+        format: "Exportação Vetorial SVG",
+        tip: "Selecione correção de erro 'H' e máximo contraste preto no branco."
+      }
+    ],
+    s8Title: "8. Isenção de Garantias (Serviço 'Como Está')",
+    s8Lead: "O GenerateCustomQR é fornecido 'como está' e 'conforme disponível' sem garantias de qualquer natureza:",
+    s8Items: [
+      {
+        title: "Isenção de Garantias Implícitas",
+        desc: "Nos limites da legislação aplicável, excluímos quaisquer garantias expressas ou implícitas de comercialização ou adequação a fins específicos."
+      },
+      {
+        title: "Compatibilidade de Hardware Óptico",
+        desc: "Embora sigamos rigorosamente a norma ISO/IEC 18004, não garantimos a leitura em aparelhos com lentes danificadas ou câmeras legadas em códigos com baixo contraste."
+      },
+      {
+        title: "Disponibilidade Ininterrupta",
+        desc: "Não garantimos funcionamento 100% ininterrupto ou livre de manutenções técnicas temporárias no site."
+      }
+    ],
+    s9Title: "9. Limitação de Responsabilidade",
+    s9Text: "Na extensão máxima permitida pela lei, o GenerateCustomQR, seus desenvolvedores e provedores de hospedagem não serão responsáveis por danos diretos, indiretos, perdas de receitas, custos de impressão gráfica ou interrupção de negócios decorrentes do uso da plataforma.",
+    s10Title: "10. Obrigações de Indenização",
+    s10Text: "Você concorda em defender e indenizar o GenerateCustomQR perante reclamações de terceiros decorrentes do conteúdo de seus códigos QR ou violações destes Termos.",
+    s11Title: "11. Destinos de Terceiros e Links Externos",
+    s11Text: "Não monitoramos nem nos responsabilizamos pela segurança ou legalidade dos sites vinculados através dos QR codes criados pelos usuários.",
+    s12Title: "12. Atualizações da Plataforma e Termos",
+    s12Text: "Podemos atualizar as funcionalidades e estes Termos a qualquer momento. A continuidade no uso do serviço após alterações caracteriza sua concordância.",
+    s13Title: "13. Legislação Aplicável, Cessão e Contato Jurídico",
+    s13Text: "Caso qualquer cláusula destes Termos seja considerada inválida ou inexequível, as demais disposições permanecerão em pleno vigor. Em caso de fusão, aquisição ou alienação de ativos, estes termos e direitos poderão ser cedidos à entidade sucessora. Para esclarecimentos jurídicos, notificações de direitos autorais ou dúvidas sobre licenciamento, entre em contato através de legal@generatecustomqr.com ou pelo formulário em /contact.",
+    faqTitle: "Perguntas Frequentes sobre Licenças e Uso",
+    faqs: [
+      {
+        q: "Posso usar o GenerateCustomQR em projetos comerciais de clientes e produtos à venda?",
+        a: "Sim, com certeza. Todos os códigos gerados são 100% gratuitos para uso comercial sem cobrança de taxas ou necessidade de autorização prévia."
+      },
+      {
+        q: "Os QR codes criados expiram após 30 dias ou um ano?",
+        a: "Não. Criamos QR codes estáticos com dados gravados diretamente no desenho da matriz. Eles nunca expiram e funcionam para sempre."
+      },
+      {
+        q: "Preciso colocar marcas d'água ou créditos para o site?",
+        a: "Não. Nunca adicionamos marcas d'água nem exigimos créditos nos seus materiais."
+      },
+      {
+        q: "Posso mudar o link de um QR code que já foi impresso?",
+        a: "Não. Por serem códigos estáticos, os dados não podem ser alterados remotamente. Para mudar o link, é preciso gerar e imprimir um novo código."
+      },
+      {
+        q: "Quem arca com custos de gráfica se o material impresso não ler bem?",
+        a: "O usuário é o único responsável por realizar testes práticos em provas físicas antes de imprimir tiragens em massa. O site não se responsabiliza por despesas de impressão."
+      },
+      {
+        q: "Existe limite de escaneamentos para os códigos?",
+        a: "Não. Por não passarem pelos nossos servidores, os códigos possuem leituras ilimitadas vitalícias."
+      }
+    ],
+    ctaTitle: "Pronto para criar seu QR code profissional?",
+    ctaDesc: "Crie códigos QR nítidos e de alto contraste com nossa plataforma 100% gratuita e sem cadastro.",
+    ctaBtn: "Abrir o Estúdio de Criação"
   },
   de: {
     title: "Nutzungsbedingungen — GenerateCustomQR",
-    desc: "Nutzungsbedingungen und Lizenzbestimmungen von GenerateCustomQR. Kostenlos für private und gewerbliche Nutzung ohne Einschränkungen.",
-    keywords: "nutzungsbedingungen qr code generator, kommerzielle nutzung qr code lizenz, agb qr code",
+    desc: "Nutzungsbedingungen, gewerbliche Lizenzrechte, Richtlinien für zulässige Nutzung und Druckvorgaben für GenerateCustomQR. 100% kostenlos für kommerzielle Zwecke.",
+    keywords: "nutzungsbedingungen qr code generator, kommerzielle nutzung qr code lizenz, druckrichtlinien qr code, lizenz statischer qr code, agb qr code",
     heading: "Nutzungsbedingungen",
-    lastUpdated: "1. Januar 2026",
-    s1Title: "1. Geltungsbereich und Annahme",
-    s1Text: "Mit dem Zugriff auf GenerateCustomQR akzeptieren Sie diese Nutzungsbedingungen vollumfänglich.",
-    s2Title: "2. Kostenlose & Gewerbliche Lizenz",
-    s2Text: "Alle mit GenerateCustomQR erzeugten QR-Codes sind uneingeschränkt und lizenzfrei für private wie kommerzielle Vorhaben nutzbar. Sie besitzen alle Rechte an den Bilddateien.",
-    s3Title: "3. Unzulässige Nutzung",
-    s3Text: "Die Erstellung von QR-Codes mit betrügerischen (Phishing), schädlichen (Malware) oder gesetzeswidrigen Inhalten ist streng untersagt.",
-    s4Title: "4. Scanbarkeit, Gerätekompatibilität und Haftungsausschluss",
-    s4Text: "Der Dienst wird ohne Mängelgewähr und nach Verfügbarkeit bereitgestellt. Obwohl unsere QR-Engine den ISO/IEC 18004-Standards entspricht und automatisierte Computervision-Prüfungen durchführt, können Hardwarefaktoren (Kamerasensorauflösung, optische Qualität, Lichtverhältnisse) sowie benutzerdefinierte Designs (geringe Kontraste, künstlerische Punktformen oder Logos) die Lesbarkeit auf älteren oder leistungsschwächeren Mobilgeräten beeinträchtigen. Nutzer tragen die alleinige Verantwortung dafür, vor dem kommerziellen Druck oder der Massenvervielfältigung physische Probescans auf mehreren Smartphones durchzuführen.",
-    s5Title: "5. Änderungen der Plattform",
-    s5Text: "GenerateCustomQR behält sich das Recht vor, Funktionen kontinuierlich zu aktualisieren und zu optimieren."
+    badge: "100% Kostenlose Kommerzielle Lizenz & Transparente Bedingungen",
+    lastUpdated: "Gültig ab: 1. Januar 2026",
+    tocTitle: "Inhaltsübersicht",
+    highlights: [
+      {
+        icon: "verified",
+        title: "100% Freie Kommerzielle Nutzung",
+        desc: "Alle erzeugten QR-Codes sind uneingeschränkt für gewerbliche Produkte, Verpackungen, Plakate und Kundenaufträge nutzbar."
+      },
+      {
+        icon: "workspace_premium",
+        title: "Volles Eigentum an Bilddateien",
+        desc: "Sie besitzen sämtliche Rechte an den heruntergeladenen PNG-, SVG- und PDF-Grafiken ohne Lizenzgebühren."
+      },
+      {
+        icon: "all_inclusive",
+        title: "Dauerhafte Statische Codes",
+        desc: "Die Daten werden direkt in die Pixelmatrix codiert. Sie verfallen niemals und sind unabhängig von unseren Servern."
+      },
+      {
+        icon: "print",
+        title: "Druckprüfpflicht des Nutzers",
+        desc: "Der Nutzer ist verpflichtet, vor dem Massendruck physische Probescans auf mehreren Mobilgeräten durchzuführen."
+      }
+    ],
+    toc: [
+      { id: "section-1", title: "1. Geltungsbereich und Vertragsannahme" },
+      { id: "section-2", title: "2. Gewerbliche Lizenz & Rechte an Dateien" },
+      { id: "section-3", title: "3. Urheberrechte an der Plattform" },
+      { id: "section-4", title: "4. Zulässige Nutzung und Verbote" },
+      { id: "section-5", title: "5. Funktionsweise statischer QR-Codes" },
+      { id: "section-6", title: "6. Druckstandards und Scanbarkeit" },
+      { id: "section-7", title: "7. Druck- und Größenmatrix" },
+      { id: "section-8", title: "8. Haftungsausschluss (Bereitstellung wie gesehen)" },
+      { id: "section-9", title: "9. Haftungsbeschränkung" },
+      { id: "section-10", title: "10. Freistellungsverpflichtung" },
+      { id: "section-11", title: "11. Externe Ziel-Links und Inhalte" },
+      { id: "section-12", title: "12. Änderungen der Plattform" },
+      { id: "section-13", title: "13. Anwendbares Recht, Salvatorische Klausel & Kontakt" }
+    ],
+    s1Title: "1. Geltungsbereich und Vertragsannahme",
+    s1P1: "Diese Nutzungsbedingungen stellen eine verbindliche Vereinbarung zwischen Ihnen (als Einzelperson oder als Vertreter eines Unternehmens) und GenerateCustomQR Media & Software Technologies ('GenerateCustomQR', 'wir', 'uns' oder 'unser', erreichbar unter generatecustomqr.com) dar, die den Zugriff auf und die Nutzung unseres QR-Code-Generators und unserer Vektortools regelt.",
+    s1P2: "Durch den Zugriff auf unsere Website, das Erstellen von QR-Codes oder das Herunterladen von Bilddateien erklären Sie sich mit diesen Bedingungen uneingeschränkt einverstanden. Sollten Sie den Bedingungen nicht zustimmen, ist die Nutzung des Dienstes einzustellen.",
+    s2Title: "2. Gewerbliche Lizenz & Rechte an erzeugten Bilddateien",
+    s2Lead: "Wir gewähren Ihnen umfassende und rechtssichere Nutzungsrechte an allen erstellten Grafiken:",
+    s2Items: [
+      {
+        title: "Unbefristete Kommerzielle und Private Lizenz",
+        desc: "Alle über GenerateCustomQR erzeugten Bilddateien (PNG-Raster, SVG-Vektoren, PDF-Druckdateien) sind weltweit, zeitlich unbegrenzt und zu 100% lizenzgebührenfrei für private wie gewerbliche Zwecke nutzbar."
+      },
+      {
+        title: "Volles Eigentum an Ihren Resultaten",
+        desc: "Sie behalten sämtliche Rechte an den heruntergeladenen Bilddateien. GenerateCustomQR erhebt keinerlei Urheberrechtsansprüche auf Ihre erstellten QR-Codes."
+      },
+      {
+        title: "Keine Lizenz- oder Folgegebühren",
+        desc: "Sie dürfen Ihre QR-Codes ohne zusätzliche Kosten auf Verpackungen drucken, in Büchern veröffentlichen, auf Plakaten plazieren oder in TV-Beiträgen zeigen."
+      },
+      {
+        title: "Keine Kennzeichnungspflicht (Attribution)",
+        desc: "Es ist nicht erforderlich, Wasserzeichen, Quellenangaben oder Links zu GenerateCustomQR auf Ihren Druckerzeugnissen oder Medien anzubringen."
+      }
+    ],
+    s3Title: "3. Urheberrechte an der Plattform",
+    s3Lead: "Während Sie die erzeugten Bilddateien uneingeschränkt besitzen, verbleiben die Rechte an der Software bei uns:",
+    s3Items: [
+      {
+        title: "Plattformsoftware & Quellcode",
+        desc: "Der Programmcode, die Matrix-Algorithmen, das Interface-Design, Logos und benutzerdefinierte SVG-Rahmengeometrien sind das geistige Eigentum von GenerateCustomQR."
+      },
+      {
+        title: "Untersagung von Klon-Diensten",
+        desc: "Es ist untersagt, die Benutzeroberfläche oder den Code zu kopieren, um einen konkurrierenden Dienst unter unserer Marke oder mit unseren Grafiken zu betreiben."
+      }
+    ],
+    s4Title: "4. Zulässige Nutzung und Verbotene Inhalte",
+    s4Lead: "Um die Sicherheit im Internet zu gewährleisten, ist die Erstellung von QR-Codes mit folgenden Inhalten streng untersagt:",
+    s4Items: [
+      {
+        title: "Phishing & Schadsoftware ('Quishing')",
+        desc: "Zieladressen, die dem Diebstahl von Zugangsdaten, Passwörtern oder Bankdaten dienen, sowie Links, die automatische Malware- oder Ransomware-Downloads auslösen."
+      },
+      {
+        title: "Betrügerische & Illegale Angebote",
+        desc: "Seiten mit Schneeballsystemen, Krypto-Betrugsmaschen oder unerlaubten Finanzdienstleistungen."
+      },
+      {
+        title: "Rechtswidrige & Diffamierende Inhalte",
+        desc: "Inhalte, die gegen geltendes Recht verstoßen, Hassrede, Terrorismus, Jugendschutzverletzungen oder Urheberrechtsverletzungen darstellen."
+      },
+      {
+        title: "Automatisierter Plattform-Missbrauch",
+        desc: "Einsatz von Scraping-Bots oder Denial-of-Service-Angriffen (DDoS) zur absichtlichen Überlastung unserer Server-Infrastruktur."
+      }
+    ],
+    s5Title: "5. Funktionsweise statischer QR-Codes & Lebensdauer",
+    s5Lead: "Das Verständnis der technischen Funktionsweise statischer QR-Codes ist entscheidend für den erfolgreichen Einsatz:",
+    s5Items: [
+      {
+        title: "Direkte Matrix-Codierung (Statisch)",
+        desc: "GenerateCustomQR erzeugt standardkonforme statische 2D-Barcodes nach ISO/IEC 18004. Die Nutzinformationen (URL, Text, WLAN-Passwort) sind direkt in das Punktmuster eingearbeitet."
+      },
+      {
+        title: "Vollständige Serverunabhängigkeit",
+        desc: "Beim Scan kommuniziert das Smartphone direkt mit der Zielseite. Da keine Weiterleitung über unsere Server erfolgt, funktionieren die Codes dauerhaft, selbst wenn unsere Website offline sein sollte."
+      },
+      {
+        title: "Keine nachträgliche Änderbarkeit",
+        desc: "Gedruckte statische QR-Codes können nachträglich nicht umgeleitet werden. Ändert sich Ihre Ziel-URL, muss ein neuer Code gedruckt werden. Prüfen Sie URLs vor dem Druck sorgfältig."
+      }
+    ],
+    s6Title: "6. Druckstandards & Richtlinien zur Scanbarkeit",
+    s6Lead: "Die Scanbarkeit eines QR-Codes hängt von optischem Kontrast, Druckauflösung und Umgebungslicht ab. Beachten Sie folgende Druckvorgaben:",
+    s6Items: [
+      {
+        title: "Mindestkontrast (≥ 4.5:1)",
+        desc: "Gewährleisten Sie stets einen hohen Helligkeitsunterschied zwischen den dunklen Modulen und dem hellen Hintergrund. Vermeiden Sie kontrastarme Farbkombinationen."
+      },
+      {
+        title: "Ruhezone einhalten (4 Module Rand)",
+        desc: "Halten Sie an allen vier Seiten einen unbedruckten Rand von mindestens 4 Modulbreiten frei von Grafiken oder Texten."
+      },
+      {
+        title: "Abstandsformel für die Dimensionierung (10:1)",
+        desc: "Die Breite des QR-Codes sollte mindestens ein Zehntel des Leseabstands betragen. Für Flyer (20 cm Leseabstand) mindestens 2 cm × 2 cm; für Plakate (2 m Abstand) mindestens 20 cm."
+      },
+      {
+        title: "Logo-Größe im Zentrum begrenzen",
+        desc: "Ein zentrales Logo darf maximal 25% bis 30% der Fläche verdecken und erfordert die Fehlerkorrekturstufe 'H' (High) oder 'Q' (Quartile)."
+      },
+      {
+        title: "Exportformate & Vektor-Architektur",
+        desc: "Standard-QR-Codes ohne Styling werden als reine mathematische Vektorpfade (<path>) ausgegeben. Individuell gestaltete QR-Codes (mit speziellen Punktmustern, Farbverläufen, Schatten oder Logos) nutzen hochauflösende 300-DPI-Grafikcontainer in SVG und PDF für maximale optische Detailschärfe und zuverlässige Scanbarkeit."
+      },
+      {
+        title: "Verpflichtende Physische Probescans",
+        desc: "Der Nutzer trägt die alleinige Verantwortung dafür, vor dem kommerziellen Massendruck physische Probedrucke mit verschiedenen Mobilgeräten (iOS, Android, Standardkameras) unter realen Lichtbedingungen zu testen."
+      }
+    ],
+    s7Title: "7. Druckstandards & Größenmatrix",
+    s7Lead: "Orientieren Sie sich an unserer technischen Größentabelle für den professionellen Druck:",
+    matrixHeaders: {
+      medium: "Anwendungsbereich / Medium",
+      minSize: "Empfohlene Mindestgröße",
+      distance: "Optimaler Scanabstand",
+      format: "Empfohlenes Exportformat",
+      tip: "Wichtiger Praxistipp"
+    },
+    matrixRows: [
+      {
+        medium: "Visitenkarten (vCard)",
+        minSize: "20 mm × 20 mm",
+        distance: "15 cm – 30 cm",
+        format: "SVG-Vektor / PNG 300 DPI",
+        tip: "Verwenden Sie klassische quadratische Punkte für hohe Dichte."
+      },
+      {
+        medium: "Speisekarten & Tischaufsteller",
+        minSize: "30 mm × 30 mm",
+        distance: "30 cm – 50 cm",
+        format: "SVG-Vektor / High-Res PNG",
+        tip: "Nutzen Sie matte Laminierung, um Deckenlicht-Reflexionen zu vermeiden."
+      },
+      {
+        medium: "Produktverpackungen & Etiketten",
+        minSize: "25 mm × 25 mm",
+        distance: "20 cm – 40 cm",
+        format: "SVG-Vektor (Beliebig skalierbar)",
+        tip: "Achten Sie auf dunklen Schachteln auf eine weiße 4-Modul-Ruhezone."
+      },
+      {
+        medium: "Flyer & Plakate (A4 / A3)",
+        minSize: "50 mm × 50 mm",
+        distance: "0.5 m – 1.5 m",
+        format: "Druckfertiges PDF / SVG",
+        tip: "Kombinieren Sie den Code mit einem klaren Call-to-Action-Rahmen."
+      },
+      {
+        medium: "Messewände & Roll-ups",
+        minSize: "150 mm × 150 mm",
+        distance: "1.5 m – 3.0 m",
+        format: "SVG-Vektor (Beliebig skalierbar)",
+        tip: "Positionieren Sie den Code auf Augenhöhe (1,3 m – 1,6 m über Boden)."
+      },
+      {
+        medium: "Großflächenplakate & Fassaden",
+        minSize: "100 cm × 100 cm",
+        distance: "10 m – 15 m",
+        format: "SVG-Vektorexport",
+        tip: "Wählen Sie Fehlerkorrektur 'H' und maximalen Schwarz-Weiß-Kontrast."
+      }
+    ],
+    s8Title: "8. Haftungsausschluss (Bereitstellung wie gesehen)",
+    s8Lead: "GenerateCustomQR wird ohne Mängelgewähr und nach Verfügbarkeit bereitgestellt:",
+    s8Items: [
+      {
+        title: "Ausschluss stillschweigender Gewährleistungen",
+        desc: "Soweit gesetzlich zulässig, schließen wir alle ausdrücklichen oder stillschweigenden Gewährleistungen hinsichtlich Marktgängigkeit oder Eignung für einen bestimmten Zweck aus."
+      },
+      {
+        title: "Hardware- und Kamerasensorkompatibilität",
+        desc: "Obwohl unsere Codes dem Standard ISO/IEC 18004 entsprechen, können wir nicht garantieren, dass jede veraltete oder beschädigte Handykamera benutzerdefinierte Designs fehlerfrei scannt."
+      },
+      {
+        title: "Verfügbarkeit des Webdienstes",
+        desc: "Wir garantieren keine ununterbrochene oder fehlerfreie Verfügbarkeit des Online-Generators zu jeder Zeit."
+      }
+    ],
+    s9Title: "9. Haftungsbeschränkung",
+    s9Text: "Soweit gesetzlich zulässig, haften GenerateCustomQR, die Entwickler und Hosting-Provider nicht für direkte, indirekte, Folge- oder Begleitschäden, einschließlich entgangenen Gewinns, Druckkosten für Fehldrucke, Werbeausgaben oder Betriebsunterbrechungen, die aus der Nutzung des Dienstes resultieren.",
+    s10Title: "10. Freistellungsverpflichtung",
+    s10Text: "Sie verpflichten sich, GenerateCustomQR von allen Ansprüchen Dritter, Schäden und Kosten freizustellen, die aus Ihren QR-Code-Inhalten, hochgeladenen Markenlogos oder einer Verletzung dieser Nutzungsbedingungen entstehen.",
+    s11Title: "11. Externe Ziel-Links und fremde Inhalte",
+    s11Text: "GenerateCustomQR kontrolliert und billigt keine externen Webseiten, die in Nutzer-QR-Codes verlinkt sind, und übernimmt keine Verantwortung für deren Sicherheit oder Rechtmäßigkeit.",
+    s12Title: "12. Änderungen der Plattform und Bedingungen",
+    s12Text: "Wir behalten uns das Recht vor, Funktionen und diese Bedingungen jederzeit zu aktualisieren. Die fortgesetzte Nutzung gilt als Annahme der geänderten Bedingungen.",
+    s13Title: "13. Anwendbares Recht, Rechtsnachfolge & Kontakt",
+    s13Text: "Sollte eine Bestimmung dieser AGB unwirksam oder undurchsetzbar sein, bleibt die Gültigkeit der übrigen Bestimmungen unberührt. Im Falle einer Fusion, Übernahme oder Veräußerung von Vermögenswerten können diese Bedingungen an den Rechtsnachfolger übertragen werden. Für rechtliche Anfragen, Urheberrechtshinweise (DMCA) oder Lizenzierungsfragen wenden Sie sich bitte an legal@generatecustomqr.com oder nutzen Sie unser Kontaktformular unter /contact.",
+    faqTitle: "Häufig gestellte Fragen zu Lizenzen und AGB",
+    faqs: [
+      {
+        q: "Darf ich mit GenerateCustomQR erstellte Codes für kommerzielle Kundenaufträge und Produkte nutzen?",
+        a: "Ja, absolut. Alle generierten QR-Codes sind zu 100% gebührenfrei für gewerbliche Zwecke nutzbar. Sie besitzen alle Rechte an den Bilddateien."
+      },
+      {
+        q: "Laufen die erstellten QR-Codes nach 30 Tagen oder einem Jahr ab?",
+        a: "Nein. Wir erzeugen dauerhafte statische QR-Codes. Da die Daten direkt in die Pixel codiert sind, gibt es kein Ablaufdatum."
+      },
+      {
+        q: "Muss ich ein Wasserzeichen oder einen Link zu Ihrer Website einfügen?",
+        a: "Nein. Wir fügen niemals Wasserzeichen oder verpflichtende Quellenangaben in Ihre QR-Codes ein."
+      },
+      {
+        q: "Kann ich das Linkziel eines bereits gedruckten QR-Codes nachträglich ändern?",
+        a: "Nein. Bei statischen QR-Codes ist der Link fest im Pixelmuster verankert. Für ein neues Ziel muss ein neuer Code erstellt und gedruckt werden."
+      },
+      {
+        q: "Wer haftet für Druckkosten, falls ein gedrucktes Plakat nicht scannt?",
+        a: "Der Nutzer trägt die alleinige Verantwortung für die Durchführung physischer Probedruck-Scans vor der Massenproduktion. GenerateCustomQR haftet nicht für Druckkosten."
+      },
+      {
+        q: "Gibt es ein Limit für die Anzahl der Scans?",
+        a: "Nein. Da die Codes statisch sind und nicht über unsere Server laufen, haben Sie unbegrenzte Scans auf Lebenszeit."
+      }
+    ],
+    ctaTitle: "Bereit für Ihren druckfertigen QR-Code?",
+    ctaDesc: "Erstellen Sie professionelle, kontrastreiche QR-Codes mit unserem 100% kostenlosen Online-Studio.",
+    ctaBtn: "QR-Code Generator starten"
   }
 };
 
@@ -94,21 +1094,197 @@ const breadcrumbs = [
   keywords={pageMeta.keywords}
   breadcrumbs={breadcrumbs}
   heading={pageMeta.heading}
+  badge={pageMeta.badge}
   lastUpdated={pageMeta.lastUpdated}
   icon="gavel"
+  faqs={pageMeta.faqs}
 >
-  <h2>{pageMeta.s1Title}</h2>
-  <p>{pageMeta.s1Text}</p>
+  <!-- Summary Highlights Grid -->
+  <div class="legal-highlight-grid not-prose">
+    {pageMeta.highlights.map((item) => (
+      <div class="legal-highlight-card">
+        <div class="legal-card-icon">
+          <span class="material-symbols-outlined text-xl">{item.icon}</span>
+        </div>
+        <h4>{item.title}</h4>
+        <p>{item.desc}</p>
+      </div>
+    ))}
+  </div>
 
-  <h2>{pageMeta.s2Title}</h2>
-  <p>{pageMeta.s2Text}</p>
+  <!-- Table of Contents -->
+  <nav class="legal-toc-card not-prose" aria-label="Table of Contents">
+    <div class="legal-toc-title">
+      <span class="material-symbols-outlined text-primary text-xl">list_alt</span>
+      <span>{pageMeta.tocTitle}</span>
+    </div>
+    <ul class="legal-toc-list">
+      {pageMeta.toc.map((item) => (
+        <li>
+          <a href={`#${item.id}`} class="legal-toc-link">
+            <span class="legal-toc-number">•</span>
+            <span>{item.title}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
 
-  <h2>{pageMeta.s3Title}</h2>
-  <p>{pageMeta.s3Text}</p>
+  <!-- Section 1 -->
+  <h2 id="section-1">{pageMeta.s1Title}</h2>
+  <p>{pageMeta.s1P1}</p>
+  <p>{pageMeta.s1P2}</p>
 
-  <h2>{pageMeta.s4Title}</h2>
-  <p>{pageMeta.s4Text}</p>
+  <div class="legal-callout legal-callout-success">
+    <p><strong>{pageMeta.badge}</strong>: {pageMeta.s1P1}</p>
+  </div>
 
-  <h2>{pageMeta.s5Title}</h2>
-  <p>{pageMeta.s5Text}</p>
+  <!-- Section 2 -->
+  <h2 id="section-2">{pageMeta.s2Title}</h2>
+  <p>{pageMeta.s2Lead}</p>
+  <ul>
+    {pageMeta.s2Items.map((item) => (
+      <li>
+        <strong>{item.title}:</strong> {item.desc}
+      </li>
+    ))}
+  </ul>
+
+  <!-- Section 3 -->
+  <h2 id="section-3">{pageMeta.s3Title}</h2>
+  <p>{pageMeta.s3Lead}</p>
+  <ul>
+    {pageMeta.s3Items.map((item) => (
+      <li>
+        <strong>{item.title}:</strong> {item.desc}
+      </li>
+    ))}
+  </ul>
+
+  <!-- Section 4 -->
+  <h2 id="section-4">{pageMeta.s4Title}</h2>
+  <p>{pageMeta.s4Lead}</p>
+  <ul>
+    {pageMeta.s4Items.map((item) => (
+      <li>
+        <strong>{item.title}:</strong> {item.desc}
+      </li>
+    ))}
+  </ul>
+
+  <!-- Section 5 -->
+  <h2 id="section-5">{pageMeta.s5Title}</h2>
+  <p>{pageMeta.s5Lead}</p>
+  <ul>
+    {pageMeta.s5Items.map((item) => (
+      <li>
+        <strong>{item.title}:</strong> {item.desc}
+      </li>
+    ))}
+  </ul>
+
+  <!-- Section 6 -->
+  <h2 id="section-6">{pageMeta.s6Title}</h2>
+  <p>{pageMeta.s6Lead}</p>
+  <ul>
+    {pageMeta.s6Items.map((item) => (
+      <li>
+        <strong>{item.title}:</strong> {item.desc}
+      </li>
+    ))}
+  </ul>
+
+  <div class="legal-callout legal-callout-warning">
+    <p><strong>Pre-Press Verification Requirement:</strong> Always test-scan your physical printed proofs with at least 2 different smartphone models prior to initiating mass commercial printing.</p>
+  </div>
+
+  <!-- Section 7: Print Sizing Matrix -->
+  <h2 id="section-7">{pageMeta.s7Title}</h2>
+  <p>{pageMeta.s7Lead}</p>
+
+  <div class="legal-table-container">
+    <table class="legal-table">
+      <thead>
+        <tr>
+          <th>{pageMeta.matrixHeaders.medium}</th>
+          <th>{pageMeta.matrixHeaders.minSize}</th>
+          <th>{pageMeta.matrixHeaders.distance}</th>
+          <th>{pageMeta.matrixHeaders.format}</th>
+          <th>{pageMeta.matrixHeaders.tip}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {pageMeta.matrixRows.map((row) => (
+          <tr>
+            <td><strong>{row.medium}</strong></td>
+            <td><span class="legal-badge legal-badge-info">{row.minSize}</span></td>
+            <td>{row.distance}</td>
+            <td><span class="legal-badge legal-badge-success">{row.format}</span></td>
+            <td>{row.tip}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Section 8 -->
+  <h2 id="section-8">{pageMeta.s8Title}</h2>
+  <p>{pageMeta.s8Lead}</p>
+  <ul>
+    {pageMeta.s8Items.map((item) => (
+      <li>
+        <strong>{item.title}:</strong> {item.desc}
+      </li>
+    ))}
+  </ul>
+
+  <!-- Section 9 -->
+  <h2 id="section-9">{pageMeta.s9Title}</h2>
+  <p>{pageMeta.s9Text}</p>
+
+  <!-- Section 10 -->
+  <h2 id="section-10">{pageMeta.s10Title}</h2>
+  <p>{pageMeta.s10Text}</p>
+
+  <!-- Section 11 -->
+  <h2 id="section-11">{pageMeta.s11Title}</h2>
+  <p>{pageMeta.s11Text}</p>
+
+  <!-- Section 12 -->
+  <h2 id="section-12">{pageMeta.s12Title}</h2>
+  <p>{pageMeta.s12Text}</p>
+
+  <!-- Section 13 -->
+  <h2 id="section-13">{pageMeta.s13Title}</h2>
+  <p>{pageMeta.s13Text}</p>
+
+  <!-- FAQs Section -->
+  <h2 id="terms-faqs">{pageMeta.faqTitle}</h2>
+  <div class="legal-faq-section not-prose">
+    {pageMeta.faqs.map((faq) => (
+      <details class="legal-faq-item">
+        <summary class="legal-faq-summary">
+          <span>{faq.q}</span>
+          <span class="material-symbols-outlined legal-faq-chevron">expand_more</span>
+        </summary>
+        <div class="legal-faq-content">
+          <p>{faq.a}</p>
+        </div>
+      </details>
+    ))}
+  </div>
+
+  <!-- Bottom CTA Card -->
+  <div class="legal-cta-card not-prose">
+    <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+      <span class="material-symbols-outlined text-2xl">qr_code_2</span>
+    </div>
+    <h3>{pageMeta.ctaTitle}</h3>
+    <p>{pageMeta.ctaDesc}</p>
+    <a href={getLocalizedUrl(locale, '/')} class="legal-btn-primary">
+      <span class="material-symbols-outlined text-lg">rocket_launch</span>
+      <span>{pageMeta.ctaBtn}</span>
+    </a>
+  </div>
 </LegalLayout>
+

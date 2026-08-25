@@ -11,7 +11,18 @@ export function useDownloadHandlers() {
   } = useDownloadStore();
   const { setToast } = useToast();
 
-  const hasComplexStyling = settings.gradient_type !== "Solid Color" || settings.effect_shadow !== "none";
+  const hasComplexStyling = (
+    settings.frame_style !== "none" ||
+    settings.text_style !== "none" ||
+    settings.dots_style !== "square" ||
+    settings.eye_frame_style !== "square" ||
+    settings.eyeball_style !== "square" ||
+    settings.gradient_type !== "Solid Color" ||
+    (settings.preset_logo && settings.preset_logo !== "None") ||
+    Boolean(settings.logo_image) ||
+    settings.effect_shadow !== "none" ||
+    (settings.canvas_border_width || 0) > 0
+  );
 
   const getEffectiveFilename = (ext: string) => {
     const base = customFilename.trim() || `GenerateCustomQR-${settings.contentType}`;

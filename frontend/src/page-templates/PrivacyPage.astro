@@ -9,74 +9,1176 @@ interface Props {
 
 const { locale } = Astro.props;
 
-const metaMap: Record<Locale, { title: string; desc: string; heading: string; keywords?: string; s1Title: string; s1Text: string; s2Title: string; s2Text: string; s3Title: string; s3Text: string; s4Title: string; s4Text: string; s5Title: string; s5Text: string; lastUpdated: string }> = {
+interface PageData {
+  title: string;
+  desc: string;
+  keywords: string;
+  heading: string;
+  badge: string;
+  lastUpdated: string;
+  tocTitle: string;
+  highlights: Array<{ icon: string; title: string; desc: string }>;
+  toc: Array<{ id: string; title: string }>;
+  s1Title: string;
+  s1P1: string;
+  s1P2: string;
+  s1Controller: string;
+  s2Title: string;
+  s2Lead: string;
+  s2Items: Array<{ title: string; desc: string }>;
+  s3Title: string;
+  s3Lead: string;
+  s3Items: Array<{ title: string; desc: string }>;
+  s4Title: string;
+  s4Lead: string;
+  matrixHeaders: { category: string; data: string; purpose: string; storage: string; retention: string };
+  matrixRows: Array<{ category: string; data: string; purpose: string; storage: string; retention: string }>;
+  s5Title: string;
+  s5Lead: string;
+  s5Items: Array<{ title: string; desc: string }>;
+  s5ClearTip: string;
+  s6Title: string;
+  s6Lead: string;
+  s6Items: Array<{ name: string; role: string; privacyUrl: string }>;
+  s7Title: string;
+  s7Lead: string;
+  s7Items: Array<{ title: string; desc: string }>;
+  s8Title: string;
+  s8Text: string;
+  s9Title: string;
+  s9Lead: string;
+  s9Rights: Array<{ title: string; desc: string }>;
+  s10Title: string;
+  s10Lead: string;
+  s10Points: Array<{ title: string; desc: string }>;
+  s11Title: string;
+  s11Text: string;
+  s12Title: string;
+  s12Text: string;
+  s13Title: string;
+  s13Lead: string;
+  s13Items: Array<{ title: string; desc: string }>;
+  s14Title: string;
+  s14Text: string;
+  s15Title: string;
+  s15Text: string;
+  s16Title: string;
+  s16Text: string;
+  faqTitle: string;
+  faqs: Array<{ q: string; a: string }>;
+  ctaTitle: string;
+  ctaDesc: string;
+  ctaBtn: string;
+}
+
+const metaMap: Record<Locale, PageData> = {
   en: {
     title: "Privacy Policy — GenerateCustomQR",
-    desc: "GenerateCustomQR is a privacy-first tool. All QR code generation runs locally in your browser. We never collect or store your encoded data.",
-    keywords: "qr code privacy policy, private qr code generator, safe qr code maker, no tracking qr codes",
+    desc: "GenerateCustomQR is a zero-knowledge, privacy-first QR code generator. All QR matrix calculations run in your browser. We never collect or store your encoded data.",
+    keywords: "qr code privacy policy, zero knowledge qr code, private qr code maker, gdpr compliant qr generator, no tracking qr codes, client side qr code",
     heading: "Privacy Policy",
-    lastUpdated: "January 1, 2026",
-    s1Title: "1. Privacy First Commitment",
-    s1Text: "GenerateCustomQR is designed from the ground up to respect your privacy. All QR code matrix calculations and rendering execute directly on your local device or via secure, non-logging memory buffers. We do not maintain any user databases or track individual creation habits.",
-    s2Title: "2. Zero Data Collection on Encoded Content",
-    s2Text: "We do not store, intercept, or sell the data you encode into QR codes (such as Wi-Fi passwords, contact information, personal URLs, or confidential messages). What you create remains exclusively on your machine.",
-    s3Title: "3. Local Browser Storage",
-    s3Text: "We utilize local browser storage (localStorage) exclusively to preserve your active studio design preferences (such as selected colors, dot shapes, and custom logo uploads) for your convenience. This data never leaves your device.",
-    s4Title: "4. Third-Party Analytics & Cookies",
-    s4Text: "We use standard, privacy-respecting website analytics (Google Analytics 4) to monitor aggregate traffic and improve platform performance. No personally identifiable information (PII) is captured or shared with commercial advertising networks.",
-    s5Title: "5. Your Rights Under GDPR & CCPA",
-    s5Text: "Because we do not collect or store personal data or user accounts, there are no personal profiles to delete or export. You have full sovereignty over your data simply by clearing your browser cache."
+    badge: "Privacy-First & Zero-Knowledge Architecture",
+    lastUpdated: "Effective Date: January 1, 2026",
+    tocTitle: "Table of Contents",
+    highlights: [
+      {
+        icon: "shield",
+        title: "100% Client-Side Engine",
+        desc: "All QR matrix calculations, SVG rendering, and styling execute directly in your browser sandbox."
+      },
+      {
+        icon: "lock_open",
+        title: "Zero Payload Storage",
+        desc: "We never store, intercept, inspect, or sell your Wi-Fi passwords, contact details, URLs, or text."
+      },
+      {
+        icon: "inventory_2",
+        title: "Local Preferences Only",
+        desc: "Browser localStorage is used solely on your device to remember your active UI theme and color presets."
+      },
+      {
+        icon: "gavel",
+        title: "GDPR & CCPA Aligned",
+        desc: "Complete respect for global privacy standards with zero behavioral profiling and zero data broker sharing."
+      }
+    ],
+    toc: [
+      { id: "section-1", title: "1. Identification of Data Controller & Scope" },
+      { id: "section-2", title: "2. Zero-Knowledge Payload Guarantee" },
+      { id: "section-3", title: "3. Technical Telemetry We Collect & Why" },
+      { id: "section-4", title: "4. Data Processing & Storage Matrix" },
+      { id: "section-5", title: "5. Local Browser Storage (localStorage)" },
+      { id: "section-6", title: "6. Third-Party Infrastructure Providers" },
+      { id: "section-7", title: "7. Cross-Border & International Data Transfers" },
+      { id: "section-8", title: "8. Do Not Track (DNT) & Global Privacy Control (GPC)" },
+      { id: "section-9", title: "9. European Privacy Rights (GDPR & UK GDPR)" },
+      { id: "section-10", title: "10. California Privacy Notice (CCPA / CPRA)" },
+      { id: "section-11", title: "11. Brazilian Privacy Rights (LGPD)" },
+      { id: "section-12", title: "12. Children's Privacy Protection (COPPA)" },
+      { id: "section-13", title: "13. Data Security & 72-Hour Breach Protocol" },
+      { id: "section-14", title: "14. Business Transfers & Mergers" },
+      { id: "section-15", title: "15. External Links & Third-Party Websites" },
+      { id: "section-16", title: "16. Policy Revisions & Legal Contact" }
+    ],
+    s1Title: "1. Identification of Data Controller & Scope",
+    s1P1: "At GenerateCustomQR (accessible via generatecustomqr.com), we believe privacy is a fundamental human right, not an optional luxury. The internet has become oversaturated with tools that require intrusive user registrations, sneakily redirect your links through dynamic tracking servers, or monetize your confidential data.",
+    s1P2: "We built GenerateCustomQR on a strict Zero-Knowledge Architecture. Our platform operates as a client-side graphic synthesis engine. When you create a QR code on our site, your data is converted into mathematical matrix points directly inside your web browser's volatile memory. What you type, upload, or generate remains strictly yours.",
+    s1Controller: "For the purposes of the General Data Protection Regulation (GDPR), the UK Data Protection Act 2018, and global privacy legislation, the Data Controller responsible for the operation of this platform and the limited technical telemetry described herein is GenerateCustomQR Media & Software Technologies. You may contact our designated Data Protection desk at legal@generatecustomqr.com.",
+    s2Title: "2. Zero-Knowledge Payload Guarantee (What We Never Collect)",
+    s2Lead: "We deliberately engineered our application so that sensitive user payloads never touch our backend databases or persistent storage servers. Specifically:",
+    s2Items: [
+      {
+        title: "Wi-Fi Network Credentials",
+        desc: "When you generate a Wi-Fi QR code, your network SSID, WPA/WPA2/WPA3 password, and encryption type are processed locally. We have zero ability to view or store your home or corporate passwords."
+      },
+      {
+        title: "vCard & Contact Details",
+        desc: "Personal names, phone numbers, email addresses, company titles, and physical street addresses remain entirely on your device."
+      },
+      {
+        title: "Confidential Messages & Plain Text",
+        desc: "Any plain text, SMS messages, or email body copy you input is encoded directly into binary QR modules without transit logging."
+      },
+      {
+        title: "Custom Brand Logos & Images",
+        desc: "When you upload a logo to embed in the center of your QR code, the image file is handled via browser memory Object URLs (Blob) or temporary client-side canvas buffers. It is never uploaded to cloud storage."
+      },
+      {
+        title: "Scan Tracking & Location Interception",
+        desc: "We generate static QR codes according to ISO/IEC 18004 standards. We do not insert intermediary tracking redirects (e.g., short-URLs) that spy on your users' GPS locations, IP addresses, or scan times."
+      }
+    ],
+    s3Title: "3. Technical Telemetry We Collect & Why",
+    s3Lead: "To ensure fast page delivery, mitigate automated DDoS attacks, and diagnose infrastructure health, our hosting network and edge CDN collect minimal, non-identifying technical telemetry:",
+    s3Items: [
+      {
+        title: "Infrastructure Edge Logs",
+        desc: "Standard HTTP server headers (such as requesting IP address, user-agent string, referrer URL, and timestamp) are processed transiently by edge networks (e.g. Cloudflare) to prevent brute-force attacks and bot abuse. These logs are automatically rotated and purged within 30 days."
+      },
+      {
+        title: "Aggregated Anonymous Analytics",
+        desc: "We utilize privacy-configured Google Analytics 4 to monitor platform stability, page load latencies, and macro-level usage trends (e.g., popular dot styles). IP anonymization is permanently enabled, advertising features and user-id cross-device tracking are disabled, and data is stored only in aggregate form."
+      }
+    ],
+    s4Title: "4. Data Processing & Storage Matrix",
+    s4Lead: "For complete transparency, the following matrix outlines every category of data associated with our service:",
+    matrixHeaders: {
+      category: "Data Category",
+      data: "Specific Elements",
+      purpose: "Legitimate Purpose",
+      storage: "Storage Location",
+      retention: "Retention Period"
+    },
+    matrixRows: [
+      {
+        category: "User QR Payloads",
+        data: "URLs, Wi-Fi keys, vCard info, Text, Email, SMS",
+        purpose: "2D Barcode rasterization",
+        storage: "Browser Memory (Client-Side)",
+        retention: "Purged immediately when tab closes"
+      },
+      {
+        category: "Uploaded Logo Images",
+        data: "PNG, JPG, SVG, WebP graphic assets",
+        purpose: "Center emblem canvas compositing",
+        storage: "Client Browser Memory / Blob URL",
+        retention: "Purged when session ends"
+      },
+      {
+        category: "Studio UI Preferences",
+        data: "Theme (dark/light), selected colors, dot preset ID",
+        purpose: "User convenience & design persistence",
+        storage: "Local Device (localStorage)",
+        retention: "Until cleared by user"
+      },
+      {
+        category: "Infrastructure Logs",
+        data: "Anonymized IP, User-Agent, HTTP Status Code",
+        purpose: "DDoS mitigation & edge security",
+        storage: "Edge CDN Security Buffers",
+        retention: "14 to 30 days (Auto-purged)"
+      },
+      {
+        category: "Usage Telemetry",
+        data: "Page views, country-level aggregate visits",
+        purpose: "Platform performance optimization",
+        storage: "Google Analytics 4 (Anonymized)",
+        retention: "14 months (Standard aggregate)"
+      }
+    ],
+    s5Title: "5. Local Browser Storage (localStorage)",
+    s5Lead: "GenerateCustomQR does not use persistent tracking cookies or invasive device fingerprinting. We utilize standard Web Storage (localStorage) solely to enhance your design workflow:",
+    s5Items: [
+      {
+        title: "Theme Preference",
+        desc: "Remembers whether you prefer Dark Mode or Light Mode across visits."
+      },
+      {
+        title: "Custom Palette Presets",
+        desc: "Saves your customized foreground, background, and gradient color codes so you don't have to re-enter hex codes every time."
+      },
+      {
+        title: "Last Selected Configuration",
+        desc: "Preserves your chosen dot shapes, eye frame geometries, and error correction settings for quick iteration."
+      }
+    ],
+    s5ClearTip: "You can clear all saved studio preferences at any time by opening your browser's Developer Tools (F12) > Application > Local Storage > Clear All, or by clicking the 'Reset' button in the Studio toolbar.",
+    s6Title: "6. Third-Party Service Providers & Subprocessors",
+    s6Lead: "We rely on reputable infrastructure partners to deliver high-performance static web pages. Each provider complies with strict data protection standards:",
+    s6Items: [
+      {
+        name: "Cloudflare, Inc.",
+        role: "Global CDN delivery, DNS routing, and DDoS / WAF bot defense.",
+        privacyUrl: "https://www.cloudflare.com/privacypolicy/"
+      },
+      {
+        name: "Google Analytics (Google LLC)",
+        role: "Anonymized web traffic metrics with IP masking and disabled ad profiling.",
+        privacyUrl: "https://policies.google.com/privacy"
+      },
+      {
+        name: "Google Fonts",
+        role: "Optimized web font stylesheets for modern typography rendering.",
+        privacyUrl: "https://developers.google.com/fonts/faq/privacy"
+      }
+    ],
+    s7Title: "7. Cross-Border & International Data Transfers",
+    s7Lead: "Because our platform utilizes global Content Delivery Networks (CDNs) and anonymized analytics infrastructure, minimal technical telemetry (such as masked IP addresses) may be routed through or processed on servers situated in the United States and other jurisdictions outside the European Economic Area (EEA) and the United Kingdom:",
+    s7Items: [
+      {
+        title: "EU-U.S. Data Privacy Framework (DPF) & UK Extension",
+        desc: "Our primary infrastructure service providers (Cloudflare, Inc. and Google LLC) are certified under the EU-U.S. Data Privacy Framework, the UK Extension to the EU-U.S. DPF, and the Swiss-U.S. DPF as administered by the U.S. Department of Commerce."
+      },
+      {
+        title: "Standard Contractual Clauses (SCCs)",
+        desc: "Where transfers are not covered by an adequacy decision or DPF certification, cross-border data flows are safeguarded by European Commission approved Standard Contractual Clauses (SCCs) providing enforceable data subject rights and effective legal remedies."
+      }
+    ],
+    s8Title: "8. Do Not Track (DNT) & Global Privacy Control (GPC) Signals",
+    s8Text: "Under California law (CalOPPA / CPRA) and global privacy conventions, websites must disclose how they respond to browser 'Do Not Track' (DNT) and Global Privacy Control (GPC) signals. Because GenerateCustomQR operates on a strict Zero-Knowledge model—we never track users across third-party websites, never create behavioral profiling databases, and never sell personal data—our platform inherently honors the spirit and protections of DNT and GPC signals by default.",
+    s9Title: "9. European Privacy Rights (GDPR & UK GDPR)",
+    s9Lead: "For individuals residing in the European Economic Area (EEA) and the United Kingdom, our data handling complies strictly with Regulation (EU) 2016/679 (GDPR) and the UK Data Protection Act 2018:",
+    s9Rights: [
+      {
+        title: "Legal Bases for Processing",
+        desc: "Our processing of transient edge logs relies on Art. 6(1)(f) GDPR (Legitimate Interests in maintaining website security, uptime, and fraud defense)."
+      },
+      {
+        title: "Right to Access & Rectification (Articles 15 & 16)",
+        desc: "Because we do not maintain user accounts or personal profiles, we do not store searchable databases of your personal data."
+      },
+      {
+        title: "Right to Erasure & Forgottenness (Article 17)",
+        desc: "No personal records exist on our servers. You hold total sovereignty over your local data by clearing your browser cache."
+      },
+      {
+        title: "Right to Restrict & Object to Processing (Articles 18 & 21)",
+        desc: "You may disable local storage and block script telemetry at any time via browser settings or content blockers without losing core QR generator functionality."
+      }
+    ],
+    s10Title: "10. California Privacy Notice (CCPA / CPRA)",
+    s10Lead: "Under the California Consumer Privacy Act (CCPA) as amended by the California Privacy Rights Act (CPRA), California residents are entitled to specific disclosures:",
+    s10Points: [
+      {
+        title: "No Sale or Sharing of Personal Information",
+        desc: "GenerateCustomQR has never sold, rented, or traded personal information to data brokers or advertising exchanges, and we will never do so in the future."
+      },
+      {
+        title: "No Profiling or Cross-Context Behavioral Ads",
+        desc: "We do not track you across third-party websites or construct consumer profiles for targeted advertising."
+      },
+      {
+        title: "Non-Discrimination",
+        desc: "We provide identical, 100% free QR generation capabilities to all users regardless of whether they exercise their privacy rights."
+      }
+    ],
+    s11Title: "11. Brazilian Privacy Rights (LGPD)",
+    s11Text: "In accordance with Brazil's Lei Geral de Proteção de Dados (LGPD - Law No. 13.709/2018), users located in Brazil enjoy complete autonomy over their data. Because GenerateCustomQR executes QR synthesis locally on your device without transmitting personal data to remote databases, your personal data is safeguarded by default.",
+    s12Title: "12. Children's Privacy Protection (COPPA & Global Standards)",
+    s12Text: "Our service is not directed to children under 13 years of age (or under 16 in the European Union). We do not knowingly solicit, collect, or retain personal data from children. Because GenerateCustomQR does not require account creation or email verification, no child's personal identity is ever requested or stored.",
+    s13Title: "13. Data Security & 72-Hour Breach Notification Protocol",
+    s13Lead: "We implement defense-in-depth technical measures and maintaining comprehensive incident response procedures:",
+    s13Items: [
+      {
+        title: "End-to-End TLS 1.3 Encryption",
+        desc: "All traffic between your browser and our edge servers is encrypted using modern TLS 1.3 protocols with Perfect Forward Secrecy."
+      },
+      {
+        title: "Strict Content Security Policy (CSP)",
+        desc: "We enforce robust CSP headers to prevent Cross-Site Scripting (XSS), data injection, and malicious third-party script execution."
+      },
+      {
+        title: "72-Hour Security Incident Protocol",
+        desc: "In the unlikely event of a security incident affecting our edge infrastructure providers that compromises transient technical server logs, we maintain procedures to notify relevant data protection supervisory authorities within 72 hours in full compliance with Article 33 of the GDPR and applicable global breach notification standards."
+      }
+    ],
+    s14Title: "14. Business Transfers & Corporate Transactions",
+    s14Text: "If GenerateCustomQR or substantially all of its assets are acquired, merged, or transferred to another legal entity in the course of a corporate restructuring or asset sale, the limited technical telemetry and server logs described in this policy would be included among the transferred assets. Any acquiring entity will remain bound by the provisions of this Privacy Policy, and our foundational Zero-Knowledge architecture commitment shall remain fully binding on any successor.",
+    s15Title: "15. External Links & Third-Party Websites Disclaimer",
+    s15Text: "Our website, technical documentation, and blog articles may contain links to external websites, software tools, and technical resources that are not owned or operated by GenerateCustomQR. We exercise no control over, and assume no responsibility for, the content, privacy practices, or data collection policies of any third-party websites. We encourage you to read the privacy policy of any external website you visit.",
+    s16Title: "16. Policy Revisions & Legal Inquiries",
+    s16Text: "We may update this Privacy Policy periodically to reflect technological advancements, regulatory changes, or platform enhancements. When modifications occur, the 'Last Updated' timestamp at the top of this page will be revised. For any privacy inquiries, legal notifications, or data protection questions, please reach out to our legal desk at legal@generatecustomqr.com or via our Contact Page at /contact.",
+    faqTitle: "Frequently Asked Privacy Questions",
+    faqs: [
+      {
+        q: "Who is the legal Data Controller for GenerateCustomQR?",
+        a: "GenerateCustomQR Media & Software Technologies acts as the legal Data Controller for the platform. For legal inquiries or regulatory questions, contact legal@generatecustomqr.com."
+      },
+      {
+        q: "Can GenerateCustomQR or third parties see what I encode into my QR codes?",
+        a: "No. All QR code generation is executed client-side directly in your browser's memory. Your URLs, text, passwords, or vCard details never touch our backend databases."
+      },
+      {
+        q: "Do you store the custom logos or images I upload?",
+        a: "No. When you upload a custom logo, it is loaded into your browser's temporary memory (Blob URL) and drawn directly onto the canvas. The file is never sent to our servers or saved in cloud storage."
+      },
+      {
+        q: "Does GenerateCustomQR track when or where people scan my QR codes?",
+        a: "No. We generate static QR codes that directly encode your destination payload. There are no intermediary redirect servers or tracking pixels, so scan events are completely private."
+      },
+      {
+        q: "How does GenerateCustomQR handle international data transfers?",
+        a: "All QR generation runs on your device. Edge telemetry is routed through certified US infrastructure providers under the EU-U.S. Data Privacy Framework (DPF) and Standard Contractual Clauses (SCCs)."
+      },
+      {
+        q: "Is GenerateCustomQR compliant with GDPR, CCPA, and global privacy standards?",
+        a: "Yes. By operating on a Zero-Knowledge, client-side model, we ensure zero PII collection, zero data sales, and full compliance with European GDPR, California CCPA/CPRA, and Brazilian LGPD regulations."
+      }
+    ],
+    ctaTitle: "Have Questions About Our Privacy Architecture?",
+    ctaDesc: "We believe in total transparency. If you need technical verification or have questions regarding data security, our legal team is here to assist.",
+    ctaBtn: "Contact Privacy Team"
   },
   es: {
     title: "Política de Privacidad — GenerateCustomQR",
-    desc: "GenerateCustomQR prioriza tu privacidad. La generación de códigos QR se realiza localmente en tu navegador sin almacenar datos.",
-    keywords: "politica de privacidad qr, generador qr privado, generador codigos qr seguro, privacidad qr",
+    desc: "GenerateCustomQR es un generador de códigos QR con arquitectura de conocimiento cero. Toda la generación se realiza en tu navegador sin almacenar datos.",
+    keywords: "politica de privacidad qr, generador qr seguro, privacidad codigo qr, generador qr rgpd, qr sin rastreo, generador qr privado",
     heading: "Política de Privacidad",
-    lastUpdated: "1 de Enero de 2026",
-    s1Title: "1. Compromiso de Privacidad Absoluta",
-    s1Text: "GenerateCustomQR está diseñado desde sus cimientos para respetar tu privacidad. Los cálculos y renderizados del código QR se ejecutan directamente en tu dispositivo o en memoria sin almacenamiento.",
-    s2Title: "2. Cero Recolección de Datos Codificados",
-    s2Text: "No almacenamos, interceptamos ni vendemos los datos que introduces en tus códigos QR (claves de WiFi, datos de contacto, enlaces o mensajes). Lo que creas permanece exclusivamente en tu equipo.",
-    s3Title: "3. Almacenamiento Local en el Navegador",
-    s3Text: "Utilizamos el almacenamiento local de tu navegador (localStorage) únicamente para guardar tus preferencias de diseño activas (colores, formas de puntos, logos subidos). Esta información nunca sale de tu dispositivo.",
-    s4Title: "4. Analítica Agregada y Cookies",
-    s4Text: "Utilizamos analíticas estándar sin recopilación de información personal identificable para monitorizar el rendimiento global de la plataforma.",
-    s5Title: "5. Derechos del Usuario (RGPD)",
-    s5Text: "Al no recopilar datos personales ni requerir registro de cuentas, no existen perfiles que eliminar. Puedes borrar cualquier preferencia almacenada simplemente limpiando la caché de tu navegador."
+    badge: "Arquitectura de Privacidad Absoluta y Conocimiento Cero",
+    lastUpdated: "Fecha de Entrada en Vigor: 1 de Enero de 2026",
+    tocTitle: "Índice de Contenidos",
+    highlights: [
+      {
+        icon: "shield",
+        title: "Motor 100% en el Navegador",
+        desc: "El cálculo matricial, renderizado SVG y diseño se ejecutan directamente en la memoria de tu dispositivo."
+      },
+      {
+        icon: "lock_open",
+        title: "Cero Almacenamiento de Datos",
+        desc: "Nunca almacenamos, interceptamos ni comercializamos tus contraseñas WiFi, contactos o enlaces."
+      },
+      {
+        icon: "inventory_2",
+        title: "Preferencias Locales Únicamente",
+        desc: "El almacenamiento local (localStorage) se usa exclusivamente para recordar tu tema y paletas de color."
+      },
+      {
+        icon: "gavel",
+        title: "Conformidad RGPD y CCPA",
+        desc: "Cumplimiento estricto de las leyes globales de privacidad sin elaboración de perfiles comerciales."
+      }
+    ],
+    toc: [
+      { id: "section-1", title: "1. Identificación del Responsable y Ámbito" },
+      { id: "section-2", title: "2. Garantía de Conocimiento Cero" },
+      { id: "section-3", title: "3. Telemetría Técnica y Finalidad" },
+      { id: "section-4", title: "4. Matriz de Tratamiento y Conservación" },
+      { id: "section-5", title: "5. Almacenamiento Local (localStorage)" },
+      { id: "section-6", title: "6. Proveedores y Subencargados" },
+      { id: "section-7", title: "7. Transferencias Internacionales de Datos" },
+      { id: "section-8", title: "8. Señales Do Not Track (DNT) y Global Privacy Control" },
+      { id: "section-9", title: "9. Derechos Europeos de Privacidad (RGPD)" },
+      { id: "section-10", title: "10. Aviso de Privacidad de California (CCPA)" },
+      { id: "section-11", title: "11. Derechos de Privacidad en Brasil (LGPD)" },
+      { id: "section-12", title: "12. Protección de Menores (COPPA)" },
+      { id: "section-13", title: "13. Seguridad y Protocolo de Brechas (72 Horas)" },
+      { id: "section-14", title: "14. Transmisiones Societarias y Fusiones" },
+      { id: "section-15", title: "15. Enlaces a Terceros y Descargo" },
+      { id: "section-16", title: "16. Revisiones y Contacto Legal" }
+    ],
+    s1Title: "1. Identificación del Responsable del Tratamiento y Ámbito",
+    s1P1: "En GenerateCustomQR (accesible en generatecustomqr.com), consideramos que la privacidad es un derecho fundamental irrenunciable. La web está saturada de herramientas que exigen registros invasivos, redirigen tus enlaces a través de servidores intermediarios de rastreo o comercializan datos confidenciales.",
+    s1P2: "Diseñamos GenerateCustomQR bajo una estricta Arquitectura de Conocimiento Cero. Toda la síntesis de códigos QR se procesa en el lado del cliente (frontend). Cuando diseñas un código QR, tus datos se convierten en módulos binarios directamente en la memoria volátil de tu navegador.",
+    s1Controller: "A los efectos del Reglamento General de Protección de Datos (RGPD) y la normativa aplicable, el Responsable del Tratamiento de Datos (Data Controller) es GenerateCustomQR Media & Software Technologies. Para cualquier consulta legal, puedes contactar con nuestro delegado de protección de datos en legal@generatecustomqr.com.",
+    s2Title: "2. Garantía de Conocimiento Cero (Lo que NUNCA Recopilamos)",
+    s2Lead: "Nuestra infraestructura ha sido diseñada para que la información sensible jamás llegue a servidores persistentes. Específicamente:",
+    s2Items: [
+      {
+        title: "Claves de Redes Wi-Fi",
+        desc: "El nombre de red (SSID), clave WPA/WPA2/WPA3 y tipo de cifrado se procesan exclusivamente en tu navegador."
+      },
+      {
+        title: "Tarjetas de Contacto vCard / MeCard",
+        desc: "Nombres, teléfonos, direcciones de correo y datos corporativos jamás salen de tu equipo."
+      },
+      {
+        title: "Mensajes Confidenciales y Texto",
+        desc: "Cualquier texto plano, SMS o cuerpo de correo se codifica de forma directa sin registros de tránsito."
+      },
+      {
+        title: "Logotipos y Gráficos Subidos",
+        desc: "Las imágenes subidas se gestionan mediante objetos Blob en memoria local del navegador, sin subirse a la nube."
+      },
+      {
+        title: "Rastreo de Escaneos y Geolocalización",
+        desc: "Generamos códigos QR estáticos conforme a la norma ISO/IEC 18004, sin enlaces intermedios que recopilen datos de escaneo."
+      }
+    ],
+    s3Title: "3. Telemetría Técnica Recopilada y su Finalidad",
+    s3Lead: "Para garantizar la velocidad del servicio, mitigar ataques de denegación de servicio (DDoS) y asegurar la estabilidad de la red, recopilamos telemetría técnica mínima no identificable:",
+    s3Items: [
+      {
+        title: "Registros de Servidor y Red Edge",
+        desc: "Cabeceras HTTP estándar (dirección IP, agente de usuario, fecha y hora) procesadas temporalmente por Cloudflare para bloquear tráfico malicioso. Se purgan automáticamente en un plazo máximo de 30 días."
+      },
+      {
+        title: "Analítica Agregada Anónima",
+        desc: "Utilizamos Google Analytics 4 con anonimización de IP obligatoria y funciones publicitarias desactivadas para monitorizar el rendimiento técnico global de la web."
+      }
+    ],
+    s4Title: "4. Matriz de Tratamiento y Conservación de Datos",
+    s4Lead: "A continuación se detalla con total transparencia el tratamiento de datos en nuestra plataforma:",
+    matrixHeaders: {
+      category: "Categoría de Datos",
+      data: "Elementos Específicos",
+      purpose: "Finalidad Legítima",
+      storage: "Lugar de Almacenamiento",
+      retention: "Periodo de Conservación"
+    },
+    matrixRows: [
+      {
+        category: "Contenido del QR",
+        data: "URLs, claves WiFi, vCard, texto, correos, SMS",
+        purpose: "Rasterizado del código bidimensional",
+        storage: "Memoria del Navegador (Cliente)",
+        retention: "Eliminado al cerrar la pestaña"
+      },
+      {
+        category: "Logos Subidos",
+        data: "Imágenes PNG, JPG, SVG, WebP",
+        purpose: "Composición del logo en el canvas",
+        storage: "Memoria Local del Navegador (Blob)",
+        retention: "Eliminado al finalizar la sesión"
+      },
+      {
+        category: "Preferencias del Estudio",
+        data: "Tema oscuro/claro, paletas de colores, estilos",
+        purpose: "Comodidad del usuario y persistencia",
+        storage: "Dispositivo Local (localStorage)",
+        retention: "Hasta que el usuario lo limpie"
+      },
+      {
+        category: "Registros de Red",
+        data: "IP anonimizada, User-Agent, código HTTP",
+        purpose: "Seguridad y mitigación DDoS",
+        storage: "Buffers de Seguridad Edge CDN",
+        retention: "14 a 30 días (Automático)"
+      },
+      {
+        category: "Telemetría de Uso",
+        data: "Páginas vistas, visitas agregadas por país",
+        purpose: "Optimización del rendimiento",
+        storage: "Google Analytics 4 (Anonimizado)",
+        retention: "14 meses (Agregado estándar)"
+      }
+    ],
+    s5Title: "5. Almacenamiento Local en el Navegador (localStorage)",
+    s5Lead: "GenerateCustomQR no emplea cookies de rastreo de terceros ni técnicas de huella digital. Usamos Web Storage (localStorage) únicamente para:",
+    s5Items: [
+      {
+        title: "Preferencia de Tema",
+        desc: "Recuerda si prefieres el modo oscuro o claro en futuras visitas."
+      },
+      {
+        title: "Paletas Personalizadas",
+        desc: "Guarda tus códigos hexadecimales favoritos para que no tengas que escribirlos cada vez."
+      },
+      {
+        title: "Última Configuración Activa",
+        desc: "Conserva tus formas de puntos y marcos elegidos para agilizar tu flujo de trabajo."
+      }
+    ],
+    s5ClearTip: "Puedes borrar todas las preferencias guardadas en cualquier momento desde las herramientas de desarrollador de tu navegador (F12 > Aplicación > Almacenamiento local) o pulsando el botón 'Restablecer' en el estudio.",
+    s6Title: "6. Proveedores de Servicios y Subencargados",
+    s6Lead: "Colaboramos con proveedores de infraestructura tecnológica líderes que cumplen rigurosamente la normativa de protección de datos:",
+    s6Items: [
+      {
+        name: "Cloudflare, Inc.",
+        role: "Distribución CDN global, enrutamiento DNS y protección contra ataques DDoS.",
+        privacyUrl: "https://www.cloudflare.com/privacypolicy/"
+      },
+      {
+        name: "Google Analytics (Google LLC)",
+        role: "Métricas de tráfico agregadas y anónimas con enmascaramiento de IP.",
+        privacyUrl: "https://policies.google.com/privacy"
+      },
+      {
+        name: "Google Fonts",
+        role: "Hojas de estilo optimizadas para fuentes tipográficas web.",
+        privacyUrl: "https://developers.google.com/fonts/faq/privacy"
+      }
+    ],
+    s7Title: "7. Transferencias Internacionales de Datos",
+    s7Lead: "Dado que utilizamos redes globales de distribución de contenido y análisis de rendimiento, la telemetría técnica mínima se procesa mediante proveedores con sede en EE.UU.:",
+    s7Items: [
+      {
+        title: "Marco de Privacidad de Datos UE-EE.UU. (DPF)",
+        desc: "Nuestros proveedores clave (Cloudflare y Google) están certificados bajo el Data Privacy Framework avalado por la Comisión Europea y el Departamento de Comercio de EE.UU."
+      },
+      {
+        title: "Cláusulas Contractuales Tipo (SCCs)",
+        desc: "Complementariamente, los flujos transfronterizos se rigen por las Cláusulas Contractuales Tipo de la Comisión Europea garantizando plenas garantías y derechos exigibles."
+      }
+    ],
+    s8Title: "8. Señales Do Not Track (DNT) y Global Privacy Control (GPC)",
+    s8Text: "Conforme a la legislación de California (CalOPPA / CPRA) y los estándares internacionales de privacidad, los sitios web deben declarar cómo responden a las señales 'Do Not Track' (DNT) y 'Global Privacy Control' (GPC). Dado que GenerateCustomQR opera bajo una arquitectura de conocimiento cero —sin rastreo entre sitios de terceros, sin elaboración de perfiles y sin venta de datos personales—, nuestra plataforma respeta de forma intrínseca la privacidad del usuario con independencia del estado de las señales DNT o GPC de su navegador.",
+    s9Title: "9. Derechos de los Usuarios en la Unión Europea (RGPD)",
+    s9Lead: "Para los usuarios residentes en el Espacio Económico Europeo (EEE), nuestro tratamiento cumple con el Reglamento (UE) 2016/679 (RGPD):",
+    s9Rights: [
+      {
+        title: "Bases Jurídicas del Tratamiento",
+        desc: "El registro transitorio de red se ampara en el Art. 6(1)(f) del RGPD (Interés Legítimo en garantizar la seguridad del sitio web)."
+      },
+      {
+        title: "Derecho de Acceso y Rectificación (Artículos 15 y 16)",
+        desc: "Dado que no creamos perfiles ni bases de datos de usuarios, no almacenamos información personal que consultar."
+      },
+      {
+        title: "Derecho de Supresión (Derecho al Olvido - Artículo 17)",
+        desc: "No existen registros en nuestros servidores. Tienes control total borrando el historial de tu propio navegador."
+      },
+      {
+        title: "Derecho de Oposición y Limitación (Artículos 18 y 21)",
+        desc: "Puedes deshabilitar el almacenamiento local o usar bloqueadores de contenido sin perder la capacidad de generar códigos QR."
+      }
+    ],
+    s10Title: "10. Aviso de Privacidad para Residentes de California (CCPA / CPRA)",
+    s10Lead: "Conforme a la Ley de Privacidad del Consumidor de California (CCPA/CPRA):",
+    s10Points: [
+      {
+        title: "Cero Venta o Cesión de Datos Personales",
+        desc: "GenerateCustomQR no vende, alquila ni cede información personal a empresas de publicidad o intermediarios de datos."
+      },
+      {
+        title: "Sin Publicidad Segmentada Cruzada",
+        desc: "No rastreamos tu navegación entre sitios web de terceros para ofrecer publicidad personalizada."
+      },
+      {
+        title: "Garantía de No Discriminación",
+        desc: "Ofrecemos el mismo acceso completo y gratuito a todos los usuarios independientemente del ejercicio de sus derechos."
+      }
+    ],
+    s11Title: "11. Derechos de Privacidad en Brasil (LGPD)",
+    s11Text: "Conforme a la Ley General de Protección de Datos de Brasil (LGPD - Ley N.º 13.709/2018), los usuarios en Brasil cuentan con total protección. Al procesar los códigos QR en el dispositivo del usuario sin almacenar datos en bases remotas, tu privacidad está blindada por diseño.",
+    s12Title: "12. Protección de la Privacidad Infantil (COPPA)",
+    s12Text: "Nuestro servicio no está dirigido a menores de 13 años (ni menores de 16 en la UE). No recopilamos conscientemente datos de menores de edad. Al no requerir registro ni datos de contacto, la identidad de los menores nunca es solicitada.",
+    s13Title: "13. Seguridad y Protocolo de Notificación de Brechas (72 Horas)",
+    s13Lead: "Implementamos salvaguardas técnicas robustas y protocolos ante incidentes:",
+    s13Items: [
+      {
+        title: "Cifrado TLS 1.3 de Extremo a Extremo",
+        desc: "Toda la comunicación entre tu navegador y los servidores edge viaja cifrada mediante protocolos modernos TLS 1.3."
+      },
+      {
+        title: "Política de Seguridad de Contenido (CSP)",
+        desc: "Reglas CSP estrictas para evitar ataques de Cross-Site Scripting (XSS) y ejecución de código no autorizado."
+      },
+      {
+        title: "Protocolo de Notificación en 72 Horas",
+        desc: "En el hipotético caso de una brecha en proveedores de infraestructura que comprometa registros técnicos, nos comprometemos a notificar a las autoridades en un plazo de 72 horas conforme al Art. 33 del RGPD."
+      }
+    ],
+    s14Title: "14. Transmisiones Societarias y Fusiones",
+    s14Text: "En caso de fusión, adquisición, reorganización societaria o venta de activos de GenerateCustomQR, los registros técnicos mínimos se transferirían como activos comerciales. La entidad sucesora quedará vinculada por los términos de esta política, manteniéndose inalterable el compromiso de Conocimiento Cero.",
+    s15Title: "15. Enlaces a Sitios Web de Terceros y Descargo de Responsabilidad",
+    s15Text: "Nuestro sitio web, guías y artículos pueden contener enlaces a páginas o herramientas externas no operadas por GenerateCustomQR. No ejercemos control ni asumimos responsabilidad sobre las prácticas de privacidad de dichos sitios ajenos.",
+    s16Title: "16. Revisiones de la Política y Contacto Legal",
+    s16Text: "Cualquier modificación de esta política se indicará en la fecha de actualización superior. Si tienes dudas legales, puedes escribir a legal@generatecustomqr.com o mediante nuestro formulario en /contact.",
+    faqTitle: "Preguntas Frecuentes sobre Privacidad",
+    faqs: [
+      {
+        q: "¿Quién es el Responsable Legal del Tratamiento en GenerateCustomQR?",
+        a: "GenerateCustomQR Media & Software Technologies actúa como Responsable del Tratamiento (Data Controller). Para dudas legales, escribe a legal@generatecustomqr.com."
+      },
+      {
+        q: "¿Puede GenerateCustomQR ver lo que introduzco en mis códigos QR?",
+        a: "No. Toda la generación se ejecuta en la memoria de tu propio navegador. Tus contraseñas, URLs o datos de contacto nunca llegan a nuestros servidores."
+      },
+      {
+        q: "¿Se guardan los logos o imágenes que subo?",
+        a: "No. Tu logotipo se procesa como un objeto en la memoria local (Blob) y se dibuja directamente en el canvas. Jamás se sube a almacenamiento en la nube."
+      },
+      {
+        q: "¿GenerateCustomQR rastrea cuándo o dónde se escanean mis códigos?",
+        a: "No. Generamos códigos QR estáticos. La información se codifica directamente en el dibujo del QR sin URLs intermediarias de redirección ni rastreadores."
+      },
+      {
+        q: "¿Cómo se gestionan las transferencias internacionales de datos?",
+        a: "La generación ocurre en tu equipo. La telemetría técnica se rige por el Data Privacy Framework (DPF) y Cláusulas Contractuales Tipo (SCCs) con proveedores de EE.UU."
+      },
+      {
+        q: "¿Cumple GenerateCustomQR con el RGPD y las leyes internacionales?",
+        a: "Sí. Gracias a nuestro modelo de conocimiento cero y ejecución en el cliente, cumplimos de forma estricta con el RGPD europeo, la CCPA de California y la LGPD de Brasil."
+      }
+    ],
+    ctaTitle: "¿Tienes dudas sobre nuestra arquitectura de privacidad?",
+    ctaDesc: "Creemos en la transparencia absoluta. Si necesitas validación técnica o deseas hacernos una consulta, estamos a tu disposición.",
+    ctaBtn: "Contactar con el Equipo de Privacidad"
   },
   pt: {
     title: "Política de Privacidade — GenerateCustomQR",
-    desc: "O GenerateCustomQR protege sua privacidade. A geração dos códigos QR ocorre localmente no navegador sem coleta de dados.",
-    keywords: "politica de privacidade qr code, gerador qr seguro, gerador de qr code privado, privacidade qr",
+    desc: "O GenerateCustomQR protege sua privacidade com arquitetura de conhecimento zero. Toda a geração ocorre no seu navegador sem armazenamento de dados.",
+    keywords: "politica de privacidade qr code, gerador qr seguro, privacidade qr code, gerador qr lgpd, qr code sem rastreamento, gerador qr privado",
     heading: "Política de Privacidade",
-    lastUpdated: "1 de Janeiro de 2026",
-    s1Title: "1. Privacidade em Primeiro Lugar",
-    s1Text: "O GenerateCustomQR foi planejado para garantir sigilo total. Toda a renderização do QR code ocorre diretamente no seu dispositivo sem registro de dados ou criação de perfis.",
-    s2Title: "2. Nenhuma Coleta do Conteúdo Codificado",
-    s2Text: "Não armazenamos, interceptamos nem compartilhamos nenhuma informação digitada nos seus QR codes (como senhas, telefones ou e-mails). Seus dados nunca são transferidos para servidores externos.",
-    s3Title: "3. Armazenamento Local no Navegador",
-    s3Text: "Usamos o armazenamento local do navegador (localStorage) apenas para manter suas configurações de estilo salvas entre sessões.",
-    s4Title: "4. Métricas Anônimas",
-    s4Text: "Utilizamos ferramentas de análise agregada para monitorar a estabilidade do serviço sem registrar dados pessoais identificáveis.",
-    s5Title: "5. Conformidade com LGPD / GDPR",
-    s5Text: "Por não coletarmos informações pessoais nem exigirmos cadastro, você mantém total autonomia sobre seus dados simplesmente limpando os cookies do seu navegador."
+    badge: "Arquitetura de Privacidade Absoluta e Conhecimento Zero",
+    lastUpdated: "Vigência: 1 de Janeiro de 2026",
+    tocTitle: "Índice de Conteúdo",
+    highlights: [
+      {
+        icon: "shield",
+        title: "Motor 100% no Navegador",
+        desc: "O cálculo da matriz, renderização SVG e estilização ocorrem diretamente na memória do seu dispositivo."
+      },
+      {
+        icon: "lock_open",
+        title: "Zero Coleta de Conteúdo",
+        desc: "Nunca armazenamos, interceptamos ou vendemos senhas de Wi-Fi, contatos, links ou mensagens."
+      },
+      {
+        icon: "inventory_2",
+        title: "Apenas Preferências Locais",
+        desc: "O localStorage é utilizado exclusivamente para manter suas configurações de tema e cores salvas."
+      },
+      {
+        icon: "gavel",
+        title: "Total Conformidade com a LGPD",
+        desc: "Respeito integral às normas de privacidade sem criação de perfis de usuário ou venda de dados."
+      }
+    ],
+    toc: [
+      { id: "section-1", title: "1. Identificação do Controlador e Escopo" },
+      { id: "section-2", title: "2. Garantia de Conhecimento Zero" },
+      { id: "section-3", title: "3. Telemetria Técnica e Finalidades" },
+      { id: "section-4", title: "4. Matriz de Tratamento e Retenção" },
+      { id: "section-5", title: "5. Armazenamento Local (localStorage)" },
+      { id: "section-6", title: "6. Provedores de Infraestrutura" },
+      { id: "section-7", title: "7. Transferências Internacionais de Dados" },
+      { id: "section-8", title: "8. Sinais Do Not Track (DNT) e GPC" },
+      { id: "section-9", title: "9. Direitos sob a LGPD (Brasil)" },
+      { id: "section-10", title: "10. Direitos sob o RGPD (União Europeia)" },
+      { id: "section-11", title: "11. Declaração de Privacidade da Califórnia (CCPA)" },
+      { id: "section-12", title: "12. Privacidade de Menores (COPPA)" },
+      { id: "section-13", title: "13. Segurança e Notificação de Incidentes (72 Horas)" },
+      { id: "section-14", title: "14. Reestruturações Societárias e Fusões" },
+      { id: "section-15", title: "15. Links Externos e Sites de Terceiros" },
+      { id: "section-16", title: "16. Canal de Contato e DPO" }
+    ],
+    s1Title: "1. Identificação do Controlador de Dados e Escopo",
+    s1P1: "No GenerateCustomQR (disponível em generatecustomqr.com), acreditamos que a privacidade é um direito inalienável. A internet está repleta de plataformas que exigem cadastros desnecessários, redirecionam seus links através de servidores intermediários de rastreamento ou comercializam dados pessoais.",
+    s1P2: "Construímos o GenerateCustomQR com uma rigorosa Arquitetura de Conhecimento Zero. A plataforma atua como um mecanismo gráfico que roda diretamente no seu navegador. Os dados que você digita são convertidos em padrões matemáticos na memória volátil do seu computador ou smartphone.",
+    s1Controller: "Para os efeitos da Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018) e regulamentos internacionais, a Controladora de Dados responsável pelo serviço é a GenerateCustomQR Media & Software Technologies. O contato com nosso Encarregado de Dados (DPO) pode ser realizado em legal@generatecustomqr.com.",
+    s2Title: "2. Garantia de Conhecimento Zero (O que NUNCA Coletamos)",
+    s2Lead: "Nossa aplicação foi desenvolvida para garantir que dados confidenciais jamais sejam enviados para servidores remotos:",
+    s2Items: [
+      {
+        title: "Credenciais de Redes Wi-Fi",
+        desc: "O nome da rede (SSID), senha WPA/WPA2/WPA3 e tipo de segurança são processados exclusivamente na memória do seu navegador."
+      },
+      {
+        title: "Cartões de Visita vCard / MeCard",
+        desc: "Nomes, telefones, e-mails e endereços permanecem confidenciais no seu dispositivo."
+      },
+      {
+        title: "Mensagens de Texto e SMS",
+        desc: "Qualquer texto inserido é codificado diretamente no desenho binário do QR code sem trânsito por servidores."
+      },
+      {
+        title: "Logotipos e Imagens Personalizadas",
+        desc: "Seus arquivos gráficos são carregados via objetos de memória local (Blob) e nunca são gravados em discos de terceiros."
+      },
+      {
+        title: "Rastreamento de Escaneamentos",
+        desc: "Produzimos QR codes estáticos conforme a norma ISO/IEC 18004. Não inserimos URLs intermediárias que registrem localização ou horário de leitura."
+      }
+    ],
+    s3Title: "3. Telemetria Técnica Coletada e Finalidades",
+    s3Lead: "Para manter a entrega rápida de páginas, prevenir ataques cibernéticos e monitorar a disponibilidade do sistema, coletamos telemetria técnica mínima:",
+    s3Items: [
+      {
+        title: "Logs de Borda e Segurança",
+        desc: "Cabeçalhos HTTP padrão (endereço IP, navegador, data e hora) processados pela Cloudflare para bloquear ataques e robôs. São eliminados em até 30 dias."
+      },
+      {
+        title: "Métricas Anônimas Agregadas",
+        desc: "Utilizamos o Google Analytics 4 com anonimização de IP ativada e recursos publicitários desligados para acompanhar o desempenho geral da plataforma."
+      }
+    ],
+    s4Title: "4. Matriz de Tratamento e Retenção de Dados",
+    s4Lead: "Abaixo, apresentamos a relação completa do tratamento de dados em nossa plataforma:",
+    matrixHeaders: {
+      category: "Categoria de Dados",
+      data: "Elementos Específicos",
+      purpose: "Finalidade Legítima",
+      storage: "Local de Armazenamento",
+      retention: "Tempo de Retenção"
+    },
+    matrixRows: [
+      {
+        category: "Conteúdo do QR",
+        data: "URLs, senhas Wi-Fi, vCard, texto, e-mail, SMS",
+        purpose: "Renderização do código 2D",
+        storage: "Memória do Navegador (Cliente)",
+        retention: "Excluído ao fechar a aba"
+      },
+      {
+        category: "Logos Enviados",
+        data: "Arquivos PNG, JPG, SVG, WebP",
+        purpose: "Composição visual no centro do QR",
+        storage: "Memória Local do Navegador (Blob)",
+        retention: "Excluído ao encerrar a sessão"
+      },
+      {
+        category: "Preferências do Estúdio",
+        data: "Tema escuro/claro, paletas de cores, estilos",
+        purpose: "Conveniência do usuário",
+        storage: "Dispositivo Local (localStorage)",
+        retention: "Até ser limpo pelo usuário"
+      },
+      {
+        category: "Logs de Segurança",
+        data: "IP anonimizado, User-Agent, status HTTP",
+        purpose: "Defesa contra ataques DDoS",
+        storage: "Buffers de Segurança Edge CDN",
+        retention: "14 a 30 dias (Automático)"
+      },
+      {
+        category: "Métricas de Uso",
+        data: "Páginas visualizadas, país de acesso agregado",
+        purpose: "Otimização de desempenho",
+        storage: "Google Analytics 4 (Anonimizado)",
+        retention: "14 meses (Agregado padrão)"
+      }
+    ],
+    s5Title: "5. Armazenamento Local no Navegador (localStorage)",
+    s5Lead: "O GenerateCustomQR não utiliza cookies de rastreamento entre sites. Utilizamos o Web Storage (localStorage) apenas para:",
+    s5Items: [
+      {
+        title: "Modo Escuro / Claro",
+        desc: "Salva sua preferência de visualização para as próximas visitas."
+      },
+      {
+        title: "Paletas de Cores",
+        desc: "Guarda os códigos hexadecimais escolhidos para agilizar novas criações."
+      },
+      {
+        title: "Estilos de Pontos e Molduras",
+        desc: "Mantém os últimos formatos selecionados ativos no estúdio."
+      }
+    ],
+    s5ClearTip: "Você pode apagar todas as preferências salvas limpando os cookies do seu navegador ou clicando no botão 'Redefinir' na barra de ferramentas do gerador.",
+    s6Title: "6. Provedores de Infraestrutura e Subprocessadores",
+    s6Lead: "Trabalhamos com parceiros tecnológicos consolidados que seguem padrões internacionais de segurança:",
+    s6Items: [
+      {
+        name: "Cloudflare, Inc.",
+        role: "Rede CDN global, roteamento DNS e proteção contra ataques de negação de serviço.",
+        privacyUrl: "https://www.cloudflare.com/privacypolicy/"
+      },
+      {
+        name: "Google Analytics (Google LLC)",
+        role: "Estatísticas agregadas de acesso com anonimização de IP.",
+        privacyUrl: "https://policies.google.com/privacy"
+      },
+      {
+        name: "Google Fonts",
+        role: "Folhas de estilo para carregamento de fontes tipográficas modernas.",
+        privacyUrl: "https://developers.google.com/fonts/faq/privacy"
+      }
+    ],
+    s7Title: "7. Transferências Internacionais de Dados",
+    s7Lead: "O processamento técnico de borda é realizado por provedores globais nos Estados Unidos:",
+    s7Items: [
+      {
+        title: "Data Privacy Framework (DPF)",
+        desc: "Nossos provedores de hospedagem possuem certificação no Data Privacy Framework (DPF), assegurando conformidade com padrões globais de transferência internacional."
+      },
+      {
+        title: "Cláusulas Padrão Contratuais (SCCs)",
+        desc: "Utilizamos Cláusulas Padrão Contratuais da Comissão Europeia para garantir garantias jurídicas plenas e direitos aos titulares de dados."
+      }
+    ],
+    s8Title: "8. Sinais Do Not Track (DNT) e Global Privacy Control (GPC)",
+    s8Text: "Em conformidade com a legislação de privacidade da Califórnia (CalOPPA / CPRA) e diretrizes globais, esclarecemos que, por operarmos sob um modelo de Conhecimento Zero — sem rastreamento cruzado entre sites, sem perfis de comportamento e sem venda de dados —, nosso serviço respeita sua privacidade por padrão independentemente do envio de sinais DNT/GPC pelo navegador.",
+    s9Title: "9. Direitos dos Titulares sob a LGPD (Brasil)",
+    s9Lead: "Em total conformidade com a Lei Geral de Proteção de Dados (Lei n.º 13.709/2018 - LGPD):",
+    s9Rights: [
+      {
+        title: "Bases Legais (Art. 7.º, IX da LGPD)",
+        desc: "O registro técnico transitório apoia-se no Legítimo Interesse para garantia da segurança cibernética."
+      },
+      {
+        title: "Confirmação e Acesso (Art. 18, I e II)",
+        desc: "Por não armazenarmos dados em bancos remotos, não mantemos perfis associados a você."
+      },
+      {
+        title: "Eliminação dos Dados (Art. 18, VI)",
+        desc: "Você possui controle absoluto ao limpar o cache do seu próprio navegador."
+      },
+      {
+        title: "Revogação e Oposição (Art. 18, IX)",
+        desc: "É possível desativar recursos de armazenamento local sem perder a funcionalidade de geração de QR codes."
+      }
+    ],
+    s10Title: "10. Direitos de Privacidade na União Europeia (RGPD)",
+    s10Lead: "Para usuários localizados no Espaço Econômico Europeu, cumprimos integralmente o Regulamento Geral de Proteção de Dados (RGPD):",
+    s10Points: [
+      {
+        title: "Ausência de Perfilamento",
+        desc: "Não construímos perfis de navegação nem monitoramos sua atividade em outros sites."
+      },
+      {
+        title: "Minimização de Dados",
+        desc: "Coletamos apenas a telemetria estritamente indispensável para a estabilidade do serviço."
+      },
+      {
+        title: "Autonomia do Usuário",
+        desc: "Toda a computação de dados permanece sob seu controle direto no dispositivo cliente."
+      }
+    ],
+    s11Title: "11. Declaração de Privacidade da Califórnia (CCPA / CPRA)",
+    s11Text: "Em conformidade com a CCPA/CPRA da Califórnia, declaramos que o GenerateCustomQR não vende nem compartilha informações pessoais para fins de publicidade comportamental e não discrimina usuários que exerçam seus direitos de privacidade.",
+    s12Title: "12. Privacidade e Proteção de Menores (COPPA)",
+    s12Text: "Nosso serviço não é direcionado a menores de 13 anos. Não solicitamos nem armazenamos intencionalmente informações de crianças ou adolescentes, pois não exigimos cadastros de qualquer natureza.",
+    s13Title: "13. Segurança da Informação e Notificação de Incidentes (72 Horas)",
+    s13Lead: "Adotamos práticas avançadas de segurança e resposta a incidentes:",
+    s13Items: [
+      {
+        title: "Criptografia TLS 1.3 de Ponta a Ponta",
+        desc: "Toda a comunicação com nossos servidores é protegida com criptografia moderna."
+      },
+      {
+        title: "Content Security Policy (CSP) Rigorosa",
+        desc: "Proteção ativa contra ataques de injeção de scripts maliciosos (XSS)."
+      },
+      {
+        title: "Notificação de Incidentes em até 72 Horas",
+        desc: "Em caso de incidente em provedores de borda que comprometa logs técnicos, notificaremos a autoridade competente em até 72 horas nos termos do RGPD e da LGPD."
+      }
+    ],
+    s14Title: "14. Reestruturações Societárias e Fusões",
+    s14Text: "Em caso de fusão, aquisição ou alienação de ativos do GenerateCustomQR, os logs técnicos limitados serão transferidos à nova entidade sucessora, permanecendo inalterado o compromisso de Conhecimento Zero.",
+    s15Title: "15. Links Externos e Sites de Terceiros",
+    s15Text: "Nosso site e blog podem conter links para recursos externos. Não assumimos responsabilidade sobre as políticas de privacidade de outros serviços e recomendamos sua consulta individual.",
+    s16Title: "16. Canal de Contato e DPO",
+    s16Text: "Para esclarecer dúvidas sobre nosso modelo de privacidade ou proteções de dados, envie uma mensagem para legal@generatecustomqr.com ou utilize nossa página /contact.",
+    faqTitle: "Perguntas Frequentes sobre Privacidade",
+    faqs: [
+      {
+        q: "Quem é o Controlador de Dados responsável pelo GenerateCustomQR?",
+        a: "A GenerateCustomQR Media & Software Technologies atua como Controladora de Dados. Para contato com o DPO, escreva para legal@generatecustomqr.com."
+      },
+      {
+        q: "O GenerateCustomQR pode visualizar os dados que coloco no QR code?",
+        a: "Não. A geração dos códigos ocorre 100% no seu navegador. Nenhuma senha, telefone ou link é enviado para os nossos servidores."
+      },
+      {
+        q: "Os logotipos que envio ficam armazenados nos servidores?",
+        a: "Não. As imagens são manipuladas localmente na memória do seu navegador e não são salvas em bancos de dados ou na nuvem."
+      },
+      {
+        q: "Vocês rastreiam quem escaneia os meus QR codes?",
+        a: "Não. Criamos QR codes estáticos diretos, sem links intermediários ou contadores de escaneamento."
+      },
+      {
+        q: "Como são tratadas as transferências internacionais de dados?",
+        a: "A geração é local. A telemetria técnica de borda é processada por servidores com certificação DPF e Cláusulas Padrão Contratuais (SCCs)."
+      },
+      {
+        q: "O site está em conformidade com a LGPD e o RGPD?",
+        a: "Sim. Ao adotar o modelo de conhecimento zero e não armazenar dados pessoais, garantimos total conformidade com a LGPD brasileira e o RGPD europeu."
+      }
+    ],
+    ctaTitle: "Dúvidas sobre nossa segurança?",
+    ctaDesc: "Priorizamos a transparência absoluta. Caso tenha dúvidas técnicas sobre nossa arquitetura, nossa equipe está à disposição.",
+    ctaBtn: "Falar com a Equipe de Privacidade"
   },
   de: {
     title: "Datenschutzerklärung — GenerateCustomQR",
-    desc: "GenerateCustomQR ist ein datenschutzfreundlicher Generator. Die Generierung erfolgt lokal im Browser ohne Speicherung persönlicher Daten.",
-    keywords: "datenschutzerklaerung qr code, sicherer qr code generator, privater qr code ersteller, datenschutz qr",
+    desc: "GenerateCustomQR ist ein datenschutzfreundlicher QR-Code-Generator mit Zero-Knowledge-Architektur. Alle Berechnungen erfolgen lokal im Browser.",
+    keywords: "datenschutzerklaerung qr code, privater qr code generator, zero knowledge qr code, dsgvo qr code ersteller, sicherer qr generator, qr code ohne tracking",
     heading: "Datenschutzerklärung",
-    lastUpdated: "1. Januar 2026",
-    s1Title: "1. Datenschutz an erster Stelle",
-    s1Text: "GenerateCustomQR wurde mit Fokus auf maximale Privatsphäre entwickelt. Die QR-Code-Berechnung erfolgt direkt in Ihrem Browser ohne Speicherung auf Servern oder Nachverfolgung.",
-    s2Title: "2. Keine Erfassung codierter Inhalte",
-    s2Text: "Wir speichern, lesen oder verkaufen niemals die von Ihnen eingegebenen Daten (wie Passwörter, Kontakte, URLs oder Nachrichten). Was Sie erstellen, bleibt auf Ihrem Rechner.",
-    s3Title: "3. Lokaler Browser-Speicher",
-    s3Text: "Wir verwenden den lokalen Browser-Speicher (localStorage) ausschließlich zur Speicherung Ihrer aktiven Designeinstellungen.",
-    s4Title: "4. Anonyme Web-Analyse",
-    s4Text: "Wir nutzen standardmäßige, datenschutzkonforme Analysetools zur Überwachung der technischen Plattformleistung ohne Erfassung persönlicher Daten.",
-    s5Title: "5. DSGVO-Rechte",
-    s5Text: "Da keine personenbezogenen Daten erhoben oder Benutzerkonten geführt werden, bestehen keine serverseitigen Datenprofile. Sie haben die volle Kontrolle über Ihre Browsereinstellungen."
+    badge: "Datenschutz-Garantie & Zero-Knowledge-Architektur",
+    lastUpdated: "Gültig ab: 1. Januar 2026",
+    tocTitle: "Inhaltsverzeichnis",
+    highlights: [
+      {
+        icon: "shield",
+        title: "100% Client-Side Engine",
+        desc: "Alle Matrix-Berechnungen, SVG-Vektorisierungen und Designs laufen direkt in der Speicher-Sandbox Ihres Browsers."
+      },
+      {
+        icon: "lock_open",
+        title: "Keine Datenspeicherung",
+        desc: "Wir speichern, lesen, analysieren oder verkaufen niemals Ihre WLAN-Passwörter, Kontakte oder Links."
+      },
+      {
+        icon: "inventory_2",
+        title: "Nur lokale Einstellungen",
+        desc: "Der lokale Speicher (localStorage) dient ausschließlich der Speicherung Ihrer bevorzugten Design-Einstellungen."
+      },
+      {
+        icon: "gavel",
+        title: "DSGVO- & CCPA-Konform",
+        desc: "Vollständige Einhaltung europäischer Datenschutzstandards ohne Erstellung von Nutzerprofilen."
+      }
+    ],
+    toc: [
+      { id: "section-1", title: "1. Verantwortlicher & Geltungsbereich" },
+      { id: "section-2", title: "2. Zero-Knowledge-Nutzlastgarantie" },
+      { id: "section-3", title: "3. Technische Telemetriedaten" },
+      { id: "section-4", title: "4. Datenverarbeitungs- und Speichermatrix" },
+      { id: "section-5", title: "5. Lokaler Browserspeicher (localStorage)" },
+      { id: "section-6", title: "6. Drittanbieter und Infrastruktur" },
+      { id: "section-7", title: "7. Internationale Datenübermittlung" },
+      { id: "section-8", title: "8. Do Not Track (DNT) & Global Privacy Control (GPC)" },
+      { id: "section-9", title: "9. Rechte nach der EU-DSGVO" },
+      { id: "section-10", title: "10. Datenschutzhinweise für Kalifornien (CCPA)" },
+      { id: "section-11", title: "11. Datenschutzbestimmungen für Brasilien (LGPD)" },
+      { id: "section-12", title: "12. Schutz der Privatsphäre von Kindern (COPPA)" },
+      { id: "section-13", title: "13. Technische Sicherheit & 72-Stunden-Meldeprotokoll" },
+      { id: "section-14", title: "14. Unternehmensübertragungen und Fusionen" },
+      { id: "section-15", title: "15. Externe Links und Haftungsausschluss" },
+      { id: "section-16", title: "16. Kontakt und Datenschutzbeauftragter" }
+    ],
+    s1Title: "1. Verantwortliche Stelle (Data Controller) & Geltungsbereich",
+    s1P1: "Bei GenerateCustomQR (erreichbar unter generatecustomqr.com) betrachten wir Datenschutz als grundlegendes Recht. Das Internet ist überfüllt mit Diensten, die aufdringliche Registrierungen verlangen, Links über dynamische Tracking-Server umleiten oder vertrauliche Nutzerdaten monetarisieren.",
+    s1P2: "Wir haben GenerateCustomQR auf einer kompromisslosen Zero-Knowledge-Architektur aufgebaut. Unsere Plattform arbeitet als rein clientseitige Grafik-Engine. Sämtliche Eingaben werden direkt im Arbeitsspeicher Ihres Webbrowsers verarbeitet. Was Sie eingeben oder generieren, bleibt ausschließlich auf Ihrem Endgerät.",
+    s1Controller: "Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) und des Bundesdatenschutzgesetzes (BDSG) ist GenerateCustomQR Media & Software Technologies. Bei Fragen zum Datenschutz oder zur Ausübung Ihrer Rechte erreichen Sie unseren Datenschutzbeauftragten unter legal@generatecustomqr.com.",
+    s2Title: "2. Zero-Knowledge-Nutzlastgarantie (Was wir NIEMALS erfassen)",
+    s2Lead: "Unsere Anwendung ist technisch so konstruiert, dass vertrauliche Nutzerdaten niemals auf Server-Datenbanken übertragen werden:",
+    s2Items: [
+      {
+        title: "WLAN-Zugangsdaten",
+        desc: "Netzwerkname (SSID), WPA/WPA2/WPA3-Passwort und Verschlüsselungsart werden lokal verarbeitet und erreichen unsere Server zu keinem Zeitpunkt."
+      },
+      {
+        title: "vCard- & Kontaktdaten",
+        desc: "Namen, Telefonnummern, E-Mail-Adressen und Firmenangaben verbleiben vollständig auf Ihrem Gerät."
+      },
+      {
+        title: "Vertrauliche Texte & Notizen",
+        desc: "Freitexte, SMS-Inhalte oder E-Mail-Texte werden direkt in QR-Module umgewandelt, ohne serverseitige Protokollierung."
+      },
+      {
+        title: "Hochgeladene Logos & Grafiken",
+        desc: "Logo-Dateien werden über browserinterne Speicherobjekte (Blob-URLs) verarbeitet und niemals auf Cloud-Speichern abgelegt."
+      },
+      {
+        title: "Scan-Tracking & Standortüberwachung",
+        desc: "Wir erzeugen statische QR-Codes gemäß ISO/IEC 18004. Wir verwenden keine zwischengeschalteten Redirect-Links, die das Scanverhalten überwachen."
+      }
+    ],
+    s3Title: "3. Technische Telemetriedaten und Zweckbestimmung",
+    s3Lead: "Um eine schnelle Auslieferung zu gewährleisten und Angriffe (DDoS) abzuwehren, erfassen unsere Edge-Netzwerke minimale technische Telemetrie:",
+    s3Items: [
+      {
+        title: "Server- & Edge-Protokolle",
+        desc: "Standardmäßige HTTP-Header (IP-Adresse, Browser-Kennung, Zeitstempel), die von Cloudflare zur Abwehr von Bot-Angriffen verarbeitet und innerhalb von maximal 30 Tagen gelöscht werden."
+      },
+      {
+        title: "Anonymisierte Web-Analyse",
+        desc: "Wir setzen Google Analytics 4 mit aktivierter IP-Anonymisierung und deaktivierten Werbefunktionen ein, um die technische Stabilität der Plattform zu überwachen."
+      }
+    ],
+    s4Title: "4. Datenverarbeitungs- und Speichermatrix",
+    s4Lead: "Zur vollständigen Transparenz listet die folgende Tabelle alle verarbeiteten Datenkategorien auf:",
+    matrixHeaders: {
+      category: "Datenkategorie",
+      data: "Konkrete Inhalte",
+      purpose: "Berechtigter Zweck",
+      storage: "Speicherort",
+      retention: "Speicherdauer"
+    },
+    matrixRows: [
+      {
+        category: "QR-Nutzlast",
+        data: "URLs, WLAN-Keys, vCards, Text, SMS",
+        purpose: "2D-Matrix-Berechnung",
+        storage: "Browser-Arbeitsspeicher (Lokal)",
+        retention: "Sofort nach Schließen des Tabs gelöscht"
+      },
+      {
+        category: "Logo-Grafiken",
+        data: "PNG-, JPG-, SVG-, WebP-Dateien",
+        purpose: "Einbettung in das QR-Zentrum",
+        storage: "Lokaler Speicher / Blob-URL",
+        retention: "Nach Sitzungsende gelöscht"
+      },
+      {
+        category: "Studio-Einstellungen",
+        data: "Design-Theme, Farbcodes, Punktstile",
+        purpose: "Benutzerfreundlichkeit",
+        storage: "Endgerät (localStorage)",
+        retention: "Bis zur manuellen Löschung"
+      },
+      {
+        category: "Sicherheitsprotokolle",
+        data: "Anonymisierte IP, User-Agent, HTTP-Status",
+        purpose: "DDoS- und Bot-Abwehr",
+        storage: "Edge CDN Sicherheits-Puffer",
+        retention: "14 bis 30 Tage (Auto-Purge)"
+      },
+      {
+        category: "Nutzungs-Telemetrie",
+        data: "Seitenaufrufe, aggregierte Länderdaten",
+        purpose: "Performance-Optimierung",
+        storage: "Google Analytics 4 (Anonymisiert)",
+        retention: "14 Monate (Standard aggregiert)"
+      }
+    ],
+    s5Title: "5. Lokaler Browserspeicher (localStorage)",
+    s5Lead: "GenerateCustomQR verwendet keine Tracking-Cookies von Drittanbietern. Wir nutzen den Web Storage (localStorage) ausschließlich für:",
+    s5Items: [
+      {
+        title: "Theme-Präferenz",
+        desc: "Speichert, ob Sie den Dark Mode oder Light Mode bevorzugen."
+      },
+      {
+        title: "Eigene Farbpaletten",
+        desc: "Merkt sich Ihre ausgewählten Farbcodes für zukünftige Entwürfe."
+      },
+      {
+        title: "Zuletzt genutzte Stile",
+        desc: "Behält die gewählten Punktmuster und Rahmen für einen schnellen Arbeitsablauf bei."
+      }
+    ],
+    s5ClearTip: "Sie können alle gespeicherten Design-Einstellungen jederzeit in den Entwickler-Tools Ihres Browsers (F12 > Anwendung > Lokaler Speicher) oder über die Schaltfläche 'Zurücksetzen' in der Generator-Leiste löschen.",
+    s6Title: "6. Drittanbieter und Auftragsverarbeiter",
+    s6Lead: "Wir arbeiten mit renommierten Technologiepartnern zusammen, die strenge Datenschutzauflagen erfüllen:",
+    s6Items: [
+      {
+        name: "Cloudflare, Inc.",
+        role: "Globales CDN, DNS-Routing und DDoS-Sicherheitsfilter.",
+        privacyUrl: "https://www.cloudflare.com/privacypolicy/"
+      },
+      {
+        name: "Google Analytics (Google LLC)",
+        role: "Anonymisierte Traffic-Metriken mit IP-Maskierung.",
+        privacyUrl: "https://policies.google.com/privacy"
+      },
+      {
+        name: "Google Fonts",
+        role: "Optimierte Stylesheets für moderne Web-Typografie.",
+        privacyUrl: "https://developers.google.com/fonts/faq/privacy"
+      }
+    ],
+    s7Title: "7. Internationale Datenübermittlung (EU-U.S. DPF & SCCs)",
+    s7Lead: "Zur weltweiten Absicherung und Bereitstellung greifen wir auf Dienstleister in den USA zurück:",
+    s7Items: [
+      {
+        title: "EU-U.S. Data Privacy Framework (DPF)",
+        desc: "Cloudflare, Inc. und Google LLC sind unter dem Data Privacy Framework zertifiziert, was ein dem EWR vergleichbares Datenschutzniveau garantiert."
+      },
+      {
+        title: "Standardvertragsklauseln (SCCs)",
+        desc: "Zusätzlich stützen sich transatlantische Datenflüsse auf die von der EU-Kommission genehmigten Standardvertragsklauseln."
+      }
+    ],
+    s8Title: "8. Do Not Track (DNT) & Global Privacy Control (GPC) Signale",
+    s8Text: "Gemäß kalifornischem Recht (CalOPPA / CPRA) und internationalen Standards informieren wir über den Umgang mit 'Do Not Track' (DNT) und 'Global Privacy Control' (GPC) Signalen. Da GenerateCustomQR auf einer Zero-Knowledge-Architektur basiert — wir führen kein seitenübergreifendes Tracking durch, erstellen keine Verhaltensprofile und verkaufen niemals Daten —, respektiert unsere Plattform Ihre Privatsphäre standardmäßig und unabhängig davon, ob Ihr Browser ein DNT- oder GPC-Signal übermittelt.",
+    s9Title: "9. Rechte betroffener Personen nach der EU-DSGVO",
+    s9Lead: "Für Nutzer im Europäischen Wirtschaftsraum (EWR) gelten die Bestimmungen der DSGVO (Verordnung EU 2016/679):",
+    s9Rights: [
+      {
+        title: "Rechtsgrundlagen der Verarbeitung",
+        desc: "Die flüchtige Protokollierung stützt sich auf Art. 6 Abs. 1 lit. f DSGVO (Berechtigtes Interesse an der Gewährleistung der IT-Sicherheit)."
+      },
+      {
+        title: "Recht auf Auskunft & Berichtigung (Art. 15 & 16 DSGVO)",
+        desc: "Da wir keine Nutzerkonten oder personenbezogenen Datenbanken führen, liegen keine speicherbaren Profile vor."
+      },
+      {
+        title: "Recht auf Löschung (Art. 17 DSGVO)",
+        desc: "Es befinden sich keine Nutzerdaten auf unseren Servern. Sie haben die volle Kontrolle durch Leeren Ihres Browser-Caches."
+      },
+      {
+        title: "Widerspruchsrecht (Art. 21 DSGVO)",
+        desc: "Sie können die Speicherung lokaler Einstellungen jederzeit im Browser deaktivieren, ohne die Funktion des QR-Generators zu beeinträchtigen."
+      }
+    ],
+    s10Title: "10. Datenschutzhinweise für Kalifornien (CCPA / CPRA)",
+    s10Lead: "Gemäß dem California Consumer Privacy Act (CCPA/CPRA) bestätigen wir:",
+    s10Points: [
+      {
+        title: "Kein Verkauf persönlicher Daten",
+        desc: "GenerateCustomQR hat zu keinem Zeitpunkt personenbezogene Daten an Datenhändler verkauft und wird dies niemals tun."
+      },
+      {
+        title: "Kein Cross-Site-Tracking",
+        desc: "Wir verfolgen Sie nicht über fremde Webseiten hinweg und erstellen keine Werbeprofile."
+      },
+      {
+        title: "Gleichbehandlungsgarantie",
+        desc: "Alle Nutzer erhalten den gleichen vollen, kostenlosen Funktionsumfang."
+      }
+    ],
+    s11Title: "11. Datenschutzbestimmungen für Brasilien (LGPD)",
+    s11Text: "Gemäß dem brasilianischen Datenschutzgesetz (LGPD - Gesetz Nr. 13.709/2018) haben Nutzer in Brasilien die volle Kontrolle über ihre Daten. Da unsere QR-Code-Synthese lokal ohne Übermittlung an externe Datenbanken stattfindet, ist Ihre Privatsphäre standardmäßig geschützt.",
+    s12Title: "12. Schutz der Privatsphäre von Kindern (COPPA)",
+    s12Text: "Unser Dienst richtet sich nicht an Kinder unter 13 Jahren (bzw. unter 16 Jahren in der EU). Da für die Nutzung kein Benutzerkonto erforderlich ist, werden zu keinem Zeitpunkt Daten von Minderjährigen erhoben.",
+    s13Title: "13. Technische Datensicherheit & 72-Stunden-Meldeprotokoll",
+    s13Lead: "Wir setzen moderne Sicherheitsstandards und Incident-Response-Prozesse ein:",
+    s13Items: [
+      {
+        title: "Ende-zu-Ende TLS 1.3-Verschlüsselung",
+        desc: "Der gesamte Datenaustausch zwischen Ihrem Browser und unseren Edge-Servern ist nach modernstem Stand verschlüsselt."
+      },
+      {
+        title: "Strikte Content Security Policy (CSP)",
+        desc: "Wirksamer Schutz gegen Cross-Site-Scripting (XSS) und unerlaubte Skriptausführung."
+      },
+      {
+        title: "72-Stunden-Meldepflicht bei Sicherheitsvorfällen",
+        desc: "Im unwahrscheinlichen Fall einer Sicherheitsverletzung bei Edge-Infrastrukturanbietern, die technische Protokolle betrifft, greift unser Incident-Response-Plan zur Benachrichtigung der Aufsichtsbehörden innerhalb von 72 Stunden gemäß Art. 33 DSGVO."
+      }
+    ],
+    s14Title: "14. Unternehmensübertragungen und Fusionen",
+    s14Text: "Im Falle einer Fusion, Übernahme oder Veräußerung von Vermögenswerten von GenerateCustomQR werden etwaige minimale technische Protokolle als Geschäftsvermögen an den Rechtsnachfolger übertragen. Der Rechtsnachfolger bleibt an die Verpflichtungen dieser Datenschutzerklärung und das Zero-Knowledge-Prinzip gebunden.",
+    s15Title: "15. Externe Links und Haftungsausschluss",
+    s15Text: "Unsere Website und Blogartikel können Verknüpfungen zu externen Webseiten Dritter enthalten. Wir haben keinen Einfluss auf deren Inhalte und Datenschutzstandards und übernehmen dafür keine Haftung.",
+    s16Title: "16. Kontakt und Datenschutzbeauftragter",
+    s16Text: "Bei Fragen zum Datenschutz oder unserer Zero-Knowledge-Architektur erreichen Sie unseren Datenschutzbeauftragten unter legal@generatecustomqr.com oder über unser Kontaktformular unter /contact.",
+    faqTitle: "Häufig gestellte Fragen zum Datenschutz",
+    faqs: [
+      {
+        q: "Wer ist der rechtlich Verantwortliche für GenerateCustomQR?",
+        a: "GenerateCustomQR Media & Software Technologies agiert als Verantwortlicher (Data Controller). Anfragen richten Sie bitte an legal@generatecustomqr.com."
+      },
+      {
+        q: "Kann GenerateCustomQR sehen, was ich in meinen QR-Code eingebe?",
+        a: "Nein. Die Generierung erfolgt ausschließlich lokal im Arbeitsspeicher Ihres Browsers. Ihre Passwörter, Kontaktdaten oder URLs erreichen unsere Server nicht."
+      },
+      {
+        q: "Werden hochgeladene Logo-Bilder auf Ihren Servern gespeichert?",
+        a: "Nein. Wenn Sie ein Logo hochladen, wird es im lokalen Speicher Ihres Browsers (Blob-URL) gehalten und direkt in den Canvas gezeichnet. Es wird niemals auf Cloud-Speichern gesichert."
+      },
+      {
+        q: "Verfolgen Sie, wann oder wo meine QR-Codes gescannt werden?",
+        a: "Nein. Wir erstellen statische QR-Codes ohne zwischengeschaltete Redirect-Server oder Tracking-Pixel."
+      },
+      {
+        q: "Wie werden internationale Datenübermittlungen geregelt?",
+        a: "Die QR-Generierung läuft lokal auf Ihrem Gerät. Edge-Telemetrie wird über US-Infrastrukturanbieter gemäß EU-U.S. DPF und Standardvertragsklauseln (SCCs) abgesichert."
+      },
+      {
+        q: "Ist GenerateCustomQR konform mit der DSGVO und internationalen Standards?",
+        a: "Ja. Durch unser clientseitiges Zero-Knowledge-Modell erfüllen wir alle Auflagen der europäischen DSGVO, der kalifornischen CCPA und der brasilianischen LGPD."
+      }
+    ],
+    ctaTitle: "Fragen zu unserer Datenschutz-Architektur?",
+    ctaDesc: "Wir stehen für maximale Transparenz. Wenn Sie technische Fragen zur Sicherheit haben, steht Ihnen unser Team gerne zur Verfügung.",
+    ctaBtn: "Datenschutz-Team kontaktieren"
   }
 };
 
@@ -94,21 +1196,223 @@ const breadcrumbs = [
   keywords={pageMeta.keywords}
   breadcrumbs={breadcrumbs}
   heading={pageMeta.heading}
+  badge={pageMeta.badge}
   lastUpdated={pageMeta.lastUpdated}
   icon="security"
+  faqs={pageMeta.faqs}
 >
-  <h2>{pageMeta.s1Title}</h2>
-  <p>{pageMeta.s1Text}</p>
+  <!-- Summary Highlights Grid -->
+  <div class="legal-highlight-grid not-prose">
+    {pageMeta.highlights.map((item) => (
+      <div class="legal-highlight-card">
+        <div class="legal-card-icon">
+          <span class="material-symbols-outlined text-xl">{item.icon}</span>
+        </div>
+        <h4>{item.title}</h4>
+        <p>{item.desc}</p>
+      </div>
+    ))}
+  </div>
 
-  <h2>{pageMeta.s2Title}</h2>
-  <p>{pageMeta.s2Text}</p>
+  <!-- Table of Contents -->
+  <nav class="legal-toc-card not-prose" aria-label="Table of Contents">
+    <div class="legal-toc-title">
+      <span class="material-symbols-outlined text-primary text-xl">list_alt</span>
+      <span>{pageMeta.tocTitle}</span>
+    </div>
+    <ul class="legal-toc-list">
+      {pageMeta.toc.map((item) => (
+        <li>
+          <a href={`#${item.id}`} class="legal-toc-link">
+            <span class="legal-toc-number">•</span>
+            <span>{item.title}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
 
-  <h2>{pageMeta.s3Title}</h2>
-  <p>{pageMeta.s3Text}</p>
+  <!-- Section 1 -->
+  <h2 id="section-1">{pageMeta.s1Title}</h2>
+  <p>{pageMeta.s1P1}</p>
+  <p>{pageMeta.s1P2}</p>
 
-  <h2>{pageMeta.s4Title}</h2>
-  <p>{pageMeta.s4Text}</p>
+  <div class="legal-callout legal-callout-success">
+    <p><strong>{pageMeta.badge}</strong>: {pageMeta.s1Controller}</p>
+  </div>
 
-  <h2>{pageMeta.s5Title}</h2>
-  <p>{pageMeta.s5Text}</p>
+  <!-- Section 2 -->
+  <h2 id="section-2">{pageMeta.s2Title}</h2>
+  <p>{pageMeta.s2Lead}</p>
+  <ul>
+    {pageMeta.s2Items.map((item) => (
+      <li>
+        <strong>{item.title}:</strong> {item.desc}
+      </li>
+    ))}
+  </ul>
+
+  <!-- Section 3 -->
+  <h2 id="section-3">{pageMeta.s3Title}</h2>
+  <p>{pageMeta.s3Lead}</p>
+  <ul>
+    {pageMeta.s3Items.map((item) => (
+      <li>
+        <strong>{item.title}:</strong> {item.desc}
+      </li>
+    ))}
+  </ul>
+
+  <!-- Section 4: Matrix Table -->
+  <h2 id="section-4">{pageMeta.s4Title}</h2>
+  <p>{pageMeta.s4Lead}</p>
+  
+  <div class="legal-table-container">
+    <table class="legal-table">
+      <thead>
+        <tr>
+          <th>{pageMeta.matrixHeaders.category}</th>
+          <th>{pageMeta.matrixHeaders.data}</th>
+          <th>{pageMeta.matrixHeaders.purpose}</th>
+          <th>{pageMeta.matrixHeaders.storage}</th>
+          <th>{pageMeta.matrixHeaders.retention}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {pageMeta.matrixRows.map((row) => (
+          <tr>
+            <td><strong>{row.category}</strong></td>
+            <td>{row.data}</td>
+            <td>{row.purpose}</td>
+            <td><span class="legal-badge legal-badge-info">{row.storage}</span></td>
+            <td><span class="legal-badge legal-badge-success">{row.retention}</span></td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Section 5 -->
+  <h2 id="section-5">{pageMeta.s5Title}</h2>
+  <p>{pageMeta.s5Lead}</p>
+  <ul>
+    {pageMeta.s5Items.map((item) => (
+      <li>
+        <strong>{item.title}:</strong> {item.desc}
+      </li>
+    ))}
+  </ul>
+  
+  <div class="legal-callout">
+    <p>{pageMeta.s5ClearTip}</p>
+  </div>
+
+  <!-- Section 6 -->
+  <h2 id="section-6">{pageMeta.s6Title}</h2>
+  <p>{pageMeta.s6Lead}</p>
+  <ul>
+    {pageMeta.s6Items.map((item) => (
+      <li>
+        <strong>{item.name}:</strong> {item.role} (<a href={item.privacyUrl} target="_blank" rel="noopener noreferrer">Privacy Policy</a>)
+      </li>
+    ))}
+  </ul>
+
+  <!-- Section 7: International Transfers -->
+  <h2 id="section-7">{pageMeta.s7Title}</h2>
+  <p>{pageMeta.s7Lead}</p>
+  <ul>
+    {pageMeta.s7Items.map((item) => (
+      <li>
+        <strong>{item.title}:</strong> {item.desc}
+      </li>
+    ))}
+  </ul>
+
+  <!-- Section 8: DNT & GPC -->
+  <h2 id="section-8">{pageMeta.s8Title}</h2>
+  <p>{pageMeta.s8Text}</p>
+
+  <!-- Section 9: GDPR -->
+  <h2 id="section-9">{pageMeta.s9Title}</h2>
+  <p>{pageMeta.s9Lead}</p>
+  <ul>
+    {pageMeta.s9Rights.map((item) => (
+      <li>
+        <strong>{item.title}:</strong> {item.desc}
+      </li>
+    ))}
+  </ul>
+
+  <!-- Section 10: CCPA -->
+  <h2 id="section-10">{pageMeta.s10Title}</h2>
+  <p>{pageMeta.s10Lead}</p>
+  <ul>
+    {pageMeta.s10Points.map((item) => (
+      <li>
+        <strong>{item.title}:</strong> {item.desc}
+      </li>
+    ))}
+  </ul>
+
+  <!-- Section 11: LGPD -->
+  <h2 id="section-11">{pageMeta.s11Title}</h2>
+  <p>{pageMeta.s11Text}</p>
+
+  <!-- Section 12: COPPA -->
+  <h2 id="section-12">{pageMeta.s12Title}</h2>
+  <p>{pageMeta.s12Text}</p>
+
+  <!-- Section 13: Security & Breach Protocol -->
+  <h2 id="section-13">{pageMeta.s13Title}</h2>
+  <p>{pageMeta.s13Lead}</p>
+  <ul>
+    {pageMeta.s13Items.map((item) => (
+      <li>
+        <strong>{item.title}:</strong> {item.desc}
+      </li>
+    ))}
+  </ul>
+
+  <!-- Section 14: Business Transfers -->
+  <h2 id="section-14">{pageMeta.s14Title}</h2>
+  <p>{pageMeta.s14Text}</p>
+
+  <!-- Section 15: External Links -->
+  <h2 id="section-15">{pageMeta.s15Title}</h2>
+  <p>{pageMeta.s15Text}</p>
+
+  <!-- Section 16: Revisions & Contact -->
+  <h2 id="section-16">{pageMeta.s16Title}</h2>
+  <p>{pageMeta.s16Text}</p>
+
+  <!-- FAQs Section -->
+  <h2 id="privacy-faqs">{pageMeta.faqTitle}</h2>
+  <div class="legal-faq-section not-prose">
+    {pageMeta.faqs.map((faq) => (
+      <details class="legal-faq-item">
+        <summary class="legal-faq-summary">
+          <span>{faq.q}</span>
+          <span class="material-symbols-outlined legal-faq-chevron">expand_more</span>
+        </summary>
+        <div class="legal-faq-content">
+          <p>{faq.a}</p>
+        </div>
+      </details>
+    ))}
+  </div>
+
+  <!-- Bottom CTA Card -->
+  <div class="legal-cta-card not-prose">
+    <div class="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center">
+      <span class="material-symbols-outlined text-2xl">mail</span>
+    </div>
+    <h3>{pageMeta.ctaTitle}</h3>
+    <p>{pageMeta.ctaDesc}</p>
+    <a href={getLocalizedUrl(locale, '/contact')} class="legal-btn-primary">
+      <span class="material-symbols-outlined text-lg">contact_support</span>
+      <span>{pageMeta.ctaBtn}</span>
+    </a>
+  </div>
 </LegalLayout>
+

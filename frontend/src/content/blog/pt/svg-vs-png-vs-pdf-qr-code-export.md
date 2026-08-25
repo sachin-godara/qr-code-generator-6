@@ -89,6 +89,15 @@ O formato PDF encapsula a geometria vetorial dentro de um arquivo padronizado.
 
 ---
 
+## 4. Vetores Puros vs. Containers de Alta Resolução a 300 DPI
+
+Ao criar QR codes personalizados, é essencial que designers e profissionais gráficos compreendam o impacto visual na estrutura dos arquivos:
+
+- **QR Codes Padrão (Vetores Puros `<path>`):** Na geração de QR codes clássicos monocromáticos com pontos quadrados, o SVG gera caminhos matemáticos puros em XML (`<path>`). Eles podem ser ampliados infinitamente até o tamanho de outdoors sem perda de nitidez e permitem edição direta de nós no Illustrator ou Figma.
+- **QR Codes Personalizados (Containers a 300 DPI de Alta Fidelidade):** Ao utilizar opções visuais avançadas (como pontos arredondados, olhos estilizados, gradientes de cor, sombras ou logotipos centrais), os motores de renderização criam artes com suavização a **300 DPI de alta resolução** dentro de containers SVG (`<image>`) e PDF. Isso garante que efeitos de degradê e curvas orgânicas sejam impressos com máxima fidelidade e leitura óptica perfeita em smartphones.
+
+---
+
 ## Matriz de Decisão: Qual Formato Escolher?
 
 <div class="blog-checklist-grid">
