@@ -7,6 +7,8 @@ import ShareBar from '../components/blog/ShareBar.astro';
 import BlogCtaWidget from '../components/blog/BlogCtaWidget.astro';
 import { type Locale } from '../i18n/config';
 import { getLocalizedUrl, t } from '../i18n/utils';
+import '../styles/global.css';
+import '../styles/blog.css';
 
 interface Props {
   locale: Locale;
@@ -105,10 +107,7 @@ const howTo = post.data.howToSteps && post.data.howToSteps.length > 0 ? {
   faqs={faqs}
   howTo={howTo}
 >
-  <style is:global>
-    @import '../styles/global.css';
-    @import '../styles/blog.css';
-  </style>
+
 
   <!-- Article JSON-LD Schema -->
   <script is:inline type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
