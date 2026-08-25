@@ -249,86 +249,11 @@ In mehreren Großstädten führten gefälschte QR-Aufkleber zu unberechtigten Ab
 
 ## Warum statische QR-Codes ohne Server sicherer sind
 
-Bei **[GenerateCustomQR](/de)** werden QR-Codes zu 100 % statisch in Ihrem Browser erstellt:
+Bei **[GenerateCustomQR](/de)** werden QR-Codes zu 100 % statisch in Ihrem Browser erstellt – völlig ohne zwischengeschaltete Server:
 
-<div class="blog-arch-container">
-  <!-- Static QR Architecture -->
-  <div class="blog-arch-card static">
-    <div class="blog-arch-header">
-      <span class="blog-arch-badge">
-        <span class="material-symbols-outlined text-[14px]">bolt</span>
-        Statische Client-Architektur
-      </span>
-      <span class="text-xs font-bold text-emerald-700">100% Sicher & Unabhängig</span>
-    </div>
-    <div class="blog-arch-flow">
-      <div class="blog-arch-node">
-        <span class="material-symbols-outlined text-[16px] text-zinc-500">photo_camera</span>
-        Kamera-Scan
-      </div>
-      <span class="blog-arch-arrow">────────────────►</span>
-      <div class="blog-arch-node destination">
-        <span class="material-symbols-outlined text-[16px] text-emerald-600">verified</span>
-        Ihre offizielle Domain (Direkt)
-      </div>
-    </div>
-    <div class="blog-arch-benefits">
-      <div class="blog-arch-benefit-item">
-        <span class="material-symbols-outlined text-[16px] text-emerald-600">check</span>
-        Keine Server-Zwischenstationen
-      </div>
-      <div class="blog-arch-benefit-item">
-        <span class="material-symbols-outlined text-[16px] text-emerald-600">check</span>
-        Keine Nutzerdaten-Logs
-      </div>
-      <div class="blog-arch-benefit-item">
-        <span class="material-symbols-outlined text-[16px] text-emerald-600">check</span>
-        Immun gegen Manipulation
-      </div>
-    </div>
-  </div>
-
-  <!-- Dynamic QR Architecture -->
-  <div class="blog-arch-card dynamic">
-    <div class="blog-arch-header">
-      <span class="blog-arch-badge">
-        <span class="material-symbols-outlined text-[14px]">dns</span>
-        Dynamische Architektur mit Vermittler
-      </span>
-      <span class="text-xs font-bold text-amber-700">Drittanbieter-Risiko</span>
-    </div>
-    <div class="blog-arch-flow">
-      <div class="blog-arch-node">
-        <span class="material-symbols-outlined text-[16px] text-zinc-500">photo_camera</span>
-        Kamera-Scan
-      </div>
-      <span class="blog-arch-arrow">──►</span>
-      <div class="blog-arch-node middleman">
-        <span class="material-symbols-outlined text-[16px] text-amber-600">cloud</span>
-        Proxy-Server Dritter
-      </div>
-      <span class="blog-arch-arrow">──►</span>
-      <div class="blog-arch-node destination">
-        <span class="material-symbols-outlined text-[16px] text-zinc-600">language</span>
-        Zielseite
-      </div>
-    </div>
-    <div class="blog-arch-benefits">
-      <div class="blog-arch-benefit-item">
-        <span class="material-symbols-outlined text-[16px] text-amber-600">warning</span>
-        Gefahr von Datenbank-Hacks
-      </div>
-      <div class="blog-arch-benefit-item">
-        <span class="material-symbols-outlined text-[16px] text-amber-600">warning</span>
-        Scan-Daten offengelegt
-      </div>
-      <div class="blog-arch-benefit-item">
-        <span class="material-symbols-outlined text-[16px] text-amber-600">warning</span>
-        Zentraler Angriffspunkt
-      </div>
-    </div>
-  </div>
-</div>
+- **100% Souverän & Direkt:** Die Zieldaten führen direkt zu Ihrer offiziellen Domain, ohne Umwege über zwischengeschaltete Proxy-Server.
+- **Keine Telemetrie-Protokollierung:** Weder Scan-Zeitpunkte, IP-Adressen noch Standorte von Nutzern werden erfasst oder auf externen Servern gespeichert.
+- **Immun gegen Hijacking:** Da die Daten unveränderbar in der Grafik codiert sind, können sie selbst bei Sicherheitslücken externer Dienste niemals manipuliert oder umgeleitet werden.
 
 ---
 

@@ -102,12 +102,12 @@ Traditional barcodes (also called **1D barcodes** or **linear barcodes**) encode
 
 | Content | Barcode | QR Code |
 |---------|---------|---------|
-| Product ID (12 digits) | ✅ Perfect fit | ✅ Easily fits |
-| Short URL (50 chars) | ❌ Too long | ✅ Easily fits |
-| WiFi credentials | ❌ Impossible | ✅ Natively supported |
-| Full contact card (vCard) | ❌ Impossible | ✅ Up to 300+ characters |
-| Calendar event (iCal) | ❌ Impossible | ✅ Natively supported |
-| Paragraph of text | ❌ Too long | ✅ Up to 4,296 characters |
+| Product ID (12 digits) | Perfect fit | Easily fits |
+| Short URL (50 chars) | Too long | Easily fits |
+| WiFi credentials | Impossible | Natively supported |
+| Full contact card (vCard) | Impossible | Up to 300+ characters |
+| Calendar event (iCal) | Impossible | Natively supported |
+| Paragraph of text | Too long | Up to 4,296 characters |
 
 ## When to Use Barcodes
 

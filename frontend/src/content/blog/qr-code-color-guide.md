@@ -78,10 +78,10 @@ The W3C Web Content Accessibility Guidelines (WCAG) define contrast ratios for r
 
 | Contrast Ratio | QR Code Result |
 |---------------|----------------|
-| **7:1 or higher** | ✅ Excellent — scans in all conditions |
-| **4.5:1 to 7:1** | ✅ Good — scans reliably in most conditions |
+| **7:1 or higher** | Excellent — scans in all conditions |
+| **4.5:1 to 7:1** | Good — scans reliably in most conditions |
 | **3:1 to 4.5:1** | ⚠️ Risky — may fail in low light or on cheap cameras |
-| **Below 3:1** | ❌ Unreliable — high scan failure rate |
+| **Below 3:1** | Unreliable — high scan failure rate |
 
 **The minimum safe contrast ratio for QR codes is 4.5:1.** This is the standard enforced by [GenerateCustomQR](/) in our design guidelines.
 
@@ -112,12 +112,12 @@ The W3C Web Content Accessibility Guidelines (WCAG) define contrast ratios for r
 
 | Dot Color | Background | Contrast | Problem |
 |-----------|-----------|---------|---------|
-| Yellow `#FFEB3B` | White `#FFFFFF` | 1.1:1 | ❌ Nearly invisible |
-| Light Blue `#81D4FA` | White `#FFFFFF` | 1.6:1 | ❌ Too similar |
-| Light Green `#A5D6A7` | White `#FFFFFF` | 1.8:1 | ❌ Washes out |
-| Pink `#F48FB1` | White `#FFFFFF` | 2.1:1 | ❌ Insufficient contrast |
-| Gray `#BDBDBD` | White `#FFFFFF` | 2.0:1 | ❌ Blends together |
-| White `#FFFFFF` | Black `#000000` | N/A | ❌ Inverted — most scanners fail |
+| Yellow `#FFEB3B` | White `#FFFFFF` | 1.1:1 | Nearly invisible |
+| Light Blue `#81D4FA` | White `#FFFFFF` | 1.6:1 | Too similar |
+| Light Green `#A5D6A7` | White `#FFFFFF` | 1.8:1 | Washes out |
+| Pink `#F48FB1` | White `#FFFFFF` | 2.1:1 | Insufficient contrast |
+| Gray `#BDBDBD` | White `#FFFFFF` | 2.0:1 | Blends together |
+| White `#FFFFFF` | Black `#000000` | N/A | Inverted — most scanners fail |
 
 ## Color Strategies for Different Industries
 
@@ -200,13 +200,13 @@ In [GenerateCustomQR](/), you can set independent colors for each eye frame and 
 
 Before finalizing your QR code colors:
 
-✅ Verify the contrast ratio is at least 4.5:1 (use a contrast checker tool)
-✅ Test scanning in bright daylight
-✅ Test scanning in dim indoor lighting
-✅ Test on both iPhone and Android
-✅ Print a test copy and scan from the intended distance
-✅ Check the QR code on the actual background it will be placed on
-✅ If using gradients, verify both endpoints have sufficient contrast
+- Verify the contrast ratio is at least 4.5:1 (use a contrast checker tool)
+- Test scanning in bright daylight
+- Test scanning in dim indoor lighting
+- Test on both iPhone and Android
+- Print a test copy and scan from the intended distance
+- Check the QR code on the actual background it will be placed on
+- If using gradients, verify both endpoints have sufficient contrast
 
 ## Create Your Branded QR Code
 

@@ -29,92 +29,13 @@ Neste guia completo, comparamos as vantagens, desvantagens e os cenários ideais
 | Recurso | QR Code Estático | QR Code Dinâmico |
 | :--- | :--- | :--- |
 | **Armazenamento dos dados** | Gravado diretamente na imagem | Salvo através de link curto de redirecionamento |
-| **Editável após impressão** | ❌ Não | ✅ Sim |
-| **Estatísticas e rastreamento** | ❌ Não | ✅ Sim |
+| **Editável após impressão** | Não | Sim |
+| **Estatísticas e rastreamento** | Não | Sim |
 | **Validade** | **Nunca expira** | Pode expirar (depende do plano) |
 | **Dependência de servidores** | Nenhuma (funciona offline) | Exige que o servidor da empresa esteja ativo |
 | **Privacidade** | Máxima (sem rastreamento) | Os acessos são gravados em servidores terceiros |
 | **Custo** | **100% Gratuito** | Geralmente requer assinatura mensal |
 | **Ideal para** | Cartões de visita, cardápios, rótulos e embalagens | Campanhas de marketing temporárias, testes A/B |
-
-<div class="blog-arch-container">
-  <!-- Arquitetura QR Estático -->
-  <div class="blog-arch-card static">
-    <div class="blog-arch-header">
-      <span class="blog-arch-badge">
-        <span class="material-symbols-outlined text-[14px]">bolt</span>
-        QR Estático: Matriz Direta
-      </span>
-      <span class="text-xs font-bold text-emerald-700">100% Gratuito e Permanente</span>
-    </div>
-    <div class="blog-arch-flow">
-      <div class="blog-arch-node">
-        <span class="material-symbols-outlined text-[16px] text-zinc-500">photo_camera</span>
-        Leitura com Câmera
-      </div>
-      <span class="blog-arch-arrow">────────────────►</span>
-      <div class="blog-arch-node destination">
-        <span class="material-symbols-outlined text-[16px] text-emerald-600">language</span>
-        Seu Site (Direto)
-      </div>
-    </div>
-    <div class="blog-arch-benefits">
-      <div class="blog-arch-benefit-item">
-        <span class="material-symbols-outlined text-[15px] text-emerald-600">check_circle</span>
-        Carga de dados 100% direta
-      </div>
-      <div class="blog-arch-benefit-item">
-        <span class="material-symbols-outlined text-[15px] text-emerald-600">check_circle</span>
-        Zero dependência de servidores
-      </div>
-      <div class="blog-arch-benefit-item">
-        <span class="material-symbols-outlined text-[15px] text-emerald-600">check_circle</span>
-        Funciona para sempre (Sem expirar)
-      </div>
-    </div>
-  </div>
-
-  <!-- Arquitetura QR Dinâmico -->
-  <div class="blog-arch-card dynamic">
-    <div class="blog-arch-header">
-      <span class="blog-arch-badge">
-        <span class="material-symbols-outlined text-[14px]">sync_alt</span>
-        QR Dinâmico: Redirecionamento
-      </span>
-      <span class="text-xs font-bold text-amber-700">Exige Assinatura Ativa</span>
-    </div>
-    <div class="blog-arch-flow">
-      <div class="blog-arch-node">
-        <span class="material-symbols-outlined text-[16px] text-zinc-500">photo_camera</span>
-        Leitura com Câmera
-      </div>
-      <span class="blog-arch-arrow">──►</span>
-      <div class="blog-arch-node middleman">
-        <span class="material-symbols-outlined text-[16px] text-amber-600">dns</span>
-        Servidor Terceiro
-      </div>
-      <span class="blog-arch-arrow">──►</span>
-      <div class="blog-arch-node destination">
-        <span class="material-symbols-outlined text-[16px] text-zinc-600">language</span>
-        Seu Site
-      </div>
-    </div>
-    <div class="blog-arch-benefits">
-      <div class="blog-arch-benefit-item">
-        <span class="material-symbols-outlined text-[15px] text-amber-600">warning</span>
-        Risco de bloqueio por mensalidade
-      </div>
-      <div class="blog-arch-benefit-item">
-        <span class="material-symbols-outlined text-[15px] text-amber-600">warning</span>
-        Atraso no carregamento e quedas
-      </div>
-      <div class="blog-arch-benefit-item">
-        <span class="material-symbols-outlined text-[15px] text-amber-600">warning</span>
-        Dados dos usuários registrados
-      </div>
-    </div>
-  </div>
-</div>
 
 ---
 

@@ -116,10 +116,10 @@ Con [GenerateCustomQR](/es), puedes exportar imágenes PNG de hasta **8192 × 81
 
 ## Errores Comunes de Dimensionamiento
 
-- ❌ **Hacerlo demasiado pequeño**: Códigos menores de 2 cm son arriesgados en teléfonos antiguos o con poca luz.
-- ❌ **Olvidar la zona de silencio**: El margen blanco exterior debe tener al menos 4 módulos de grosor.
-- ❌ **Usar baja resolución en imprenta**: Un PNG de 300px saldrá borroso en papel. Usa SVG o PDF a 300 DPI.
-- ❌ **No hacer pruebas reales**: Imprime siempre una prueba de muestra y escanéala con 3 móviles diferentes a la distancia real.
+- **Hacerlo demasiado pequeño**: Códigos menores de 2 cm son arriesgados en teléfonos antiguos o con poca luz.
+- **Olvidar la zona de silencio**: El margen blanco exterior debe tener al menos 4 módulos de grosor.
+- **Usar baja resolución en imprenta**: Un PNG de 300px saldrá borroso en papel. Usa SVG o PDF a 300 DPI.
+- **No hacer pruebas reales**: Imprime siempre una prueba de muestra y escanéala con 3 móviles diferentes a la distancia real.
 
 ---
 

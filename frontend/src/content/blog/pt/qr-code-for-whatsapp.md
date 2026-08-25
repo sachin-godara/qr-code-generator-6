@@ -44,8 +44,8 @@ O WhatsApp disponibiliza um protocolo oficial de link direto chamado **`wa.me`**
 
 ### Regras de Formatação:
 1. **Formato internacional sem símbolos**: Digite o código do país, DDD e número sem `+`, `-`, parênteses ou espaços.
-   - ✅ Correto: `https://wa.me/5511987654321` (Brasil `+55 (11) 98765-4321`)
-   - ❌ Incorreto: `https://wa.me/+55-11-98765-4321`
+   - **Correto:** `https://wa.me/5511987654321` (Brasil `+55 (11) 98765-4321`)
+   - **Incorreto:** `https://wa.me/+55-11-98765-4321`
 2. **Codificação da mensagem**: Espaços são codificados como `%20`. Exemplo: *"Olá, quero um orçamento"* vira `https://wa.me/5511987654321?text=Ol%C3%A1%2C%20quero%20um%20or%C3%A7amento`.
 
 ---

@@ -44,8 +44,8 @@ WhatsApp bietet ein offizielles URL-Schema namens **`wa.me`**. Richtig formatier
 
 ### Wichtige Formatierungsregeln:
 1. **Internationales Format ohne Sonderzeichen**: Ländervorwahl und Rufnummer zusammenhängend eintragen — ohne `+`, Bindestriche oder Leerzeichen.
-   - ✅ Richtig: `https://wa.me/491701234567` (Deutsche Nummer `+49 170 1234567`)
-   - ❌ Falsch: `https://wa.me/+49-170-1234567`
+   - **Richtig:** `https://wa.me/491701234567` (Deutsche Nummer `+49 170 1234567`)
+   - **Falsch:** `https://wa.me/+49-170-1234567`
 2. **Nachrichten-Codierung**: Leerzeichen werden als `%20` codiert. Aus *"Hallo, ich bitte um ein Angebot"* wird `https://wa.me/491701234567?text=Hallo%2C%20ich%20bitte%20um%20ein%20Angebot`.
 
 ---

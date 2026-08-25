@@ -86,9 +86,9 @@ Facilita la llegada de mensajeros a naves industriales, urbanizaciones cerradas 
 
 - **Usa Códigos Plus de Google**: Para lugares sin número de calle, usa Plus Codes (`https://www.google.com/maps?q=plus+code`).
 - **Añade un Marco con Llamada a la Acción (CTA)**:
-  - ✅ *"Escanear para Llegar"*
-  - ✅ *"Ver en Google Maps"*
-  - ✅ *"Ruta GPS al Evento"*
+  -  *"Escanear para Llegar"*
+  -  *"Ver en Google Maps"*
+  -  *"Ruta GPS al Evento"*
 
 ---
 

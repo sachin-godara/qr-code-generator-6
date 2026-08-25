@@ -31,92 +31,13 @@ En esta guía desglosamos las diferencias, ventajas, desventajas y los casos de 
 | Característica | Código QR Estático | Código QR Dinámico |
 | :--- | :--- | :--- |
 | **Almacenamiento de datos** | Codificado directamente en la imagen | Redirige a través de una URL corta |
-| **Editable tras imprimir** | ❌ No | ✅ Sí |
-| **Seguimiento / Analítica de escaneos** | ❌ No | ✅ Sí |
+| **Editable tras imprimir** | No | Sí |
+| **Seguimiento / Analítica de escaneos** | No | Sí |
 | **Caducidad** | **Nunca caduca** | Puede caducar (según el proveedor) |
 | **Dependencia de servidores** | Ninguna (funciona sin intermediarios) | Requiere que el servidor del proveedor esté activo |
 | **Privacidad** | Máxima (sin rastreo de usuarios) | Los escaneos se registran en el servidor |
 | **Coste** | **100% Gratuito** | Generalmente requiere suscripción mensual |
 | **Ideal para** | Enlaces permanentes, tarjetas de visita, menús | Campañas publicitarias, tests A/B, promociones temporales |
-
-<div class="blog-arch-container">
-  <!-- Arquitectura QR Estático -->
-  <div class="blog-arch-card static">
-    <div class="blog-arch-header">
-      <span class="blog-arch-badge">
-        <span class="material-symbols-outlined text-[14px]">bolt</span>
-        QR Estático: Matriz Directa
-      </span>
-      <span class="text-xs font-bold text-emerald-700">100% Gratuito y Permanente</span>
-    </div>
-    <div class="blog-arch-flow">
-      <div class="blog-arch-node">
-        <span class="material-symbols-outlined text-[16px] text-zinc-500">photo_camera</span>
-        Escaneo con Cámara
-      </div>
-      <span class="blog-arch-arrow">────────────────►</span>
-      <div class="blog-arch-node destination">
-        <span class="material-symbols-outlined text-[16px] text-emerald-600">language</span>
-        Tu Sitio Web (Directo)
-      </div>
-    </div>
-    <div class="blog-arch-benefits">
-      <div class="blog-arch-benefit-item">
-        <span class="material-symbols-outlined text-[15px] text-emerald-600">check_circle</span>
-        Carga de datos 100% directa
-      </div>
-      <div class="blog-arch-benefit-item">
-        <span class="material-symbols-outlined text-[15px] text-emerald-600">check_circle</span>
-        Sin dependencia de servidores
-      </div>
-      <div class="blog-arch-benefit-item">
-        <span class="material-symbols-outlined text-[15px] text-emerald-600">check_circle</span>
-        Funciona para siempre (Sin caducidad)
-      </div>
-    </div>
-  </div>
-
-  <!-- Arquitectura QR Dinámico -->
-  <div class="blog-arch-card dynamic">
-    <div class="blog-arch-header">
-      <span class="blog-arch-badge">
-        <span class="material-symbols-outlined text-[14px]">sync_alt</span>
-        QR Dinámico: Redirección Intermediaria
-      </span>
-      <span class="text-xs font-bold text-amber-700">Requiere Suscripción Activa</span>
-    </div>
-    <div class="blog-arch-flow">
-      <div class="blog-arch-node">
-        <span class="material-symbols-outlined text-[16px] text-zinc-500">photo_camera</span>
-        Escaneo con Cámara
-      </div>
-      <span class="blog-arch-arrow">──►</span>
-      <div class="blog-arch-node middleman">
-        <span class="material-symbols-outlined text-[16px] text-amber-600">dns</span>
-        Servidor Intermediario
-      </div>
-      <span class="blog-arch-arrow">──►</span>
-      <div class="blog-arch-node destination">
-        <span class="material-symbols-outlined text-[16px] text-zinc-600">language</span>
-        Tu Sitio Web
-      </div>
-    </div>
-    <div class="blog-arch-benefits">
-      <div class="blog-arch-benefit-item">
-        <span class="material-symbols-outlined text-[15px] text-amber-600">warning</span>
-        Riesgo de bloqueo por cuota mensual
-      </div>
-      <div class="blog-arch-benefit-item">
-        <span class="material-symbols-outlined text-[15px] text-amber-600">warning</span>
-        Latencia de redirección y caídas
-      </div>
-      <div class="blog-arch-benefit-item">
-        <span class="material-symbols-outlined text-[15px] text-amber-600">warning</span>
-        Registro de datos de los usuarios
-      </div>
-    </div>
-  </div>
-</div>
 
 ---
 

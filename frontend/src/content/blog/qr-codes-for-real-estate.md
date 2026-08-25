@@ -177,13 +177,13 @@ Since GenerateCustomQR creates *static* QR codes (data is embedded directly), th
 
 ## Real Estate QR Code Checklist
 
-✅ Use Error Correction **H** if adding a brokerage logo
-✅ Print QR codes at minimum **10 cm** for yard signs
-✅ Add a descriptive CTA label below the QR code
-✅ Use UTM parameters for tracking engagement
-✅ Test scanning from 3+ meters away before ordering prints
-✅ Export as SVG for sign shops and print vendors
-✅ Match colors to your brokerage brand while maintaining contrast
+- Use Error Correction **H** if adding a brokerage logo
+- Print QR codes at minimum **10 cm** for yard signs
+- Add a descriptive CTA label below the QR code
+- Use UTM parameters for tracking engagement
+- Test scanning from 3+ meters away before ordering prints
+- Export as SVG for sign shops and print vendors
+- Match colors to your brokerage brand while maintaining contrast
 
 ## Get Started
 

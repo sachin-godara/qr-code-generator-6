@@ -143,9 +143,9 @@ Or use a service like `maps.google.com` which works on all platforms — Google 
 ### Add a CTA Frame
 
 Don't just print a bare QR code. Add a text frame with a clear call-to-action:
-- ✅ *"Scan for Directions"*
-- ✅ *"Find Us on Google Maps"*
-- ✅ *"Navigate to Venue"*
+- *"Scan for Directions"*
+- *"Find Us on Google Maps"*
+- *"Navigate to Venue"*
 
 GenerateCustomQR includes **51 CTA text frames** with customizable text, fonts, and colors.
 

@@ -36,7 +36,7 @@ In diesem Ratgeber vergleichen wir **SVG, PNG und PDF**, damit Sie für jedes Pr
 | **Grafiktyp** | Mathematischer Vektor | Pixel-Bitmap | Vektordokument |
 | **Skalierbarkeit** | Unbegrenzt (Verlustfrei) | Pixelig beim Vergrößern | Unbegrenzt (Verlustfrei) |
 | **Optimal für** | Grafikdesign, Verpackungen | Web, E-Mail, Social Media | Professioneller Druck |
-| **Transparenz** | ✅ Ja | ✅ Ja | ✅ Ja |
+| **Transparenz** | Ja | Ja | Ja |
 | **Druckqualität** | Perfekt (300+ DPI) | Pixelbegrenzt | Perfekt (300+ DPI) |
 
 ---

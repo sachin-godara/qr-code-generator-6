@@ -36,7 +36,7 @@ En esta guía comparamos **SVG, PNG y PDF** para que elijas siempre el formato i
 | **Tipo de Gráfico** | Vector Matemático | Mapa de Bits | Documento Vectorial |
 | **Escalabilidad** | Infinita (Sin pérdida) | Se pixela al ampliar | Infinita (Sin pérdida) |
 | **Uso Principal** | Diseño Gráfico, Packaging | Web, Emails, Redes Sociales | Imprenta Profesional |
-| **Transparencia** | ✅ Sí | ✅ Sí | ✅ Sí |
+| **Transparencia** | Sí | Sí | Sí |
 | **Calidad de Impresión** | Óptima (300+ DPI) | Limitada por píxeles | Óptima (300+ DPI) |
 
 ---

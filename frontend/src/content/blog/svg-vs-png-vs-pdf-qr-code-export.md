@@ -36,7 +36,7 @@ In this guide, we compare **SVG, PNG, and PDF** so you always choose the perfect
 | **Type** | Mathematical Vector | Pixel Bitmap | Vector Document |
 | **Scaling** | Infinite (Lossless) | Degrades when enlarged | Infinite (Lossless) |
 | **Best For** | Graphic Design, Packaging | Web, Emails, Social Media | Direct Printing, Commercial Prepress |
-| **Transparency** | ✅ Yes | ✅ Yes | ✅ Yes |
+| **Transparency** | Yes | Yes | Yes |
 | **Print Resolution** | Perfect (300+ DPI) | Limited by pixel size | Perfect (300+ DPI) |
 
 ---

@@ -78,10 +78,10 @@ QR-Code-Scanner erfassen **optische Helligkeitsunterschiede**. Die wichtigste Re
 
 | Kontrastverhältnis | Scan-Ergebnis |
 | :--- | :--- |
-| **7:1 oder höher** | ✅ Perfekt — scannt unter allen Lichtverhältnissen |
-| **4.5:1 bis 7:1** | ✅ Sehr gut — zuverlässig auf allen Standard-Smartphones |
+| **7:1 oder höher** | Perfekt — scannt unter allen Lichtverhältnissen |
+| **4.5:1 bis 7:1** | Sehr gut — zuverlässig auf allen Standard-Smartphones |
 | **3:1 bis 4.5:1** | ⚠️ Kritisch — Scanprobleme bei Dämmerlicht |
-| **Unter 3:1** | ❌ Nicht lesbar — hohe Ausfallquote |
+| **Unter 3:1** | Nicht lesbar — hohe Ausfallquote |
 
 ---
 

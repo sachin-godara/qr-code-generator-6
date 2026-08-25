@@ -247,86 +247,11 @@ En varias capitales se detectaron miles de parquímetros manipulados con código
 
 ## Por Qué los Códigos QR Estáticos y Sin Servidor son Más Seguros
 
-En **[GenerateCustomQR](/es)** todos los códigos se generan de forma 100% estática en tu navegador:
+En **[GenerateCustomQR](/es)** todos los códigos se generan de forma 100% estática en tu navegador, sin servidores intermediarios:
 
-<div class="blog-arch-container">
-  <!-- Static QR Architecture -->
-  <div class="blog-arch-card static">
-    <div class="blog-arch-header">
-      <span class="blog-arch-badge">
-        <span class="material-symbols-outlined text-[14px]">bolt</span>
-        Arquitectura Estática del Cliente
-      </span>
-      <span class="text-xs font-bold text-emerald-700">100% Soberana y Segura</span>
-    </div>
-    <div class="blog-arch-flow">
-      <div class="blog-arch-node">
-        <span class="material-symbols-outlined text-[16px] text-zinc-500">photo_camera</span>
-        Escaneo Cámara
-      </div>
-      <span class="blog-arch-arrow">────────────────►</span>
-      <div class="blog-arch-node destination">
-        <span class="material-symbols-outlined text-[16px] text-emerald-600">verified</span>
-        Tu Web Oficial (Directa)
-      </div>
-    </div>
-    <div class="blog-arch-benefits">
-      <div class="blog-arch-benefit-item">
-        <span class="material-symbols-outlined text-[16px] text-emerald-600">check</span>
-        Sin Servidores Intermediarios
-      </div>
-      <div class="blog-arch-benefit-item">
-        <span class="material-symbols-outlined text-[16px] text-emerald-600">check</span>
-        Sin Registros de Usuarios
-      </div>
-      <div class="blog-arch-benefit-item">
-        <span class="material-symbols-outlined text-[16px] text-emerald-600">check</span>
-        Inmune a Manipulaciones
-      </div>
-    </div>
-  </div>
-
-  <!-- Dynamic QR Architecture -->
-  <div class="blog-arch-card dynamic">
-    <div class="blog-arch-header">
-      <span class="blog-arch-badge">
-        <span class="material-symbols-outlined text-[14px]">dns</span>
-        Arquitectura Dinámica con Intermediarios
-      </span>
-      <span class="text-xs font-bold text-amber-700">Riesgo de Terceros</span>
-    </div>
-    <div class="blog-arch-flow">
-      <div class="blog-arch-node">
-        <span class="material-symbols-outlined text-[16px] text-zinc-500">photo_camera</span>
-        Escaneo Cámara
-      </div>
-      <span class="blog-arch-arrow">──►</span>
-      <div class="blog-arch-node middleman">
-        <span class="material-symbols-outlined text-[16px] text-amber-600">cloud</span>
-        Servidor Proxy Externo
-      </div>
-      <span class="blog-arch-arrow">──►</span>
-      <div class="blog-arch-node destination">
-        <span class="material-symbols-outlined text-[16px] text-zinc-600">language</span>
-        Destino
-      </div>
-    </div>
-    <div class="blog-arch-benefits">
-      <div class="blog-arch-benefit-item">
-        <span class="material-symbols-outlined text-[16px] text-amber-600">warning</span>
-        Riesgo de Vulneración de BD
-      </div>
-      <div class="blog-arch-benefit-item">
-        <span class="material-symbols-outlined text-[16px] text-amber-600">warning</span>
-        Datos de Escaneo Expuestos
-      </div>
-      <div class="blog-arch-benefit-item">
-        <span class="material-symbols-outlined text-[16px] text-amber-600">warning</span>
-        Punto Único de Fallo
-      </div>
-    </div>
-  </div>
-</div>
+- **100% Soberano y Directo:** La carga útil apunta directamente a tu dominio oficial sin pasar por servidores proxy de redirección.
+- **Sin Registro de Telemetría:** Nunca se almacenan ni se transmiten marcas de tiempo, direcciones IP ni datos de ubicación de los usuarios que escanean el código.
+- **Inmune a Secuestros de Enlaces:** Como la información está grabada permanentemente en la imagen, no puede ser manipulada ni redirigida aunque un servicio externo sufra un ataque.
 
 ---
 

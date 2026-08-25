@@ -44,8 +44,8 @@ WhatsApp proporciona un protocolo universal de enlace directo denominado **`wa.m
 
 ### Reglas de Formato:
 1. **Formato internacional sin caracteres especiales**: Incluye el código de país y el número, pero omite `+`, `-`, espacios o paréntesis.
-   - ✅ Correcto: `https://wa.me/34612345678` (España `+34 612 34 56 78`)
-   - ❌ Incorrecto: `https://wa.me/+34-612-34-56-78`
+   -  Correcto: `https://wa.me/34612345678` (España `+34 612 34 56 78`)
+   -  Incorrecto: `https://wa.me/+34-612-34-56-78`
 2. **Codificación del mensaje**: Los espacios se representan como `%20`. Por ejemplo, *"Hola, quiero información"* se convierte en `https://wa.me/34612345678?text=Hola%2C%20quiero%20informaci%C3%B3n`.
 
 ---

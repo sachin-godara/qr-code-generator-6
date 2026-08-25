@@ -212,12 +212,12 @@ Ready to create your own QR code? [Generate a free custom QR code →](/)
 
 | Device | Best Method | Built-in? |
 |--------|-------------|-----------|
-| iPhone | Camera App | ✅ Yes |
-| Android (Pixel, Samsung) | Camera App / Google Lens | ✅ Yes |
-| Android (other) | Google Lens | ✅ Yes |
-| WhatsApp Web Pairing | WhatsApp → Linked Devices | ✅ Yes |
+| iPhone | Camera App | Yes |
+| Android (Pixel, Samsung) | Camera App / Google Lens | Yes |
+| Android (other) | Google Lens | Yes |
+| WhatsApp Web Pairing | WhatsApp → Linked Devices | Yes |
 | Desktop & PC | [Web Scanner](/qr-code-scanner) | Browser-based |
-| From saved image / screenshot | [Web Scanner (Ctrl+V)](/qr-code-scanner) / Photos | ✅ Yes |
+| From saved image / screenshot | [Web Scanner (Ctrl+V)](/qr-code-scanner) / Photos | Yes |
 
 Whether you're using an iPhone, Android, or PC, scanning QR codes is faster and safer than ever. And if you need to create QR codes that scan reliably across all devices, [GenerateCustomQR](/) offers 40+ styles with guaranteed scannability — 100% free.
 

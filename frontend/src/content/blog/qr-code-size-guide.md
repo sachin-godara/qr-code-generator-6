@@ -105,26 +105,26 @@ With [GenerateCustomQR](/), you can export PNG at up to **8192 × 8192 pixels** 
 
 ## Common Sizing Mistakes
 
-### ❌ Making it too small
+### Making it too small
 QR codes under 2 cm × 2 cm are risky. Older phones and low-light conditions make small codes unreliable. Always err on the side of bigger.
 
-### ❌ Forgetting the quiet zone
+### Forgetting the quiet zone
 The **quiet zone** (white border around the QR code) must be at least 4 modules wide. This border is part of the code's scanning specification — cropping it will cause scan failures.
 
-### ❌ Using low resolution for print
+### Using low resolution for print
 A 300×300 pixel PNG looks fine on a phone screen but will be blurry on a printed flyer. For print, export at minimum 1200×1200 pixels or use SVG.
 
-### ❌ Not testing at actual size
+### Not testing at actual size
 Before printing 10,000 flyers, print a single test copy and scan it with 3 different phones. What looks good on screen may not scan reliably when printed.
 
 ## Size Checklist Before Printing
 
-✅ Calculate minimum size using scan distance ÷ 10
-✅ Add 30% if using Error Correction H (for logo)
-✅ Include quiet zone (4+ module widths of padding)
-✅ Export at 300+ DPI for print materials
-✅ Test scan with 3 different devices at the intended distance
-✅ Check on both light and dark backgrounds
+- Calculate minimum size using scan distance ÷ 10
+- Add 30% if using Error Correction H (for logo)
+- Include quiet zone (4+ module widths of padding)
+- Export at 300+ DPI for print materials
+- Test scan with 3 different devices at the intended distance
+- Check on both light and dark backgrounds
 
 ## Create the Perfect QR Code
 

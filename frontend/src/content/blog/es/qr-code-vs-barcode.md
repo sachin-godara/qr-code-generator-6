@@ -104,11 +104,11 @@ Los códigos de barras lineales codifican números mediante la alternancia de ba
 
 | Contenido | Código de Barras | Código QR |
 | :--- | :--- | :--- |
-| **ID de Producto (12 dígitos)** | ✅ Perfecto | ✅ Cabe sin problemas |
-| **URL corta (50 caracteres)** | ❌ Demasiado largo | ✅ Tamaño óptimo |
-| **Claves de Red Wi-Fi** | ❌ Imposible | ✅ Soportado de forma nativa |
-| **Contacto completo (vCard)** | ❌ Imposible | ✅ Guarda nombre, móvil y email |
-| **Párrafo de texto (500 palabras)** | ❌ Imposible | ✅ Totalmente compatible |
+| **ID de Producto (12 dígitos)** | Perfecto | Cabe sin problemas |
+| **URL corta (50 caracteres)** | Demasiado largo | Tamaño óptimo |
+| **Claves de Red Wi-Fi** | Imposible | Soportado de forma nativa |
+| **Contacto completo (vCard)** | Imposible | Guarda nombre, móvil y email |
+| **Párrafo de texto (500 palabras)** | Imposible | Totalmente compatible |
 
 ---
 

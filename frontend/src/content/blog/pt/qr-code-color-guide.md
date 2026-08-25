@@ -76,10 +76,10 @@ As câmeras identificam o código QR pela **diferença de contraste**. Por isso:
 
 | Proporção de Contraste | Resultado Prático |
 | :--- | :--- |
-| **7:1 ou superior** | ✅ Excelente — lê instantaneamente sob qualquer luz |
-| **4.5:1 a 7:1** | ✅ Muito bom — leitura confiável em todos os smartphones |
+| **7:1 ou superior** | Excelente — lê instantaneamente sob qualquer luz |
+| **4.5:1 a 7:1** | Muito bom — leitura confiável em todos os smartphones |
 | **3:1 a 4.5:1** | ⚠️ Risco — pode falhar com pouca luminosidade |
-| **Abaixo de 3:1** | ❌ Não lê — alta taxa de falha |
+| **Abaixo de 3:1** | Não lê — alta taxa de falha |
 
 O padrão adotado no [GenerateCustomQR](/pt) exige **mínimo de 4.5:1**.
 

@@ -98,9 +98,9 @@ Use your hotel or rental's color scheme:
 ### Add a Clear Call-to-Action
 
 Always include text above or below the QR code:
-- ✅ *"Scan to Connect to WiFi"*
-- ✅ *"Free WiFi — Scan Here"*
-- ✅ *"Guest Network — Scan to Join"*
+- *"Scan to Connect to WiFi"*
+- *"Free WiFi — Scan Here"*
+- *"Guest Network — Scan to Join"*
 
 Use GenerateCustomQR's **CTA text frames** to add this label directly onto the QR code image.
 
@@ -150,8 +150,8 @@ For hotels, change guest WiFi passwords monthly or quarterly. For Airbnb, consid
 |-----------|---------------|--------------|
 | **WPA2** | Good | Works with all devices (recommended) |
 | **WPA3** | Best | Newer devices only (may exclude some guests) |
-| **WEP** | ❌ Insecure | Never use — easily hackable |
-| **None** | ❌ Open | Never use for a network with personal devices |
+| **WEP** | Insecure | Never use — easily hackable |
+| **None** | Open | Never use for a network with personal devices |
 
 For guest networks, **WPA2** offers the best balance of security and compatibility.
 

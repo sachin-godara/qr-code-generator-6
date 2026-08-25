@@ -44,8 +44,8 @@ WhatsApp provides an official universal deep-linking scheme known as **`wa.me`**
 
 ### Formatting Rules:
 1. **International format without symbols**: Include the country code and area code, but omit any `+`, `-`, `( )`, spaces, or leading zeros.
-   - ✅ Correct: `https://wa.me/15551234567` (US number `+1 (555) 123-4567`)
-   - ❌ Incorrect: `https://wa.me/+1-555-123-4567`
+   - **Correct:** `https://wa.me/15551234567` (US number `+1 (555) 123-4567`)
+   - **Incorrect:** `https://wa.me/+1-555-123-4567`
 2. **Pre-filled message encoding**: Spaces should be encoded as `%20`. For example, *"Hi, I want a quote"* becomes `https://wa.me/15551234567?text=Hi%2C%20I%20want%20a%20quote`.
 
 ---

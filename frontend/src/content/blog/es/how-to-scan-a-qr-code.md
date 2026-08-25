@@ -170,10 +170,10 @@ Muchas apps gratuitas de escáner en Google Play y App Store son adware: contien
 
 | Dispositivo | Mejor Método | ¿Viene Integrado? |
 | :--- | :--- | :--- |
-| **iPhone / iPad** | App Cámara Nativa | ✅ Sí |
-| **Android (Samsung / Pixel)** | App Cámara / Google Lens | ✅ Sí |
-| **WhatsApp Web** | WhatsApp → Dispositivos Vinculados | ✅ Sí |
+| **iPhone / iPad** | App Cámara Nativa | Sí |
+| **Android (Samsung / Pixel)** | App Cámara / Google Lens | Sí |
+| **WhatsApp Web** | WhatsApp → Dispositivos Vinculados | Sí |
 | **Ordenador PC / Mac** | [Escáner Web](/es/qr-code-scanner) | Mediante navegador |
-| **Captura de Pantalla** | [Escáner Web (Ctrl+V)](/es/qr-code-scanner) | ✅ Sí |
+| **Captura de Pantalla** | [Escáner Web (Ctrl+V)](/es/qr-code-scanner) | Sí |
 
 Genera tus propios códigos QR escaneables gratis en **[GenerateCustomQR](/es)**.

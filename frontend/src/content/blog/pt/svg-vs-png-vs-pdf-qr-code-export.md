@@ -36,7 +36,7 @@ Neste guia comparamos **SVG, PNG e PDF** para que você sempre escolha o formato
 | **Tipo de Arquivo** | Vetor Matemático | Imagem Raster | Documento Vetorial |
 | **Escalabilidade** | Infinita (Sem perda) | Perde qualidade ao ampliar | Infinita (Sem perda) |
 | **Ideal Para** | Design Gráfico, Embalagens | Web, E-mails, Redes Sociais | Impressão Profissional |
-| **Fundo Transparente** | ✅ Sim | ✅ Sim | ✅ Sim |
+| **Fundo Transparente** | Sim | Sim | Sim |
 | **Resolução Gráfica** | Perfeita (300+ DPI) | Limitada por pixels | Perfeita (300+ DPI) |
 
 ---

@@ -80,10 +80,10 @@ Los lectores de códigos QR funcionan detectando el **contraste óptico** entre 
 
 | Ratio de Contraste | Resultado del Escaneo |
 | :--- | :--- |
-| **7:1 o superior** | ✅ Excelente — escaneo instantáneo en cualquier condición de luz |
-| **4.5:1 a 7:1** | ✅ Bueno — escaneo fiable en la gran mayoría de teléfonos |
+| **7:1 o superior** | Excelente — escaneo instantáneo en cualquier condición de luz |
+| **4.5:1 a 7:1** | Bueno — escaneo fiable en la gran mayoría de teléfonos |
 | **3:1 a 4.5:1** | ⚠️ Arriesgado — puede fallar con poca luz o en cámaras económicas |
-| **Inferior a 3:1** | ❌ No escaneable — tasa de fallo muy elevada |
+| **Inferior a 3:1** | No escaneable — tasa de fallo muy elevada |
 
 El estándar de calidad obligatorio en [GenerateCustomQR](/es) es un **mínimo de 4.5:1**.
 
@@ -114,10 +114,10 @@ El estándar de calidad obligatorio en [GenerateCustomQR](/es) es un **mínimo d
 
 ### Combinaciones Peligrosas — Evítalas
 
-- ❌ Amarillo `#FFEB3B` sobre Blanco (1.1:1) — Casi invisible.
-- ❌ Celeste `#81D4FA` sobre Blanco (1.6:1) — Demasiado claro.
-- ❌ Rosa Claro `#F48FB1` sobre Blanco (2.1:1) — Contraste insuficiente.
-- ❌ Blanco `#FFFFFF` sobre Negro `#000000` — Invertido.
+- Amarillo `#FFEB3B` sobre Blanco (1.1:1) — Casi invisible.
+- Celeste `#81D4FA` sobre Blanco (1.6:1) — Demasiado claro.
+- Rosa Claro `#F48FB1` sobre Blanco (2.1:1) — Contraste insuficiente.
+- Blanco `#FFFFFF` sobre Negro `#000000` — Invertido.
 
 ---
 
