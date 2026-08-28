@@ -168,6 +168,31 @@ if (!fs.existsSync(headersFile)) {
   }
 }
 
+// 6. Audit Against Fake Ratings / AggregateRating Schema Violations
+console.log('🔍 Auditing for Fake Ratings & Schema Compliance...');
+const componentsDir = path.resolve('src/components');
+const scanForRatings = (dir) => {
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory() && entry.name !== 'node_modules' && entry.name !== 'dist') {
+      scanForRatings(fullPath);
+    } else if (entry.name.endsWith('.astro') || entry.name.endsWith('.json') || entry.name.endsWith('.tsx')) {
+      totalChecks += 1;
+      const content = fs.readFileSync(fullPath, 'utf8');
+      if (/aggregateRating|ratingValue|ratingCount|reviewCount|worstRating|bestRating/i.test(content)) {
+        errors.push(`[fake-ratings/${entry.name}] Found prohibited aggregateRating schema property`);
+      }
+      if (/4\.9\s*\/\s*5|4\.8\s*\/\s*5|5\.0\s*\/\s*5/i.test(content)) {
+        errors.push(`[fake-ratings/${entry.name}] Found prohibited hardcoded score rating`);
+      }
+    }
+  }
+};
+scanForRatings(templatesDir);
+scanForRatings(componentsDir);
+scanForRatings(localesDir);
+
 console.log('\n===================================================');
 console.log(`TOTAL AUDIT CHECKS: ${totalChecks}`);
 console.log(`ERRORS: ${errors.length}`);

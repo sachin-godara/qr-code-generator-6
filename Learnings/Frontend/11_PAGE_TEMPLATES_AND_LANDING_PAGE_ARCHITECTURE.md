@@ -64,7 +64,7 @@ frontend/src/page-templates/
 ### 1. `HomePage.astro` (Master Studio & SEO Hub)
 - **Interactive Studio Mount**: Mounts `<QRGeneratorApp client:load locale={locale} />`.
 - **Protocol Selector Grid**: 10 interactive cards (URL, WiFi, vCard, Email, SMS, Phone, Event, Text, Maps) linking to dedicated landing routes.
-- **Structured Schemas**: Injects `SoftwareApplication` ($4.9/5$ rating), `FAQPage` (6 localized questions), and `BreadcrumbList`.
+- **Structured Schemas**: Injects `WebApplication` (compliant without fake ratings), `FAQPage` (6 localized questions), and `BreadcrumbList`.
 - **Dynamic Blog Showcase**: Displays the 3 latest localized Markdown articles with publication dates and reading time badges.
 
 ### 2. `WifiQrPage.astro` (WiFi Network Protocol Hub)
