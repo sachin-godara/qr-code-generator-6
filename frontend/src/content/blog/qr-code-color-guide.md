@@ -90,33 +90,33 @@ The W3C Web Content Accessibility Guidelines (WCAG) define contrast ratios for r
 ### High Contrast (7:1+) — Best Reliability
 
 | Dot Color | Background | Contrast | Brand Style |
-|-----------|-----------|---------|-------------|
-| Black `#000000` | White `#FFFFFF` | 21:1 | Classic, universal |
-| Navy `#1A237E` | White `#FFFFFF` | 16:1 | Corporate, financial |
-| Dark Green `#1B5E20` | White `#FFFFFF` | 11:1 | Eco, organic, nature |
-| Burgundy `#880E4F` | White `#FFFFFF` | 10:1 | Luxury, wine, hospitality |
-| Dark Purple `#4A148C` | White `#FFFFFF` | 13:1 | Creative, tech, entertainment |
-| Charcoal `#212121` | Light Gray `#F5F5F5` | 16:1 | Minimalist, modern |
+|---|---|---|---|
+| Black `#000000` | White `#FFFFFF` | 21.0:1 | Classic, universal |
+| Navy `#1A237E` | White `#FFFFFF` | 13.2:1 | Corporate, financial |
+| Dark Green `#1B5E20` | White `#FFFFFF` | 7.9:1 | Eco, organic, nature |
+| Burgundy `#880E4F` | White `#FFFFFF` | 9.4:1 | Luxury, wine, hospitality |
+| Dark Purple `#4A148C` | White `#FFFFFF` | 11.9:1 | Creative, tech, entertainment |
+| Charcoal `#212121` | Light Gray `#F5F5F5` | 14.8:1 | Minimalist, modern |
 
 ### Medium Contrast (4.5–7:1) — Good Reliability
 
 | Dot Color | Background | Contrast | Brand Style |
-|-----------|-----------|---------|-------------|
-| Steel Blue `#1565C0` | White `#FFFFFF` | 7:1 | Tech, SaaS, healthcare |
-| Forest Green `#2E7D32` | White `#FFFFFF` | 5.5:1 | Agriculture, sustainability |
+|---|---|---|---|
+| Steel Blue `#1565C0` | White `#FFFFFF` | 5.7:1 | Tech, SaaS, healthcare |
+| Forest Green `#2E7D32` | White `#FFFFFF` | 5.1:1 | Agriculture, sustainability |
 | Crimson `#C62828` | White `#FFFFFF` | 5.6:1 | Food, retail, energy |
-| Deep Orange `#D84315` | White `#FFFFFF` | 4.8:1 | Food delivery, sports |
-| Teal `#00695C` | White `#FFFFFF` | 5.9:1 | Healthcare, wellness |
+| Burnt Orange `#BF360C` | White `#FFFFFF` | 5.6:1 | Food delivery, sports |
+| Teal `#00695C` | White `#FFFFFF` | 6.6:1 | Healthcare, wellness |
 
 ### Dangerous Combinations — Avoid These
 
 | Dot Color | Background | Contrast | Problem |
-|-----------|-----------|---------|---------|
-| Yellow `#FFEB3B` | White `#FFFFFF` | 1.1:1 | Nearly invisible |
+|---|---|---|---|
+| Yellow `#FFEB3B` | White `#FFFFFF` | 1.2:1 | Nearly invisible |
 | Light Blue `#81D4FA` | White `#FFFFFF` | 1.6:1 | Too similar |
-| Light Green `#A5D6A7` | White `#FFFFFF` | 1.8:1 | Washes out |
-| Pink `#F48FB1` | White `#FFFFFF` | 2.1:1 | Insufficient contrast |
-| Gray `#BDBDBD` | White `#FFFFFF` | 2.0:1 | Blends together |
+| Light Green `#A5D6A7` | White `#FFFFFF` | 1.6:1 | Washes out |
+| Pink `#F48FB1` | White `#FFFFFF` | 2.2:1 | Insufficient contrast |
+| Gray `#BDBDBD` | White `#FFFFFF` | 1.9:1 | Blends together |
 | White `#FFFFFF` | Black `#000000` | N/A | Inverted — most scanners fail |
 
 ## Color Strategies for Different Industries
@@ -178,11 +178,11 @@ Some designs call for QR codes on dark backgrounds. This is possible but require
 
 ### Recommended Dark Combinations
 
-| Dot Color | Background | Notes |
-|-----------|-----------|-------|
-| White `#FFFFFF` | Dark Navy `#0D1117` | Works well with white quiet zone |
-| Light Yellow `#FFF9C4` | Dark Charcoal `#1A1A1A` | Warm on dark |
-| Light Cyan `#B2EBF2` | Dark Teal `#004D40` | Monochromatic dark theme |
+| Dot Color | Background | Contrast | Notes |
+|---|---|---|---|
+| White `#FFFFFF` | Dark Navy `#0D1117` | 18.9:1 | Works well with white quiet zone |
+| Light Yellow `#FFF9C4` | Dark Charcoal `#1A1A1A` | 16.2:1 | Warm high contrast on dark |
+| Light Cyan `#B2EBF2` | Dark Teal `#004D40` | 7.5:1 | Monochromatic dark theme |
 
 > **Warning:** Dark background QR codes should always be tested on at least 5 different devices before production use. Older phone cameras and low-light conditions can cause failures.
 

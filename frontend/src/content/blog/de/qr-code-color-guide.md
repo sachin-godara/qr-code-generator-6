@@ -91,33 +91,33 @@ Die Richtlinien für barrierefreie Webinhalte (WCAG) definieren Kontrastwerte, d
 
 | Punkt-Farbe | Hintergrund | Kontrast | Markenstil |
 |---|---|---|---|
-| Schwarz `#000000` | Weiß `#FFFFFF` | 21:1 | Klassisch, universell |
-| Navy-Blau `#1A237E` | Weiß `#FFFFFF` | 16:1 | Seriös, Finanzen, B2B |
-| Dunkelgrün `#1B5E20` | Weiß `#FFFFFF` | 11:1 | Öko, Natur, Nachhaltigkeit |
-| Dunkles Bordeaux `#880E4F` | Weiß `#FFFFFF` | 10:1 | Premium, Wein, Gastronomie |
-| Dunkelviolett `#4A148C` | Weiß `#FFFFFF` | 13:1 | Kreativ, Technologie, Kultur |
-| Anthrazit `#212121` | Hellgrau `#F5F5F5` | 16:1 | Modern, minimalistisch |
+| Schwarz `#000000` | Weiß `#FFFFFF` | 21,0:1 | Klassisch, universell |
+| Navy-Blau `#1A237E` | Weiß `#FFFFFF` | 13,2:1 | Seriös, Finanzen, B2B |
+| Dunkelgrün `#1B5E20` | Weiß `#FFFFFF` | 7,9:1 | Öko, Natur, Nachhaltigkeit |
+| Dunkles Bordeaux `#880E4F` | Weiß `#FFFFFF` | 9,4:1 | Premium, Wein, Gastronomie |
+| Dunkelviolett `#4A148C` | Weiß `#FFFFFF` | 11,9:1 | Kreativ, Technologie, Kultur |
+| Anthrazit `#212121` | Hellgrau `#F5F5F5` | 14,8:1 | Modern, minimalistisch |
 
 ### Mittlerer Kontrast (4,5–7:1) — Gute Zuverlässigkeit
 
 | Punkt-Farbe | Hintergrund | Kontrast | Markenstil |
 |---|---|---|---|
-| Stahlblau `#1565C0` | Weiß `#FFFFFF` | 7:1 | SaaS, Tech, Medizin |
-| Waldgrün `#2E7D32` | Weiß `#FFFFFF` | 5,5:1 | Gartenbau, Umwelt |
+| Stahlblau `#1565C0` | Weiß `#FFFFFF` | 5,7:1 | SaaS, Tech, Medizin |
+| Waldgrün `#2E7D32` | Weiß `#FFFFFF` | 5,1:1 | Gartenbau, Umwelt |
 | Dunkelrot `#C62828` | Weiß `#FFFFFF` | 5,6:1 | Handel, Gastronomie, Events |
-| Tiefes Orange `#D84315` | Weiß `#FFFFFF` | 4,8:1 | Lieferservice, Sport |
-| Petrol `#00695C` | Weiß `#FFFFFF` | 5,9:1 | Wellness, Gesundheit |
+| Gebranntes Orange `#BF360C` | Weiß `#FFFFFF` | 5,6:1 | Lieferservice, Sport |
+| Petrol `#00695C` | Weiß `#FFFFFF` | 6,6:1 | Wellness, Gesundheit |
 
 ### Gefährliche Kombinationen — Bitte vermeiden
 
 | Punkt-Farbe | Hintergrund | Kontrast | Problem |
 |---|---|---|---|
-| Gelb `#FFEB3B` | Weiß `#FFFFFF` | 1,1:1 | Nahezu unsichtbar für Sensoren |
+| Gelb `#FFEB3B` | Weiß `#FFFFFF` | 1,2:1 | Nahezu unsichtbar für Sensoren |
 | Hellblau `#81D4FA` | Weiß `#FFFFFF` | 1,6:1 | Viel zu geringer Kontrast |
-| Hellgrün `#A5D6A7` | Weiß `#FFFFFF` | 1,8:1 | Überstrahlt bei Tageslicht |
-| Rosa `#F48FB1` | Weiß `#FFFFFF` | 2,1:1 | Zu schwacher Helligkeitswert |
-| Grau `#BDBDBD` | Weiß `#FFFFFF` | 2,0:1 | Verschwimmt mit dem Grund |
-| Weiß `#FFFFFF` | Schwarz `#000000` | — | Invertiert — scheitert ohne Zusatzrahmen |
+| Hellgrün `#A5D6A7` | Weiß `#FFFFFF` | 1,6:1 | Überstrahlt bei Tageslicht |
+| Rosa `#F48FB1` | Weiß `#FFFFFF` | 2,2:1 | Zu schwacher Helligkeitswert |
+| Grau `#BDBDBD` | Weiß `#FFFFFF` | 1,9:1 | Verschwimmt mit dem Grund |
+| Weiß `#FFFFFF` | Schwarz `#000000` | N/A | Invertiert — scheitert ohne Zusatzrahmen |
 
 ## Farbstrategien nach Branchen
 
@@ -177,11 +177,11 @@ Wenn ein Design zwingend einen dunklen Hintergrund erfordert:
 
 ### Empfohlene Dark-Mode-Kombinationen
 
-| Punkt-Farbe | Hintergrund | Anmerkung |
-|---|---|---|
-| Weiß `#FFFFFF` | Dunkelblau `#0D1117` | Funktioniert mit weißer Ruhezone hervorragend |
-| Hellgelb `#FFF9C4` | Anthrazit `#1A1A1A` | Angenehm warmer Kontrast |
-| Helles Cyan `#B2EBF2` | Tiefes Petrol `#004D40` | Moderner, monochromer Look |
+| Punkt-Farbe | Hintergrund | Kontrast | Anmerkung |
+|---|---|---|---|
+| Weiß `#FFFFFF` | Dunkelblau `#0D1117` | 18,9:1 | Funktioniert mit weißer Ruhezone hervorragend |
+| Hellgelb `#FFF9C4` | Anthrazit `#1A1A1A` | 16,2:1 | Angenehm warmer Kontrast |
+| Helles Cyan `#B2EBF2` | Tiefes Petrol `#004D40` | 7,5:1 | Moderner, monochromer Look |
 
 ## Augen- und Pupillenfarben
 

@@ -91,33 +91,33 @@ As Diretrizes de Acessibilidade para Conteúdo Web (WCAG) definem níveis de con
 
 | Cor dos Pontos | Fundo | Contraste | Estilo da Marca |
 |---|---|---|---|
-| Preto `#000000` | Branco `#FFFFFF` | 21:1 | Clássico, universal |
-| Azul Marinho `#1A237E` | Branco `#FFFFFF` | 16:1 | Corporativo, financeiro |
-| Verde Escuro `#1B5E20` | Branco `#FFFFFF` | 11:1 | Sustentabilidade, orgânico |
-| Bordô `#880E4F` | Branco `#FFFFFF` | 10:1 | Luxo, vinhos, gastronomia |
-| Roxo Profundo `#4A148C` | Branco `#FFFFFF` | 13:1 | Criativo, tecnologia, eventos |
-| Grafite `#212121` | Cinza Claro `#F5F5F5` | 16:1 | Minimalista, contemporâneo |
+| Preto `#000000` | Branco `#FFFFFF` | 21.0:1 | Clássico, universal |
+| Azul Marinho `#1A237E` | Branco `#FFFFFF` | 13.2:1 | Corporativo, financeiro |
+| Verde Escuro `#1B5E20` | Branco `#FFFFFF` | 7.9:1 | Sustentabilidade, orgânico |
+| Bordô `#880E4F` | Branco `#FFFFFF` | 9.4:1 | Luxo, vinhos, gastronomia |
+| Roxo Profundo `#4A148C` | Branco `#FFFFFF` | 11.9:1 | Criativo, tecnologia, eventos |
+| Grafite `#212121` | Cinza Claro `#F5F5F5` | 14.8:1 | Minimalista, contemporâneo |
 
 ### Médio Contraste (4.5–7:1) — Boa Confiabilidade
 
 | Cor dos Pontos | Fundo | Contraste | Estilo da Marca |
 |---|---|---|---|
-| Azul Aço `#1565C0` | Branco `#FFFFFF` | 7:1 | Tecnologia, SaaS, saúde |
-| Verde Floresta `#2E7D32` | Branco `#FFFFFF` | 5.5:1 | Agricultura, meio ambiente |
+| Azul Aço `#1565C0` | Branco `#FFFFFF` | 5.7:1 | Tecnologia, SaaS, saúde |
+| Verde Floresta `#2E7D32` | Branco `#FFFFFF` | 5.1:1 | Agricultura, meio ambiente |
 | Carmesim `#C62828` | Branco `#FFFFFF` | 5.6:1 | Gastronomia, varejo, esportes |
-| Laranja Escuro `#D84315` | Branco `#FFFFFF` | 4.8:1 | Delivery, energia |
-| Petróleo `#00695C` | Branco `#FFFFFF` | 5.9:1 | Bem-estar, clínica médica |
+| Laranja Queimado `#BF360C` | Branco `#FFFFFF` | 5.6:1 | Delivery, energia |
+| Petróleo `#00695C` | Branco `#FFFFFF` | 6.6:1 | Bem-estar, clínica médica |
 
 ### Combinações Críticas — Evite Totalmente
 
 | Cor dos Pontos | Fundo | Contraste | Problema |
 |---|---|---|---|
-| Amarelo `#FFEB3B` | Branco `#FFFFFF` | 1.1:1 | Quase invisível para sensores |
+| Amarelo `#FFEB3B` | Branco `#FFFFFF` | 1.2:1 | Quase invisível para sensores |
 | Azul Claro `#81D4FA` | Branco `#FFFFFF` | 1.6:1 | Sem contraste de luminosidade |
-| Verde Claro `#A5D6A7` | Branco `#FFFFFF` | 1.8:1 | Clareia demais na luz |
-| Rosa `#F48FB1` | Branco `#FFFFFF` | 2.1:1 | Contraste muito fraco |
-| Cinza Médio `#BDBDBD` | Branco `#FFFFFF` | 2.0:1 | Se mistura com o fundo |
-| Branco `#FFFFFF` | Preto `#000000` | — | Invertido — falha na maioria dos apps |
+| Verde Claro `#A5D6A7` | Branco `#FFFFFF` | 1.6:1 | Clareia demais na luz |
+| Rosa `#F48FB1` | Branco `#FFFFFF` | 2.2:1 | Contraste muito fraco |
+| Cinza Médio `#BDBDBD` | Branco `#FFFFFF` | 1.9:1 | Se mistura com o fundo |
+| Branco `#FFFFFF` | Preto `#000000` | N/A | Invertido — falha na maioria dos apps |
 
 ## Estratégia de Cores por Segmento
 
@@ -176,11 +176,11 @@ Se o projeto gráfico exigir obrigatoriamente um fundo escuro:
 
 ### Combinações Recomendadas em Fundo Escuro
 
-| Cor dos Pontos | Fundo | Observações |
-|---|---|---|
-| Branco `#FFFFFF` | Azul Noite `#0D1117` | Excelente quando há borda de silêncio clara |
-| Amarelo Claro `#FFF9C4` | Grafite `#1A1A1A` | Contraste quente e elegante |
-| Ciano Claro `#B2EBF2` | Verde Petróleo `#004D40` | Visual moderno monocromático |
+| Cor dos Pontos | Fundo | Contraste | Observações |
+|---|---|---|---|
+| Branco `#FFFFFF` | Azul Noite `#0D1117` | 18.9:1 | Excelente quando há borda de silêncio clara |
+| Amarelo Claro `#FFF9C4` | Grafite `#1A1A1A` | 16.2:1 | Contraste quente e elegante |
+| Ciano Claro `#B2EBF2` | Verde Petróleo `#004D40` | 7.5:1 | Visual moderno monocromático |
 
 ## Cores dos Cantos e Pupilas (Olhos)
 

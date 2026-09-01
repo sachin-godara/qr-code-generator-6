@@ -93,32 +93,32 @@ Las pautas internacionales de accesibilidad W3C WCAG establecen fórmulas matem�
 
 | Color de Puntos | Fondo | Contraste | Sector / Estilo |
 |---|---|---|---|
-| Negro `#000000` | Blanco `#FFFFFF` | 21:1 | Clásico, universal |
-| Azul Marino `#1A237E` | Blanco `#FFFFFF` | 16:1 | Corporativo, financiero, legal |
-| Verde Oscuro `#1B5E20` | Blanco `#FFFFFF` | 11:1 | Ecológico, salud, alimentación |
-| Burdeos / Vino `#880E4F` | Blanco `#FFFFFF` | 10:1 | Lujo, hostelería, bodegas |
-| Púrpura Profundo `#4A148C` | Blanco `#FFFFFF` | 13:1 | Creativo, tecnología, eventos |
-| Antracita `#212121` | Gris Claro `#F5F5F5` | 16:1 | Minimalista, moderno |
+| Negro `#000000` | Blanco `#FFFFFF` | 21.0:1 | Clásico, universal |
+| Azul Marino `#1A237E` | Blanco `#FFFFFF` | 13.2:1 | Corporativo, financiero, legal |
+| Verde Oscuro `#1B5E20` | Blanco `#FFFFFF` | 7.9:1 | Ecológico, salud, alimentación |
+| Burdeos / Vino `#880E4F` | Blanco `#FFFFFF` | 9.4:1 | Lujo, hostelería, bodegas |
+| Púrpura Profundo `#4A148C` | Blanco `#FFFFFF` | 11.9:1 | Creativo, tecnología, eventos |
+| Antracita `#212121` | Gris Claro `#F5F5F5` | 14.8:1 | Minimalista, moderno |
 
 ### Contraste Medio (4.5–7:1) — Buena Fiabilidad
 
 | Color de Puntos | Fondo | Contraste | Sector / Estilo |
 |---|---|---|---|
-| Azul Acero `#1565C0` | Blanco `#FFFFFF` | 7:1 | Software, SaaS, medicina |
-| Verde Bosque `#2E7D32` | Blanco `#FFFFFF` | 5.5:1 | Sostenibilidad, agricultura |
+| Azul Acero `#1565C0` | Blanco `#FFFFFF` | 5.7:1 | Software, SaaS, medicina |
+| Verde Bosque `#2E7D32` | Blanco `#FFFFFF` | 5.1:1 | Sostenibilidad, agricultura |
 | Rojo Carmín `#C62828` | Blanco `#FFFFFF` | 5.6:1 | Restauración, retail, deportes |
-| Naranja Oscuro `#D84315` | Blanco `#FFFFFF` | 4.8:1 | Comida rápida, energía |
-| Turquesa Oscuro `#00695C` | Blanco `#FFFFFF` | 5.9:1 | Bienestar, farmacia |
+| Naranja Tostado `#BF360C` | Blanco `#FFFFFF` | 5.6:1 | Comida rápida, energía |
+| Turquesa Oscuro `#00695C` | Blanco `#FFFFFF` | 6.6:1 | Bienestar, farmacia |
 
 ### Combinaciones Peligrosas — Prohibidas
 
 | Color de Puntos | Fondo | Contraste | Causa del Fallo |
 |---|---|---|---|
-| Amarillo `#FFEB3B` | Blanco `#FFFFFF` | 1.1:1 | Prácticamente invisible para la cámara |
+| Amarillo `#FFEB3B` | Blanco `#FFFFFF` | 1.2:1 | Prácticamente invisible para la cámara |
 | Celeste `#81D4FA` | Blanco `#FFFFFF` | 1.6:1 | Luminancia excesivamente parecida |
-| Verde Pastel `#A5D6A7` | Blanco `#FFFFFF` | 1.8:1 | Se diluye en la sobreexposición |
-| Rosa Bebé `#F48FB1` | Blanco `#FFFFFF` | 2.1:1 | Contraste insuficiente |
-| Gris Medio `#BDBDBD` | Blanco `#FFFFFF` | 2.0:1 | Los módulos se fusionan con el fondo |
+| Verde Pastel `#A5D6A7` | Blanco `#FFFFFF` | 1.6:1 | Se diluye en la sobreexposición |
+| Rosa Bebé `#F48FB1` | Blanco `#FFFFFF` | 2.2:1 | Contraste insuficiente |
+| Gris Medio `#BDBDBD` | Blanco `#FFFFFF` | 1.9:1 | Los módulos se fusionan con el fondo |
 | Blanco `#FFFFFF` | Negro `#000000` | N/A | Invertido — no reconocido por lectores estándar |
 
 ## Estrategias de Color por Industria
@@ -173,11 +173,11 @@ Algunos diseños exigen colocar códigos sobre superficies oscuras. Para que fun
 
 ### Combinaciones Oscuras Recomendadas
 
-| Color de Puntos | Fondo | Observaciones |
-|---|---|---|
-| Blanco `#FFFFFF` | Azul Noche `#0D1117` | Requiere zona de silencio blanca exterior |
-| Amarillo Crema `#FFF9C4` | Carbón `#1A1A1A` | Tono cálido de alto contraste |
-| Cian Claro `#B2EBF2` | Verde Petróleo `#004D40` | Estética tecnológica monocromática |
+| Color de Puntos | Fondo | Contraste | Observaciones |
+|---|---|---|---|
+| Blanco `#FFFFFF` | Azul Noche `#0D1117` | 18.9:1 | Requiere zona de silencio blanca exterior |
+| Amarillo Crema `#FFF9C4` | Carbón `#1A1A1A` | 16.2:1 | Tono cálido de alto contraste |
+| Cian Claro `#B2EBF2` | Verde Petróleo `#004D40` | 7.5:1 | Estética tecnológica monocromática |
 
 ## Colores de Ojos y Pupilas
 
