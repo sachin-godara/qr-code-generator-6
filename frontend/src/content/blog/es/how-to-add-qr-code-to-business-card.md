@@ -84,7 +84,7 @@ Crea una página de destino exclusiva (por ejemplo, `tudominio.com/tarjeta`) con
 
 ### Para un Código QR de vCard:
 
-1. Abre el [Generador de Códigos QR vCard Gratis](/es/vcard-qr-code).
+1. Abre el [Generador de Códigos QR vCard Gratis](/es/vcard-qr-code/).
 2. Rellena tus datos profesionales:
    - Nombre completo y cargo en la empresa
    - Nombre de tu negocio u organización
@@ -96,7 +96,7 @@ Crea una página de destino exclusiva (por ejemplo, `tudominio.com/tarjeta`) con
 
 ### Para un Código QR de Enlace (URL):
 
-1. Abre el [Generador de URL a Código QR](/es/url-qr-code-generator).
+1. Abre el [Generador de URL a Código QR](/es/url-qr-code-generator/).
 2. Pega la dirección de tu web, portafolio o red social.
 3. El código QR se generará de inmediato.
 
@@ -236,6 +236,6 @@ Una tarjeta de visita con código QR vCard bien implementada:
 
 Diseña tu código QR personalizado con logotipo en segundos, con descarga gratuita e inmediata en alta definición.
 
-- [Crear Código QR vCard para Tarjeta →](/es/vcard-qr-code)
-- [Personalizar con Logotipo Corporativo →](/es/qr-code-with-logo)
-- [Guía Completa de Tamaños de Impresión →](/es/blog/qr-code-size-guide)
+- [Crear Código QR vCard para Tarjeta →](/es/vcard-qr-code/)
+- [Personalizar con Logotipo Corporativo →](/es/qr-code-with-logo/)
+- [Guía Completa de Tamaños de Impresión →](/es/blog/qr-code-size-guide/)

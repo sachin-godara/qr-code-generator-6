@@ -81,7 +81,7 @@ Leva a uma página mobile com apresentação dos seus principais trabalhos e lin
 
 ## Passo 1: Criar o QR Code vCard
 
-1. Abra o [Gerador de QR Code vCard](/pt/vcard-qr-code).
+1. Abra o [Gerador de QR Code vCard](/pt/vcard-qr-code/).
 2. Preencha seus dados de contato:
    - Nome e sobrenome, cargo
    - Nome da empresa
@@ -208,4 +208,4 @@ Um cartão de visitas com QR code vCard bem planejado:
 
 ## Crie o QR Code do seu Cartão de Visita
 
-Crie seu cartão de visita com QR code vCard grátis no **[GenerateCustomQR](/pt)**.
+Crie seu cartão de visita com QR code vCard grátis no **[GenerateCustomQR](/pt/)**.

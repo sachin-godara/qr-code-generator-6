@@ -132,16 +132,16 @@ Patient wristbands, medication labels, and lab samples use barcodes for quick id
 QR codes are the better choice for:
 
 ### Marketing & Advertising
-QR codes on print ads, billboards, packaging, and business cards link to websites, landing pages, and promotions. [Create a URL QR code →](/url-qr-code-generator)
+QR codes on print ads, billboards, packaging, and business cards link to websites, landing pages, and promotions. [Create a URL QR code →](/url-qr-code-generator/)
 
 ### Contactless Menus
-Restaurants use QR codes to replace physical menus. [See our restaurant guide →](/blog/qr-code-for-restaurant-menu)
+Restaurants use QR codes to replace physical menus. [See our restaurant guide →](/blog/qr-code-for-restaurant-menu/)
 
 ### WiFi Sharing
-Hotels, cafes, and offices use WiFi QR codes to let guests connect without typing passwords. [Create a WiFi QR code →](/wifi-qr-code)
+Hotels, cafes, and offices use WiFi QR codes to let guests connect without typing passwords. [Create a WiFi QR code →](/wifi-qr-code/)
 
 ### Digital Business Cards
-vCard QR codes save full contact information to a phone instantly. [Create a vCard QR code →](/vcard-qr-code)
+vCard QR codes save full contact information to a phone instantly. [Create a vCard QR code →](/vcard-qr-code/)
 
 ### Event Ticketing
 Conference badges, concert tickets, and boarding passes increasingly use QR codes for check-in.

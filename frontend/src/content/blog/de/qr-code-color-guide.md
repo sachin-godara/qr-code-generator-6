@@ -83,7 +83,7 @@ Die Richtlinien für barrierefreie Webinhalte (WCAG) definieren Kontrastwerte, d
 | **3:1 bis 4,5:1** | ⚠️ Riskant — Leseprobleme bei schwachem Licht oder Einstiegs-Smartphones |
 | **Unter 3:1** | Unbrauchbar — hohe Fehlerrate beim Scannen |
 
-**Das empfohlene Mindest-Kontrastverhältnis beträgt 4,5:1.** Dies ist der Standard, den [GenerateCustomQR](/de) in allen Vorlagen zugrunde legt.
+**Das empfohlene Mindest-Kontrastverhältnis beträgt 4,5:1.** Dies ist der Standard, den [GenerateCustomQR](/de/) in allen Vorlagen zugrunde legt.
 
 ## Getestete, sichere Farbkombinationen
 
@@ -152,7 +152,7 @@ Die Richtlinien für barrierefreie Webinhalte (WCAG) definieren Kontrastwerte, d
 
 ## Farbverläufe (Gradients) richtig einsetzen
 
-[GenerateCustomQR](/de) unterstützt vier Verlaufstypen:
+[GenerateCustomQR](/de/) unterstützt vier Verlaufstypen:
 - **Linear Vertikal** — Oben dunkel, unten weicher
 - **Linear Horizontal** — Von links nach rechts
 - **Radial** — Im Zentrum intensiv, nach außen übergehend
@@ -191,7 +191,7 @@ Die drei Eckquadrate (Suchmuster) sind essenziell für die Orientierung der Kame
 2. **Niemals heller** als das Punktmuster gestalten
 3. **Ausreichenden Kontrast** zum Hintergrund wahren
 
-In [GenerateCustomQR](/de) können Sie Augen-Rahmen und Pupillen separat einfärben.
+In [GenerateCustomQR](/de/) können Sie Augen-Rahmen und Pupillen separat einfärben.
 
 ## Checkliste vor dem Druck
 
@@ -204,8 +204,8 @@ In [GenerateCustomQR](/de) können Sie Augen-Rahmen und Pupillen separat einfär
 
 ## Gestalten Sie Ihren gebrandeten QR-Code
 
-Bereit für einen maßgeschneiderten QR-Code in Ihren Firmenfarben? [GenerateCustomQR](/de) bietet volle Farbfreiheit bei garantierter Lesbarkeit — 100% kostenlos.
+Bereit für einen maßgeschneiderten QR-Code in Ihren Firmenfarben? [GenerateCustomQR](/de/) bietet volle Farbfreiheit bei garantierter Lesbarkeit — 100% kostenlos.
 
-- [Jetzt gestalten →](/de)
-- [Größenberater für den Druck →](/de/blog/qr-code-size-guide)
-- [Tipps für den perfekten Druck →](/de/blog/qr-code-design-best-practices-for-print)
+- [Jetzt gestalten →](/de/)
+- [Größenberater für den Druck →](/de/blog/qr-code-size-guide/)
+- [Tipps für den perfekten Druck →](/de/blog/qr-code-design-best-practices-for-print/)

@@ -18,6 +18,9 @@ export default defineConfig({
     },
   },
   
+  // Enforce consistent trailing slashes across all routes, links, and sitemaps
+  trailingSlash: 'always',
+
   devToolbar: {
     enabled: false,
   },

@@ -44,7 +44,7 @@ Bir Wi-Fi QR kodu ağ adını (SSID), şifreyi ve güvenlik türünü doğrudan 
 
 ## Wi-Fi QR Kodu Nasıl Oluşturulur?
 
-1. **[GenerateCustomQR Wi-Fi Oluşturucuya](/tr/wifi-qr-code)** gidin.
+1. **[GenerateCustomQR Wi-Fi Oluşturucuya](/tr/wifi-qr-code/)** gidin.
 2. **Ağ Adınızı (SSID)** tam olarak yazın (büyük/küçük harfe duyarlıdır).
 3. **Wi-Fi Şifrenizi** girin.
 4. **Şifreleme Türünü** seçin (çoğu ağ için WPA/WPA2).
@@ -52,7 +52,7 @@ Bir Wi-Fi QR kodu ağ adını (SSID), şifreyi ve güvenlik türünü doğrudan 
 6. Tasarımı işletmenizin kurumsal renklerine göre uyarlayın.
 7. Vektörel formatta indirip basın.
 
-[Wi-Fi QR Kodunuzu Hemen Oluşturun →](/tr/wifi-qr-code)
+[Wi-Fi QR Kodunuzu Hemen Oluşturun →](/tr/wifi-qr-code/)
 
 ---
 
@@ -219,6 +219,6 @@ Eski model dizüstü bilgisayarlar veya bazı cihazlar için QR kodun yanına ş
 
 Misafirlerinize modern ve kusursuz bir karşılama deneyimi sunun:
 
-- [Wi-Fi QR Kodu Oluşturun →](/tr/wifi-qr-code)
-- [vCard Kartvizit QR Kodu Oluşturun →](/tr/vcard-qr-code)
-- [Baskı İpuçları Rehberini İnceleyin →](/tr/blog/qr-code-design-best-practices-for-print)
+- [Wi-Fi QR Kodu Oluşturun →](/tr/wifi-qr-code/)
+- [vCard Kartvizit QR Kodu Oluşturun →](/tr/vcard-qr-code/)
+- [Baskı İpuçları Rehberini İnceleyin →](/tr/blog/qr-code-design-best-practices-for-print/)

@@ -79,7 +79,7 @@ Eski düz siyah-beyaz kareler hızla tarihe karışıyor. 2026'da tüketiciler m
 - **Merkez logo yerleşimi**: Kurumsal güven oluşturan marka simgeleri
 - **Harekete geçirici metin çerçeveleri**: "Sipariş İçin Tara", "Uygulamayı İndir" vb.
 
-[GenerateCustomQR](/tr), 40+ nokta stili, 28 göz çerçevesi, 51 metin çerçevesi ve sınırsız renk paletiyle bu tasarım özgürlüğünü tamamen ücretsiz sunmaktadır.
+[GenerateCustomQR](/tr/), 40+ nokta stili, 28 göz çerçevesi, 51 metin çerçevesi ve sınırsız renk paletiyle bu tasarım özgürlüğünü tamamen ücretsiz sunmaktadır.
 
 ### 3. Ödeme Sistemlerinde QR Kod Büyümeye Devam Ediyor
 
@@ -109,12 +109,12 @@ QR kodlar birçok sektörde fiziksel kağıt israfını bitiriyor:
 
 - **Restoran menüleri**: Restoranların %72'sinden fazlası dijital menüye geçti
 - **Kullanım kılavuzları**: Kalın kitapçıklar yerine kutu üzerine basılan tek bir QR kod
-- **Dijital kartvizitler**: [vCard QR kodları](/tr/vcard-qr-code) ile kağıt kartvizit israfı sıfırlanıyor
+- **Dijital kartvizitler**: [vCard QR kodları](/tr/vcard-qr-code/) ile kağıt kartvizit israfı sıfırlanıyor
 - **Biletler**: Konser, uçak ve tren biletleri tamamen dijital QR kodlara taşındı
 
 ### 6. Kurumsal Seviye Dinamik ve Statik Kod Stratejileri
 
-[GenerateCustomQR](/tr) **statik** QR kodlarda uzmanlaşırken (veriler doğrudan koda gömülür, takip yok, süre dolumu yok), kurumsal platformlar dinamik kod özelliklerini genişletiyor:
+[GenerateCustomQR](/tr/) **statik** QR kodlarda uzmanlaşırken (veriler doğrudan koda gömülür, takip yok, süre dolumu yok), kurumsal platformlar dinamik kod özelliklerini genişletiyor:
 
 - Yeniden basım yapmadan gerçek zamanlı URL değiştirme
 - Detaylı coğrafi ve cihaz bazlı tarama analitiği
@@ -122,7 +122,7 @@ QR kodlar birçok sektörde fiziksel kağıt israfını bitiriyor:
 
 Bireyler ve küçük-orta ölçekli işletmeler için statik kodlar en güvenilir tercihtir — tamamen ücretsiz, kalıcı, gizlilik odaklı ve abonelik gerektirmez.
 
-[Daha Fazla Bilgi: Statik vs Dinamik QR Kodlar →](/tr/blog/static-vs-dynamic-qr-codes)
+[Daha Fazla Bilgi: Statik vs Dinamik QR Kodlar →](/tr/blog/static-vs-dynamic-qr-codes/)
 
 ### 7. Güvenlik ve Kimlik Doğrulama QR Kodları
 
@@ -142,7 +142,7 @@ Bireyler ve küçük-orta ölçekli işletmeler için statik kodlar en güvenili
 
 ### Gayrimenkul
 - Satılık afişlerinde sanal tur ve kat planı QR kodları
-- [Emlak QR Kod Rehberimizi İnceleyin →](/tr/blog/qr-codes-for-real-estate)
+- [Emlak QR Kod Rehberimizi İnceleyin →](/tr/blog/qr-codes-for-real-estate/)
 
 ---
 
@@ -167,4 +167,4 @@ Bireyler ve küçük-orta ölçekli işletmeler için statik kodlar en güvenili
 
 2026 yılında QR kodlar artık geçici bir çözüm değil; perakende kasalarından artırılmış gerçeklik deneyimlerine kadar vazgeçilmez bir altyapıdır. Tüketiciler markalı, renkli ve estetik kodlar beklemektedir.
 
-[Profesyonelce Tasarlanmış Ücretsiz QR Kodunuzu Oluşturun →](/tr)
+[Profesyonelce Tasarlanmış Ücretsiz QR Kodunuzu Oluşturun →](/tr/)

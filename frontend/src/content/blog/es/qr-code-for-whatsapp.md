@@ -56,7 +56,7 @@ WhatsApp proporciona un protocolo universal de enlace directo denominado **`wa.m
 Decide si deseas un chat directo o incluir un texto inicial para agilizar la atención al cliente.
 
 ### Paso 2: Pega el Enlace en GenerateCustomQR
-1. Entra en el **[Generador GenerateCustomQR](/es)**.
+1. Entra en el **[Generador GenerateCustomQR](/es/)**.
 2. Selecciona el tipo de contenido **URL**.
 3. Pega tu enlace completo `https://wa.me/...`.
 
@@ -165,4 +165,4 @@ Facilita que los compradores interesados pidan los planos de la vivienda y conci
 
 ## Crea tu Código QR de WhatsApp Gratis
 
-Genera ahora tu código QR de WhatsApp estático y gratuito que nunca caduca en **[GenerateCustomQR](/es)**.
+Genera ahora tu código QR de WhatsApp estático y gratuito que nunca caduca en **[GenerateCustomQR](/es/)**.

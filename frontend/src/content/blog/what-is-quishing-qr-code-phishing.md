@@ -270,4 +270,4 @@ Quishing represents a natural evolution in social engineering, combining psychol
 1. **Educate Staff:** Train employees to recognize the signs of optical phishing attachments.
 2. **Upgrade Authentication:** Transition critical infrastructure to FIDO2 hardware keys.
 3. **Use Sovereign QR Generators:** Create permanent, tamper-resistant codes on **[GenerateCustomQR](/)** with zero intermediary server risks.
-4. **Deploy Client-Side Scanners:** Utilize our privacy-first **[QR Code Scanner](/qr-code-scanner)** to safely decode payloads before opening unknown web links.
+4. **Deploy Client-Side Scanners:** Utilize our privacy-first **[QR Code Scanner](/qr-code-scanner/)** to safely decode payloads before opening unknown web links.

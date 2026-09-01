@@ -187,5 +187,5 @@ O modo escuro em monitores com painel TN mais antigo pode reduzir a nitidez entr
 | **Câmera mostra tela preta no WhatsApp** | Permissão do sistema operacional revogada | Ative a câmera nos ajustes do aparelho |
 
 > [!TIP]
-> **Precisa gerar um QR Code de WhatsApp para seus clientes?** Crie um código direto para chat com mensagem pré-preenchida no **[Gerador de QR Code de WhatsApp Gratuito](/pt)**.
+> **Precisa gerar um QR Code de WhatsApp para seus clientes?** Crie um código direto para chat com mensagem pré-preenchida no **[Gerador de QR Code de WhatsApp Gratuito](/pt/)**.
 

@@ -55,19 +55,46 @@ export function getCleanPathname(pathname: string): string {
 }
 
 /**
- * Generate localized URL for a target locale and clean path.
- * E.g. ('es', '/wifi-qr-code') -> '/es/wifi-qr-code'
- *      ('en', '/wifi-qr-code') -> '/wifi-qr-code'
+ * Generate localized URL for a target locale and clean path with canonical trailing slashes.
+ * E.g. ('es', '/wifi-qr-code') -> '/es/wifi-qr-code/'
+ *      ('en', '/wifi-qr-code') -> '/wifi-qr-code/'
+ *      ('en', '/#generator')   -> '/#generator'
+ *      ('es', '/')             -> '/es/'
  */
 export function getLocalizedUrl(targetLocale: Locale, pathname: string): string {
-  let cleanPath = getCleanPathname(pathname).replace(/^\//, '');
+  if (!pathname || pathname === '/') {
+    return targetLocale === defaultLocale ? '/' : `/${targetLocale}/`;
+  }
+
+  let hashPart = '';
+  let queryPart = '';
+  let cleanInput = pathname;
+
+  if (cleanInput.includes('#')) {
+    const hashIdx = cleanInput.indexOf('#');
+    hashPart = cleanInput.substring(hashIdx);
+    cleanInput = cleanInput.substring(0, hashIdx);
+  }
+
+  if (cleanInput.includes('?')) {
+    const queryIdx = cleanInput.indexOf('?');
+    queryPart = cleanInput.substring(queryIdx);
+    cleanInput = cleanInput.substring(0, queryIdx);
+  }
+
+  let cleanPath = getCleanPathname(cleanInput).replace(/^\/|\/$/g, '');
   if (cleanPath === '404' || cleanPath === '500') {
     cleanPath = '';
   }
+
+  let formattedPath = '';
   if (targetLocale === defaultLocale) {
-    return cleanPath ? `/${cleanPath}` : '/';
+    formattedPath = cleanPath ? `/${cleanPath}/` : '/';
+  } else {
+    formattedPath = cleanPath ? `/${targetLocale}/${cleanPath}/` : `/${targetLocale}/`;
   }
-  return cleanPath ? `/${targetLocale}/${cleanPath}` : `/${targetLocale}`;
+
+  return `${formattedPath}${queryPart}${hashPart}`;
 }
 
 /**

@@ -249,7 +249,7 @@ In mehreren Großstädten führten gefälschte QR-Aufkleber zu unberechtigten Ab
 
 ## Warum statische QR-Codes ohne Server sicherer sind
 
-Bei **[GenerateCustomQR](/de)** werden QR-Codes zu 100 % statisch in Ihrem Browser erstellt – völlig ohne zwischengeschaltete Server:
+Bei **[GenerateCustomQR](/de/)** werden QR-Codes zu 100 % statisch in Ihrem Browser erstellt – völlig ohne zwischengeschaltete Server:
 
 - **100% Souverän & Direkt:** Die Zieldaten führen direkt zu Ihrer offiziellen Domain, ohne Umwege über zwischengeschaltete Proxy-Server.
 - **Keine Telemetrie-Protokollierung:** Weder Scan-Zeitpunkte, IP-Adressen noch Standorte von Nutzern werden erfasst oder auf externen Servern gespeichert.
@@ -261,5 +261,5 @@ Bei **[GenerateCustomQR](/de)** werden QR-Codes zu 100 % statisch in Ihrem Brows
 
 1. **Sensibilisierung:** Schulen Sie Mitarbeiter auf optische Phishing-Angriffe.
 2. **FIDO2-Schutz:** Sichern Sie Zugänge mit physischen Sicherheitsschlüsseln ab.
-3. **Statische Generatoren:** Erstellen Sie manipulationssichere QR-Codes auf **[GenerateCustomQR](/de)**.
-4. **Privater Scanner:** Nutzen Sie unseren **[QR-Code Scanner](/de/qr-code-scanner)** zur gefahrlosen Vorschau unbekannter Links.
+3. **Statische Generatoren:** Erstellen Sie manipulationssichere QR-Codes auf **[GenerateCustomQR](/de/)**.
+4. **Privater Scanner:** Nutzen Sie unseren **[QR-Code Scanner](/de/qr-code-scanner/)** zur gefahrlosen Vorschau unbekannter Links.

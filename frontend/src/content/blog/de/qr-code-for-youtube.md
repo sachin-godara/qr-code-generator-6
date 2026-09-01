@@ -149,10 +149,10 @@ Beim Aufruf auf Desktop- oder Tablet-Geräten zeigt YouTube ein klares Pop-up, d
 
 ## So erstellen Sie Ihren individuellen YouTube QR-Code
 
-1. Rufen Sie den **[URL QR-Code Generator](/de/url-qr-code-generator)** auf.
+1. Rufen Sie den **[URL QR-Code Generator](/de/url-qr-code-generator/)** auf.
 2. Fügen Sie Ihren Kanal- oder Video-Link ein.
 3. Wählen Sie das abgerundete Punktmuster.
 4. Laden Sie das YouTube-Logo oder Ihr Profilbild hoch.
 5. Exportieren Sie die Datei als **SVG** oder **PDF** für perfekten Druck.
 
-Bringen Sie Ihren YouTube-Kanal jetzt auf das nächste Level mit **[GenerateCustomQR](/de)**.
+Bringen Sie Ihren YouTube-Kanal jetzt auf das nächste Level mit **[GenerateCustomQR](/de/)**.

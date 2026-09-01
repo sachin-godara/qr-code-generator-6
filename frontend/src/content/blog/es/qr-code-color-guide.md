@@ -150,7 +150,7 @@ Las pautas internacionales de accesibilidad W3C WCAG establecen fórmulas matem�
 
 ## Uso de Degradados en Códigos QR
 
-[GenerateCustomQR](/es) permite cuatro modos de degradado:
+[GenerateCustomQR](/es/) permite cuatro modos de degradado:
 - **Lineal Vertical** — oscuro arriba, transición suave abajo
 - **Lineal Horizontal** — transición de izquierda a derecha
 - **Radial** — centro oscuro con expansión hacia los bordes
@@ -200,6 +200,6 @@ Los tres cuadrados de posicionamiento en las esquinas son el ancla del escaneo. 
 
 Crea códigos QR con la paleta de colores exacta de tu negocio con verificación de contraste en tiempo real:
 
-- [Generador de Código QR con Logotipo →](/es/qr-code-with-logo)
-- [Guía de Tamaños de Impresión →](/es/blog/qr-code-size-guide)
-- [Buenas Prácticas de Diseño para Imprenta →](/es/blog/qr-code-design-best-practices-for-print)
+- [Generador de Código QR con Logotipo →](/es/qr-code-with-logo/)
+- [Guía de Tamaños de Impresión →](/es/blog/qr-code-size-guide/)
+- [Buenas Prácticas de Diseño para Imprenta →](/es/blog/qr-code-design-best-practices-for-print/)

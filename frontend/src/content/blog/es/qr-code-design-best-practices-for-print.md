@@ -154,8 +154,8 @@ Los códigos QR cuentan con cuatro niveles de redundancia Reed-Solomon:
 
 ## Crea Códigos QR Listos para Imprenta Gratis
 
-Genera archivos vectoriales en **SVG** y **PDF a 300 DPI** listos para producción gráfica en [GenerateCustomQR](/es):
+Genera archivos vectoriales en **SVG** y **PDF a 300 DPI** listos para producción gráfica en [GenerateCustomQR](/es/):
 
-- [Crear Código QR de Alta Calidad](/es)
-- [Personalizar Código QR con Logo](/es/qr-code-with-logo)
-- [Guía Completa de Medidas y Tamaños](/es/blog/qr-code-size-guide)
+- [Crear Código QR de Alta Calidad](/es/)
+- [Personalizar Código QR con Logo](/es/qr-code-with-logo/)
+- [Guía Completa de Medidas y Tamaños](/es/blog/qr-code-size-guide/)

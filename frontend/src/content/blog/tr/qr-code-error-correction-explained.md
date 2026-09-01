@@ -123,4 +123,4 @@ Bilgisayar biliminde bedava bir kazanç yoktur. Hata düzeltme kapasitesini art�
 
 - Logosuz standart web linkleri, dijital ekranlar ve genel pazarlama için **Seviye M (%15)** tercih edin.
 - Özel marka logosu eklediğinizde veya yoğun temaslı dış mekan baskılarında **Seviye H (%30)** kullanın.
-- Tüm bu seviyeleri 40+ nokta stiliyle ücretsiz olarak **[GenerateCustomQR](/tr)** üzerinde test edin.
+- Tüm bu seviyeleri 40+ nokta stiliyle ücretsiz olarak **[GenerateCustomQR](/tr/)** üzerinde test edin.

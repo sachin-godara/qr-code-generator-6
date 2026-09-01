@@ -83,7 +83,7 @@ Führt zu einer mobilen Übersichtsseite mit Arbeitsproben, Präsentationen und 
 
 ## Schritt 1: QR-Code erstellen
 
-1. Öffnen Sie den [Kostenlosen vCard QR-Code Generator](/de/vcard-qr-code).
+1. Öffnen Sie den [Kostenlosen vCard QR-Code Generator](/de/vcard-qr-code/).
 2. Tragen Sie Ihre Kontaktdaten ein:
    - Vor- und Nachname, Berufsbezeichnung
    - Firmenname
@@ -210,5 +210,5 @@ Ein durchdachter vCard-Code auf Ihrer Visitenkarte:
 
 ## Erstellen Sie Ihre Visitenkarten-QR-Codes
 
-Erstellen Sie Ihre vCard-Visitenkarte jetzt kostenlos mit Vektor-Download auf **[GenerateCustomQR](/de)**.
+Erstellen Sie Ihre vCard-Visitenkarte jetzt kostenlos mit Vektor-Download auf **[GenerateCustomQR](/de/)**.
 

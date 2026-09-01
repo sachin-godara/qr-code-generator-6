@@ -83,7 +83,7 @@ Antes de gerar o código, o cardápio precisa estar online:
 
 ## Passo 2: Gerar o QR Code do Cardápio
 
-1. Abra o [Gerador de QR Code de URL](/pt/url-qr-code-generator).
+1. Abra o [Gerador de QR Code de URL](/pt/url-qr-code-generator/).
 2. Cole o link do seu cardápio digital.
 3. Personalize com as cores da identidade visual e a logo do restaurante.
 4. Baixe em **SVG** ou **PDF** para impressão profissional.
@@ -167,6 +167,6 @@ Se você possui várias filiais ou franquias, utilize a ferramenta do GenerateCu
 
 Modernize o atendimento do seu restaurante com códigos QR elegantes e permanentes:
 
-- [Criar QR Code de Cardápio →](/pt/url-qr-code-generator)
-- [Adicionar Logo ao QR Code →](/pt/qr-code-with-logo)
-- [Guia de Tamanhos de Impressão →](/pt/blog/qr-code-size-guide)
+- [Criar QR Code de Cardápio →](/pt/url-qr-code-generator/)
+- [Adicionar Logo ao QR Code →](/pt/qr-code-with-logo/)
+- [Guia de Tamanhos de Impressão →](/pt/blog/qr-code-size-guide/)

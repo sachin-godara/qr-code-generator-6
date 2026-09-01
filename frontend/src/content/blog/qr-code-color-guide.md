@@ -213,6 +213,6 @@ Before finalizing your QR code colors:
 Ready to design a QR code in your brand colors? [GenerateCustomQR](/) gives you complete control over every color — dots, eyes, background, gradients — with real-time contrast warnings.
 
 - [Start designing →](/)
-- [Learn about print sizing →](/blog/qr-code-size-guide)
-- [See print best practices →](/blog/qr-code-design-best-practices-for-print)
+- [Learn about print sizing →](/blog/qr-code-size-guide/)
+- [See print best practices →](/blog/qr-code-design-best-practices-for-print/)
 

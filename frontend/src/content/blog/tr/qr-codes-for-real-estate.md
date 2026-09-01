@@ -51,7 +51,7 @@ Geleneksel fiziksel tabelalar sınırlı bilgi sunar. Bir satılık tabelasında
 </div>
 
 - **Satılık tabelaları** → 50+ fotoğraf ve kat planı içeren tam ilan sayfasına bağlanır
-- **Kartvizitler** → [vCard QR kodları](/tr/vcard-qr-code) ile danışmanın iletişim bilgilerini anında rehbere kaydettirir
+- **Kartvizitler** → [vCard QR kodları](/tr/vcard-qr-code/) ile danışmanın iletişim bilgilerini anında rehbere kaydettirir
 - **Broşürler ve el ilanları** → 3D Matterport sanal gezisine yönlendirir
 - **Ofis vitrinleri** → Mesai saatleri dışında bile 7/24 portföy sergiler
 - **Bölge tanıtımları** → Mahalle rehberleri, okul puanları ve ulaşım sürelerini sunar
@@ -68,7 +68,7 @@ Ayrıntılı ilan sayfasına doğrudan bağlantı verin:
 Matterport veya YouTube sanal turlarına doğrudan bağlayın. Alıcılar evin önünden ayrılmadan akıllı telefonlarından tüm odayı 3D olarak gezebilir.
 
 ### 3. Danışman İletişim Kartı (vCard)
-Telefon numaranızı, e-postanızı, şirket unvanınızı ve fotoğrafınızı tek bir taramayla müşterinin rehberine kaydeden [vCard QR Kodu](/tr/vcard-qr-code) oluşturun.
+Telefon numaranızı, e-postanızı, şirket unvanınızı ve fotoğrafınızı tek bir taramayla müşterinin rehberine kaydeden [vCard QR Kodu](/tr/vcard-qr-code/) oluşturun.
 
 ### 4. Açık Kapı (Open House) Ziyaretçi Kaydı
 Kapıya yerleştirilen bir QR kod ile ziyaretçilerin dijital kayıt formunu doldurmasını sağlayın; kağıt kalem karmaşasını bitirip CRM sisteminize temiz müşteri verisi toplayın.
@@ -157,7 +157,7 @@ Tabelalar genellikle **3 ila 10 metre mesafeden** (araç içinden veya karşı k
 
 ## Emlak QR Kodunuzu Ücretsiz Oluşturun
 
-- [İlanlar İçin URL QR Kodu →](/tr/url-qr-code-generator)
-- [Danışman Kartviziti İçin vCard QR Kodu →](/tr/vcard-qr-code)
-- [Açık Kapı Etkinlik QR Kodu →](/tr/event-qr-code)
-- [Bilgi Alma İçin E-posta QR Kodu →](/tr/email-qr-code)
+- [İlanlar İçin URL QR Kodu →](/tr/url-qr-code-generator/)
+- [Danışman Kartviziti İçin vCard QR Kodu →](/tr/vcard-qr-code/)
+- [Açık Kapı Etkinlik QR Kodu →](/tr/event-qr-code/)
+- [Bilgi Alma İçin E-posta QR Kodu →](/tr/email-qr-code/)

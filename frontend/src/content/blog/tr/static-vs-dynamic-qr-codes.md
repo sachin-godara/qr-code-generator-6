@@ -110,8 +110,8 @@ Dinamik bir QR kod, gerçek hedef URL'nizi doğrudan kodlamaz. Bunun yerine ger�
 
 ## Ücretsiz Statik QR Kodunuzu Oluşturun
 
-[GenerateCustomQR](/tr); 40+ nokta stili, logo yerleşimi, metin çerçeveleri ve yüksek çözünürlüklü PNG/SVG/PDF indirme seçenekleriyle **yüksek kaliteli statik QR kodlarda** uzmanlaşmıştır. Tamamen ücretsizdir, kayıt gerektirmez ve kodlarınızın süresi asla dolmaz.
+[GenerateCustomQR](/tr/); 40+ nokta stili, logo yerleşimi, metin çerçeveleri ve yüksek çözünürlüklü PNG/SVG/PDF indirme seçenekleriyle **yüksek kaliteli statik QR kodlarda** uzmanlaşmıştır. Tamamen ücretsizdir, kayıt gerektirmez ve kodlarınızın süresi asla dolmaz.
 
-- [Özel QR Kod Oluşturun →](/tr)
-- [Ücretsiz Oluşturucu Hakkında Bilgi →](/tr/free-qr-code-generator)
-- [QR Koda Logo Ekleme Rehberi →](/tr/qr-code-with-logo)
+- [Özel QR Kod Oluşturun →](/tr/)
+- [Ücretsiz Oluşturucu Hakkında Bilgi →](/tr/free-qr-code-generator/)
+- [QR Koda Logo Ekleme Rehberi →](/tr/qr-code-with-logo/)

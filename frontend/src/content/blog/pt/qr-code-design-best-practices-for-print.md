@@ -157,8 +157,8 @@ Os códigos QR possuem quatro níveis de redundância:
 
 ## Crie QR Codes Prontos para Impressão Gratuitamente
 
-O [GenerateCustomQR](/pt) exporta em **SVG** (vetorial infinito), **PDF** (300 DPI) e **PNG** (até 4K) — 100% grátis e sem marcas d'água.
+O [GenerateCustomQR](/pt/) exporta em **SVG** (vetorial infinito), **PDF** (300 DPI) e **PNG** (até 4K) — 100% grátis e sem marcas d'água.
 
-- [Criar QR Code para Impressão](/pt)
-- [Como Adicionar Logo ao QR Code](/pt/qr-code-with-logo)
-- [Guia Passo a Passo de Criação](/pt/how-to-use)
+- [Criar QR Code para Impressão](/pt/)
+- [Como Adicionar Logo ao QR Code](/pt/qr-code-with-logo/)
+- [Guia Passo a Passo de Criação](/pt/how-to-use/)

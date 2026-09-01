@@ -56,7 +56,7 @@ WhatsApp bietet ein offizielles URL-Schema namens **`wa.me`**. Richtig formatier
 Legen Sie fest, ob der Chat leer öffnen oder ein vorgefertigter Text angezeigt werden soll.
 
 ### Schritt 2: Link in GenerateCustomQR einfügen
-1. Öffnen Sie den **[GenerateCustomQR Generator](/de)**.
+1. Öffnen Sie den **[GenerateCustomQR Generator](/de/)**.
 2. Wählen Sie als Inhaltstyp **URL**.
 3. Fügen Sie Ihren vollständigen `https://wa.me/...`-Link ein.
 
@@ -165,4 +165,4 @@ Interessenten können direkt am Objekt Grundrisse und Besichtigungstermine anfra
 
 ## Erstellen Sie jetzt Ihren WhatsApp QR-Code
 
-Erstellen Sie Ihren kostenlosen, statischen WhatsApp QR-Code ohne Verfallsdatum auf **[GenerateCustomQR](/de)**.
+Erstellen Sie Ihren kostenlosen, statischen WhatsApp QR-Code ohne Verfallsdatum auf **[GenerateCustomQR](/de/)**.

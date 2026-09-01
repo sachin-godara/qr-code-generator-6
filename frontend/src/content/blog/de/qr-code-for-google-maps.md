@@ -61,7 +61,7 @@ Beispiel: `https://www.google.com/maps?q=52.5163,13.3777` (Brandenburger Tor)
 
 ## Schritt 2: QR-Code generieren
 
-1. Rufen Sie [GenerateCustomQR](/de) auf.
+1. Rufen Sie [GenerateCustomQR](/de/) auf.
 2. Wählen Sie als Inhaltstyp **URL** (Standard).
 3. **Fügen Sie Ihren Google Maps Link** in das Adressfeld ein.
 4. Passen Sie das Design an — Farben, Punkt-Muster, Logo und Beschriftungsrahmen.
@@ -69,7 +69,7 @@ Beispiel: `https://www.google.com/maps?q=52.5163,13.3777` (Brandenburger Tor)
 
 Fertig! Beim Scannen öffnet sich Google Maps direkt mit Ihrem Standort.
 
-[Standort-QR-Code jetzt erstellen →](/de/url-qr-code-generator)
+[Standort-QR-Code jetzt erstellen →](/de/url-qr-code-generator/)
 
 ## Beliebte Einsatzbereiche für Standort-QR-Codes
 
@@ -155,7 +155,7 @@ GenerateCustomQR bietet **51 Textrahmen** mit frei wählbaren Schriften.
 | Event-Plakat | 5 cm | 8 × 8 cm |
 | Schaufenster-Aufkleber | 8 cm | 12 × 12 cm |
 
-Weitere Details finden Sie in unserem [QR-Code Größen-Leitfaden](/de/blog/qr-code-size-guide).
+Weitere Details finden Sie in unserem [QR-Code Größen-Leitfaden](/de/blog/qr-code-size-guide/).
 
 ## URL-Formate verschiedener Karten-Dienste
 
@@ -169,6 +169,6 @@ Weitere Details finden Sie in unserem [QR-Code Größen-Leitfaden](/de/blog/qr-c
 
 Kostenlos, ohne Anmeldung und in 30 Sekunden einsatzbereit:
 
-- [URL-QR-Code erstellen →](/de/url-qr-code-generator)
-- [Bedienungsanleitung →](/de/how-to-use)
-- [Größen-Ratgeber →](/de/blog/qr-code-size-guide)
+- [URL-QR-Code erstellen →](/de/url-qr-code-generator/)
+- [Bedienungsanleitung →](/de/how-to-use/)
+- [Größen-Ratgeber →](/de/blog/qr-code-size-guide/)

@@ -108,7 +108,7 @@ O tamanho ideal não depende apenas das dimensões físicas — você também pr
 | **SVG** | Infinita (vetorial) | Impressão em qualquer tamanho sem pixelar |
 | **PDF** | 300 DPI embutido | Gráficas profissionais e materiais editoriais |
 
-No [GenerateCustomQR](/pt), você pode exportar em PNG de até **8192 × 8192 pixels** ou em SVG vetorial infinito totalmente grátis.
+No [GenerateCustomQR](/pt/), você pode exportar em PNG de até **8192 × 8192 pixels** ou em SVG vetorial infinito totalmente grátis.
 
 ---
 
@@ -137,10 +137,10 @@ Um PNG de 300×300 pixels fica ótimo na tela do celular, mas fica embaçado ao 
 
 ## Crie o QR Code Perfeito com Tamanho Personalizado
 
-Pronto para criar seu QR code nas dimensões exatas? No [GenerateCustomQR](/pt) você tem acesso a exportações em altíssima resolução, arquivos vetoriais SVG e PDFs com 300 DPI — 100% grátis e sem marcas d'água.
+Pronto para criar seu QR code nas dimensões exatas? No [GenerateCustomQR](/pt/) você tem acesso a exportações em altíssima resolução, arquivos vetoriais SVG e PDFs com 300 DPI — 100% grátis e sem marcas d'água.
 
-- [Criar QR Code para URL →](/pt/url-qr-code-generator)
-- [Criar QR Code para Wi-Fi →](/pt/wifi-qr-code)
-- [Criar QR Code vCard para Cartão de Visita →](/pt/vcard-qr-code)
-- [Boas Práticas de Design para Impressão →](/pt/blog/qr-code-design-best-practices-for-print)
+- [Criar QR Code para URL →](/pt/url-qr-code-generator/)
+- [Criar QR Code para Wi-Fi →](/pt/wifi-qr-code/)
+- [Criar QR Code vCard para Cartão de Visita →](/pt/vcard-qr-code/)
+- [Boas Práticas de Design para Impressão →](/pt/blog/qr-code-design-best-practices-for-print/)
 

@@ -148,4 +148,4 @@ Al diseñar códigos QR personalizados, es fundamental que diseñadores e impres
 
 ## Descarga tu Código QR Vectorial Gratis
 
-Genera y descarga tu código QR personalizado en **SVG, PDF y PNG** de alta resolución sin coste en **[GenerateCustomQR](/es)**.
+Genera y descarga tu código QR personalizado en **SVG, PDF y PNG** de alta resolución sin coste en **[GenerateCustomQR](/es/)**.

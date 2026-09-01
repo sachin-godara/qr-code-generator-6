@@ -148,4 +148,4 @@ Bei der Gestaltung von QR-Codes ist es für Designer und Druckexperten wichtig z
 
 ## Kostenlosen Vektor-QR-Code herunterladen
 
-Erstellen und laden Sie Ihren individuellen QR-Code in **SVG, PDF und PNG** kostenlos herunter auf **[GenerateCustomQR](/de)**.
+Erstellen und laden Sie Ihren individuellen QR-Code in **SVG, PDF und PNG** kostenlos herunter auf **[GenerateCustomQR](/de/)**.

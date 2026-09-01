@@ -63,7 +63,7 @@ Apple has built QR code scanning directly into the **Camera app** since iOS 11. 
 
 - **No banner appears?** Go to *Settings → Camera* and make sure *Scan QR Codes* is toggled ON.
 - **Too far away?** Move closer until the QR code fills about one-third of the screen.
-- **Damaged code?** Try the [GenerateCustomQR scanner](/qr-code-scanner) which uses advanced algorithms to read partially damaged codes.
+- **Damaged code?** Try the [GenerateCustomQR scanner](/qr-code-scanner/) which uses advanced algorithms to read partially damaged codes.
 
 ## Scanning QR Codes on Android
 
@@ -110,13 +110,13 @@ What if the QR code is already saved as an image on your phone? You don't need t
 3. Google Lens will detect and decode it automatically.
 
 ### On Desktop:
-Use the [GenerateCustomQR online scanner](/qr-code-scanner) — upload any image file and it will decode the QR code instantly using your browser. No software installation required.
+Use the [GenerateCustomQR online scanner](/qr-code-scanner/) — upload any image file and it will decode the QR code instantly using your browser. No software installation required.
 
 ## Scanning from a Desktop Browser
 
 Don't have your phone handy? You can scan QR codes directly from your computer:
 
-1. Visit [GenerateCustomQR Scanner](/qr-code-scanner).
+1. Visit [GenerateCustomQR Scanner](/qr-code-scanner/).
 2. **Grant camera access** to use your webcam, or **upload an image** containing a QR code.
 3. The scanner will decode the content instantly and display the result.
 
@@ -156,7 +156,7 @@ Search app stores for "QR Code Scanner" and you will find hundreds of third-part
 
 > [!WARNING]
 > **You do not need to install third-party scanner apps.**
-> Native camera software on Apple iOS and Android OS already includes fast, secure, hardware-accelerated QR scanning without ads. For saved images and desktop scanning, use verified, client-side web tools like the [GenerateCustomQR Web Scanner](/qr-code-scanner).
+> Native camera software on Apple iOS and Android OS already includes fast, secure, hardware-accelerated QR scanning without ads. For saved images and desktop scanning, use verified, client-side web tools like the [GenerateCustomQR Web Scanner](/qr-code-scanner/).
 
 ---
 
@@ -216,8 +216,8 @@ Ready to create your own QR code? [Generate a free custom QR code →](/)
 | Android (Pixel, Samsung) | Camera App / Google Lens | Yes |
 | Android (other) | Google Lens | Yes |
 | WhatsApp Web Pairing | WhatsApp → Linked Devices | Yes |
-| Desktop & PC | [Web Scanner](/qr-code-scanner) | Browser-based |
-| From saved image / screenshot | [Web Scanner (Ctrl+V)](/qr-code-scanner) / Photos | Yes |
+| Desktop & PC | [Web Scanner](/qr-code-scanner/) | Browser-based |
+| From saved image / screenshot | [Web Scanner (Ctrl+V)](/qr-code-scanner/) / Photos | Yes |
 
 Whether you're using an iPhone, Android, or PC, scanning QR codes is faster and safer than ever. And if you need to create QR codes that scan reliably across all devices, [GenerateCustomQR](/) offers 40+ styles with guaranteed scannability — 100% free.
 

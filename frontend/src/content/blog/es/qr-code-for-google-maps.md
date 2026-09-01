@@ -57,13 +57,13 @@ Ejemplo: `https://www.google.com/maps?q=40.4168,-3.7038` (Puerta del Sol, Madrid
 
 ## Paso 2: Generar el Código QR
 
-1. Entra en [GenerateCustomQR](/es).
+1. Entra en [GenerateCustomQR](/es/).
 2. Selecciona **URL** como tipo de contenido.
 3. **Pega el enlace de Google Maps** en el campo correspondiente.
 4. Personaliza el diseño: elige estilo de puntos, colores corporativos y logotipo.
 5. Haz clic en **Descargar** en formato PNG, SVG o PDF.
 
-[Crea tu código QR de ubicación ahora →](/es/url-qr-code-generator)
+[Crea tu código QR de ubicación ahora →](/es/url-qr-code-generator/)
 
 ## Principales Casos de Uso
 
@@ -129,6 +129,6 @@ Para lugares sin número de calle, usa Plus Codes:
 
 ¿Listo para crear un código QR que abra Google Maps al instante? Es gratis, tarda 30 segundos y funciona en cualquier smartphone:
 
-- [Crear Código QR de URL →](/es/url-qr-code-generator)
-- [Cómo Usar el Generador →](/es/how-to-use)
-- [Guía de Tamaños de Impresión →](/es/blog/qr-code-size-guide)
+- [Crear Código QR de URL →](/es/url-qr-code-generator/)
+- [Cómo Usar el Generador →](/es/how-to-use/)
+- [Guía de Tamaños de Impresión →](/es/blog/qr-code-size-guide/)

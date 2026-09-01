@@ -187,5 +187,5 @@ El modo oscuro en monitores con paneles TN antiguos puede disminuir el contraste
 | **Pantalla negra en la cámara de WhatsApp** | Permiso del sistema revocado | Activa el permiso de cámara en Ajustes |
 
 > [!TIP]
-> **¿Quieres generar un Código QR de WhatsApp para tu negocio?** Crea un código con mensaje predefinido para que tus clientes te escriban en 1 clic con el **[Generador de Códigos QR para WhatsApp](/es)**.
+> **¿Quieres generar un Código QR de WhatsApp para tu negocio?** Crea un código con mensaje predefinido para que tus clientes te escriban en 1 clic con el **[Generador de Códigos QR para WhatsApp](/es/)**.
 

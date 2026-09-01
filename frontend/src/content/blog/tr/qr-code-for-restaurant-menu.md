@@ -83,7 +83,7 @@ Bir QR kod oluşturmadan önce menünüzün internet üzerinde erişilebilir bir
 
 ## 2. Adım: QR Kodunuzu Oluşturun
 
-1. [URL QR Kod Oluşturucuyu](/tr/url-qr-code-generator) (veya [Logolu QR Kod Oluşturucuyu](/tr/qr-code-with-logo)) açın
+1. [URL QR Kod Oluşturucuyu](/tr/url-qr-code-generator/) (veya [Logolu QR Kod Oluşturucuyu](/tr/qr-code-with-logo/)) açın
 2. Çevrimiçi menü bağlantınızı yapıştırın
 3. Tasarımı özelleştirin — restoran kimliğinize uygun 40+ nokta stili, kurumsal renkler ve restoran logonuzu ekleyin
 4. Matbaa için en net baskıyı sunan **SVG** veya **PDF** formatında indirin
@@ -171,10 +171,10 @@ Yüzlerce kopya basmadan önce:
 
 ## Çoklu Şube Yönetimi
 
-Birden fazla restoran şubeniz varsa, her şubenin menüsü için [GenerateCustomQR toplu oluşturucuyu](/tr) kullanarak tek seferde benzersiz QR kodlar oluşturabilirsiniz. Şube linklerini içeren bir CSV yükleyin, tek bir kurumsal tasarım uygulayın ve tüm kodları ZIP olarak indirin.
+Birden fazla restoran şubeniz varsa, her şubenin menüsü için [GenerateCustomQR toplu oluşturucuyu](/tr/) kullanarak tek seferde benzersiz QR kodlar oluşturabilirsiniz. Şube linklerini içeren bir CSV yükleyin, tek bir kurumsal tasarım uygulayın ve tüm kodları ZIP olarak indirin.
 
 ---
 
 ## Restoran Menü QR Kodunuzu Hemen Oluşturun
 
-Dijital menüye geçmeye hazır mısınız? [Ücretsiz restoran QR kodunuzu oluşturun](/tr) — özel tasarım, logo yerleşimi ve yüksek çözünürlüklü indirmelerle %100 ücretsizdir.
+Dijital menüye geçmeye hazır mısınız? [Ücretsiz restoran QR kodunuzu oluşturun](/tr/) — özel tasarım, logo yerleşimi ve yüksek çözünürlüklü indirmelerle %100 ücretsizdir.

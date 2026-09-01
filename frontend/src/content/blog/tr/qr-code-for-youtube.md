@@ -151,10 +151,10 @@ Masaüstü veya tablet kullanıcıları bu URL'yi taradığında veya tıkladı�
 
 ## Özel YouTube QR Kodunuzu Nasıl Oluşturursunuz?
 
-1. **[URL QR Kod Oluşturucuya](/tr/url-qr-code-generator)** gidin.
+1. **[URL QR Kod Oluşturucuya](/tr/url-qr-code-generator/)** gidin.
 2. Kanal veya video bağlantınızı yapıştırın.
 3. Nokta stilinizi seçin (yuvarlatılmış noktalar YouTube'un modern tarzıyla mükemmel uyum sağlar).
 4. Resmi YouTube oynat düğmesini veya kanal profil fotoğrafınızı yükleyin.
 5. Yüksek çözünürlüklü vektörel baskı için **SVG** veya **PDF** formatını seçin.
 
-Kanalınızı büyütmeye hazır mısınız? Ücretsiz kalıcı YouTube QR kodunuzu **[GenerateCustomQR](/tr)** ile hemen oluşturun.
+Kanalınızı büyütmeye hazır mısınız? Ücretsiz kalıcı YouTube QR kodunuzu **[GenerateCustomQR](/tr/)** ile hemen oluşturun.

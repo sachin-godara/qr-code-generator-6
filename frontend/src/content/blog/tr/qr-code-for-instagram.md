@@ -159,4 +159,4 @@ Giyim markaları, kozmetik şişeleri ve el yapımı ürünler doğrudan stil ö
 
 ## Özel Instagram QR Kodunuzu Hemen Oluşturun
 
-Marka renkleriniz ve logonuzla özelleştirilmiş, yüksek çözünürlüklü Instagram QR kodunuzu **[GenerateCustomQR](/tr)** üzerinde oluşturun. %100 ücretsiz, süresiz ve vektörel SVG/PDF baskı kalitesinde.
+Marka renkleriniz ve logonuzla özelleştirilmiş, yüksek çözünürlüklü Instagram QR kodunuzu **[GenerateCustomQR](/tr/)** üzerinde oluşturun. %100 ücretsiz, süresiz ve vektörel SVG/PDF baskı kalitesinde.

@@ -37,14 +37,18 @@ const {
 const currentLocale = (locale || getLocaleFromUrl(Astro.url)) as Locale;
 const currentLocaleInfo = localeConfig[currentLocale] || localeConfig.en;
 const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://generatecustomqr.com';
-const resolvedCanonical = canonicalUrl || `${siteUrl}${Astro.url.pathname}`;
+let canonicalPath = Astro.url.pathname;
+if (!canonicalPath.endsWith('/')) {
+  canonicalPath = `${canonicalPath}/`;
+}
+const resolvedCanonical = canonicalUrl ? (canonicalUrl.endsWith('/') ? canonicalUrl : `${canonicalUrl}/`) : `${siteUrl}${canonicalPath}`;
 const resolvedOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage.startsWith('/') ? '' : '/'}${ogImage}`;
 const alternateUrls = getAllLocaleUrls(Astro.url.pathname, siteUrl);
 const xDefaultUrl = alternateUrls.find((a) => a.locale === 'en')?.url || `${siteUrl}/`;
 
 const isArticle = pageType === 'article' || (Astro.url.pathname.includes('/blog/') && !Astro.url.pathname.endsWith('/blog') && !Astro.url.pathname.endsWith('/blog/'));
 const isScanner = pageType === 'scanner' || Astro.url.pathname.includes('/qr-code-scanner');
-const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '/es' || Astro.url.pathname === '/pt' || Astro.url.pathname === '/de';
+const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '/es/' || Astro.url.pathname === '/pt/' || Astro.url.pathname === '/de/' || Astro.url.pathname === '/tr/' || Astro.url.pathname === '/es' || Astro.url.pathname === '/pt' || Astro.url.pathname === '/de' || Astro.url.pathname === '/tr';
 ---
 
 <!-- Primary Meta Tags -->

@@ -63,7 +63,7 @@ A Apple integrou a leitura de QR code diretamente ao aplicativo **Câmera** desd
 
 - **Não aparece notificação?** Acesse *Ajustes → Câmera* e confirme se a opção *Escanear Códigos QR* está ativada.
 - **Está muito distante?** Aproxime o celular até que o código preencha um terço da tela.
-- **Código danificado?** Use o [Leitor GenerateCustomQR](/pt/qr-code-scanner), que utiliza algoritmos avançados de correção de erros.
+- **Código danificado?** Use o [Leitor GenerateCustomQR](/pt/qr-code-scanner/), que utiliza algoritmos avançados de correção de erros.
 
 ## Como Escanear no Android
 
@@ -106,13 +106,13 @@ Quando o código QR já está salvo como imagem no seu celular:
 3. O Google Lens decodificará as informações automaticamente.
 
 ### No Computador:
-Use o [Leitor Online GenerateCustomQR](/pt/qr-code-scanner) — envie qualquer arquivo de imagem ou pressione `Ctrl+V` para colar diretamente da área de transferência.
+Use o [Leitor Online GenerateCustomQR](/pt/qr-code-scanner/) — envie qualquer arquivo de imagem ou pressione `Ctrl+V` para colar diretamente da área de transferência.
 
 ## Escanear no Navegador do Computador
 
 Sem o celular por perto? Você pode ler códigos QR no PC ou Mac:
 
-1. Acesse o [GenerateCustomQR Leitor](/pt/qr-code-scanner).
+1. Acesse o [GenerateCustomQR Leitor](/pt/qr-code-scanner/).
 2. **Permita o acesso à webcam** ou faça o **upload de uma imagem**.
 3. O leitor decodificará o conteúdo em milissegundos na sua tela.
 
@@ -150,7 +150,7 @@ Nas lojas de aplicativos existem centenas de apps de scanner repletos de anúnci
 
 > [!WARNING]
 > **Você não precisa instalar aplicativos de terceiros.**
-> Os sistemas iOS e Android já possuem leitores integrados rápidos, seguros e sem anúncios. Para imagens salvas e computador, utilize ferramentas web locais como o [Leitor GenerateCustomQR](/pt/qr-code-scanner).
+> Os sistemas iOS e Android já possuem leitores integrados rápidos, seguros e sem anúncios. Para imagens salvas e computador, utilize ferramentas web locais como o [Leitor GenerateCustomQR](/pt/qr-code-scanner/).
 
 ---
 
@@ -200,7 +200,7 @@ Nas lojas de aplicativos existem centenas de apps de scanner repletos de anúnci
   </div>
 </div>
 
-Pronto para criar seu próprio código? [Gerar QR code personalizado grátis →](/pt)
+Pronto para criar seu próprio código? [Gerar QR code personalizado grátis →](/pt/)
 
 ## Tabela Comparativa
 
@@ -210,7 +210,7 @@ Pronto para criar seu próprio código? [Gerar QR code personalizado grátis →
 | Android (Pixel, Samsung) | App Câmera / Google Lens | Sim |
 | Android (outros) | Google Lens | Sim |
 | WhatsApp Web | WhatsApp → Aparelhos Conectados | Sim |
-| Computador e PC | [Leitor Web](/pt/qr-code-scanner) | No Navegador |
-| De print / imagem salva | [Leitor Web (Ctrl+V)](/pt/qr-code-scanner) / Fotos | Sim |
+| Computador e PC | [Leitor Web](/pt/qr-code-scanner/) | No Navegador |
+| De print / imagem salva | [Leitor Web (Ctrl+V)](/pt/qr-code-scanner/) / Fotos | Sim |
 
-Escanear códigos QR hoje é mais rápido e prático do que nunca. E se você precisa gerar códigos para sua marca com leitura garantida em qualquer aparelho, o [GenerateCustomQR](/pt) oferece mais de 40 estilos — 100% grátis.
+Escanear códigos QR hoje é mais rápido e prático do que nunca. E se você precisa gerar códigos para sua marca com leitura garantida em qualquer aparelho, o [GenerateCustomQR](/pt/) oferece mais de 40 estilos — 100% grátis.

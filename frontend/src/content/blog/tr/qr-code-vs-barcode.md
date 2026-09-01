@@ -118,10 +118,10 @@ Geleneksel barkodlar (aynı zamanda **1D barkod** veya **çizgisel barkod** olar
 
 ## Ne Zaman QR Kod Kullanılmalıdır?
 
-- **Pazarlama ve Reklam**: Afişler, billboardlar, el ilanları ve web sitesi yönlendirmeleri ([URL QR Kod Oluşturun →](/tr/url-qr-code-generator))
-- **Temassız Restoran Menüleri**: Kağıt menüleri dijitale dönüştürme ([Restoran Rehberi →](/tr/blog/qr-code-for-restaurant-menu))
-- **Wi-Fi Paylaşımı**: Şifre yazmadan misafirleri internete bağlama ([Wi-Fi QR Kod Oluşturun →](/tr/wifi-qr-code))
-- **Dijital Kartvizitler**: İletişim bilgilerini tek tıkla rehbere kaydetme ([vCard QR Kod Oluşturun →](/tr/vcard-qr-code))
+- **Pazarlama ve Reklam**: Afişler, billboardlar, el ilanları ve web sitesi yönlendirmeleri ([URL QR Kod Oluşturun →](/tr/url-qr-code-generator/))
+- **Temassız Restoran Menüleri**: Kağıt menüleri dijitale dönüştürme ([Restoran Rehberi →](/tr/blog/qr-code-for-restaurant-menu/))
+- **Wi-Fi Paylaşımı**: Şifre yazmadan misafirleri internete bağlama ([Wi-Fi QR Kod Oluşturun →](/tr/wifi-qr-code/))
+- **Dijital Kartvizitler**: İletişim bilgilerini tek tıkla rehbere kaydetme ([vCard QR Kod Oluşturun →](/tr/vcard-qr-code/))
 - **Ödeme Sistemleri**: Karekodla anında mobil ödeme alma
 
 ## QR Kodlar Barkodların Yerini Alabilir mi?
@@ -142,4 +142,4 @@ Tüketiciye yönelik senaryolarda **kesinlikle evet**. GS1 kuruluşu tarafından
 
 Fiziksel dünyayı dijital dünyaya bağlamak ve **müşteri etkileşimini artırmak** söz konusu olduğunda QR kod tartışmasız en üstün teknolojidir.
 
-[Ücretsiz Özel QR Kodunuzu Oluşturun →](/tr)
+[Ücretsiz Özel QR Kodunuzu Oluşturun →](/tr/)

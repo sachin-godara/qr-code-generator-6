@@ -33,7 +33,7 @@ No necesitas un segundo dispositivo ni imprimirlo en papel. Aquí tienes la guí
 
 ## Método 1: El Escáner Web Universal (Rápido para Todos los Dispositivos)
 
-La forma más rápida y sin instalar nada es usar un decodificador web en el navegador como **[GenerateCustomQR Escáner](/es/qr-code-scanner)**.
+La forma más rápida y sin instalar nada es usar un decodificador web en el navegador como **[GenerateCustomQR Escáner](/es/qr-code-scanner/)**.
 
 <div class="blog-flow-grid">
   <div class="blog-flow-card">
@@ -60,7 +60,7 @@ La forma más rápida y sin instalar nada es usar un decodificador web en el nav
 </div>
 
 ### Pasos:
-1. Abre **[generatecustomqr.com/es/qr-code-scanner](/es/qr-code-scanner)** en Safari, Chrome, Edge o Firefox.
+1. Abre **[generatecustomqr.com/es/qr-code-scanner](/es/qr-code-scanner/)** en Safari, Chrome, Edge o Firefox.
 2. Selecciona la pestaña **Subir Imagen**.
 3. Elige una de estas opciones:
    - **Haz clic en "Buscar Archivos"** y selecciona tu imagen (`.png`, `.jpg`, `.webp`, `.svg`).
@@ -107,8 +107,8 @@ En Android dispones de dos opciones principales: **Google Fotos (Google Lens)** 
 
 | Sistema Operativo | Atajo de Captura | Método Más Rápido |
 | :--- | :--- | :--- |
-| **Windows 11 / 10** | `Win + Shift + S` (Recortes) | Pegar en [Escáner Web](/es/qr-code-scanner) (`Ctrl+V`) |
-| **macOS** | `Cmd + Shift + 4` | Abrir en Vista Previa (Texto en Vivo) o pegar en [Escáner Web](/es/qr-code-scanner) |
+| **Windows 11 / 10** | `Win + Shift + S` (Recortes) | Pegar en [Escáner Web](/es/qr-code-scanner/) (`Ctrl+V`) |
+| **macOS** | `Cmd + Shift + 4` | Abrir en Vista Previa (Texto en Vivo) o pegar en [Escáner Web](/es/qr-code-scanner/) |
 
 ---
 
@@ -171,5 +171,5 @@ En Android dispones de dos opciones principales: **Google Fotos (Google Lens)** 
 
 ## Crea Códigos QR Vectoriales en Alta Definición
 
-¿Necesitas compartir una versión limpia del enlace? Utiliza nuestro **[Generador de Códigos QR](/es)** para recrear un código vectorial en SVG o PDF a 300 DPI en segundos.
+¿Necesitas compartir una versión limpia del enlace? Utiliza nuestro **[Generador de Códigos QR](/es/)** para recrear un código vectorial en SVG o PDF a 300 DPI en segundos.
 

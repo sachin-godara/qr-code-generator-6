@@ -151,7 +151,7 @@ When desktop or tablet users scan or click this URL, YouTube displays a clean pr
 
 ## How to Generate Your Custom YouTube QR Code
 
-1. Navigate to the **[URL QR Code Generator](/url-qr-code-generator)**.
+1. Navigate to the **[URL QR Code Generator](/url-qr-code-generator/)**.
 2. Paste your channel URL or video link.
 3. Choose your dot style (rounded dots complement YouTube's sleek branding).
 4. Upload the official YouTube play button logo or your channel avatar.

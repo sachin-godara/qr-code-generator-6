@@ -69,7 +69,7 @@ For example: `https://www.google.com/maps?q=48.8584,2.2945` (Eiffel Tower)
 
 That's it! When someone scans this QR code, Google Maps will open directly to your location with directions available.
 
-[Create your location QR code now →](/url-qr-code-generator)
+[Create your location QR code now →](/url-qr-code-generator/)
 
 ## Best Use Cases for Location QR Codes
 
@@ -158,7 +158,7 @@ GenerateCustomQR includes **51 CTA text frames** with customizable text, fonts, 
 | Event poster | 5 cm | 8 cm × 8 cm |
 | Window sticker | 8 cm | 12 cm × 12 cm |
 
-For more details, see our [QR Code Size Guide](/blog/qr-code-size-guide).
+For more details, see our [QR Code Size Guide](/blog/qr-code-size-guide/).
 
 ## Alternative: Apple Maps & Waze
 
@@ -174,7 +174,7 @@ You can create QR codes for any of these using the URL content type in [Generate
 
 Ready to make a QR code that opens Google Maps? It's free, takes 30 seconds, and works on every phone:
 
-- [Create a URL QR code →](/url-qr-code-generator)
-- [How to use the generator →](/how-to-use)
-- [Learn about QR code sizing →](/blog/qr-code-size-guide)
+- [Create a URL QR code →](/url-qr-code-generator/)
+- [How to use the generator →](/how-to-use/)
+- [Learn about QR code sizing →](/blog/qr-code-size-guide/)
 

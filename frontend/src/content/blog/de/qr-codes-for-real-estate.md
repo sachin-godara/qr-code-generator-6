@@ -51,7 +51,7 @@ Traditionelle Schildwerbung bietet nur begrenzten Platz. Ein herkömmliches Verk
 </div>
 
 - **Verkaufsschilder** → Direkt zum Online-Exposé mit Galerie und Grundrissen verlinken
-- **Visitenkarten** → Kontaktdaten mit [vCard QR-Codes](/de/vcard-qr-code) sofort im Adressbuch speichern
+- **Visitenkarten** → Kontaktdaten mit [vCard QR-Codes](/de/vcard-qr-code/) sofort im Adressbuch speichern
 - **Exposé-Flyer** → Weiterleitung zum virtuellen 3D-Matterport-Rundgang
 - **Schaufenster** → 24/7 Objektpräsentation auch außerhalb der Öffnungszeiten
 - **Broschüren** → Lageberichte, Schulbewertungen und Fahrzeiten aufrufen
@@ -177,7 +177,7 @@ Da GenerateCustomQR statische QR-Codes erstellt (die Daten liegen direkt im Bild
 
 ## Jetzt kostenlosen Immobilien-QR-Code erstellen
 
-- [URL QR-Code für Inserate →](/de/url-qr-code-generator)
-- [vCard Visitenkarte für Makler →](/de/vcard-qr-code)
-- [E-Mail QR-Code für Anfragen →](/de/email-qr-code)
-- [Event QR-Code für Open House →](/de/event-qr-code)
+- [URL QR-Code für Inserate →](/de/url-qr-code-generator/)
+- [vCard Visitenkarte für Makler →](/de/vcard-qr-code/)
+- [E-Mail QR-Code für Anfragen →](/de/email-qr-code/)
+- [Event QR-Code für Open House →](/de/event-qr-code/)

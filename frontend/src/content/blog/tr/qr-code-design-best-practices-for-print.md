@@ -175,8 +175,8 @@ Dosyanızı matbaaya göndermeden önce:
 
 ## Baskıya Hazır Ücretsiz QR Kodlar Oluşturun
 
-[GenerateCustomQR](/tr); sonsuz vektör kalitesinde **SVG**, 300 DPI **PDF** ve 4K **PNG** formatlarında tamamen ücretsiz ve filigransız dışa aktarma sağlar. 40+ nokta stiliyle tasarlayın, logonuzu ekleyin ve saniyeler içinde indirin.
+[GenerateCustomQR](/tr/); sonsuz vektör kalitesinde **SVG**, 300 DPI **PDF** ve 4K **PNG** formatlarında tamamen ücretsiz ve filigransız dışa aktarma sağlar. 40+ nokta stiliyle tasarlayın, logonuzu ekleyin ve saniyeler içinde indirin.
 
-- [Baskıya Hazır QR Kod Oluşturun](/tr)
-- [Logolu QR Kod Oluşturma Rehberi](/tr/qr-code-with-logo)
-- [Adım Adım Kullanım Kılavuzu](/tr/how-to-use)
+- [Baskıya Hazır QR Kod Oluşturun](/tr/)
+- [Logolu QR Kod Oluşturma Rehberi](/tr/qr-code-with-logo/)
+- [Adım Adım Kullanım Kılavuzu](/tr/how-to-use/)

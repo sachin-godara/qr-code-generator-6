@@ -130,8 +130,8 @@ Before printing 10,000 flyers, print a single test copy and scan it with 3 diffe
 
 Ready to generate a QR code at the perfect size? [GenerateCustomQR](/) lets you export at custom resolutions up to 8192×8192px, with SVG vector export for unlimited scaling. All styles, all formats, 100% free.
 
-- [Create a URL QR code →](/url-qr-code-generator)
-- [Create a WiFi QR code →](/wifi-qr-code)
-- [Create a vCard QR code →](/vcard-qr-code)
-- [Learn print best practices →](/blog/qr-code-design-best-practices-for-print)
+- [Create a URL QR code →](/url-qr-code-generator/)
+- [Create a WiFi QR code →](/wifi-qr-code/)
+- [Create a vCard QR code →](/vcard-qr-code/)
+- [Learn print best practices →](/blog/qr-code-design-best-practices-for-print/)
 

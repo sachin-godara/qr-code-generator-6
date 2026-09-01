@@ -94,7 +94,7 @@ A mayor nivel de corrección de errores, más puntos (módulos) tendrá la cuadr
 
 ## Cómo Elegir el Nivel en GenerateCustomQR
 
-En [GenerateCustomQR](/es) no necesitas calcular fórmulas complejas:
+En [GenerateCustomQR](/es/) no necesitas calcular fórmulas complejas:
 1. Al crear un código estándar, el sistema selecciona automáticamente **Nivel M (15%)** para máxima velocidad.
 2. En cuanto subes un logotipo o imagen corporativa, el motor activa automáticamente **Nivel H (30%)**.
 3. Tienes control manual para ajustar entre L, M, Q y H en cualquier momento.
@@ -103,4 +103,4 @@ En [GenerateCustomQR](/es) no necesitas calcular fórmulas complejas:
 
 - Usa **Nivel M (15%)** para enlaces estándar y pantallas sin logotipo.
 - Usa **Nivel H (30%)** siempre que incluyas tu logotipo corporativo o imprimas en exteriores.
-- Genera y prueba los 4 niveles gratis en **[GenerateCustomQR](/es)**.
+- Genera y prueba los 4 niveles gratis en **[GenerateCustomQR](/es/)**.

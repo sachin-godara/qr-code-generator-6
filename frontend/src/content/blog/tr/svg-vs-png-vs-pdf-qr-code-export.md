@@ -148,4 +148,4 @@ PDF, temiz vektör geometrisini standartlaştırılmış bir belge kapsayıcıs�
 
 ## Ücretsiz Vektörel QR Kodunuzu İndirin
 
-Özel QR kodunuzu **SVG, PDF ve PNG** formatlarında **[GenerateCustomQR](/tr)** üzerinden ücretsiz oluşturun ve indirin.
+Özel QR kodunuzu **SVG, PDF ve PNG** formatlarında **[GenerateCustomQR](/tr/)** üzerinden ücretsiz oluşturun ve indirin.

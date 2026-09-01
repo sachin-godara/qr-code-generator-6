@@ -159,4 +159,4 @@ Las marcas de moda y cosmética pueden enlazar directamente a vídeos de estilis
 
 ## Crea tu Código QR de Instagram Ahora
 
-Genera gratis tu código QR de Instagram personalizado con tus colores y logotipo en **[GenerateCustomQR](/es)**. Descárgalo en formatos vectoriales SVG y PDF listos para imprenta.
+Genera gratis tu código QR de Instagram personalizado con tus colores y logotipo en **[GenerateCustomQR](/es/)**. Descárgalo en formatos vectoriales SVG y PDF listos para imprenta.

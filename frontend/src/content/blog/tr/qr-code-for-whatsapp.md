@@ -58,7 +58,7 @@ GenerateCustomQR ile yüksek dönüşüm sağlayan bir WhatsApp QR kodu oluştur
 Sade bir sohbet bağlantısı mı yoksa otomatik hazır mesajlı bir link mi istediğinizi seçin.
 
 ### 2. Adım: GenerateCustomQR'a Yapıştırın
-1. **[GenerateCustomQR Oluşturucuyu](/tr)** açın.
+1. **[GenerateCustomQR Oluşturucuyu](/tr/)** açın.
 2. İçerik türü olarak **URL** seçeneğini belirleyin.
 3. Hazırladığınız `https://wa.me/...` bağlantısını giriş alanına yapıştırın.
 
@@ -169,4 +169,4 @@ Kutunun içine bir çıkartma yerleştirin:
 
 ## Ücretsiz WhatsApp QR Kodunuzu Şimdi Oluşturun
 
-**[GenerateCustomQR](/tr)** ile süresi asla dolmayan, %100 ücretsiz statik bir WhatsApp QR kodu oluşturun. Renkleri özelleştirin, logonuzu ekleyin ve baskıya hazır vektörel formatlarda anında indirin.
+**[GenerateCustomQR](/tr/)** ile süresi asla dolmayan, %100 ücretsiz statik bir WhatsApp QR kodu oluşturun. Renkleri özelleştirin, logonuzu ekleyin ve baskıya hazır vektörel formatlarda anında indirin.

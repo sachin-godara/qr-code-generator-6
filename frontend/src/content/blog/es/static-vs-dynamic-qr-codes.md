@@ -106,4 +106,4 @@ Un código QR dinámico no codifica tu URL final, sino una **URL corta de redire
 
 ## Genera Códigos QR Estáticos Gratis y Profesionales
 
-[GenerateCustomQR](/es) está especializado en **códigos QR estáticos de máxima calidad** con personalización de diseño integral: más de 40 estilos de puntos, incrustación de logotipos corporativos, marcos decorativos y descargas en PNG, SVG y PDF sin marcas de agua.
+[GenerateCustomQR](/es/) está especializado en **códigos QR estáticos de máxima calidad** con personalización de diseño integral: más de 40 estilos de puntos, incrustación de logotipos corporativos, marcos decorativos y descargas en PNG, SVG y PDF sin marcas de agua.

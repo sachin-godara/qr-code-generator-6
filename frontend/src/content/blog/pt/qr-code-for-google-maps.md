@@ -57,13 +57,13 @@ Exemplo: `https://www.google.com/maps?q=-23.5505,-46.6333` (São Paulo)
 
 ## Passo 2: Gerar o QR Code Personalizado
 
-1. Acesse o **[GenerateCustomQR](/pt)**.
+1. Acesse o **[GenerateCustomQR](/pt/)**.
 2. Selecione o tipo **URL** (padrão).
 3. **Cole o link do Google Maps** no campo de texto.
 4. Personalize o visual: cores, estilo dos pontos, logo e moldura.
 5. Baixe em **PNG**, **SVG** ou **PDF**.
 
-[Criar QR Code de Localização Agora →](/pt/url-qr-code-generator)
+[Criar QR Code de Localização Agora →](/pt/url-qr-code-generator/)
 
 ---
 
@@ -139,6 +139,6 @@ Use molduras com frases como:
 
 ## Crie seu QR Code de Localização Grátis
 
-- [Criar QR Code de URL →](/pt/url-qr-code-generator)
-- [Guia de Tamanhos para Impressão →](/pt/blog/qr-code-size-guide)
-- [Personalizar com Logotipo →](/pt/qr-code-with-logo)
+- [Criar QR Code de URL →](/pt/url-qr-code-generator/)
+- [Guia de Tamanhos para Impressão →](/pt/blog/qr-code-size-guide/)
+- [Personalizar com Logotipo →](/pt/qr-code-with-logo/)

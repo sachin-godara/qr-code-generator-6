@@ -132,16 +132,16 @@ Patientenarmbänder, Medikamentenverpackungen und Laborproben nutzen Barcodes zu
 QR-Codes sind die überlegene Wahl für:
 
 ### Marketing & Werbung
-QR-Codes auf Plakaten, Flyern, Verpackungen und Visitenkarten verlinken direkt auf Webseiten, Kampagnen und Sonderaktionen. [URL QR-Code erstellen →](/de/url-qr-code-generator)
+QR-Codes auf Plakaten, Flyern, Verpackungen und Visitenkarten verlinken direkt auf Webseiten, Kampagnen und Sonderaktionen. [URL QR-Code erstellen →](/de/url-qr-code-generator/)
 
 ### Kontaktlose Speisekarten
-Gastronomiebetriebe nutzen QR-Codes, um gedruckte Speisekarten durch digitale Menüs zu ersetzen. [Leitfaden für Restaurants lesen →](/de/blog/qr-code-for-restaurant-menu)
+Gastronomiebetriebe nutzen QR-Codes, um gedruckte Speisekarten durch digitale Menüs zu ersetzen. [Leitfaden für Restaurants lesen →](/de/blog/qr-code-for-restaurant-menu/)
 
 ### WLAN-Freigabe
-Hotels, Cafés und Büros ermöglichen Gästen das Verbinden mit dem WLAN ohne manuelle Passworteingabe. [WLAN QR-Code erstellen →](/de/wifi-qr-code)
+Hotels, Cafés und Büros ermöglichen Gästen das Verbinden mit dem WLAN ohne manuelle Passworteingabe. [WLAN QR-Code erstellen →](/de/wifi-qr-code/)
 
 ### Digitale Visitenkarten
-vCard QR-Codes übertragen vollständige Kontaktdaten mit einem einzigen Scan direkt in das Smartphone-Adressbuch. [vCard QR-Code erstellen →](/de/vcard-qr-code)
+vCard QR-Codes übertragen vollständige Kontaktdaten mit einem einzigen Scan direkt in das Smartphone-Adressbuch. [vCard QR-Code erstellen →](/de/vcard-qr-code/)
 
 ### Veranstaltungstickets & Check-in
 Konferenzausweise, Konzertkarten und Bordkarten setzen für einen reibungslosen Einlass auf QR-Codes.
@@ -171,4 +171,4 @@ Barcodes werden jedoch in reinen Logistik- und Industrieumgebungen weiterhin par
 
 Für jeden Anwendungsfall, der die **Verknüpfung mit digitalen Inhalten, den Informationsaustausch oder die Kundenbindung** betrifft, ist der QR-Code der eindeutige Gewinner.
 
-[Kostenlosen QR-Code jetzt erstellen →](/de)
+[Kostenlosen QR-Code jetzt erstellen →](/de/)

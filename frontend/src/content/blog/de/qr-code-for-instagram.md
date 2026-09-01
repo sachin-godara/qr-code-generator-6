@@ -159,4 +159,4 @@ Modemarken und Kosmetikhersteller können direkt auf Anwendungs-Reels und Kunden
 
 ## Erstellen Sie jetzt Ihren Instagram QR-Code
 
-Erstellen Sie Ihren individuellen Instagram QR-Code mit Markenfarben und Logo kostenlos auf **[GenerateCustomQR](/de)**. Vektor-Export in SVG und PDF ohne Ablaufdatum.
+Erstellen Sie Ihren individuellen Instagram QR-Code mit Markenfarben und Logo kostenlos auf **[GenerateCustomQR](/de/)**. Vektor-Export in SVG und PDF ohne Ablaufdatum.

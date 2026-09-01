@@ -56,7 +56,7 @@ O WhatsApp disponibiliza um protocolo oficial de link direto chamado **`wa.me`**
 Escolha se deseja abrir uma conversa limpa ou pré-preencher uma mensagem para facilitar o atendimento.
 
 ### Passo 2: Cole o Link no GenerateCustomQR
-1. Acesse o **[Gerador GenerateCustomQR](/pt)**.
+1. Acesse o **[Gerador GenerateCustomQR](/pt/)**.
 2. Selecione o tipo de conteúdo **URL**.
 3. Cole o link `https://wa.me/...`.
 
@@ -165,4 +165,4 @@ Compradores interessados podem solicitar a planta do imóvel e agendar visitas n
 
 ## Crie seu QR Code do WhatsApp Grátis
 
-Gere seu código QR estático e permanente que nunca expira no **[GenerateCustomQR](/pt)**.
+Gere seu código QR estático e permanente que nunca expira no **[GenerateCustomQR](/pt/)**.

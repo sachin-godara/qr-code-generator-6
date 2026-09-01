@@ -249,7 +249,7 @@ Milhares de parquímetros em grandes cidades foram adulterados com adesivos fals
 
 ## Por Que QR Codes Estáticos e Sem Servidor são Mais Seguros
 
-No **[GenerateCustomQR](/pt)** toda a codificação é feita 100% no seu navegador, sem servidores intermediários:
+No **[GenerateCustomQR](/pt/)** toda a codificação é feita 100% no seu navegador, sem servidores intermediários:
 
 - **100% Soberano e Direto:** A carga de dados aponta diretamente para o seu domínio oficial sem passar por servidores de redirecionamento de terceiros.
 - **Sem Logs de Telemetria:** Nenhuma informação de acesso, endereço IP ou geolocalização dos usuários é coletada ou gravada em bancos de dados externos.
@@ -261,5 +261,5 @@ No **[GenerateCustomQR](/pt)** toda a codificação é feita 100% no seu navegad
 
 1. **Treinamento:** Conscientize os funcionários sobre golpes ópticos via QR code.
 2. **Proteção FIDO2:** Adote chaves físicas para proteger contas importantes.
-3. **Gerador Confiável:** Crie QR codes seguros e permanentes no **[GenerateCustomQR](/pt)**.
-4. **Leitor Privado:** Utilize nosso **[Scanner de QR Code](/pt/qr-code-scanner)** para verificar links com total privacidade antes de abri-los.
+3. **Gerador Confiável:** Crie QR codes seguros e permanentes no **[GenerateCustomQR](/pt/)**.
+4. **Leitor Privado:** Utilize nosso **[Scanner de QR Code](/pt/qr-code-scanner/)** para verificar links com total privacidade antes de abri-los.

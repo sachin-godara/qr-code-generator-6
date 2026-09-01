@@ -85,7 +85,7 @@ Sosyal medya profillerinize, portföyünüze, son projelerinize ve iletişim for
 
 ### vCard QR Kodu İçin:
 
-1. [Ücretsiz vCard QR Kod Oluşturucuyu](/tr/vcard-qr-code) açın
+1. [Ücretsiz vCard QR Kod Oluşturucuyu](/tr/vcard-qr-code/) açın
 2. Profesyonel bilgilerinizi doldurun:
    - Ad, soyad ve unvan
    - Şirket adı
@@ -97,7 +97,7 @@ Sosyal medya profillerinize, portföyünüze, son projelerinize ve iletişim for
 
 ### URL QR Kodu İçin:
 
-1. [URL QR Kod Oluşturucuyu](/tr/url-qr-code-generator) açın
+1. [URL QR Kod Oluşturucuyu](/tr/url-qr-code-generator/) açın
 2. Web sitenizin, dijital portföyünüzün veya LinkedIn profilinizin adresini yapıştırın
 3. QR kodunuz anında hazır hale gelir
 
@@ -234,6 +234,6 @@ Kartvizitinizdeki profesyonel bir QR kod:
 
 ## Kartvizit QR Kodunuzu Hemen Oluşturun
 
-[GenerateCustomQR](/tr), logonuz, kurumsal renkleriniz ve özel stillerinizle harika vCard QR kodları oluşturmanızı sağlar — mükemmel baskı kalitesi için SVG/PDF desteğiyle tamamen ücretsizdir.
+[GenerateCustomQR](/tr/), logonuz, kurumsal renkleriniz ve özel stillerinizle harika vCard QR kodları oluşturmanızı sağlar — mükemmel baskı kalitesi için SVG/PDF desteğiyle tamamen ücretsizdir.
 
-[vCard QR Kodunuzu Oluşturun →](/tr/vcard-qr-code)
+[vCard QR Kodunuzu Oluşturun →](/tr/vcard-qr-code/)

@@ -108,7 +108,7 @@ Die optimale Größe hängt nicht nur von den physischen Zentimetern ab — auch
 | **SVG** | Unendlich (Vektorgrafik) | Verlustfreier Druck in beliebiger Größe ohne Pixel |
 | **PDF** | 300 DPI eingebettet | Professionelle Druckereien, Broschüren & Plakate |
 
-Bei [GenerateCustomQR](/de) können Sie PNG-Dateien bis zu **8192 × 8192 Pixel** sowie Vektor-SVGs völlig kostenlos und ohne Wasserzeichen exportieren.
+Bei [GenerateCustomQR](/de/) können Sie PNG-Dateien bis zu **8192 × 8192 Pixel** sowie Vektor-SVGs völlig kostenlos und ohne Wasserzeichen exportieren.
 
 ---
 
@@ -137,10 +137,10 @@ Ein PNG mit 300×300 Pixeln sieht am Bildschirm scharf aus, wird auf einem DIN-A
 
 ## Perfekten QR-Code in Wunschgröße erstellen
 
-Bereit, Ihren QR-Code in exakter Größe zu generieren? Mit [GenerateCustomQR](/de) exportieren Sie in höchster Auflösung oder als Vektor-SVG für unbegrenzte Skalierbarkeit — 100% kostenlos und ohne Registrierung.
+Bereit, Ihren QR-Code in exakter Größe zu generieren? Mit [GenerateCustomQR](/de/) exportieren Sie in höchster Auflösung oder als Vektor-SVG für unbegrenzte Skalierbarkeit — 100% kostenlos und ohne Registrierung.
 
-- [URL QR-Code erstellen →](/de/url-qr-code-generator)
-- [WLAN QR-Code erstellen →](/de/wifi-qr-code)
-- [vCard Visitenkarten-Code erstellen →](/de/vcard-qr-code)
-- [Design-Tipps für den Druck lesen →](/de/blog/qr-code-design-best-practices-for-print)
+- [URL QR-Code erstellen →](/de/url-qr-code-generator/)
+- [WLAN QR-Code erstellen →](/de/wifi-qr-code/)
+- [vCard Visitenkarten-Code erstellen →](/de/vcard-qr-code/)
+- [Design-Tipps für den Druck lesen →](/de/blog/qr-code-design-best-practices-for-print/)
 

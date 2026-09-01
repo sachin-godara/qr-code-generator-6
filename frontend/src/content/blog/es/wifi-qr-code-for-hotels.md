@@ -44,7 +44,7 @@ Un código QR de Wi-Fi codifica el nombre de la red (SSID), la clave y el tipo d
 
 ## Cómo Crear un Código QR de Wi-Fi
 
-1. Abre el **[Generador de Códigos QR para Wi-Fi](/es/wifi-qr-code)**.
+1. Abre el **[Generador de Códigos QR para Wi-Fi](/es/wifi-qr-code/)**.
 2. Escribe el **Nombre de la Red (SSID)** con total exactitud.
 3. Introduce la **Contraseña**.
 4. Selecciona el **Tipo de Seguridad** (WPA/WPA2 para la mayoría de redes).
@@ -52,7 +52,7 @@ Un código QR de Wi-Fi codifica el nombre de la red (SSID), la clave y el tipo d
 6. Personaliza el diseño con la imagen corporativa de tu hotel.
 7. Descarga en SVG o PDF e imprime.
 
-[Crear Código QR de Wi-Fi Ahora →](/es/wifi-qr-code)
+[Crear Código QR de Wi-Fi Ahora →](/es/wifi-qr-code/)
 
 ---
 
@@ -216,6 +216,6 @@ Para portátiles antiguos o personas que prefieran teclear:
 
 ## Crea tu Código QR de Wi-Fi Gratis
 
-- [Generar Código QR de Wi-Fi →](/es/wifi-qr-code)
-- [Generar Tarjeta vCard →](/es/vcard-qr-code)
-- [Consejos de Impresión de Códigos QR →](/es/blog/qr-code-design-best-practices-for-print)
+- [Generar Código QR de Wi-Fi →](/es/wifi-qr-code/)
+- [Generar Tarjeta vCard →](/es/vcard-qr-code/)
+- [Consejos de Impresión de Códigos QR →](/es/blog/qr-code-design-best-practices-for-print/)

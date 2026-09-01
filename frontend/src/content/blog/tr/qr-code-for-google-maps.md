@@ -61,7 +61,7 @@ Elinizde tam GPS enlem ve boylam koordinatları varsa, bağlantıyı manuel olar
 
 ## 2. Adım: QR Kodunuzu Oluşturun
 
-1. [GenerateCustomQR](/tr) ana sayfasına gidin.
+1. [GenerateCustomQR](/tr/) ana sayfasına gidin.
 2. İçerik türü olarak **URL** seçin (varsayılan seçenektir).
 3. **Google Haritalar bağlantınızı** URL alanına yapıştırın.
 4. Tasarımı özelleştirin — kurumsal renkler, nokta stili, logo ve çerçeve ekleyin.
@@ -69,7 +69,7 @@ Elinizde tam GPS enlem ve boylam koordinatları varsa, bağlantıyı manuel olar
 
 İşte bu kadar! Biri bu QR kodu taradığında doğrudan Google Haritalar açılacak ve yol tarifi hazır olacaktır.
 
-[Konum QR Kodunuzu Hemen Oluşturun →](/tr/url-qr-code-generator)
+[Konum QR Kodunuzu Hemen Oluşturun →](/tr/url-qr-code-generator/)
 
 ## Konum QR Kodları İçin En İyi Kullanım Alanları
 
@@ -154,7 +154,7 @@ GenerateCustomQR, özelleştirilebilir yazı tipi ve renklere sahip **51 farklı
 | Etkinlik Posteri | 5 cm | 8 cm × 8 cm |
 | Vitrin Çıkartması | 8 cm | 12 cm × 12 cm |
 
-Daha fazla ayrıntı için [QR Kod Boyutlandırma Rehberimizi](/tr/blog/qr-code-size-guide) inceleyin.
+Daha fazla ayrıntı için [QR Kod Boyutlandırma Rehberimizi](/tr/blog/qr-code-size-guide/) inceleyin.
 
 ## Harita Uygulamaları URL Formatları Karşılaştırması
 
@@ -168,6 +168,6 @@ Daha fazla ayrıntı için [QR Kod Boyutlandırma Rehberimizi](/tr/blog/qr-code-
 
 Google Haritalar açan profesyonel bir QR kod üretmeye hazır mısınız? 30 saniyede tamamen ücretsiz hazırlayın:
 
-- [URL QR Kod Oluşturun →](/tr/url-qr-code-generator)
-- [Oluşturucu Nasıl Kullanılır? →](/tr/how-to-use)
-- [Baskı Boyutlandırma Kılavuzu →](/tr/blog/qr-code-size-guide)
+- [URL QR Kod Oluşturun →](/tr/url-qr-code-generator/)
+- [Oluşturucu Nasıl Kullanılır? →](/tr/how-to-use/)
+- [Baskı Boyutlandırma Kılavuzu →](/tr/blog/qr-code-size-guide/)

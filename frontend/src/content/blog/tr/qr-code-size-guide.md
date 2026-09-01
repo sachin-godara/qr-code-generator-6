@@ -101,7 +101,7 @@ Boyut yalnızca santimetre ile ilgili değildir — net baskı için doğru çö
 | **SVG** | Sonsuz (Vektörel) | Piksellenme olmadan her boyutta baskı |
 | **PDF** | 300 DPI gömülü | Profesyonel matbaalar, broşürler |
 
-[GenerateCustomQR](/tr) ile **8192 × 8192 piksele** kadar PNG dışa aktarabilirsiniz — reklam panoları için bile fazlasıyla yeterlidir. Sınırsız ölçekleme için SVG kullanın.
+[GenerateCustomQR](/tr/) ile **8192 × 8192 piksele** kadar PNG dışa aktarabilirsiniz — reklam panoları için bile fazlasıyla yeterlidir. Sınırsız ölçekleme için SVG kullanın.
 
 ## Yaygın Boyutlandırma Hataları
 
@@ -127,9 +127,9 @@ QR kodun etrafındaki **sessiz alan** (beyaz kenar boşluğu) en az 4 modül gen
 
 ## Mükemmel Boyutta QR Kodunuzu Oluşturun
 
-[GenerateCustomQR](/tr); 8192×8192px çözünürlüğe kadar PNG ve sınırsız ölçekleme için SVG vektör desteği sunar. Tüm stiller %100 ücretsizdir.
+[GenerateCustomQR](/tr/); 8192×8192px çözünürlüğe kadar PNG ve sınırsız ölçekleme için SVG vektör desteği sunar. Tüm stiller %100 ücretsizdir.
 
-- [URL QR Kodu Oluşturun →](/tr/url-qr-code-generator)
-- [Wi-Fi QR Kodu Oluşturun →](/tr/wifi-qr-code)
-- [vCard QR Kodu Oluşturun →](/tr/vcard-qr-code)
-- [Baskı İpuçlarını Öğrenin →](/tr/blog/qr-code-design-best-practices-for-print)
+- [URL QR Kodu Oluşturun →](/tr/url-qr-code-generator/)
+- [Wi-Fi QR Kodu Oluşturun →](/tr/wifi-qr-code/)
+- [vCard QR Kodu Oluşturun →](/tr/vcard-qr-code/)
+- [Baskı İpuçlarını Öğrenin →](/tr/blog/qr-code-design-best-practices-for-print/)

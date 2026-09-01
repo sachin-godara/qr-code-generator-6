@@ -83,7 +83,7 @@ As Diretrizes de Acessibilidade para Conteúdo Web (WCAG) definem níveis de con
 | **3:1 a 4.5:1** | ⚠️ Arriscado — falhas em pouca luz ou celulares básicos |
 | **Abaixo de 3:1** | Incompatível — alto índice de falhas de leitura |
 
-**A taxa de contraste mínima recomendada é 4.5:1.** Esse é o padrão de segurança adotado no [GenerateCustomQR](/pt).
+**A taxa de contraste mínima recomendada é 4.5:1.** Esse é o padrão de segurança adotado no [GenerateCustomQR](/pt/).
 
 ## Combinações de Cores Testadas e Seguras
 
@@ -151,7 +151,7 @@ As Diretrizes de Acessibilidade para Conteúdo Web (WCAG) definem níveis de con
 
 ## Como Usar Gradientes em Códigos QR
 
-O [GenerateCustomQR](/pt) suporta quatro estilos de gradiente:
+O [GenerateCustomQR](/pt/) suporta quatro estilos de gradiente:
 - **Linear Vertical** — Mais escuro em cima, suave embaixo
 - **Linear Horizontal** — Transição lateral contínua
 - **Radial** — Intenso no centro, suave nas bordas
@@ -190,7 +190,7 @@ Os três quadrados nos cantos (padrões de localização) orientam a câmera:
 2. **Nunca devem ser mais claros** que os pontos do corpo
 3. Mantenha **contraste rigoroso** com o fundo
 
-No [GenerateCustomQR](/pt), você pode colorir a moldura e o centro dos olhos de forma independente.
+No [GenerateCustomQR](/pt/), você pode colorir a moldura e o centro dos olhos de forma independente.
 
 ## Checklist de Teste de Cores
 
@@ -203,8 +203,8 @@ No [GenerateCustomQR](/pt), você pode colorir a moldura e o centro dos olhos de
 
 ## Crie Seu QR Code Personalizado
 
-Pronto para criar um código com as cores da sua empresa? O [GenerateCustomQR](/pt) oferece controle total de cores, pontos e gradientes com alertas de contraste em tempo real.
+Pronto para criar um código com as cores da sua empresa? O [GenerateCustomQR](/pt/) oferece controle total de cores, pontos e gradientes com alertas de contraste em tempo real.
 
-- [Criar QR Code Agora →](/pt)
-- [Guia de Tamanhos para Impressão →](/pt/blog/qr-code-size-guide)
-- [Melhores Práticas para Gráfica →](/pt/blog/qr-code-design-best-practices-for-print)
+- [Criar QR Code Agora →](/pt/)
+- [Guia de Tamanhos para Impressão →](/pt/blog/qr-code-size-guide/)
+- [Melhores Práticas para Gráfica →](/pt/blog/qr-code-design-best-practices-for-print/)

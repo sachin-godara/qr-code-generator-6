@@ -33,7 +33,7 @@ Fortunately, you do not need a second device or a printout. Here is the complete
 
 ## Method 1: The Universal Web Scanner (Fastest for All Devices)
 
-The easiest, zero-installation method on any device is using an in-browser client-side QR decoder like **[GenerateCustomQR Scanner](/qr-code-scanner)**.
+The easiest, zero-installation method on any device is using an in-browser client-side QR decoder like **[GenerateCustomQR Scanner](/qr-code-scanner/)**.
 
 <div class="blog-flow-grid">
   <div class="blog-flow-card">
@@ -60,7 +60,7 @@ The easiest, zero-installation method on any device is using an in-browser clien
 </div>
 
 ### Steps:
-1. Open **[generatecustomqr.com/qr-code-scanner](/qr-code-scanner)** in Safari, Chrome, Edge, or Firefox.
+1. Open **[generatecustomqr.com/qr-code-scanner](/qr-code-scanner/)** in Safari, Chrome, Edge, or Firefox.
 2. Select the **Upload Image** tab.
 3. Either:
    - **Click "Browse Files"** and select your saved screenshot or image file (`.png`, `.jpg`, `.webp`, `.svg`).
@@ -113,13 +113,13 @@ If you are working on a laptop or desktop computer and see a QR code in an email
 
 | Operating System | Screenshot Shortcut | Fastest Decoding Method |
 | :--- | :--- | :--- |
-| **Windows 11 / 10** | `Win + Shift + S` (Snipping Tool) | Paste into [Web Scanner](/qr-code-scanner) (`Ctrl+V`) |
-| **macOS (Sonoma / Sequoia)** | `Cmd + Shift + 4` | Double-click in Preview (Live Text) or paste in [Web Scanner](/qr-code-scanner) |
+| **Windows 11 / 10** | `Win + Shift + S` (Snipping Tool) | Paste into [Web Scanner](/qr-code-scanner/) (`Ctrl+V`) |
+| **macOS (Sonoma / Sequoia)** | `Cmd + Shift + 4` | Double-click in Preview (Live Text) or paste in [Web Scanner](/qr-code-scanner/) |
 | **Google Chrome (Any OS)** | Right-click image | Right-click → *"Search image with Google"* |
 
 ### On Windows (Snipping Tool + Web Scanner):
 1. Press `Win + Shift + S` and draw a rectangle around the QR code on your screen.
-2. Open **[generatecustomqr.com/qr-code-scanner](/qr-code-scanner)**.
+2. Open **[generatecustomqr.com/qr-code-scanner](/qr-code-scanner/)**.
 3. Press `Ctrl + V`. The image will paste from your RAM clipboard and decode immediately.
 
 ---

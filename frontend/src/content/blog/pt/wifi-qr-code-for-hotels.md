@@ -44,7 +44,7 @@ Um QR code de Wi-Fi armazena o nome da rede (SSID), a senha e o tipo de criptogr
 
 ## Como Criar o QR Code de Wi-Fi
 
-1. Acesse o **[Gerador de QR Code de Wi-Fi](/pt/wifi-qr-code)**.
+1. Acesse o **[Gerador de QR Code de Wi-Fi](/pt/wifi-qr-code/)**.
 2. Digite o **Nome da Rede (SSID)** exatamente como configurado no roteador.
 3. Insira a **Senha**.
 4. Escolha a **Criptografia** (WPA/WPA2 para a maioria das redes).
@@ -52,7 +52,7 @@ Um QR code de Wi-Fi armazena o nome da rede (SSID), a senha e o tipo de criptogr
 6. Personalize o design para combinar com sua marca.
 7. Baixe e imprima.
 
-[Criar QR Code de Wi-Fi agora →](/pt/wifi-qr-code)
+[Criar QR Code de Wi-Fi agora →](/pt/wifi-qr-code/)
 
 ---
 
@@ -216,6 +216,6 @@ Para notebooks antigos ou visitantes sem câmera compatível:
 
 ## Crie seu QR Code de Wi-Fi Grátis
 
-- [Criar QR Code de Wi-Fi →](/pt/wifi-qr-code)
-- [Criar Cartão vCard →](/pt/vcard-qr-code)
-- [Dicas de Impressão de QR Code →](/pt/blog/qr-code-design-best-practices-for-print)
+- [Criar QR Code de Wi-Fi →](/pt/wifi-qr-code/)
+- [Criar Cartão vCard →](/pt/vcard-qr-code/)
+- [Dicas de Impressão de QR Code →](/pt/blog/qr-code-design-best-practices-for-print/)

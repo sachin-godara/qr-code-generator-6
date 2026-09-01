@@ -120,4 +120,4 @@ Aumentar a tolerância a danos aumenta o número de quadradinhos pretos e branco
 
 - Utilize o **Nível M (15%)** para links de sites comuns e telas digitais sem logotipo.
 - Utilize o **Nível H (30%)** ao adicionar logotipos ou para impressões em locais expostos.
-- Crie e teste todos os 4 níveis gratuitamente no **[GenerateCustomQR](/pt)**.
+- Crie e teste todos os 4 níveis gratuitamente no **[GenerateCustomQR](/pt/)**.

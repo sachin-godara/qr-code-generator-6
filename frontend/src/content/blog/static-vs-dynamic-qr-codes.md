@@ -123,5 +123,5 @@ Here's a simple decision framework:
 [GenerateCustomQR](/) specializes in **high-quality static QR codes** with full design customization — 40+ dot styles, logo embedding, text frames, and high-resolution PNG/SVG/PDF downloads. All completely free, no signup required, and your QR codes never expire.
 
 - [Create a Free Custom QR Code](/)
-- [Learn more about our 100% Free QR Code Generator](/free-qr-code-generator)
-- [How to Add a Logo to a QR Code](/qr-code-with-logo)
+- [Learn more about our 100% Free QR Code Generator](/free-qr-code-generator/)
+- [How to Add a Logo to a QR Code](/qr-code-with-logo/)

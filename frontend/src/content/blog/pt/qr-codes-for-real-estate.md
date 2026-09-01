@@ -51,7 +51,7 @@ Uma placa comum de "Vende-se" exibe apenas o telefone do corretor. No entanto, o
 </div>
 
 - **Placas de rua** → Link direto para o anúncio com mais de 50 fotos e planta baixa
-- **Cartões de visita** → Salva o contato do corretor com [vCard QR Code](/pt/vcard-qr-code)
+- **Cartões de visita** → Salva o contato do corretor com [vCard QR Code](/pt/vcard-qr-code/)
 - **Folhetos de plantão** → Direciona para tour virtual Matterport em 3D
 - **Vitrines de agências** → Exibe imóveis disponíveis 24 horas por dia
 - **Guias de bairro** → Informações sobre escolas, transporte e comércio local
@@ -59,13 +59,13 @@ Uma placa comum de "Vende-se" exibe apenas o telefone do corretor. No entanto, o
 ## 7 Casos de Uso no Mercado Imobiliário
 
 ### 1. Anúncios de Imóveis
-Link direto para a página do imóvel em placas e cavaletes ([Criar QR Code de URL →](/pt/url-qr-code-generator)).
+Link direto para a página do imóvel em placas e cavaletes ([Criar QR Code de URL →](/pt/url-qr-code-generator/)).
 
 ### 2. Tours Virtuais em 3D
 Visita imersiva em 360° aberta na hora pelo celular com Matterport ou YouTube.
 
 ### 3. Cartão de Contato do Corretor (vCard)
-Salva nome, telefone, e-mail e CRECI em 1 toque ([Criar vCard →](/pt/vcard-qr-code)).
+Salva nome, telefone, e-mail e CRECI em 1 toque ([Criar vCard →](/pt/vcard-qr-code/)).
 
 ### 4. Cadastro em Plantões de Venda
 Formulário digital na entrada substituindo pranchetas de papel para captação de leads.
@@ -163,7 +163,7 @@ Para acompanhar o volume de leituras sem custos adicionais:
 
 ## Crie seu QR Code Imobiliário Gratuito
 
-- [URL QR Code para Imóveis →](/pt/url-qr-code-generator)
-- [vCard para Cartão do Corretor →](/pt/vcard-qr-code)
-- [QR Code de E-mail para Dúvidas →](/pt/email-qr-code)
-- [QR Code de Evento para Plantão →](/pt/event-qr-code)
+- [URL QR Code para Imóveis →](/pt/url-qr-code-generator/)
+- [vCard para Cartão do Corretor →](/pt/vcard-qr-code/)
+- [QR Code de E-mail para Dúvidas →](/pt/email-qr-code/)
+- [QR Code de Evento para Plantão →](/pt/event-qr-code/)

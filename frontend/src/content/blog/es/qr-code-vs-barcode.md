@@ -132,16 +132,16 @@ Pulseras de pacientes y muestras de laboratorio se identifican con códigos 1D e
 Los códigos QR son la elección superior para:
 
 ### Marketing y Publicidad
-Enlaza directamente desde folletos, revistas y vallas hacia promociones y páginas web. [Crear Código QR de URL →](/es/url-qr-code-generator)
+Enlaza directamente desde folletos, revistas y vallas hacia promociones y páginas web. [Crear Código QR de URL →](/es/url-qr-code-generator/)
 
 ### Cartas de Restaurante Sin Contacto
-Sustituye las cartas físicas por menús digitales actualizados en tiempo real. [Leer guía para restaurantes →](/es/blog/qr-code-for-restaurant-menu)
+Sustituye las cartas físicas por menús digitales actualizados en tiempo real. [Leer guía para restaurantes →](/es/blog/qr-code-for-restaurant-menu/)
 
 ### Conexión Automática a Redes Wi-Fi
-Permite a clientes y huéspedes conectarse al Wi-Fi sin escribir contraseñas complejas. [Crear QR de Wi-Fi →](/es/wifi-qr-code)
+Permite a clientes y huéspedes conectarse al Wi-Fi sin escribir contraseñas complejas. [Crear QR de Wi-Fi →](/es/wifi-qr-code/)
 
 ### Tarjetas de Visita Digitales
-Transfiere todos tus datos profesionales a la agenda del móvil en un solo escaneo. [Crear QR vCard →](/es/vcard-qr-code)
+Transfiere todos tus datos profesionales a la agenda del móvil en un solo escaneo. [Crear QR vCard →](/es/vcard-qr-code/)
 
 ### Entradas y Control de Accesos
 Billetes de avión, entradas de conciertos y pases de congresos con validación en segundos.
@@ -169,4 +169,4 @@ No obstante, en almacenes logísticos y fábricas, los códigos de barras 1D seg
 
 Para cualquier aplicación orientada al **cliente final, enlaces web, intercambio de datos o marketing**, el código QR es el claro vencedor.
 
-[Crear un Código QR Gratis Ahora →](/es)
+[Crear un Código QR Gratis Ahora →](/es/)

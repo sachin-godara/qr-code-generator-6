@@ -83,7 +83,7 @@ W3C Web İçeriği Erişilebilirlik Yönergeleri (WCAG), görsel okunabilirlik i
 | **3:1 ila 4.5:1** | ⚠️ Riskli — düşük ışıkta veya ucuz kameralarda takılabilir |
 | **3:1 altında** | Güvensiz — çok yüksek tarama hatası oranı |
 
-**QR kodlar için önerilen minimum güvenli kontrast oranı 4.5:1'dir.** Bu oran [GenerateCustomQR](/tr) tasarım motorumuz tarafından temel standart olarak kabul edilmektedir.
+**QR kodlar için önerilen minimum güvenli kontrast oranı 4.5:1'dir.** Bu oran [GenerateCustomQR](/tr/) tasarım motorumuz tarafından temel standart olarak kabul edilmektedir.
 
 ## Test Edilmiş Güvenli Renk Kombinasyonları
 
@@ -153,7 +153,7 @@ W3C Web İçeriği Erişilebilirlik Yönergeleri (WCAG), görsel okunabilirlik i
 
 ## QR Kodlarda Gradyan (Renk Geçişi) Kullanımı
 
-[GenerateCustomQR](/tr), noktalar için 4 farklı gradyan türünü destekler:
+[GenerateCustomQR](/tr/), noktalar için 4 farklı gradyan türünü destekler:
 - **Doğrusal Dikey** — Üstte koyu, altta daha açık ton
 - **Doğrusal Yatay** — Soldan sağa renk geçişi
 - **Radyal** — Merkezde koyu, kenarlarda yumuşak geçiş
@@ -194,7 +194,7 @@ QR kodun üç köşesindeki büyük kareler (bulucu desenler) taramanın kalbidi
 2. Çevreleyen noktalardan **asla daha açık** olmamalıdır
 3. Arka planla **tutarlı bir kontrast** korumalıdır
 
-[GenerateCustomQR](/tr) aracımızda göz çerçevesi ve göz bebeği renklerini bağımsız olarak ayarlayabilir, kontrastı bozmadan şık vurgular ekleyebilirsiniz.
+[GenerateCustomQR](/tr/) aracımızda göz çerçevesi ve göz bebeği renklerini bağımsız olarak ayarlayabilir, kontrastı bozmadan şık vurgular ekleyebilirsiniz.
 
 ## Renk Doğrulama ve Test Kontrol Listesi
 
@@ -209,8 +209,8 @@ QR kod renklerinizi onaylamadan önce:
 
 ## Markalı QR Kodunuzu Hemen Oluşturun
 
-Kurumsal renklerinizle şık bir QR kod tasarlamaya hazır mısınız? [GenerateCustomQR](/tr), anlık kontrast kontrolü ve zengin stil seçenekleriyle noktalar, gözler, gradyanlar ve arka plan üzerinde tam kontrol sağlar.
+Kurumsal renklerinizle şık bir QR kod tasarlamaya hazır mısınız? [GenerateCustomQR](/tr/), anlık kontrast kontrolü ve zengin stil seçenekleriyle noktalar, gözler, gradyanlar ve arka plan üzerinde tam kontrol sağlar.
 
-- [Tasarlamaya Başlayın →](/tr)
-- [Baskı Boyutlandırma Rehberi →](/tr/blog/qr-code-size-guide)
-- [Baskı İçin Tasarım İpuçları →](/tr/blog/qr-code-design-best-practices-for-print)
+- [Tasarlamaya Başlayın →](/tr/)
+- [Baskı Boyutlandırma Rehberi →](/tr/blog/qr-code-size-guide/)
+- [Baskı İçin Tasarım İpuçları →](/tr/blog/qr-code-design-best-practices-for-print/)

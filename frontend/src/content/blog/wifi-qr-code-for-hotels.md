@@ -44,7 +44,7 @@ A WiFi QR code encodes your network name (SSID), password, and encryption type d
 
 ## How to Create a WiFi QR Code
 
-1. Go to [GenerateCustomQR WiFi Generator](/wifi-qr-code).
+1. Go to [GenerateCustomQR WiFi Generator](/wifi-qr-code/).
 2. Enter your **Network Name (SSID)** — exactly as it appears in WiFi settings.
 3. Enter your **Password**.
 4. Select your **Encryption Type** (WPA/WPA2 for most networks).
@@ -52,7 +52,7 @@ A WiFi QR code encodes your network name (SSID), password, and encryption type d
 6. Customize the design to match your brand.
 7. Download and print.
 
-[Create your WiFi QR code now →](/wifi-qr-code)
+[Create your WiFi QR code now →](/wifi-qr-code/)
 
 ## Best Placements for WiFi QR Codes
 
@@ -176,7 +176,7 @@ For a polished look, consider:
 
 ### DIY Printing
 
-1. Export the QR code from [GenerateCustomQR](/wifi-qr-code) as PNG at 1200×1200px or SVG.
+1. Export the QR code from [GenerateCustomQR](/wifi-qr-code/) as PNG at 1200×1200px or SVG.
 2. Print on card stock (at least 200gsm for durability).
 3. Laminate if placing in bathrooms or outdoor areas.
 
@@ -238,7 +238,7 @@ For a polished look, consider:
 
 Ready to stop answering "What's the WiFi password?" forever?
 
-- [Create a WiFi QR code →](/wifi-qr-code)
-- [Create a vCard for your business card →](/vcard-qr-code)
-- [Learn QR code design best practices →](/blog/qr-code-design-best-practices-for-print)
+- [Create a WiFi QR code →](/wifi-qr-code/)
+- [Create a vCard for your business card →](/vcard-qr-code/)
+- [Learn QR code design best practices →](/blog/qr-code-design-best-practices-for-print/)
 

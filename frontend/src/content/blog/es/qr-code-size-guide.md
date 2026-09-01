@@ -101,7 +101,7 @@ Cuando añades un logotipo en el centro de tu código QR, utiliza siempre **Nive
 | **SVG** | Infinita (Vectorial) | Impresión a cualquier tamaño sin pixelar |
 | **PDF** | 300 DPI incrustado | Imprentas profesionales y catálogos |
 
-Con [GenerateCustomQR](/es), puedes exportar imágenes PNG de hasta **8192 × 8192 píxeles**, más que suficiente incluso para vallas de gran formato.
+Con [GenerateCustomQR](/es/), puedes exportar imágenes PNG de hasta **8192 × 8192 píxeles**, más que suficiente incluso para vallas de gran formato.
 
 ## Errores Comunes de Dimensionamiento
 
@@ -124,7 +124,7 @@ Con [GenerateCustomQR](/es), puedes exportar imágenes PNG de hasta **8192 × 81
 
 Diseña tu código QR con las dimensiones óptimas y descárgalo gratis en alta resolución:
 
-- [Generador de Códigos QR para URLs →](/es/url-qr-code-generator)
-- [Generador de Códigos QR para Wi-Fi →](/es/wifi-qr-code)
-- [Generador de Códigos QR vCard para Tarjetas →](/es/vcard-qr-code)
-- [Mejores Prácticas de Diseño para Impresión →](/es/blog/qr-code-design-best-practices-for-print)
+- [Generador de Códigos QR para URLs →](/es/url-qr-code-generator/)
+- [Generador de Códigos QR para Wi-Fi →](/es/wifi-qr-code/)
+- [Generador de Códigos QR vCard para Tarjetas →](/es/vcard-qr-code/)
+- [Mejores Prácticas de Diseño para Impresión →](/es/blog/qr-code-design-best-practices-for-print/)

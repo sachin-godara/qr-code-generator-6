@@ -157,8 +157,8 @@ QR-Codes bieten vier Redundanzstufen:
 
 ## Druckfertige QR-Codes kostenlos erstellen
 
-[GenerateCustomQR](/de) exportiert in **SVG**, **PDF** (300 DPI) und **PNG** (bis 4K) — 100% kostenlos und ohne Wasserzeichen.
+[GenerateCustomQR](/de/) exportiert in **SVG**, **PDF** (300 DPI) und **PNG** (bis 4K) — 100% kostenlos und ohne Wasserzeichen.
 
-- [Druckfertigen QR-Code erstellen](/de)
-- [Logo in QR-Code einbinden](/de/qr-code-with-logo)
-- [Schritt-für-Schritt Anleitung](/de/how-to-use)
+- [Druckfertigen QR-Code erstellen](/de/)
+- [Logo in QR-Code einbinden](/de/qr-code-with-logo/)
+- [Schritt-für-Schritt Anleitung](/de/how-to-use/)

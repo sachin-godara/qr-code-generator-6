@@ -110,8 +110,8 @@ O QR code dinâmico codifica uma **URL curta de redirecionamento** controlada po
 
 ## Crie Códigos QR Estáticos Profissionais
 
-O [GenerateCustomQR](/pt) é especializado em **códigos QR estáticos de alta definição** com personalização completa — mais de 40 estilos de pontos, inclusão de logotipos, molduras elegantes e exportação em PNG, SVG e PDF sem marcas d'água.
+O [GenerateCustomQR](/pt/) é especializado em **códigos QR estáticos de alta definição** com personalização completa — mais de 40 estilos de pontos, inclusão de logotipos, molduras elegantes e exportação em PNG, SVG e PDF sem marcas d'água.
 
-- [Criar um Código QR Gratuito →](/pt)
-- [Saiba mais sobre nosso Gerador Grátis →](/pt/free-qr-code-generator)
-- [Como Adicionar Logo ao QR Code →](/pt/qr-code-with-logo)
+- [Criar um Código QR Gratuito →](/pt/)
+- [Saiba mais sobre nosso Gerador Grátis →](/pt/free-qr-code-generator/)
+- [Como Adicionar Logo ao QR Code →](/pt/qr-code-with-logo/)

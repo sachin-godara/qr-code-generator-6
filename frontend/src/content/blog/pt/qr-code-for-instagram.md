@@ -159,4 +159,4 @@ Permite que o cliente veja vídeos de looks e demonstrações reais de uso do pr
 
 ## Crie seu QR Code do Instagram Agora
 
-Gere grátis seu código QR do Instagram com sua identidade visual e logo no **[GenerateCustomQR](/pt)**. Exporte em arquivos vetoriais SVG e PDF sem data de validade.
+Gere grátis seu código QR do Instagram com sua identidade visual e logo no **[GenerateCustomQR](/pt/)**. Exporte em arquivos vetoriais SVG e PDF sem data de validade.

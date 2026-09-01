@@ -111,7 +111,7 @@ QR codes are replacing printed materials across industries:
 
 - **Restaurant menus**: 72% of US restaurants used QR menus in 2024 (up from 8% pre-COVID)
 - **Product manuals**: QR codes on packaging link to digital manuals (saving paper)
-- **Business cards**: Digital business cards via [vCard QR codes](/vcard-qr-code) reduce card waste
+- **Business cards**: Digital business cards via [vCard QR codes](/vcard-qr-code/) reduce card waste
 - **Event tickets**: Digital QR tickets eliminate printed ticket stock
 
 ### 6. Dynamic QR Codes for Enterprise
@@ -125,7 +125,7 @@ While [GenerateCustomQR](/) specializes in **static** QR codes (data embedded di
 
 For most individual and small business use cases, static QR codes remain the best choice — they're free, permanent, private, and don't require subscriptions.
 
-[Learn more: Static vs Dynamic QR Codes →](/blog/static-vs-dynamic-qr-codes)
+[Learn more: Static vs Dynamic QR Codes →](/blog/static-vs-dynamic-qr-codes/)
 
 ### 7. Security and Authentication QR Codes
 
@@ -153,7 +153,7 @@ QR codes are increasingly used for security purposes:
 - Digital property disclosures and inspection reports
 - Agent contact cards via vCard QR codes
 
-[See our full real estate QR code guide →](/blog/qr-codes-for-real-estate)
+[See our full real estate QR code guide →](/blog/qr-codes-for-real-estate/)
 
 ### Manufacturing
 - QR codes on products for supply chain tracking

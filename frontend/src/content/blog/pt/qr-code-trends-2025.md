@@ -77,7 +77,7 @@ Códigos pretos e brancos comuns estão em desuso. Em 2026, os consumidores espe
 - **Logotipos no centro**: Reconhecimento imediato da empresa
 - **Molduras de chamada (CTA)**: "Acesse o Cardápio", "Baixe o Aplicativo", etc.
 
-O [GenerateCustomQR](/pt) oferece mais de 40 estilos de pontos, 28 formatos de olhos, 51 molduras e controle total de cores — 100% gratuito.
+O [GenerateCustomQR](/pt/) oferece mais de 40 estilos de pontos, 28 formatos de olhos, 51 molduras e controle total de cores — 100% gratuito.
 
 ### 3. Pagamentos por QR Code Lideram o Mundo
 
@@ -102,15 +102,15 @@ Os códigos QR acionam modelos 3D interativos e experiências de realidade aumen
 
 - **Cardápios Digitais**: Mais de 72% dos restaurantes adotam menus via QR code
 - **Manuais de Instrução**: Fim dos folhetos volumosos em embalagens
-- **Cartões de Visita**: [Códigos vCard](/pt/vcard-qr-code) que eliminam o desperdício de papel
+- **Cartões de Visita**: [Códigos vCard](/pt/vcard-qr-code/) que eliminam o desperdício de papel
 
 ### 6. Estratégias de Códigos Estáticos vs Dinâmicos
 
-Enquanto o [GenerateCustomQR](/pt) é especializado em **códigos QR estáticos** (dados gravados na matriz, sem mensalidades, sem limite e com privacidade total), plataformas corporativas usam códigos dinâmicos para testes A/B.
+Enquanto o [GenerateCustomQR](/pt/) é especializado em **códigos QR estáticos** (dados gravados na matriz, sem mensalidades, sem limite e com privacidade total), plataformas corporativas usam códigos dinâmicos para testes A/B.
 
 Para a grande maioria de negócios e profissionais, os códigos estáticos são a escolha perfeita: gratuitos, permanentes e sem risco de expirar.
 
-[Saiba mais: QR Code Estático vs Dinâmico →](/pt/blog/static-vs-dynamic-qr-codes)
+[Saiba mais: QR Code Estático vs Dinâmico →](/pt/blog/static-vs-dynamic-qr-codes/)
 
 ### 7. Segurança e Identidade Digital
 
@@ -130,7 +130,7 @@ Para a grande maioria de negócios e profissionais, os códigos estáticos são 
 
 ### Mercado Imobiliário
 - Placas com QR codes apontando para tours virtuais em 3D
-- [Consulte nosso guia imobiliário completo →](/pt/blog/qr-codes-for-real-estate)
+- [Consulte nosso guia imobiliário completo →](/pt/blog/qr-codes-for-real-estate/)
 
 ### Indústria e Manufatura
 - Rastreamento completo da cadeia de suprimentos
@@ -158,4 +158,4 @@ Para a grande maioria de negócios e profissionais, os códigos estáticos são 
 
 ## Resumo
 
-Em 2026, os códigos QR deixaram de ser apenas uma alternativa rápida para se tornarem infraestrutura essencial. O maior diferencial agora está no **design e profissionalismo**: consumidores esperam códigos bonitos, coloridos e integrados à marca. Ferramentas como o [GenerateCustomQR](/pt) tornam isso acessível a todos de forma 100% gratuita.
+Em 2026, os códigos QR deixaram de ser apenas uma alternativa rápida para se tornarem infraestrutura essencial. O maior diferencial agora está no **design e profissionalismo**: consumidores esperam códigos bonitos, coloridos e integrados à marca. Ferramentas como o [GenerateCustomQR](/pt/) tornam isso acessível a todos de forma 100% gratuita.

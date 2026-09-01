@@ -85,7 +85,7 @@ Create a dedicated landing page (e.g., `yourname.com/card`) with links to your s
 
 ### For a vCard QR Code:
 
-1. Open the [Free vCard QR Code Generator](/vcard-qr-code)
+1. Open the [Free vCard QR Code Generator](/vcard-qr-code/)
 2. Fill in your professional details:
    - Full name and job title
    - Company name
@@ -97,7 +97,7 @@ Create a dedicated landing page (e.g., `yourname.com/card`) with links to your s
 
 ### For a URL QR Code:
 
-1. Open the [URL to QR Code Generator](/url-qr-code-generator)
+1. Open the [URL to QR Code Generator](/url-qr-code-generator/)
 2. Paste your website, digital portfolio, or LinkedIn profile URL
 3. The QR code generates automatically
 
@@ -234,6 +234,6 @@ A well-designed QR code on your business card:
 
 ## Create Your Business Card QR Code
 
-[GenerateCustomQR](https://generatecustomqr.com) lets you create beautiful vCard QR codes with your logo, brand colors, and custom design — 100% free, with SVG/PDF export for perfect print quality.
+[GenerateCustomQR](https://generatecustomqr.com/) lets you create beautiful vCard QR codes with your logo, brand colors, and custom design — 100% free, with SVG/PDF export for perfect print quality.
 
-[Create your vCard QR code →](https://generatecustomqr.com)
+[Create your vCard QR code →](https://generatecustomqr.com/)

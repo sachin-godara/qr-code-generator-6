@@ -181,4 +181,4 @@ Einige ältere TN-Bildschirme haben im Dunkelmodus einen geringen Kontrast zwisc
 | **"Klicken zum Neuladen" in Endlosschleife** | WebSocket blockiert / VPN | Im Inkognito-Fenster testen |
 | **Geräte-Limit erreicht** | Mehr als 4 Geräte | Alte Sitzungen in WhatsApp abmelden |
 
-Erstellen Sie Ihren eigenen WhatsApp QR-Code kostenlos auf **[GenerateCustomQR](/de)**.
+Erstellen Sie Ihren eigenen WhatsApp QR-Code kostenlos auf **[GenerateCustomQR](/de/)**.

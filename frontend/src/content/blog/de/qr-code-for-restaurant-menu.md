@@ -83,7 +83,7 @@ Bevor Sie den QR-Code erstellen, muss die Speisekarte online abrufbar sein:
 
 ## Schritt 2: QR-Code erstellen
 
-1. Öffnen Sie den [URL-QR-Code-Generator](/de/url-qr-code-generator) (oder den [QR-Code-Generator mit Logo](/de/qr-code-with-logo)).
+1. Öffnen Sie den [URL-QR-Code-Generator](/de/url-qr-code-generator/) (oder den [QR-Code-Generator mit Logo](/de/qr-code-with-logo/)).
 2. Fügen Sie Ihren Menü-Link ein.
 3. Passen Sie das Design an: Punkt-Muster, Farben passend zu Ihrem Restaurant und Firmenlogo.
 4. Laden Sie den Code als **SVG** oder **PDF** für höchste Druckqualität herunter.
@@ -163,10 +163,10 @@ Bevor Sie den QR-Code erstellen, muss die Speisekarte online abrufbar sein:
 
 ## Strategie für mehrere Filialen
 
-Besitzen Sie mehrere Standorte? Nutzen Sie die [Stapelerstellung auf GenerateCustomQR](/de), um individuelle QR-Codes für jede Filiale gleichzeitig zu erzeugen.
+Besitzen Sie mehrere Standorte? Nutzen Sie die [Stapelerstellung auf GenerateCustomQR](/de/), um individuelle QR-Codes für jede Filiale gleichzeitig zu erzeugen.
 
 ---
 
 ## Erstellen Sie jetzt Ihren Menü-QR-Code
 
-Bereit für die digitale Speisekarte? [Kostenlosen Restaurant-QR-Code erstellen](/de) — mit eigenem Logo und hochauflösendem Download ohne Registrierung.
+Bereit für die digitale Speisekarte? [Kostenlosen Restaurant-QR-Code erstellen](/de/) — mit eigenem Logo und hochauflösendem Download ohne Registrierung.

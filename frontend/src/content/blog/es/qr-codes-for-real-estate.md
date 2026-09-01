@@ -51,7 +51,7 @@ Un cartel tradicional de "Se Vende" solo muestra un número de teléfono. Los co
 </div>
 
 - **Carteles de fachada** → Enlace directo a la ficha online con galería de fotos y planos
-- **Tarjetas de visita** → Guarda el contacto del agente con [códigos QR vCard](/es/vcard-qr-code)
+- **Tarjetas de visita** → Guarda el contacto del agente con [códigos QR vCard](/es/vcard-qr-code/)
 - **Folletos y catálogos** → Redirección a tours virtuales Matterport en 3D
 - **Escaparates de agencias** → Muestra inmuebles disponibles las 24 horas del día
 - **Guías de zona** → Información sobre colegios, transporte y comercios cercanos
@@ -59,13 +59,13 @@ Un cartel tradicional de "Se Vende" solo muestra un número de teléfono. Los co
 ## 7 Casos de Uso en el Sector Inmobiliario
 
 ### 1. Fichas de Inmuebles
-Enlace directo a la página web detallada de la propiedad en carteles y lonas ([Crear Código QR de URL →](/es/url-qr-code-generator)).
+Enlace directo a la página web detallada de la propiedad en carteles y lonas ([Crear Código QR de URL →](/es/url-qr-code-generator/)).
 
 ### 2. Tours Virtuales en 3D
 Visita inmersiva en 360° mediante Matterport o vídeo de YouTube iniciada al instante desde la calle.
 
 ### 3. Tarjeta de Contacto del Agente (vCard)
-Guarda nombre, teléfono directo, email y agencia en la agenda del cliente con 1 solo toque ([Crear vCard →](/es/vcard-qr-code)).
+Guarda nombre, teléfono directo, email y agencia en la agenda del cliente con 1 solo toque ([Crear vCard →](/es/vcard-qr-code/)).
 
 ### 4. Registro en Jornadas de Puertas Abiertas (Open House)
 Formulario digital a la entrada sustituyendo las hojas de papel para una captación limpia de contactos.
@@ -161,7 +161,7 @@ Para medir la eficacia de tus carteles sin costes adicionales:
 
 ## Crea tu Código QR Inmobiliario Gratis
 
-- [Crear Código QR de URL para Inmuebles →](/es/url-qr-code-generator)
-- [Crear Tarjeta vCard para Agentes →](/es/vcard-qr-code)
-- [Código QR de Correo para Consultas →](/es/email-qr-code)
-- [Código QR de Evento para Puertas Abiertas →](/es/event-qr-code)
+- [Crear Código QR de URL para Inmuebles →](/es/url-qr-code-generator/)
+- [Crear Tarjeta vCard para Agentes →](/es/vcard-qr-code/)
+- [Código QR de Correo para Consultas →](/es/email-qr-code/)
+- [Código QR de Evento para Puertas Abiertas →](/es/event-qr-code/)

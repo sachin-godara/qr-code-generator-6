@@ -83,7 +83,7 @@ Antes de crear el código QR, tu menú debe estar alojado en la red:
 
 ## Paso 2: Generar tu Código QR
 
-1. Abre el [Generador de URL a Código QR](/es/url-qr-code-generator).
+1. Abre el [Generador de URL a Código QR](/es/url-qr-code-generator/).
 2. Pega el enlace de tu menú online.
 3. Personaliza el diseño: elige estilo de puntos, colores corporativos y sube el logo de tu restaurante.
 4. Descarga en formato **SVG** o **PDF** a 300 DPI para máxima calidad de impresión.
@@ -167,6 +167,6 @@ Si gestionas varios restaurantes o franquicias, utiliza las opciones de Generate
 
 Digitaliza el servicio de tu restaurante con códigos QR atractivos, gratuitos y permanentes:
 
-- [Crear Código QR de Carta →](/es/url-qr-code-generator)
-- [Añadir Logo a tu Código QR →](/es/qr-code-with-logo)
-- [Guía de Tamaños de Impresión →](/es/blog/qr-code-size-guide)
+- [Crear Código QR de Carta →](/es/url-qr-code-generator/)
+- [Añadir Logo a tu Código QR →](/es/qr-code-with-logo/)
+- [Guía de Tamaños de Impresión →](/es/blog/qr-code-size-guide/)

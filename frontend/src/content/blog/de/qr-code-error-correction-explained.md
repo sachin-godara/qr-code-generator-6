@@ -120,4 +120,4 @@ Mehr Redundanz bedeutet zwangsläufig mehr Module im Raster:
 
 - **Level M (15%)** für normale Weblinks und Displays ohne Logo.
 - **Level H (30%)** für Logoeinbindung und Außenwerbung.
-- Testen Sie alle Stufen kostenlos mit über 40 Stilen auf **[GenerateCustomQR](/de)**.
+- Testen Sie alle Stufen kostenlos mit über 40 Stilen auf **[GenerateCustomQR](/de/)**.

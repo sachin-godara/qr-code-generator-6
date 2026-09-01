@@ -115,10 +115,10 @@ Os códigos 1D tradicionais codificam números através de barras de larguras va
 
 ## Quando Usar QR Code
 
-- **Marketing e Publicidade**: Cartazes, folhetos e embalagens ([Criar QR Code de URL →](/pt/url-qr-code-generator))
-- **Cardápios Digitais sem Contato**: Restaurantes e cafeterias ([Guia para Restaurantes →](/pt/blog/qr-code-for-restaurant-menu))
-- **Compartilhamento de Wi-Fi**: Conectar hóspedes sem digitar senhas ([Criar QR Code de Wi-Fi →](/pt/wifi-qr-code))
-- **Cartões de Visita**: Salvar contatos instantaneamente ([Criar vCard →](/pt/vcard-qr-code))
+- **Marketing e Publicidade**: Cartazes, folhetos e embalagens ([Criar QR Code de URL →](/pt/url-qr-code-generator/))
+- **Cardápios Digitais sem Contato**: Restaurantes e cafeterias ([Guia para Restaurantes →](/pt/blog/qr-code-for-restaurant-menu/))
+- **Compartilhamento de Wi-Fi**: Conectar hóspedes sem digitar senhas ([Criar QR Code de Wi-Fi →](/pt/wifi-qr-code/))
+- **Cartões de Visita**: Salvar contatos instantaneamente ([Criar vCard →](/pt/vcard-qr-code/))
 
 ## Os QR Codes Vão Substituir os Códigos de Barras?
 
@@ -137,4 +137,4 @@ No relacionamento com o consumidor: **Sim**. A organização GS1 lançou o padr�
 
 Para conectar materiais impressos ao **mundo digital**, o QR code é a melhor opção.
 
-[Crie seu QR code gratuito agora →](/pt)
+[Crie seu QR code gratuito agora →](/pt/)

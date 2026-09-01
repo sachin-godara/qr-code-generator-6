@@ -66,7 +66,7 @@ Apple, iOS 11'den bu yana doğrudan **Kamera uygulamasına** yerleşik QR kod ta
 
 - **Bildirim şeridi çıkmıyor mu?** *Ayarlar → Kamera* menüsüne gidin ve *QR Kodları Tara* seçeneğinin AÇIK olduğundan emin olun.
 - **Çok mu uzaktasınız?** QR kod ekranın yaklaşık üçte birini kaplayana kadar yaklaşın.
-- **Hasarlı kod mu?** Kısmen hasarlı veya yıpranmış kodları okumak için gelişmiş algoritmalar kullanan [GenerateCustomQR Okuyucuyu](/tr/qr-code-scanner) deneyin.
+- **Hasarlı kod mu?** Kısmen hasarlı veya yıpranmış kodları okumak için gelişmiş algoritmalar kullanan [GenerateCustomQR Okuyucuyu](/tr/qr-code-scanner/) deneyin.
 
 ## Android Cihazlarda QR Kod Tarama
 
@@ -113,13 +113,13 @@ QR kod zaten telefonunuzda bir ekran görüntüsü veya resim olarak kayıtlıys
 3. Google Lens kodu otomatik olarak çözecektir.
 
 ### Masaüstünde / Bilgisayarda:
-[GenerateCustomQR çevrimiçi okuyucuyu](/tr/qr-code-scanner) kullanın — herhangi bir resim dosyasını yükleyin veya panodan `Ctrl+V` ile yapıştırın; tarayıcınız kodu anında çözecektir. Yazılım kurulumu gerekmez.
+[GenerateCustomQR çevrimiçi okuyucuyu](/tr/qr-code-scanner/) kullanın — herhangi bir resim dosyasını yükleyin veya panodan `Ctrl+V` ile yapıştırın; tarayıcınız kodu anında çözecektir. Yazılım kurulumu gerekmez.
 
 ## Masaüstü Tarayıcısından Okutma
 
 Telefonunuz yanınızda değil mi? Bilgisayarınızdan doğrudan tarama yapabilirsiniz:
 
-1. [GenerateCustomQR Tarayıcı](/tr/qr-code-scanner) sayfasını ziyaret edin.
+1. [GenerateCustomQR Tarayıcı](/tr/qr-code-scanner/) sayfasını ziyaret edin.
 2. Web kameranızı kullanmak için **kamera izni verin** veya bir **görsel yükleyin**.
 3. Okuyucu içeriği anında çözecek ve sonucu ekrana getirecektir.
 
@@ -159,7 +159,7 @@ Uygulama mağazalarında "QR Kod Tarayıcı" araması yaptığınızda, tam ekra
 
 > [!WARNING]
 > **Üçüncü taraf tarayıcı uygulamaları yüklemenize kesinlikle gerek yoktur.**
-> Apple iOS ve Android işletim sistemlerindeki yerel kamera yazılımı, reklam olmadan donanım hızlandırmalı hızlı ve güvenli QR tarama yeteneğine zaten sahiptir. Kayıtlı görseller ve masaüstü taramaları için [GenerateCustomQR Web Okuyucu](/tr/qr-code-scanner) gibi doğrulanmış, istemci taraflı araçları kullanın.
+> Apple iOS ve Android işletim sistemlerindeki yerel kamera yazılımı, reklam olmadan donanım hızlandırmalı hızlı ve güvenli QR tarama yeteneğine zaten sahiptir. Kayıtlı görseller ve masaüstü taramaları için [GenerateCustomQR Web Okuyucu](/tr/qr-code-scanner/) gibi doğrulanmış, istemci taraflı araçları kullanın.
 
 ---
 
@@ -209,7 +209,7 @@ Uygulama mağazalarında "QR Kod Tarayıcı" araması yaptığınızda, tam ekra
   </div>
 </div>
 
-Kendi özel QR kodunuzu oluşturmaya hazır mısınız? [Ücretsiz özel QR kod oluşturun →](/tr)
+Kendi özel QR kodunuzu oluşturmaya hazır mısınız? [Ücretsiz özel QR kod oluşturun →](/tr/)
 
 ## Özet Tablosu
 
@@ -219,7 +219,7 @@ Kendi özel QR kodunuzu oluşturmaya hazır mısınız? [Ücretsiz özel QR kod 
 | Android (Pixel, Samsung) | Kamera Uygulaması / Google Lens | Evet |
 | Android (diğer) | Google Lens | Evet |
 | WhatsApp Web Eşleme | WhatsApp → Bağlı Cihazlar | Evet |
-| Masaüstü & PC | [Web Tarayıcı](/tr/qr-code-scanner) | Tarayıcı Tabanlı |
-| Kayıtlı Görsel / Ekran Görüntüsü | [Web Tarayıcı (Ctrl+V)](/tr/qr-code-scanner) / Fotoğraflar | Evet |
+| Masaüstü & PC | [Web Tarayıcı](/tr/qr-code-scanner/) | Tarayıcı Tabanlı |
+| Kayıtlı Görsel / Ekran Görüntüsü | [Web Tarayıcı (Ctrl+V)](/tr/qr-code-scanner/) / Fotoğraflar | Evet |
 
-İster iPhone, ister Android, ister bilgisayar kullanıyor olun, QR kod taramak artık her zamankinden daha hızlı ve güvenlidir. Tüm cihazlarda sorunsuz taranan özel karekodlar üretmek için [GenerateCustomQR](/tr) 40+ stil ile %100 ücretsiz hizmet vermektedir.
+İster iPhone, ister Android, ister bilgisayar kullanıyor olun, QR kod taramak artık her zamankinden daha hızlı ve güvenlidir. Tüm cihazlarda sorunsuz taranan özel karekodlar üretmek için [GenerateCustomQR](/tr/) 40+ stil ile %100 ücretsiz hizmet vermektedir.

@@ -51,7 +51,7 @@ Traditional physical marketing limits property exposure. A yard sign only displa
 </div>
 
 - **Yard signs** → Link to the full MLS listing with 50+ photos and floor plans
-- **Business cards** → Save agent contact info instantly via [vCard QR codes](/vcard-qr-code)
+- **Business cards** → Save agent contact info instantly via [vCard QR codes](/vcard-qr-code/)
 - **Open house flyers** → Direct buyers to a 3D Matterport virtual walkthrough
 - **Storefront displays** → Showcase available inventory 24/7, even after office hours
 - **Print flyers** → Track localized neighborhood engagement with UTM parameters
@@ -66,7 +66,7 @@ Create a QR code that links to the full MLS listing or property page. Place it o
 - Window displays at the property
 - Print advertisements in magazines
 
-**Best practice:** Use a URL QR code pointing to a responsive property page with photos, pricing, and a contact form. [Create a URL QR code →](/url-qr-code-generator)
+**Best practice:** Use a URL QR code pointing to a responsive property page with photos, pricing, and a contact form. [Create a URL QR code →](/url-qr-code-generator/)
 
 ### 2. Virtual Tour QR Codes
 
@@ -78,7 +78,7 @@ Link directly to a Matterport, Zillow 3D Home, or YouTube virtual tour. Buyers c
 
 Create a QR code that saves your full contact information — name, phone, email, company, and photo — to the buyer's phone with a single scan.
 
-**Best practice:** Add your vCard QR code to business cards, email signatures, and name badges. [Create a vCard QR code →](/vcard-qr-code)
+**Best practice:** Add your vCard QR code to business cards, email signatures, and name badges. [Create a vCard QR code →](/vcard-qr-code/)
 
 ### 4. Open House Registration
 
@@ -119,7 +119,7 @@ Yard signs are typically scanned from **3–10 meters away** (car window or side
 | Window display | 12 cm × 12 cm | 18 cm × 18 cm |
 | Directional sign | 10 cm × 10 cm | 12 cm × 12 cm |
 
-**Pro tip:** Export as SVG for crisp edges at any print size. [Learn more about sizing →](/blog/qr-code-size-guide)
+**Pro tip:** Export as SVG for crisp edges at any print size. [Learn more about sizing →](/blog/qr-code-size-guide/)
 
 ### Real Estate CTA Best Practices: Do's & Don'ts
 
@@ -189,8 +189,8 @@ Since GenerateCustomQR creates *static* QR codes (data is embedded directly), th
 
 Create professional, branded QR codes for your real estate marketing — 100% free:
 
-- [URL QR Code for listings →](/url-qr-code-generator)
-- [vCard QR Code for business cards →](/vcard-qr-code)
-- [Email QR Code for inquiries →](/email-qr-code)
-- [Event QR Code for open houses →](/event-qr-code)
+- [URL QR Code for listings →](/url-qr-code-generator/)
+- [vCard QR Code for business cards →](/vcard-qr-code/)
+- [Email QR Code for inquiries →](/email-qr-code/)
+- [Event QR Code for open houses →](/event-qr-code/)
 

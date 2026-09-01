@@ -247,7 +247,7 @@ En varias capitales se detectaron miles de parquímetros manipulados con código
 
 ## Por Qué los Códigos QR Estáticos y Sin Servidor son Más Seguros
 
-En **[GenerateCustomQR](/es)** todos los códigos se generan de forma 100% estática en tu navegador, sin servidores intermediarios:
+En **[GenerateCustomQR](/es/)** todos los códigos se generan de forma 100% estática en tu navegador, sin servidores intermediarios:
 
 - **100% Soberano y Directo:** La carga útil apunta directamente a tu dominio oficial sin pasar por servidores proxy de redirección.
 - **Sin Registro de Telemetría:** Nunca se almacenan ni se transmiten marcas de tiempo, direcciones IP ni datos de ubicación de los usuarios que escanean el código.
@@ -259,5 +259,5 @@ En **[GenerateCustomQR](/es)** todos los códigos se generan de forma 100% está
 
 1. **Formación:** Entrena al personal para detectar correos con imágenes QR sospechosas.
 2. **Autenticación FIDO2:** Protege los accesos clave con llaves de seguridad físicas.
-3. **Generadores Soberanos:** Crea códigos definitivos y seguros en **[GenerateCustomQR](/es)**.
-4. **Escáner Privado:** Utiliza nuestro **[Escáner de Códigos QR](/es/qr-code-scanner)** sin servidor para inspeccionar enlaces antes de abrirlos.
+3. **Generadores Soberanos:** Crea códigos definitivos y seguros en **[GenerateCustomQR](/es/)**.
+4. **Escáner Privado:** Utiliza nuestro **[Escáner de Códigos QR](/es/qr-code-scanner/)** sin servidor para inspeccionar enlaces antes de abrirlos.

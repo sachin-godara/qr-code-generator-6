@@ -33,7 +33,7 @@ Aqui está o guia completo para iPhone, Android, Windows e Mac.
 
 ## Método 1: O Leitor Web Universal (Mais Rápido para Todos os Aparelhos)
 
-A forma mais simples sem instalar nenhum aplicativo é usar um decodificador no navegador como o **[GenerateCustomQR Leitor](/pt/qr-code-scanner)**.
+A forma mais simples sem instalar nenhum aplicativo é usar um decodificador no navegador como o **[GenerateCustomQR Leitor](/pt/qr-code-scanner/)**.
 
 <div class="blog-flow-grid">
   <div class="blog-flow-card">
@@ -60,7 +60,7 @@ A forma mais simples sem instalar nenhum aplicativo é usar um decodificador no 
 </div>
 
 ### Passos:
-1. Abra **[generatecustomqr.com/pt/qr-code-scanner](/pt/qr-code-scanner)** no Safari, Chrome, Edge ou Firefox.
+1. Abra **[generatecustomqr.com/pt/qr-code-scanner](/pt/qr-code-scanner/)** no Safari, Chrome, Edge ou Firefox.
 2. Selecione a aba **Carregar Imagem**.
 3. Escolha uma das opções:
    - **Clique em "Procurar Arquivos"** e selecione sua imagem (`.png`, `.jpg`, `.webp`, `.svg`).
@@ -104,8 +104,8 @@ O iOS possui detecção nativa de **Texto ao Vivo e QR Codes** no aplicativo Fot
 
 | Sistema Operativo | Atalho de Captura de Tela | Método Mais Rápido |
 | :--- | :--- | :--- |
-| **Windows 11 / 10** | `Win + Shift + S` (Ferramenta de Captura) | Colar no [Leitor Web](/pt/qr-code-scanner) (`Ctrl+V`) |
-| **macOS** | `Cmd + Shift + 4` | Abrir no Pré-Visualização (Texto ao Vivo) ou colar no [Leitor Web](/pt/qr-code-scanner) |
+| **Windows 11 / 10** | `Win + Shift + S` (Ferramenta de Captura) | Colar no [Leitor Web](/pt/qr-code-scanner/) (`Ctrl+V`) |
+| **macOS** | `Cmd + Shift + 4` | Abrir no Pré-Visualização (Texto ao Vivo) ou colar no [Leitor Web](/pt/qr-code-scanner/) |
 | **Google Chrome (Todos)** | Botão direito na imagem | *"Pesquisar imagem com o Google"* |
 
 ---
@@ -169,5 +169,5 @@ O iOS possui detecção nativa de **Texto ao Vivo e QR Codes** no aplicativo Fot
 
 ## Criar Códigos QR Vetoriais em Alta Definição
 
-Deseja recriar um link decodificado em formato de código QR limpo e em alta resolução? Use nosso **[Gerador de QR Code Grátis](/pt)** para gerar arquivos vetoriais prontos para impressão em SVG ou PDF em segundos.
+Deseja recriar um link decodificado em formato de código QR limpo e em alta resolução? Use nosso **[Gerador de QR Code Grátis](/pt/)** para gerar arquivos vetoriais prontos para impressão em SVG ou PDF em segundos.
 

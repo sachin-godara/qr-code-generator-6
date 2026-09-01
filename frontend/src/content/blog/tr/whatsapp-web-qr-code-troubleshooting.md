@@ -193,5 +193,5 @@ Karanlık mod bazı eski monitörlerde siyah modüller ile arka plan arasındaki
 | **WhatsApp içinde kamera siyah ekran veriyor** | Kamera işletim sistemi izni kapalı | Uygulama ayarlarından kamera iznini açın |
 
 > [!TIP]
-> **İşletmeniz için WhatsApp QR Kodu mu oluşturmak istiyorsunuz?** Müşterilerinizin tek tıkla doğrudan WhatsApp sohbeti başlatmasını sağlayan hazır mesajlı kodları **[Ücretsiz WhatsApp QR Kod Oluşturucu](/tr)** ile oluşturabilirsiniz.
+> **İşletmeniz için WhatsApp QR Kodu mu oluşturmak istiyorsunuz?** Müşterilerinizin tek tıkla doğrudan WhatsApp sohbeti başlatmasını sağlayan hazır mesajlı kodları **[Ücretsiz WhatsApp QR Kod Oluşturucu](/tr/)** ile oluşturabilirsiniz.
 

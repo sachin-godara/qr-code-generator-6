@@ -149,10 +149,10 @@ Cuando los usuarios acceden a este enlace en ordenador o tablet, YouTube muestra
 
 ## Cómo Generar tu Código QR Personalizado para YouTube
 
-1. Entra en el **[Generador de QR para URLs](/es/url-qr-code-generator)**.
+1. Entra en el **[Generador de QR para URLs](/es/url-qr-code-generator/)**.
 2. Pega el enlace de tu canal o vídeo.
 3. Elige el estilo de puntos redondeados que encaja con el diseño de YouTube.
 4. Sube el logotipo del botón de play de YouTube o el avatar de tu canal.
 5. Descarga en **SVG** o **PDF** para imprimir en máxima calidad.
 
-Comienza a hacer crecer tu canal de YouTube gratis en **[GenerateCustomQR](/es)**.
+Comienza a hacer crecer tu canal de YouTube gratis en **[GenerateCustomQR](/es/)**.

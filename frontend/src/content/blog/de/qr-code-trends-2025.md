@@ -77,7 +77,7 @@ Klassische Schwarz-Weiß-Codes wirken veraltet. 2026 erwarten Kunden gebrandete 
 - **Zentrales Logo**: Sofortige Markenwahrnehmung
 - **Rahmen mit Handlungsaufforderung**: "Speisekarte scannen", "App laden"
 
-Tools wie [GenerateCustomQR](/de) bieten über 40 Punkt-Muster, 28 Augen-Formen, 51 Rahmen und volle Farbfreiheit — 100% kostenlos.
+Tools wie [GenerateCustomQR](/de/) bieten über 40 Punkt-Muster, 28 Augen-Formen, 51 Rahmen und volle Farbfreiheit — 100% kostenlos.
 
 ### 3. QR-Code-Zahlungen weltweit führend
 
@@ -101,12 +101,12 @@ QR-Codes öffnen zunehmend immersive 3D-AR-Erlebnisse direkt im Browser:
 
 - **Digitale Menüs**: Über 72% der Gastronomiebetriebe nutzen QR-Codes
 - **Bedienungsanleitungen**: QR-Codes auf Verpackungen ersetzen dicke Papierhefte
-- **Visitenkarten**: [Digitale vCard QR-Codes](/de/vcard-qr-code) reduzieren Papiermüll
+- **Visitenkarten**: [Digitale vCard QR-Codes](/de/vcard-qr-code/) reduzieren Papiermüll
 - **Tickets**: Digitale Eintrittskarten ersetzen Papiertickets vollständig
 
 ### 6. Statische vs. Dynamische QR-Codes für Unternehmen
 
-Während [GenerateCustomQR](/de) auf **statische Codes** spezialisiert ist (direkt kodierte Daten, keine Tracking-Cookies, kein Ablaufdatum, 100% DSGVO-konform), setzen Großkonzerne für A/B-Tests auf dynamische Links:
+Während [GenerateCustomQR](/de/) auf **statische Codes** spezialisiert ist (direkt kodierte Daten, keine Tracking-Cookies, kein Ablaufdatum, 100% DSGVO-konform), setzen Großkonzerne für A/B-Tests auf dynamische Links:
 
 - Echtzeit-URL-Änderung ohne Neudruck
 - Detaillierte Scan-Analysen nach Ort und Gerät
@@ -114,7 +114,7 @@ Während [GenerateCustomQR](/de) auf **statische Codes** spezialisiert ist (dire
 
 Für die meisten Unternehmen sind statische Codes die verlässlichste Wahl: kostenfrei, dauerhaft aktiv und ohne Risiko von Serverabschaltungen.
 
-[Mehr erfahren: Statische vs. Dynamische QR-Codes →](/de/blog/static-vs-dynamic-qr-codes)
+[Mehr erfahren: Statische vs. Dynamische QR-Codes →](/de/blog/static-vs-dynamic-qr-codes/)
 
 ### 7. Sicherheit und Authentifizierung per QR-Code
 
@@ -139,7 +139,7 @@ Für die meisten Unternehmen sind statische Codes die verlässlichste Wahl: kost
 - Digitale Exposés und Energieausweise
 - Makler-Kontakte via vCard-Codes
 
-[Vollständigen Leitfaden für Immobilien lesen →](/de/blog/qr-codes-for-real-estate)
+[Vollständigen Leitfaden für Immobilien lesen →](/de/blog/qr-codes-for-real-estate/)
 
 ### Produktion & Industrie
 - QR-Codes zur lückenlosen Lieferketten-Rückverfolgung
@@ -170,4 +170,4 @@ Für die meisten Unternehmen sind statische Codes die verlässlichste Wahl: kost
 
 QR-Codes sind im Jahr 2026 unverzichtbare digitale Infrastruktur. Von der Ablösung der Strichcodes an Supermarktkassen bis zu Augmented-Reality-Erlebnissen entwickelt sich die Technologie rasant weiter.
 
-Der größte Wandel betrifft das **Design**: Verbraucher erwarten ansprechende, farbige Codes im Corporate Design. Tools wie [GenerateCustomQR](/de) machen professionelles Design für jeden zugänglich — über 40 Stile, Logo-Integration und Vektorexport, 100% kostenlos.
+Der größte Wandel betrifft das **Design**: Verbraucher erwarten ansprechende, farbige Codes im Corporate Design. Tools wie [GenerateCustomQR](/de/) machen professionelles Design für jeden zugänglich — über 40 Stile, Logo-Integration und Vektorexport, 100% kostenlos.

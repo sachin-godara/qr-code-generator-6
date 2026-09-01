@@ -251,7 +251,7 @@ Teknik bağlantı yapılarını anlamak sahte kodları tanımanızı sağlar:
 
 ## Statik ve Sunucusuz QR Kodlar Neden Çok Daha Güvenlidir?
 
-**[GenerateCustomQR](/tr)** platformunda tüm kodlama işlemleri aracı bir sunucu olmadan %100 tarayıcınız içinde gerçekleşir:
+**[GenerateCustomQR](/tr/)** platformunda tüm kodlama işlemleri aracı bir sunucu olmadan %100 tarayıcınız içinde gerçekleşir:
 
 - **Doğrudan ve Bağımsız:** Kodlanan veri üçüncü taraf yönlendirme sunucularından geçmeden doğrudan resmi alan adınıza işaret eder.
 - **Sıfır Veri Kaydı:** Kullanıcı tarama saatleri, IP adresleri veya konum bilgileri asla kaydedilmez.
@@ -263,5 +263,5 @@ Teknik bağlantı yapılarını anlamak sahte kodları tanımanızı sağlar:
 
 1. **Personeli Eğitin:** Optik oltalama eklerinin işaretlerini tanımalarını sağlayın.
 2. **Kimlik Doğrulamayı Güçlendirin:** FIDO2 donanım anahtarlarına geçiş yapın.
-3. **Güvenilir QR Oluşturucu Kullanın:** **[GenerateCustomQR](/tr)** ile aracı sunucusuz, kurcalamaya karşı dayanıklı statik kodlar oluşturun.
-4. **Gizlilik Odaklı Tarayıcı Kullanın:** Bilinmeyen bağlantıları açmadan önce **[QR Kod Tarayıcımızı](/tr/qr-code-scanner)** kullanarak ham içeriği güvenle inceleyin.
+3. **Güvenilir QR Oluşturucu Kullanın:** **[GenerateCustomQR](/tr/)** ile aracı sunucusuz, kurcalamaya karşı dayanıklı statik kodlar oluşturun.
+4. **Gizlilik Odaklı Tarayıcı Kullanın:** Bilinmeyen bağlantıları açmadan önce **[QR Kod Tarayıcımızı](/tr/qr-code-scanner/)** kullanarak ham içeriği güvenle inceleyin.

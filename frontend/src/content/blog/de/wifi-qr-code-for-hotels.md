@@ -44,7 +44,7 @@ Ein WLAN-QR-Code codiert Netzwerkname (SSID), Passwort und Verschlüsselung dire
 
 ## So erstellen Sie einen WLAN-QR-Code
 
-1. Öffnen Sie den **[GenerateCustomQR WLAN-Generator](/de/wifi-qr-code)**.
+1. Öffnen Sie den **[GenerateCustomQR WLAN-Generator](/de/wifi-qr-code/)**.
 2. Tragen Sie Ihren **Netzwerknamen (SSID)** exakt ein.
 3. Geben Sie das **Passwort** ein.
 4. Wählen Sie die **Verschlüsselung** (WPA/WPA2 für die meisten Netze).
@@ -52,7 +52,7 @@ Ein WLAN-QR-Code codiert Netzwerkname (SSID), Passwort und Verschlüsselung dire
 6. Passen Sie das Design an Ihre Marke an.
 7. Als SVG oder PDF herunterladen und drucken.
 
-[WLAN-QR-Code jetzt erstellen →](/de/wifi-qr-code)
+[WLAN-QR-Code jetzt erstellen →](/de/wifi-qr-code/)
 
 ---
 
@@ -216,6 +216,6 @@ Für ältere Laptops empfiehlt sich das Andrucken der Daten in Klarschrift:
 
 ## Erstellen Sie Ihren WLAN-QR-Code
 
-- [WLAN-QR-Code erstellen →](/de/wifi-qr-code)
-- [vCard Visitenkarte erstellen →](/de/vcard-qr-code)
-- [Druckrichtlinien für QR-Codes lesen →](/de/blog/qr-code-design-best-practices-for-print)
+- [WLAN-QR-Code erstellen →](/de/wifi-qr-code/)
+- [vCard Visitenkarte erstellen →](/de/vcard-qr-code/)
+- [Druckrichtlinien für QR-Codes lesen →](/de/blog/qr-code-design-best-practices-for-print/)
