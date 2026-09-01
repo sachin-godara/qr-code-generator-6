@@ -53,7 +53,7 @@ export function FlagIcon({ code }: { code: Locale }) {
 }
 
 export function ReactLanguageSwitcher({ className = '' }: { className?: string }) {
-  const { locale: currentLocale } = useTranslation();
+  const { t, locale: currentLocale } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
