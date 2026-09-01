@@ -5,7 +5,7 @@ console.log('╔═════════════════════�
 console.log('║   GENERATECUSTOMQR — MULTILINGUAL SEO AUDITOR     ║');
 console.log('╚═══════════════════════════════════════════════════╝\n');
 
-const locales = ['en', 'es', 'pt', 'de'];
+const locales = ['en', 'es', 'pt', 'de', 'tr'];
 const pagesDir = path.resolve('src/pages');
 const templatesDir = path.resolve('src/page-templates');
 const blogBaseDir = path.resolve('src/content/blog');

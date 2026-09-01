@@ -12,7 +12,7 @@ export default defineConfig({
   // Directory-based Internationalization (i18n)
   i18n: {
     defaultLocale: 'en',
-    locales: ['en', 'es', 'pt', 'de'],
+    locales: ['en', 'es', 'pt', 'de', 'tr'],
     routing: {
       prefixDefaultLocale: false,
     },
@@ -31,12 +31,13 @@ export default defineConfig({
       filter: (page) => !page.includes('/404') && !page.includes('/500'),
       serialize: (item) => {
         const url = item.url.replace(/\/$/, '');
-        // Boost homepages (all 4 languages)
+        // Boost homepages (all 5 languages)
         if (
           url === 'https://generatecustomqr.com' ||
           url === 'https://generatecustomqr.com/es' ||
           url === 'https://generatecustomqr.com/pt' ||
-          url === 'https://generatecustomqr.com/de'
+          url === 'https://generatecustomqr.com/de' ||
+          url === 'https://generatecustomqr.com/tr'
         ) {
           item.priority = 1.0;
           item.changefreq = /** @type {any} */ ('daily');

@@ -210,6 +210,51 @@ const metaMap: Record<Locale, {
     ctaTitle: "Bereit, Ihren Link in einen QR-Code zu verwandeln?",
     ctaDesc: "Erstellen Sie hochauflösende URL-QR-Codes mit Logos und Rahmen in wenigen Sekunden.",
     ctaBtn: "Jetzt URL-QR-Code erstellen ↑"
+  },
+  tr: {
+    title: "Ücretsiz URL QR Kod Oluşturucu — Linki QR Koda Dönüştürme",
+    desc: "Herhangi bir web sitesi bağlantısını, açılış sayfasını veya sosyal profili saniyeler içinde ücretsiz QR koda dönüştürün. Yüksek çözünürlüklü SVG, PNG ve PDF indirmeleri.",
+    keywords: "url qr kod olusturucu, linki qr koda cevirme, web sitesi qr kod yapma, link qr kod olusturucu ucretsiz, internet adresi qr kod",
+    badge: "Web Bağlantıları ve Açılış Sayfaları",
+    specsTitle: "Temel Teknik Özellikler",
+    specs: [
+      { icon: "link", title: "Evrensel URL Uyumluluğu", desc: "https://, http://, UTM parametreleri, derin bağlantılar (deep links) ve alt alan adlarıyla tam uyumlu çalışır." },
+      { icon: "qr_code_scanner", title: "Anında Kamera Açılışı", desc: "iOS Kamera, Google Lens ve tüm yerel barkod okuyucular tarafından 1 saniyeden kısa sürede tanınır." },
+      { icon: "palette", title: "Özel Tasarım ve Renkler", desc: "Markanızın kurumsal renkleri, degradeler ve 40'tan fazla nokta deseniyle eşsiz kodlar yaratın." },
+      { icon: "download", title: "Kayıpsız Vektör İndirme", desc: "Afişler, menüler ve ambalajlar için pikselleşme olmadan sınırsız boyutta SVG ve 300 DPI PDF formatında indirin." }
+    ],
+    stepsTitle: "4 Kolay Adımda URL QR Kodu Nasıl Oluşturulur",
+    steps: [
+      { icon: "content_paste", title: "1. Web Bağlantısını Yapıştırın", desc: "Web sitesi adresinizi veya açılış sayfası bağlantınızı giriş alanına yapıştırın." },
+      { icon: "palette", title: "2. Tasarım & Renkleri Seçin", desc: "Modern nokta desenleri, göz çerçeveleri ve marka renklerinizi belirleyin." },
+      { icon: "image", title: "3. Logonuzu Ekleyin", desc: "Kendi şirket logonuzu yükleyin veya hazır sosyal medya simgelerinden birini seçin." },
+      { icon: "download", title: "4. İndirin ve Kullanın", desc: "Baskı ve dijital kullanımlarınız için PNG, SVG veya PDF formatında dışa aktarın." }
+    ],
+    useCasesTitle: "URL QR Kodları İçin Popüler Kullanım Alanları",
+    useCases: [
+      { icon: "campaign", title: "Pazarlama ve Reklam", desc: "El ilanları, broşürler ve posterlerde potansiyel müşterileri doğrudan web sitenize yönlendirin." },
+      { icon: "inventory_2", title: "Ürün Ambalajları", desc: "Kullanım kılavuzları, ürün kayıt formları ve garanti bilgileri için ambalajlara ekleyin." },
+      { icon: "storefront", title: "Mağaza Vitrinleri", desc: "Yoldan geçenleri indirim kampanyalarına, online menülere veya e-ticaret sitenize çekin." },
+      { icon: "share", title: "Sosyal Medya ve Portfolyo", desc: "Instagram, YouTube kanalı veya dijital portfolyonuzu basılı materyaller üzerinden paylaşın." }
+    ],
+    tipsTitle: "URL QR Kodları İçin İpuçları",
+    tips: [
+      { icon: "short_text", title: "Kısa Bağlantılar Kullanın", desc: "Daha kısa URL'ler daha az veri hücresi ve daha büyük noktalar oluşturarak tarama hızını artırır." },
+      { icon: "contrast", title: "Yüksek Kontrast Sağlayın", desc: "Koyu renkli noktalar ve açık renkli arka plan her türlü ışık koşulunda okumayı kolaylaştırır." },
+      { icon: "aspect_ratio", title: "10:1 Mesafe Kuralı", desc: "Her 10 cm tarama mesafesi için en az 1 cm genişliğinde QR kod boyutu planlayın." },
+      { icon: "verified", title: "Baskı Öncesi Test Edin", desc: "Farklı telefon kameralarıyla test taraması yaparak URL'nin doğru açıldığından emin olun." }
+    ],
+    faqsTitle: "URL QR Kodları Hakkında Sıkça Sorulan Sorular",
+    faqs: [
+      { q: "URL QR kodlarının kullanım süresi dolar mı?", a: "Hayır! Oluşturulan tüm QR kodları statiktir ve süresiz olarak çalışır." },
+      { q: "UTM parametreli bağlantılar kullanabilir miyim?", a: "Evet, Google Analytics veya pazarlama takip parametreleri içeren tüm uzun URL'leri ekleyebilirsiniz." },
+      { q: "Baskı için en uygun format hangisidir?", a: "Profesyonel matbaa ve baskı işleri için SVG veya 300 DPI PDF formatlarını öneriyoruz." },
+      { q: "Ticari amaçla kullanımı ücretsiz mi?", a: "Evet, hiçbir kısıtlama veya filigran olmadan ticari olarak %100 ücretsizdir." }
+    ],
+    otherToolsTitle: "Diğer Ücretsiz QR Kod Araçlarını Keşfedin",
+    ctaTitle: "Bağlantınızı QR Koda Dönüştürmeye Hazır mısınız?",
+    ctaDesc: "Saniyeler içinde logolu ve çerçeveli yüksek çözünürlüklü URL QR kodları oluşturun.",
+    ctaBtn: "Hemen URL QR Kodu Oluştur ↑"
   }
 };
 
@@ -221,12 +266,12 @@ const breadcrumbs = [
 ];
 
 const relatedTools = [
-  { icon: "wifi", title: "WiFi QR", desc: "1-tap wifi connections", url: getLocalizedUrl(locale, '/wifi-qr-code') },
-  { icon: "contact_page", title: "vCard QR", desc: "Digital business cards", url: getLocalizedUrl(locale, '/vcard-qr-code') },
-  { icon: "image", title: "QR with Logo", desc: "Branded custom logos", url: getLocalizedUrl(locale, '/qr-code-with-logo') },
-  { icon: "event", title: "Event QR", desc: "Save dates to calendars", url: getLocalizedUrl(locale, '/event-qr-code') },
-  { icon: "mail", title: "Email QR", desc: "Pre-filled email drafts", url: getLocalizedUrl(locale, '/email-qr-code') },
-  { icon: "qr_code_scanner", title: "QR Scanner", desc: "Camera & image decoder", url: getLocalizedUrl(locale, '/qr-code-scanner') }
+  { icon: "wifi", title: t(locale, 'footer.wifiQR'), desc: t(locale, 'landing.formats.items.wifiDesc'), url: getLocalizedUrl(locale, '/wifi-qr-code') },
+  { icon: "contact_page", title: t(locale, 'footer.vcardQR'), desc: t(locale, 'landing.formats.items.vcardDesc'), url: getLocalizedUrl(locale, '/vcard-qr-code') },
+  { icon: "image", title: t(locale, 'footer.logoQR'), desc: t(locale, 'landing.features.card2Title'), url: getLocalizedUrl(locale, '/qr-code-with-logo') },
+  { icon: "event", title: t(locale, 'footer.eventQR'), desc: t(locale, 'landing.formats.items.eventDesc'), url: getLocalizedUrl(locale, '/event-qr-code') },
+  { icon: "mail", title: t(locale, 'footer.emailQR'), desc: t(locale, 'landing.formats.items.emailDesc'), url: getLocalizedUrl(locale, '/email-qr-code') },
+  { icon: "qr_code_scanner", title: t(locale, 'footer.scanner'), desc: t(locale, 'scanner.formats.urlsDesc'), url: getLocalizedUrl(locale, '/qr-code-scanner') }
 ];
 
 const howTo = {

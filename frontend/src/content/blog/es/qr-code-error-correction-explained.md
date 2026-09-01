@@ -29,8 +29,6 @@ El secreto es la **Corrección de Errores Reed-Solomon**, un algoritmo matemáti
 
 En esta guía te explicamos cómo funciona la corrección de errores, la relación entre los **Niveles L, M, Q y H** y cuál elegir para tu proyecto.
 
----
-
 ## Los 4 Niveles de Corrección de Errores
 
 El estándar internacional ISO/IEC 18004 define **cuatro niveles de corrección**. Cada nivel añade un porcentaje específico de redundancia matemática al código:
@@ -41,8 +39,6 @@ El estándar internacional ISO/IEC 18004 define **cuatro niveles de corrección*
 | **M** | Medium (Medio) | **~15%** de datos | Estándar | **Estándar por defecto** para marketing general, folletos y enlaces web |
 | **Q** | Quartile (Cuartil) | **~25%** de datos | Media-Alta | Embalajes industriales, señalización de alto tránsito, micro-logos |
 | **H** | High (Alto) | **~30%** de datos | Máxima (densa) | **Obligatorio para Logos Centrales**, vallas, pegatinas de suelo |
-
----
 
 ## ¿Cómo Funciona Reed-Solomon por Dentro?
 
@@ -70,8 +66,6 @@ Cuando la cámara escanea el código:
 2. Lee los módulos binarios.
 3. Si faltan datos porque están tapados por un logo o dañados por arañazos, las ecuaciones matemáticas reconstruyen los datos ausentes al 100% sin pérdida.
 
----
-
 ## Corrección de Errores vs. Densidad: El Compromiso Técnico
 
 A mayor nivel de corrección de errores, más puntos (módulos) tendrá la cuadrícula:
@@ -82,17 +76,7 @@ A mayor nivel de corrección de errores, más puntos (módulos) tendrá la cuadr
 > [!IMPORTANT]
 > **Regla de Diseño**: En tarjetas de visita sin logo, usa **Nivel M**. Si añades un logotipo, usa siempre **Nivel H** e imprime a un tamaño mínimo de **25 mm × 25 mm**.
 
----
-
-## Tamaño Ideal del Logotipo Central
-
-- **Área Máxima**: El logo no debe cubrir más del **20% al 25%** del área total del código QR.
-- **Margen de Seguridad (5%)**: Aunque el Nivel H tolera hasta un 30%, mantener el logo bajo el 22% deja un margen vital para cámaras con poco enfoque o sombras.
-- **Anillo de Protección (Padding)**: Añade siempre un marco blanco o del color de fondo alrededor del logotipo.
-
----
-
-## Recomendaciones por Caso de Uso Real
+## ¿Qué Nivel Deberías Elegir en la Práctica?
 
 | Caso de Uso Real | Peligro Potencial | Nivel Recomendado | Motivo |
 | :--- | :--- | :---: | :--- |
@@ -102,7 +86,18 @@ A mayor nivel de corrección de errores, más puntos (módulos) tendrá la cuadr
 | **Pantallas Digitales / Email** | Cero daño físico | **Nivel M** | Mantiene baja la densidad para pantallas Retina |
 | **Códigos con Logotipo de Marca** | Obstrucción deliberada de datos | **Nivel H** | Asegura que la cámara lea los datos alrededor del logo |
 
----
+## Corrección de Errores y Logotipos
+
+- **Área Máxima**: El logo no debe cubrir más del **20% al 25%** del área total del código QR.
+- **Margen de Seguridad (5%)**: Aunque el Nivel H tolera hasta un 30%, mantener el logo bajo el 22% deja un margen vital para cámaras con poco enfoque o sombras.
+- **Anillo de Protección (Padding)**: Añade siempre un marco blanco o del color de fondo alrededor del logotipo.
+
+## Cómo Elegir el Nivel en GenerateCustomQR
+
+En [GenerateCustomQR](/es) no necesitas calcular fórmulas complejas:
+1. Al crear un código estándar, el sistema selecciona automáticamente **Nivel M (15%)** para máxima velocidad.
+2. En cuanto subes un logotipo o imagen corporativa, el motor activa automáticamente **Nivel H (30%)**.
+3. Tienes control manual para ajustar entre L, M, Q y H en cualquier momento.
 
 ## Resumen
 

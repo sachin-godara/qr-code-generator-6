@@ -3,7 +3,7 @@ title: "Cómo Escanear un Código QR en iPhone y Android — Guía Completa"
 description: "Guía paso a paso para escanear códigos QR en iPhone, Android y ordenador. Aprende a usar la cámara nativa, Google Lens, WhatsApp Web y escáneres online."
 pubDate: 2026-08-28
 author: "Equipo GenerateCustomQR"
-keywords: "como escanear codigo qr, escanear qr iphone, escanear qr android, lector qr sin app, escanear qr con camara, vincular whatsapp web qr"
+keywords: "como escanear un codigo qr, cómo escanear un código qr, como escanear un código qr desde mi celular, lector qr, escanear codigo qr, escaner qr, leer código qr online, lector qr online sin descargar, lector de codigo qr, codigo qr escanear"
 category: "guides"
 readingTime: 5
 featured: true
@@ -16,6 +16,8 @@ faqs:
     a: "Abre la aplicación Cámara o Google Lens y enfoca el código QR. Aparecerá un banner o botón emergente con el enlace para abrir la web automáticamente."
   - q: "¿Dónde está el escáner de códigos QR de WhatsApp Web?"
     a: "Abre WhatsApp en tu móvil, entra en Ajustes (iOS) o pulsa en los 3 puntos (Android) → Dispositivos vinculados → Vincular un dispositivo. Apunta la cámara al código QR de web.whatsapp.com en tu ordenador."
+  - q: "¿Se puede escanear un código QR en la oscuridad o con poca luz?"
+    a: "Sí. En iPhone y Android puedes activar la linterna directamente desde la pantalla de la app Cámara o el Centro de Control para iluminar el código QR y enfocarlo sin problemas."
 howToSteps:
   - name: "Abre la app Cámara nativa"
     text: "En iPhone o Android, abre la app estándar de la Cámara. No uses apps de terceros llenas de publicidad."
@@ -29,9 +31,7 @@ Los códigos QR están en todas partes: en cartas de restaurantes, envases de pr
 
 Esta guía cubre todos los métodos en iPhone, Android, ordenadores y WhatsApp Web.
 
----
-
-## Escaneo de Códigos QR en iPhone (iOS 15+)
+## Escaneo de Códigos QR en iPhone y iPad (iOS 15+)
 
 Apple integra la lectura de códigos QR directamente en la **app Cámara**. No necesitas descargar ninguna app extra.
 
@@ -64,8 +64,6 @@ Apple integra la lectura de códigos QR directamente en la **app Cámara**. No n
 ### ¿Qué hacer si no se lee en iPhone?
 - Ve a **Ajustes → Cámara** y asegúrate de que la opción **Escanear códigos QR** esté activada.
 
----
-
 ## Escaneo de Códigos QR en Android
 
 ### Método 1: Google Lens (Recomendado)
@@ -80,7 +78,16 @@ Apple integra la lectura de códigos QR directamente en la **app Cámara**. No n
 ### Método 3: Botón en Ajustes Rápidos (Android 13+)
 Desliza hacia abajo desde la parte superior de la pantalla y pulsa el icono **Escanear código QR**.
 
----
+## Cómo Escanear Códigos QR en PC y Mac
+
+| Método en Ordenador | Cómo Funciona | Ventajas |
+|---|---|---|
+| **Lector Web con Cámara** | Usa la webcam del portátil en el navegador | Rápido sin instalar nada |
+| **Pegar Captura (Ctrl+V)** | Pega un recorte directo desde el portapapeles | Ideal para correos y PDFs |
+| **Subir Archivo de Imagen** | Carga un archivo PNG, JPG, WEBP o SVG | Para imágenes guardadas |
+
+1. Abre **[generatecustomqr.com/es/qr-code-scanner](/es/qr-code-scanner)** en Chrome, Edge o Safari.
+2. Selecciona la pestaña de escaneo con webcam o sube tu captura de pantalla.
 
 ## Cómo Escanear desde una Captura o Imagen Guardada
 
@@ -89,8 +96,6 @@ Si el código QR está en una foto dentro de tu propio teléfono:
 - **En iPhone**: Abre la foto en **Fotos** y mantén pulsado el código QR (o toca el icono de **Texto en Vivo** en la esquina inferior).
 - **En Android**: Abre la imagen en **Google Fotos** y pulsa el botón **Lens**.
 - **En Ordenador (PC / Mac)**: Entra en [GenerateCustomQR Escáner](/es/qr-code-scanner) y sube la imagen o presiona `Ctrl+V` para pegar desde el portapapeles.
-
----
 
 ## ¿Dónde está el Escáner de WhatsApp Web?
 
@@ -107,16 +112,18 @@ Para iniciar sesión en tu ordenador a través de **web.whatsapp.com**:
 2. Selecciona **Dispositivos Vinculados**.
 3. Pulsa **Vincular un Dispositivo** y enfoca el código en el monitor.
 
----
-
-## ⚠️ Por Qué No Debes Instalar Apps de Escáner de la App Store
+## Por Qué No Debes Instalar Apps de Escáner de la App Store
 
 Muchas apps gratuitas de escáner en Google Play y App Store son adware: contienen anuncios a pantalla completa, rastreadores invasivos y suscripciones trampa.
 
 > [!WARNING]
 > Tu teléfono ya cuenta con escáner nativo rápido, privado y gratuito integrado en el sistema operativo. No descargues aplicaciones de terceros innecesarias.
 
----
+## Cómo Escanear Códigos QR con Poca Luz
+
+1. **Activa la linterna integrada**: Tanto iOS como Android muestran un icono de linterna en la app Cámara cuando detectan baja luminosidad.
+2. **Evita el ángulo directo de reflejo**: Inclina el teléfono 15 grados para que la luz de la linterna no rebote sobre superficies plastificadas.
+3. **Mantén una distancia de 20 a 30 cm**: Permite al sensor enfocar el código sin proyectar sombras.
 
 ## Consejos para un Escaneo 100% Fiable y Seguro
 
@@ -176,4 +183,11 @@ Muchas apps gratuitas de escáner en Google Play y App Store son adware: contien
 | **Ordenador PC / Mac** | [Escáner Web](/es/qr-code-scanner) | Mediante navegador |
 | **Captura de Pantalla** | [Escáner Web (Ctrl+V)](/es/qr-code-scanner) | Sí |
 
-Genera tus propios códigos QR escaneables gratis en **[GenerateCustomQR](/es)**.
+---
+
+## Crea Códigos QR Escaneables Gratis
+
+Genera tus propios códigos QR escaneables gratis en **[GenerateCustomQR](/es)**:
+- [Generador de Código QR de URL →](/es/url-qr-code-generator)
+- [Generador de Código QR de Wi-Fi →](/es/wifi-qr-code)
+- [Generador de Código QR vCard →](/es/vcard-qr-code)

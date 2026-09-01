@@ -21,13 +21,19 @@ describe('i18n utils', () => {
       expect(t('de', 'nav.generator')).toBe('Generator');
     });
 
+    it('translates keys in Turkish', () => {
+      expect(t('tr', 'nav.generator')).toBe('Oluşturucu');
+      expect(t('tr', 'nav.guide')).toBe('Rehber');
+    });
+
     it('interpolates parameters correctly', () => {
       expect(t('en', 'studio.labels.step', { current: 1, total: 8 })).toBe('Step 1 / 8');
       expect(t('es', 'studio.labels.step', { current: 2, total: 8 })).toBe('Paso 2 / 8');
       expect(t('de', 'studio.labels.step', { current: 3, total: 8 })).toBe('Schritt 3 / 8');
+      expect(t('tr', 'studio.labels.step', { current: 4, total: 8 })).toBe('Adım 4 / 8');
     });
 
-    it('translates scanner keys across all 4 locales without fallback', () => {
+    it('translates scanner keys across all 5 locales without fallback', () => {
       // English
       expect(t('en', 'scanner.dropSubtitle')).toBe('Drop your saved QR code, barcode, or screenshot file');
       expect(t('en', 'scanner.browseFiles')).toBe('Browse Files');
@@ -51,9 +57,15 @@ describe('i18n utils', () => {
       expect(t('pt', 'scanner.browseFiles')).toBe('Procurar Arquivos');
       expect(t('pt', 'scanner.pasteButton')).toBe('Colar (Ctrl+V)');
       expect(t('pt', 'scanner.tryLiveSample')).toBe('Testar Exemplo:');
+
+      // Turkish
+      expect(t('tr', 'scanner.dropSubtitle')).toBe('Kayıtlı QR kodunu, barkodu veya ekran görüntüsü dosyasını bırakın');
+      expect(t('tr', 'scanner.browseFiles')).toBe('Dosyalara Göz At');
+      expect(t('tr', 'scanner.pasteButton')).toBe('Yapıştır (Ctrl+V)');
+      expect(t('tr', 'scanner.tryLiveSample')).toBe('Canlı Örnek Deneyin:');
     });
 
-    it('translates blog keys across all 4 locales without fallback', () => {
+    it('translates blog keys across all 5 locales without fallback', () => {
       // English
       expect(t('en', 'blog.tableOfContents')).toBe('Table of Contents');
       expect(t('en', 'blog.onThisPage')).toBe('On This Page');
@@ -85,6 +97,14 @@ describe('i18n utils', () => {
       expect(t('pt', 'blog.copyLink')).toBe('Copiar Link');
       expect(t('pt', 'blog.factChecked')).toBe('Revisado e Verificado');
       expect(t('pt', 'blog.allCategories')).toBe('Todos');
+
+      // Turkish
+      expect(t('tr', 'blog.tableOfContents')).toBe('İçindekiler');
+      expect(t('tr', 'blog.onThisPage')).toBe('Bu Sayfada');
+      expect(t('tr', 'blog.shareArticle')).toBe('Makaleyi Paylaş');
+      expect(t('tr', 'blog.copyLink')).toBe('Bağlantıyı Kopyala');
+      expect(t('tr', 'blog.factChecked')).toBe('Doğrulanmış ve Güvenilir');
+      expect(t('tr', 'blog.allCategories')).toBe('Tümü');
     });
 
     it('falls back to English when key is missing in other languages', () => {
@@ -100,10 +120,11 @@ describe('i18n utils', () => {
       expect(getLocaleFromUrl(new URL('https://generatecustomqr.com/how-to-use'))).toBe('en');
     });
 
-    it('detects Spanish, Portuguese, German locale from pathname', () => {
+    it('detects Spanish, Portuguese, German, Turkish locale from pathname', () => {
       expect(getLocaleFromUrl('/es/qr-code-scanner')).toBe('es');
       expect(getLocaleFromUrl('/pt/how-to-use')).toBe('pt');
       expect(getLocaleFromUrl('/de/blog')).toBe('de');
+      expect(getLocaleFromUrl('/tr/qr-code-scanner')).toBe('tr');
     });
   });
 
@@ -112,6 +133,7 @@ describe('i18n utils', () => {
       expect(getCleanPathname('/es/how-to-use')).toBe('/how-to-use');
       expect(getCleanPathname('/pt/wifi-qr-code')).toBe('/wifi-qr-code');
       expect(getCleanPathname('/de/blog')).toBe('/blog');
+      expect(getCleanPathname('/tr/qr-code-scanner')).toBe('/qr-code-scanner');
       expect(getCleanPathname('/how-to-use')).toBe('/how-to-use');
       expect(getCleanPathname('/')).toBe('/');
     });
@@ -127,26 +149,29 @@ describe('i18n utils', () => {
       expect(getLocalizedUrl('es', '/how-to-use')).toBe('/es/how-to-use');
       expect(getLocalizedUrl('pt', '/wifi-qr-code')).toBe('/pt/wifi-qr-code');
       expect(getLocalizedUrl('de', '/')).toBe('/de');
+      expect(getLocalizedUrl('tr', '/qr-code-scanner')).toBe('/tr/qr-code-scanner');
     });
   });
 
   describe('getAllLocaleUrls', () => {
-    it('returns alternate URLs for all 4 supported locales', () => {
+    it('returns alternate URLs for all 5 supported locales', () => {
       const alternates = getAllLocaleUrls('/how-to-use', 'https://generatecustomqr.com');
-      expect(alternates).toHaveLength(4);
+      expect(alternates).toHaveLength(5);
       expect(alternates.find((a) => a.locale === 'en')?.url).toBe('https://generatecustomqr.com/how-to-use');
       expect(alternates.find((a) => a.locale === 'es')?.url).toBe('https://generatecustomqr.com/es/how-to-use');
       expect(alternates.find((a) => a.locale === 'pt')?.url).toBe('https://generatecustomqr.com/pt/how-to-use');
       expect(alternates.find((a) => a.locale === 'de')?.url).toBe('https://generatecustomqr.com/de/how-to-use');
+      expect(alternates.find((a) => a.locale === 'tr')?.url).toBe('https://generatecustomqr.com/tr/how-to-use');
     });
 
     it('returns exact matching canonical homepage URLs for root path', () => {
       const alternates = getAllLocaleUrls('/', 'https://generatecustomqr.com');
-      expect(alternates).toHaveLength(4);
+      expect(alternates).toHaveLength(5);
       expect(alternates.find((a) => a.locale === 'en')?.url).toBe('https://generatecustomqr.com/');
       expect(alternates.find((a) => a.locale === 'es')?.url).toBe('https://generatecustomqr.com/es');
       expect(alternates.find((a) => a.locale === 'pt')?.url).toBe('https://generatecustomqr.com/pt');
       expect(alternates.find((a) => a.locale === 'de')?.url).toBe('https://generatecustomqr.com/de');
+      expect(alternates.find((a) => a.locale === 'tr')?.url).toBe('https://generatecustomqr.com/tr');
     });
   });
 });

@@ -20,6 +20,8 @@ const allPosts = locale === 'es'
   ? await getCollection('blog_pt')
   : locale === 'de'
   ? await getCollection('blog_de')
+  : locale === 'tr'
+  ? await getCollection('blog_tr')
   : await getCollection('blog');
 
 const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
@@ -46,7 +48,8 @@ const localeFormatMap: Record<Locale, string> = {
   en: 'en-US',
   es: 'es-ES',
   pt: 'pt-BR',
-  de: 'de-DE'
+  de: 'de-DE',
+  tr: 'tr-TR'
 };
 
 function formatDate(date: Date): string {
@@ -60,7 +63,8 @@ const keywordsMap: Record<Locale, string> = {
   en: "qr code blog, qr code tips, qr code guides, qr code best practices, qr code design tips, how to use qr codes",
   es: "blog de codigos qr, consejos para codigos qr, tutoriales qr, mejores practicas qr, diseño de codigos qr",
   pt: "blog de qr code, dicas de qr code, tutoriais qr code, melhores praticas qr code, design de qr code",
-  de: "qr-code blog, qr-code tipps, qr-code anleitungen, best practices qr-code, qr-code gestaltung"
+  de: "qr-code blog, qr-code tipps, qr-code anleitungen, best practices qr-code, qr-code gestaltung",
+  tr: "qr kod blogu, qr kod ipuclari, qr kod rehberleri, karekod tasarim onerileri, qr kod nasil kullanilir"
 };
 ---
 <BaseLayout

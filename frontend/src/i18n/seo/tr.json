@@ -1,0 +1,38 @@
+{
+  "home": {
+    "title": "Ücretsiz Özel QR Kod Oluşturucu — Logolu ve Filigransız",
+    "description": "Logolu, 40+ nokta desenli ve renk geçişli özel QR kodları %100 ücretsiz oluşturun. Vektörel SVG, PDF veya yüksek çözünürlüklü PNG olarak filigransız indirin.",
+    "keywords": "qr kod oluşturucu, ücretsiz qr kod yapma, logolu qr kod oluşturucu, filigransız qr kod, karekod oluşturucu, vektör svg qr kod, 300 dpi baskıya hazır qr kod, toplu qr kod oluşturma, online qr kod yap, yüksek çözünürlüklü qr kod",
+    "howToName": "Özel QR Kod Nasıl Oluşturulur",
+    "howToDesc": "Logo, renkler, degradeler ve çerçevelerle 2 dakikadan kısa sürede tamamen özelleştirilmiş bir QR kodu tasarlayın ve oluşturun — %100 ücretsiz.",
+    "steps": [
+      { "name": "İçeriğinizi girin", "text": "Bir içerik türü seçin (URL, metin, WiFi, vCard, e-posta, SMS, etkinlik vb.) ve kodlamak istediğiniz verileri girin." },
+      { "name": "Tasarımı özelleştirin", "text": "Benzersiz bir görünüm oluşturmak için 40'tan fazla nokta stili, 19 göz çerçevesi, 23 göz bebeği deseni arasından seçim yapın ve renk degradeleri uygulayın." },
+      { "name": "Logo ekleyin", "text": "Kendi logonuzu yükleyin veya otomatik arka plan kaldırma ve nokta temizleme kontrolü ile 46 hazır marka simgesinden birini seçin." },
+      { "name": "Bir çerçeve seçin", "text": "QR kodunuzu özel harekete geçirici mesaj metni, yazı tipleri ve renklerle 51 dekoratif metin çerçevesinden biriyle sarın." },
+      { "name": "Ücretsiz indirin", "text": "QR kodunuzu PNG (4096 piksele kadar), SVG (vektör) veya PDF (300 DPI) formatında dışa aktarın — tamamen ücretsiz, filigran yok, kayıt yok." }
+    ],
+    "faqs": [
+      { "q": "Özel bir QR kodu nasıl oluştururum?", "a": "URL'nizi, metninizi veya iletişim bilgilerinizi girin, 40+ nokta stili ve 28 göz deseni arasından seçim yapın, renkleri ve degradeleri özelleştirin, 46 hazır şablondan bir logo ekleyin veya kendinizinkini yükleyin, dekoratif bir çerçeve seçin ve QR kodunuzu PNG, SVG veya PDF formatında tamamen ücretsiz indirin." },
+      { "q": "QR kod oluşturucu gerçekten ücretsiz mi?", "a": "Evet, GenerateCustomQR tüm özellikleri açık olarak %100 ücretsizdir — kayıt yok, filigran yok, kullanım sınırı yok. 40+ nokta stiline, 51 metin çerçevesine, 121 şablona, logo gömmeye, toplu üretime ve PNG/SVG/PDF dışa aktarmaya hiçbir ücret ödemeden tam erişim elde edersiniz." },
+      { "q": "Hangi QR kod türlerini oluşturabilirim?", "a": "12 farklı içerik türü için QR kodları oluşturabilirsiniz: URL'ler, düz metin, WiFi kimlik bilgileri, vCard (kişi kartları), e-postalar, SMS mesajları, takvim etkinlikleri, telefon numaraları, kripto para adresleri, Google Haritalar konumları, PayPal ödeme bağlantıları ve App Store bağlantıları." },
+      { "q": "QR koduma logo ekleyebilir miyim?", "a": "Evet, kendi logonuzu yükleyebilir veya Instagram, WhatsApp, YouTube, Facebook ve daha fazlası dahil olmak üzere 46 hazır marka simgesinden birini seçebilirsiniz. Otomatik arka plan kaldırma, logo çevresinde ayarlanabilir nokta boşluğu, çoklu kart şekilleri ve özel renk modları sunulmaktadır." },
+      { "q": "Hangi indirme formatları mevcut?", "a": "QR kodlarını üç formatta indirebilirsiniz: PNG (baskı için 4096×4096 piksele kadar), SVG (tasarımcılar için sonsuz ölçeklenebilir vektör) ve PDF (300 DPI baskıya hazır). Tüm formatlar filigransız ve ücretsizdir. Ayrıca QR kodunu doğrudan panonuza kopyalayabilirsiniz." },
+      { "q": "Toplu olarak QR kod üretebilir miyim?", "a": "Evet, GenerateCustomQR tek seferde 500'e kadar QR kodunun toplu üretimini destekler. Verilerinizi içeren bir CSV dosyası yükleyin, sütunları eşleyin, tasarım ayarlarınızı seçin ve tüm QR kodlarını PNG, SVG veya PDF formatında bir ZIP dosyası olarak indirin." },
+      { "q": "Burada oluşturulan QR kodlarının süresi dolar mı?", "a": "Hayır! GenerateCustomQR üzerinde oluşturulan tüm QR kodları statik ve kalıcıdır. Veriler doğrudan QR kod görüntüsüne kodlanır, bu nedenle herhangi bir sunucu, abonelik veya izleme bağımlılığı olmadan sonsuza kadar çalışır." }
+    ]
+  },
+  "scanner": {
+    "title": "QR Kod Okuyucu & Karekod Okutma Online — Ücretsiz QR Okuyucu",
+    "description": "Online QR kod okuyucu ve karekod okutma aracını hemen açın. Kayıtlı fotoğraflardan, ekran görüntülerinden (Ctrl+V) veya kameradan karekod okuma yapın — %100 ücretsiz.",
+    "keywords": "qr kod okuyucu, karekod okutma, qr okuyucu, karekod, karekod okuyucu, karekod okuma, qr kod okuyucu aç, karekod nasıl okutulur, qr kod oku, karekod okuyucu aç, resimden qr kod okuma, ekran görüntüsünden qr kod okuma, online karekod okuyucu, telefonsuz qr kod okuma pc",
+    "faqs": [
+      { "q": "Uygulama indirmeden QR kodu nasıl tararım?", "a": "Herhangi bir uygulama yüklemenize gerek yoktur. Modern iOS ve Android telefonların yerel Kamera uygulamalarında QR okuyucular yerleşiktir. PC, Mac, dizüstü bilgisayar veya tabletlerde web kameranızla anında taramak, bir fotoğraf yüklemek veya Ctrl+V ile bir ekran görüntüsü yapıştırmak için GenerateCustomQR Web Okuyucu'yu açmanız yeterlidir." },
+      { "q": "Ekran görüntüsünden veya kayıtlı bir resimden QR kod taranabilir mi?", "a": "Evet! Kayıtlı herhangi bir PNG, JPG, WebP veya SVG dosyasını seçmek için bu sayfadaki 'Resim Yükle' sekmesine geçin veya bir ekran görüntüsünü doğrudan panonuzdan yapıştırmak için Ctrl+V tuşlarına basın. Okuyucumuz milisaniyeler içinde çözer." },
+      { "q": "iPhone veya iPad'de QR kodu nasıl taranır?", "a": "Ana Ekranınızdan veya Denetim Merkezi'nden yerel Kamera uygulamasını açın, kameranızı QR kodunun üzerinde sabit tutun ve vizörün altında görünen sarı bildirim başlığına dokunun." },
+      { "q": "Android ve Samsung cihazlarda QR kod nasıl taranır?", "a": "Yerel Kamera uygulamanızı açın veya Hızlı Ayarlar'da 'QR kodunu tara' seçeneğine dokunmak için ekranınızın üstünden aşağı kaydırın. Google Lens'i veya Google Chrome'daki ücretsiz web okuyucumuzu da kullanabilirsiniz." },
+      { "q": "WhatsApp Web QR kod okuyucu nerede?", "a": "Telefonunuzda WhatsApp'ı açın, Ayarlar'a (iOS) gidin veya Üç Nokta menüsüne (Android) dokunun, 'Bağlı Cihazlar'a ve ardından 'Cihaz Bağla'ya dokunun. Kameranızı web.whatsapp.com adresinde görüntülenen QR koduna doğrultun." },
+      { "q": "Bu online QR kod okuyucu güvenli ve gizli mi?", "a": "Evet, %100 güvenlidir. Tüm kod çözme işlemi WebAssembly aracılığıyla doğrudan tarayıcınızın içinde istemci tarafında çalışır. Resimleriniz ve video akışınız cihazınızda yerel olarak işlenir ve asla sunucuya yüklenmez, saklanmaz veya izlenmez." }
+    ]
+  }
+}

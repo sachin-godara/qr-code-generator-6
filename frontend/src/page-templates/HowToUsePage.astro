@@ -220,7 +220,7 @@ const metaMap: Record<Locale, {
     exportTableCols: { format: "Format", res: "Auflösung", bestFor: "Ideal für", pros: "Vorteile", limit: "Weniger geeignet für" },
     shortcutsTitle: "Tastaturkürzel für Power-User",
     shortcutsSub: "Beschleunigen Sie Ihre Gestaltung mit schnellen Tastaturkürzeln.",
-    shortcutsNote: "Der Bearbeitungsverlauf bleibt während Ihrer gesamten Sitzung erhalten.",
+  shortcutsNote: "Der Bearbeitungsverlauf bleibt während Ihrer gesamten Sitzung erhalten.",
     faqBadge: "Häufige Fragen",
     faqHeading: "Häufig gestellte Fragen",
     faqSub: "Haben Sie Fragen? Wir haben die passenden Antworten.",
@@ -230,6 +230,50 @@ const metaMap: Record<Locale, {
     ctaDesc: "Schließen Sie sich Tausenden von Designern und Unternehmen an, die mit unserem Generator arbeiten.",
     ctaStartBtn: "Jetzt kostenlos erstellen",
     ctaReadAgain: "Anleitung nochmals lesen"
+  },
+  tr: {
+    title: "QR Kod Nasıl Yapılır — Ücretsiz Adım Adım Rehber",
+    desc: "5 basit adımda ücretsiz bir QR kodunun nasıl yapılacağını öğrenin. Çarpıcı özel QR kodları oluşturma, logo ekleme ve okunabilirlik rehberi.",
+    keywords: "qr kod nasil yapilir, qr kod olusturma rehberi, ucretsiz qr kod yapma adimlari, logolu qr kod yapimi, qr kod tasarimi",
+    heroBadge: "Adım Adım Başlangıç Rehberi",
+    heroH1Pre: "Nasıl Yapılır",
+    heroH1Accent: "Özel bir QR Kod",
+    heroH1Post: "5 Kolay Adımda",
+    heroDesc: "Benzersiz, taranabilir QR kodları tasarlayın, özelleştirin ve indirin. %100 ücretsiz, kayıt gerektirmez, süre sonu ve filigran yoktur.",
+    startBtn: "Şimdi QR Kod Oluştur",
+    seeHowBtn: "Nasıl Çalıştığını Gör ↓",
+    stats: [
+      { value: "40+", label: "Nokta Stili" },
+      { value: "51", label: "Metin Çerçevesi" },
+      { value: "121", label: "Hazır Şablon" },
+      { value: "0 ₺", label: "%100 Ücretsiz" }
+    ],
+    stepsBadge: "Adım Adım Süreç",
+    stepsHeading: "5 Adımda Özel QR Kod Nasıl Oluşturulur",
+    featuresBadge: "Güçlü Özellikler",
+    featuresHeading: "Tasarımını Özelleştirebileceğiniz Her Şey",
+    featuresSub: "12 içerik türü, sınırsız tasarım kombinasyonu ve hiçbir ödeme duvarı yok.",
+    tipsBadge: "Uzman İpuçları",
+    tipsHeading: "Maksimum Okunabilirlik İçin Profesyonel İpuçları",
+    tipsSub: "Tüm cihazlarda hatasız tarama için bu en iyi uygulamaları takip edin.",
+    dosTitle: "Yapılması Gerekenler ✅",
+    dontsTitle: "Kaçınılması Gerekenler ❌",
+    exportBadge: "Dışa Aktarma Formatları",
+    exportHeading: "PNG, SVG ve PDF — Hangi Formatı Seçmelisiniz?",
+    exportSub: "Her formatın belirli bir amacı vardır. İşte kullanım alanınıza uygun mükemmel format.",
+    exportTableCols: { format: "Format", res: "Çözünürlük", bestFor: "İdeal Kullanım", pros: "Avantajlar", limit: "Uygun Olmadığı Yer" },
+    shortcutsTitle: "İleri Düzey Kullanıcılar İçin Kısayollar",
+    shortcutsSub: "Hızlı klavye kısayollarıyla tasarımınızı hızlandırın.",
+    shortcutsNote: "Düzenleme geçmişi oturumunuz boyunca korunur.",
+    faqBadge: "Sıkça Sorulanlar",
+    faqHeading: "Sıkça Sorulan Sorular",
+    faqSub: "Sorularınız mı var? Aradığınız cevaplar burada.",
+    ctaBadge: "Ücretsiz — Kayıt Yok — Filigran Yok",
+    ctaH2Pre: "İlk özel",
+    ctaH2Accent: "QR kodunuzu oluşturmaya hazır mısınız?",
+    ctaDesc: "Bizimle profesyonel QR kodları oluşturan binlerce tasarımcı ve işletmeye katılın.",
+    ctaStartBtn: "Şimdi Ücretsiz Oluştur",
+    ctaReadAgain: "Rehberi Tekrar Oku"
   }
 };
 
@@ -403,6 +447,48 @@ const stepsMap: Record<Locale, Array<{ number: string; emoji: string; title: str
       tags: ["PNG bis 8K", "Vektor SVG", "Druckfertiges PDF", "ZIP-Archiv"],
       hint: "Tipp: Verwenden Sie SVG für Printmedien, um gestochen scharfe Kanten zu garantieren."
     }
+  ],
+  tr: [
+    {
+      number: "01",
+      emoji: "📝",
+      title: "İçerik Türünüzü Seçin",
+      description: "12 içerik türü arasından seçim yapın: URL, Düz Metin, WiFi kimlik bilgileri, vCard kişisi, E-posta, SMS, Telefon, App Store bağlantısı, Etkinlik (iCal), Kripto cüzdanı veya toplu CSV yükleme.",
+      tags: ["URL", "WiFi", "vCard", "E-posta", "SMS", "Toplu CSV"],
+      hint: "İpucu: Anında taranabilir dijital bir kartvizit oluşturmak için vCard kullanın."
+    },
+    {
+      number: "02",
+      emoji: "🎨",
+      title: "QR Tasarımınızı Özelleştirin",
+      description: "39 nokta deseni, 28 göz çerçevesi ve uyumlu göz bebeği stili arasından seçim yapın. Renkleri ve degradeleri istediğiniz gibi ayarlayın.",
+      tags: ["39 Nokta Stili", "28 Göz Çerçevesi", "Özel Renkler"],
+      hint: "İpucu: Yuvarlak noktalar modern ve şık bir görünüm sunar."
+    },
+    {
+      number: "03",
+      emoji: "🖼️",
+      title: "Logonuzu Ekleyin",
+      description: "Özel bir PNG/JPG/SVG logosu yükleyin veya 46 hazır simgeden birini seçin. Hata düzeltme otomatik olarak H seviyesine ayarlanır.",
+      tags: ["Özel Logo", "46 Hazır Simge", "Yüksek Hata Düzeltme"],
+      hint: "İpucu: Koyu renkli logoların etrafında beyaz bir koruma pedi kullanın."
+    },
+    {
+      number: "04",
+      emoji: "✨",
+      title: "Çerçeveler ve Efektler Seçin",
+      description: "QR kodunuzu 'Beni Tara' gibi harekete geçirici mesaj çerçeveleriyle çevreleyin, hafif gölge veya 3D efektleri ekleyin.",
+      tags: ["51 Metin Çerçevesi", "Gölge Efektleri", "Tuval Arka Planı"],
+      hint: "İpucu: Web sitesi adresinizi içeren bir çerçeve tarama oranını artırır."
+    },
+    {
+      number: "05",
+      emoji: "⬇️",
+      title: "İndirin ve Paylaşın",
+      description: "PNG (8K'ya kadar), Vektör SVG veya baskıya hazır PDF formatında indirin. %100 ücretsizdir ve kullanım süresi dolmaz.",
+      tags: ["8K'ya Kadar PNG", "Vektör SVG", "Baskıya Hazır PDF", "ZIP Arşivi"],
+      hint: "İpucu: Baskı materyalleri için kusursuz netlik sunan SVG formatını tercih edin."
+    }
   ]
 };
 
@@ -439,14 +525,14 @@ const featuresMap: Record<Locale, Array<{ icon: string; color: string; title: st
   ],
   pt: [
     { icon: "qr_code_2",     color: "bg-violet-50 text-violet-600",   title: "12 Tipos de Conteúdo", desc: "URL, Texto, Wi-Fi, vCard, E-mail, SMS, Telefone, Apps, Eventos, Cripto e Lote" },
-    { icon: "grain",         color: "bg-blue-50 text-blue-600",       title: "39 Estilos de Pontos", desc: "Quadrados, círculos, arredondados, orgânicos, estrelas e diamantes" },
-    { icon: "visibility",   color: "bg-sky-50 text-sky-600",          title: "28 Molduras de Cantos",desc: "Combine bordas e centros para criar uma estética exclusiva da sua marca" },
-    { icon: "crop_free",     color: "bg-indigo-50 text-indigo-600",   title: "51 Molduras de Texto", desc: "Chamadas para ação personalizadas com diferentes fontes e cores" },
-    { icon: "style",         color: "bg-fuchsia-50 text-fuchsia-600", title: "121 Modelos Prontos",  desc: "Modelos profissionais em um clique: Negócios, Social, Eventos e Cardápios" },
-    { icon: "image",         color: "bg-pink-50 text-pink-600",       title: "Inserção de Logotipo", desc: "Envie seu logo ou use 46 ícones de marcas com margem de respiro automática" },
+    { icon: "grain",         color: "bg-blue-50 text-blue-600",       title: "39 Padrões de Pontos", desc: "Quadrados, círculos, arredondados, fluidos, estrelas, folhas e diamantes" },
+    { icon: "visibility",   color: "bg-sky-50 text-sky-600",          title: "28 Molduras de Olhos", desc: "Combine molduras externas e centros para uma estética marcante e exclusiva" },
+    { icon: "crop_free",     color: "bg-indigo-50 text-indigo-600",   title: "51 Molduras de Texto", desc: "Frases de chamada, tipografias e cores 100% personalizáveis" },
+    { icon: "style",         color: "bg-fuchsia-50 text-fuchsia-600", title: "121 Modelos Prontos",  desc: "Presets profissionais para negócios, redes sociais, eventos e cardápios" },
+    { icon: "image",         color: "bg-pink-50 text-pink-600",       title: "Inserção de Logo",     desc: "Envie sua logo ou escolha entre 46 ícones de marcas com respiro automático" },
     { icon: "gradient",      color: "bg-rose-50 text-rose-600",       title: "Modos de Degradê",     desc: "Degradês lineares e radiais nos pontos, olhos e plano de fundo" },
-    { icon: "auto_awesome",  color: "bg-orange-50 text-orange-600",   title: "Efeitos e Sombras 3D", desc: "Brilhos, sombras projetadas e relevo visual para destaque do código" },
-    { icon: "wallpaper",     color: "bg-amber-50 text-amber-600",     title: "Fundos Personalizados",desc: "Adicione qualquer imagem como fundo decorativo da sua composição" },
+    { icon: "auto_awesome",  color: "bg-orange-50 text-orange-600",   title: "Sombras e Efeitos 3D", desc: "Brilhos, sombras projetadas e profundidade realista" },
+    { icon: "wallpaper",     color: "bg-amber-50 text-amber-600",     title: "Imagens de Fundo",     desc: "Aplique fotos de fundo para enriquecer sua comunicação visual" },
     { icon: "dataset",       color: "bg-lime-50 text-lime-600",       title: "Exportação em Lote",   desc: "Crie centenas de QR codes a partir de uma planilha CSV em segundos" },
     { icon: "history",       color: "bg-green-50 text-green-600",     title: "Histórico de Edições", desc: "Histórico total de alterações com atalhos Ctrl+Z e Ctrl+Shift+Z" },
     { icon: "preview",       color: "bg-teal-50 text-teal-600",       title: "Prévia em Tempo Real", desc: "Atualizações visuais instantâneas sem recarregar a página" },
@@ -464,6 +550,20 @@ const featuresMap: Record<Locale, Array<{ icon: string; color: string; title: st
     { icon: "dataset",       color: "bg-lime-50 text-lime-600",       title: "ZIP-Massenexport",     desc: "Hunderte einzigartige QR-Codes aus einer CSV-Tabelle in Sekunden erstellen" },
     { icon: "history",       color: "bg-green-50 text-green-600",     title: "Rückgängig-Verlauf",   desc: "Kompletter Design-Verlauf mit Ctrl+Z / Ctrl+Shift+Z Tastenkombinationen" },
     { icon: "preview",       color: "bg-teal-50 text-teal-600",       title: "Echtzeit-Vorschau",    desc: "Sofortige visuelle Aktualisierung ohne Seiten-Neuladen" },
+  ],
+  tr: [
+    { icon: "qr_code_2",     color: "bg-violet-50 text-violet-600",   title: "12 İçerik Türü",       desc: "URL, Metin, WiFi, vCard, E-posta, SMS, Telefon, Uygulama, Etkinlik, Kripto, Toplu" },
+    { icon: "grain",         color: "bg-blue-50 text-blue-600",       title: "39 Nokta Deseni",      desc: "Kareler, daireler, yuvarlatılmış, akıcı, yıldızlar, yapraklar, elmaslar ve altıgenler" },
+    { icon: "visibility",   color: "bg-sky-50 text-sky-600",          title: "28 Göz Çerçevesi",     desc: "Benzersiz bir görünüm için göz çerçevelerini ve merkezleri karıştırın" },
+    { icon: "crop_free",     color: "bg-indigo-50 text-indigo-600",   title: "51 Metin Çerçevesi",   desc: "Yazı tipi ve renk seçimiyle özel harekete geçirici mesaj çerçeveleri" },
+    { icon: "style",         color: "bg-fuchsia-50 text-fuchsia-600", title: "121 Hazır Şablon",     desc: "Kartvizit, WiFi, etkinlik ve sosyal medya için tek tıkla şablonlar" },
+    { icon: "image",         color: "bg-pink-50 text-pink-600",       title: "Logo Yerleştirme",     desc: "Özel logo yükleyin veya otomatik dolgulu 46 marka simgesinden seçin" },
+    { icon: "gradient",      color: "bg-rose-50 text-rose-600",       title: "Degrade Modları",      desc: "Noktalar, gözler ve arka plan üzerinde doğrusal ve radyal degradeler" },
+    { icon: "auto_awesome",  color: "bg-orange-50 text-orange-600",   title: "Gölge & Işıma Efektleri",desc: "Derinlik katan neon ışıma, alt gölge ve 3D gölge efektleri" },
+    { icon: "wallpaper",     color: "bg-amber-50 text-amber-600",     title: "Arka Plan Resimleri",  desc: "Yaratıcı marka tanıtımı için herhangi bir resmi tuval arka planı yapın" },
+    { icon: "dataset",       color: "bg-lime-50 text-lime-600",       title: "Toplu ZIP Dışa Aktarım",desc: "Bir CSV dosyasından saniyeler içinde yüzlerce benzersiz QR kod oluşturun" },
+    { icon: "history",       color: "bg-green-50 text-green-600",     title: "Geri Al / Yinele Geçmişi",desc: "Ctrl+Z / Ctrl+Shift+Z kısayollarıyla eksiksiz tasarım geçmişi" },
+    { icon: "preview",       color: "bg-teal-50 text-teal-600",       title: "Gerçek Zamanlı Canlı Önizleme",desc: "Sayfayı yenilemeden özelleştirdikçe anında güncellenen önizleme" },
   ]
 };
 
@@ -497,6 +597,13 @@ const doTipsMap: Record<Locale, Array<{ text: string }>> = {
     { text: "Halten Sie die **Ruhezone** (weißer Rand) von mindestens 4 Modulbreiten ein." },
     { text: "Testen Sie Ihren individuellen QR-Code auf **mindestens 2 verschiedenen Geräten (iOS-Kamera & Google Lens)** vor dem Massendruck." },
     { text: "Exportieren Sie für den Druck als **SVG** oder **PDF** für stufenlose Schärfe." },
+  ],
+  tr: [
+    { text: "Logo eklerken Hata Düzeltme Seviyesini **H** yapın — kodun %30'a kadarını kurtarır." },
+    { text: "Güvenilir tarama için noktalar ile arka plan arasında en az **4.5:1 kontrast oranı** koruyun." },
+    { text: "QR kodun etrafındaki **sessiz alanı** (beyaz kenar boşluğu) en az 4 modül genişliğinde tutun." },
+    { text: "Büyük baskılar yapmadan önce özel QR kodunuzu **en az 2 farklı cihazda (iOS Kamera & Google Lens)** test edin." },
+    { text: "Baskı için her boyutta keskin kenarlar sağlamak üzere **SVG** veya **PDF** olarak dışa aktarın." },
   ]
 };
 
@@ -528,6 +635,13 @@ const dontTipsMap: Record<Locale, Array<{ text: string }>> = {
     { text: "Verwenden Sie keine **kontrastarmen Farbkombinationen** (z. B. Hellgrau auf Weiß)." },
     { text: "Schneiden Sie nicht die **drei Eckmarkierungen** beim Rahmen-Design ab." },
     { text: "Nutzen Sie nicht Fehlerkorrektur **L** auf unebenen oder gemusterten Flächen." },
+  ],
+  tr: [
+    { text: "Test etmeden **koyu ve açık renkleri ters çevirmeyin** — bazı okuyucular koyu arka planda zorlanabilir." },
+    { text: "QR kodlarını **2cm × 2cm'den daha küçük** basmayın." },
+    { text: "**Düşük kontrastlı renk kombinasyonları** kullanmayın (ör. beyaz üzerine açık gri)." },
+    { text: "Çerçeve eklerken **üç köşe konumlandırma karesini** kesmeyin veya kapatmayın." },
+    { text: "QR kodunuz dokulu veya pürüzlü bir yüzeyde sergilenecekse Hata Düzeltme **L** seviyesini kullanmayın." },
   ]
 };
 
@@ -638,6 +752,32 @@ const exportsMap: Record<Locale, Array<{ format: string; icon: string; resolutio
       pros: "Druckfertig, bettet Vektoren und Schriften ein",
       notFor: "Web-Einbettungen oder dynamische Schnittstellen"
     },
+  ],
+  tr: [
+    {
+      format: "PNG",
+      icon: "photo_size_select_large",
+      resolution: "8192 × 8192 px'e kadar",
+      useCase: "Dijital ekranlar, web siteleri, sosyal medya, e-posta imzaları",
+      pros: "Evrensel uyumluluk, kompakt dosya boyutu",
+      notFor: "Sonradan büyütülmesi gereken büyük formatlı baskılar"
+    },
+    {
+      format: "SVG",
+      icon: "polyline",
+      resolution: "Sonsuz (Vektör)",
+      useCase: "Baskı materyalleri, kartvizitler, afişler, tabelalar",
+      pros: "Sıfır kalite kaybıyla her boyuta kusursuz ölçekleme",
+      notFor: "SVG desteği olmayan sistemler (ör. bazı eski e-posta istemcileri)"
+    },
+    {
+      format: "PDF",
+      icon: "picture_as_pdf",
+      resolution: "Baskıya hazır (300 DPI eşdeğeri)",
+      useCase: "Profesyonel matbaalar, broşürler, ambalajlar, posterler",
+      pros: "Matbaaya hazır, vektörleri ve yazı tiplerini gömer",
+      notFor: "Web içi doğrudan gösterim veya dinamik içerikler"
+    },
   ]
 };
 
@@ -691,6 +831,18 @@ const faqsMap: Record<Locale, Array<{ q: string; a: string }>> = {
     { q: "Welche Scanner-Apps empfehlen sich zum Testen?", a: "Wir empfehlen Tests mit der iOS-Kamera-App, Google Lens auf Android sowie einem eigenständigen Barcode-Scanner." },
     { q: "Was ist der Unterschied zwischen Eckenrahmen und Mittelpunkt?", a: "Der Eckenrahmen ist die äußere Umrandung der drei Positionierungsquadrate. Der Mittelpunkt ist das innere Quadrat. Die Kombination schafft unverwechselbare Designs." },
     { q: "Kann ich Fehler während der Gestaltung rückgängig machen?", a: "Ja — jeder Schritt wird im Verlauf gespeichert. Mit Strg+Z (bzw. ⌘+Z auf dem Mac) machen Sie Änderungen rückgängig, mit Strg+Umschalt+Z stellen Sie sie wieder her." },
+  ],
+  tr: [
+    { q: "QR Code Maker gerçekten %100 ücretsiz mi?", a: "Evet — her özellik tamamen ücretsizdir. Ödeme duvarı, abonelik, filigran ve kayıt zorunluluğu yoktur. Sınırsız QR kod oluşturup ücretsiz indirebilirsiniz." },
+    { q: "Oluşturulan QR kodlarını ticari olarak kullanabilir miyim?", a: "Evet, oluşturduğunuz tüm QR kodları ticari ürünlerde, pazarlamada, ambalajlarda ve müşteri projelerinde serbestçe kullanılabilir." },
+    { q: "QR kodumun güvenilir şekilde taranmasını nasıl sağlarım?", a: "Logo eklerken H hata düzeltme seviyesini kullanın, 4.5:1 kontrast oranını koruyun, beyaz sessiz alanı bırakın ve baskı öncesinde test edin." },
+    { q: "Toplu üretimde maksimum boyut nedir?", a: "Toplu oluşturucu yüzlerce satırlık CSV dosyalarını işleyebilir. Tüm QR kodları tek bir ZIP arşivi olarak indirilir." },
+    { q: "Nokta stilleri arasındaki fark nedir?", a: "Nokta stilleri QR kodunuzdaki her veri hücresinin şeklini değiştirir: klasik kareler, pürüzsüz daireler, yuvarlatılmış köşeler, yıldızlar, yapraklar ve daha fazlası." },
+    { q: "Her QR koduna şirket logomu ekleyebilir miyim?", a: "Evet — PNG, JPG veya SVG formatında bir logo yükleyin. Boyutunu, dolgu rengini ve şeklini özelleştirebilirsiniz." },
+    { q: "QR kodlarının süresi dolar mı?", a: "Hayır. Statik QR kodları asla sona ermez. Veriler doğrudan görüntünün içine kodlandığı için sonsuza kadar çalışır." },
+    { q: "Test için hangi okuyucu uygulamaları en iyisidir?", a: "En az 3 uygulamayla test etmenizi öneririz: iOS yerel Kamera uygulaması, Android'de Google Lens ve bağımsız bir QR okuyucu." },
+    { q: "Göz Çerçevesi ile Göz Bebeği arasındaki fark nedir?", a: "Göz çerçevesi 3 köşedeki karelerin dış kenarlığıdır. Göz bebeği ise iç merkezdeki noktadır." },
+    { q: "Tasarım yaparken hataları geri alabilir miyim?", a: "Evet — oturumdaki her adım geçmişte kaydedilir. Geri almak için Ctrl+Z (veya Mac'te ⌘+Z), yinelemek için Ctrl+Shift+Z tuşlarına basabilirsiniz." },
   ]
 };
 

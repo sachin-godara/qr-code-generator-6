@@ -23,15 +23,16 @@
     ]
   },
   "scanner": {
-    "title": "Kostenloser Online-QR-Code-Scanner — Kamera & Bild (Ohne App)",
-    "description": "Scannen und decodieren Sie QR-Codes direkt im Browser per Kamera, Bild-Upload oder Screenshot (Strg+V). 100% kostenlos und privat.",
-    "keywords": "qr code scanner online, qr code leser kostenlos, qr code mit kamera scannen pc, qr code von bild scannen, qr code reader online, qr code screenshot strg v",
+    "title": "QR Code Scannen Online — Kostenloser QR Scanner & QR-Code Leser",
+    "description": "QR Code scannen und QR-Code online lesen direkt im Browser per Kamera, Bild-Upload oder Screenshot (Strg+V). Kostenloser QR Scanner ohne App — schnell, sicher & privat.",
+    "keywords": "qr code scannen, wie scanne ich einen qr code, qr scanner, qr code lesen, qr-code scannen, qr code scanner kostenlos, code scannen, qr code scanner online, qr code von bild scannen, qr code von foto lesen, qr code scannen pc, qr code scanner ohne app, barcode scanner online",
     "faqs": [
       { "q": "Benötige ich eine separate Scanner-App?", "a": "Nein! Moderne Smartphones können QR-Codes direkt mit der Standard-Kamera erfassen, oder Sie nutzen unseren kostenlosen Web-Scanner." },
       { "q": "Wie scanne ich einen QR-Code auf Android?", "a": "Öffnen Sie die Kamera-App und richten Sie sie auf den QR-Code, oder nutzen Sie Google Lens oder diesen Web-Scanner." },
       { "q": "Wie scanne ich einen QR-Code auf dem iPhone (iOS)?", "a": "Öffnen Sie die Kamera-App, halten Sie das iPhone vor den QR-Code und tippen Sie auf die gelbe Benachrichtigung." },
       { "q": "Kann ich QR-Codes aus Screenshots oder Fotos lesen?", "a": "Ja! Nutzen Sie den Tab 'Bild hochladen' oben oder drücken Sie Strg+V, um einen Screenshot aus der Zwischenablage einzufügen." },
-      { "q": "Ist das Scannen auf dieser Website sicher?", "a": "Ja, zu 100%. Die Decodierung erfolgt vollständig clientseitig in Ihrem Webbrowser. Es werden keine Bilder übertragen oder gespeichert." }
+      { "q": "Wo befindet sich der WhatsApp Web QR-Code Scanner?", "a": "Öffnen Sie WhatsApp auf dem Smartphone, tippen Sie auf Einstellungen (iOS) oder das Drei-Punkte-Menü (Android), wählen Sie 'Verknüpfte Geräte' und tippen Sie auf 'Gerät verknüpfen', um die Kamera auf web.whatsapp.com zu richten." },
+      { "q": "Ist das Scannen auf dieser Website sicher?", "a": "Ja, zu 100%. Die Decodierung erfolgt vollständig clientseitig in Ihrem Webbrowser via WebAssembly. Es werden keine Bilder übertragen oder gespeichert." }
     ]
   }
 }

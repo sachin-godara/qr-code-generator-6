@@ -12,6 +12,8 @@ faqs:
     a: "Causas principais: (1) Brilho muito alto ou reflexo de luz na tela do monitor. (2) Segurar o celular muito próximo (mantenha 15-25 cm para foco). (3) Zoom do navegador alterado (pressione Ctrl+0). (4) Bloqueador de anúncios ou VPN impedindo a conexão WebSocket."
   - q: "Como desconectar aparelhos antigos no WhatsApp?"
     a: "Abra o WhatsApp no celular → Configurações (iOS) ou 3 Pontos (Android) → Aparelhos Conectados. Toque nas sessões antigas e selecione 'Desconectar'. O limite é de 4 aparelhos conectados simultaneamente."
+  - q: "O modo escuro pode causar problemas de leitura no WhatsApp Web?"
+    a: "Sim, especialmente em monitores com painel TN de baixo contraste. O modo escuro pode reduzir o contraste entre os módulos pretos e o fundo. Se a leitura falhar, mude temporariamente para o modo claro."
 howToSteps:
   - name: "Ajuste o zoom do monitor e a distância"
     text: "Pressione Ctrl+0 (Windows) ou Cmd+0 (Mac) para restaurar o zoom a 100% e afaste o celular 20 cm do monitor."
@@ -119,6 +121,14 @@ Extensões de privacidade e VPNs podem bloquear o protocolo **WebSockets (`wss:/
   - *No iPhone*: Vá em **Ajustes → WhatsApp** e certifique-se de que a **Câmera** está ativada.
   - *No Android*: Vá em **Configurações → Apps → WhatsApp → Permissões → Câmera: Permitir**.
 
+---
+
+## Solução 7: Contraste do Modo Escuro em Monitores Antigos
+
+O modo escuro em monitores com painel TN mais antigo pode reduzir a nitidez entre os módulos e o fundo. Alterne temporariamente para o **Modo Claro** até que a conexão inicial seja concluída.
+
+---
+
 ## Lista de Diagnóstico Rápido do WhatsApp Web
 
 <div class="blog-checklist-grid">
@@ -174,5 +184,8 @@ Extensões de privacidade e VPNs podem bloquear o protocolo **WebSockets (`wss:/
 | **Câmera não foca no monitor** | Celular muito perto ou zoom alterado | Pressione `Ctrl+0` e afaste 20 cm |
 | **"Clique para recarregar" infinito** | Conexão WebSocket bloqueada | Teste em Janela Anônima |
 | **Limite de aparelhos atingido** | Mais de 4 aparelhos vinculados | Desconecte sessões antigas no app |
+| **Câmera mostra tela preta no WhatsApp** | Permissão do sistema operacional revogada | Ative a câmera nos ajustes do aparelho |
 
-Crie seu próprio QR code de WhatsApp para sua empresa no **[GenerateCustomQR](/pt)**.
+> [!TIP]
+> **Precisa gerar um QR Code de WhatsApp para seus clientes?** Crie um código direto para chat com mensagem pré-preenchida no **[Gerador de QR Code de WhatsApp Gratuito](/pt)**.
+

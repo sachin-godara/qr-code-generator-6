@@ -31,8 +31,6 @@ howToSteps:
 
 Esta guía te muestra cómo crearlo en menos de 2 minutos.
 
----
-
 ## Paso 1: Obtén el Enlace de Google Maps
 
 ### Opción A: Desde la Web de Google Maps (Ordenador)
@@ -57,8 +55,6 @@ Si dispones de las coordenadas de latitud y longitud exactas:
 
 Ejemplo: `https://www.google.com/maps?q=40.4168,-3.7038` (Puerta del Sol, Madrid).
 
----
-
 ## Paso 2: Generar el Código QR
 
 1. Entra en [GenerateCustomQR](/es).
@@ -67,7 +63,7 @@ Ejemplo: `https://www.google.com/maps?q=40.4168,-3.7038` (Puerta del Sol, Madrid
 4. Personaliza el diseño: elige estilo de puntos, colores corporativos y logotipo.
 5. Haz clic en **Descargar** en formato PNG, SVG o PDF.
 
----
+[Crea tu código QR de ubicación ahora →](/es/url-qr-code-generator)
 
 ## Principales Casos de Uso
 
@@ -77,20 +73,40 @@ Imprime el código QR en la tarjeta de invitación para que los invitados abran 
 ### Tiendas Físicas y Locales Comerciales
 Coloca un código QR en el escaparate o en tus tarjetas de visita para que los clientes consulten tu ficha de Google Business, vean reseñas y guarden tu ubicación.
 
+### Espacios de Eventos y Congresos
+Para conferencias, ferias y conciertos, añade un código QR de localización en las entradas digitales y paneles de bienvenida.
+
 ### Instrucciones de Envío y Reparto
 Facilita la llegada de mensajeros a naves industriales, urbanizaciones cerradas o casas de campo enviando las coordenadas exactas de la puerta de acceso.
 
----
+### Turismo y Hostelería
+Hoteles, agencias y guías turísticos pueden indicar puntos de encuentro, rutas y atracciones emblemáticas.
 
 ## Consejos Pro para Códigos QR de Mapas
 
-- **Usa Códigos Plus de Google**: Para lugares sin número de calle, usa Plus Codes (`https://www.google.com/maps?q=plus+code`).
-- **Añade un Marco con Llamada a la Acción (CTA)**:
-  -  *"Escanear para Llegar"*
-  -  *"Ver en Google Maps"*
-  -  *"Ruta GPS al Evento"*
+### Usa Códigos Plus de Google
+Para lugares sin número de calle, usa Plus Codes:
+<div class="blog-endpoint-box">
+  <span class="blog-endpoint-tag">Plus Code</span>
+  <span class="blog-endpoint-url">https://www.google.com/maps?q=plus+code+aqui</span>
+</div>
 
----
+### Añade Etiquetas Personalizadas
+<div class="blog-endpoint-box">
+  <span class="blog-endpoint-tag">Búsqueda con Nombre</span>
+  <span class="blog-endpoint-url">https://www.google.com/maps/search/?api=1&amp;query=Parque+del+Retiro+Madrid</span>
+</div>
+
+### Compatibilidad con Apple Maps
+<div class="blog-endpoint-box">
+  <span class="blog-endpoint-tag">Apple Maps</span>
+  <span class="blog-endpoint-url">https://maps.apple.com/?q=40.4168,-3.7038</span>
+</div>
+
+### Añade un Marco con Llamada a la Acción (CTA)
+- *"Escanear para Llegar"*
+- *"Ver en Google Maps"*
+- *"Ruta GPS al Evento"*
 
 ## Dimensiones Mínimas de Impresión
 
@@ -101,8 +117,6 @@ Facilita la llegada de mensajeros a naves industriales, urbanizaciones cerradas 
 | **Cartel de evento** | 5 cm × 5 cm | 8 cm × 8 cm |
 | **Vinilo de escaparate** | 8 cm × 8 cm | 12 cm × 12 cm |
 
----
-
 ## Formatos Alternativos: Apple Maps y Waze
 
 | Aplicación | Formato de URL |
@@ -111,4 +125,10 @@ Facilita la llegada de mensajeros a naves industriales, urbanizaciones cerradas 
 | **Apple Maps** | `https://maps.apple.com/?q=LAT,LNG` |
 | **Waze** | `https://waze.com/ul?q=LAT,LNG` |
 
-Genera tu código QR de ubicación gratuito en segundos en **[GenerateCustomQR](/es)**.
+## Crea tu Código QR de Ubicación
+
+¿Listo para crear un código QR que abra Google Maps al instante? Es gratis, tarda 30 segundos y funciona en cualquier smartphone:
+
+- [Crear Código QR de URL →](/es/url-qr-code-generator)
+- [Cómo Usar el Generador →](/es/how-to-use)
+- [Guía de Tamaños de Impresión →](/es/blog/qr-code-size-guide)

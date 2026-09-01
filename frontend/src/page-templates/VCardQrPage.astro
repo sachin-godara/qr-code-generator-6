@@ -210,6 +210,51 @@ const metaMap: Record<Locale, {
     ctaTitle: "Bereit für Ihre digitale Visitenkarte?",
     ctaDesc: "Erstellen Sie vCard-QR-Codes mit Firmenlogo in wenigen Sekunden. Kostenlos als SVG und PDF.",
     ctaBtn: "Jetzt vCard-QR-Code erstellen ↑"
+  },
+  tr: {
+    title: "Ücretsiz vCard QR Kod Oluşturucu — Dijital Kartvizit Yapma",
+    desc: "Ad, telefon, e-posta ve şirket bilgilerini içeren ücretsiz vCard QR kodları oluşturun. Tek taramayla doğrudan rehbere kaydedilen dijital kartvizitler.",
+    keywords: "vcard qr kod olusturucu, dijital kartvizit qr kod, rehbere ekleme qr kod, kartvizit icin qr kod yapma, kisi karti qr kod",
+    badge: "Dijital Kartvizit (.vcf)",
+    specsTitle: "Temel Teknik Özellikler",
+    specs: [
+      { icon: "contact_page", title: "Evrensel vCard 3.0 Standardı", desc: "iOS Rehber, Android Kişiler, Google Kişiler ve Microsoft Outlook ile tam uyumludur." },
+      { icon: "badge", title: "Kapsamlı İletişim Bilgileri", desc: "Ad-soyad, unvan, şirket, cep telefonu, iş telefonu, e-posta, web sitesi ve açık adresi tek bir koda sığdırır." },
+      { icon: "palette", title: "Özel Tasarım ve Kurumsal Logo", desc: "Kartvizit renklerinize uyarlayın, ortasına şirket logonuzu ekleyin ve profesyonel çerçeveler seçin." },
+      { icon: "download", title: "Baskıya Hazır Vektör Formatları", desc: "Matbaa baskısı için 300 DPI PDF ve SVG vektör formatlarında kayıpsız olarak indirin." }
+    ],
+    stepsTitle: "4 Kolay Adımda vCard QR Kodu Nasıl Oluşturulur",
+    steps: [
+      { icon: "contact_page", title: "1. vCard'ı Seçin", desc: "Oluşturucunun içerik sekmelerinden vCard seçeneğini tıklayın." },
+      { icon: "person", title: "2. Bilgilerinizi Yazın", desc: "Ad, telefon, şirket, unvan ve e-posta alanlarını doldurun." },
+      { icon: "palette", title: "3. Kurumsal Tasarım", desc: "Şirket logonuzu, marka renklerinizi ve nokta stillerini ekleyin." },
+      { icon: "print", title: "4. Kartvizite Bastırın", desc: "Kartvizitlere veya sunumlara eklemek üzere SVG veya PDF formatında indirin." }
+    ],
+    benefitsTitle: "vCard Dijital Kartvizitin Avantajları",
+    benefits: [
+      { icon: "speed", title: "1 Dokunuşla Rehbere Kayıt", desc: "Tek bir tarama tüm iletişim bilgilerini telefon rehberine anında kaydeder." },
+      { icon: "error_med", title: "Yazım Hatası Yok", desc: "Uzun e-posta veya telefon numaralarını manuel yazma zahmetini ortadan kaldırır." },
+      { icon: "groups", title: "Fuarlar ve Etkinlikler İçin İdeal", desc: "Konferanslarda kartvizitiniz bitse dahi telefon ekranından hızlıca paylaşın." },
+      { icon: "eco", title: "Çevre Dostu & Modern", desc: "Kağıt israfını azaltan modern ve sürdürülebilir bir ağ kurma aracıdır." }
+    ],
+    tipsTitle: "Kartvizit QR Kodları İçin İpuçları",
+    tips: [
+      { icon: "straighten", title: "Asgari Boyut: 2.5 × 2.5 cm", desc: "vCard yoğun veri içerdiğinden, kartvizit üzerinde en az 25×25 mm boyutunda basılmalıdır." },
+      { icon: "contrast", title: "Güçlü Renk Kontrastı", desc: "Loş ışıklı ortamlarda hızlı okuma için koyu renkli modüller ve açık arka plan kullanın." },
+      { icon: "phone_iphone", title: "Baskı Öncesi Test", desc: "Baskı öncesinde hem iPhone hem de Android kameralarıyla test taraması yapın." },
+      { icon: "picture_as_pdf", title: "Vektörel Dışa Aktarma", desc: "Kartvizit baskısında keskin kenarlar için SVG veya 300 DPI PDF tercih edin." }
+    ],
+    faqsTitle: "vCard QR Kodları Hakkında Sıkça Sorulan Sorular",
+    faqs: [
+      { q: "vCard QR kodu nedir?", a: "Standart elektronik kartvizit formatıdır (.vcf). Tarandığında doğrudan 'Yeni Kişi Ekle' ekranı açılır." },
+      { q: "Hangi bilgiler eklenebilir?", a: "Ad, soyad, unvan, şirket, telefon numaraları, e-posta, web sitesi ve açık adres bilgileri eklenebilir." },
+      { q: "Özel bir uygulama gerekir mi?", a: "Hayır, iOS ve Android'in yerel kamera uygulamaları vCard kodlarını otomatik olarak tanır." },
+      { q: "Kartvizit baskısı için hangi format uygundur?", a: "Matbaa baskısında sıfır kalite kaybı için SVG veya 300 DPI PDF formatlarını öneriyoruz." }
+    ],
+    otherToolsTitle: "Diğer Ücretsiz QR Kod Araçlarını Keşfedin",
+    ctaTitle: "Dijital Kartvizitinizi Oluşturmaya Hazır mısınız?",
+    ctaDesc: "Saniyeler içinde logolu ve profesyonel vCard QR kodları oluşturun. SVG ve PDF olarak ücretsiz indirin.",
+    ctaBtn: "Hemen vCard QR Kodu Oluştur ↑"
   }
 };
 
@@ -221,12 +266,12 @@ const breadcrumbs = [
 ];
 
 const relatedTools = [
-  { icon: "link", title: "URL to QR", desc: "Website links & portfolios", url: getLocalizedUrl(locale, '/url-qr-code-generator') },
-  { icon: "wifi", title: "WiFi QR", desc: "1-tap wifi connections", url: getLocalizedUrl(locale, '/wifi-qr-code') },
-  { icon: "image", title: "QR with Logo", desc: "Branded custom logos", url: getLocalizedUrl(locale, '/qr-code-with-logo') },
-  { icon: "event", title: "Event QR", desc: "Save dates to calendars", url: getLocalizedUrl(locale, '/event-qr-code') },
-  { icon: "mail", title: "Email QR", desc: "Pre-filled email drafts", url: getLocalizedUrl(locale, '/email-qr-code') },
-  { icon: "qr_code_scanner", title: "QR Scanner", desc: "Camera & image decoder", url: getLocalizedUrl(locale, '/qr-code-scanner') }
+  { icon: "link", title: t(locale, 'footer.urlQR'), desc: t(locale, 'landing.formats.items.urlDesc'), url: getLocalizedUrl(locale, '/url-qr-code-generator') },
+  { icon: "wifi", title: t(locale, 'footer.wifiQR'), desc: t(locale, 'landing.formats.items.wifiDesc'), url: getLocalizedUrl(locale, '/wifi-qr-code') },
+  { icon: "image", title: t(locale, 'footer.logoQR'), desc: t(locale, 'landing.features.card2Title'), url: getLocalizedUrl(locale, '/qr-code-with-logo') },
+  { icon: "event", title: t(locale, 'footer.eventQR'), desc: t(locale, 'landing.formats.items.eventDesc'), url: getLocalizedUrl(locale, '/event-qr-code') },
+  { icon: "mail", title: t(locale, 'footer.emailQR'), desc: t(locale, 'landing.formats.items.emailDesc'), url: getLocalizedUrl(locale, '/email-qr-code') },
+  { icon: "qr_code_scanner", title: t(locale, 'footer.scanner'), desc: t(locale, 'scanner.formats.urlsDesc'), url: getLocalizedUrl(locale, '/qr-code-scanner') }
 ];
 
 const howTo = {

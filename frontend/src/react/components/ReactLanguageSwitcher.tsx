@@ -37,8 +37,18 @@ export function FlagIcon({ code }: { code: Locale }) {
           <path fill="#ffce00" d="M0 320h640v160H0z"/>
         </svg>
       );
+    case 'tr':
+      return (
+        <svg className="w-4 h-4 rounded-full overflow-hidden shadow-2xs shrink-0 border border-black/10" viewBox="0 0 1200 800" aria-hidden="true">
+          <rect width="1200" height="800" fill="#e30a17"/>
+          <circle cx="425" cy="400" r="200" fill="#fff"/>
+          <circle cx="475" cy="400" r="160" fill="#e30a17"/>
+          <polygon fill="#fff" points="583.33,400 700.93,438.2 628.24,338.2 628.24,461.8 700.93,361.8"/>
+        </svg>
+      );
     default:
       return <span className="material-symbols-outlined text-[16px]">language</span>;
+
   }
 }
 
@@ -93,7 +103,7 @@ export function ReactLanguageSwitcher({ className = '' }: { className?: string }
           aria-orientation="vertical"
         >
           <div className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-on-surface-variant/70 border-b border-outline-variant/30">
-            Language / Idioma
+            {t('nav.language')}
           </div>
           {locales.map((loc) => {
             const info = localeConfig[loc];

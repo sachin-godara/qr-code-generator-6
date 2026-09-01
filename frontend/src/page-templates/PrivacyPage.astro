@@ -1179,6 +1179,283 @@ const metaMap: Record<Locale, PageData> = {
     ctaTitle: "Fragen zu unserer Datenschutz-Architektur?",
     ctaDesc: "Wir stehen für maximale Transparenz. Wenn Sie technische Fragen zur Sicherheit haben, steht Ihnen unser Team gerne zur Verfügung.",
     ctaBtn: "Datenschutz-Team kontaktieren"
+  },
+  tr: {
+    title: "Gizlilik Politikası — GenerateCustomQR",
+    desc: "GenerateCustomQR sıfır bilgi (zero-knowledge) mimarisine sahip, gizlilik odaklı bir QR kod oluşturucudur. Tüm QR hesaplamaları tarayıcınızda yerel olarak yapılır.",
+    keywords: "qr kod gizlilik politikasi, guvenli qr kod olusturucu, sifir bilgi qr kod, kvkk uyumlu qr kod, izlemesiz qr kod, yerel calisan qr kod olusturucu",
+    heading: "Gizlilik Politikası",
+    badge: "Gizlilik Öncelikli & Sıfır Bilgi Mimarisi",
+    lastUpdated: "Yürürlük Tarihi: 1 Ocak 2026",
+    tocTitle: "İçindekiler",
+    highlights: [
+      {
+        icon: "shield",
+        title: "%100 İstemci Taraflı Motor",
+        desc: "Tüm QR matris hesaplamaları, SVG oluşturma ve stillendirme doğrudan web tarayıcınızın bellek korumalı alanında çalışır."
+      },
+      {
+        icon: "lock_open",
+        title: "Sıfır Veri Depolama",
+        desc: "WiFi şifrelerinizi, iletişim bilgilerinizi, URL'lerinizi veya metinlerinizi asla kaydetmiyor, incelemiyor veya satmıyoruz."
+      },
+      {
+        icon: "inventory_2",
+        title: "Yalnızca Yerel Tercihler",
+        desc: "Tarayıcınızın localStorage alanı yalnızca tema ve renk tercihlerinizi cihazınızda hatırlamak için kullanılır."
+      },
+      {
+        icon: "gavel",
+        title: "KVKK ve GDPR Uyumlu",
+        desc: "Kullanıcı profili oluşturma ve veri komisyoncularıyla paylaşım olmaksızın küresel gizlilik standartlarına tam uyum."
+      }
+    ],
+    toc: [
+      { id: "section-1", title: "1. Veri Sorumlusu ve Kapsam" },
+      { id: "section-2", title: "2. Sıfır Bilgi Yükü Garantisi" },
+      { id: "section-3", title: "3. Toplanan Teknik Telemetri Verileri" },
+      { id: "section-4", title: "4. Veri İşleme ve Saklama Matrisi" },
+      { id: "section-5", title: "5. Yerel Tarayıcı Depolama Alanı (localStorage)" },
+      { id: "section-6", title: "6. Üçüncü Taraf Altyapı Sağlayıcıları" },
+      { id: "section-7", title: "7. Uluslararası Veri Aktarımları" },
+      { id: "section-8", title: "8. Do Not Track (DNT) ve GPC Sinyalleri" },
+      { id: "section-9", title: "9. Avrupa ve Küresel Gizlilik Hakları (GDPR/KVKK)" },
+      { id: "section-10", title: "10. Kaliforniya Gizlilik Bildirimi (CCPA / CPRA)" },
+      { id: "section-11", title: "11. Brezilya Gizlilik Hakları (LGPD)" },
+      { id: "section-12", title: "12. Çocukların Gizliliğinin Korunması (COPPA)" },
+      { id: "section-13", title: "13. Veri Güvenliği ve İhlal Bildirim Protokolü" },
+      { id: "section-14", title: "14. Şirket Devirleri ve Birleşmeler" },
+      { id: "section-15", title: "15. Harici Bağlantılar ve Üçüncü Taraf Siteler" },
+      { id: "section-16", title: "16. Politika Güncellemeleri ve İletişim" }
+    ],
+    s1Title: "1. Veri Sorumlusunun Kimliği ve Kapsam",
+    s1P1: "GenerateCustomQR olarak (generatecustomqr.com üzerinden erişilebilir), gizliliğin temel bir insan hakkı olduğuna inanıyoruz. İnternet, zorunlu kullanıcı kayıtları talep eden, bağlantılarınızı dinamik izleme sunucuları üzerinden yönlendiren veya gizli verilerinizi paraya dönüştüren araçlarla doludur.",
+    s1P2: "GenerateCustomQR'ı katı bir Sıfır Bilgi (Zero-Knowledge) Mimarisi üzerine kurduk. Platformumuz istemci taraflı grafik sentezleme motoru olarak çalışır. Sitemizde bir QR kod oluşturduğunuzda, verileriniz doğrudan tarayıcınızın geçici belleğinde matematiksel matris noktalarına dönüştürülür. Yazdığınız, yüklediğiniz veya oluşturduğunuz her şey yalnızca size aittir.",
+    s1Controller: "Genel Veri Koruma Tüzüğü (GDPR), 6698 sayılı Kişisel Verilerin Korunması Kanunu (KVKK) ve küresel mevzuat kapsamında veri sorumlusu GenerateCustomQR Media & Software Technologies'dir. İletişim: legal@generatecustomqr.com.",
+    s2Title: "2. Sıfır Bilgi Yükü Garantisi (Asla Toplamadığımız Veriler)",
+    s2Lead: "Uygulamamızı, hassas kullanıcı verilerinin hiçbir zaman sunucu veritabanlarımıza veya kalıcı depolama alanlarımıza ulaşmayacağı şekilde tasarladık:",
+    s2Items: [
+      {
+        title: "Wi-Fi Ağ Kimlik Bilgileri",
+        desc: "Bir Wi-Fi QR kodu oluşturduğunuzda, ağ adı (SSID), şifre ve şifreleme türü yerel olarak işlenir. Ev veya şirket şifrelerinizi görme veya saklama yeteneğimiz yoktur."
+      },
+      {
+        title: "vCard ve Kişi Bilgileri",
+        desc: "İsimler, telefon numaraları, e-posta adresleri ve şirket unvanları tamamen cihazınızda kalır."
+      },
+      {
+        title: "Gizli Mesajlar ve Düz Metinler",
+        desc: "Girdiğiniz düz metin, SMS veya e-posta taslakları hiçbir sunucu kaydı tutulmadan doğrudan ikili QR modüllerine dönüştürülür."
+      },
+      {
+        title: "Özel Marka Logoları ve Resimler",
+        desc: "QR kodun ortasına yerleştirmek için bir logo yüklediğinizde, görsel dosya tarayıcı belleği (Blob) üzerinden işlenir ve asla buluta yüklenmez."
+      },
+      {
+        title: "Tarama Takibi ve Konum İzleme",
+        desc: "ISO/IEC 18004 standartlarına uygun statik QR kodları üretiyoruz. Kullanıcıların konumlarını, IP adreslerini veya tarama zamanlarını izleyen yönlendirme bağlantıları eklemiyoruz."
+      }
+    ],
+    s3Title: "3. Toplanan Teknik Telemetri Verileri ve Amaçları",
+    s3Lead: "Hızlı sayfa yükleme sağlamak, DDoS saldırılarını engellemek ve altyapı sağlığını izlemek için CDN sağlayıcımız tarafından asgari düzeyde teknik telemetri toplanır:",
+    s3Items: [
+      {
+        title: "Sunucu ve Güvenlik Günlükleri",
+        desc: "Standart HTTP başlıkları (IP adresi, tarayıcı türü, zaman damgası) bot saldırılarını önlemek amacıyla Cloudflare tarafından işlenir ve 30 gün içinde otomatik olarak silinir."
+      },
+      {
+        title: "Anonim Web Analitiği",
+        desc: "Platform kararlılığını izlemek için IP anonimleştirme etkinleştirilmiş Google Analytics 4 kullanıyoruz. Reklam özellikleri ve kullanıcı kimliği takibi devre dışıdır."
+      }
+    ],
+    s4Title: "4. Veri İşleme ve Saklama Matrisi",
+    s4Lead: "Şeffaflık ilkemiz gereğince işlenen tüm veri kategorileri aşağıda listelenmiştir:",
+    matrixHeaders: {
+      category: "Veri Kategorisi",
+      data: "İçerik",
+      purpose: "İşleme Amacı",
+      storage: "Depolama Yeri",
+      retention: "Saklama Süresi"
+    },
+    matrixRows: [
+      {
+        category: "QR İçerik Yükü",
+        data: "URL, Wi-Fi, vCard, Metin, E-posta",
+        purpose: "2D Matris Çizimi",
+        storage: "Tarayıcı Belleği (Yerel)",
+        retention: "Sekme kapatıldığında anında silinir"
+      },
+      {
+        category: "Logo Dosyaları",
+        data: "PNG, JPG, SVG, WebP",
+        purpose: "QR Kod Ortasına Yerleşim",
+        storage: "Yerel Bellek / Blob URL",
+        retention: "Oturum bittiğinde silinir"
+      },
+      {
+        category: "Tasarım Ayarları",
+        data: "Tema, renk kodları, nokta stilleri",
+        purpose: "Kullanıcı Kolaylığı",
+        storage: "Cihazınız (localStorage)",
+        retention: "Kullanıcı temizleyene kadar"
+      },
+      {
+        category: "Güvenlik Günlükleri",
+        data: "Anonim IP, User-Agent, HTTP durumu",
+        purpose: "DDoS ve Bot Koruması",
+        storage: "Edge CDN Güvenlik Günlüğü",
+        retention: "14 - 30 Gün (Otomatik Temizleme)"
+      },
+      {
+        category: "Kullanım Telemetrisi",
+        data: "Sayfa görüntüleme, ülke verileri",
+        purpose: "Performans İyileştirme",
+        storage: "Google Analytics 4 (Anonim)",
+        retention: "14 Ay (Toplu Veri)"
+      }
+    ],
+    s5Title: "5. Yerel Tarayıcı Depolama Alanı (localStorage)",
+    s5Lead: "GenerateCustomQR üçüncü taraf izleme çerezleri kullanmaz. Web Storage (localStorage) yalnızca şu amaçlarla kullanılır:",
+    s5Items: [
+      {
+        title: "Tema Tercihi",
+        desc: "Karanlık veya aydınlık mod tercihinizi hatırlar."
+      },
+      {
+        title: "Özel Renk Paletleri",
+        desc: "Gelecekteki tasarımlarınız için seçtiğiniz renk kodlarını kaydeder."
+      },
+      {
+        title: "Son Kullanılan Stiller",
+        desc: "Hızlı çalışma akışı için seçilen nokta ve çerçeve stillerini korur."
+      }
+    ],
+    s5ClearTip: "Kayıtlı tüm ayarlarınızı tarayıcınızın Geliştirici Araçları'ndan (F12 > Uygulama > Yerel Depolama) veya oluşturucu panelindeki 'Sıfırla' düğmesine basarak istediğiniz zaman silebilirsiniz.",
+    s6Title: "6. Üçüncü Taraf Altyapı Sağlayıcıları",
+    s6Lead: "Katı gizlilik standartlarına uyan sektör lideri teknoloji ortaklarıyla çalışıyoruz:",
+    s6Items: [
+      {
+        name: "Cloudflare, Inc.",
+        role: "Küresel CDN, DNS yönlendirme ve DDoS güvenlik filtrelemesi.",
+        privacyUrl: "https://www.cloudflare.com/privacypolicy/"
+      },
+      {
+        name: "Google Analytics (Google LLC)",
+        role: "IP maskeleme özellikli anonimleştirilmiş trafik metrikleri.",
+        privacyUrl: "https://policies.google.com/privacy"
+      },
+      {
+        name: "Google Fonts",
+        role: "Modern web tipografisi için optimize edilmiş stil sayfaları.",
+        privacyUrl: "https://developers.google.com/fonts/faq/privacy"
+      }
+    ],
+    s7Title: "7. Uluslararası Veri Aktarımları",
+    s7Lead: "Küresel güvenlik ve hızlı teslimat sağlamak için ABD merkezli altyapı sağlayıcılarından yararlanıyoruz:",
+    s7Items: [
+      {
+        title: "Veri Gizliliği Çerçevesi (DPF)",
+        desc: "Altyapı sağlayıcılarımız, uluslararası veri aktarımlarında yüksek güvenlik standardı sağlayan sertifikalara sahiptir."
+      },
+      {
+        title: "Standart Sözleşme Maddeleri (SCCs)",
+        desc: "Sınır ötesi teknik veri akışları onaylanmış standart sözleşme hükümleriyle güvence altına alınmıştır."
+      }
+    ],
+    s8Title: "8. Do Not Track (DNT) ve GPC Sinyalleri",
+    s8Text: "GenerateCustomQR Sıfır Bilgi Mimarisi üzerine kurulu olduğundan; siteler arası izleme yapmaz, davranışsal profil oluşturmaz ve asla veri satmaz. Platformumuz, tarayıcınızdan bir DNT veya GPC sinyali gönderilsin ya da gönderilmesin, gizliliğinize varsayılan olarak tam saygı gösterir.",
+    s9Title: "9. Avrupa ve Küresel Gizlilik Hakları (GDPR / KVKK)",
+    s9Lead: "Kişisel verilerin korunması mevzuatı kapsamındaki haklarınız:",
+    s9Rights: [
+      {
+        title: "İşlemenin Hukuki Sebebi",
+        desc: "Teknik günlükler, meşru menfaat ve sistem güvenliğinin sağlanması amacıyla işlenir."
+      },
+      {
+        title: "Bilgi Edinme ve Erişim Hakkı",
+        desc: "Kullanıcı hesabı veya kişisel veritabanı tutmadığımız için sistemlerimizde saklanan bir profiliniz bulunmamaktadır."
+      },
+      {
+        title: "Silme ve Unutulma Hakkı",
+        desc: "Sunucularımızda hiçbir kullanıcı içeriği tutulmaz. Tarayıcı önbelleğinizi temizleyerek tam denetime sahip olursunuz."
+      },
+      {
+        title: "İtiraz Etme Hakkı",
+        desc: "Yerel ayarların kaydedilmesini tarayıcı ayarlarınızdan dilediğiniz an devre dışı bırakabilirsiniz."
+      }
+    ],
+    s10Title: "10. Kaliforniya Gizlilik Bildirimi (CCPA / CPRA)",
+    s10Lead: "Kaliforniya Tüketici Gizliliği Yasası kapsamında beyan ederiz:",
+    s10Points: [
+      {
+        title: "Kişisel Veri Satışı Yoktur",
+        desc: "GenerateCustomQR hiçbir zaman kişisel veri satmamıştır ve satmayacaktır."
+      },
+      {
+        title: "Siteler Arası Takip Yoktur",
+        desc: "Sizi başka sitelerde takip etmiyor ve reklam profili oluşturmuyoruz."
+      },
+      {
+        title: "Eşit Hizmet İlkesi",
+        desc: "Tüm kullanıcılar tam ve ücretsiz özellik setinden eşit şekilde yararlanır."
+      }
+    ],
+    s11Title: "11. Brezilya Gizlilik Hakları (LGPD)",
+    s11Text: "Brezilya Genel Veri Koruma Kanunu (LGPD) uyarınca tüm kullanıcı haklarına saygı gösterilmektedir. QR kod üretiminin yerel olarak gerçekleşmesi sayesinde gizliliğiniz tam koruma altındadır.",
+    s12Title: "12. Çocukların Gizliliğinin Korunması (COPPA)",
+    s12Text: "Hizmetimiz 13 yaşın altındaki çocuklara yönelik değildir. Kullanım için hesap açılması gerekmediğinden çocuklara ait hiçbir kişisel veri toplanmaz.",
+    s13Title: "13. Teknik Veri Güvenliği ve İhlal Bildirim Protokolü",
+    s13Lead: "Kullandığımız gelişmiş güvenlik standartları:",
+    s13Items: [
+      {
+        title: "Uçtan Uca TLS 1.3 Şifreleme",
+        desc: "Tarayıcınız ile sunucularımız arasındaki tüm iletişim en güncel şifreleme protokolleriyle korunur."
+      },
+      {
+        title: "Katı İçerik Güvenlik Politikası (CSP)",
+        desc: "Siteler arası betik çalıştırma (XSS) saldırılarına karşı güçlü koruma."
+      },
+      {
+        title: "72 Saatlik İhlal Bildirim Protokolü",
+        desc: "Olası bir altyapı güvenlik olayında yasal bildirimler 72 saat içinde yetkili mercilere iletilir."
+      }
+    ],
+    s14Title: "14. Şirket Devirleri ve Birleşmeler",
+    s14Text: "Olası bir birleşme veya devir durumunda, bu gizlilik politikası ve sıfır bilgi ilkeleri geçerliliğini korumaya devam edecektir.",
+    s15Title: "15. Harici Bağlantılar ve Üçüncü Taraf Siteler",
+    s15Text: "Web sitemiz harici bağlantılar içerebilir. Üçüncü taraf web sitelerinin gizlilik uygulamalarından sorumlu değiliz.",
+    s16Title: "16. Politika Güncellemeleri ve İletişim",
+    s16Text: "Gizlilik politikamız veya teknik mimarimizle ilgili sorularınız için legal@generatecustomqr.com adresi üzerinden bizimle iletişime geçebilirsiniz.",
+    faqTitle: "Gizlilik Hakkında Sıkça Sorulan Sorular",
+    faqs: [
+      {
+        q: "GenerateCustomQR'ın yasal veri sorumlusu kimdir?",
+        a: "GenerateCustomQR Media & Software Technologies veri sorumlusu olarak faaliyet gösterir. Sorularınız için: legal@generatecustomqr.com."
+      },
+      {
+        q: "QR koduma girdiğim bilgileri görebilir misiniz?",
+        a: "Hayır. Oluşturma işlemi yalnızca tarayıcınızın yerel belleğinde gerçekleşir. Şifreleriniz, iletişim bilgileriniz veya URL'leriniz sunucularımıza ulaşmaz."
+      },
+      {
+        q: "Yüklenen logo resimleri sunucularınızda saklanıyor mu?",
+        a: "Hayır. Yüklediğiniz logolar tarayıcınızın yerel belleğinde geçici olarak tutulur ve asla buluta kaydedilmez."
+      },
+      {
+        q: "QR kodlarımın ne zaman ve nerede tarandığını takip ediyor musunuz?",
+        a: "Hayır. Statik QR kodları üretiyoruz; ara yönlendirme sunucuları veya takip pikselleri kullanmıyoruz."
+      },
+      {
+        q: "Uluslararası veri aktarımları nasıl düzenleniyor?",
+        a: "QR oluşturma işlemi tamamen cihazınızda yerel çalışır. Asgari düzeydeki ağ telemetrisi ise uluslararası veri güvenliği standartlarına uygun şekilde korunur."
+      },
+      {
+        q: "GenerateCustomQR KVKK ve GDPR ile uyumlu mu?",
+        a: "Evet. İstemci taraflı Sıfır Bilgi mimarimiz sayesinde KVKK, GDPR ve CCPA gibi küresel gizlilik standartlarının tüm gereksinimlerini eksiksiz karşılıyoruz."
+      }
+    ],
+    ctaTitle: "Gizlilik mimarimiz hakkında sorularınız mı var?",
+    ctaDesc: "Tam şeffaflığı taahhüt ediyoruz. Güvenliğimizle ilgili teknik sorularınız varsa ekibimiz yanıtlamaktan memnuniyet duyar.",
+    ctaBtn: "Gizlilik Ekibiyle İletişime Geçin"
   }
 };
 

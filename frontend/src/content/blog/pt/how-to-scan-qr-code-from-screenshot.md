@@ -3,7 +3,7 @@ title: "Como Ler um Código QR de uma Captura de Tela (Celular, PC e Mac)"
 description: "Guia passo a passo para escanear e decodificar códigos QR a partir de capturas de tela ou imagens no celular e computador sem uma segunda câmera."
 pubDate: 2026-08-28
 author: "Equipe GenerateCustomQR"
-keywords: "como escanear qr de print, escanear qr code no mesmo celular, ler qr code no pc, decodificar qr code de imagem"
+keywords: "como ler qr code de uma foto, como ler qr code no próprio celular, como ler qr code no celular, leitor de qr code online, como escanear qr de print, ler qr code de imagem, ler qr code online"
 category: "guides"
 readingTime: 6
 featured: true
@@ -167,4 +167,7 @@ O iOS possui detecção nativa de **Texto ao Vivo e QR Codes** no aplicativo Fot
 
 ---
 
-Crie e leia seus códigos QR gratuitamente no **[GenerateCustomQR](/pt)**.
+## Criar Códigos QR Vetoriais em Alta Definição
+
+Deseja recriar um link decodificado em formato de código QR limpo e em alta resolução? Use nosso **[Gerador de QR Code Grátis](/pt)** para gerar arquivos vetoriais prontos para impressão em SVG ou PDF em segundos.
+

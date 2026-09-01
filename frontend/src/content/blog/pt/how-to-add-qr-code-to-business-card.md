@@ -18,6 +18,8 @@ faqs:
     a: "Não. Os códigos vCard gerados no GenerateCustomQR são estáticos e nunca expiram."
   - q: "Posso colocar a logo da minha empresa no QR code do cartão?"
     a: "Sim. O GenerateCustomQR ajusta a correção de erro para Nível H (30%) automaticamente para manter leitura rápida mesmo com logotipo no centro."
+  - q: "Onde devo posicionar o QR code no meu cartão de visita?"
+    a: "Posicione o QR code no canto inferior direito ou no verso do cartão com pelo menos 2 a 3 mm de margem branca em volta (área de silêncio)."
 howToSteps:
   - name: "Crie o seu QR code vCard"
     text: "Acesse o GenerateCustomQR, selecione o tipo vCard e preencha seus dados de contato profissional."
@@ -129,6 +131,15 @@ Exporte sempre em formatos profissionais de alta definição:
 
 ---
 
+## Passo 5: Enviar para a Gráfica
+
+1. Insira o arquivo SVG ou PDF no seu software de diagramação (Canva, InDesign, Illustrator).
+2. Garanta pelo menos 2 a 3 mm de margem de segurança branca ao redor do código.
+3. Escolha acabamento fosco (matte) para evitar reflexos que atrapalham a câmera.
+4. Faça uma prova impressa e teste com diferentes celulares antes de rodar a tiragem completa.
+
+---
+
 ## Boas Práticas e Erros na Impressão
 
 <div class="blog-checklist-grid">
@@ -184,5 +195,17 @@ Exporte sempre em formatos profissionais de alta definição:
 </div>
 
 ---
+
+## O Resultado
+
+Um cartão de visitas com QR code vCard bem planejado:
+- Salva contatos em 1 segundo sem erros manuais
+- Transmite autoridade e modernidade técnica
+- Funciona para sempre sem custos mensais
+- Causa uma primeira impressão memorável
+
+---
+
+## Crie o QR Code do seu Cartão de Visita
 
 Crie seu cartão de visita com QR code vCard grátis no **[GenerateCustomQR](/pt)**.

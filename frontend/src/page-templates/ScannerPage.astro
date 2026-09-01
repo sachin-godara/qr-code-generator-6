@@ -20,15 +20,109 @@ const breadcrumbs = [
 
 const faqs = seo.faqs || [];
 
+const scannerLocMap: Record<Locale, {
+  redirect: string;
+  chat: string;
+  wifi: string;
+  vcard: string;
+  gps: string;
+  cal: string;
+  barcode: string;
+  payload: string;
+  waTitle: string;
+  waDesc: string;
+  barcodeTitle: string;
+  barcodeDesc: string;
+  exploreTools: string;
+}> = {
+  en: {
+    redirect: "Instant Redirect",
+    chat: "Direct Chat",
+    wifi: "1-Tap Connect",
+    vcard: "Phonebook .vcf",
+    gps: "Live GPS",
+    cal: ".ics Calendar",
+    barcode: "Multi-Format",
+    payload: "Raw Payload",
+    waTitle: "WhatsApp Web & Direct Chat",
+    waDesc: "Scan wa.me links to initiate chats with pre-filled messages instantly.",
+    barcodeTitle: "1D/2D Barcodes & Aztec",
+    barcodeDesc: "Read DataMatrix, UPC, EAN, Aztec, and Code-128 alongside QR codes.",
+    exploreTools: "Explore Free QR Code Generator Tools"
+  },
+  es: {
+    redirect: "Redirección Instantánea",
+    chat: "Chat Directo",
+    wifi: "Conexión en 1 Toque",
+    vcard: "Agenda .vcf",
+    gps: "GPS en Directo",
+    cal: "Calendario .ics",
+    barcode: "Multiformato",
+    payload: "Datos Directos",
+    waTitle: "WhatsApp Web y Chat Directo",
+    waDesc: "Escanea enlaces wa.me para abrir conversaciones con texto prefijado al instante.",
+    barcodeTitle: "Códigos de Barras 1D/2D y Aztec",
+    barcodeDesc: "Lee DataMatrix, UPC, EAN, Aztec y Code-128 además de códigos QR estándar.",
+    exploreTools: "Explora Generadores de Códigos QR Gratuitos"
+  },
+  pt: {
+    redirect: "Redirecionamento Rápido",
+    chat: "Chat Direto",
+    wifi: "Conexão em 1 Toque",
+    vcard: "Agenda .vcf",
+    gps: "GPS em Tempo Real",
+    cal: "Calendário .ics",
+    barcode: "Multiformato",
+    payload: "Dados Diretos",
+    waTitle: "WhatsApp Web e Conversa Direta",
+    waDesc: "Escaneie links wa.me para iniciar conversas com mensagens prontas instantaneamente.",
+    barcodeTitle: "Códigos de Barras 1D/2D e Aztec",
+    barcodeDesc: "Decodifique DataMatrix, UPC, EAN, Aztec e Code-128 além de QR codes.",
+    exploreTools: "Conheça Outras Ferramentas de QR Code Gratuitas"
+  },
+  de: {
+    redirect: "Sofort-Weiterleitung",
+    chat: "Direkt-Chat",
+    wifi: "1-Klick-Verbindung",
+    vcard: "Adressbuch .vcf",
+    gps: "Live-Standort",
+    cal: ".ics-Kalender",
+    barcode: "Multi-Format",
+    payload: "Rohdaten",
+    waTitle: "WhatsApp Web & Direkt-Chat",
+    waDesc: "Scannen Sie wa.me-Links für sofortige Chat-Starts mit vorausgefülltem Text.",
+    barcodeTitle: "1D/2D Barcodes & Aztec",
+    barcodeDesc: "Liest neben QR-Codes auch DataMatrix, UPC, EAN, Aztec und Code-128.",
+    exploreTools: "Weitere kostenlose QR-Code Generatoren entdecken"
+  },
+  tr: {
+    redirect: "Anında Yönlendirme",
+    chat: "Doğrudan Sohbet",
+    wifi: "Tek Dokunuşla Bağlan",
+    vcard: "Rehber .vcf",
+    gps: "Canlı GPS",
+    cal: ".ics Takvim",
+    barcode: "Çoklu Format",
+    payload: "Ham Veri",
+    waTitle: "WhatsApp Web & Doğrudan Sohbet",
+    waDesc: "Hazır mesajlı sohbetleri anında başlatmak için wa.me bağlantılarını tarayın.",
+    barcodeTitle: "1D/2D Barkodlar & Aztec",
+    barcodeDesc: "QR kodların yanı sıra DataMatrix, UPC, EAN, Aztec ve Code-128 okuyun.",
+    exploreTools: "Ücretsiz QR Kod Oluşturucu Araçlarını Keşfedin"
+  }
+};
+
+const locStrings = scannerLocMap[locale] || scannerLocMap.en;
+
 const supportedTypes = [
-  { icon: "link", title: t(locale, 'scanner.formats.urlsTitle'), desc: t(locale, 'scanner.formats.urlsDesc'), color: "text-blue-600 bg-blue-50 border-blue-200/60", badge: "Instant Redirect" },
-  { icon: "chat", title: "WhatsApp Web & Direct Chat", desc: "Scan wa.me links to initiate chats with pre-filled messages instantly.", color: "text-emerald-600 bg-emerald-50 border-emerald-200/60", badge: "Direct Chat" },
-  { icon: "wifi", title: t(locale, 'scanner.formats.wifiTitle'), desc: t(locale, 'scanner.formats.wifiDesc'), color: "text-amber-600 bg-amber-50 border-amber-200/60", badge: "1-Tap Connect" },
-  { icon: "contact_page", title: t(locale, 'scanner.formats.vcardTitle'), desc: t(locale, 'scanner.formats.vcardDesc'), color: "text-indigo-600 bg-indigo-50 border-indigo-200/60", badge: "Phonebook .vcf" },
-  { icon: "location_on", title: t(locale, 'scanner.formats.mapsTitle'), desc: t(locale, 'scanner.formats.mapsDesc'), color: "text-rose-600 bg-rose-50 border-rose-200/60", badge: "Live GPS" },
-  { icon: "event", title: t(locale, 'scanner.formats.eventsTitle'), desc: t(locale, 'scanner.formats.eventsDesc'), color: "text-purple-600 bg-purple-50 border-purple-200/60", badge: ".ics Calendar" },
-  { icon: "barcode_scanner", title: "1D/2D Barcodes & Aztec", desc: "Read DataMatrix, UPC, EAN, Aztec, and Code-128 alongside QR codes.", color: "text-cyan-600 bg-cyan-50 border-cyan-200/60", badge: "Multi-Format" },
-  { icon: "description", title: t(locale, 'scanner.formats.textTitle'), desc: t(locale, 'scanner.formats.textDesc'), color: "text-zinc-600 bg-zinc-100 border-zinc-200/60", badge: "Raw Payload" }
+  { icon: "link", title: t(locale, 'scanner.formats.urlsTitle'), desc: t(locale, 'scanner.formats.urlsDesc'), color: "text-blue-600 bg-blue-50 border-blue-200/60", badge: locStrings.redirect },
+  { icon: "chat", title: locStrings.waTitle, desc: locStrings.waDesc, color: "text-emerald-600 bg-emerald-50 border-emerald-200/60", badge: locStrings.chat },
+  { icon: "wifi", title: t(locale, 'scanner.formats.wifiTitle'), desc: t(locale, 'scanner.formats.wifiDesc'), color: "text-amber-600 bg-amber-50 border-amber-200/60", badge: locStrings.wifi },
+  { icon: "contact_page", title: t(locale, 'scanner.formats.vcardTitle'), desc: t(locale, 'scanner.formats.vcardDesc'), color: "text-indigo-600 bg-indigo-50 border-indigo-200/60", badge: locStrings.vcard },
+  { icon: "location_on", title: t(locale, 'scanner.formats.mapsTitle'), desc: t(locale, 'scanner.formats.mapsDesc'), color: "text-rose-600 bg-rose-50 border-rose-200/60", badge: locStrings.gps },
+  { icon: "event", title: t(locale, 'scanner.formats.eventsTitle'), desc: t(locale, 'scanner.formats.eventsDesc'), color: "text-purple-600 bg-purple-50 border-purple-200/60", badge: locStrings.cal },
+  { icon: "barcode_scanner", title: locStrings.barcodeTitle, desc: locStrings.barcodeDesc, color: "text-cyan-600 bg-cyan-50 border-cyan-200/60", badge: locStrings.barcode },
+  { icon: "description", title: t(locale, 'scanner.formats.textTitle'), desc: t(locale, 'scanner.formats.textDesc'), color: "text-zinc-600 bg-zinc-100 border-zinc-200/60", badge: locStrings.payload }
 ];
 ---
 <BaseLayout
@@ -191,15 +285,15 @@ const supportedTypes = [
 
       <!-- Explore Other Tools Ribbon -->
       <section class="mt-16 sm:mt-24 pt-10 sm:pt-14 border-t border-zinc-200/60 space-y-6">
-        <h2 class="text-2xl sm:text-3xl font-black text-center text-on-surface tracking-tight">Explore Free QR Code Generator Tools</h2>
+        <h2 class="text-2xl sm:text-3xl font-black text-center text-on-surface tracking-tight">{locStrings.exploreTools}</h2>
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">
           {[
-            { icon: "link", title: "URL to QR", desc: "Website links & portfolios", url: getLocalizedUrl(locale, '/url-qr-code-generator') },
-            { icon: "wifi", title: "WiFi QR", desc: "1-tap wifi connections", url: getLocalizedUrl(locale, '/wifi-qr-code') },
-            { icon: "contact_page", title: "vCard QR", desc: "Digital business cards", url: getLocalizedUrl(locale, '/vcard-qr-code') },
-            { icon: "image", title: "QR with Logo", desc: "Branded custom logos", url: getLocalizedUrl(locale, '/qr-code-with-logo') },
-            { icon: "event", title: "Event QR", desc: "Save dates to calendars", url: getLocalizedUrl(locale, '/event-qr-code') },
-            { icon: "mail", title: "Email QR", desc: "Pre-filled email drafts", url: getLocalizedUrl(locale, '/email-qr-code') }
+            { icon: "link", title: t(locale, 'footer.urlQR'), desc: t(locale, 'landing.formats.items.urlDesc'), url: getLocalizedUrl(locale, '/url-qr-code-generator') },
+            { icon: "wifi", title: t(locale, 'footer.wifiQR'), desc: t(locale, 'landing.formats.items.wifiDesc'), url: getLocalizedUrl(locale, '/wifi-qr-code') },
+            { icon: "contact_page", title: t(locale, 'footer.vcardQR'), desc: t(locale, 'landing.formats.items.vcardDesc'), url: getLocalizedUrl(locale, '/vcard-qr-code') },
+            { icon: "image", title: t(locale, 'footer.logoQR'), desc: t(locale, 'landing.features.card2Title'), url: getLocalizedUrl(locale, '/qr-code-with-logo') },
+            { icon: "event", title: t(locale, 'footer.eventQR'), desc: t(locale, 'landing.formats.items.eventDesc'), url: getLocalizedUrl(locale, '/event-qr-code') },
+            { icon: "mail", title: t(locale, 'footer.emailQR'), desc: t(locale, 'landing.formats.items.emailDesc'), url: getLocalizedUrl(locale, '/email-qr-code') }
           ].map((tool) => (
             <a
               href={tool.url}

@@ -23,15 +23,16 @@
     ]
   },
   "scanner": {
-    "title": "Leitor de QR Code Online Grátis — Câmera e Imagem (Sem App)",
-    "description": "Escaneie e decodifique QR codes online instantaneamente. Use a câmera do celular ou PC, envie imagens ou cole capturas com Ctrl+V. 100% gratuito e seguro.",
-    "keywords": "leitor de qr code, escanear qr code online, ler qr code com camera, escanear qr code de imagem, leitor qr online gratis, ler qr code pc celular, colar captura qr ctrl v",
+    "title": "Leitor de QR Code Online — Ler QR Code Grátis com Câmera e Imagem",
+    "description": "Leitor de QR code online grátis para ler QR code no celular ou PC. Saiba como ler QR code no próprio celular, envie fotos ou cole com Ctrl+V — rápido e seguro.",
+    "keywords": "leitor de qr code, leitor qr code, ler qr code, ler qr code online, como ler qr code, como ler qr code no celular, como ler qr code no próprio celular, como ler qr code de uma foto, leitor qr code online, leitor de qr code online, whatsapp web qr code, codigo qr, escanear qr code online, leitor qr code pc",
     "faqs": [
       { "q": "Preciso baixar um aplicativo para ler QR Code?", "a": "Não! A maioria dos celulares modernos possui leitor de QR code na câmera padrão, ou você pode usar nosso leitor web grátis nesta página." },
       { "q": "Como escanear um QR code no Android?", "a": "Abra a câmera do celular e aponte para o QR code, ou use o Google Lens ou nosso leitor online." },
       { "q": "Como escanear um QR code no iPhone (iOS)?", "a": "Abra o app Câmera, aponte para o código e toque na notificação amarela que aparecer." },
       { "q": "Posso escanear um QR code a partir de uma captura de tela?", "a": "Sim! Use a aba 'Enviar Imagem' acima ou pressione Ctrl+V para colar diretamente da área de transferência." },
-      { "q": "É seguro escanear QR codes neste site?", "a": "Sim, 100%. Toda a decodificação ocorre localmente no seu navegador sem que nenhuma imagem seja enviada ou armazenada em servidores." }
+      { "q": "Onde fica o leitor de QR code do WhatsApp Web?", "a": "Abra o WhatsApp no celular, vá em Configurações (iOS) ou toque nos três pontinhos (Android), selecione 'Aparelhos conectados' e toque em 'Conectar um aparelho' para apontar a câmera ao código em web.whatsapp.com." },
+      { "q": "É seguro escanear QR codes neste site?", "a": "Sim, 100% seguro. Toda a decodificação ocorre localmente no seu navegador via WebAssembly sem que nenhuma imagem seja enviada ou armazenada em servidores." }
     ]
   }
 }

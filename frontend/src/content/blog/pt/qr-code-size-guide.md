@@ -12,6 +12,10 @@ faqs:
     a: "O tamanho mínimo absoluto para escaneamento confiável a curta distância (menos de 20 cm) é de 2×2 cm. Para a maioria das impressões comerciais, recomenda-se 3×3 cm. Use a regra: tamanho mínimo = distância de escaneamento ÷ 10."
   - q: "Qual o tamanho ideal de um QR code para cartão de visita?"
     a: "Em um cartão de visita padrão (9×5 cm), o QR code deve ter no mínimo 1,5×1,5 cm, preferencialmente 2×2 cm, com pelo menos 3 mm de margem branca de respiro ao redor."
+  - q: "Qual o tamanho de QR code necessário para um outdoor ou painel de rua?"
+    a: "Para um outdoor lido de um carro a 10 metros: no mínimo 100×100 cm. Para placas de calçadas a 2 metros: no mínimo 20×20 cm. A fórmula é: tamanho = distância de visão (cm) ÷ 10."
+  - q: "Mais dados gravados no QR code exigem um tamanho maior de impressão?"
+    a: "Sim. Um QR code com link curto (20 caracteres) possui muito menos módulos do que um com vCard completo (300+ caracteres). Mais dados = mais módulos = exige dimensões físicas maiores para a mesma distância de escaneamento."
   - q: "Qual resolução usar ao imprimir um QR code?"
     a: "Imprima sempre com no mínimo 300 DPI. No GenerateCustomQR você pode exportar em SVG vetorial infinito ou PDF a 300 DPI, perfeitos para qualquer dimensão sem pixelar."
 ---
@@ -90,12 +94,53 @@ Quanto mais texto ou caracteres forem codificados, mais módulos (pontos) a matr
 | **Q** (Quartil) | 25% | +20% tamanho | Ambientes externos, embalagens |
 | **H** (Alto) | 30% | +30% tamanho | **Obrigatório para Logos Centrais** |
 
+Quando você insere um logotipo no seu QR code, use sempre a Correção de Erro **H**. Isso tornará o código fisicamente maior, portanto considere os 30% extras no seu planejamento de impressão.
+
+---
+
+## Requisitos de Resolução por Formato de Exportação
+
+O tamanho ideal não depende apenas das dimensões físicas — você também precisa da resolução correta para uma impressão nítida:
+
+| Formato de Exportação | Resolução Recomendada | Melhor Uso |
+| :--- | :--- | :--- |
+| **PNG** | 300 DPI para impressão, 72 DPI para web | Formato versátil para telas e mídias |
+| **SVG** | Infinita (vetorial) | Impressão em qualquer tamanho sem pixelar |
+| **PDF** | 300 DPI embutido | Gráficas profissionais e materiais editoriais |
+
+No [GenerateCustomQR](/pt), você pode exportar em PNG de até **8192 × 8192 pixels** ou em SVG vetorial infinito totalmente grátis.
+
+---
+
+## Erros Comuns de Dimensionamento
+
+### 1. Imprimir em tamanho excessivamente reduzido
+Códigos com menos de 2 cm × 2 cm apresentam alto índice de falhas em celulares antigos ou ambientes com pouca luz.
+
+### 2. Esquecer a margem de respiro (Quiet Zone)
+A borda branca ao redor do código deve ter no mínimo 4 módulos de largura. Cortar essa margem impede que o sensor da câmera identifique o perímetro do QR code.
+
+### 3. Utilizar imagens em baixa resolução
+Um PNG de 300×300 pixels fica ótimo na tela do celular, mas fica embaçado ao ser impresso em um cartaz. Para gráfica, exporte em SVG ou PDF a 300 DPI.
+
 ---
 
 ## Checklist de Impressão
 
-- [x] Calcular o tamanho com **Distância ÷ 10**
+- [x] Calcular o tamanho com **Distância de Leitura ÷ 10**
 - [x] Adicionar 30% se utilizar logotipo central (Nível H)
 - [x] Manter margem de respiro de 4 módulos ao redor
 - [x] Baixar em SVG vetorial ou PDF a 300 DPI
-- [x] Realizar teste de leitura com celulares reais antes de imprimir o lote
+- [x] Realizar teste de leitura com 3 celulares reais antes de imprimir o lote
+
+---
+
+## Crie o QR Code Perfeito com Tamanho Personalizado
+
+Pronto para criar seu QR code nas dimensões exatas? No [GenerateCustomQR](/pt) você tem acesso a exportações em altíssima resolução, arquivos vetoriais SVG e PDFs com 300 DPI — 100% grátis e sem marcas d'água.
+
+- [Criar QR Code para URL →](/pt/url-qr-code-generator)
+- [Criar QR Code para Wi-Fi →](/pt/wifi-qr-code)
+- [Criar QR Code vCard para Cartão de Visita →](/pt/vcard-qr-code)
+- [Boas Práticas de Design para Impressão →](/pt/blog/qr-code-design-best-practices-for-print)
+

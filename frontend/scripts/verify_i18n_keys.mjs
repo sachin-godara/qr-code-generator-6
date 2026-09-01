@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-const locales = ['en', 'es', 'pt', 'de'];
+const locales = ['en', 'es', 'pt', 'de', 'tr'];
 const dicts = {};
 
 locales.forEach(loc => {
@@ -57,7 +57,8 @@ for (const key of allKeys) {
 }
 
 if (missingCount === 0) {
-  console.log('✅ ALL React translation keys exist across ALL 4 locales (en, es, pt, de)!');
+  console.log('✅ ALL React translation keys exist across ALL 5 locales (en, es, pt, de, tr)!');
 } else {
   console.error(`❌ Total missing keys: ${missingCount}`);
+  process.exit(1);
 }

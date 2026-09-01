@@ -3,17 +3,20 @@ import en from './locales/en.json';
 import es from './locales/es.json';
 import pt from './locales/pt.json';
 import de from './locales/de.json';
+import tr from './locales/tr.json';
 
 import enSeo from './seo/en.json';
 import esSeo from './seo/es.json';
 import ptSeo from './seo/pt.json';
 import deSeo from './seo/de.json';
+import trSeo from './seo/tr.json';
 
 export const dictionaries: Record<Locale, typeof en> = {
   en,
   es,
   pt,
   de,
+  tr,
 };
 
 export const seoDictionaries: Record<Locale, typeof enSeo> = {
@@ -21,6 +24,7 @@ export const seoDictionaries: Record<Locale, typeof enSeo> = {
   es: esSeo,
   pt: ptSeo,
   de: deSeo,
+  tr: trSeo,
 };
 
 /**

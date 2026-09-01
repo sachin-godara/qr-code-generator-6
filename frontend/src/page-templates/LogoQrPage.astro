@@ -210,6 +210,51 @@ const metaMap: Record<Locale, {
     ctaTitle: "Bereit für Ihren Marken-QR-Code?",
     ctaDesc: "Erstellen Sie individuelle QR-Codes mit Ihrem Logo im Zentrum in wenigen Sekunden.",
     ctaBtn: "Jetzt QR-Code mit Logo erstellen ↑"
+  },
+  tr: {
+    title: "Logolu QR Kod Oluşturucu — Ortasına Logo Ekleme",
+    desc: "Şirket logonuzu, Instagram simgenizi veya özel resminizi ortasına yerleştirerek ücretsiz özel QR kodu oluşturun. Otomatik hata düzeltme H seviyesi dahildir.",
+    keywords: "logolu qr kod olusturucu, qr kodun ortasina logo koyma, resimli qr kod olusturucu, ucretsiz logolu qr kod, sirket logosu qr kod",
+    badge: "Ortada Logo Yerleşimi",
+    specsTitle: "Temel Teknik Özellikler",
+    specs: [
+      { icon: "verified_user", title: "Otomatik Seviye H Kurtarma", desc: "Kodun %30'una kadar olan kısmının logo ile kaplanmasına izin verirken anında okunabilirliği korur." },
+      { icon: "crop_square", title: "Kare ve Yuvarlak Logo Kartları", desc: "Logonuzun şekline ve marka tarzınıza uyacak şekilde dairesel, kare veya yuvarlatılmış dolguları seçin." },
+      { icon: "auto_fix_high", title: "Akıllı Sessiz Alan Koruması", desc: "Piksellerin logonuzla çakışmasını engelleyen otomatik arka plan kontrast pedi uygular." },
+      { icon: "brand_family", title: "46 Hazır Sosyal Medya Simgesi", desc: "Instagram, WhatsApp, YouTube, LinkedIn, Spotify ve daha fazlası için tek tıkla hazır vektör simgeler." }
+    ],
+    stepsTitle: "4 Kolay Adımda Logolu QR Kod Nasıl Yapılır",
+    steps: [
+      { icon: "edit", title: "1. İçeriği Girin", desc: "Oluşturucuya web adresi, metin, WiFi veya kartvizit bilgilerinizi yazın." },
+      { icon: "image", title: "2. Logonuzu Yükleyin", desc: "Özel PNG/SVG logonuzu yükleyin veya 46 hazır sosyal medya simgesinden seçin." },
+      { icon: "tune", title: "3. Boyut ve Şekli Ayarlayın", desc: "Logo boyutunu ve arka plan koruma şeklini (yuvarlak/kare) özelleştirin." },
+      { icon: "download", title: "4. İndirin ve Kullanın", desc: "Yüksek çözünürlüklü PNG, Vektör SVG veya baskıya hazır PDF olarak indirin." }
+    ],
+    featuresTitle: "Gelişmiş Logo Özellikleri",
+    features: [
+      { icon: "verified_user", title: "Otomatik Hata Düzeltme H", desc: "Logo eklendiğinde sistem otomatik olarak H seviyesine geçer ve güvenilir tarama sağlar." },
+      { icon: "crop_square", title: "Kare & Yuvarlak Şekiller", desc: "Logonuzun hatlarına kusursuz uyum sağlayan özel logo çerçevesi seçin." },
+      { icon: "auto_fix_high", title: "Otomatik Koruma Alanı", desc: "Logonun etrafındaki pikselleri temizleyerek kusursuz görsel netlik sunar." },
+      { icon: "brand_family", title: "46 Popüler Marka İkonu", desc: "Sosyal medya ve ödeme sistemleri için hazır şeffaf ikonlar." }
+    ],
+    tipsTitle: "Logolu QR Kodları İçin İpuçları",
+    tips: [
+      { icon: "visibility", title: "Önerilen Boyut: %20–25", desc: "Kod alanının %20 ila %25'ini kaplayan logolar maksimum okunabilirlik sağlar." },
+      { icon: "palette", title: "Şeffaf PNG Tercih Edin", desc: "Arka planı şeffaf olan logolar kod tasarımınızın renkleriyle mükemmel uyum yakalar." },
+      { icon: "contrast", title: "Koruma Boşluğunu Koruyun", desc: "Koyu renkli logoların etrafında açık renkli koruma dolgusu kullanın." },
+      { icon: "verified", title: "Baskı Öncesinde Test Edin", desc: "Farklı telefon kameralarıyla test taraması yaparak onaylayın." }
+    ],
+    faqsTitle: "Logolu QR Kodlar Hakkında Sıkça Sorulan Sorular",
+    faqs: [
+      { q: "Logolu QR kodlar sorunsuz taranır mı?", a: "Evet! Sistemimiz hata düzeltme seviyesini otomatik olarak H (%30 kurtarma) seviyesine yükselterek kusursuz tarama sağlar." },
+      { q: "Hangi logo dosya formatları desteklenir?", a: "PNG, JPG, WebP ve SVG vektör formatlarını yükleyebilirsiniz." },
+      { q: "Logo ekleme özelliği ücretsiz mi?", a: "Evet, %100 ücretsizdir; filigran veya gizli ücret yoktur." },
+      { q: "Logo kartının şekli değiştirilebilir mi?", a: "Evet, yuvarlak, kare ve yumuşak köşeli dolgu stilleri arasından seçim yapabilirsiniz." }
+    ],
+    otherToolsTitle: "Diğer Ücretsiz QR Kod Araçlarını Keşfedin",
+    ctaTitle: "Logolu QR Kodunuzu Oluşturmaya Hazır mısınız?",
+    ctaDesc: "Ortasında kendi logonuz bulunan yüksek çözünürlüklü özel QR kodları saniyeler içinde oluşturun.",
+    ctaBtn: "Hemen Logolu QR Kod Oluştur ↑"
   }
 };
 
@@ -221,12 +266,12 @@ const breadcrumbs = [
 ];
 
 const relatedTools = [
-  { icon: "link", title: "URL to QR", desc: "Website links & portfolios", url: getLocalizedUrl(locale, '/url-qr-code-generator') },
-  { icon: "wifi", title: "WiFi QR", desc: "1-tap wifi connections", url: getLocalizedUrl(locale, '/wifi-qr-code') },
-  { icon: "contact_page", title: "vCard QR", desc: "Digital business cards", url: getLocalizedUrl(locale, '/vcard-qr-code') },
-  { icon: "event", title: "Event QR", desc: "Save dates to calendars", url: getLocalizedUrl(locale, '/event-qr-code') },
-  { icon: "mail", title: "Email QR", desc: "Pre-filled email drafts", url: getLocalizedUrl(locale, '/email-qr-code') },
-  { icon: "qr_code_scanner", title: "QR Scanner", desc: "Camera & image decoder", url: getLocalizedUrl(locale, '/qr-code-scanner') }
+  { icon: "link", title: t(locale, 'footer.urlQR'), desc: t(locale, 'landing.formats.items.urlDesc'), url: getLocalizedUrl(locale, '/url-qr-code-generator') },
+  { icon: "wifi", title: t(locale, 'footer.wifiQR'), desc: t(locale, 'landing.formats.items.wifiDesc'), url: getLocalizedUrl(locale, '/wifi-qr-code') },
+  { icon: "contact_page", title: t(locale, 'footer.vcardQR'), desc: t(locale, 'landing.formats.items.vcardDesc'), url: getLocalizedUrl(locale, '/vcard-qr-code') },
+  { icon: "event", title: t(locale, 'footer.eventQR'), desc: t(locale, 'landing.formats.items.eventDesc'), url: getLocalizedUrl(locale, '/event-qr-code') },
+  { icon: "mail", title: t(locale, 'footer.emailQR'), desc: t(locale, 'landing.formats.items.emailDesc'), url: getLocalizedUrl(locale, '/email-qr-code') },
+  { icon: "qr_code_scanner", title: t(locale, 'footer.scanner'), desc: t(locale, 'scanner.formats.urlsDesc'), url: getLocalizedUrl(locale, '/qr-code-scanner') }
 ];
 
 const howTo = {

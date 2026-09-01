@@ -3,7 +3,7 @@ title: "Cómo Escanear un Código QR de una Captura de Pantalla (Móvil, PC y Ma
 description: "Guía paso a paso para decodificar códigos QR desde capturas de pantalla o imágenes guardadas en tu teléfono o PC sin necesitar una segunda cámara."
 pubDate: 2026-08-28
 author: "Equipo GenerateCustomQR"
-keywords: "escanear qr desde captura, como escanear qr en el mismo movil, escanear qr en pc, leer qr desde imagen, escanear qr sin otra camara"
+keywords: "como escanear un código qr desde mi celular, escanear codigo qr desde imagen, leer código qr online, lector de qr online, escanear qr desde captura, lector qr online sin descargar, escanear qr en el mismo movil"
 category: "guides"
 readingTime: 6
 featured: true
@@ -169,4 +169,7 @@ En Android dispones de dos opciones principales: **Google Fotos (Google Lens)** 
 
 ---
 
+## Crea Códigos QR Vectoriales en Alta Definición
+
 ¿Necesitas compartir una versión limpia del enlace? Utiliza nuestro **[Generador de Códigos QR](/es)** para recrear un código vectorial en SVG o PDF a 300 DPI en segundos.
+

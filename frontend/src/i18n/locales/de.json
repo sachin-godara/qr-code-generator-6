@@ -5,7 +5,8 @@
     "blog": "Blog",
     "scan": "Scannen",
     "scanQR": "QR-Code scannen",
-    "selectLanguage": "Sprache wählen"
+    "selectLanguage": "Sprache wählen",
+    "language": "Sprache"
   },
   "studio": {
     "tabs": {
@@ -830,7 +831,28 @@
     },
     "ctaTitle": "Möchten Sie einen eigenen QR-Code erstellen?",
     "ctaDesc": "Erstellen Sie hochauflösende QR-Codes mit Logos, Farben, Verläufen und Rahmen kostenlos.",
-    "ctaButton": "Jetzt QR-Code erstellen"
+    "ctaButton": "Jetzt QR-Code erstellen",
+    "results": {
+      "clickOpenWebsite": "Klicken Sie unten auf Website öffnen oder kopieren Sie die URL.",
+      "securityNotice": "Sicherheitshinweis:",
+      "whatsappContact": "WhatsApp-Kontakt",
+      "prefilledMessage": "Vorausgefüllte Nachricht:",
+      "networkSsid": "Netzwerkname (SSID)",
+      "securityMode": "Sicherheitsmodus",
+      "networkPassword": "Netzwerk-Passwort",
+      "openNoPassword": "Offen (Kein Passwort)",
+      "hidePassword": "Passwort verbergen",
+      "showPassword": "Passwort anzeigen",
+      "contactInfo": "Kontaktinformationen",
+      "recipient": "Empfänger",
+      "subject": "Betreff:",
+      "telephoneNumber": "Telefonnummer",
+      "sendSmsTo": "SMS senden an",
+      "geoCoordinates": "Geografische Koordinaten",
+      "decodedContent": "Decodierter Inhalt",
+      "chatWhatsApp": "Auf WhatsApp chatten",
+      "wifiCopied": "WLAN-Passwort kopiert!"
+    }
   },
   "landing": {
     "heroTitle": "Kostenloser QR-Code Generator mit Logo",

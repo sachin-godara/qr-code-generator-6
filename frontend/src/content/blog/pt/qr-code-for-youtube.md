@@ -14,6 +14,8 @@ faqs:
     a: "Ao adicionar ?sub_confirmation=1 à URL do seu canal, quando os usuários acessam no computador ou tablet, o YouTube exibe um pop-up de confirmação ('Deseja se inscrever no canal?') antes de abrir o conteúdo, aumentando consideravelmente a conversão de inscritos."
   - q: "O código QR abre direto o aplicativo do YouTube no celular?"
     a: "Sim. Em smartphones iOS e Android com o aplicativo do YouTube instalado, o escaneamento nativo da câmera abre o vídeo ou canal diretamente no app."
+  - q: "Posso criar um código QR para um momento específico (minutagem) de um vídeo?"
+    a: "Sim. No YouTube, clique em Compartilhar → marque 'Começar em [tempo]' e copie o link (ex: youtu.be/abc123xyz?t=90). Cole no GenerateCustomQR para levar o usuário diretamente para aquele segundo do vídeo."
 howToSteps:
   - name: "Copie o link do YouTube"
     text: "Pegue o link do seu canal, vídeo específico ou playlist no YouTube."

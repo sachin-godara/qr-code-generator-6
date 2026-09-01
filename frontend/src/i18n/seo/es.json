@@ -2,7 +2,7 @@
   "home": {
     "title": "Generador de Códigos QR Gratis con Logo — Sin Marca de Agua",
     "description": "Crea códigos QR personalizados 100% gratis con logo, más de 40 estilos de puntos y degradados de color. Descarga en SVG vectorial, PDF o PNG en alta resolución.",
-    "keywords": "generador de codigos qr, codigo qr personalizado con logo, crear codigo qr gratis, generador qr sin marca de agua, hacer codigo qr online, codigo qr vectorial svg, descargar qr en pdf, generador de codigos qr gratis",
+    "keywords": "generador de codigos qr, crear codigo qr, generador de qr, crear codigo qr gratis, codigo qr con logo, generador de codigo qr con logo, hacer codigo qr, codigo qr para whatsapp, codigo qr para wifi, codigo qr para menu, generador qr sin marca de agua, crear codigo qr personalizado",
     "howToName": "Cómo Crear un Código QR Personalizado",
     "howToDesc": "Diseña y genera un código QR totalmente personalizado con logo, colores, degradados y marcos en menos de 2 minutos — 100% gratis.",
     "steps": [
@@ -23,15 +23,16 @@
     ]
   },
   "scanner": {
-    "title": "Escáner de Códigos QR Gratis Online — Escanear con Cámara e Imagen (Sin App)",
-    "description": "Escanea y descifra códigos QR online al instante con cámara, subida de imágenes o captura (Ctrl+V). 100% gratis, rápido y completamente privado.",
-    "keywords": "escanear codigo qr online, lector de codigo qr gratis, escanear qr con camara pc, leer codigo qr de imagen, escanear codigo qr gratis, lector qr online gratis, pegar captura qr ctrl v",
+    "title": "Lector QR Online Gratis — Escanear Código QR con Cámara, Imagen y PC",
+    "description": "Lector QR online y escáner de códigos QR gratis sin descargar app. Aprende cómo escanear un código QR desde mi celular, sube fotos o pega capturas con Ctrl+V.",
+    "keywords": "lector qr, lector qr online, como escanear un codigo qr, cómo escanear un código qr, como escanear un código qr desde mi celular, escanear codigo qr, escanear código qr, escaner qr, leer código qr online, lector de qr online, lector qr online sin descargar, lector de codigo qr, codigo qr escanear, whatsapp web código qr, escáner qr gratis",
     "faqs": [
       { "q": "¿Necesito descargar una app para escanear códigos QR?", "a": "¡No! La mayoría de teléfonos modernos tienen escáner integrado en la app de cámara, o puedes usar nuestro escáner web gratuito directamente en tu navegador." },
       { "q": "¿Cómo escaneo un código QR en Android?", "a": "Abre la cámara de tu teléfono y apunta al código QR, o utiliza nuestro escáner online en esta página." },
       { "q": "¿Cómo escaneo un código QR en iPhone (iOS)?", "a": "Abre la app Cámara, enfoca el código QR y pulsa en la notificación amarilla que aparece en pantalla." },
       { "q": "¿Puedo escanear un código QR desde una captura o imagen?", "a": "¡Sí! Utiliza la pestaña 'Subir Imagen' en nuestro escáner o pulsa Ctrl+V para pegar directamente desde el portapapeles." },
-      { "q": "¿Es seguro escanear códigos QR en este sitio web?", "a": "Sí, 100% seguro. Toda la decodificación se procesa localmente en tu navegador sin almacenar datos en ningún servidor." }
+      { "q": "¿Dónde está el escáner de códigos QR de WhatsApp Web?", "a": "Abre WhatsApp en tu teléfono, ve a Ajustes (iOS) o pulsa el menú de tres puntos (Android), selecciona 'Dispositivos vinculados' y pulsa en 'Vincular un dispositivo' para apuntar al código en web.whatsapp.com." },
+      { "q": "¿Es seguro escanear códigos QR en este sitio web?", "a": "Sí, 100% seguro. Toda la decodificación se procesa localmente en tu navegador mediante WebAssembly sin almacenar ni enviar datos a ningún servidor." }
     ]
   }
 }

@@ -17,6 +17,8 @@ faqs:
     a: "No. Los códigos QR vCard creados con GenerateCustomQR son estáticos, contienen la información dentro de la imagen y nunca caducan."
   - q: "¿Puedo añadir el logotipo de mi empresa al código QR?"
     a: "Sí. GenerateCustomQR permite incrustar logotipos con corrección de errores de nivel H (hasta 30% de tolerancia) manteniendo la legibilidad total."
+  - q: "¿Dónde debo colocar el código QR en mi tarjeta de visita?"
+    a: "Coloca el código QR en la esquina inferior derecha o en el reverso de la tarjeta con al menos 2 o 3 mm de margen blanco de seguridad (zona de silencio)."
 howToSteps:
   - name: "Crea tu código QR vCard"
     text: "Accede a GenerateCustomQR, selecciona el formato vCard e introduce tus datos de contacto."
@@ -220,6 +222,20 @@ Cuando entregues el diseño a la imprenta:
 
 ---
 
+## El Resultado: Tu Tarjeta Inteligente
+
+Una tarjeta de visita con código QR vCard bien implementada:
+- Transmite innovación técnica y modernidad inmediata
+- Permite a tus clientes guardar tu número y correo sin equivocarse
+- Permanece activa de por vida sin costes recurrentes
+- Genera conexiones comerciales duraderas desde el primer apretón de manos
+
+---
+
 ## Crea Hoy tu Código QR para Tarjeta de Visita
 
 Diseña tu código QR personalizado con logotipo en segundos, con descarga gratuita e inmediata en alta definición.
+
+- [Crear Código QR vCard para Tarjeta →](/es/vcard-qr-code)
+- [Personalizar con Logotipo Corporativo →](/es/qr-code-with-logo)
+- [Guía Completa de Tamaños de Impresión →](/es/blog/qr-code-size-guide)

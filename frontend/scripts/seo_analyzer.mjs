@@ -107,10 +107,10 @@ htmlFiles.forEach(({ fullPath, relPath }) => {
 const output = {
   totalPages: pages.length,
   totalUniqueKeywords: allKeywords.size,
-  locales: ['en', 'es', 'pt', 'de'],
+  locales: ['en', 'es', 'pt', 'de', 'tr'],
   pages,
   keywords: Array.from(allKeywords.values()).sort((a, b) => b.count - a.count || a.keyword.localeCompare(b.keyword))
 };
 
 fs.writeFileSync('../seo_audit_report.json', JSON.stringify(output, null, 2), 'utf8');
-console.log(`Successfully generated seo_audit_report.json with ${pages.length} pages and ${allKeywords.size} unique keywords across 4 languages.`);
+console.log(`Successfully generated seo_audit_report.json with ${pages.length} pages and ${allKeywords.size} unique keywords across 5 languages.`);

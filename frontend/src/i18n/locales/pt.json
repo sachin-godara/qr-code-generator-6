@@ -5,7 +5,8 @@
     "blog": "Blog",
     "scan": "Escanear",
     "scanQR": "Escanear QR Code",
-    "selectLanguage": "Selecionar idioma"
+    "selectLanguage": "Selecionar idioma",
+    "language": "Idioma"
   },
   "studio": {
     "tabs": {
@@ -830,7 +831,28 @@
     },
     "ctaTitle": "Precisa Criar um QR Code Personalizado?",
     "ctaDesc": "Gere QR codes em alta resolução com logo, cores, degradês e molduras de graça.",
-    "ctaButton": "Criar um QR Code Agora"
+    "ctaButton": "Criar um QR Code Agora",
+    "results": {
+      "clickOpenWebsite": "Clique em Abrir Site abaixo ou copie a URL.",
+      "securityNotice": "Aviso de Segurança:",
+      "whatsappContact": "Contato do WhatsApp",
+      "prefilledMessage": "Mensagem Pré-preenchida:",
+      "networkSsid": "Nome da Rede (SSID)",
+      "securityMode": "Modo de Segurança",
+      "networkPassword": "Senha da Rede",
+      "openNoPassword": "Aberta (Sem Senha)",
+      "hidePassword": "Ocultar senha",
+      "showPassword": "Mostrar senha",
+      "contactInfo": "Informações de Contato",
+      "recipient": "Destinatário",
+      "subject": "Assunto:",
+      "telephoneNumber": "Número de Telefone",
+      "sendSmsTo": "Enviar SMS para",
+      "geoCoordinates": "Coordenadas Geográficas",
+      "decodedContent": "Conteúdo Decodificado",
+      "chatWhatsApp": "Conversar no WhatsApp",
+      "wifiCopied": "Senha do WiFi copiada!"
+    }
   },
   "landing": {
     "heroTitle": "Gerador de QR Code Grátis com Logo",

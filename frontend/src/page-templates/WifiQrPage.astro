@@ -214,6 +214,52 @@ const metaMap: Record<Locale, {
     ctaTitle: "Bereit für Ihren eigenen WLAN-QR-Code?",
     ctaDesc: "Erstellen Sie hochauflösende WLAN-QR-Codes für Cafés, Hotels, Büros und Ihr Zuhause in Sekunden.",
     ctaBtn: "Jetzt WLAN-QR-Code erstellen ↑"
+  },
+  tr: {
+    title: "Ücretsiz WiFi QR Kod Oluşturucu — Şifresiz WiFi Bağlantısı",
+    desc: "Müşterileriniz ve misafirleriniz için ücretsiz WiFi QR kodu oluşturun. Şifre yazmadan tek dokunuşla internete bağlanın. SVG ve PDF indirmeleri.",
+    keywords: "wifi qr kod olusturucu, wifi baglanti qr kod, sifresiz wifi qr kod, restoran wifi qr kod yapma, kablosuz ag qr kod",
+    badge: "Tek Dokunuşla WiFi Bağlantısı",
+    specsTitle: "Temel Teknik Özellikler",
+    specs: [
+      { icon: "wifi_password", title: "WPA/WPA2/WPA3 & WEP Desteği", desc: "Tüm standart modem ve yönlendirici güvenlik protokolleriyle tam uyumludur." },
+      { icon: "lock", title: "%100 İstemci Taraflı Gizlilik", desc: "WiFi şifreniz asla tarayıcınızdan çıkmaz ve hiçbir sunucuya kaydedilmez." },
+      { icon: "qr_code_2", title: "Otomatik Kamera Tanıma", desc: "iPhone (iOS 11+) ve Android (10+) cihazlarda kamera açıldığında anında bağlanma butonu çıkar." },
+      { icon: "print", title: "Baskıya Hazır SVG ve PDF", desc: "Masa kartları ve kapı tabelaları için 300 DPI PDF ve SVG formatlarında indirin." }
+    ],
+    stepsTitle: "4 Kolay Adımda WiFi QR Kodu Nasıl Oluşturulur",
+    steps: [
+      { icon: "wifi", title: "1. WiFi Türünü Seçin", desc: "Oluşturucuda WiFi sekmesinin seçili olduğundan emin olun." },
+      { icon: "key", title: "2. Bilgileri Girin", desc: "Ağ adınızı (SSID), şifrenizi ve şifreleme türünü yazın." },
+      { icon: "palette", title: "3. Tasarlayın & Özelleştirin", desc: "Nokta stilleri, çerçeveler ve WiFi simgeleriyle renklendirin." },
+      { icon: "download", title: "4. İndirin ve Sergileyin", desc: "Masa stantları veya tabelalar için PNG veya SVG olarak indirin." }
+    ],
+    useCasesTitle: "WiFi QR Kodları İçin Popüler Kullanım Alanları",
+    useCases: [
+      { icon: "restaurant", title: "Restoranlar & Kafeler", desc: "Masalara veya menülere yerleştirin, müşteriler şifre sormadan doğrudan bağlansın." },
+      { icon: "hotel", title: "Oteller & Airbnb", desc: "Resepsiyonu aramaya gerek kalmadan hızlı internet erişimi için karşılama kartlarına ekleyin." },
+      { icon: "business", title: "Ofisler & Toplantı Odaları", desc: "Ziyaretçiler ve iş ortakları için manuel şifre girmeden misafir ağı sunun." },
+      { icon: "home", title: "Ev Misafirleri İçin", desc: "Evinizin girişine veya oturma odasına çerçeveli bir WiFi QR kodu yerleştirin." }
+    ],
+    tipsTitle: "WiFi QR Kodları İçin İpuçları",
+    tips: [
+      { icon: "aspect_ratio", title: "Asgari Boyut: 3 × 3 cm", desc: "Hızlı kamera algılaması için en az 30×30 mm boyutunda bastırın." },
+      { icon: "contrast", title: "Yüksek Kontrast (4.5:1+)", desc: "Loş restoran ışıklarında sorunsuz tarama için yüksek kontrast sağlayın." },
+      { icon: "layers", title: "Mat Malzeme Tercih Edin", desc: "Işık yansımalarını önlemek için parlamayan mat kağıt veya ahşap stantlar kullanın." },
+      { icon: "visibility", title: "Göz Hizasına Yerleştirin", desc: "Karekodun masalarda veya kapı girişlerinde kolay fark edilecek konumda olmasını sağlayın." }
+    ],
+    faqsTitle: "WiFi QR Kodları Hakkında Sıkça Sorulan Sorular",
+    faqs: [
+      { q: "WiFi QR kodu nasıl çalışır?", a: "WIFI: standardında ağ adı ve şifreyi kodlar. Telefon kamerası bunu algıladığında 'Ağa Katıl' uyarısı gösterir ve tek dokunuşla bağlar." },
+      { q: "WiFi şifremi girmek güvenli mi?", a: "Evet, %100 güvenlidir. Kodlama tamamen tarayıcınızda yerel çalışır, şifreniz asla internete aktarılmaz." },
+      { q: "Hangi telefonlar desteklenir?", a: "iOS 11 ve üzeri iPhone'lar ile Android 10 ve üzeri tüm Android cihazlar yerel kamera ile doğrudan bağlanır." },
+      { q: "Gizli ağlarda (Hidden SSID) çalışır mı?", a: "Evet, 'Gizli Ağ' seçeneğini işaretleyerek gizli SSID'ler için de QR kod üretebilirsiniz." },
+      { q: "Kullanım süresi var mıdır?", a: "Hayır. Statik bir koddur ve modem şifrenizi değiştirmediğiniz sürece ömür boyu çalışır." }
+    ],
+    otherToolsTitle: "Diğer Ücretsiz QR Kod Araçlarını Keşfedin",
+    ctaTitle: "Kendi WiFi QR Kodunuzu Oluşturmaya Hazır mısınız?",
+    ctaDesc: "Kafeler, oteller, ofisler ve eviniz için saniyeler içinde yüksek çözünürlüklü WiFi QR kodları oluşturun.",
+    ctaBtn: "Hemen WiFi QR Kodu Oluştur ↑"
   }
 };
 
@@ -225,12 +271,12 @@ const breadcrumbs = [
 ];
 
 const relatedTools = [
-  { icon: "link", title: "URL to QR", desc: "Website links & portfolios", url: getLocalizedUrl(locale, '/url-qr-code-generator') },
-  { icon: "contact_page", title: "vCard QR", desc: "Digital business cards", url: getLocalizedUrl(locale, '/vcard-qr-code') },
-  { icon: "image", title: "QR with Logo", desc: "Branded custom logos", url: getLocalizedUrl(locale, '/qr-code-with-logo') },
-  { icon: "event", title: "Event QR", desc: "Save dates to calendars", url: getLocalizedUrl(locale, '/event-qr-code') },
-  { icon: "mail", title: "Email QR", desc: "Pre-filled email drafts", url: getLocalizedUrl(locale, '/email-qr-code') },
-  { icon: "qr_code_scanner", title: "QR Scanner", desc: "Camera & image decoder", url: getLocalizedUrl(locale, '/qr-code-scanner') }
+  { icon: "link", title: t(locale, 'footer.urlQR'), desc: t(locale, 'landing.formats.items.urlDesc'), url: getLocalizedUrl(locale, '/url-qr-code-generator') },
+  { icon: "contact_page", title: t(locale, 'footer.vcardQR'), desc: t(locale, 'landing.formats.items.vcardDesc'), url: getLocalizedUrl(locale, '/vcard-qr-code') },
+  { icon: "image", title: t(locale, 'footer.logoQR'), desc: t(locale, 'landing.features.card2Title'), url: getLocalizedUrl(locale, '/qr-code-with-logo') },
+  { icon: "event", title: t(locale, 'footer.eventQR'), desc: t(locale, 'landing.formats.items.eventDesc'), url: getLocalizedUrl(locale, '/event-qr-code') },
+  { icon: "mail", title: t(locale, 'footer.emailQR'), desc: t(locale, 'landing.formats.items.emailDesc'), url: getLocalizedUrl(locale, '/email-qr-code') },
+  { icon: "qr_code_scanner", title: t(locale, 'footer.scanner'), desc: t(locale, 'scanner.formats.urlsDesc'), url: getLocalizedUrl(locale, '/qr-code-scanner') }
 ];
 
 const howTo = {

@@ -5,6 +5,9 @@ https://www.generatecustomqr.com/*  https://generatecustomqr.com/:splat  301!
 /sitemap.xml        /sitemap-index.xml  301
 /sitemap_index.xml  /sitemap-index.xml  301
 
+# Malformed External URL Fallbacks
+/&                  /                   301
+
 # Cloudflare Pages API Proxy
 # Proxies all /api/* requests to live Render backend
 /api/*  https://qr-code-generator-6-shry.onrender.com/api/:splat  200

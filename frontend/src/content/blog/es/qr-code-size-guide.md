@@ -24,8 +24,6 @@ Una de las preguntas más frecuentes al crear un código QR es: *"¿Qué tamaño
 
 Esta guía ofrece recomendaciones de tamaño definitivas para cada uso común.
 
----
-
 ## La Regla de Oro: Distancia de Escaneo ÷ 10
 
 La fórmula óptica fundamental para un enfoque instantáneo desde el teléfono:
@@ -49,8 +47,7 @@ La fórmula óptica fundamental para un enfoque instantáneo desde el teléfono:
 
 - **30 cm de distancia** (Tarjeta de visita en la mano) → **3 × 3 cm** mínimo.
 - **3 metros de distancia** (Cartel en pared o escaparate) → **30 × 30 cm** mínimo.
-
----
+- **10 metros de distancia** (Valla publicitaria en carretera) → **100 × 100 cm** mínimo.
 
 ## Tabla de Tamaños por Caso de Uso
 
@@ -66,8 +63,6 @@ La fórmula óptica fundamental para un enfoque instantáneo desde el teléfono:
 | **Roll-up / Banner feria** | 1–5 m | 15 cm × 15 cm | 20–25 cm × 20–25 cm |
 | **Valla publicitaria exterior** | 5–20 m | 50 cm × 50 cm | 80–100 cm × 80–100 cm |
 | **Pantalla de estadio** | 20–50 m | 2 m × 2 m | 3 m × 3 m |
-
----
 
 ## Cómo Afecta la Cantidad de Datos al Tamaño
 
@@ -85,8 +80,6 @@ A mayor cantidad de caracteres codificados en el código QR, más *módulos* (pe
 > [!TIP]
 > **Consejo Pro**: Usa URLs cortas para mantener baja la densidad de módulos, permitiendo códigos QR más pequeños y fáciles de escanear.
 
----
-
 ## Corrección de Errores y Tamaño
 
 Los códigos QR cuentan con cuatro niveles de corrección de errores que influyen en la densidad:
@@ -100,8 +93,6 @@ Los códigos QR cuentan con cuatro niveles de corrección de errores que influye
 
 Cuando añades un logotipo en el centro de tu código QR, utiliza siempre **Nivel H**. Esto hace que el código tenga más puntos, por lo que debes prever ese 30% adicional en tus dimensiones.
 
----
-
 ## Requisitos de Resolución por Formato de Exportación
 
 | Formato de Exportación | Resolución Óptima | Caso de Uso |
@@ -112,16 +103,12 @@ Cuando añades un logotipo en el centro de tu código QR, utiliza siempre **Nive
 
 Con [GenerateCustomQR](/es), puedes exportar imágenes PNG de hasta **8192 × 8192 píxeles**, más que suficiente incluso para vallas de gran formato.
 
----
-
 ## Errores Comunes de Dimensionamiento
 
 - **Hacerlo demasiado pequeño**: Códigos menores de 2 cm son arriesgados en teléfonos antiguos o con poca luz.
 - **Olvidar la zona de silencio**: El margen blanco exterior debe tener al menos 4 módulos de grosor.
 - **Usar baja resolución en imprenta**: Un PNG de 300px saldrá borroso en papel. Usa SVG o PDF a 300 DPI.
 - **No hacer pruebas reales**: Imprime siempre una prueba de muestra y escanéala con 3 móviles diferentes a la distancia real.
-
----
 
 ## Lista de Comprobación Antes de Imprimir
 
@@ -130,3 +117,14 @@ Con [GenerateCustomQR](/es), puedes exportar imágenes PNG de hasta **8192 × 81
 - [x] Mantener la zona de silencio de 4 módulos alrededor
 - [x] Exportar en SVG o PDF a 300 DPI
 - [x] Realizar prueba física de escaneo con varios teléfonos
+
+---
+
+## Crea tu Código QR con el Tamaño Perfecto
+
+Diseña tu código QR con las dimensiones óptimas y descárgalo gratis en alta resolución:
+
+- [Generador de Códigos QR para URLs →](/es/url-qr-code-generator)
+- [Generador de Códigos QR para Wi-Fi →](/es/wifi-qr-code)
+- [Generador de Códigos QR vCard para Tarjetas →](/es/vcard-qr-code)
+- [Mejores Prácticas de Diseño para Impresión →](/es/blog/qr-code-design-best-practices-for-print)

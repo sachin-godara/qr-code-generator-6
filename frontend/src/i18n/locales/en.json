@@ -5,7 +5,8 @@
     "blog": "Blog",
     "scan": "Scan",
     "scanQR": "Scan QR Code",
-    "selectLanguage": "Select language"
+    "selectLanguage": "Select language",
+    "language": "Language"
   },
   "studio": {
     "tabs": {
@@ -829,7 +830,28 @@
     },
     "ctaTitle": "Need to Create a Custom QR Code?",
     "ctaDesc": "Generate high-resolution QR codes with logos, colors, gradients, and custom frames for free.",
-    "ctaButton": "Create a QR Code Now"
+    "ctaButton": "Create a QR Code Now",
+    "results": {
+      "clickOpenWebsite": "Click Open Website below or copy URL.",
+      "securityNotice": "Security Notice:",
+      "whatsappContact": "WhatsApp Contact",
+      "prefilledMessage": "Pre-filled Message:",
+      "networkSsid": "Network Name (SSID)",
+      "securityMode": "Security Mode",
+      "networkPassword": "Network Password",
+      "openNoPassword": "Open (No Password)",
+      "hidePassword": "Hide password",
+      "showPassword": "Show password",
+      "contactInfo": "Contact Info",
+      "recipient": "Recipient",
+      "subject": "Subject:",
+      "telephoneNumber": "Telephone Number",
+      "sendSmsTo": "Send SMS To",
+      "geoCoordinates": "Geographic Coordinates",
+      "decodedContent": "Decoded Content",
+      "chatWhatsApp": "Chat on WhatsApp",
+      "wifiCopied": "WiFi password copied!"
+    }
   },
   "landing": {
     "heroTitle": "Free Custom QR Code Generator with Logo",

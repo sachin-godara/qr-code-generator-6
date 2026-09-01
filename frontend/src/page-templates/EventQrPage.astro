@@ -210,6 +210,51 @@ const metaMap: Record<Locale, {
     ctaTitle: "Bereit für Ihren Event-QR-Code?",
     ctaDesc: "Erstellen Sie Kalender-QR-Codes für Tagungen, Hochzeiten und Tickets in Sekunden.",
     ctaBtn: "Jetzt Event-QR-Code erstellen ↑"
+  },
+  tr: {
+    title: "Ücretsiz Etkinlik QR Kod Oluşturucu — Takvime Etkinlik Ekleme",
+    desc: "Başlık, tarih ve konum içeren ücretsiz etkinlik QR kodları oluşturun. Konferanslar, düğünler ve biletler için 1 dokunuşla takvime kaydedin.",
+    keywords: "etkinlik qr kod olusturucu, takvim qr kod, ical qr kod yapma, dugun davetiyesi qr kod, bilet icin qr kod",
+    badge: "1 Dokunuşla Takvime Ekleme",
+    specsTitle: "Temel Teknik Özellikler",
+    specs: [
+      { icon: "calendar_month", title: "iCal / vCalendar Standardı", desc: "Google Takvim, Apple Takvim, Outlook ve tüm mobil takvim sistemleriyle tam uyumludur." },
+      { icon: "schedule", title: "Saat Dilimi & Süre", desc: "Etkinliklerin doğru zamanda hatırlatılması için başlangıç ve bitiş saatlerini hassas şekilde kodlar." },
+      { icon: "location_on", title: "Fiziksel Konum ve Canlı Bağlantılar", desc: "Adresleri veya online toplantı bağlantılarını doğrudan takvim etkinliği konumuna ekler." },
+      { icon: "download", title: "Vektörel Baskı İndirme", desc: "Davetiyeler, afişler ve biletler için 300 DPI PDF ve SVG formatlarında indirin." }
+    ],
+    stepsTitle: "4 Kolay Adımda Etkinlik QR Kodu Nasıl Oluşturulur",
+    steps: [
+      { icon: "event", title: "1. Etkinlik Türünü Seçin", desc: "Oluşturucu içerik sekmelerinden Etkinlik (iCal)'i seçin." },
+      { icon: "schedule", title: "2. Ayrıntıları Girin", desc: "Başlık, başlangıç/bitiş zamanı ve mekan bilgilerini yazın." },
+      { icon: "palette", title: "3. Tasarımı Kişiselleştirin", desc: "Etkinliğinizin renklerine uygun nokta ve çerçeve stillerini seçin." },
+      { icon: "confirmation_number", title: "4. İndirin ve Dağıtın", desc: "Davetiyelere, afişlere veya biletlere eklemek üzere indirin." }
+    ],
+    useCasesTitle: "Etkinlik QR Kodları İçin Popüler Kullanım Alanları",
+    useCases: [
+      { icon: "campaign", title: "Konferanslar & Fuarlar", desc: "Katılımcı yaka kartlarına ve program broşürlerine anında takvim kaydı için ekleyin." },
+      { icon: "celebration", title: "Düğünler & Kutlamalar", desc: "Davetiyelere ekleyin, konuklar tek dokunuşla tarihi takvimlerine kaydetsin." },
+      { icon: "laptop_mac", title: "Webinarlar & Online Etkinlikler", desc: "Katılımcıların canlı yayın bağlantısını doğrudan Outlook veya Google Takvim'e kaydetmesini sağlayın." },
+      { icon: "stadium", title: "Konserler & Spor Maçları", desc: "Giriş saatleri ve mekan yol tarifi için biletlerin üzerine yerleştirin." }
+    ],
+    tipsTitle: "Etkinlik QR Kodları İçin İpuçları",
+    tips: [
+      { icon: "alarm", title: "Saat Dilimini Kontrol Edin", desc: "Başlangıç ve bitiş saatlerinin etkinliğin yapılacağı yerel saat dilimiyle tam uyumlu olduğundan emin olun." },
+      { icon: "pin_drop", title: "Açıklayıcı Konum Bilgisi", desc: "Salon numaralarını veya online toplantı bağlantılarını açıklama alanına ekleyin." },
+      { icon: "contrast", title: "Biletlerde Yüksek Kontrast", desc: "Giriş kapılarındaki turnikelerde hızlı tarama için yüksek kontrast kullanın." },
+      { icon: "verified", title: "Baskı Öncesi Test Edin", desc: "Takvime sorunsuz eklendiğini doğrulamak için iOS ve Android ile test taraması yapın." }
+    ],
+    faqsTitle: "Etkinlik QR Kodları Hakkında Sıkça Sorulan Sorular",
+    faqs: [
+      { q: "Etkinlik QR kodu nedir?", a: "iCal standardında bir takvim formatıdır. Tarandığında tüm detaylarıyla 'Etkinliği Takvime Ekle' iletişim kutusu açılır." },
+      { q: "Etkinlik mekanı eklenebilir mi?", a: "Evet, hem fiziksel açık adresler hem de online toplantı bağlantıları eklenebilir." },
+      { q: "Kullanım süresi var mı?", a: "Hayır, oluşturulan QR kodları statiktir ve kalıcı olarak çalışır." },
+      { q: "İnternet olmadan da takvime kaydedilir mi?", a: "Evet! Tüm etkinlik verileri doğrudan QR deseni içinde kodlandığı için internetsiz de takvime eklenir." }
+    ],
+    otherToolsTitle: "Diğer Ücretsiz QR Kod Araçlarını Keşfedin",
+    ctaTitle: "Etkinlik QR Kodunuzu Oluşturmaya Hazır mısınız?",
+    ctaDesc: "Konferanslar, düğünler ve biletler için saniyeler içinde özel takvim QR kodları oluşturun.",
+    ctaBtn: "Hemen Etkinlik QR Kodu Oluştur ↑"
   }
 };
 
@@ -221,12 +266,12 @@ const breadcrumbs = [
 ];
 
 const relatedTools = [
-  { icon: "link", title: "URL to QR", desc: "Website links & portfolios", url: getLocalizedUrl(locale, '/url-qr-code-generator') },
-  { icon: "wifi", title: "WiFi QR", desc: "1-tap wifi connections", url: getLocalizedUrl(locale, '/wifi-qr-code') },
-  { icon: "contact_page", title: "vCard QR", desc: "Digital business cards", url: getLocalizedUrl(locale, '/vcard-qr-code') },
-  { icon: "image", title: "QR with Logo", desc: "Branded custom logos", url: getLocalizedUrl(locale, '/qr-code-with-logo') },
-  { icon: "mail", title: "Email QR", desc: "Pre-filled email drafts", url: getLocalizedUrl(locale, '/email-qr-code') },
-  { icon: "qr_code_scanner", title: "QR Scanner", desc: "Camera & image decoder", url: getLocalizedUrl(locale, '/qr-code-scanner') }
+  { icon: "link", title: t(locale, 'footer.urlQR'), desc: t(locale, 'landing.formats.items.urlDesc'), url: getLocalizedUrl(locale, '/url-qr-code-generator') },
+  { icon: "wifi", title: t(locale, 'footer.wifiQR'), desc: t(locale, 'landing.formats.items.wifiDesc'), url: getLocalizedUrl(locale, '/wifi-qr-code') },
+  { icon: "contact_page", title: t(locale, 'footer.vcardQR'), desc: t(locale, 'landing.formats.items.vcardDesc'), url: getLocalizedUrl(locale, '/vcard-qr-code') },
+  { icon: "image", title: t(locale, 'footer.logoQR'), desc: t(locale, 'landing.features.card2Title'), url: getLocalizedUrl(locale, '/qr-code-with-logo') },
+  { icon: "mail", title: t(locale, 'footer.emailQR'), desc: t(locale, 'landing.formats.items.emailDesc'), url: getLocalizedUrl(locale, '/email-qr-code') },
+  { icon: "qr_code_scanner", title: t(locale, 'footer.scanner'), desc: t(locale, 'scanner.formats.urlsDesc'), url: getLocalizedUrl(locale, '/qr-code-scanner') }
 ];
 
 const howTo = {

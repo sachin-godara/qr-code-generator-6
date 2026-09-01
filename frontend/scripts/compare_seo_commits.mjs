@@ -33,10 +33,10 @@ function getHtmlFiles(dir, baseDir = dir) {
 const htmlFiles = getHtmlFiles(distDir);
 console.log(`📦 Found ${htmlFiles.length} generated HTML files in dist/ to audit.\n`);
 
-const locales = ['en', 'es', 'pt', 'de'];
+const locales = ['en', 'es', 'pt', 'de', 'tr'];
 const auditResults = {
   totalPages: htmlFiles.length,
-  byLocale: { en: 0, es: 0, pt: 0, de: 0, other: 0 },
+  byLocale: { en: 0, es: 0, pt: 0, de: 0, tr: 0, other: 0 },
   byType: { toolLanding: 0, blog: 0, legalStatic: 0, system: 0 },
   titles: { valid: 0, tooShort: 0, tooLong: 0, missing: 0, duplicates: new Map() },
   descriptions: { valid: 0, tooShort: 0, tooLong: 0, missing: 0, duplicates: new Map() },
@@ -67,6 +67,7 @@ htmlFiles.forEach(({ fullPath, relPath }) => {
   if (urlPath.startsWith('/de/') || urlPath === '/de') pageLocale = 'de';
   else if (urlPath.startsWith('/es/') || urlPath === '/es') pageLocale = 'es';
   else if (urlPath.startsWith('/pt/') || urlPath === '/pt') pageLocale = 'pt';
+  else if (urlPath.startsWith('/tr/') || urlPath === '/tr') pageLocale = 'tr';
   
   if (auditResults.byLocale[pageLocale] !== undefined) {
     auditResults.byLocale[pageLocale]++;
@@ -223,6 +224,7 @@ console.log(`  - English (en): ${auditResults.byLocale.en}`);
 console.log(`  - Spanish (es): ${auditResults.byLocale.es}`);
 console.log(`  - Portuguese (pt): ${auditResults.byLocale.pt}`);
 console.log(`  - German (de): ${auditResults.byLocale.de}`);
+console.log(`  - Turkish (tr): ${auditResults.byLocale.tr}`);
 console.log(`• By Category:`);
 console.log(`  - Tool & Landing Pages: ${auditResults.byType.toolLanding}`);
 console.log(`  - Blog Articles: ${auditResults.byType.blog}`);

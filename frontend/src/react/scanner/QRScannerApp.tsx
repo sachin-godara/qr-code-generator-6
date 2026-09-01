@@ -1828,14 +1828,14 @@ function QRScannerAppContent() {
                 <div className="space-y-2.5 sm:space-y-3">
                   <div>
                     <h4 className="font-black text-on-surface text-base sm:text-lg break-all">{parsedData.domain || 'Website'}</h4>
-                    <p className="text-xs text-on-surface-variant mt-0.5">Click Open Website below or copy URL.</p>
+                    <p className="text-xs text-on-surface-variant mt-0.5">{t('scanner.results.clickOpenWebsite')}</p>
                   </div>
 
                   {parsedData.safety && parsedData.safety.status !== 'safe' && (
                     <div className="p-2.5 bg-amber-500/10 border border-amber-500/30 rounded-xl flex items-start gap-2 text-xs text-amber-800">
                       <AlertTriangle size={15} className="shrink-0 mt-0.5 text-amber-600" />
                       <div>
-                        <p className="font-bold">Security Notice:</p>
+                        <p className="font-bold">{t('scanner.results.securityNotice')}</p>
                         <ul className="list-disc list-inside mt-0.5 space-y-0.5">
                           {parsedData.safety.reasons.map((r, i) => (
                             <li key={i}>{r}</li>
@@ -1855,13 +1855,13 @@ function QRScannerAppContent() {
               {parsedData?.type === 'whatsapp' && (
                 <div className="space-y-2.5 sm:space-y-3">
                   <div>
-                    <p className="text-[11px] sm:text-xs font-bold text-emerald-600 uppercase tracking-wider">WhatsApp Contact</p>
+                    <p className="text-[11px] sm:text-xs font-bold text-emerald-600 uppercase tracking-wider">{t('scanner.results.whatsappContact')}</p>
                     <h4 className="font-black text-on-surface text-base sm:text-lg">{parsedData.whatsapp?.phone || 'Direct Chat'}</h4>
                   </div>
 
                   {parsedData.whatsapp?.message && (
                     <div className="bg-emerald-50/60 p-3 rounded-xl border border-emerald-200/80 text-xs sm:text-sm space-y-1">
-                      <p className="text-[10px] font-bold text-emerald-700 uppercase">Pre-filled Message:</p>
+                      <p className="text-[10px] font-bold text-emerald-700 uppercase">{t('scanner.results.prefilledMessage')}</p>
                       <p className="text-emerald-900 break-words font-medium">"{parsedData.whatsapp.message}"</p>
                     </div>
                   )}
@@ -1876,27 +1876,27 @@ function QRScannerAppContent() {
               {parsedData?.type === 'wifi' && (
                 <div className="space-y-3 sm:space-y-4">
                   <div>
-                    <p className="text-[11px] sm:text-xs font-bold text-on-surface-variant uppercase tracking-wider">Network Name (SSID)</p>
+                    <p className="text-[11px] sm:text-xs font-bold text-on-surface-variant uppercase tracking-wider">{t('scanner.results.networkSsid')}</p>
                     <h4 className="text-lg sm:text-xl font-black text-on-surface mt-0.5 break-all">{parsedData.wifi?.ssid}</h4>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3 pt-1">
                     <div className="bg-surface p-3 rounded-xl border border-outline-variant/50">
-                      <p className="text-[10px] sm:text-[11px] text-on-surface-variant font-bold uppercase">Security Mode</p>
+                      <p className="text-[10px] sm:text-[11px] text-on-surface-variant font-bold uppercase">{t('scanner.results.securityMode')}</p>
                       <p className="text-xs sm:text-sm font-bold text-on-surface mt-0.5">{parsedData.wifi?.authType || 'WPA/WPA2'}</p>
                     </div>
 
                     <div className="bg-surface p-3 rounded-xl border border-outline-variant/50 relative">
-                      <p className="text-[10px] sm:text-[11px] text-on-surface-variant font-bold uppercase">Network Password</p>
+                      <p className="text-[10px] sm:text-[11px] text-on-surface-variant font-bold uppercase">{t('scanner.results.networkPassword')}</p>
                       <div className="flex items-center justify-between mt-0.5">
                         <p className="text-xs sm:text-sm font-mono font-bold text-on-surface break-all pr-2">
-                          {parsedData.wifi?.password ? (showPassword ? parsedData.wifi.password : '••••••••••••') : 'Open (No Password)'}
+                          {parsedData.wifi?.password ? (showPassword ? parsedData.wifi.password : '••••••••••••') : t('scanner.results.openNoPassword')}
                         </p>
                         {parsedData.wifi?.password && (
                           <button 
                             onClick={() => setShowPassword(!showPassword)}
                             className="text-on-surface-variant hover:text-on-surface p-1 rounded-md transition-colors cursor-pointer shrink-0"
-                            title={showPassword ? 'Hide password' : 'Show password'}
+                            title={showPassword ? t('scanner.results.hidePassword') : t('scanner.results.showPassword')}
                           >
                             {showPassword ? <EyeOff size={15} /> : <Eye size={15} />}
                           </button>
@@ -1910,7 +1910,7 @@ function QRScannerAppContent() {
               {/* Type 3: Contact Card (vCard) */}
               {parsedData?.type === 'vcard' && (
                 <div className="space-y-2.5 sm:space-y-3">
-                  <h4 className="text-base sm:text-lg font-black text-on-surface">{parsedData.vcard?.name || 'Contact Info'}</h4>
+                  <h4 className="text-base sm:text-lg font-black text-on-surface">{parsedData.vcard?.name || t('scanner.results.contactInfo')}</h4>
 
                   <div className="space-y-2 bg-surface p-3.5 sm:p-4 rounded-xl border border-outline-variant/50 text-xs sm:text-sm">
                     {parsedData.vcard?.phone && (
@@ -1945,13 +1945,13 @@ function QRScannerAppContent() {
               {parsedData?.type === 'email' && (
                 <div className="space-y-2.5 sm:space-y-3">
                   <div>
-                    <p className="text-[11px] sm:text-xs font-bold text-on-surface-variant uppercase tracking-wider">Recipient</p>
+                    <p className="text-[11px] sm:text-xs font-bold text-on-surface-variant uppercase tracking-wider">{t('scanner.results.recipient')}</p>
                     <h4 className="text-base sm:text-lg font-black text-on-surface break-all">{parsedData.email?.to}</h4>
                   </div>
 
                   {(parsedData.email?.subject || parsedData.email?.body) && (
                     <div className="bg-surface p-3 rounded-xl border border-outline-variant/40 text-xs sm:text-sm space-y-1">
-                      {parsedData.email.subject && <p className="font-bold">Subject: {parsedData.email.subject}</p>}
+                      {parsedData.email.subject && <p className="font-bold">{t('scanner.results.subject')} {parsedData.email.subject}</p>}
                       {parsedData.email.body && <p className="text-on-surface-variant break-words">{parsedData.email.body}</p>}
                     </div>
                   )}
@@ -1965,7 +1965,7 @@ function QRScannerAppContent() {
                     <Phone size={20} />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[11px] sm:text-xs font-bold text-on-surface-variant uppercase tracking-wider">Telephone Number</p>
+                    <p className="text-[11px] sm:text-xs font-bold text-on-surface-variant uppercase tracking-wider">{t('scanner.results.telephoneNumber')}</p>
                     <h4 className="text-lg sm:text-xl font-mono font-black text-on-surface truncate">{parsedData.phone?.number}</h4>
                   </div>
                 </div>
@@ -1975,7 +1975,7 @@ function QRScannerAppContent() {
               {parsedData?.type === 'sms' && (
                 <div className="space-y-2.5 sm:space-y-3">
                   <div>
-                    <p className="text-[11px] sm:text-xs font-bold text-on-surface-variant uppercase tracking-wider">Send SMS To</p>
+                    <p className="text-[11px] sm:text-xs font-bold text-on-surface-variant uppercase tracking-wider">{t('scanner.results.sendSmsTo')}</p>
                     <h4 className="text-base sm:text-lg font-black text-on-surface">{parsedData.sms?.number}</h4>
                   </div>
                   {parsedData.sms?.message && (
@@ -1993,7 +1993,7 @@ function QRScannerAppContent() {
                     <MapPin size={20} />
                   </div>
                   <div className="min-w-0">
-                    <p className="text-[11px] sm:text-xs font-bold text-on-surface-variant uppercase tracking-wider">Geographic Coordinates</p>
+                    <p className="text-[11px] sm:text-xs font-bold text-on-surface-variant uppercase tracking-wider">{t('scanner.results.geoCoordinates')}</p>
                     <h4 className="text-sm sm:text-base font-mono font-bold text-on-surface truncate">{parsedData.geo?.lat}, {parsedData.geo?.lng}</h4>
                   </div>
                 </div>
@@ -2019,7 +2019,7 @@ function QRScannerAppContent() {
               {/* Type 9: Plain Text / Other */}
               {parsedData?.type === 'text' && (
                 <div className="space-y-1.5 sm:space-y-2">
-                  <p className="text-[11px] sm:text-xs font-bold text-on-surface-variant uppercase tracking-wider">Decoded Content</p>
+                  <p className="text-[11px] sm:text-xs font-bold text-on-surface-variant uppercase tracking-wider">{t('scanner.results.decodedContent')}</p>
                   <div className="p-3 sm:p-4 bg-surface rounded-xl border border-outline-variant/60 text-xs sm:text-sm font-mono text-on-surface whitespace-pre-wrap break-all max-h-52 overflow-y-auto shadow-inner">
                     {scanResult}
                   </div>
@@ -2040,7 +2040,7 @@ function QRScannerAppContent() {
                   className="w-full flex items-center justify-center gap-2 bg-[#25D366] text-white py-3 sm:py-3.5 px-4 rounded-xl sm:rounded-2xl font-bold hover:bg-[#20ba59] shadow-md transition-all btn-spring text-xs sm:text-sm min-h-[44px]"
                 >
                   <MessageSquare size={16} />
-                  <span>Chat on WhatsApp</span>
+                  <span>{t('scanner.results.chatWhatsApp')}</span>
                 </a>
               )}
 

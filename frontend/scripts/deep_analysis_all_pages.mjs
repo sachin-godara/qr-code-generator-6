@@ -23,7 +23,7 @@ console.log(`Found ${htmlFiles.length} HTML pages in dist/ to analyze.\n`);
 
 const report = {
   totalPages: htmlFiles.length,
-  languages: { en: 0, es: 0, pt: 0, de: 0 },
+  languages: { en: 0, es: 0, pt: 0, de: 0, tr: 0 },
   pageTypes: {
     home: 0,
     tools: 0,
@@ -64,10 +64,11 @@ for (const file of htmlFiles) {
   if (route.startsWith('/es/') || route === '/es') lang = 'es';
   else if (route.startsWith('/pt/') || route === '/pt') lang = 'pt';
   else if (route.startsWith('/de/') || route === '/de') lang = 'de';
+  else if (route.startsWith('/tr/') || route === '/tr') lang = 'tr';
   report.languages[lang]++;
 
   // Categorize Page Type
-  if (route === '/' || route === '/es' || route === '/pt' || route === '/de') {
+  if (route === '/' || route === '/es' || route === '/pt' || route === '/de' || route === '/tr') {
     report.pageTypes.home++;
   } else if (route.includes('/qr-code-scanner')) {
     report.pageTypes.scanner++;
@@ -224,6 +225,7 @@ console.log(`  - English (EN):    ${report.languages.en}`);
 console.log(`  - Spanish (ES):    ${report.languages.es}`);
 console.log(`  - Portuguese (PT): ${report.languages.pt}`);
 console.log(`  - German (DE):     ${report.languages.de}`);
+console.log(`  - Turkish (TR):    ${report.languages.tr}`);
 console.log(`\nPage Types Breakdown:`);
 Object.entries(report.pageTypes).forEach(([type, count]) => {
   console.log(`  - ${type.padEnd(16)}: ${count}`);

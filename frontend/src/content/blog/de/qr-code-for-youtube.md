@@ -14,6 +14,8 @@ faqs:
     a: "Durch Anhängen von ?sub_confirmation=1 an die Kanal-URL öffnet sich auf Desktop- und Tablet-Geräten sofort ein Dialog 'Kanalabonnements bestätigen', noch bevor das Video startet. Das steigert die Abo-Quote deutlich."
   - q: "Öffnet der QR-Code direkt die mobile YouTube-App?"
     a: "Ja. Auf iPhones und Android-Smartphones mit installierter YouTube-App öffnet der Standard-Kamerascan das Video oder den Kanal direkt in der YouTube-App."
+  - q: "Kann ich einen QR-Code für eine bestimmte Zeitmarke im Video erstellen?"
+    a: "Ja. Klicken Sie auf YouTube bei Teilen auf 'Starten bei [Zeit]' und kopieren Sie den Link (z. B. youtu.be/abc123xyz?t=90). Fügen Sie ihn bei GenerateCustomQR ein, um Zuschauer direkt an diese Stelle zu führen."
 howToSteps:
   - name: "YouTube-Link kopieren"
     text: "Holen Sie sich die URL Ihres Kanals, Videos oder Ihrer Playlist auf YouTube."
