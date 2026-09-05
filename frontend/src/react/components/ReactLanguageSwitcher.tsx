@@ -70,7 +70,7 @@ export function ReactLanguageSwitcher({ className = '' }: { className?: string }
   }, []);
 
   const getTargetUrl = (targetLocale: Locale) => {
-    if (typeof window === 'undefined') return targetLocale === 'en' ? '/' : `/${targetLocale}`;
+    if (typeof window === 'undefined') return targetLocale === 'en' ? '/' : `/${targetLocale}/`;
     const cleanPath = getCleanPathname(window.location.pathname);
     return getLocalizedUrl(targetLocale, cleanPath);
   };

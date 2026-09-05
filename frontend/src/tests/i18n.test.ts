@@ -141,15 +141,15 @@ describe('i18n utils', () => {
 
   describe('getLocalizedUrl', () => {
     it('generates correct URLs for default English locale without prefix', () => {
-      expect(getLocalizedUrl('en', '/how-to-use')).toBe('/how-to-use');
+      expect(getLocalizedUrl('en', '/how-to-use')).toBe('/how-to-use/');
       expect(getLocalizedUrl('en', '/')).toBe('/');
     });
 
     it('generates correct URLs with locale prefix for other locales', () => {
-      expect(getLocalizedUrl('es', '/how-to-use')).toBe('/es/how-to-use');
-      expect(getLocalizedUrl('pt', '/wifi-qr-code')).toBe('/pt/wifi-qr-code');
-      expect(getLocalizedUrl('de', '/')).toBe('/de');
-      expect(getLocalizedUrl('tr', '/qr-code-scanner')).toBe('/tr/qr-code-scanner');
+      expect(getLocalizedUrl('es', '/how-to-use')).toBe('/es/how-to-use/');
+      expect(getLocalizedUrl('pt', '/wifi-qr-code')).toBe('/pt/wifi-qr-code/');
+      expect(getLocalizedUrl('de', '/')).toBe('/de/');
+      expect(getLocalizedUrl('tr', '/qr-code-scanner')).toBe('/tr/qr-code-scanner/');
     });
   });
 
@@ -157,21 +157,21 @@ describe('i18n utils', () => {
     it('returns alternate URLs for all 5 supported locales', () => {
       const alternates = getAllLocaleUrls('/how-to-use', 'https://generatecustomqr.com');
       expect(alternates).toHaveLength(5);
-      expect(alternates.find((a) => a.locale === 'en')?.url).toBe('https://generatecustomqr.com/how-to-use');
-      expect(alternates.find((a) => a.locale === 'es')?.url).toBe('https://generatecustomqr.com/es/how-to-use');
-      expect(alternates.find((a) => a.locale === 'pt')?.url).toBe('https://generatecustomqr.com/pt/how-to-use');
-      expect(alternates.find((a) => a.locale === 'de')?.url).toBe('https://generatecustomqr.com/de/how-to-use');
-      expect(alternates.find((a) => a.locale === 'tr')?.url).toBe('https://generatecustomqr.com/tr/how-to-use');
+      expect(alternates.find((a) => a.locale === 'en')?.url).toBe('https://generatecustomqr.com/how-to-use/');
+      expect(alternates.find((a) => a.locale === 'es')?.url).toBe('https://generatecustomqr.com/es/how-to-use/');
+      expect(alternates.find((a) => a.locale === 'pt')?.url).toBe('https://generatecustomqr.com/pt/how-to-use/');
+      expect(alternates.find((a) => a.locale === 'de')?.url).toBe('https://generatecustomqr.com/de/how-to-use/');
+      expect(alternates.find((a) => a.locale === 'tr')?.url).toBe('https://generatecustomqr.com/tr/how-to-use/');
     });
 
     it('returns exact matching canonical homepage URLs for root path', () => {
       const alternates = getAllLocaleUrls('/', 'https://generatecustomqr.com');
       expect(alternates).toHaveLength(5);
       expect(alternates.find((a) => a.locale === 'en')?.url).toBe('https://generatecustomqr.com/');
-      expect(alternates.find((a) => a.locale === 'es')?.url).toBe('https://generatecustomqr.com/es');
-      expect(alternates.find((a) => a.locale === 'pt')?.url).toBe('https://generatecustomqr.com/pt');
-      expect(alternates.find((a) => a.locale === 'de')?.url).toBe('https://generatecustomqr.com/de');
-      expect(alternates.find((a) => a.locale === 'tr')?.url).toBe('https://generatecustomqr.com/tr');
+      expect(alternates.find((a) => a.locale === 'es')?.url).toBe('https://generatecustomqr.com/es/');
+      expect(alternates.find((a) => a.locale === 'pt')?.url).toBe('https://generatecustomqr.com/pt/');
+      expect(alternates.find((a) => a.locale === 'de')?.url).toBe('https://generatecustomqr.com/de/');
+      expect(alternates.find((a) => a.locale === 'tr')?.url).toBe('https://generatecustomqr.com/tr/');
     });
   });
 });
