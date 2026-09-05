@@ -79,9 +79,15 @@ function App() {
     else if (path.includes("vcard") || path.includes("contact")) expectedType = "vcard";
     else if (path.includes("event") || path.includes("calendar")) expectedType = "event";
     else if (path.includes("email")) expectedType = "email";
+    else if (path.includes("url-qr-code")) expectedType = "url";
     
     if (expectedType && useQRStore.getState().settings.contentType !== expectedType) {
       useQRStore.getState().updateSettings({ contentType: expectedType as any, contentData: "" });
+    }
+
+    if (path.includes("qr-code-with-logo")) {
+      setActiveTab('Logo');
+      setMobileMainTab('logo');
     }
   }, []);
 

@@ -1,6 +1,18 @@
 # WWW to non-WWW Canonical 301 Redirect
 https://www.generatecustomqr.com/*  https://generatecustomqr.com/:splat  301!
 
+# Short Tool URL Aliases (Rescue external links & user typos)
+/qr-code-generator/        /free-qr-code-generator/  301
+/qr-code-generator         /free-qr-code-generator/  301
+/generator/                /free-qr-code-generator/  301
+/generator                 /free-qr-code-generator/  301
+/scanner/                  /qr-code-scanner/         301
+/scanner                   /qr-code-scanner/         301
+/vcard/                    /vcard-qr-code/           301
+/vcard                     /vcard-qr-code/           301
+/wifi/                     /wifi-qr-code/            301
+/wifi                      /wifi-qr-code/            301
+
 # Sitemap Aliases (for search engines & audit tools)
 /sitemap.xml        /sitemap-index.xml  301
 /sitemap_index.xml  /sitemap-index.xml  301
@@ -11,3 +23,4 @@ https://www.generatecustomqr.com/*  https://generatecustomqr.com/:splat  301!
 # Cloudflare Pages API Proxy
 # Proxies all /api/* requests to live Render backend
 /api/*  https://qr-code-generator-6-shry.onrender.com/api/:splat  200
+
