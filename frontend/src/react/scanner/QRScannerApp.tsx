@@ -398,6 +398,7 @@ function QRScannerAppContent() {
   const [error, setError] = useState<string | null>(null);
   const [isScanning, setIsScanning] = useState(false);
   const [activeTab, setActiveTab] = useState<'file' | 'camera'>('file');
+  const [cameraRequested, setCameraRequested] = useState(false);
   const [uploadedImagePreview, setUploadedImagePreview] = useState<string | null>(null);
   const [isDeepScanning, setIsDeepScanning] = useState(false);
   const [deepScanStep, setDeepScanStep] = useState<string>('Analyzing image...');
@@ -456,11 +457,6 @@ function QRScannerAppContent() {
       
       if (queryTab === 'camera' || hash === 'camera') {
         setActiveTab('camera');
-      } else {
-        const savedTab = sessionStorage.getItem(TAB_PREF_KEY);
-        if (savedTab === 'camera' || savedTab === 'file') {
-          setActiveTab(savedTab as any);
-        }
       }
 
       // 2. Load scan history
@@ -468,13 +464,6 @@ function QRScannerAppContent() {
       if (savedHistory) {
         setScanHistory(JSON.parse(savedHistory));
       }
-
-      // 3. Detect available cameras early (to know if device has 2+ cameras)
-      Html5Qrcode.getCameras().then(cameras => {
-        if (cameras && cameras.length > 0) {
-          setAvailableCameras(cameras.map(c => ({ id: c.id, label: c.label || `Camera ${c.id.substring(0, 5)}` })));
-        }
-      }).catch(() => {});
     } catch (e) {
       console.warn('Initial hydration load warning:', e);
     }
@@ -489,6 +478,12 @@ function QRScannerAppContent() {
     if (uploadedImagePreview) {
       URL.revokeObjectURL(uploadedImagePreview);
       setUploadedImagePreview(null);
+    }
+    if (newTab === 'camera') {
+      setCameraRequested(true);
+    } else {
+      setCameraRequested(false);
+      stopCamera();
     }
     setActiveTab(newTab);
     try {
@@ -725,7 +720,7 @@ function QRScannerAppContent() {
 
   // Switch camera tab lifecycle & page unload cleanup
   useEffect(() => {
-    if (activeTab === 'camera' && !scanResult) {
+    if (activeTab === 'camera' && cameraRequested && !scanResult) {
       const timer = setTimeout(() => {
         startCamera(selectedCameraId || undefined);
       }, 50);
@@ -736,7 +731,7 @@ function QRScannerAppContent() {
     } else {
       stopCamera();
     }
-  }, [activeTab, scanResult, selectedCameraId]);
+  }, [activeTab, cameraRequested, scanResult, selectedCameraId]);
 
   // Page reload / unload listener to immediately release camera hardware
   useEffect(() => {
@@ -1411,7 +1406,10 @@ function QRScannerAppContent() {
                         
                         <div className="flex flex-col sm:flex-row gap-2 w-full">
                           <button
-                            onClick={() => startCamera(selectedCameraId || undefined)}
+                            onClick={() => {
+                              setCameraRequested(true);
+                              startCamera(selectedCameraId || undefined);
+                            }}
                             className="flex-1 flex items-center justify-center gap-1.5 bg-primary text-white py-2.5 px-4 rounded-xl font-bold hover:bg-primary/90 text-xs shadow-md transition-all cursor-pointer btn-spring"
                           >
                             <RefreshCw size={13} />
