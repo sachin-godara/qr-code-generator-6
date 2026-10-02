@@ -219,7 +219,7 @@ const metaMap: Record<Locale, {
     specsTitle: "Temel Teknik Özellikler",
     specs: [
       { icon: "link", title: "Evrensel URL Uyumluluğu", desc: "https://, http://, UTM parametreleri, derin bağlantılar (deep links) ve alt alan adlarıyla tam uyumlu çalışır." },
-      { icon: "qr_code_scanner", title: "Anında Kamera Açılışı", desc: "iOS Kamera, Google Lens ve tüm yerel barkod okuyucular tarafından 1 saniyeden kısa sürede tanınır." },
+      { icon: "crop_free", title: "Anında Kamera Açılışı", desc: "iOS Kamera, Google Lens ve tüm yerel barkod okuyucular tarafından 1 saniyeden kısa sürede tanınır." },
       { icon: "palette", title: "Özel Tasarım ve Renkler", desc: "Markanızın kurumsal renkleri, degradeler ve 40'tan fazla nokta deseniyle eşsiz kodlar yaratın." },
       { icon: "download", title: "Kayıpsız Vektör İndirme", desc: "Afişler, menüler ve ambalajlar için pikselleşme olmadan sınırsız boyutta SVG ve 300 DPI PDF formatında indirin." }
     ],
@@ -271,7 +271,7 @@ const relatedTools = [
   { icon: "image", title: t(locale, 'footer.logoQR'), desc: t(locale, 'landing.features.card2Title'), url: getLocalizedUrl(locale, '/qr-code-with-logo') },
   { icon: "event", title: t(locale, 'footer.eventQR'), desc: t(locale, 'landing.formats.items.eventDesc'), url: getLocalizedUrl(locale, '/event-qr-code') },
   { icon: "mail", title: t(locale, 'footer.emailQR'), desc: t(locale, 'landing.formats.items.emailDesc'), url: getLocalizedUrl(locale, '/email-qr-code') },
-  { icon: "qr_code_scanner", title: t(locale, 'footer.scanner'), desc: t(locale, 'scanner.formats.urlsDesc'), url: getLocalizedUrl(locale, '/qr-code-scanner') }
+  { icon: "crop_free", title: t(locale, 'footer.scanner'), desc: t(locale, 'scanner.formats.urlsDesc'), url: getLocalizedUrl(locale, '/qr-code-scanner') }
 ];
 
 const howTo = {
@@ -380,7 +380,7 @@ const howTo = {
             class="p-3.5 rounded-xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary/40 hover:-translate-y-1 hover:shadow-xs transition-all text-center group flex flex-col items-center justify-between"
           >
             <div class="w-8 h-8 rounded-lg bg-zinc-100 group-hover:bg-primary group-hover:text-white flex items-center justify-center transition-colors mb-2">
-              <span class="material-symbols-outlined text-lg">{tool.icon}</span>
+              <span class="material-symbols-outlined text-lg" aria-hidden="true">{tool.icon}</span>
             </div>
             <span class="font-bold text-xs text-on-surface group-hover:text-primary transition-colors block">{tool.title}</span>
           </a>

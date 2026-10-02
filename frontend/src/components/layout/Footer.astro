@@ -79,7 +79,7 @@ const termsUrl = getLocalizedUrl(currentLocale, '/terms');
           <li><a href={eventQrUrl} class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">{t(currentLocale, 'footer.eventQR')}</a></li>
           <li><a href={emailQrUrl} class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">{t(currentLocale, 'footer.emailQR')}</a></li>
           <li><a href={freeGenUrl} class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">{t(currentLocale, 'footer.freeGenerator')}</a></li>
-          <li><a href={scannerUrl} class="text-sm font-bold text-primary hover:text-primary-hover transition-colors flex items-center gap-1"><span class="material-symbols-outlined text-[16px]">qr_code_scanner</span> {t(currentLocale, 'footer.scanner')}</a></li>
+          <li><a href={scannerUrl} class="text-sm font-bold text-primary hover:text-primary-hover transition-colors flex items-center gap-1"><span class="material-symbols-outlined text-[16px]" aria-hidden="true">crop_free</span> {t(currentLocale, 'footer.scanner')}</a></li>
         </ul>
       </nav>
 

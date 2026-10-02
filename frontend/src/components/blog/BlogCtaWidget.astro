@@ -31,7 +31,7 @@ const config = {
     url: getLocalizedUrl(locale, '/wifi-qr-code')
   },
   scanner: {
-    icon: 'qr_code_scanner',
+    icon: 'crop_free',
     color: 'from-emerald-600 to-teal-600',
     badge: 'Online Scanner',
     defaultTitle: 'Scan Any QR Code in Your Browser',
@@ -58,7 +58,7 @@ const config = {
   <div class="relative z-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
     <div class="space-y-2 max-w-lg">
       <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container text-on-surface text-[11px] font-bold tracking-wider uppercase border border-outline-variant/60">
-        <span class="material-symbols-outlined text-[13px] text-primary">{config.icon}</span>
+        <span class="material-symbols-outlined text-[13px] text-primary" aria-hidden="true">{config.icon}</span>
         <span>{config.badge}</span>
       </div>
       <h3 class="text-lg sm:text-xl font-black text-on-surface tracking-tight leading-snug">

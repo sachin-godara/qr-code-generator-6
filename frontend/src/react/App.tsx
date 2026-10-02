@@ -162,7 +162,7 @@ function App() {
   }
 
   const sidebarTabs = [
-    { name: "Content", label: t("studio.tabs.content"), icon: "qr_code_scanner" },
+    { name: "Content", label: t("studio.tabs.content"), icon: "qr_code" },
     { name: "Templates", label: t("studio.tabs.templates"), icon: "style" },
     { name: "Design", label: t("studio.tabs.design"), icon: "palette" },
     { name: "Logo", label: t("studio.tabs.logo"), icon: "image" },
@@ -333,7 +333,7 @@ function App() {
                 href={getLocalizedUrl(locale, '/qr-code-scanner')}
                 className="text-sm font-bold transition-colors flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border text-on-surface hover:text-primary hover:bg-surface-container border-outline-variant/30"
               >
-                <span className="material-symbols-outlined text-[16px]">qr_code_scanner</span>
+                <span className="material-symbols-outlined text-[16px]" aria-hidden="true">crop_free</span>
                 {t("nav.scan")}
               </a>
             </div>
@@ -386,7 +386,7 @@ function App() {
               className="w-full flex items-center gap-3 p-3 rounded-xl min-h-[48px] font-bold text-primary bg-primary/5 border border-primary/20"
               onClick={() => setMobileMenuOpen(false)}
             >
-              <span className="material-symbols-outlined text-[20px]">qr_code_scanner</span>
+              <span className="material-symbols-outlined text-[20px]" aria-hidden="true">crop_free</span>
               {t("nav.scanQR")}
             </a>
           </div>

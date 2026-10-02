@@ -26,9 +26,9 @@
     ]
   },
   "scanner": {
-    "title": "QR Code Scanner Online — Kostenlos & Ohne App scannen",
+    "title": "QR Code Scannen Online — Kostenlos & Ohne App",
     "description": "QR-Code kostenlos online scannen direkt im Browser per Kamera, Bild-Upload oder Screenshot (Strg+V). 100% gratis Scanner ohne App & ohne Installation für PC & Smartphone.",
-    "keywords": "qr code scanner online, qr code scannen, qr code scanner ohne app, qr scanner, qr code lesen, qr-code scannen, qr code scanner kostenlos, qr code scannen pc, qr code von bild scannen, qr code von foto lesen, qr code screenshot scannen, barcode scanner online",
+    "keywords": "qr code scannen, qr-code scannen, qr code scannen online, qr code scannen ohne app, qr scanner, qr code lesen, qr code scannen kostenlos, qr code scannen pc, qr code von bild scannen, qr code von foto lesen, qr code screenshot scannen, barcode scanner online",
     "faqs": [
       { "q": "Benötige ich eine separate Scanner-App?", "a": "Nein! Moderne Smartphones können QR-Codes direkt mit der Standard-Kamera erfassen, oder Sie nutzen unseren kostenlosen Web-Scanner." },
       { "q": "Wie scanne ich einen QR-Code auf Android?", "a": "Öffnen Sie die Kamera-App und richten Sie sie auf den QR-Code, oder nutzen Sie Google Lens oder diesen Web-Scanner." },

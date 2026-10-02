@@ -81,7 +81,7 @@ const isScanner = currentPath.startsWith(scannerUrl);
           class={`text-sm font-bold transition-colors flex items-center gap-1.5 px-3.5 py-1.5 rounded-full border ${isScanner ? "text-primary bg-primary/10 border-primary/30" : "text-on-surface hover:text-primary hover:bg-surface-container border-outline-variant/30"}`}
           {...(isScanner ? { "aria-current": "page" } : {})}
         >
-          <span class="material-symbols-outlined text-[16px]">qr_code_scanner</span>
+          <span class="material-symbols-outlined text-[16px]" aria-hidden="true">crop_free</span>
           {t(currentLocale, 'nav.scan')}
         </a>
       </div>
@@ -136,7 +136,7 @@ const isScanner = currentPath.startsWith(scannerUrl);
       href={scannerUrl}
       class={`w-full flex items-center gap-3 p-2.5 rounded-xl min-h-[44px] font-bold ${isScanner ? "text-primary bg-primary/5 border border-primary/20" : "text-on-surface-variant hover:bg-surface-container"}`}
     >
-      <span class="material-symbols-outlined text-[20px]">qr_code_scanner</span>
+      <span class="material-symbols-outlined text-[20px]" aria-hidden="true">crop_free</span>
       {t(currentLocale, 'nav.scanQR')}
     </a>
   </div>
