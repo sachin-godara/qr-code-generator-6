@@ -6,7 +6,8 @@
     "scan": "Escanear",
     "scanQR": "Escanear Código QR",
     "selectLanguage": "Seleccionar idioma",
-    "language": "Idioma"
+    "language": "Idioma",
+    "brandTagline": "40+ estilos · 100% gratis sin registro"
   },
   "studio": {
     "tabs": {
@@ -54,6 +55,8 @@
       "share": "Compartir",
       "fullscreen": "Pantalla Completa",
       "download": "Descargar",
+      "quickDownload": "Descargar código QR",
+      "skipToDownload": "Ir directo a Descargar",
       "copyImage": "Copiar Imagen",
       "generating": "Generando...",
       "downloading": "Descargando...",
@@ -64,6 +67,8 @@
       "customization": "Personalización",
       "personalize": "Personaliza tu código QR",
       "step": "Paso {current} / {total}",
+      "trustPill": "100% Gratis · Sin Registro · Códigos Permanentes",
+      "permanentStatic": "Permanente (Estático)",
       "offlineMessage": "Estás sin conexión. Las actualizaciones del código QR están en pausa hasta que se restablezca la conexión.",
       "enterContent": "Introduce tu contenido",
       "enterContentSub": "Elige un tipo abajo y completa tus datos",

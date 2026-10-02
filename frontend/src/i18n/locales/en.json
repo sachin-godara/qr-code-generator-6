@@ -6,7 +6,8 @@
     "scan": "Scan",
     "scanQR": "Scan QR Code",
     "selectLanguage": "Select language",
-    "language": "Language"
+    "language": "Language",
+    "brandTagline": "40+ styles · 100% free, no signup"
   },
   "studio": {
     "tabs": {
@@ -54,6 +55,8 @@
       "share": "Share",
       "fullscreen": "Fullscreen",
       "download": "Download",
+      "quickDownload": "Download QR Code",
+      "skipToDownload": "Skip to Download",
       "copyImage": "Copy Image",
       "generating": "Generating...",
       "downloading": "Downloading...",
@@ -64,6 +67,8 @@
       "customization": "Customization",
       "personalize": "Personalize your QR code",
       "step": "Step {current} / {total}",
+      "trustPill": "100% Free · No Signup · Permanent Static Codes",
+      "permanentStatic": "Permanent (Static)",
       "offlineMessage": "You are offline. QR code updates are paused until connection is restored.",
       "enterContent": "Enter your content",
       "enterContentSub": "Pick a type below, then fill in your data",

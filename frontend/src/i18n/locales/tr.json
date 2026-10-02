@@ -6,7 +6,8 @@
     "scan": "Tara",
     "scanQR": "QR Kod Tara",
     "selectLanguage": "Dil seçin",
-    "language": "Dil"
+    "language": "Dil",
+    "brandTagline": "40+ stil · %100 ücretsiz kayıtsız"
   },
   "studio": {
     "tabs": {
@@ -54,6 +55,8 @@
       "share": "Paylaş",
       "fullscreen": "Tam Ekran",
       "download": "İndir",
+      "quickDownload": "QR Kodu İndir",
+      "skipToDownload": "Doğrudan İndirmeye Geç",
       "copyImage": "Resmi Kopyala",
       "generating": "Oluşturuluyor...",
       "downloading": "İndiriliyor...",
@@ -64,6 +67,8 @@
       "customization": "Özelleştirme",
       "personalize": "QR kodunuzu kişiselleştirin",
       "step": "Adım {current} / {total}",
+      "trustPill": "%100 Ücretsiz · Kayıt Yok · Süresiz Statik Kodlar",
+      "permanentStatic": "Süresiz (Statik)",
       "offlineMessage": "Çevrimdışısınız. Bağlantı kurulana kadar QR kod güncellemeleri duraklatıldı.",
       "enterContent": "İçeriğinizi girin",
       "enterContentSub": "Aşağıdan bir tür seçin, ardından verilerinizi doldurun",

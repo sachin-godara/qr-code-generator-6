@@ -37,7 +37,8 @@ export function DesktopPreviewPane({
 }: DesktopPreviewPaneProps) {
   const { t } = useTranslation();
   const { settings } = useQRStore();
-  const { downloadFormat, downloadSize } = useDownloadStore();
+  const { downloadFormat, downloadSize, isDownloading } = useDownloadStore();
+  const { handleDownloadCustom } = useDownloadHandlers();
 
   let targetResolution = `${downloadSize}x${downloadSize}`;
   if (downloadFormat === "SVG") targetResolution = "Vector (SVG)";
@@ -210,6 +211,35 @@ export function DesktopPreviewPane({
               <span className="text-xs font-bold text-on-surface">~{printSizeCm}cm print</span>
             </div>
           )}
+          <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 shadow-2xs">
+            <span className="material-symbols-outlined text-[14px]">all_inclusive</span>
+            <span className="text-xs font-bold">{t("studio.labels.permanentStatic") || "Dauerhaft (Statisch)"}</span>
+          </div>
+        </div>
+
+        {/* Quick Instant Download Button */}
+        <div className="pt-4 flex flex-col items-center gap-2 w-full">
+          <button
+            onClick={handleDownloadCustom}
+            disabled={isDownloading || isLoading || isFetching}
+            className="w-full py-3.5 px-5 rounded-2xl bg-gradient-to-r from-primary via-primary/95 to-secondary hover:brightness-110 active:scale-[0.98] text-white font-bold text-sm shadow-md hover:shadow-xl transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:pointer-events-none group cursor-pointer"
+          >
+            {isDownloading ? (
+              <>
+                <Loader2 className="w-4 h-4 animate-spin text-white" />
+                <span>{t("studio.buttons.generating") || "Wird generiert..."}</span>
+              </>
+            ) : (
+              <>
+                <span className="material-symbols-outlined text-[20px] group-hover:-translate-y-0.5 transition-transform duration-200">download</span>
+                <span>{t("studio.buttons.quickDownload") || "QR-Code herunterladen"}</span>
+              </>
+            )}
+          </button>
+          <p className="text-[11px] text-on-surface-variant text-center font-medium flex items-center justify-center gap-1">
+            <span className="material-symbols-outlined text-[14px] text-emerald-600">verified</span>
+            <span>{t("studio.labels.trustPill") || "100% Kostenlos · Ohne Anmeldung · Dauerhaft gültig"}</span>
+          </p>
         </div>
       </div>
     </div>

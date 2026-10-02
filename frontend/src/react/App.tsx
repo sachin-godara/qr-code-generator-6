@@ -195,17 +195,31 @@ function App() {
       const currentTab = sidebarTabs[currentIndex];
       const nextTab = sidebarTabs[currentIndex + 1];
       return (
-        <div className="mt-8 pt-6 border-t border-outline-variant/30 flex justify-between items-center animate-in fade-in duration-500">
+        <div className="mt-8 pt-6 border-t border-outline-variant/30 flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 animate-in fade-in duration-500">
           <div className="text-sm text-on-surface-variant font-medium hidden sm:block">
             {t("studio.buttons.doneWith", { tab: currentTab.label })}
           </div>
-          <button
-            onClick={() => goToNextTab(currentTabName)}
-            className="w-full sm:w-auto flex items-center justify-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-xl font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all"
-          >
-            <span>{t("studio.buttons.continueTo", { tab: nextTab.label })}</span>
-            <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
-          </button>
+          <div className="flex items-center gap-2.5 flex-col sm:flex-row w-full sm:w-auto">
+            {currentTabName !== "Download" && currentTabName !== sidebarTabs[sidebarTabs.length - 2].name && (
+              <button
+                onClick={() => {
+                  setActiveTab("Download");
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="w-full sm:w-auto flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl border border-outline-variant/60 hover:border-primary/40 text-on-surface-variant hover:text-on-surface text-xs font-semibold transition-all hover:bg-surface-container-low"
+              >
+                <span className="material-symbols-outlined text-[16px]">download</span>
+                <span>{t("studio.buttons.skipToDownload") || "Direkt zum Download"}</span>
+              </button>
+            )}
+            <button
+              onClick={() => goToNextTab(currentTabName)}
+              className="w-full sm:w-auto flex items-center justify-center gap-2 bg-primary text-on-primary px-6 py-3 rounded-xl font-bold shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 transition-all"
+            >
+              <span>{t("studio.buttons.continueTo", { tab: nextTab.label })}</span>
+              <span className="material-symbols-outlined text-[18px]">arrow_forward</span>
+            </button>
+          </div>
         </div>
       );
     }
@@ -290,7 +304,7 @@ function App() {
               </div>
               <div className="flex flex-col leading-none">
                 <span className="text-[14px] font-bold tracking-tight bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent whitespace-nowrap">GenerateCustomQR</span>
-                <span className="text-[9px] font-medium text-on-surface-variant tracking-wider hidden sm:block whitespace-nowrap">40+ styles · 100% free</span>
+                <span className="text-[9px] font-medium text-on-surface-variant tracking-wider hidden sm:block whitespace-nowrap">{t("nav.brandTagline", {}, "40+ styles · 100% free")}</span>
               </div>
             </a>
             <div className="hidden md:flex items-center gap-5 lg:gap-6">
@@ -448,6 +462,10 @@ function App() {
                       ))}
                       <span className="text-[10px] font-bold text-on-surface-variant uppercase tracking-widest ml-1">
                         {t("studio.labels.step", { current: meta.step, total: sidebarTabs.length }) || `Step ${meta.step} / ${sidebarTabs.length}`}
+                      </span>
+                      <span className="ml-auto hidden sm:inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 border border-emerald-500/20 text-[11px] font-bold">
+                        <span className="material-symbols-outlined text-[14px]">verified</span>
+                        {t("studio.labels.trustPill") || "100% Free · No Signup · Permanent"}
                       </span>
                     </div>
                     <h3 className="text-xl font-semibold text-on-surface tracking-tight panel-enter" key={`h-${activeTab}`}>{meta.headline}</h3>

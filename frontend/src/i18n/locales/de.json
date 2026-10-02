@@ -6,7 +6,8 @@
     "scan": "Scannen",
     "scanQR": "QR-Code scannen",
     "selectLanguage": "Sprache wählen",
-    "language": "Sprache"
+    "language": "Sprache",
+    "brandTagline": "40+ Stile · 100% kostenlos ohne Anmeldung"
   },
   "studio": {
     "tabs": {
@@ -54,6 +55,8 @@
       "share": "Teilen",
       "fullscreen": "Vollbild",
       "download": "Herunterladen",
+      "quickDownload": "QR-Code herunterladen",
+      "skipToDownload": "Direkt zum Download",
       "copyImage": "Bild kopieren",
       "generating": "Wird generiert...",
       "downloading": "Wird heruntergeladen...",
@@ -64,6 +67,8 @@
       "customization": "Anpassung",
       "personalize": "QR-Code individuell anpassen",
       "step": "Schritt {current} / {total}",
+      "trustPill": "100% Kostenlos · Ohne Anmeldung · Dauerhaft gültig",
+      "permanentStatic": "Dauerhaft (Statisch)",
       "offlineMessage": "Sie sind offline. QR-Code-Aktualisierungen sind pausiert, bis die Verbindung wiederhergestellt wird.",
       "enterContent": "Inhalt eingeben",
       "enterContentSub": "Wählen Sie einen Typ unten aus und geben Sie Ihre Daten ein",
