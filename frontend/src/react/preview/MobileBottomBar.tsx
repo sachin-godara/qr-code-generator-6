@@ -48,12 +48,16 @@ export function MobileBottomBar({
                   onClick={undo}
                   disabled={historyIndex <= 0}
                   className="w-9 h-9 rounded-full bg-surface hover:bg-surface-container-high border border-outline-variant/50 flex items-center justify-center disabled:opacity-30 disabled:pointer-events-none shadow-sm touch-press active:scale-95 transition-transform"
+                  aria-label={t("studio.buttons.undo") || "Undo"}
+                  title={t("studio.buttons.undo") || "Undo"}
                 >
                   <span className="material-symbols-outlined text-base">undo</span>
                 </button>
                 <button
                   onClick={resetSettings}
                   className="w-9 h-9 rounded-full bg-error-container/20 text-error hover:bg-error-container/40 border border-error/20 flex items-center justify-center shadow-sm touch-press active:scale-95 transition-transform"
+                  aria-label={t("studio.buttons.reset") || "Reset"}
+                  title={t("studio.buttons.reset") || "Reset"}
                 >
                   <span className="material-symbols-outlined text-base">restart_alt</span>
                 </button>
@@ -63,6 +67,9 @@ export function MobileBottomBar({
               <div 
                 className="relative w-32 h-32 shrink-0 bg-white rounded-2xl border-2 border-outline-variant/60 shadow-md p-1.5 flex items-center justify-center group cursor-pointer touch-press active:scale-[0.98] transition-transform"
                 onClick={handleFullscreen}
+                aria-label={t("studio.preview.fullscreen") || "Fullscreen"}
+                role="button"
+                tabIndex={0}
               >
                 {(isLoading || isFetching) && !isError && (
                   <div className="absolute inset-0 flex items-center justify-center bg-white/60 backdrop-blur-[2px] z-10 rounded-2xl">
@@ -90,12 +97,16 @@ export function MobileBottomBar({
                   onClick={redo}
                   disabled={historyIndex >= history.length - 1}
                   className="w-9 h-9 rounded-full bg-surface hover:bg-surface-container-high border border-outline-variant/50 flex items-center justify-center disabled:opacity-30 disabled:pointer-events-none shadow-sm touch-press active:scale-95 transition-transform"
+                  aria-label={t("studio.buttons.redo") || "Redo"}
+                  title={t("studio.buttons.redo") || "Redo"}
                 >
                   <span className="material-symbols-outlined text-base">redo</span>
                 </button>
                 <button
                   onClick={handleFullscreen}
                   className="w-9 h-9 rounded-full bg-primary/10 text-primary hover:bg-primary/20 border border-primary/20 flex items-center justify-center shadow-sm touch-press active:scale-95 transition-transform"
+                  aria-label={t("studio.preview.fullscreen") || "Fullscreen"}
+                  title={t("studio.preview.fullscreen") || "Fullscreen"}
                 >
                   <span className="material-symbols-outlined text-base">open_in_full</span>
                 </button>

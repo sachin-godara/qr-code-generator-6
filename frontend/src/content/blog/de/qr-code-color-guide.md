@@ -206,6 +206,6 @@ In [GenerateCustomQR](/de/) können Sie Augen-Rahmen und Pupillen separat einfä
 
 Bereit für einen maßgeschneiderten QR-Code in Ihren Firmenfarben? [GenerateCustomQR](/de/) bietet volle Farbfreiheit bei garantierter Lesbarkeit — 100% kostenlos.
 
-- [Jetzt gestalten →](/de/)
+- [QR Code kostenlos erstellen ohne Anmeldung →](/de/)
 - [Größenberater für den Druck →](/de/blog/qr-code-size-guide/)
 - [Tipps für den perfekten Druck →](/de/blog/qr-code-design-best-practices-for-print/)

@@ -105,6 +105,6 @@ Ein dynamischer QR-Code kodiert eine **kurze Weiterleitungs-URL** (z. B. `qr.exa
 
 [GenerateCustomQR](/de/) hat sich auf **hochwertige statische QR-Codes** mit vollem Designumfang spezialisiert — über 40 Punkt-Muster, Logo-Einbindung, Textrahmen und druckfertige Vektordateien (SVG/PDF). 100% kostenlos und ohne Ablaufdatum.
 
-- [Kostenlosen QR-Code gestalten →](/de/)
+- [QR Code kostenlos erstellen ohne Anmeldung →](/de/)
 - [Mehr über kostenlose QR-Codes erfahren →](/de/free-qr-code-generator/)
 - [Logo in QR-Code einbinden →](/de/qr-code-with-logo/)

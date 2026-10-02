@@ -596,22 +596,22 @@ function App() {
                   >
                     <div className="flex bg-surface-container rounded-lg p-1 border border-outline-variant/50">
                       {([
-                        { name: "Templates", icon: "dashboard" },
-                        { name: "Design",    icon: "palette" },
-                        { name: "Frames",    icon: "crop_free" }
+                        { id: "Templates", label: t("studio.tabs.templates") || "Templates", icon: "dashboard" },
+                        { id: "Design",    label: t("studio.tabs.style") || "Style",         icon: "palette" },
+                        { id: "Frames",    label: t("studio.tabs.frames") || "Frames",       icon: "crop_free" }
                       ] as const).map(tab => (
                         <button
-                          key={tab.name}
+                          key={tab.id}
                           onClick={() => {
-                            setActiveTab(tab.name);
+                            setActiveTab(tab.id);
                           }}
                           className={`relative flex-1 flex items-center justify-center gap-1.5 py-2 rounded-md font-bold transition-colors text-xs outline-none ${
-                            activeTab === tab.name
+                            activeTab === tab.id
                               ? 'text-primary'
                               : 'text-on-surface-variant hover:text-on-surface'
                           }`}
                         >
-                          {activeTab === tab.name && (
+                          {activeTab === tab.id && (
                             <motion.div
                               layoutId="mobile-design-subnav"
                               className="absolute inset-0 bg-white shadow-sm ring-1 ring-black/5 rounded-md"
@@ -620,7 +620,7 @@ function App() {
                           )}
                           <div className="relative z-10 flex items-center gap-1.5">
                             <span className="material-symbols-outlined text-[14px]">{tab.icon}</span>
-                            {tab.name === "Design" ? "Style" : tab.name}
+                            <span>{tab.label}</span>
                           </div>
                         </button>
                       ))}
@@ -640,21 +640,21 @@ function App() {
                   >
                     <div className="flex bg-surface-container rounded-lg p-1 border border-outline-variant/50 relative">
                       {([
-                        { name: "Effects",   icon: "auto_awesome" },
-                        { name: "Advanced",  icon: "tune" },
+                        { id: "Effects",  label: t("studio.tabs.effects") || "Effects",   icon: "auto_awesome" },
+                        { id: "Advanced", label: t("studio.tabs.advanced") || "Advanced", icon: "tune" },
                       ] as const).map(tab => (
                         <button
-                          key={tab.name}
+                          key={tab.id}
                           onClick={() => {
-                            setActiveTab(tab.name);
+                            setActiveTab(tab.id);
                           }}
                           className={`relative flex-1 flex items-center justify-center gap-1.5 py-2 rounded-md font-bold transition-colors text-xs z-10 ${
-                            activeTab === tab.name
+                            activeTab === tab.id
                               ? 'text-primary'
                               : 'text-on-surface-variant hover:text-on-surface'
                           }`}
                         >
-                          {activeTab === tab.name && (
+                          {activeTab === tab.id && (
                             <motion.div
                               layoutId="activeSubTabIndicator"
                               className="absolute inset-0 bg-white shadow-sm rounded-md"
@@ -663,7 +663,7 @@ function App() {
                             />
                           )}
                           <span className="material-symbols-outlined text-[14px]">{tab.icon}</span>
-                          <span>{tab.name}</span>
+                          <span>{tab.label}</span>
                         </button>
                       ))}
                     </div>

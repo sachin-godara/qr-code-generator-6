@@ -66,7 +66,7 @@ export function DesktopPreviewPane({
           <div className="flex items-center gap-2">
             <span className="px-2 py-1 bg-surface-container text-on-surface-variant text-[10px] font-medium rounded-full flex items-center gap-1.5 tracking-wider uppercase">
               <span className="pulse-dot"></span>
-              Live
+              {t("studio.preview.live") || "Live"}
             </span>
           </div>
         </div>
@@ -90,16 +90,16 @@ export function DesktopPreviewPane({
         >
           {/* Background Tester Toggle */}
           <div className={`absolute top-3 left-3 z-30 flex backdrop-blur-md rounded-full p-1 shadow-sm border gap-0.5 ${previewBg === 'dark' ? 'bg-[#27272a]/90 border-white/10' : 'bg-white/90 border-outline-variant/30'}`}>
-            <button onClick={() => setPreviewBg("white")} className={`w-7 h-7 rounded-full flex items-center justify-center transition-colors ${previewBg === "white" ? "bg-white shadow-sm ring-1 ring-outline-variant/30" : "hover:bg-black/5 dark:hover:bg-white/10"}`} title="Solid Light Background">
+            <button onClick={() => setPreviewBg("white")} className={`w-7 h-7 rounded-full flex items-center justify-center transition-colors ${previewBg === "white" ? "bg-white shadow-sm ring-1 ring-outline-variant/30" : "hover:bg-black/5 dark:hover:bg-white/10"}`} title={t("studio.preview.solidLight") || "Solid Light Background"} aria-label={t("studio.preview.solidLight") || "Solid Light Background"}>
               <span className="w-4 h-4 rounded-full bg-[#f4f4f5] border border-outline-variant/60 shadow-inner"></span>
             </button>
-            <button onClick={() => setPreviewBg("light")} className={`w-7 h-7 rounded-full flex items-center justify-center transition-colors ${previewBg === "light" ? "bg-white shadow-sm ring-1 ring-outline-variant/30" : "hover:bg-black/5 dark:hover:bg-white/10"}`} title="Light Background">
+            <button onClick={() => setPreviewBg("light")} className={`w-7 h-7 rounded-full flex items-center justify-center transition-colors ${previewBg === "light" ? "bg-white shadow-sm ring-1 ring-outline-variant/30" : "hover:bg-black/5 dark:hover:bg-white/10"}`} title={t("studio.preview.light") || "Light Background"} aria-label={t("studio.preview.light") || "Light Background"}>
               <span className="w-4 h-4 rounded-full bg-[#f9fafb] border border-outline-variant/60 shadow-inner"></span>
             </button>
-            <button onClick={() => setPreviewBg("dark")} className={`w-7 h-7 rounded-full flex items-center justify-center transition-colors ${previewBg === "dark" ? "bg-[#3f3f46] shadow-sm ring-1 ring-black/50" : "hover:bg-black/5 dark:hover:bg-white/10"}`} title="Dark Background">
+            <button onClick={() => setPreviewBg("dark")} className={`w-7 h-7 rounded-full flex items-center justify-center transition-colors ${previewBg === "dark" ? "bg-[#3f3f46] shadow-sm ring-1 ring-black/50" : "hover:bg-black/5 dark:hover:bg-white/10"}`} title={t("studio.preview.dark") || "Dark Background"} aria-label={t("studio.preview.dark") || "Dark Background"}>
               <span className="w-4 h-4 rounded-full bg-[#18181b] border border-black shadow-inner"></span>
             </button>
-            <button onClick={() => setPreviewBg("transparent")} className={`w-7 h-7 rounded-full flex items-center justify-center transition-colors ${previewBg === "transparent" ? "bg-white shadow-sm ring-1 ring-outline-variant/30" : "hover:bg-black/5 dark:hover:bg-white/10"}`} title="Transparent (Checkerboard) Background">
+            <button onClick={() => setPreviewBg("transparent")} className={`w-7 h-7 rounded-full flex items-center justify-center transition-colors ${previewBg === "transparent" ? "bg-white shadow-sm ring-1 ring-outline-variant/30" : "hover:bg-black/5 dark:hover:bg-white/10"}`} title={t("studio.preview.transparent") || "Transparent (Checkerboard) Background"} aria-label={t("studio.preview.transparent") || "Transparent (Checkerboard) Background"}>
               <span className="w-4 h-4 rounded-full border border-outline-variant/60 shadow-inner" style={{ backgroundImage: "linear-gradient(45deg, #e5e7eb 25%, transparent 25%), linear-gradient(-45deg, #e5e7eb 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e5e7eb 75%), linear-gradient(-45deg, transparent 75%, #e5e7eb 75%)", backgroundSize: "8px 8px", backgroundPosition: "0 0, 0 4px, 4px -4px, -4px 0px" }}></span>
             </button>
           </div>
@@ -130,7 +130,7 @@ export function DesktopPreviewPane({
               <div className="absolute inset-0 rounded-xl overflow-hidden flex items-center justify-center pointer-events-none">
                 <div className="bg-error/90 text-white px-3 py-2 rounded-lg flex flex-col items-center shadow-lg backdrop-blur-sm">
                   <span className="material-symbols-outlined text-xl mb-0.5">wifi_off</span>
-                  <span className="text-[10px] font-bold uppercase tracking-wider">Offline</span>
+                  <span className="text-[10px] font-bold uppercase tracking-wider">{t("studio.preview.offline") || "Offline"}</span>
                 </div>
               </div>
             )}
@@ -152,14 +152,16 @@ export function DesktopPreviewPane({
             <button
               onClick={() => setZoomLevel(1)}
               className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 ${zoomLevel === 1 ? 'bg-white shadow-sm text-primary' : 'text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface'}`}
-              title="Zoom 100%"
+              title={t("studio.preview.zoom100") || "Zoom 100%"}
+              aria-label={t("studio.preview.zoom100") || "Zoom 100%"}
             >
               <span className="material-symbols-outlined text-[18px]">fit_screen</span>
             </button>
             <button
               onClick={() => setZoomLevel(2)}
               className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 ${zoomLevel === 2 ? 'bg-white shadow-sm text-primary' : 'text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface'}`}
-              title="Zoom 200%"
+              title={t("studio.preview.zoom200") || "Zoom 200%"}
+              aria-label={t("studio.preview.zoom200") || "Zoom 200%"}
             >
               <span className="material-symbols-outlined text-[18px]">zoom_in</span>
             </button>
@@ -172,21 +174,24 @@ export function DesktopPreviewPane({
             <button
               onClick={handleFullscreen}
               className="w-9 h-9 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all duration-200"
-              title="Full Screen"
+              title={t("studio.preview.fullscreen") || "Full Screen"}
+              aria-label={t("studio.preview.fullscreen") || "Full Screen"}
             >
               <span className="material-symbols-outlined text-[18px]">fullscreen</span>
             </button>
             <button
               onClick={() => setIsComparing(!isComparing)}
               className={`w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200 ${isComparing ? 'bg-white shadow-sm text-primary' : 'text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface'}`}
-              title="Compare Raw"
+              title={t("studio.preview.compareRaw") || "Compare Raw"}
+              aria-label={t("studio.preview.compareRaw") || "Compare Raw"}
             >
               <span className="material-symbols-outlined text-[18px]">compare</span>
             </button>
             <button
               onClick={handleShare}
               className="w-9 h-9 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container-highest hover:text-on-surface transition-all duration-200"
-              title="Share"
+              title={t("studio.preview.share") || "Share"}
+              aria-label={t("studio.preview.share") || "Share"}
             >
               <span className="material-symbols-outlined text-[18px]">share</span>
             </button>
@@ -206,9 +211,9 @@ export function DesktopPreviewPane({
             <span className="text-xs font-bold text-on-surface">Level {settings.error_correction || "H"}</span>
           </div>
           {printSizeCm && (
-            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/40 shadow-2xs hover:shadow-sm hover:border-primary/30 transition-all" title="Approximate print size at 300 DPI">
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/40 shadow-2xs hover:shadow-sm hover:border-primary/30 transition-all" title={t("studio.preview.printSizeTooltip") || "Approximate print size at 300 DPI"}>
               <span className="material-symbols-outlined text-[14px] text-primary">print</span>
-              <span className="text-xs font-bold text-on-surface">~{printSizeCm}cm print</span>
+              <span className="text-xs font-bold text-on-surface">~{printSizeCm}cm {t("studio.preview.print") || "print"}</span>
             </div>
           )}
           <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-700 dark:text-emerald-400 shadow-2xs">
@@ -238,7 +243,7 @@ export function DesktopPreviewPane({
           </button>
           <p className="text-[11px] text-on-surface-variant text-center font-medium flex items-center justify-center gap-1">
             <span className="material-symbols-outlined text-[14px] text-emerald-600">verified</span>
-            <span>{t("studio.labels.trustPill") || "100% Kostenlos · Ohne Anmeldung · Dauerhaft gültig"}</span>
+            <span>{t("studio.preview.reassuranceBadge") || t("studio.labels.trustPill") || "100% Kostenlos · Ohne Anmeldung · Dauerhaft gültig"}</span>
           </p>
         </div>
       </div>
