@@ -30,6 +30,10 @@ const metaMap: Record<Locale, {
   ctaDesc: string;
   ctaBtn: string;
   keywords?: string;
+  guideBadge: string;
+  guideTitle: string;
+  guideDesc: string;
+  guideBtn: string;
 }> = {
   en: {
     title: "QR Code with Logo Generator — Custom Branded QR Codes",
@@ -74,7 +78,11 @@ const metaMap: Record<Locale, {
     otherToolsTitle: "Explore Other Free QR Code Tools",
     ctaTitle: "Ready to Brand Your QR Code?",
     ctaDesc: "Create custom QR codes with your logo in the center in seconds. Free SVG, PDF, and PNG downloads.",
-    ctaBtn: "Create QR Code with Logo Now ↑"
+    ctaBtn: "Create QR Code with Logo Now ↑",
+    guideBadge: "Design Guide",
+    guideTitle: "QR Code Color & Contrast Guide",
+    guideDesc: "Learn the 4.5:1 WCAG contrast standards, safe color palettes, and inverted background rules for branded logos.",
+    guideBtn: "Read Color & Contrast Guide"
   },
   es: {
     title: "Generador de Códigos QR con Logo — Personaliza tu Marca",
@@ -119,7 +127,11 @@ const metaMap: Record<Locale, {
     otherToolsTitle: "Explora Otras Herramientas QR Gratuitas",
     ctaTitle: "¿Listo para Personalizar tu Código QR con Logo?",
     ctaDesc: "Crea códigos QR con la marca de tu empresa en el centro en segundos. Descarga gratis en SVG y PNG.",
-    ctaBtn: "Crear Código QR con Logo Ahora ↑"
+    ctaBtn: "Crear Código QR con Logo Ahora ↑",
+    guideBadge: "Guía de Diseño",
+    guideTitle: "Guía de Colores y Contraste para Códigos QR",
+    guideDesc: "Aprende los estándares de contraste 4.5:1, combinaciones de color seguras y reglas para logos con fondo.",
+    guideBtn: "Leer Guía de Colores"
   },
   pt: {
     title: "Gerador de QR Code com Logotipo Grátis — Marca Personalizada",
@@ -164,7 +176,11 @@ const metaMap: Record<Locale, {
     otherToolsTitle: "Conheça Outras Ferramentas QR Gratuitas",
     ctaTitle: "Pronto para Criar seu QR Code com Logo?",
     ctaDesc: "Personalize seu código com a identidade da sua marca em segundos.",
-    ctaBtn: "Criar QR Code com Logo Agora ↑"
+    ctaBtn: "Criar QR Code com Logo Agora ↑",
+    guideBadge: "Guia de Design",
+    guideTitle: "Guia de Cores e Contraste para QR Code",
+    guideDesc: "Descubra os padrões de contraste 4.5:1, paletas de cores seguras e boas práticas para logos corporativos.",
+    guideBtn: "Ler Guia de Cores"
   },
   de: {
     title: "QR-Code mit Logo Generator — Eigenes Firmenlogo einbinden",
@@ -209,7 +225,11 @@ const metaMap: Record<Locale, {
     otherToolsTitle: "Weitere kostenlose QR-Code Tools",
     ctaTitle: "Bereit für Ihren Marken-QR-Code?",
     ctaDesc: "Erstellen Sie individuelle QR-Codes mit Ihrem Logo im Zentrum in wenigen Sekunden.",
-    ctaBtn: "Jetzt QR-Code mit Logo erstellen ↑"
+    ctaBtn: "Jetzt QR-Code mit Logo erstellen ↑",
+    guideBadge: "Design-Ratgeber",
+    guideTitle: "QR-Code Farbberater: Kontrast & Farbpaletten",
+    guideDesc: "4,5:1 WCAG-Kontraststandards, sichere Farbkombinationen und Regeln für Markenlogos im QR-Code.",
+    guideBtn: "Farbberater lesen"
   },
   tr: {
     title: "Logolu QR Kod Oluşturucu — Ortasına Logo Ekleme",
@@ -254,7 +274,11 @@ const metaMap: Record<Locale, {
     otherToolsTitle: "Diğer Ücretsiz QR Kod Araçlarını Keşfedin",
     ctaTitle: "Logolu QR Kodunuzu Oluşturmaya Hazır mısınız?",
     ctaDesc: "Ortasında kendi logonuz bulunan yüksek çözünürlüklü özel QR kodları saniyeler içinde oluşturun.",
-    ctaBtn: "Hemen Logolu QR Kod Oluştur ↑"
+    ctaBtn: "Hemen Logolu QR Kod Oluştur ↑",
+    guideBadge: "Tasarım Rehberi",
+    guideTitle: "QR Kod Renk ve Kontrast Rehberi",
+    guideDesc: "4.5:1 kontrast standardı, güvenli renk kombinasyonları ve şirket logoları için tasarım kuralları.",
+    guideBtn: "Renk Rehberini Oku"
   }
 };
 
@@ -369,6 +393,27 @@ const faqs = pageMeta.faqs;
             <p class="text-xs text-on-surface-variant leading-relaxed">{tip.desc}</p>
           </div>
         ))}
+      </div>
+    </section>
+
+    <!-- Companion Educational Guide (Pillar-to-Cluster Link) -->
+    <section class="border-t border-zinc-200/60 pt-12">
+      <div class="p-6 sm:p-8 rounded-3xl bg-linear-to-br from-zinc-50 via-zinc-100 to-zinc-50 border border-outline-variant/60 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xs">
+        <div class="space-y-2 text-left">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold">
+            <span class="material-symbols-outlined text-[15px]">palette</span>
+            <span>{pageMeta.guideBadge}</span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-black text-on-surface tracking-tight">{pageMeta.guideTitle}</h3>
+          <p class="text-xs sm:text-sm text-on-surface-variant max-w-xl leading-relaxed">{pageMeta.guideDesc}</p>
+        </div>
+        <a
+          href={getLocalizedUrl(locale, '/blog/qr-code-color-guide')}
+          class="shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-zinc-900 text-white font-bold text-xs sm:text-sm hover:bg-zinc-800 hover:scale-105 active:scale-95 transition-all shadow-md group"
+        >
+          <span>{pageMeta.guideBtn}</span>
+          <span class="material-symbols-outlined text-[16px] group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+        </a>
       </div>
     </section>
 

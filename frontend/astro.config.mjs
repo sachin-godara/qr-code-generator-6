@@ -79,18 +79,18 @@ export default defineConfig({
         }
         // Blog post articles
         else if (item.url.includes('/blog/') && !item.url.endsWith('/blog/')) {
-          item.priority = 0.7;
-          item.changefreq = /** @type {any} */ ('monthly');
+          item.priority = 0.8;
+          item.changefreq = /** @type {any} */ ('weekly');
         }
         // Informational pages
         else if (item.url.includes('/about') || item.url.includes('/contact')) {
-          item.priority = 0.5;
+          item.priority = 0.7;
           item.changefreq = /** @type {any} */ ('monthly');
         }
         // Legal / utility pages
         else if (item.url.includes('/privacy') || item.url.includes('/terms')) {
-          item.priority = 0.3;
-          item.changefreq = /** @type {any} */ ('yearly');
+          item.priority = 0.5;
+          item.changefreq = /** @type {any} */ ('monthly');
         }
         return item;
       },

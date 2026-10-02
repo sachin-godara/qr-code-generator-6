@@ -30,6 +30,10 @@ const metaMap: Record<Locale, {
   ctaDesc: string;
   ctaBtn: string;
   keywords?: string;
+  guideBadge: string;
+  guideTitle: string;
+  guideDesc: string;
+  guideBtn: string;
 }> = {
   en: {
     title: "Free WiFi QR Code Generator — Connect Without Typing",
@@ -75,7 +79,11 @@ const metaMap: Record<Locale, {
     otherToolsTitle: "Explore Other Free QR Code Tools",
     ctaTitle: "Ready to Create Your Free WiFi QR Code?",
     ctaDesc: "Generate high-resolution WiFi QR codes for cafes, hotels, offices, and homes in seconds. No signup required.",
-    ctaBtn: "Create WiFi QR Code Now ↑"
+    ctaBtn: "Create WiFi QR Code Now ↑",
+    guideBadge: "Hospitality Guide",
+    guideTitle: "WiFi QR Codes for Hotels, Cafes & Airbnb",
+    guideDesc: "Learn how hospitality businesses eliminate reception friction, display table tents, and safeguard guest network security.",
+    guideBtn: "Read Hotel WiFi Guide"
   },
   es: {
     title: "Generador de Códigos QR para WiFi Gratis — Conectar al Instante",
@@ -121,7 +129,11 @@ const metaMap: Record<Locale, {
     otherToolsTitle: "Explora Otras Herramientas QR Gratuitas",
     ctaTitle: "¿Listo para Crear tu Código QR de WiFi?",
     ctaDesc: "Genera códigos QR de alta resolución para cafeterías, hoteles, oficinas y hogares en segundos.",
-    ctaBtn: "Crear Código QR de WiFi Ahora ↑"
+    ctaBtn: "Crear Código QR de WiFi Ahora ↑",
+    guideBadge: "Guía para Hostelería",
+    guideTitle: "Códigos QR de WiFi para Hoteles, Cafeterías y Airbnb",
+    guideDesc: "Descubre cómo negocios turísticos eliminan colas en recepción y ofrecen conexión instantánea a sus huéspedes.",
+    guideBtn: "Leer Guía de WiFi"
   },
   pt: {
     title: "Gerador de QR Code para Wi-Fi Grátis — Conectar sem Senha",
@@ -167,7 +179,11 @@ const metaMap: Record<Locale, {
     otherToolsTitle: "Conheça Outras Ferramentas QR Gratuitas",
     ctaTitle: "Pronto para Criar seu QR Code de Wi-Fi?",
     ctaDesc: "Gere códigos QR de alta resolução para cafeterias, hotéis, escritórios e residências em segundos.",
-    ctaBtn: "Criar QR Code de Wi-Fi Agora ↑"
+    ctaBtn: "Criar QR Code de Wi-Fi Agora ↑",
+    guideBadge: "Guia para Hotelaria",
+    guideTitle: "QR Code de WiFi para Hotéis, Cafés e Airbnb",
+    guideDesc: "Como estabelecimentos de hospedagem simplificam a conexão dos hóspedes com segurança e elegância.",
+    guideBtn: "Ler Guia de WiFi"
   },
   de: {
     title: "Kostenloser WLAN QR-Code Generator — Direkt ohne Passwort tippen",
@@ -213,7 +229,11 @@ const metaMap: Record<Locale, {
     otherToolsTitle: "Weitere kostenlose QR-Code Tools",
     ctaTitle: "Bereit für Ihren eigenen WLAN-QR-Code?",
     ctaDesc: "Erstellen Sie hochauflösende WLAN-QR-Codes für Cafés, Hotels, Büros und Ihr Zuhause in Sekunden.",
-    ctaBtn: "Jetzt WLAN-QR-Code erstellen ↑"
+    ctaBtn: "Jetzt WLAN-QR-Code erstellen ↑",
+    guideBadge: "Gastronomie-Ratgeber",
+    guideTitle: "WLAN-QR-Codes für Hotels, Cafés & Ferienwohnungen",
+    guideDesc: "Wie Gastronomen und Hoteliers den Gästeservice verbessern und Rezeptionsanfragen durch Tischaufsteller halbieren.",
+    guideBtn: "WLAN-Ratgeber lesen"
   },
   tr: {
     title: "Ücretsiz WiFi QR Kod Oluşturucu — Şifresiz WiFi Bağlantısı",
@@ -259,7 +279,11 @@ const metaMap: Record<Locale, {
     otherToolsTitle: "Diğer Ücretsiz QR Kod Araçlarını Keşfedin",
     ctaTitle: "Kendi WiFi QR Kodunuzu Oluşturmaya Hazır mısınız?",
     ctaDesc: "Kafeler, oteller, ofisler ve eviniz için saniyeler içinde yüksek çözünürlüklü WiFi QR kodları oluşturun.",
-    ctaBtn: "Hemen WiFi QR Kodu Oluştur ↑"
+    ctaBtn: "Hemen WiFi QR Kodu Oluştur ↑",
+    guideBadge: "Otelcilik Rehberi",
+    guideTitle: "Oteller, Kafeler ve Airbnb İçin WiFi QR Kodları",
+    guideDesc: "Misafirlerin şifre sormadan tek dokunuşla internete bağlanmasını sağlayarak resepsiyon yükünü nasıl azaltacağınızı öğrenin.",
+    guideBtn: "WiFi Rehberini Oku"
   }
 };
 
@@ -374,6 +398,27 @@ const faqs = pageMeta.faqs;
             <p class="text-xs text-on-surface-variant leading-relaxed">{tip.desc}</p>
           </div>
         ))}
+      </div>
+    </section>
+
+    <!-- Companion Educational Guide (Pillar-to-Cluster Link) -->
+    <section class="border-t border-zinc-200/60 pt-12">
+      <div class="p-6 sm:p-8 rounded-3xl bg-linear-to-br from-zinc-50 via-zinc-100 to-zinc-50 border border-outline-variant/60 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xs">
+        <div class="space-y-2 text-left">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold">
+            <span class="material-symbols-outlined text-[15px]">hotel</span>
+            <span>{pageMeta.guideBadge}</span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-black text-on-surface tracking-tight">{pageMeta.guideTitle}</h3>
+          <p class="text-xs sm:text-sm text-on-surface-variant max-w-xl leading-relaxed">{pageMeta.guideDesc}</p>
+        </div>
+        <a
+          href={getLocalizedUrl(locale, '/blog/wifi-qr-code-for-hotels')}
+          class="shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-zinc-900 text-white font-bold text-xs sm:text-sm hover:bg-zinc-800 hover:scale-105 active:scale-95 transition-all shadow-md group"
+        >
+          <span>{pageMeta.guideBtn}</span>
+          <span class="material-symbols-outlined text-[16px] group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+        </a>
       </div>
     </section>
 

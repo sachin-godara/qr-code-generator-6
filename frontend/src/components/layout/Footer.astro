@@ -21,6 +21,10 @@ const scannerUrl = getLocalizedUrl(currentLocale, '/qr-code-scanner');
 
 const howToUrl = getLocalizedUrl(currentLocale, '/how-to-use');
 const blogUrl = getLocalizedUrl(currentLocale, '/blog');
+const colorGuideUrl = getLocalizedUrl(currentLocale, '/blog/qr-code-color-guide');
+const cardGuideUrl = getLocalizedUrl(currentLocale, '/blog/how-to-add-qr-code-to-business-card');
+const screenshotGuideUrl = getLocalizedUrl(currentLocale, '/blog/how-to-scan-qr-code-from-screenshot');
+const printGuideUrl = getLocalizedUrl(currentLocale, '/blog/qr-code-design-best-practices-for-print');
 const aboutUrl = getLocalizedUrl(currentLocale, '/about');
 const contactUrl = getLocalizedUrl(currentLocale, '/contact');
 
@@ -91,6 +95,10 @@ const termsUrl = getLocalizedUrl(currentLocale, '/terms');
         <ul class="space-y-3">
           <li><a href={howToUrl} class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">{t(currentLocale, 'footer.guide')}</a></li>
           <li><a href={blogUrl} class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">{t(currentLocale, 'footer.blog')}</a></li>
+          <li><a href={colorGuideUrl} class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">{t(currentLocale, 'footer.colorGuide')}</a></li>
+          <li><a href={cardGuideUrl} class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">{t(currentLocale, 'footer.cardGuide')}</a></li>
+          <li><a href={screenshotGuideUrl} class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">{t(currentLocale, 'footer.screenshotGuide')}</a></li>
+          <li><a href={printGuideUrl} class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">{t(currentLocale, 'footer.printGuide')}</a></li>
           <li><a href={aboutUrl} class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">{t(currentLocale, 'footer.about')}</a></li>
           <li><a href={contactUrl} class="text-sm font-medium text-on-surface-variant hover:text-primary transition-colors">{t(currentLocale, 'footer.contact')}</a></li>
         </ul>

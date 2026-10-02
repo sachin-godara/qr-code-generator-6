@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BlogPostPage from '../../../page-templates/BlogPostPage.astro';
+import { getSmartRelatedPosts } from '../../../i18n/blogUtils';
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog_pt');
@@ -14,9 +15,6 @@ const { post } = Astro.props;
 const { Content, headings } = await render(post);
 
 const allPosts = await getCollection('blog_pt');
-const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-const relatedPosts = sortedPosts
-  .filter(p => p.id !== post.id)
-  .slice(0, 3);
+const relatedPosts = getSmartRelatedPosts(post, allPosts, 3);
 ---
 <BlogPostPage locale="pt" post={post} Content={Content} headings={headings} relatedPosts={relatedPosts} />

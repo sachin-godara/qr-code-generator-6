@@ -30,6 +30,10 @@ const metaMap: Record<Locale, {
   ctaDesc: string;
   ctaBtn: string;
   keywords?: string;
+  guideBadge: string;
+  guideTitle: string;
+  guideDesc: string;
+  guideBtn: string;
 }> = {
   en: {
     title: "Free vCard QR Code Generator — Digital Business Cards",
@@ -74,7 +78,11 @@ const metaMap: Record<Locale, {
     otherToolsTitle: "Explore Other Free QR Code Tools",
     ctaTitle: "Ready to Create Your Digital Business Card?",
     ctaDesc: "Generate free, high-resolution vCard QR codes for networking, business cards, and portfolios.",
-    ctaBtn: "Create vCard QR Code Now ↑"
+    ctaBtn: "Create vCard QR Code Now ↑",
+    guideBadge: "Comprehensive Guide",
+    guideTitle: "How to Add a QR Code to Your Business Card",
+    guideDesc: "Learn optimal sizing rules, error correction thresholds, and design best practices for physical business card printing.",
+    guideBtn: "Read Business Card Guide"
   },
   es: {
     title: "Generador de Códigos QR vCard Gratis — Tarjeta de Visita Digital",
@@ -119,7 +127,11 @@ const metaMap: Record<Locale, {
     otherToolsTitle: "Explora Otras Herramientas QR Gratuitas",
     ctaTitle: "¿Listo para Crear tu Tarjeta de Visita Digital?",
     ctaDesc: "Crea códigos QR vCard con tus datos de contacto y logotipo corporativo en segundos.",
-    ctaBtn: "Crear Código QR vCard Ahora ↑"
+    ctaBtn: "Crear Código QR vCard Ahora ↑",
+    guideBadge: "Guía Paso a Paso",
+    guideTitle: "Cómo Añadir un Código QR a tu Tarjeta de Visita",
+    guideDesc: "Descubre medidas mínimas de impresión, márgenes de seguridad y consejos de diseño para tarjetas de visita profesionales.",
+    guideBtn: "Leer Guía de Tarjetas de Visita"
   },
   pt: {
     title: "Gerador de QR Code vCard Grátis — Cartão de Visita Digital",
@@ -164,7 +176,11 @@ const metaMap: Record<Locale, {
     otherToolsTitle: "Conheça Outras Ferramentas QR Gratuitas",
     ctaTitle: "Pronto para Criar seu Cartão de Visita Digital?",
     ctaDesc: "Gere códigos QR vCard profissionais com seus dados e logotipo em segundos.",
-    ctaBtn: "Criar QR Code vCard Agora ↑"
+    ctaBtn: "Criar QR Code vCard Agora ↑",
+    guideBadge: "Guia Passo a Passo",
+    guideTitle: "Como Adicionar QR Code ao seu Cartão de Visita",
+    guideDesc: "Descubra dimensões ideais de impressão, margens de respiro e boas práticas para cartões de visita físicos.",
+    guideBtn: "Ler Guia de Cartão de Visita"
   },
   de: {
     title: "Kostenloser vCard QR-Code Generator — Digitale Visitenkarte",
@@ -209,7 +225,11 @@ const metaMap: Record<Locale, {
     otherToolsTitle: "Weitere kostenlose QR-Code Tools",
     ctaTitle: "Bereit für Ihre digitale Visitenkarte?",
     ctaDesc: "Erstellen Sie vCard-QR-Codes mit Firmenlogo in wenigen Sekunden. Kostenlos als SVG und PDF.",
-    ctaBtn: "Jetzt vCard-QR-Code erstellen ↑"
+    ctaBtn: "Jetzt vCard-QR-Code erstellen ↑",
+    guideBadge: "Schritt-für-Schritt Ratgeber",
+    guideTitle: "QR-Code auf Visitenkarten drucken: Der komplette Leitfaden",
+    guideDesc: "Erfahren Sie alles über Mindestgrößen, Sicherheitsabstände und Design-Tipps für professionelle Visitenkarten.",
+    guideBtn: "Visitenkarten-Leitfaden lesen"
   },
   tr: {
     title: "Ücretsiz vCard QR Kod Oluşturucu — Dijital Kartvizit Yapma",
@@ -254,7 +274,11 @@ const metaMap: Record<Locale, {
     otherToolsTitle: "Diğer Ücretsiz QR Kod Araçlarını Keşfedin",
     ctaTitle: "Dijital Kartvizitinizi Oluşturmaya Hazır mısınız?",
     ctaDesc: "Saniyeler içinde logolu ve profesyonel vCard QR kodları oluşturun. SVG ve PDF olarak ücretsiz indirin.",
-    ctaBtn: "Hemen vCard QR Kodu Oluştur ↑"
+    ctaBtn: "Hemen vCard QR Kodu Oluştur ↑",
+    guideBadge: "Adım Adım Rehber",
+    guideTitle: "Kartvizite QR Kod Nasıl Eklenir?",
+    guideDesc: "Fiziksel kartvizit baskısı için asgari boyutlar, güvenli kenar boşlukları ve tasarım ipuçları.",
+    guideBtn: "Kartvizit Rehberini Oku"
   }
 };
 
@@ -369,6 +393,27 @@ const faqs = pageMeta.faqs;
             <p class="text-xs text-on-surface-variant leading-relaxed">{tip.desc}</p>
           </div>
         ))}
+      </div>
+    </section>
+
+    <!-- Companion Educational Guide (Pillar-to-Cluster Link) -->
+    <section class="border-t border-zinc-200/60 pt-12">
+      <div class="p-6 sm:p-8 rounded-3xl bg-linear-to-br from-zinc-50 via-zinc-100 to-zinc-50 border border-outline-variant/60 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xs">
+        <div class="space-y-2 text-left">
+          <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-bold">
+            <span class="material-symbols-outlined text-[15px]">menu_book</span>
+            <span>{pageMeta.guideBadge}</span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-black text-on-surface tracking-tight">{pageMeta.guideTitle}</h3>
+          <p class="text-xs sm:text-sm text-on-surface-variant max-w-xl leading-relaxed">{pageMeta.guideDesc}</p>
+        </div>
+        <a
+          href={getLocalizedUrl(locale, '/blog/how-to-add-qr-code-to-business-card')}
+          class="shrink-0 inline-flex items-center gap-2 px-6 py-3 rounded-full bg-zinc-900 text-white font-bold text-xs sm:text-sm hover:bg-zinc-800 hover:scale-105 active:scale-95 transition-all shadow-md group"
+        >
+          <span>{pageMeta.guideBtn}</span>
+          <span class="material-symbols-outlined text-[16px] group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+        </a>
       </div>
     </section>
 
