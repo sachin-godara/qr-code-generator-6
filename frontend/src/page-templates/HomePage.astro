@@ -179,6 +179,26 @@ const formatCards = [
           <span class="text-xs sm:text-sm font-semibold text-on-surface-variant mt-1 block">{t(locale, 'landing.stats.free')}</span>
         </div>
       </div>
+
+      <!-- Trust Guarantees Bar -->
+      <div class="mt-6 pt-6 border-t border-outline-variant/30 grid grid-cols-2 lg:grid-cols-4 gap-3 text-center sm:text-left">
+        <div class="flex items-center justify-center sm:justify-start gap-2 text-xs sm:text-sm font-semibold text-on-surface-variant">
+          <span class="material-symbols-outlined text-emerald-600 text-lg sm:text-xl shrink-0" aria-hidden="true">check_circle</span>
+          <span>{t(locale, 'landing.trust.trusted')}</span>
+        </div>
+        <div class="flex items-center justify-center sm:justify-start gap-2 text-xs sm:text-sm font-semibold text-on-surface-variant">
+          <span class="material-symbols-outlined text-primary text-lg sm:text-xl shrink-0" aria-hidden="true">verified</span>
+          <span>{t(locale, 'landing.trust.iso')}</span>
+        </div>
+        <div class="flex items-center justify-center sm:justify-start gap-2 text-xs sm:text-sm font-semibold text-on-surface-variant">
+          <span class="material-symbols-outlined text-indigo-500 text-lg sm:text-xl shrink-0" aria-hidden="true">lock</span>
+          <span>{t(locale, 'landing.trust.private')}</span>
+        </div>
+        <div class="flex items-center justify-center sm:justify-start gap-2 text-xs sm:text-sm font-semibold text-on-surface-variant">
+          <span class="material-symbols-outlined text-amber-500 text-lg sm:text-xl shrink-0" aria-hidden="true">workspace_premium</span>
+          <span>{t(locale, 'landing.trust.commercial')}</span>
+        </div>
+      </div>
     </div>
   </section>
 
