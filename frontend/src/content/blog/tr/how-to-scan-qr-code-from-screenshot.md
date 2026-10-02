@@ -9,16 +9,16 @@ readingTime: 6
 featured: true
 faqs:
   - q: "Telefonumun ekranında görünen bir QR kodu nasıl tarayabilirim?"
-    a: "QR kodun ekran görüntüsünü alın. iPhone'da Fotoğraflar uygulamasını açarak sağ alttaki Canlı Metin / QR simgesine dokunun. Android'de Google Fotoğraflar'ı açıp 'Lens' seçeneğine dokunun. Alternatif olarak tarayıcınızda /tr/qr-code-scanner adresini açarak ekran görüntüsünü yükleyin."
+    a: "QR kodun ekran görüntüsünü alın. iPhone'da Fotoğraflar uygulamasını açarak sağ alttaki Canlı Metin / QR simgesine dokunun. Android'de Google Fotoğraflar'ı açıp 'Lens' seçeneğine dokunun. Alternatif olarak tarayıcınızda /tr/qr-kod-okuyucu/ adresini açarak ekran görüntüsünü yükleyin."
   - q: "PC veya Mac'te Ctrl+V ile yapıştırarak QR kod tarayabilir miyim?"
-    a: "Evet! Herhangi bir web tarayıcısında /tr/qr-code-scanner sayfasını açın ve panonuza kopyalanmış bir görsel varken Ctrl+V (Windows) veya Cmd+V (Mac) tuşlarına basın. Tarayıcı içi motorumuz milisaniyeler içinde kodu çözer."
+    a: "Evet! Herhangi bir web tarayıcısında /tr/qr-kod-okuyucu/ sayfasını açın ve panonuza kopyalanmış bir görsel varken Ctrl+V (Windows) veya Cmd+V (Mac) tuşlarına basın. Tarayıcı içi motorumuz milisaniyeler içinde kodu çözer."
   - q: "QR kod ekran görüntüm neden taranmıyor?"
     a: "Yaygın nedenler: (1) Ekran görüntüsü çok dar kırpılmış ve beyaz sessiz alan kesilmiş. (2) WhatsApp veya Telegram gibi mesajlaşma uygulamalarında aşırı sıkıştırma yapılmış. (3) Koyu tema arka plan renklerini tersine çevirmiş. (4) Çözünürlük 150x150 pikselin altında."
 howToSteps:
   - name: "Ekran görüntüsü alın"
     text: "Telefonunuzda (Güç + Ses Kısma veya Yan Düğme + Ses Açma) ya da bilgisayarınızda (Win + Shift + S veya Cmd + Shift + 4) QR kodun net bir ekran görüntüsünü alın."
   - name: "GenerateCustomQR Web Tarayıcısını Açın"
-    text: "Tarayıcınızda /tr/qr-code-scanner adresine gidin, 'Görsel Yükle' sekmesini seçin veya Ctrl+V tuşlarına basın."
+    text: "Tarayıcınızda /tr/qr-kod-okuyucu/ adresine gidin, 'Görsel Yükle' sekmesini seçin veya Ctrl+V tuşlarına basın."
   - name: "Çözülen veriyi görüntüleyin ve işlem yapın"
     text: "Okuyucu; URL, Wi-Fi bilgisi, vCard veya mesajı anında çözerek tek tıkla işlem butonları sunar."
 ---
@@ -33,7 +33,7 @@ Neyse ki ikinci bir cihaza veya kağıt baskıya ihtiyacınız yok. İşte iPhon
 
 ## Yöntem 1: Evrensel Web Okuyucu (Tüm Cihazlar İçin En Hızlısı)
 
-Herhangi bir cihazda kurulum gerektirmeyen en kolay yöntem, **[GenerateCustomQR Okuyucu](/tr/qr-code-scanner/)** gibi tarayıcı tabanlı, istemci taraflı bir QR çözücü kullanmaktır.
+Herhangi bir cihazda kurulum gerektirmeyen en kolay yöntem, **[GenerateCustomQR Online QR Kod Okuyucu](/tr/qr-kod-okuyucu/)** gibi tarayıcı tabanlı, istemci taraflı bir QR çözücü kullanmaktır.
 
 <div class="blog-flow-grid">
   <div class="blog-flow-card">

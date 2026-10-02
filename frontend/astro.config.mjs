@@ -31,7 +31,13 @@ export default defineConfig({
       changefreq: 'weekly',
       priority: 0.7,
       lastmod: new Date(),
-      filter: (page) => !page.includes('/404') && !page.includes('/500'),
+      filter: (page) =>
+        !page.includes('/404') &&
+        !page.includes('/500') &&
+        !page.includes('/tr/qr-code-scanner') &&
+        !page.includes('/de/qr-code-scanner') &&
+        !page.includes('/es/qr-code-scanner') &&
+        !page.includes('/pt/qr-code-scanner'),
       serialize: (item) => {
         const url = item.url.replace(/\/$/, '');
         // Boost homepages (all 5 languages)
@@ -49,6 +55,10 @@ export default defineConfig({
         else if (
           item.url.includes('/free-qr-code-generator') ||
           item.url.includes('/qr-code-scanner') ||
+          item.url.includes('/qr-kod-okuyucu') ||
+          item.url.includes('/qr-code-scannen') ||
+          item.url.includes('/escanear-codigo-qr') ||
+          item.url.includes('/escanear-qr-code') ||
           item.url.includes('/wifi-qr-code') ||
           item.url.includes('/vcard-qr-code') ||
           item.url.includes('/qr-code-with-logo') ||

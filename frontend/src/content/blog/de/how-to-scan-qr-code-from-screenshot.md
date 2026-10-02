@@ -9,16 +9,16 @@ readingTime: 6
 featured: true
 faqs:
   - q: "Wie scanne ich einen QR-Code, der auf meinem Smartphone-Bildschirm angezeigt wird?"
-    a: "Mache einen Screenshot des QR-Codes. Auf dem iPhone öffnest du die Fotos-App und tippst auf das Live-Text / QR-Symbol unten rechts. Auf Android öffnest du Google Fotos und tippst auf 'Lens'. Alternativ kannst du den GenerateCustomQR Web-Scanner (generatecustomqr.com/de/qr-code-scanner) im Browser öffnen und den Screenshot hochladen."
+    a: "Mache einen Screenshot des QR-Codes. Auf dem iPhone öffnest du die Fotos-App und tippst auf das Live-Text / QR-Symbol unten rechts. Auf Android öffnest du Google Fotos und tippst auf 'Lens'. Alternativ kannst du den GenerateCustomQR Web-Scanner (generatecustomqr.com/de/qr-code-scannen/) im Browser öffnen und den Screenshot hochladen."
   - q: "Kann ich einen QR-Code am PC mit Strg+V einfügen und scannen?"
-    a: "Ja! Öffne generatecustomqr.com/de/qr-code-scanner im Browser und drücke Strg+V (Windows) oder Cmd+V (Mac) mit einem Bild in der Zwischenablage. Unsere browserbasierte Engine liest den Code in Millisekunden aus."
+    a: "Ja! Öffne generatecustomqr.com/de/qr-code-scannen/ im Browser und drücke Strg+V (Windows) oder Cmd+V (Mac) mit einem Bild in der Zwischenablage. Unsere browserbasierte Engine liest den Code in Millisekunden aus."
   - q: "Warum schlägt der Scan meines QR-Code-Screenshots fehl?"
     a: "Häufige Ursachen: (1) Der Screenshot wurde zu eng beschnitten (fehlende weiße Ruhezone). (2) Kompressionsartefakte in Messenger-Apps wie WhatsApp. (3) Der Dunkelmodus hat die Farben invertiert. (4) Die Auflösung liegt unter 150x150 Pixeln."
 howToSteps:
   - name: "Screenshot erstellen"
     text: "Erstellen Sie einen Screenshot des QR-Codes auf dem Smartphone (Ein/Aus + Leiser bei Android oder Seitentaste + Lauter bei iPhone) bzw. am PC (Win + Umschalt + S oder Cmd + Umschalt + 4)."
   - name: "GenerateCustomQR Web-Scanner öffnen"
-    text: "Rufen Sie generatecustomqr.com/de/qr-code-scanner auf und wählen Sie 'Bild Hochladen' oder drücken Sie Strg+V."
+    text: "Rufen Sie generatecustomqr.com/de/qr-code-scannen/ auf und wählen Sie 'Bild Hochladen' oder drücken Sie Strg+V."
   - name: "Ergebnis abrufen & Aktion ausführen"
     text: "Der Scanner decodiert URL, WLAN-Daten, vCard oder WhatsApp-Nachrichten sofort mit 1-Klick-Aktionen."
 ---
@@ -33,7 +33,7 @@ Hier ist die vollständige Anleitung für iPhone, Android, Windows und Mac.
 
 ## Methode 1: Der Universelle Web-Scanner (Am schnellsten für alle Geräte)
 
-Die einfachste Methode ohne Installation ist ein browserbasierter QR-Decoder wie **[GenerateCustomQR Scanner](/de/qr-code-scanner/)**.
+Die einfachste Methode ohne Installation ist ein browserbasierter QR-Decoder wie **[GenerateCustomQR Online QR-Code Scanner (Ohne App)](/de/qr-code-scannen/)**.
 
 <div class="blog-flow-grid">
   <div class="blog-flow-card">

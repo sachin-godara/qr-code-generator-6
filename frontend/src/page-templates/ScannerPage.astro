@@ -158,6 +158,12 @@ const supportedTypes = [
       <!-- React QR Scanner Interactive Island -->
       <QRScannerApp client:load locale={locale} />
 
+      <!-- Client-Side Privacy Reassurance Pill (Datenschutz / Local Privacy) -->
+      <div class="mt-4 max-w-2xl mx-auto flex items-center justify-center gap-2 px-4 py-2.5 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-800 dark:text-emerald-300 text-xs sm:text-sm font-medium text-center shadow-2xs">
+        <span class="material-symbols-outlined text-[18px] text-emerald-600 shrink-0">verified_user</span>
+        <span>{t(locale, 'scanner.privacyNotice')}</span>
+      </div>
+
       <!-- Educational Device Guides (iOS & Android) -->
       <section class="mt-16 sm:mt-24 pt-10 sm:pt-14 border-t border-zinc-200/60 space-y-8">
         <div class="text-center space-y-2 max-w-xl mx-auto">

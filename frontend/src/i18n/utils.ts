@@ -10,6 +10,7 @@ import esSeo from './seo/es.json';
 import ptSeo from './seo/pt.json';
 import deSeo from './seo/de.json';
 import trSeo from './seo/tr.json';
+import { getRouteIdFromPath, getLocalizedSlug } from './routes';
 
 export const dictionaries: Record<Locale, typeof en> = {
   en,
@@ -58,6 +59,8 @@ export function getCleanPathname(pathname: string): string {
  * Generate localized URL for a target locale and clean path with canonical trailing slashes.
  * E.g. ('es', '/wifi-qr-code') -> '/es/wifi-qr-code/'
  *      ('en', '/wifi-qr-code') -> '/wifi-qr-code/'
+ *      ('tr', '/qr-code-scanner') -> '/tr/qr-kod-okuyucu/'
+ *      ('de', '/qr-code-scanner') -> '/de/qr-code-scannen/'
  *      ('en', '/#generator')   -> '/#generator'
  *      ('es', '/')             -> '/es/'
  */
@@ -82,6 +85,14 @@ export function getLocalizedUrl(targetLocale: Locale, pathname: string): string 
     cleanInput = cleanInput.substring(0, queryIdx);
   }
 
+  // Check if pathname matches a route with localized slugs
+  const routeId = getRouteIdFromPath(cleanInput);
+  if (routeId) {
+    const targetSlug = getLocalizedSlug(routeId, targetLocale);
+    const formattedPath = targetLocale === defaultLocale ? `/${targetSlug}/` : `/${targetLocale}/${targetSlug}/`;
+    return `${formattedPath}${queryPart}${hashPart}`;
+  }
+
   let cleanPath = getCleanPathname(cleanInput).replace(/^\/|\/$/g, '');
   if (cleanPath === '404' || cleanPath === '500') {
     cleanPath = '';
@@ -102,10 +113,9 @@ export function getLocalizedUrl(targetLocale: Locale, pathname: string): string 
  */
 export function getAllLocaleUrls(pathname: string, siteUrl = 'https://generatecustomqr.com') {
   const cleanSite = siteUrl.replace(/\/$/, '');
-  const cleanPath = getCleanPathname(pathname);
 
   return locales.map((locale) => {
-    const locPath = getLocalizedUrl(locale, cleanPath);
+    const locPath = getLocalizedUrl(locale, pathname);
     return {
       locale,
       hreflang: localeConfig[locale].hreflang,

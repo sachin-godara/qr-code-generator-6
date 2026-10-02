@@ -12,6 +12,15 @@ https://www.generatecustomqr.com/*  https://generatecustomqr.com/:splat  301!
 /vcard                     /vcard-qr-code/           301
 /wifi/                     /wifi-qr-code/            301
 /wifi                      /wifi-qr-code/            301
+# Localized Scanner 301 Redirects (Preserves Link Equity & Eliminates 404s)
+/tr/qr-code-scanner/        /tr/qr-kod-okuyucu/       301
+/tr/qr-code-scanner         /tr/qr-kod-okuyucu/       301
+/de/qr-code-scanner/        /de/qr-code-scannen/      301
+/de/qr-code-scanner         /de/qr-code-scannen/      301
+/es/qr-code-scanner/        /es/escanear-codigo-qr/   301
+/es/qr-code-scanner         /es/escanear-codigo-qr/   301
+/pt/qr-code-scanner/        /pt/escanear-qr-code/     301
+/pt/qr-code-scanner         /pt/escanear-qr-code/     301
 
 # Sitemap Aliases (for search engines & audit tools)
 /sitemap.xml        /sitemap-index.xml  301

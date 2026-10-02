@@ -145,16 +145,28 @@ describe('i18n utils', () => {
       expect(getLocalizedUrl('en', '/')).toBe('/');
     });
 
-    it('generates correct URLs with locale prefix for other locales', () => {
+    it('generates correct URLs with locale prefix for regular non-localized pages', () => {
       expect(getLocalizedUrl('es', '/how-to-use')).toBe('/es/how-to-use/');
       expect(getLocalizedUrl('pt', '/wifi-qr-code')).toBe('/pt/wifi-qr-code/');
       expect(getLocalizedUrl('de', '/')).toBe('/de/');
-      expect(getLocalizedUrl('tr', '/qr-code-scanner')).toBe('/tr/qr-code-scanner/');
+    });
+
+    it('resolves localized slugs correctly across all 5 languages for scanner', () => {
+      expect(getLocalizedUrl('en', '/qr-code-scanner')).toBe('/qr-code-scanner/');
+      expect(getLocalizedUrl('de', '/qr-code-scanner')).toBe('/de/qr-code-scannen/');
+      expect(getLocalizedUrl('tr', '/qr-code-scanner')).toBe('/tr/qr-kod-okuyucu/');
+      expect(getLocalizedUrl('es', '/qr-code-scanner')).toBe('/es/escanear-codigo-qr/');
+      expect(getLocalizedUrl('pt', '/qr-code-scanner')).toBe('/pt/escanear-qr-code/');
+
+      // Reverse resolution: from localized slug back to another locale
+      expect(getLocalizedUrl('en', '/tr/qr-kod-okuyucu')).toBe('/qr-code-scanner/');
+      expect(getLocalizedUrl('de', '/tr/qr-kod-okuyucu')).toBe('/de/qr-code-scannen/');
+      expect(getLocalizedUrl('tr', '/de/qr-code-scannen')).toBe('/tr/qr-kod-okuyucu/');
     });
   });
 
   describe('getAllLocaleUrls', () => {
-    it('returns alternate URLs for all 5 supported locales', () => {
+    it('returns alternate URLs for all 5 supported locales for regular pages', () => {
       const alternates = getAllLocaleUrls('/how-to-use', 'https://generatecustomqr.com');
       expect(alternates).toHaveLength(5);
       expect(alternates.find((a) => a.locale === 'en')?.url).toBe('https://generatecustomqr.com/how-to-use/');
@@ -162,6 +174,19 @@ describe('i18n utils', () => {
       expect(alternates.find((a) => a.locale === 'pt')?.url).toBe('https://generatecustomqr.com/pt/how-to-use/');
       expect(alternates.find((a) => a.locale === 'de')?.url).toBe('https://generatecustomqr.com/de/how-to-use/');
       expect(alternates.find((a) => a.locale === 'tr')?.url).toBe('https://generatecustomqr.com/tr/how-to-use/');
+    });
+
+    it('returns reciprocal localized alternate URLs for scanner across all 5 languages', () => {
+      const alternatesFromTr = getAllLocaleUrls('/tr/qr-kod-okuyucu', 'https://generatecustomqr.com');
+      expect(alternatesFromTr).toHaveLength(5);
+      expect(alternatesFromTr.find((a) => a.locale === 'en')?.url).toBe('https://generatecustomqr.com/qr-code-scanner/');
+      expect(alternatesFromTr.find((a) => a.locale === 'de')?.url).toBe('https://generatecustomqr.com/de/qr-code-scannen/');
+      expect(alternatesFromTr.find((a) => a.locale === 'tr')?.url).toBe('https://generatecustomqr.com/tr/qr-kod-okuyucu/');
+      expect(alternatesFromTr.find((a) => a.locale === 'es')?.url).toBe('https://generatecustomqr.com/es/escanear-codigo-qr/');
+      expect(alternatesFromTr.find((a) => a.locale === 'pt')?.url).toBe('https://generatecustomqr.com/pt/escanear-qr-code/');
+
+      const alternatesFromDe = getAllLocaleUrls('/de/qr-code-scannen', 'https://generatecustomqr.com');
+      expect(alternatesFromDe.find((a) => a.locale === 'tr')?.url).toBe('https://generatecustomqr.com/tr/qr-kod-okuyucu/');
     });
 
     it('returns exact matching canonical homepage URLs for root path', () => {

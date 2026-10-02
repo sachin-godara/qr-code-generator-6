@@ -23,9 +23,9 @@
     ]
   },
   "scanner": {
-    "title": "Ücretsiz QR Kod Okuyucu — Çevrimiçi Karekod Okutma",
-    "description": "Kameradan, fotoğraftan veya ekran görüntüsünden (Ctrl+V) anında karekod okutun. Hızlı, güvenli ve %100 ücretsiz çevrimiçi QR kod okuyucu.",
-    "keywords": "qr kod okuyucu, karekod okutma, qr okuyucu, karekod, karekod okuyucu, karekod okuma, qr kod okuyucu aç, karekod nasıl okutulur, qr kod oku, karekod okuyucu aç, resimden qr kod okuma, ekran görüntüsünden qr kod okuma, online karekod okuyucu, telefonsuz qr kod okuma pc",
+    "title": "QR Kod Okuyucu Online — İndirmeden & Uygulamasız Karekod Okutma",
+    "description": "Kameradan, fotoğraftan veya ekran görüntüsünden (Ctrl+V) uygulama indirmeden anında karekod okutun. PC ve mobilde %100 ücretsiz, gizli ve güvenli online QR kod okuyucu.",
+    "keywords": "qr kod okuyucu, karekod okutma, qr okuyucu, karekod, karekod okuyucu, karekod okuma, qr kod okuyucu online, uygulamasiz qr kod okuyucu, indirmeden karekod okutma, pc qr kod okuyucu, ekran goruntusunden qr kod okuma, resimden qr kod okuma, online karekod okuyucu, programsiz karekod okuma",
     "faqs": [
       { "q": "Uygulama indirmeden QR kodu nasıl tararım?", "a": "Herhangi bir uygulama yüklemenize gerek yoktur. Modern iOS ve Android telefonların yerel Kamera uygulamalarında QR okuyucular yerleşiktir. PC, Mac, dizüstü bilgisayar veya tabletlerde web kameranızla anında taramak, bir fotoğraf yüklemek veya Ctrl+V ile bir ekran görüntüsü yapıştırmak için GenerateCustomQR Web Okuyucu'yu açmanız yeterlidir." },
       { "q": "Ekran görüntüsünden veya kayıtlı bir resimden QR kod taranabilir mi?", "a": "Evet! Kayıtlı herhangi bir PNG, JPG, WebP veya SVG dosyasını seçmek için bu sayfadaki 'Resim Yükle' sekmesine geçin veya bir ekran görüntüsünü doğrudan panonuzdan yapıştırmak için Ctrl+V tuşlarına basın. Okuyucumuz milisaniyeler içinde çözer." },
