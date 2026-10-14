@@ -30,7 +30,6 @@ export default defineConfig({
     sitemap({
       changefreq: 'weekly',
       priority: 0.7,
-      lastmod: new Date(),
       filter: (page) =>
         !page.includes('/404') &&
         !page.includes('/500') &&
