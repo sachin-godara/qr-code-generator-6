@@ -40,6 +40,7 @@ interface PageData {
   s6Title: string;
   s6Lead: string;
   s6Items: Array<{ name: string; role: string; privacyUrl: string }>;
+  privacyPolicyLabel: string;
   s7Title: string;
   s7Lead: string;
   s7Items: Array<{ title: string; desc: string }>;
@@ -242,6 +243,7 @@ const metaMap: Record<Locale, PageData> = {
         privacyUrl: "https://developers.google.com/fonts/faq/privacy"
       }
     ],
+    privacyPolicyLabel: "Privacy Policy",
     s7Title: "7. Cross-Border & International Data Transfers",
     s7Lead: "Because our platform utilizes global Content Delivery Networks (CDNs) and anonymized analytics infrastructure, minimal technical telemetry (such as masked IP addresses) may be routed through or processed on servers situated in the United States and other jurisdictions outside the European Economic Area (EEA) and the United Kingdom:",
     s7Items: [
@@ -519,6 +521,7 @@ const metaMap: Record<Locale, PageData> = {
         privacyUrl: "https://developers.google.com/fonts/faq/privacy"
       }
     ],
+    privacyPolicyLabel: "Política de privacidad",
     s7Title: "7. Transferencias Internacionales de Datos",
     s7Lead: "Dado que utilizamos redes globales de distribución de contenido y análisis de rendimiento, la telemetría técnica mínima se procesa mediante proveedores con sede en EE.UU.:",
     s7Items: [
@@ -796,6 +799,7 @@ const metaMap: Record<Locale, PageData> = {
         privacyUrl: "https://developers.google.com/fonts/faq/privacy"
       }
     ],
+    privacyPolicyLabel: "Política de privacidade",
     s7Title: "7. Transferências Internacionais de Dados",
     s7Lead: "O processamento técnico de borda é realizado por provedores globais nos Estados Unidos:",
     s7Items: [
@@ -1073,6 +1077,7 @@ const metaMap: Record<Locale, PageData> = {
         privacyUrl: "https://developers.google.com/fonts/faq/privacy"
       }
     ],
+    privacyPolicyLabel: "Datenschutzerklärung",
     s7Title: "7. Internationale Datenübermittlung (EU-U.S. DPF & SCCs)",
     s7Lead: "Zur weltweiten Absicherung und Bereitstellung greifen wir auf Dienstleister in den USA zurück:",
     s7Items: [
@@ -1350,6 +1355,7 @@ const metaMap: Record<Locale, PageData> = {
         privacyUrl: "https://developers.google.com/fonts/faq/privacy"
       }
     ],
+    privacyPolicyLabel: "Gizlilik Politikası",
     s7Title: "7. Uluslararası Veri Aktarımları",
     s7Lead: "Küresel güvenlik ve hızlı teslimat sağlamak için ABD merkezli altyapı sağlayıcılarından yararlanıyoruz:",
     s7Items: [
@@ -1590,7 +1596,7 @@ const breadcrumbs = [
   <ul>
     {pageMeta.s6Items.map((item) => (
       <li>
-        <strong>{item.name}:</strong> {item.role} (<a href={item.privacyUrl} target="_blank" rel="noopener noreferrer">Privacy Policy</a>)
+        <strong>{item.name}:</strong> {item.role} (<a href={item.privacyUrl} target="_blank" rel="noopener noreferrer">{pageMeta.privacyPolicyLabel}</a>)
       </li>
     ))}
   </ul>

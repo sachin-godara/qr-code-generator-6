@@ -37,6 +37,8 @@ interface PageData {
   s6Title: string;
   s6Lead: string;
   s6Items: Array<{ title: string; desc: string }>;
+  s6WarningTitle: string;
+  s6WarningText: string;
   s7Title: string;
   s7Lead: string;
   matrixHeaders: { medium: string; minSize: string; distance: string; format: string; tip: string };
@@ -206,6 +208,8 @@ const metaMap: Record<Locale, PageData> = {
         desc: "You bear sole responsibility for conducting physical test-scans of hardcopy printed proofs across multiple smartphone models (iOS Camera, Android Google Lens, Samsung Camera, and budget optical sensors) in real-world lighting conditions prior to committing to mass commercial print runs."
       }
     ],
+    s6WarningTitle: "Pre-Press Verification Requirement:",
+    s6WarningText: "Always test-scan your physical printed proofs with at least 2 different smartphone models prior to initiating mass commercial printing.",
     s7Title: "7. Print Standards & Sizing Matrix",
     s7Lead: "Reference our production sizing matrix before sending your graphics to commercial printers:",
     matrixHeaders: {
@@ -460,6 +464,8 @@ const metaMap: Record<Locale, PageData> = {
         desc: "El usuario asume la responsabilidad exclusiva de realizar pruebas de escaneo en pruebas impresas reales con diferentes modelos de teléfono móvil (iOS, Android, cámaras de gama media) antes de imprimir tiradas comerciales masivas."
       }
     ],
+    s6WarningTitle: "Requisito de Verificación Previa a la Impresión:",
+    s6WarningText: "Realice siempre escaneos de prueba en sus pruebas físicas impresas con al menos 2 modelos de smartphones diferentes antes de iniciar tiradas masivas.",
     s7Title: "7. Matriz de Dimensiones y Estándares de Impresión",
     s7Lead: "Consulta nuestra tabla técnica recomendada antes de enviar tus archivos a imprenta:",
     matrixHeaders: {
@@ -714,6 +720,8 @@ const metaMap: Record<Locale, PageData> = {
         desc: "O usuário é exclusivamente responsável por testar impressões físicas reais com múltiplos modelos de smartphone antes de rodar tiragens gráficas comerciais em larga escala."
       }
     ],
+    s6WarningTitle: "Requisito de Verificação Pré-Impressão:",
+    s6WarningText: "Sempre faça testes práticos de leitura nas provas impressas físicas com pelo menos 2 modelos de smartphones diferentes antes de iniciar impressões comerciais em massa.",
     s7Title: "7. Matriz de Dimensões e Padrões de Impressão",
     s7Lead: "Confira nossa tabela de especificações antes de enviar arquivos para a gráfica:",
     matrixHeaders: {
@@ -968,6 +976,8 @@ const metaMap: Record<Locale, PageData> = {
         desc: "Der Nutzer trägt die alleinige Verantwortung dafür, vor dem kommerziellen Massendruck physische Probedrucke mit verschiedenen Mobilgeräten (iOS, Android, Standardkameras) unter realen Lichtbedingungen zu testen."
       }
     ],
+    s6WarningTitle: "Druckfreigabe- und Prüfvorschrift:",
+    s6WarningText: "Führen Sie vor dem Start eines gewerblichen Massendrucks stets Test-Scans Ihrer gedruckten Proof-Muster mit mindestens zwei verschiedenen Smartphone-Modellen durch.",
     s7Title: "7. Druckstandards & Größenmatrix",
     s7Lead: "Orientieren Sie sich an unserer technischen Größentabelle für den professionellen Druck:",
     matrixHeaders: {
@@ -1210,6 +1220,8 @@ const metaMap: Record<Locale, PageData> = {
         desc: "Büyük adetli baskı öncesinde gerçek boyutlu bir prova çıktısı alarak hem iOS hem Android cihazlarda test edin."
       }
     ],
+    s6WarningTitle: "Baskı Öncesi Doğrulama Gereksinimi:",
+    s6WarningText: "Toplu ticari baskıya geçmeden önce, basılı provalarınızı her zaman en az 2 farklı akıllı telefon modeliyle test ederek tarayın.",
     s7Title: "7. Baskı Standartları ve Boyutlandırma Matrisi",
     s7Lead: "Grafiklerinizi profesyonel matbaaya göndermeden önce üretim boyutlandırma matrisimizi inceleyin:",
     matrixHeaders: {
@@ -1437,7 +1449,7 @@ const breadcrumbs = [
   </ul>
 
   <div class="legal-callout legal-callout-warning">
-    <p><strong>Pre-Press Verification Requirement:</strong> Always test-scan your physical printed proofs with at least 2 different smartphone models prior to initiating mass commercial printing.</p>
+    <p><strong>{pageMeta.s6WarningTitle}</strong> {pageMeta.s6WarningText}</p>
   </div>
 
   <!-- Section 7: Print Sizing Matrix -->

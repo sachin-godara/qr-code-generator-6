@@ -38,6 +38,8 @@ const scannerLocMap: Record<Locale, {
   guideTitle: string;
   guideDesc: string;
   guideBtn: string;
+  builtinCamera: string;
+  lensCamera: string;
 }> = {
   en: {
     redirect: "Instant Redirect",
@@ -56,7 +58,9 @@ const scannerLocMap: Record<Locale, {
     guideBadge: "Comprehensive Guide",
     guideTitle: "How to Scan a QR Code from a Screenshot or Photo",
     guideDesc: "Saved an image with a QR code in your camera roll? Learn how to extract and decode links without needing a second device.",
-    guideBtn: "Read Screenshot Guide"
+    guideBtn: "Read Screenshot Guide",
+    builtinCamera: "Built-in Camera",
+    lensCamera: "Camera / Google Lens"
   },
   es: {
     redirect: "Redirección Instantánea",
@@ -75,7 +79,9 @@ const scannerLocMap: Record<Locale, {
     guideBadge: "Guía Paso a Paso",
     guideTitle: "Cómo Escanear un Código QR de una Captura de Pantalla",
     guideDesc: "¿Tienes un código QR guardado en tu galería de fotos? Aprende a descifrarlo en iPhone y Android sin un segundo móvil.",
-    guideBtn: "Leer Guía de Capturas"
+    guideBtn: "Leer Guía de Capturas",
+    builtinCamera: "Cámara Integrada",
+    lensCamera: "Cámara / Google Lens"
   },
   pt: {
     redirect: "Redirecionamento Rápido",
@@ -94,7 +100,9 @@ const scannerLocMap: Record<Locale, {
     guideBadge: "Guia Passo a Passo",
     guideTitle: "Como Escanear QR Code de Foto ou Captura de Tela",
     guideDesc: "Recebeu uma imagem com QR code no celular? Aprenda a escanear sua galeria de fotos sem precisar de outro aparelho.",
-    guideBtn: "Ler Guia de Fotos"
+    guideBtn: "Ler Guia de Fotos",
+    builtinCamera: "Câmera Integrada",
+    lensCamera: "Câmera / Google Lens"
   },
   de: {
     redirect: "Sofort-Weiterleitung",
@@ -113,7 +121,9 @@ const scannerLocMap: Record<Locale, {
     guideBadge: "Schritt-für-Schritt Anleitung",
     guideTitle: "QR-Code von Screenshot oder Foto scannen: So funktioniert's",
     guideDesc: "QR-Code als Screenshot in der Fotogalerie gespeichert? So dekodieren Sie ihn direkt auf iPhone und Android ohne Zweitgerät.",
-    guideBtn: "Screenshot-Ratgeber lesen"
+    guideBtn: "Screenshot-Ratgeber lesen",
+    builtinCamera: "Integrierte Kamera",
+    lensCamera: "Kamera / Google Lens"
   },
   tr: {
     redirect: "Anında Yönlendirme",
@@ -132,7 +142,9 @@ const scannerLocMap: Record<Locale, {
     guideBadge: "Adım Adım Rehber",
     guideTitle: "Ekran Görüntüsünden veya Fotoğraftan QR Kod Nasıl Taranır?",
     guideDesc: "Galerinizde kayıtlı bir QR kod fotoğrafı mı var? İkinci bir cihaza gerek kalmadan doğrudan telefonunuzdan taramayı öğrenin.",
-    guideBtn: "Ekran Görüntüsü Rehberini Oku"
+    guideBtn: "Ekran Görüntüsü Rehberini Oku",
+    builtinCamera: "Dahili Kamera",
+    lensCamera: "Kamera / Google Lens"
   }
 };
 
@@ -203,7 +215,7 @@ const supportedTypes = [
                 <span class="material-symbols-outlined text-2xl">phone_iphone</span>
               </div>
               <span class="px-2.5 sm:px-3 py-1 rounded-full bg-blue-50 border border-blue-200/60 text-blue-700 text-[10px] sm:text-[11px] font-bold">
-                Built-in Camera
+                {locStrings.builtinCamera}
               </span>
             </div>
             <h3 class="text-base sm:text-xl font-bold text-on-surface mb-2">{t(locale, 'scanner.iosTitle')}</h3>
@@ -233,7 +245,7 @@ const supportedTypes = [
                 <span class="material-symbols-outlined text-2xl">android</span>
               </div>
               <span class="px-2.5 sm:px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/60 text-emerald-700 text-[10px] sm:text-[11px] font-bold">
-                Camera / Google Lens
+                {locStrings.lensCamera}
               </span>
             </div>
             <h3 class="text-base sm:text-xl font-bold text-on-surface mb-2">{t(locale, 'scanner.androidTitle')}</h3>
