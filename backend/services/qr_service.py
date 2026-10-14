@@ -49,7 +49,8 @@ def _compute_cache_key(data: str, params: dict, prefix: str = "img") -> str:
     for k, v in params.items():
         if k == "logo_image":
             if isinstance(v, Image.Image):
-                clean_params[k] = f"pil_{v.size}_{v.mode}"
+                img_hash = hashlib.md5(v.tobytes()).hexdigest()
+                clean_params[k] = f"pil_{v.size}_{v.mode}_{img_hash}"
             elif isinstance(v, str):
                 clean_params[k] = hashlib.md5(v.encode('utf-8')).hexdigest() if len(v) > 64 else v
             else:
