@@ -60,7 +60,7 @@ Die einfachste Methode ohne Installation ist ein browserbasierter QR-Decoder wie
 </div>
 
 ### Schritte:
-1. Öffnen Sie **[generatecustomqr.com/de/qr-code-scanner](/de/qr-code-scanner/)** in Chrome, Safari, Edge oder Firefox.
+1. Öffnen Sie **[generatecustomqr.com/de/qr-code-scannen](/de/qr-code-scannen/)** in Chrome, Safari, Edge oder Firefox.
 2. Wählen Sie den Reiter **Bild Hochladen**.
 3. Wählen Sie eine Option:
    - **Klicken Sie auf "Dateien Durchsuchen"** und wählen Sie Ihre Bilddatei (`.png`, `.jpg`, `.webp`, `.svg`).
@@ -104,8 +104,8 @@ Apple hat **Live-Text & QR-Erkennung** direkt in die Fotos-App integriert:
 
 | Betriebssystem | Screenshot-Tastenkombination | Schnellste Decodierung |
 | :--- | :--- | :--- |
-| **Windows 11 / 10** | `Win + Umschalt + S` (Snipping Tool) | In [Web-Scanner](/de/qr-code-scanner/) einfügen (`Strg+V`) |
-| **macOS** | `Cmd + Umschalt + 4` | In Vorschau (Live-Text) oder im [Web-Scanner](/de/qr-code-scanner/) |
+| **Windows 11 / 10** | `Win + Umschalt + S` (Snipping Tool) | In [Web-Scanner](/de/qr-code-scannen/) einfügen (`Strg+V`) |
+| **macOS** | `Cmd + Umschalt + 4` | In Vorschau (Live-Text) oder im [Web-Scanner](/de/qr-code-scannen/) |
 | **Google Chrome (Alle OS)** | Rechtsklick auf Bild | Rechtsklick → *"Bild mit Google suchen"* |
 
 ---

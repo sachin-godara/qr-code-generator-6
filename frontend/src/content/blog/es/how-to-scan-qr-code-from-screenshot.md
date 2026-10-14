@@ -9,16 +9,16 @@ readingTime: 6
 featured: true
 faqs:
   - q: "¿Cómo escaneo un código QR que ya está en la pantalla de mi teléfono?"
-    a: "Toma una captura de pantalla del código QR. En iPhone, abre la app Fotos y toca el icono de Texto en Vivo / QR en la esquina inferior derecha. En Android, abre Google Fotos y pulsa 'Lens'. También puedes abrir el Escáner de GenerateCustomQR (generatecustomqr.com/es/qr-code-scanner) y subir la captura."
+    a: "Toma una captura de pantalla del código QR. En iPhone, abre la app Fotos y toca el icono de Texto en Vivo / QR en la esquina inferior derecha. En Android, abre Google Fotos y pulsa 'Lens'. También puedes abrir el Escáner de GenerateCustomQR (generatecustomqr.com/es/escanear-codigo-qr) y subir la captura."
   - q: "¿Puedo escanear un código QR pegando con Ctrl+V en PC o Mac?"
-    a: "¡Sí! Abre generatecustomqr.com/es/qr-code-scanner en cualquier navegador web y presiona Ctrl+V (Windows) o Cmd+V (Mac) con una imagen copiada en tu portapapeles. Nuestro motor en el navegador lo decodifica al instante."
+    a: "¡Sí! Abre generatecustomqr.com/es/escanear-codigo-qr en cualquier navegador web y presiona Ctrl+V (Windows) o Cmd+V (Mac) con una imagen copiada en tu portapapeles. Nuestro motor en el navegador lo decodifica al instante."
   - q: "¿Por qué mi captura de pantalla de código QR no se puede leer?"
     a: "Las causas más comunes son: (1) Se recortó demasiado cerca, eliminando la zona de silencio blanca. (2) Compresión excesiva en apps de mensajería como WhatsApp. (3) El modo oscuro invirtió los colores a blanco sobre negro. (4) La resolución es inferior a 150x150 píxeles."
 howToSteps:
   - name: "Toma la captura de pantalla"
     text: "Captura el código QR en tu teléfono (Botón de encendido + Bajar volumen en Android o Lateral + Subir volumen en iPhone) o en PC (Win + Shift + S o Cmd + Shift + 4)."
   - name: "Abre el Escáner Web de GenerateCustomQR"
-    text: "Ve a generatecustomqr.com/es/qr-code-scanner en tu navegador y selecciona la pestaña 'Subir Imagen' o presiona Ctrl+V."
+    text: "Ve a generatecustomqr.com/es/escanear-codigo-qr en tu navegador y selecciona la pestaña 'Subir Imagen' o presiona Ctrl+V."
   - name: "Visualiza el contenido y ejecuta la acción"
     text: "El escáner decodifica la URL, WiFi, vCard o mensaje de WhatsApp al instante con botones de acción directa."
 ---
@@ -33,7 +33,7 @@ No necesitas un segundo dispositivo ni imprimirlo en papel. Aquí tienes la guí
 
 ## Método 1: El Escáner Web Universal (Rápido para Todos los Dispositivos)
 
-La forma más rápida y sin instalar nada es usar un decodificador web en el navegador como **[GenerateCustomQR Escáner](/es/qr-code-scanner/)**.
+La forma más rápida y sin instalar nada es usar un decodificador web en el navegador como **[GenerateCustomQR Escáner](/es/escanear-codigo-qr/)**.
 
 <div class="blog-flow-grid">
   <div class="blog-flow-card">
@@ -60,7 +60,7 @@ La forma más rápida y sin instalar nada es usar un decodificador web en el nav
 </div>
 
 ### Pasos:
-1. Abre **[generatecustomqr.com/es/qr-code-scanner](/es/qr-code-scanner/)** en Safari, Chrome, Edge o Firefox.
+1. Abre **[generatecustomqr.com/es/escanear-codigo-qr](/es/escanear-codigo-qr/)** en Safari, Chrome, Edge o Firefox.
 2. Selecciona la pestaña **Subir Imagen**.
 3. Elige una de estas opciones:
    - **Haz clic en "Buscar Archivos"** y selecciona tu imagen (`.png`, `.jpg`, `.webp`, `.svg`).
@@ -107,8 +107,8 @@ En Android dispones de dos opciones principales: **Google Fotos (Google Lens)** 
 
 | Sistema Operativo | Atajo de Captura | Método Más Rápido |
 | :--- | :--- | :--- |
-| **Windows 11 / 10** | `Win + Shift + S` (Recortes) | Pegar en [Escáner Web](/es/qr-code-scanner/) (`Ctrl+V`) |
-| **macOS** | `Cmd + Shift + 4` | Abrir en Vista Previa (Texto en Vivo) o pegar en [Escáner Web](/es/qr-code-scanner/) |
+| **Windows 11 / 10** | `Win + Shift + S` (Recortes) | Pegar en [Escáner Web](/es/escanear-codigo-qr/) (`Ctrl+V`) |
+| **macOS** | `Cmd + Shift + 4` | Abrir en Vista Previa (Texto en Vivo) o pegar en [Escáner Web](/es/escanear-codigo-qr/) |
 
 ---
 

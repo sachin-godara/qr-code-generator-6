@@ -262,4 +262,4 @@ No **[GenerateCustomQR](/pt/)** toda a codificação é feita 100% no seu navega
 1. **Treinamento:** Conscientize os funcionários sobre golpes ópticos via QR code.
 2. **Proteção FIDO2:** Adote chaves físicas para proteger contas importantes.
 3. **Gerador Confiável:** Crie QR codes seguros e permanentes no **[GenerateCustomQR](/pt/)**.
-4. **Leitor Privado:** Utilize nosso **[Scanner de QR Code](/pt/qr-code-scanner/)** para verificar links com total privacidade antes de abri-los.
+4. **Leitor Privado:** Utilize nosso **[Scanner de QR Code](/pt/escanear-qr-code/)** para verificar links com total privacidade antes de abri-los.

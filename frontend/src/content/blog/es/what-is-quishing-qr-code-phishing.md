@@ -260,4 +260,4 @@ En **[GenerateCustomQR](/es/)** todos los códigos se generan de forma 100% est�
 1. **Formación:** Entrena al personal para detectar correos con imágenes QR sospechosas.
 2. **Autenticación FIDO2:** Protege los accesos clave con llaves de seguridad físicas.
 3. **Generadores Soberanos:** Crea códigos definitivos y seguros en **[GenerateCustomQR](/es/)**.
-4. **Escáner Privado:** Utiliza nuestro **[Escáner de Códigos QR](/es/qr-code-scanner/)** sin servidor para inspeccionar enlaces antes de abrirlos.
+4. **Escáner Privado:** Utiliza nuestro **[Escáner de Códigos QR](/es/escanear-codigo-qr/)** sin servidor para inspeccionar enlaces antes de abrirlos.

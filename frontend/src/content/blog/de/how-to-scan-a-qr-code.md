@@ -9,13 +9,13 @@ readingTime: 5
 featured: true
 faqs:
   - q: "Brauche ich eine extra App zum QR-Code scannen?"
-    a: "Nein. Moderne iPhones (iOS 11+) und Android-Smartphones (Android 10+) besitzen einen vorinstallierten QR-Scanner direkt in der normalen Kamera-App. Für Screenshots am PC können Sie den kostenlosen Web-Scanner auf generatecustomqr.com/de/qr-code-scanner nutzen."
+    a: "Nein. Moderne iPhones (iOS 11+) und Android-Smartphones (Android 10+) besitzen einen vorinstallierten QR-Scanner direkt in der normalen Kamera-App. Für Screenshots am PC können Sie den kostenlosen Web-Scanner auf generatecustomqr.com/de/qr-code-scannen nutzen."
   - q: "Wie scanne ich einen QR-Code auf dem iPhone?"
     a: "Öffnen Sie die vorinstallierte Kamera-App (nicht den QR-Code-Scanner im Kontrollzentrum), halten Sie sie 1–2 Sekunden auf den Code und tippen Sie auf das gelbe Banner am Bildschirmrand."
   - q: "Wie scanne ich einen QR-Code auf Android?"
     a: "Öffnen Sie die Kamera-App und richten Sie sie auf den Code. Auf den meisten Geräten mit Android 10+ erscheint automatisch ein Pop-up. Alternativ können Sie Google Lens nutzen."
   - q: "Kann ich QR-Codes aus Screenshots oder gespeicherten Bildern scannen?"
-    a: "Ja. Öffnen Sie generatecustomqr.com/de/qr-code-scanner, wechseln Sie auf den Tab 'Bild hochladen' oder drücken Sie Strg+V, um den Screenshot direkt aus der Zwischenablage einzufügen."
+    a: "Ja. Öffnen Sie generatecustomqr.com/de/qr-code-scannen, wechseln Sie auf den Tab 'Bild hochladen' oder drücken Sie Strg+V, um den Screenshot direkt aus der Zwischenablage einzufügen."
   - q: "Warum scannt mein Smartphone den QR-Code nicht?"
     a: "Häufige Ursachen: (1) Der Code ist zu klein — näher herangehen. (2) Zu wenig Licht — Taschenlampe aktivieren. (3) Geringer Kontrast — unseren Web-Scanner nutzen. (4) Spiegelungen auf Displays — Winkel leicht neigen."
 howToSteps:
@@ -63,7 +63,7 @@ Apple hat die QR-Code-Erkennung seit iOS 11 direkt in die **Kamera-App** integri
 
 - **Kein Banner erscheint?** Unter *Einstellungen → Kamera* prüfen, ob *QR-Codes scannen* aktiviert ist.
 - **Zu weit entfernt?** Näher herangehen, bis der QR-Code etwa ein Drittel des Bildschirms einnimmt.
-- **Beschädigter Code?** Nutzen Sie den [GenerateCustomQR Scanner](/de/qr-code-scanner/), der modernste Fehlerkorrektur-Algorithmen nutzt.
+- **Beschädigter Code?** Nutzen Sie den [GenerateCustomQR Scanner](/de/qr-code-scannen/), der modernste Fehlerkorrektur-Algorithmen nutzt.
 
 ## QR-Code auf Android-Smartphones scannen
 
@@ -106,13 +106,13 @@ Wenn der QR-Code bereits als Bilddatei oder Screenshot auf dem Smartphone vorlie
 3. Google Lens decodiert den Inhalt automatisch.
 
 ### Am PC / Mac:
-Nutzen Sie den [GenerateCustomQR Web-Scanner](/de/qr-code-scanner/) — Bild per Drag & Drop hochladen oder mit `Strg+V` direkt aus der Zwischenablage einfügen.
+Nutzen Sie den [GenerateCustomQR Web-Scanner](/de/qr-code-scannen/) — Bild per Drag & Drop hochladen oder mit `Strg+V` direkt aus der Zwischenablage einfügen.
 
 ## Scannen über den Desktop-Browser
 
 Kein Smartphone zur Hand? Scannen Sie direkt am PC:
 
-1. [GenerateCustomQR Scanner](/de/qr-code-scanner/) aufrufen.
+1. [GenerateCustomQR Scanner](/de/qr-code-scannen/) aufrufen.
 2. **Kamerazugriff erlauben** für die Webcam oder **Bild hochladen**.
 3. Der Inhalt wird im Bruchteil einer Sekunde im Browser decodiert.
 
@@ -150,7 +150,7 @@ In App Stores finden sich unzählige Scanner-Apps mit störenden Vollbild-Werbeb
 
 > [!WARNING]
 > **Sie benötigen keine Drittanbieter-Scanner-Apps.**
-> Sowohl iOS als auch Android verfügen über schnelle, sichere und hardwarebeschleunigte Scanner ab Werk. Für Desktop und gespeicherte Bilder nutzen Sie vertrauenswürdige Tools wie den [GenerateCustomQR Web-Scanner](/de/qr-code-scanner/).
+> Sowohl iOS als auch Android verfügen über schnelle, sichere und hardwarebeschleunigte Scanner ab Werk. Für Desktop und gespeicherte Bilder nutzen Sie vertrauenswürdige Tools wie den [GenerateCustomQR Web-Scanner](/de/qr-code-scannen/).
 
 ---
 
@@ -210,7 +210,7 @@ Eigenen QR-Code gestalten? [Kostenlosen individuellen QR-Code erstellen →](/de
 | Android (Pixel, Samsung) | Kamera-App / Google Lens | Ja |
 | Android (andere) | Google Lens | Ja |
 | WhatsApp Web Kopplung | WhatsApp → Verknüpfte Geräte | Ja |
-| Desktop & PC | [Web-Scanner](/de/qr-code-scanner/) | Im Browser |
-| Gespeichertes Bild / Screenshot | [Web-Scanner (Strg+V)](/de/qr-code-scanner/) / Fotos | Ja |
+| Desktop & PC | [Web-Scanner](/de/qr-code-scannen/) | Im Browser |
+| Gespeichertes Bild / Screenshot | [Web-Scanner (Strg+V)](/de/qr-code-scannen/) / Fotos | Ja |
 
 Egal ob iPhone, Android oder PC: Das Scannen von QR-Codes ist heute schneller und sicherer denn je. Und wenn Sie eigene, verlässlich lesbare Codes erstellen möchten, bietet [GenerateCustomQR](/de/) über 40 Stile mit garantierter Lesbarkeit — 100% kostenlos.

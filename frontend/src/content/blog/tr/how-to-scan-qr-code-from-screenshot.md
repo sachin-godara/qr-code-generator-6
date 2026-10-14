@@ -60,7 +60,7 @@ Herhangi bir cihazda kurulum gerektirmeyen en kolay yöntem, **[GenerateCustomQR
 </div>
 
 ### Adımlar:
-1. Safari, Chrome, Edge veya Firefox tarayıcınızda **[/tr/qr-code-scanner](/tr/qr-code-scanner/)** sayfasını açın.
+1. Safari, Chrome, Edge veya Firefox tarayıcınızda **[/tr/qr-kod-okuyucu](/tr/qr-kod-okuyucu/)** sayfasını açın.
 2. **Görsel Yükle** sekmesini seçin.
 3. Seçeneklerden birini kullanın:
    - **"Dosya Seç"** düğmesine tıklayarak kayıtlı ekran görüntüsünü (`.png`, `.jpg`, `.webp`, `.svg`) seçin.
@@ -113,13 +113,13 @@ Dizüstü veya masaüstü bilgisayarınızda çalışırken bir e-postada, PDF b
 
 | İşletim Sistemi | Ekran Görüntüsü Kısayolu | En Hızlı Çözme Yöntemi |
 | :--- | :--- | :--- |
-| **Windows 11 / 10** | `Win + Shift + S` (Ekran Alıntısı Aracı) | [Web Okuyucuya](/tr/qr-code-scanner/) yapıştırın (`Ctrl+V`) |
-| **macOS (Sonoma / Sequoia)** | `Cmd + Shift + 4` | Önizleme (Canlı Metin) veya [Web Okuyucuya](/tr/qr-code-scanner/) yapıştırın |
+| **Windows 11 / 10** | `Win + Shift + S` (Ekran Alıntısı Aracı) | [Web Okuyucuya](/tr/qr-kod-okuyucu/) yapıştırın (`Ctrl+V`) |
+| **macOS (Sonoma / Sequoia)** | `Cmd + Shift + 4` | Önizleme (Canlı Metin) veya [Web Okuyucuya](/tr/qr-kod-okuyucu/) yapıştırın |
 | **Google Chrome (Tüm Sistemler)** | Görsele sağ tıklayın | Sağ tık → *"Görseli Google ile Ara"* |
 
 ### Windows'ta (Ekran Alıntısı Aracı + Web Okuyucu):
 1. `Win + Shift + S` tuşlarına basarak ekrandaki QR kodun etrafını bir dikdörtgen içine alın.
-2. **[generatecustomqr.com/tr/qr-code-scanner](/tr/qr-code-scanner/)** sayfasını açın.
+2. **[generatecustomqr.com/tr/qr-kod-okuyucu](/tr/qr-kod-okuyucu/)** sayfasını açın.
 3. `Ctrl + V` tuşlarına basın. Görsel panodan anında yapıştırılır ve çözülür.
 
 ---

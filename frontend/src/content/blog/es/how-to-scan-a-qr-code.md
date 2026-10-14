@@ -9,7 +9,7 @@ readingTime: 5
 featured: true
 faqs:
   - q: "¿Necesito descargar una aplicación para escanear códigos QR?"
-    a: "No. Los smartphones modernos (iPhone con iOS 11+ y Android con Android 10+) integran el escáner de códigos QR directamente en la app Cámara nativa. Para PC o capturas de pantalla guardadas, puedes usar el escáner web gratuito en generatecustomqr.com/es/qr-code-scanner."
+    a: "No. Los smartphones modernos (iPhone con iOS 11+ y Android con Android 10+) integran el escáner de códigos QR directamente en la app Cámara nativa. Para PC o capturas de pantalla guardadas, puedes usar el escáner web gratuito en generatecustomqr.com/es/escanear-codigo-qr."
   - q: "¿Cómo escaneo un código QR en un iPhone?"
     a: "Abre la aplicación Cámara predeterminada, enfoca el código QR durante 1 o 2 segundos y pulsa la notificación amarilla que aparece en pantalla. No hace falta pulsar el botón de hacer foto."
   - q: "¿Cómo escaneo un código QR en Android?"
@@ -86,7 +86,7 @@ Desliza hacia abajo desde la parte superior de la pantalla y pulsa el icono **Es
 | **Pegar Captura (Ctrl+V)** | Pega un recorte directo desde el portapapeles | Ideal para correos y PDFs |
 | **Subir Archivo de Imagen** | Carga un archivo PNG, JPG, WEBP o SVG | Para imágenes guardadas |
 
-1. Abre **[generatecustomqr.com/es/qr-code-scanner](/es/qr-code-scanner/)** en Chrome, Edge o Safari.
+1. Abre **[generatecustomqr.com/es/escanear-codigo-qr](/es/escanear-codigo-qr/)** en Chrome, Edge o Safari.
 2. Selecciona la pestaña de escaneo con webcam o sube tu captura de pantalla.
 
 ## Cómo Escanear desde una Captura o Imagen Guardada
@@ -95,7 +95,7 @@ Si el código QR está en una foto dentro de tu propio teléfono:
 
 - **En iPhone**: Abre la foto en **Fotos** y mantén pulsado el código QR (o toca el icono de **Texto en Vivo** en la esquina inferior).
 - **En Android**: Abre la imagen en **Google Fotos** y pulsa el botón **Lens**.
-- **En Ordenador (PC / Mac)**: Entra en [GenerateCustomQR Escáner](/es/qr-code-scanner/) y sube la imagen o presiona `Ctrl+V` para pegar desde el portapapeles.
+- **En Ordenador (PC / Mac)**: Entra en [GenerateCustomQR Escáner](/es/escanear-codigo-qr/) y sube la imagen o presiona `Ctrl+V` para pegar desde el portapapeles.
 
 ## ¿Dónde está el Escáner de WhatsApp Web?
 
@@ -180,8 +180,8 @@ Muchas apps gratuitas de escáner en Google Play y App Store son adware: contien
 | **iPhone / iPad** | App Cámara Nativa | Sí |
 | **Android (Samsung / Pixel)** | App Cámara / Google Lens | Sí |
 | **WhatsApp Web** | WhatsApp → Dispositivos Vinculados | Sí |
-| **Ordenador PC / Mac** | [Escáner Web](/es/qr-code-scanner/) | Mediante navegador |
-| **Captura de Pantalla** | [Escáner Web (Ctrl+V)](/es/qr-code-scanner/) | Sí |
+| **Ordenador PC / Mac** | [Escáner Web](/es/escanear-codigo-qr/) | Mediante navegador |
+| **Captura de Pantalla** | [Escáner Web (Ctrl+V)](/es/escanear-codigo-qr/) | Sí |
 
 ---
 

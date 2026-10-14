@@ -262,4 +262,4 @@ Bei **[GenerateCustomQR](/de/)** werden QR-Codes zu 100 % statisch in Ihrem Brow
 1. **Sensibilisierung:** Schulen Sie Mitarbeiter auf optische Phishing-Angriffe.
 2. **FIDO2-Schutz:** Sichern Sie Zugänge mit physischen Sicherheitsschlüsseln ab.
 3. **Statische Generatoren:** Erstellen Sie manipulationssichere QR-Codes auf **[GenerateCustomQR](/de/)**.
-4. **Privater Scanner:** Nutzen Sie unseren **[QR-Code Scanner](/de/qr-code-scanner/)** zur gefahrlosen Vorschau unbekannter Links.
+4. **Privater Scanner:** Nutzen Sie unseren **[QR-Code Scanner](/de/qr-code-scannen/)** zur gefahrlosen Vorschau unbekannter Links.

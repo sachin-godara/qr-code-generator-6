@@ -9,16 +9,16 @@ readingTime: 6
 featured: true
 faqs:
   - q: "Como escanear um código QR que já está na tela do meu celular?"
-    a: "Tire uma captura de tela do código QR. No iPhone, abra o app Fotos e toque no ícone de Texto ao Vivo / QR no canto inferior direito. No Android, abra o Google Fotos e toque em 'Lens'. Também pode abrir o Leitor GenerateCustomQR (generatecustomqr.com/pt/qr-code-scanner) no navegador e carregar a captura."
+    a: "Tire uma captura de tela do código QR. No iPhone, abra o app Fotos e toque no ícone de Texto ao Vivo / QR no canto inferior direito. No Android, abra o Google Fotos e toque em 'Lens'. Também pode abrir o Leitor GenerateCustomQR (generatecustomqr.com/pt/escanear-qr-code) no navegador e carregar a captura."
   - q: "Posso ler um código QR colando com Ctrl+V no PC ou Mac?"
-    a: "Sim! Abra generatecustomqr.com/pt/qr-code-scanner em qualquer navegador e pressione Ctrl+V (Windows) ou Cmd+V (Mac) com a imagem na área de transferência. Nosso motor decodifica em milissegundos."
+    a: "Sim! Abra generatecustomqr.com/pt/escanear-qr-code em qualquer navegador e pressione Ctrl+V (Windows) ou Cmd+V (Mac) com a imagem na área de transferência. Nosso motor decodifica em milissegundos."
   - q: "Por que meu print de QR code não lê?"
     a: "Causas comuns: (1) O print cortou a margem branca de respiro (quiet zone). (2) Compressão pesada no WhatsApp. (3) Modo escuro inverteu as cores. (4) Resolução baixa abaixo de 150x150 pixels."
 howToSteps:
   - name: "Tire o print da tela"
     text: "Capture a tela com o código QR no smartphone (Ligar + Diminuir Volume no Android ou Botão Lateral + Aumentar Volume no iPhone) ou no PC (Win + Shift + S ou Cmd + Shift + 4)."
   - name: "Abra o Leitor Web GenerateCustomQR"
-    text: "Acesse generatecustomqr.com/pt/qr-code-scanner e selecione 'Carregar Imagem' ou pressione Ctrl+V."
+    text: "Acesse generatecustomqr.com/pt/escanear-qr-code e selecione 'Carregar Imagem' ou pressione Ctrl+V."
   - name: "Veja os dados decodificados e execute a ação"
     text: "O leitor exibe a URL, rede Wi-Fi, vCard ou mensagem de WhatsApp com botões de ação imediata."
 ---
@@ -33,7 +33,7 @@ Aqui está o guia completo para iPhone, Android, Windows e Mac.
 
 ## Método 1: O Leitor Web Universal (Mais Rápido para Todos os Aparelhos)
 
-A forma mais simples sem instalar nenhum aplicativo é usar um decodificador no navegador como o **[GenerateCustomQR Leitor](/pt/qr-code-scanner/)**.
+A forma mais simples sem instalar nenhum aplicativo é usar um decodificador no navegador como o **[GenerateCustomQR Leitor](/pt/escanear-qr-code/)**.
 
 <div class="blog-flow-grid">
   <div class="blog-flow-card">
@@ -60,7 +60,7 @@ A forma mais simples sem instalar nenhum aplicativo é usar um decodificador no 
 </div>
 
 ### Passos:
-1. Abra **[generatecustomqr.com/pt/qr-code-scanner](/pt/qr-code-scanner/)** no Safari, Chrome, Edge ou Firefox.
+1. Abra **[generatecustomqr.com/pt/escanear-qr-code](/pt/escanear-qr-code/)** no Safari, Chrome, Edge ou Firefox.
 2. Selecione a aba **Carregar Imagem**.
 3. Escolha uma das opções:
    - **Clique em "Procurar Arquivos"** e selecione sua imagem (`.png`, `.jpg`, `.webp`, `.svg`).
@@ -104,8 +104,8 @@ O iOS possui detecção nativa de **Texto ao Vivo e QR Codes** no aplicativo Fot
 
 | Sistema Operativo | Atalho de Captura de Tela | Método Mais Rápido |
 | :--- | :--- | :--- |
-| **Windows 11 / 10** | `Win + Shift + S` (Ferramenta de Captura) | Colar no [Leitor Web](/pt/qr-code-scanner/) (`Ctrl+V`) |
-| **macOS** | `Cmd + Shift + 4` | Abrir no Pré-Visualização (Texto ao Vivo) ou colar no [Leitor Web](/pt/qr-code-scanner/) |
+| **Windows 11 / 10** | `Win + Shift + S` (Ferramenta de Captura) | Colar no [Leitor Web](/pt/escanear-qr-code/) (`Ctrl+V`) |
+| **macOS** | `Cmd + Shift + 4` | Abrir no Pré-Visualização (Texto ao Vivo) ou colar no [Leitor Web](/pt/escanear-qr-code/) |
 | **Google Chrome (Todos)** | Botão direito na imagem | *"Pesquisar imagem com o Google"* |
 
 ---
