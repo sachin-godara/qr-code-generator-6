@@ -9,7 +9,7 @@ from routers import generator, contact
 from limiter import limiter
 
 # --- Request Body Size Limit Middleware ---
-MAX_BODY_SIZE = 5 * 1024 * 1024  # 5 MB
+MAX_BODY_SIZE = 10 * 1024 * 1024  # 10 MB
 
 class LimitRequestBodyMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
