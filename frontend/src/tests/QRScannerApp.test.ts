@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { parseQRContent } from '../react/scanner/QRScannerApp';
+import { parseQRContent, getCreatorUrl } from '../react/scanner/scannerUtils';
 
 describe('parseQRContent Parser', () => {
   it('correctly parses WiFi payloads', () => {
@@ -10,6 +10,16 @@ describe('parseQRContent Parser', () => {
     expect(parsed.wifi?.password).toBe('SuperSecretPass123');
     expect(parsed.wifi?.authType).toBe('WPA');
     expect(parsed.wifi?.hidden).toBe(false);
+  });
+
+  it('correctly parses WiFi payloads with escaped colons and semicolons', () => {
+    const raw = 'WIFI:S:Guest\\;Office\\:Main;T:WPA;P:Super\\;Secret\\:2026;H:true;;';
+    const parsed = parseQRContent(raw);
+    expect(parsed.type).toBe('wifi');
+    expect(parsed.wifi?.ssid).toBe('Guest;Office:Main');
+    expect(parsed.wifi?.password).toBe('Super;Secret:2026');
+    expect(parsed.wifi?.authType).toBe('WPA');
+    expect(parsed.wifi?.hidden).toBe(true);
   });
 
   it('correctly parses vCard contacts', () => {
@@ -137,5 +147,24 @@ END:VEVENT`;
     expect(parsed.type).toBe('text');
     expect(parsed.raw).toBe(textRaw);
   });
+
+  it('generates localized creator URLs for non-English locales', () => {
+    expect(getCreatorUrl('https://example.com', 'en')).toBe('/?text=https%3A%2F%2Fexample.com');
+    expect(getCreatorUrl('https://example.com', 'de')).toBe('/de/?text=https%3A%2F%2Fexample.com');
+    expect(getCreatorUrl('https://example.com', 'es')).toBe('/es/?text=https%3A%2F%2Fexample.com');
+    expect(getCreatorUrl('https://example.com', 'pt')).toBe('/pt/?text=https%3A%2F%2Fexample.com');
+    expect(getCreatorUrl('https://example.com', 'tr')).toBe('/tr/?text=https%3A%2F%2Fexample.com');
+    expect(getCreatorUrl(null, 'de')).toBe('/de');
+    expect(getCreatorUrl(null, 'en')).toBe('/');
+  });
+
+  it('provides structured translation keys for URL safety status and reasons', () => {
+    const insecureUrl = 'http://192.168.1.1/admin';
+    const parsed = parseQRContent(insecureUrl);
+    expect(parsed.safety?.badgeLabelKey).toBe('scanner.safety.cautionUnverified');
+    expect(parsed.safety?.reasonKeys).toContain('scanner.safety.unencryptedHttp');
+    expect(parsed.safety?.reasonKeys).toContain('scanner.safety.directIp');
+  });
 });
+
 

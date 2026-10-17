@@ -43,348 +43,30 @@ import {
 } from 'lucide-react';
 import { scanQRImageBackend, API_BASE } from '../../services/qrApi';
 
-// --- Type Definitions ---
-export type ParsedQRType = 'url' | 'whatsapp' | 'wifi' | 'vcard' | 'email' | 'phone' | 'sms' | 'geo' | 'event' | 'text';
+import {
+  type ParsedQRType,
+  type URLSafetyReport,
+  evaluateURLSafety,
+  type ParsedQRData,
+  type ScanHistoryItem,
+  parseQRContent,
+  getCreatorUrl,
+  svgFileToPngFile,
+  playScanSound
+} from './scannerUtils';
 
-export interface URLSafetyReport {
-  status: 'safe' | 'warning' | 'caution';
-  badgeColor: string;
-  badgeLabel: string;
-  reasons: string[];
-}
+export {
+  type ParsedQRType,
+  type URLSafetyReport,
+  evaluateURLSafety,
+  type ParsedQRData,
+  type ScanHistoryItem,
+  parseQRContent,
+  getCreatorUrl,
+  svgFileToPngFile,
+  playScanSound
+};
 
-export function evaluateURLSafety(urlStr: string): URLSafetyReport {
-  const reasons: string[] = [];
-  let isHttps = false;
-  let isShortener = false;
-  let isIP = false;
-
-  try {
-    const parsed = new URL(urlStr);
-    isHttps = parsed.protocol === 'https:';
-    isIP = /^(\d{1,3}\.){3}\d{1,3}$/.test(parsed.hostname);
-    const shortenerDomains = ['bit.ly', 'tinyurl.com', 't.co', 'rb.gy', 'is.gd', 'cutt.ly', 'shorturl.at', 'ow.ly'];
-    isShortener = shortenerDomains.includes(parsed.hostname.toLowerCase());
-
-    if (!isHttps) reasons.push('Unencrypted HTTP connection');
-    if (isIP) reasons.push('Direct IP address');
-    if (isShortener) reasons.push('Hidden destination (URL shortener)');
-
-    if (isIP || (!isHttps && isShortener)) {
-      return { status: 'caution', badgeColor: 'bg-red-500/10 text-red-600 border-red-500/20', badgeLabel: 'Caution: Unverified', reasons };
-    }
-    if (!isHttps || isShortener) {
-      return { status: 'warning', badgeColor: 'bg-amber-500/10 text-amber-600 border-amber-500/20', badgeLabel: isShortener ? 'URL Shortener' : 'HTTP Unencrypted', reasons };
-    }
-    return { status: 'safe', badgeColor: 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20', badgeLabel: 'Secure HTTPS', reasons: ['Verified SSL/TLS connection'] };
-  } catch {
-    return { status: 'safe', badgeColor: 'bg-zinc-500/10 text-zinc-600 border-zinc-500/20', badgeLabel: 'Text Content', reasons: [] };
-  }
-}
-
-export interface ParsedQRData {
-  type: ParsedQRType;
-  title: string;
-  raw: string;
-  url?: string;
-  domain?: string;
-  isHttps?: boolean;
-  safety?: URLSafetyReport;
-  whatsapp?: {
-    phone: string;
-    message?: string;
-    chatUrl: string;
-  };
-  wifi?: {
-    ssid: string;
-    password?: string;
-    authType: string;
-    hidden?: boolean;
-  };
-  vcard?: {
-    name?: string;
-    phone?: string;
-    email?: string;
-    org?: string;
-    title?: string;
-    url?: string;
-    address?: string;
-    notes?: string;
-  };
-  email?: {
-    to: string;
-    subject?: string;
-    body?: string;
-  };
-  phone?: {
-    number: string;
-  };
-  sms?: {
-    number: string;
-    message?: string;
-  };
-  geo?: {
-    lat: string;
-    lng: string;
-    mapsUrl: string;
-  };
-  event?: {
-    summary: string;
-    location?: string;
-    description?: string;
-    dtstart?: string;
-    dtend?: string;
-  };
-}
-
-export interface ScanHistoryItem {
-  id: string;
-  raw: string;
-  type: ParsedQRType;
-  title: string;
-  timestamp: number;
-}
-
-// --- Helper: Play subtle confirmation chime ---
-function playScanSound() {
-  try {
-    const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
-    if (!AudioCtx) return;
-    const ctx = new AudioCtx();
-    const osc = ctx.createOscillator();
-    const gain = ctx.createGain();
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(880, ctx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(1760, ctx.currentTime + 0.12);
-    gain.gain.setValueAtTime(0.15, ctx.currentTime);
-    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.18);
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.start();
-    osc.stop(ctx.currentTime + 0.18);
-  } catch (e) {
-    // AudioContext blocked or not supported, ignore silently
-  }
-}
-
-// --- Helper: Parse Scanned Payload ---
-export function parseQRContent(rawText: string): ParsedQRData {
-  const raw = rawText.trim();
-
-  // 0. WhatsApp Format: wa.me, api.whatsapp.com, or whatsapp://
-  if (raw.includes('wa.me/') || raw.includes('api.whatsapp.com/send') || raw.startsWith('whatsapp://')) {
-    let phone = '';
-    let message = '';
-    try {
-      const normalizedUrl = raw.startsWith('whatsapp://') ? raw.replace('whatsapp://', 'https://') : raw;
-      const waUrl = new URL(normalizedUrl);
-      if (waUrl.hostname.includes('wa.me')) {
-        phone = waUrl.pathname.replace(/^\//, '').split('?')[0];
-        message = waUrl.searchParams.get('text') || '';
-      } else {
-        phone = waUrl.searchParams.get('phone') || '';
-        message = waUrl.searchParams.get('text') || '';
-      }
-    } catch {
-      phone = raw.replace(/[^0-9+]/g, '');
-    }
-    const cleanPhone = phone.replace(/[^0-9]/g, '');
-    const chatUrl = `https://wa.me/${cleanPhone}${message ? `?text=${encodeURIComponent(message)}` : ''}`;
-    return {
-      type: 'whatsapp',
-      title: `WhatsApp: ${phone || 'Direct Chat'}`,
-      raw,
-      whatsapp: { phone, message, chatUrl }
-    };
-  }
-
-  // 1. WiFi Format: WIFI:S:MySSID;T:WPA;P:MyPassword;H:false;;
-  if (raw.startsWith('WIFI:') || raw.startsWith('wifi:')) {
-    const getField = (tag: string) => {
-      const match = raw.match(new RegExp(`${tag}:([^;]*)`));
-      return match ? match[1] : '';
-    };
-    const ssid = getField('S') || 'Unknown WiFi';
-    const password = getField('P');
-    const authType = getField('T') || 'WPA';
-    const hidden = getField('H') === 'true';
-
-    return {
-      type: 'wifi',
-      title: `WiFi: ${ssid}`,
-      raw,
-      wifi: { ssid, password, authType, hidden }
-    };
-  }
-
-  // 2. vCard Format: BEGIN:VCARD ... END:VCARD
-  if (raw.includes('BEGIN:VCARD')) {
-    const lines = raw.split(/\r\n|\r|\n/);
-    let name = '';
-    let phone = '';
-    let email = '';
-    let org = '';
-    let title = '';
-    let url = '';
-    let address = '';
-    let notes = '';
-
-    for (const line of lines) {
-      if (line.startsWith('FN:')) name = line.substring(3).trim();
-      else if (!name && line.startsWith('N:')) {
-        const parts = line.substring(2).split(';');
-        name = parts.filter(Boolean).reverse().join(' ').trim();
-      } else if (line.match(/^TEL(;[^:]+)?:/i)) {
-        if (!phone) phone = line.substring(line.indexOf(':') + 1).trim();
-      } else if (line.match(/^EMAIL(;[^:]+)?:/i)) {
-        if (!email) email = line.substring(line.indexOf(':') + 1).trim();
-      } else if (line.startsWith('ORG:')) {
-        org = line.substring(4).replace(/;/g, ' ').trim();
-      } else if (line.startsWith('TITLE:')) {
-        title = line.substring(6).trim();
-      } else if (line.startsWith('URL:')) {
-        url = line.substring(4).trim();
-      } else if (line.match(/^ADR(;[^:]+)?:/i)) {
-        address = line.substring(line.indexOf(':') + 1).replace(/;/g, ', ').trim();
-      } else if (line.startsWith('NOTE:')) {
-        notes = line.substring(5).trim();
-      }
-    }
-
-    return {
-      type: 'vcard',
-      title: name ? `Contact: ${name}` : 'Contact Card (vCard)',
-      raw,
-      vcard: { name, phone, email, org, title, url, address, notes }
-    };
-  }
-
-  // 3. Email format: mailto:... or MATMSG:...
-  if (raw.startsWith('mailto:') || raw.startsWith('MAILTO:')) {
-    try {
-      const emailUrl = new URL(raw);
-      const to = emailUrl.pathname;
-      const subject = emailUrl.searchParams.get('subject') || undefined;
-      const body = emailUrl.searchParams.get('body') || undefined;
-      return {
-        type: 'email',
-        title: `Email to ${to}`,
-        raw,
-        email: { to, subject, body }
-      };
-    } catch (e) {
-      const to = raw.replace(/^mailto:/i, '').split('?')[0];
-      return {
-        type: 'email',
-        title: `Email to ${to}`,
-        raw,
-        email: { to }
-      };
-    }
-  }
-  if (raw.startsWith('MATMSG:')) {
-    const to = raw.match(/TO:([^;]+)/)?.[1] || '';
-    const subject = raw.match(/SUB:([^;]+)/)?.[1];
-    const body = raw.match(/BODY:([^;]+)/)?.[1];
-    return {
-      type: 'email',
-      title: `Email to ${to}`,
-      raw,
-      email: { to, subject, body }
-    };
-  }
-
-  // 4. Phone format: tel:...
-  if (raw.startsWith('tel:') || raw.startsWith('TEL:')) {
-    const number = raw.substring(4).trim();
-    return {
-      type: 'phone',
-      title: `Phone: ${number}`,
-      raw,
-      phone: { number }
-    };
-  }
-
-  // 5. SMS format: smsto:... or sms:...
-  if (raw.startsWith('smsto:') || raw.startsWith('SMSTO:') || raw.startsWith('sms:') || raw.startsWith('SMS:')) {
-    const parts = raw.substring(raw.indexOf(':') + 1).split(':');
-    const number = parts[0] || '';
-    const message = parts.slice(1).join(':');
-    return {
-      type: 'sms',
-      title: `SMS to ${number}`,
-      raw,
-      sms: { number, message }
-    };
-  }
-
-  // 6. Geo format: geo:lat,lng or Google Maps URL
-  if (raw.startsWith('geo:') || (raw.startsWith('http') && (raw.includes('maps.google.com') || raw.includes('goo.gl/maps') || raw.includes('maps.app.goo.gl')))) {
-    let lat = '';
-    let lng = '';
-    let mapsUrl = raw;
-    if (raw.startsWith('geo:')) {
-      const coords = raw.substring(4).split('?')[0].split(',');
-      lat = coords[0]?.trim() || '';
-      lng = coords[1]?.trim() || '';
-      mapsUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
-    }
-    return {
-      type: 'geo',
-      title: lat && lng ? `Location: ${lat}, ${lng}` : 'Google Maps Location',
-      raw,
-      geo: { lat, lng, mapsUrl }
-    };
-  }
-
-  // 7. Event format: BEGIN:VEVENT ... END:VEVENT
-  if (raw.includes('BEGIN:VEVENT')) {
-    const summary = raw.match(/SUMMARY:([^\r\n]+)/)?.[1] || 'Calendar Event';
-    const location = raw.match(/LOCATION:([^\r\n]+)/)?.[1];
-    const description = raw.match(/DESCRIPTION:([^\r\n]+)/)?.[1];
-    const dtstart = raw.match(/DTSTART:([^\r\n]+)/)?.[1];
-    const dtend = raw.match(/DTEND:([^\r\n]+)/)?.[1];
-    return {
-      type: 'event',
-      title: summary,
-      raw,
-      event: { summary, location, description, dtstart, dtend }
-    };
-  }
-
-  // 8. Standard URL / Website
-  if (/^https?:\/\//i.test(raw)) {
-    const safety = evaluateURLSafety(raw);
-    try {
-      const parsedUrl = new URL(raw);
-      return {
-        type: 'url',
-        title: parsedUrl.hostname.replace(/^www\./, ''),
-        raw,
-        url: raw,
-        domain: parsedUrl.hostname,
-        isHttps: parsedUrl.protocol === 'https:',
-        safety
-      };
-    } catch (e) {
-      return {
-        type: 'url',
-        title: raw,
-        raw,
-        url: raw,
-        isHttps: raw.startsWith('https://'),
-        safety
-      };
-    }
-  }
-
-  // 9. Plain Text / JSON / Other
-  return {
-    type: 'text',
-    title: raw.length > 40 ? `${raw.substring(0, 40)}...` : raw,
-    raw
-  };
-}
 
 import { TranslationProvider, useTranslation } from '../../i18n/useTranslation';
 
@@ -392,7 +74,7 @@ const STORAGE_KEY = 'genqr_scan_history_v1';
 const TAB_PREF_KEY = 'genqr_scanner_tab';
 
 function QRScannerAppContent() {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   const [scanResult, setScanResult] = useState<string | null>(null);
   const [parsedData, setParsedData] = useState<ParsedQRData | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -515,7 +197,7 @@ function QRScannerAppContent() {
     setScanHistory([]);
     try {
       localStorage.removeItem(STORAGE_KEY);
-      showToast('Scan history cleared');
+      showToast(t('scanner.toasts.scanHistoryCleared'));
     } catch (e) {}
   };
 
@@ -585,8 +267,8 @@ function QRScannerAppContent() {
     if (typeof navigator !== 'undefined' && navigator.vibrate) {
       try { navigator.vibrate(80); } catch (e) {}
     }
-    showToast('QR Code decoded successfully!');
-  }, [saveToHistory, showToast]);
+    showToast(t('scanner.toasts.qrDecodedSuccess'));
+  }, [saveToHistory, showToast, t]);
 
   // Robust Camera start with automatic device & facingMode fallbacks
   const startCamera = async (cameraId?: string, customFacingMode?: 'environment' | 'user') => {
@@ -695,14 +377,14 @@ function QRScannerAppContent() {
       setSelectedCameraId(nextCam.id);
       await stopCamera();
       setTimeout(() => startCamera(nextCam.id), 120);
-      showToast(`Switched to ${nextCam.label || 'Camera'}`);
+      showToast(t('scanner.toasts.switchedCamera'));
     } else {
       const nextMode = facingMode === 'environment' ? 'user' : 'environment';
       setFacingMode(nextMode);
       setSelectedCameraId(null);
       await stopCamera();
       setTimeout(() => startCamera(undefined, nextMode), 120);
-      showToast(`Flipped to ${nextMode === 'environment' ? 'Rear' : 'Front'} Camera`);
+      showToast(t('scanner.toasts.flippedCamera'));
     }
   };
 
@@ -770,7 +452,7 @@ function QRScannerAppContent() {
     
     // Level 1: Standard client scan
     try {
-      return await scannerRef.current.scanFile(file, true);
+      return await scannerRef.current.scanFile(file, false);
     } catch (err) {
       console.log("Client scan pass 1 failed, trying inverted canvas scan...");
     }
@@ -817,7 +499,7 @@ function QRScannerAppContent() {
           const invertedFile = new File([blob], "inverted.png", { type: "image/png" });
           
           try {
-            const decodedText = await scannerRef.current!.scanFile(invertedFile, true);
+            const decodedText = await scannerRef.current!.scanFile(invertedFile, false);
             resolve(decodedText);
           } catch (invertErr) {
             reject(invertErr);
@@ -861,7 +543,8 @@ function QRScannerAppContent() {
       }, 1200);
 
       try {
-        const decodedText = await scanQRImageBackend(file);
+        const fileToProcess = await svgFileToPngFile(file);
+        const decodedText = await scanQRImageBackend(fileToProcess);
         clearTimeout(stepTimer);
         handleScanSuccess(decodedText);
       } catch (backendErr: any) {
@@ -893,14 +576,14 @@ function QRScannerAppContent() {
             const blob = await item.getType(imageType);
             const file = new File([blob], "clipboard_pasted.png", { type: imageType });
             processImageFile(file);
-            showToast('Pasted screenshot from clipboard!');
+            showToast(t('scanner.toasts.pastedClipboard'));
             return;
           }
         }
       }
-      showToast('Tip: Press Ctrl+V on your keyboard to paste image');
+      showToast(t('scanner.toasts.ctrlVTip'));
     } catch (e) {
-      showToast('Tip: Press Ctrl+V on your keyboard to paste image');
+      showToast(t('scanner.toasts.ctrlVTip'));
     }
   };
 
@@ -913,7 +596,7 @@ function QRScannerAppContent() {
     else if (type === 'vcard') sample = 'BEGIN:VCARD\nVERSION:3.0\nFN:Alex Morgan\nTEL:+1-555-0199\nEMAIL:alex.morgan@example.com\nORG:Creative Tech Studio\nTITLE:Lead Designer\nURL:https://generatecustomqr.com\nEND:VCARD';
     
     handleScanSuccess(sample);
-    showToast(`Loaded live sample ${type.toUpperCase()} QR code!`);
+    showToast(t('scanner.toasts.loadedSample'));
   };
 
   // Clipboard Paste listener (Ctrl+V / Cmd+V)
@@ -927,7 +610,7 @@ function QRScannerAppContent() {
           const file = items[i].getAsFile();
           if (file) {
             handleTabChange('file');
-            showToast('Pasted image from clipboard');
+            showToast(t('scanner.toasts.pastedClipboard'));
             processImageFile(file);
             break;
           }
@@ -937,7 +620,7 @@ function QRScannerAppContent() {
 
     window.addEventListener('paste', handlePaste);
     return () => window.removeEventListener('paste', handlePaste);
-  }, [showToast]);
+  }, [showToast, t]);
 
   // Drag & Drop handlers
   const handleDragOver = (e: React.DragEvent) => {
@@ -974,11 +657,11 @@ function QRScannerAppContent() {
     }
   };
 
-  const copyToClipboard = (text?: string, label: string = 'Copied to clipboard!') => {
+  const copyToClipboard = (text?: string, label?: string) => {
     const target = text || scanResult;
     if (target) {
       navigator.clipboard.writeText(target);
-      showToast(label);
+      showToast(label || t('studio.buttons.copied'));
     }
   };
 
@@ -987,7 +670,7 @@ function QRScannerAppContent() {
     if (!scanResult) return;
     try {
       setIsGeneratingDownloadQR(true);
-      showToast('Generating high-resolution QR image...');
+      showToast(t('scanner.toasts.generatingPng'));
       
       const payload = {
         data: scanResult,
@@ -1000,10 +683,15 @@ function QRScannerAppContent() {
         bg_color: "#ffffff"
       };
 
+      const timeoutSignal = typeof AbortSignal !== 'undefined' && 'timeout' in AbortSignal
+        ? AbortSignal.timeout(15000)
+        : undefined;
+
       const res = await fetch(`${API_BASE}/api/generator/generate`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
+        signal: timeoutSignal
       });
 
       if (!res.ok) throw new Error("Could not generate QR image");
@@ -1015,9 +703,9 @@ function QRScannerAppContent() {
       a.download = `scanned_qr_${Date.now()}.png`;
       a.click();
       URL.revokeObjectURL(url);
-      showToast('QR Code PNG downloaded (1024px)');
+      showToast(t('scanner.toasts.pngDownloaded'));
     } catch (e) {
-      showToast('Could not download QR image');
+      showToast(t('scanner.toasts.pngDownloadFailed'));
     } finally {
       setIsGeneratingDownloadQR(false);
     }
@@ -1027,7 +715,7 @@ function QRScannerAppContent() {
   const downloadSvgQR = async () => {
     if (!scanResult) return;
     try {
-      showToast('Generating SVG vector QR Code...');
+      showToast(t('scanner.toasts.generatingSvg'));
       const payload = {
         data: scanResult,
         dots_style: "square",
@@ -1035,10 +723,15 @@ function QRScannerAppContent() {
         bg_color: "#ffffff"
       };
 
+      const timeoutSignal = typeof AbortSignal !== 'undefined' && 'timeout' in AbortSignal
+        ? AbortSignal.timeout(15000)
+        : undefined;
+
       const res = await fetch(`${API_BASE}/api/generator/generate/svg`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
+        body: JSON.stringify(payload),
+        signal: timeoutSignal
       });
 
       if (!res.ok) throw new Error("SVG generation failed");
@@ -1050,9 +743,9 @@ function QRScannerAppContent() {
       a.download = `scanned_qr_vector_${Date.now()}.svg`;
       a.click();
       URL.revokeObjectURL(url);
-      showToast('Downloaded SVG Vector QR Code');
+      showToast(t('scanner.toasts.svgDownloaded'));
     } catch (e) {
-      showToast('Could not download SVG');
+      showToast(t('scanner.toasts.svgDownloadFailed'));
     }
   };
 
@@ -1066,7 +759,7 @@ function QRScannerAppContent() {
     a.download = `${parsedData?.vcard?.name?.replace(/\s+/g, '_') || 'contact'}.vcf`;
     a.click();
     URL.revokeObjectURL(url);
-    showToast('Contact card (.vcf) downloaded');
+    showToast(t('scanner.toasts.vcfDownloaded'));
   };
 
   // 2b. Generate Calendar Event (.ics) download
@@ -1079,7 +772,7 @@ function QRScannerAppContent() {
     a.download = `${parsedData?.event?.summary?.replace(/\s+/g, '_') || 'event'}.ics`;
     a.click();
     URL.revokeObjectURL(url);
-    showToast('Calendar event (.ics) downloaded');
+    showToast(t('scanner.toasts.icsDownloaded'));
   };
 
   // 3. Download Decoded Plain Text (.txt)
@@ -1092,7 +785,7 @@ function QRScannerAppContent() {
     a.download = `scanned_content_${Date.now()}.txt`;
     a.click();
     URL.revokeObjectURL(url);
-    showToast('Decoded text (.txt) downloaded');
+    showToast(t('scanner.toasts.txtDownloaded'));
   };
 
   // 4. Download Decoded JSON (.json)
@@ -1112,38 +805,37 @@ function QRScannerAppContent() {
     a.download = `scanned_payload_${Date.now()}.json`;
     a.click();
     URL.revokeObjectURL(url);
-    showToast('Payload details (.json) downloaded');
+    showToast(t('scanner.toasts.jsonDownloaded'));
   };
 
   // Link to QR Creator to generate styled QR from scanned content
-  const getCreatorUrl = () => {
-    if (!scanResult) return '/';
-    return `/?text=${encodeURIComponent(scanResult)}`;
+  const getStudioUrl = () => {
+    return getCreatorUrl(scanResult, locale);
   };
 
   // Format type icon helper
   const getTypeBadge = (type?: ParsedQRType) => {
     switch (type) {
       case 'url':
-        return { label: 'Website Link', icon: <ExternalLink size={15} />, color: 'bg-blue-500/10 text-blue-600 border-blue-500/20' };
+        return { label: t('scanner.badges.websiteLink'), icon: <ExternalLink size={15} />, color: 'bg-blue-500/10 text-blue-600 border-blue-500/20' };
       case 'whatsapp':
-        return { label: 'WhatsApp Chat', icon: <MessageSquare size={15} />, color: 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20' };
+        return { label: t('scanner.badges.whatsappChat'), icon: <MessageSquare size={15} />, color: 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20' };
       case 'wifi':
-        return { label: 'WiFi Credentials', icon: <Wifi size={15} />, color: 'bg-amber-500/10 text-amber-600 border-amber-500/20' };
+        return { label: t('scanner.badges.wifiCredentials'), icon: <Wifi size={15} />, color: 'bg-amber-500/10 text-amber-600 border-amber-500/20' };
       case 'vcard':
-        return { label: 'Contact Card', icon: <User size={15} />, color: 'bg-indigo-500/10 text-indigo-600 border-indigo-500/20' };
+        return { label: t('scanner.badges.contactCard'), icon: <User size={15} />, color: 'bg-indigo-500/10 text-indigo-600 border-indigo-500/20' };
       case 'email':
-        return { label: 'Email Address', icon: <Mail size={15} />, color: 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20' };
+        return { label: t('scanner.badges.emailAddress'), icon: <Mail size={15} />, color: 'bg-emerald-500/10 text-emerald-600 border-emerald-500/20' };
       case 'phone':
-        return { label: 'Phone Number', icon: <Phone size={15} />, color: 'bg-green-500/10 text-green-600 border-green-500/20' };
+        return { label: t('scanner.badges.phoneNumber'), icon: <Phone size={15} />, color: 'bg-green-500/10 text-green-600 border-green-500/20' };
       case 'sms':
-        return { label: 'SMS Message', icon: <MessageSquare size={15} />, color: 'bg-teal-500/10 text-teal-600 border-teal-500/20' };
+        return { label: t('scanner.badges.smsMessage'), icon: <MessageSquare size={15} />, color: 'bg-teal-500/10 text-teal-600 border-teal-500/20' };
       case 'geo':
-        return { label: 'Map Location', icon: <MapPin size={15} />, color: 'bg-red-500/10 text-red-600 border-red-500/20' };
+        return { label: t('scanner.badges.mapLocation'), icon: <MapPin size={15} />, color: 'bg-red-500/10 text-red-600 border-red-500/20' };
       case 'event':
-        return { label: 'Calendar Event', icon: <Calendar size={15} />, color: 'bg-purple-500/10 text-purple-600 border-purple-500/20' };
+        return { label: t('scanner.badges.calendarEvent'), icon: <Calendar size={15} />, color: 'bg-purple-500/10 text-purple-600 border-purple-500/20' };
       default:
-        return { label: 'Plain Text', icon: <FileText size={15} />, color: 'bg-zinc-500/10 text-zinc-600 border-zinc-500/20' };
+        return { label: t('scanner.badges.plainText'), icon: <FileText size={15} />, color: 'bg-zinc-500/10 text-zinc-600 border-zinc-500/20' };
     }
   };
 
@@ -1457,8 +1149,8 @@ function QRScannerAppContent() {
                               ? 'bg-amber-400 text-neutral-950 scale-110 shadow-amber-400/30' 
                               : 'bg-black/60 text-white hover:bg-black/80 hover:scale-105 active:scale-95'
                           }`}
-                          title={torchOn ? "Turn flashlight off" : "Turn flashlight on"}
-                          aria-label="Toggle flashlight"
+                          title={torchOn ? t('scanner.aria.flashlightOff') : t('scanner.aria.flashlightOn')}
+                          aria-label={t('scanner.aria.toggleFlashlight')}
                         >
                           {torchOn ? <Zap size={16} /> : <ZapOff size={16} />}
                         </button>
@@ -1469,8 +1161,8 @@ function QRScannerAppContent() {
                         <button
                           onClick={switchCamera}
                           className="p-2.5 sm:p-3 rounded-full backdrop-blur-md shadow-lg transition-all cursor-pointer bg-black/60 text-white hover:bg-black/80 hover:scale-105 active:scale-95 flex items-center justify-center border border-white/10"
-                          title="Switch Camera (Front / Back)"
-                          aria-label="Switch camera"
+                          title={t('scanner.aria.switchCameraAria')}
+                          aria-label={t('scanner.aria.switchCameraAria')}
                         >
                           <SwitchCamera size={16} />
                         </button>
@@ -1487,7 +1179,7 @@ function QRScannerAppContent() {
                             setTimeout(() => startCamera(id), 150);
                           }}
                           className="bg-black/75 text-white text-xs font-semibold px-3 py-2 rounded-xl backdrop-blur-md border border-white/20 outline-none cursor-pointer max-w-[150px] sm:max-w-[180px] truncate shadow-lg"
-                          aria-label="Select camera lens"
+                          aria-label={t('scanner.aria.selectLensAria')}
                         >
                           {availableCameras.map(cam => (
                             <option key={cam.id} value={cam.id} className="bg-neutral-900 text-white">
@@ -1811,12 +1503,12 @@ function QRScannerAppContent() {
                 {/* Security Badge on Top Right */}
                 {parsedData?.type === 'url' && parsedData.safety && (
                   <span className={`inline-flex items-center gap-1 text-[11px] font-bold px-2 py-0.5 rounded-full border ${parsedData.safety.badgeColor}`}>
-                    <ShieldCheck size={12} /> {parsedData.safety.badgeLabel}
+                    <ShieldCheck size={12} /> {parsedData.safety.badgeLabelKey ? t(parsedData.safety.badgeLabelKey) : parsedData.safety.badgeLabel}
                   </span>
                 )}
                 {parsedData?.type === 'whatsapp' && (
                   <span className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">
-                    <MessageSquare size={12} /> Direct Chat Ready
+                    <MessageSquare size={12} /> {t('scanner.directChatReady')}
                   </span>
                 )}
               </div>
@@ -1835,9 +1527,13 @@ function QRScannerAppContent() {
                       <div>
                         <p className="font-bold">{t('scanner.results.securityNotice')}</p>
                         <ul className="list-disc list-inside mt-0.5 space-y-0.5">
-                          {parsedData.safety.reasons.map((r, i) => (
-                            <li key={i}>{r}</li>
-                          ))}
+                          {parsedData.safety.reasonKeys && parsedData.safety.reasonKeys.length > 0
+                            ? parsedData.safety.reasonKeys.map((k, i) => (
+                                <li key={i}>{t(k)}</li>
+                              ))
+                            : parsedData.safety.reasons.map((r, i) => (
+                                <li key={i}>{r}</li>
+                              ))}
                         </ul>
                       </div>
                     </div>
@@ -2058,7 +1754,7 @@ function QRScannerAppContent() {
               {/* Context Action 2: Copy WiFi Password */}
               {parsedData?.type === 'wifi' && parsedData.wifi?.password && (
                 <button
-                  onClick={() => copyToClipboard(parsedData.wifi?.password, 'WiFi password copied!')}
+                  onClick={() => copyToClipboard(parsedData.wifi?.password, t('scanner.results.wifiCopied'))}
                   className="w-full flex items-center justify-center gap-2 bg-primary text-white py-3 sm:py-3.5 px-4 rounded-xl sm:rounded-2xl font-bold hover:bg-primary/90 shadow-md transition-all cursor-pointer btn-spring text-xs sm:text-sm min-h-[44px]"
                 >
                   <Copy size={16} />
@@ -2090,7 +1786,7 @@ function QRScannerAppContent() {
                   className="w-full flex items-center justify-center gap-2 bg-purple-600 text-white py-3 sm:py-3.5 px-4 rounded-xl sm:rounded-2xl font-bold hover:bg-purple-700 shadow-md transition-all cursor-pointer btn-spring text-xs sm:text-sm min-h-[44px]"
                 >
                   <Calendar size={16} />
-                  <span>Add to Calendar (.ics)</span>
+                  <span>{t("scanner.downloads.addCalendar")}</span>
                 </motion.button>
               )}
 
@@ -2172,7 +1868,7 @@ function QRScannerAppContent() {
                   <Download size={14} className="text-emerald-600" />
                   <span>{t("scanner.downloadHub")}</span>
                 </span>
-                <span className="text-[10px] sm:text-[11px] text-on-surface-variant font-medium">1-Click Downloads</span>
+                <span className="text-[10px] sm:text-[11px] text-on-surface-variant font-medium">{t("scanner.downloads.oneClickDownloads")}</span>
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -2189,7 +1885,7 @@ function QRScannerAppContent() {
                   <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-1 group-hover:scale-110 transition-transform">
                     {isGeneratingDownloadQR ? <Loader2 size={14} className="animate-spin" /> : <QrCode size={14} />}
                   </div>
-                  <span className="text-[11px] sm:text-xs font-bold text-on-surface">QR Image</span>
+                  <span className="text-[11px] sm:text-xs font-bold text-on-surface">{t("scanner.downloads.qrImage")}</span>
                   <span className="text-[9px] sm:text-[10px] text-on-surface-variant">PNG 1024px</span>
                 </motion.button>
 
@@ -2204,7 +1900,7 @@ function QRScannerAppContent() {
                   <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-blue-500/10 text-blue-600 flex items-center justify-center mb-1 group-hover:scale-110 transition-transform">
                     <FileText size={14} />
                   </div>
-                  <span className="text-[11px] sm:text-xs font-bold text-on-surface">Raw Text</span>
+                  <span className="text-[11px] sm:text-xs font-bold text-on-surface">{t("scanner.downloads.rawText")}</span>
                   <span className="text-[9px] sm:text-[10px] text-on-surface-variant">.TXT File</span>
                 </motion.button>
 
@@ -2219,7 +1915,7 @@ function QRScannerAppContent() {
                   <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-purple-500/10 text-purple-600 flex items-center justify-center mb-1 group-hover:scale-110 transition-transform">
                     <FileCode size={14} />
                   </div>
-                  <span className="text-[11px] sm:text-xs font-bold text-on-surface">Metadata</span>
+                  <span className="text-[11px] sm:text-xs font-bold text-on-surface">{t("scanner.downloads.metadata")}</span>
                   <span className="text-[9px] sm:text-[10px] text-on-surface-variant">.JSON Object</span>
                 </motion.button>
 
@@ -2235,7 +1931,7 @@ function QRScannerAppContent() {
                     <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-emerald-500/10 text-emerald-600 flex items-center justify-center mb-1 group-hover:scale-110 transition-transform">
                       <User size={14} />
                     </div>
-                    <span className="text-[11px] sm:text-xs font-bold text-on-surface">vCard File</span>
+                    <span className="text-[11px] sm:text-xs font-bold text-on-surface">{t("scanner.downloads.vcard")}</span>
                     <span className="text-[9px] sm:text-[10px] text-on-surface-variant">.VCF Contact</span>
                   </motion.button>
                 ) : parsedData?.type === 'event' ? (
@@ -2249,7 +1945,7 @@ function QRScannerAppContent() {
                     <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-purple-500/10 text-purple-600 flex items-center justify-center mb-1 group-hover:scale-110 transition-transform">
                       <Calendar size={14} />
                     </div>
-                    <span className="text-[11px] sm:text-xs font-bold text-on-surface">Calendar</span>
+                    <span className="text-[11px] sm:text-xs font-bold text-on-surface">{t("scanner.downloads.calendar")}</span>
                     <span className="text-[9px] sm:text-[10px] text-on-surface-variant">.ICS Event</span>
                   </motion.button>
                 ) : (
@@ -2263,8 +1959,8 @@ function QRScannerAppContent() {
                     <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-cyan-500/10 text-cyan-600 flex items-center justify-center mb-1 group-hover:scale-110 transition-transform">
                       <FileDown size={14} />
                     </div>
-                    <span className="text-[11px] sm:text-xs font-bold text-on-surface">Vector SVG</span>
-                    <span className="text-[9px] sm:text-[10px] text-on-surface-variant">Scalable</span>
+                    <span className="text-[11px] sm:text-xs font-bold text-on-surface">{t("scanner.downloads.vectorSvg")}</span>
+                    <span className="text-[9px] sm:text-[10px] text-on-surface-variant">{t("scanner.downloads.scalable")}</span>
                   </motion.button>
                 )}
 
@@ -2275,7 +1971,7 @@ function QRScannerAppContent() {
             <div className="w-full mt-5 sm:mt-6 pt-5 sm:pt-6 border-t border-outline-variant/50 flex flex-col sm:flex-row items-center justify-between gap-2.5 text-center sm:text-left">
               <span className="text-xs font-semibold text-on-surface-variant">{t("scanner.wantCustomFrames")}</span>
               <a
-                href={getCreatorUrl()}
+                href={getStudioUrl()}
                 className="inline-flex items-center gap-1.5 text-xs font-bold text-primary hover:text-primary/80 transition-colors shrink-0 py-1"
               >
                 <QrCode size={14} />
@@ -2329,18 +2025,18 @@ function QRScannerAppContent() {
                     </div>
                     <div className="flex items-center gap-1 shrink-0">
                       <button
-                        onClick={() => copyToClipboard(item.raw, 'Item copied from history')}
+                        onClick={() => copyToClipboard(item.raw, t('scanner.toasts.itemCopiedFromHistory'))}
                         className="p-2 hover:bg-surface-container rounded-lg text-on-surface-variant hover:text-primary transition-colors cursor-pointer min-w-[32px] min-h-[32px] flex items-center justify-center"
-                        title="Copy"
-                        aria-label="Copy item"
+                        title={t('scanner.aria.copyItemAria')}
+                        aria-label={t('scanner.aria.copyItemAria')}
                       >
                         <Copy size={13} />
                       </button>
                       <button
                         onClick={() => deleteHistoryItem(item.id)}
                         className="p-2 hover:bg-surface-container rounded-lg text-on-surface-variant hover:text-error transition-colors cursor-pointer min-w-[32px] min-h-[32px] flex items-center justify-center"
-                        title="Delete"
-                        aria-label="Delete item"
+                        title={t('scanner.aria.deleteItemAria')}
+                        aria-label={t('scanner.aria.deleteItemAria')}
                       >
                         <Trash2 size={13} />
                       </button>
