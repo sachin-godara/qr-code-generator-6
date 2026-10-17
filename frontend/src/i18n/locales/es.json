@@ -832,6 +832,10 @@
     "cameraPermissionError": "El permiso de cámara fue denegado o no está disponible.",
     "noQrFound": "No se detectó ningún código QR. Prueba el Escaneo Profundo con IA.",
     "aiDeepScan": "Escaneo Profundo con IA",
+    "deepScanCameraBtn": "Escaneo Profundo del Visor",
+    "deepScanAnalyzing": "Escaneo profundo con IA del visor...",
+    "deepScanFrameFailed": "El escaneo profundo no pudo encontrar un código QR legible. Intente acercarse o ajustar la iluminación.",
+    "resumeCamera": "Reanudar Cámara en Vivo",
     "deepScanSuccess": "¡Código QR decodificado con el algoritmo de mejora multicapa!",
     "guideTitle": "Cómo Escanear un Código QR",
     "guideSubtitle": "Instrucciones rápidas para escanear en cualquier dispositivo móvil sin instalar aplicaciones.",
@@ -946,7 +950,9 @@
       "switchCameraAria": "Cambiar cámara (frontal / trasera)",
       "selectLensAria": "Seleccionar lente de cámara",
       "copyItemAria": "Copiar",
-      "deleteItemAria": "Eliminar"
+      "deleteItemAria": "Eliminar",
+      "snapshotAria": "Capturar foto y ejecutar escaneo profundo con IA",
+      "resumeCameraAria": "Reanudar transmisión de cámara en vivo"
     }
   },
   "landing": {

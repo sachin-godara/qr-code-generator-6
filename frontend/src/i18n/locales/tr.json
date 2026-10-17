@@ -832,6 +832,10 @@
     "cameraPermissionError": "Kamera izni reddedildi veya kamera kullanılamıyor.",
     "noQrFound": "Bu resimde QR kod tespit edilemedi. Yapay Zeka Derin Tarama özelliğimizi deneyin.",
     "aiDeepScan": "Yapay Zeka Derin Tarama",
+    "deepScanCameraBtn": "Vizör Derin Tarama",
+    "deepScanAnalyzing": "Vizör Yapay Zeka Derin Taraması...",
+    "deepScanFrameFailed": "Derin tarama okunabilir bir QR kodu bulamadı. Yaklaşmayı veya aydınlatmayı ayarlamayı deneyin.",
+    "resumeCamera": "Canlı Kameraya Devam Et",
     "guideTitle": "QR Kod Nasıl Taranır",
     "guideSubtitle": "Herhangi bir uygulama yüklemeden tüm mobil cihazlar için hızlı yerel tarama talimatları.",
     "iosTitle": "iPhone ve iPad'de (iOS)",
@@ -945,7 +949,9 @@
       "switchCameraAria": "Kamerayı değiştir (Ön / Arka)",
       "selectLensAria": "Kamera lensini seçin",
       "copyItemAria": "Kopyala",
-      "deleteItemAria": "Sil"
+      "deleteItemAria": "Sil",
+      "snapshotAria": "Enstantane çek ve yapay zeka derin taramasını çalıştır",
+      "resumeCameraAria": "Canlı kamera akışına devam et"
     }
   },
   "landing": {

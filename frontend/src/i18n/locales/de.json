@@ -832,6 +832,10 @@
     "cameraUnavailable": "Kamera derzeit nicht verfügbar. Bitte Berechtigungen prüfen oder Bild hochladen.",
     "noQrFound": "Kein QR-Code erkannt. Versuchen Sie den KI-Tiefenscan.",
     "aiDeepScan": "KI-Tiefenscan",
+    "deepScanCameraBtn": "Sucher-Tiefenscan",
+    "deepScanAnalyzing": "KI-Tiefenscan des Suchers...",
+    "deepScanFrameFailed": "Tiefenscan konnte keinen lesbaren QR-Code finden. Gehen Sie näher heran oder passen Sie das Licht an.",
+    "resumeCamera": "Live-Kamera fortsetzen",
     "guideTitle": "So scannen Sie einen QR-Code",
     "guideSubtitle": "Schnellanleitung für alle Smartphones und Tablets ganz ohne App-Installation.",
     "iosTitle": "Auf dem iPhone & iPad (iOS)",
@@ -946,7 +950,9 @@
       "switchCameraAria": "Kamera wechseln (Vorne / Hinten)",
       "selectLensAria": "Kameraobjektiv auswählen",
       "copyItemAria": "Kopieren",
-      "deleteItemAria": "Löschen"
+      "deleteItemAria": "Löschen",
+      "snapshotAria": "Schnappschuss aufnehmen und KI-Tiefenscan starten",
+      "resumeCameraAria": "Live-Kamera-Feed fortsetzen"
     }
   },
   "landing": {

@@ -433,3 +433,41 @@ export async function svgFileToPngFile(file: File): Promise<File> {
     img.src = url;
   });
 }
+
+// Extract a pristine high-resolution snapshot from a native <video> element
+export async function captureVideoFrame(video: HTMLVideoElement): Promise<File | null> {
+  if (typeof document === 'undefined' || !video || !video.videoWidth || !video.videoHeight) {
+    return null;
+  }
+  const canvas = document.createElement('canvas');
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return null;
+  ctx.drawImage(video, 0, 0, video.videoWidth, video.videoHeight);
+  return new Promise((resolve) => {
+    canvas.toBlob((blob) => {
+      if (!blob) return resolve(null);
+      const frameFile = new File([blob], 'camera-snapshot.png', { type: 'image/png' });
+      resolve(frameFile);
+    }, 'image/png');
+  });
+}
+
+// Hardware-accelerated native barcode detector (Apple Vision / Android ML Kit)
+export async function detectBarcodeNative(source: ImageBitmapSource): Promise<string | null> {
+  if (typeof window === 'undefined' || !('BarcodeDetector' in window)) {
+    return null;
+  }
+  try {
+    const BarcodeDetectorClass = (window as any).BarcodeDetector;
+    const detector = new BarcodeDetectorClass({ formats: ['qr_code'] });
+    const barcodes = await detector.detect(source);
+    if (barcodes && barcodes.length > 0 && barcodes[0].rawValue) {
+      return barcodes[0].rawValue;
+    }
+  } catch (e) {
+    // Graceful fallback to software ZXing
+  }
+  return null;
+}

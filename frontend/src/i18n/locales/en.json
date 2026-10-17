@@ -832,6 +832,10 @@
     "cameraPermissionError": "Camera permission was denied or camera is unavailable.",
     "noQrFound": "No QR code detected in this image. Try our AI Deep Scan.",
     "aiDeepScan": "AI Deep Scan",
+    "deepScanCameraBtn": "Deep Scan Viewfinder",
+    "deepScanAnalyzing": "AI Deep Scanning Viewfinder...",
+    "deepScanFrameFailed": "Deep scan could not find a readable QR code. Try moving closer or adjusting lighting.",
+    "resumeCamera": "Resume Live Camera",
     "guideTitle": "How to Scan a QR Code",
     "guideSubtitle": "Quick native scanning instructions for all mobile devices without installing any apps.",
     "iosTitle": "On iPhone & iPad (iOS)",
@@ -945,7 +949,9 @@
       "switchCameraAria": "Switch Camera (Front / Back)",
       "selectLensAria": "Select camera lens",
       "copyItemAria": "Copy",
-      "deleteItemAria": "Delete"
+      "deleteItemAria": "Delete",
+      "snapshotAria": "Capture snapshot and run AI deep scan",
+      "resumeCameraAria": "Resume live camera feed"
     }
   },
   "landing": {

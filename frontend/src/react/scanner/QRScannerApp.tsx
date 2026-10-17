@@ -52,6 +52,8 @@ import {
   parseQRContent,
   getCreatorUrl,
   svgFileToPngFile,
+  captureVideoFrame,
+  detectBarcodeNative,
   playScanSound
 } from './scannerUtils';
 
@@ -64,6 +66,8 @@ export {
   parseQRContent,
   getCreatorUrl,
   svgFileToPngFile,
+  captureVideoFrame,
+  detectBarcodeNative,
   playScanSound
 };
 
@@ -431,8 +435,61 @@ function QRScannerAppContent() {
     };
   }, []);
 
+  // Capture native video frame and route through backend Deep Scan
+  const handleDeepScanCameraFrame = async () => {
+    if (!isScannerRunning()) return;
+    const container = document.getElementById(readerElementId);
+    const video = container?.querySelector('video') as HTMLVideoElement | null;
+    if (!video) {
+      showToast(t('scanner.cameraUnavailable'));
+      return;
+    }
+
+    try {
+      setIsDeepScanning(true);
+      setDeepScanStep(t('scanner.deepScanAnalyzing'));
+      setError(null);
+
+      // 1. Fast Native BarcodeDetector pre-pass on video element
+      const nativeResult = await detectBarcodeNative(video);
+      if (nativeResult) {
+        await stopCamera();
+        handleScanSuccess(nativeResult);
+        return;
+      }
+
+      // 2. High-res snapshot extraction
+      const frameFile = await captureVideoFrame(video);
+      if (!frameFile) {
+        throw new Error(t('scanner.deepScanFrameFailed'));
+      }
+
+      // 3. Multi-Engine OpenCV backend deep scan
+      const decodedText = await scanQRImageBackend(frameFile);
+      await stopCamera();
+      handleScanSuccess(decodedText);
+    } catch (err: any) {
+      setError(err?.message || t('scanner.deepScanFrameFailed'));
+    } finally {
+      setIsDeepScanning(false);
+    }
+  };
+
   // Fallback scan pipeline
   const scanWithFallback = async (file: File): Promise<string> => {
+    // Level 0: Native Hardware-Accelerated BarcodeDetector (Chrome Android / iOS 17+)
+    try {
+      if (typeof window !== 'undefined' && 'BarcodeDetector' in window && typeof createImageBitmap === 'function') {
+        const bmp = await createImageBitmap(file);
+        const nativeText = await detectBarcodeNative(bmp);
+        if (nativeText) {
+          return nativeText;
+        }
+      }
+    } catch (e) {
+      // Continue to Level 1
+    }
+
     if (!scannerRef.current) {
       scannerRef.current = new Html5Qrcode(readerElementId, {
         formatsToSupport: [
@@ -1156,7 +1213,28 @@ function QRScannerAppContent() {
                         </button>
                       )}
 
-                      {/* 2. Instant 1-Tap Camera Flip / Switch Button */}
+                      {/* 2. Deep Scan Viewfinder Snapshot Button */}
+                      <button
+                        onClick={handleDeepScanCameraFrame}
+                        disabled={isDeepScanning}
+                        className="flex items-center gap-1.5 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full backdrop-blur-md shadow-lg transition-all cursor-pointer bg-primary hover:bg-primary/90 text-white text-xs font-bold border border-white/20 hover:scale-105 active:scale-95 disabled:opacity-50"
+                        title={t('scanner.deepScanCameraBtn')}
+                        aria-label={t('scanner.aria.snapshotAria')}
+                      >
+                        {isDeepScanning ? (
+                          <>
+                            <Loader2 size={14} className="animate-spin text-white" />
+                            <span className="hidden xs:inline">{t('scanner.deepScanAnalyzing')}</span>
+                          </>
+                        ) : (
+                          <>
+                            <Sparkles size={14} className="text-amber-300" />
+                            <span>{t('scanner.deepScanCameraBtn')}</span>
+                          </>
+                        )}
+                      </button>
+
+                      {/* 3. Instant 1-Tap Camera Flip / Switch Button */}
                       {availableCameras.length > 1 && (
                         <button
                           onClick={switchCamera}

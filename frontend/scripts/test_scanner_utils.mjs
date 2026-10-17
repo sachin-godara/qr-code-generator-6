@@ -111,4 +111,21 @@ END:VEVENT`;
   console.log('  ✓ Geo and Event parsing passed');
 }
 
-console.log('\n✅ ALL 7 SCANNER UTILS TEST SUITES PASSED CLEANLY!\n');
+// 8. captureVideoFrame graceful fallback test
+{
+  const { captureVideoFrame } = await import('../src/react/scanner/scannerUtils.ts');
+  const result = await captureVideoFrame(null);
+  assert.equal(result, null);
+  console.log('  ✓ captureVideoFrame graceful null safety passed');
+}
+
+// 9. detectBarcodeNative graceful fallback test
+{
+  const { detectBarcodeNative } = await import('../src/react/scanner/scannerUtils.ts');
+  const result = await detectBarcodeNative(null);
+  assert.equal(result, null);
+  console.log('  ✓ detectBarcodeNative graceful environment check passed');
+}
+
+console.log('\n✅ ALL 9 SCANNER UTILS TEST SUITES PASSED CLEANLY!\n');
+

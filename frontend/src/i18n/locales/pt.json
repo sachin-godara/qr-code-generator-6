@@ -832,6 +832,10 @@
     "cameraPermissionError": "A permissão de câmera foi negada ou não está disponível.",
     "noQrFound": "Nenhum QR code detectado. Experimente a Leitura Profunda com IA.",
     "aiDeepScan": "Leitura Profunda com IA",
+    "deepScanCameraBtn": "Varredura Profunda do Visor",
+    "deepScanAnalyzing": "Varredura profunda com IA do visor...",
+    "deepScanFrameFailed": "A varredura profunda não encontrou um código QR legível. Tente se aproximar ou ajustar a iluminação.",
+    "resumeCamera": "Retomar Câmera ao Vivo",
     "guideTitle": "Como Escanear um Código QR",
     "guideSubtitle": "Instruções rápidas para escanear em qualquer dispositivo móvel sem instalar aplicativos.",
     "iosTitle": "No iPhone e iPad (iOS)",
@@ -946,7 +950,9 @@
       "switchCameraAria": "Alternar câmera (Frontal / Traseira)",
       "selectLensAria": "Selecionar lente da câmera",
       "copyItemAria": "Copiar",
-      "deleteItemAria": "Excluir"
+      "deleteItemAria": "Excluir",
+      "snapshotAria": "Capturar foto e executar varredura profunda com IA",
+      "resumeCameraAria": "Retomar transmissão da câmera ao vivo"
     }
   },
   "landing": {
