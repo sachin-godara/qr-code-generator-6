@@ -45,7 +45,7 @@ for (const p of requiredPages) {
 }
 console.log('✓ 2. All 5 canonical scanner pages exist, have valid canonical tags, and zero noindex tags.');
 
-// 3. Assert _redirects in dist contains forced 301!
+// 3. Assert _redirects in dist contains standard 301
 const distRedirectsPath = 'frontend/dist/_redirects';
 if (!fs.existsSync(distRedirectsPath)) {
   console.error('FAIL: frontend/dist/_redirects does not exist');
@@ -53,14 +53,14 @@ if (!fs.existsSync(distRedirectsPath)) {
 }
 const distRedirects = fs.readFileSync(distRedirectsPath, 'utf-8');
 const requiredRedirectRules = [
-  '/de/qr-code-scanner/ /de/qr-code-scannen/ 301!',
-  '/de/qr-code-scanner /de/qr-code-scannen/ 301!',
-  '/es/qr-code-scanner/ /es/escanear-codigo-qr/ 301!',
-  '/es/qr-code-scanner /es/escanear-codigo-qr/ 301!',
-  '/pt/qr-code-scanner/ /pt/escanear-qr-code/ 301!',
-  '/pt/qr-code-scanner /pt/escanear-qr-code/ 301!',
-  '/tr/qr-code-scanner/ /tr/qr-kod-okuyucu/ 301!',
-  '/tr/qr-code-scanner /tr/qr-kod-okuyucu/ 301!',
+  '/de/qr-code-scanner/ /de/qr-code-scannen/ 301',
+  '/de/qr-code-scanner /de/qr-code-scannen/ 301',
+  '/es/qr-code-scanner/ /es/escanear-codigo-qr/ 301',
+  '/es/qr-code-scanner /es/escanear-codigo-qr/ 301',
+  '/pt/qr-code-scanner/ /pt/escanear-qr-code/ 301',
+  '/pt/qr-code-scanner /pt/escanear-qr-code/ 301',
+  '/tr/qr-code-scanner/ /tr/qr-kod-okuyucu/ 301',
+  '/tr/qr-code-scanner /tr/qr-kod-okuyucu/ 301',
 ];
 
 const normalizedDistLines = distRedirects.split('\n').map(l => l.trim().replace(/\s+/g, ' '));
@@ -70,7 +70,7 @@ for (const rule of requiredRedirectRules) {
     process.exit(1);
   }
 }
-console.log('✓ 3. frontend/dist/_redirects includes all 8 forced 301! rules.');
+console.log('✓ 3. frontend/dist/_redirects includes all 8 standard 301 rules.');
 
 // 4. Assert all HTML files in dist (excluding 404/500) do NOT contain accidental noindex
 function checkDirForNoindex(dir) {
