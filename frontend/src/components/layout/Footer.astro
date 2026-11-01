@@ -10,13 +10,13 @@ const currentLocale = (Astro.props.locale || getLocaleFromUrl(Astro.url)) as Loc
 const currentYear = new Date().getFullYear();
 
 const homeUrl = getLocalizedUrl(currentLocale, '/');
-const urlQrUrl = getLocalizedUrl(currentLocale, '/url-qr-code-generator');
+const urlQrUrl = `${homeUrl}#generator`;
 const wifiQrUrl = getLocalizedUrl(currentLocale, '/wifi-qr-code');
 const vcardQrUrl = getLocalizedUrl(currentLocale, '/vcard-qr-code');
 const logoQrUrl = getLocalizedUrl(currentLocale, '/qr-code-with-logo');
 const eventQrUrl = getLocalizedUrl(currentLocale, '/event-qr-code');
 const emailQrUrl = getLocalizedUrl(currentLocale, '/email-qr-code');
-const freeGenUrl = getLocalizedUrl(currentLocale, '/free-qr-code-generator');
+const freeGenUrl = homeUrl;
 const scannerUrl = getLocalizedUrl(currentLocale, '/qr-code-scanner');
 
 const howToUrl = getLocalizedUrl(currentLocale, '/how-to-use');

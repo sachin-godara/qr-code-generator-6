@@ -1,0 +1,13 @@
+{
+  "name": "qr-code-maker-root",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Root workspace runner for QR Code Maker",
+  "scripts": {
+    "dev": "npm --prefix frontend run dev",
+    "build": "npm --prefix frontend run build",
+    "preview": "npm --prefix frontend run preview",
+    "test": "npm --prefix frontend run test",
+    "test:seo": "npm --prefix frontend run test:seo"
+  }
+}

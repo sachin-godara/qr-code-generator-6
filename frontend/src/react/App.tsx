@@ -23,9 +23,15 @@ import {
 import { DesktopPreviewPane, MobileBottomBar, FullscreenLightbox } from "./preview"
 import { useTranslation } from "@/i18n/useTranslation"
 import { ReactLanguageSwitcher } from "./components/ReactLanguageSwitcher"
+import { type QRContentType } from "@/types/qr"
 import { getLocalizedUrl } from "@/i18n/utils"
 
-function App() {
+export interface AppProps {
+  initialContentType?: QRContentType;
+  initialTab?: string;
+}
+
+function App({ initialContentType = 'url', initialTab = 'Content' }: AppProps) {
   const { t, locale } = useTranslation()
   const { settings, undo, redo, resetSettings, history, historyIndex } = useQRStore()
   const { hasComplexStyling } = useDownloadHandlers()
@@ -33,9 +39,11 @@ function App() {
   const { toast, setToast } = useToast()
   const { isOffline } = useOnlineStatus()
 
-  const [activeTab, setActiveTab] = useState<string>("Content")
+  const [activeTab, setActiveTab] = useState<string>(initialTab)
   const [zoomLevel, setZoomLevel] = useState<number>(1)
-  const [mobileMainTab, setMobileMainTab] = useState<'content' | 'design' | 'logo' | 'more' | 'download'>('content')
+  const [mobileMainTab, setMobileMainTab] = useState<'content' | 'design' | 'logo' | 'more' | 'download'>(
+    initialTab === 'Logo' ? 'logo' : 'content'
+  )
 
   const handleMobileTabChange = (tab: 'content' | 'design' | 'logo' | 'more' | 'download') => {
     setMobileMainTab(tab)
@@ -59,37 +67,40 @@ function App() {
   const [isFullscreen, setIsFullscreen] = useState(false);
   useEffect(() => {
     // Check URL query parameters (e.g. from QR scanner or external links)
-    const urlParams = new URLSearchParams(window.location.search);
-    const queryText = urlParams.get('url') || urlParams.get('text') || urlParams.get('content');
-    const queryType = urlParams.get('type') as any;
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const queryText = urlParams.get('url') || urlParams.get('text') || urlParams.get('content');
+      const queryType = urlParams.get('type') as any;
 
-    if (queryText) {
-      const isUrl = queryText.startsWith('http://') || queryText.startsWith('https://');
-      useQRStore.getState().updateSettings({
-        contentType: queryType || (isUrl ? 'url' : 'text'),
-        contentData: queryText
-      });
-      return;
+      if (queryText) {
+        const isUrl = queryText.startsWith('http://') || queryText.startsWith('https://');
+        useQRStore.getState().updateSettings({
+          contentType: queryType || (isUrl ? 'url' : 'text'),
+          contentData: queryText
+        });
+        return;
+      }
     }
 
-    // Automatically select the correct content type based on the landing page URL
-    const path = window.location.pathname;
-    let expectedType = null;
-    if (path.includes("wifi")) expectedType = "wifi";
-    else if (path.includes("vcard") || path.includes("contact")) expectedType = "vcard";
-    else if (path.includes("event") || path.includes("calendar")) expectedType = "event";
-    else if (path.includes("email")) expectedType = "email";
-    else if (path.includes("url-qr-code")) expectedType = "url";
+    // Automatically select the correct content type based on prop or landing page URL
+    const path = typeof window !== 'undefined' ? window.location.pathname : '';
+    let expectedType = initialContentType || null;
+    if (!expectedType) {
+      if (path.includes("wifi")) expectedType = "wifi";
+      else if (path.includes("vcard") || path.includes("contact")) expectedType = "vcard";
+      else if (path.includes("event") || path.includes("calendar")) expectedType = "event";
+      else if (path.includes("email")) expectedType = "email";
+    }
     
     if (expectedType && useQRStore.getState().settings.contentType !== expectedType) {
       useQRStore.getState().updateSettings({ contentType: expectedType as any, contentData: "" });
     }
 
-    if (path.includes("qr-code-with-logo")) {
+    if (initialTab === 'Logo' || path.includes("qr-code-with-logo")) {
       setActiveTab('Logo');
       setMobileMainTab('logo');
     }
-  }, []);
+  }, [initialContentType, initialTab]);
 
   // Listen for custom content-type selection events from the lower landing section
   useEffect(() => {
@@ -214,7 +225,7 @@ function App() {
 
   const renderPanelContent = (tabName: string) => {
     switch (tabName) {
-      case "Content": return <ContentPanel />;
+      case "Content": return <ContentPanel initialContentType={initialContentType} />;
       case "Templates": return <TemplatesPanel />;
       case "Design": return <DesignPanel />;
       case "Logo": return <LogoPanel />;

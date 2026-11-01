@@ -35,7 +35,7 @@ const formatCards = [
     id: 'url',
     type: 'URL',
     icon: 'link',
-    url: getLocalizedUrl(locale, '/url-qr-code-generator'),
+    url: '#generator',
     title: t(locale, 'landing.formats.items.urlTitle'),
     desc: t(locale, 'landing.formats.items.urlDesc'),
   },
@@ -149,7 +149,7 @@ const formatCards = [
   -->
   <main id="generator">
     <h1 class="sr-only">{seo.title}</h1>
-    <QRGeneratorApp client:load locale={locale} />
+    <QRGeneratorApp client:load locale={locale} initialContentType="url" initialTab="Content" />
   </main>
 
   <!-- 

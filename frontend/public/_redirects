@@ -1,11 +1,38 @@
 # WWW to non-WWW Canonical 301 Redirect
 https://www.generatecustomqr.com/*  https://generatecustomqr.com/:splat  301!
 
+# Consolidate Duplicate URL & Generator Routes to Homepage (Deduplication)
+/free-qr-code-generator/        /  301
+/free-qr-code-generator         /  301
+/url-qr-code-generator/         /  301
+/url-qr-code-generator          /  301
+/qr-code-generator/             /  301
+/qr-code-generator              /  301
+/generator/                     /  301
+/generator                      /  301
+
+# Localized Redundant Route Consolidation
+/es/free-qr-code-generator/     /es/  301
+/es/free-qr-code-generator      /es/  301
+/es/url-qr-code-generator/      /es/  301
+/es/url-qr-code-generator       /es/  301
+
+/de/free-qr-code-generator/     /de/  301
+/de/free-qr-code-generator      /de/  301
+/de/url-qr-code-generator/      /de/  301
+/de/url-qr-code-generator       /de/  301
+
+/pt/free-qr-code-generator/     /pt/  301
+/pt/free-qr-code-generator      /pt/  301
+/pt/url-qr-code-generator/      /pt/  301
+/pt/url-qr-code-generator       /pt/  301
+
+/tr/free-qr-code-generator/     /tr/  301
+/tr/free-qr-code-generator      /tr/  301
+/tr/url-qr-code-generator/      /tr/  301
+/tr/url-qr-code-generator       /tr/  301
+
 # Short Tool URL Aliases (Rescue external links & user typos)
-/qr-code-generator/        /free-qr-code-generator/  301
-/qr-code-generator         /free-qr-code-generator/  301
-/generator/                /free-qr-code-generator/  301
-/generator                 /free-qr-code-generator/  301
 /scanner/                  /qr-code-scanner/         301
 /scanner                   /qr-code-scanner/         301
 /vcard/                    /vcard-qr-code/           301

@@ -3,16 +3,18 @@
  * 
  * This wraps the existing App component with QueryClientProvider
  * so it can be mounted as a React island inside Astro pages via:
- *   <QRGeneratorApp client:load />
+ *   <QRGeneratorApp client:load locale={locale} initialContentType="wifi" />
  * 
- * All React logic, state management, and API calls remain identical
- * to the original Vite SPA.
+ * Prevents SSG state bleed across pages during multi-page builds
+ * by explicitly resetting both contentType and initialTab.
  */
 import React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import App from "./App";
 import { ErrorBoundary } from "./ErrorBoundary";
 import { TranslationProvider } from "@/i18n/useTranslation";
+import { useQRStore } from "@/store/useQRStore";
+import { type QRContentType } from "@/types/qr";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -24,16 +26,36 @@ const queryClient = new QueryClient({
   },
 });
 
-interface QRGeneratorAppProps {
+export interface QRGeneratorAppProps {
   locale?: string;
+  initialContentType?: QRContentType;
+  initialTab?: string;
 }
 
-export default function QRGeneratorApp({ locale = 'en' }: QRGeneratorAppProps) {
+export default function QRGeneratorApp({ 
+  locale = 'en',
+  initialContentType = 'url',
+  initialTab = 'Content'
+}: QRGeneratorAppProps) {
+  // CRITICAL (Astro SSG): Synchronously reset the store state on every render
+  // so that single-process Node.js compilation never bleeds state between pages.
+  useQRStore.setState((state) => ({
+    ...state,
+    settings: {
+      ...state.settings,
+      contentType: initialContentType,
+      contentData: initialContentType === 'url' ? (state.settings.contentData || 'https://example.com') : ''
+    }
+  }));
+
   return (
     <ErrorBoundary>
       <TranslationProvider locale={locale}>
         <QueryClientProvider client={queryClient}>
-          <App />
+          <App 
+            initialContentType={initialContentType}
+            initialTab={initialTab}
+          />
         </QueryClientProvider>
       </TranslationProvider>
     </ErrorBoundary>

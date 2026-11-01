@@ -30,8 +30,12 @@ export default defineConfig({
     sitemap({
       changefreq: 'weekly',
       priority: 0.7,
-      lastmod: new Date(),
-      filter: (page) => !page.includes('/404') && !page.includes('/500'),
+      lastmod: new Date('2026-10-25T00:00:00.000Z'),
+      filter: (page) => 
+        !page.includes('/404') && 
+        !page.includes('/500') &&
+        !page.includes('/free-qr-code-generator') &&
+        !page.includes('/url-qr-code-generator'),
       serialize: (item) => {
         const url = item.url.replace(/\/$/, '');
         // Boost homepages (all 5 languages)
@@ -47,12 +51,10 @@ export default defineConfig({
         }
         // Core tools and high-traffic landing pages
         else if (
-          item.url.includes('/free-qr-code-generator') ||
           item.url.includes('/qr-code-scanner') ||
           item.url.includes('/wifi-qr-code') ||
           item.url.includes('/vcard-qr-code') ||
           item.url.includes('/qr-code-with-logo') ||
-          item.url.includes('/url-qr-code-generator') ||
           item.url.includes('/email-qr-code') ||
           item.url.includes('/event-qr-code') ||
           item.url.includes('/how-to-use')

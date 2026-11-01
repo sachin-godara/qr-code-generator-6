@@ -49,6 +49,102 @@ const xDefaultUrl = alternateUrls.find((a) => a.locale === 'en')?.url || `${site
 const isArticle = pageType === 'article' || (Astro.url.pathname.includes('/blog/') && !Astro.url.pathname.endsWith('/blog') && !Astro.url.pathname.endsWith('/blog/'));
 const isScanner = pageType === 'scanner' || Astro.url.pathname.includes('/qr-code-scanner');
 const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '/es/' || Astro.url.pathname === '/pt/' || Astro.url.pathname === '/de/' || Astro.url.pathname === '/tr/' || Astro.url.pathname === '/es' || Astro.url.pathname === '/pt' || Astro.url.pathname === '/de' || Astro.url.pathname === '/tr';
+
+const generatorFeatureLists: Record<Locale, string[]> = {
+  en: [
+    "40+ dot module styles including flower, star, heart, diamond, hexagon",
+    "19 eye frame shapes and 23 eyeball styles",
+    "51 decorative text and CTA frames",
+    "Custom logo upload with automatic background removal",
+    "12 content types: URL, Text, WiFi, vCard, Email, SMS, Event, Phone, Crypto, Location, PayPal, App Store",
+    "Download as PNG (custom resolution), SVG (vector), or PDF (300 DPI)",
+    "Batch generation up to 500 QR codes from CSV",
+    "100% free with no signup required and no watermarks"
+  ],
+  es: [
+    "Más de 40 estilos de puntos: flor, estrella, corazón, diamante y hexágono",
+    "19 formas de marcos de ojos y 23 estilos de pupilas",
+    "51 marcos decorativos con llamadas a la acción personalizadas",
+    "Subida de logo personalizado con eliminación automática de fondo",
+    "12 tipos de contenido: URL, Texto, WiFi, vCard, Correo, SMS, Evento, Teléfono, Cripto, Ubicación",
+    "Descarga en PNG (resolución personalizada), SVG vectorial o PDF (300 DPI)",
+    "Generación por lotes de hasta 500 códigos QR desde CSV",
+    "100% gratis, sin marca de agua y sin necesidad de registro"
+  ],
+  de: [
+    "Über 40 Punkt-Muster inklusive Blume, Stern, Herz, Diamant und Sechseck",
+    "19 Augen-Rahmen und 23 Augen-Punkte",
+    "51 dekorative Rahmen mit individuellem Call-to-Action-Text",
+    "Eigenes Logo hochladen mit automatischer Hintergrundentfernung",
+    "12 Inhaltstypen: URL, Text, WLAN, vCard, E-Mail, SMS, Termin, Telefon, Krypto, Standort",
+    "Download als PNG, Vektor-SVG oder druckfertiges PDF (300 DPI)",
+    "Stapelverarbeitung für bis zu 500 QR-Codes per CSV-Upload",
+    "100% kostenlos ohne Wasserzeichen und ohne Anmeldung"
+  ],
+  pt: [
+    "Mais de 40 estilos de pontos incluindo flor, estrela, coração, diamante e hexágono",
+    "19 molduras de cantos e 23 estilos de centro",
+    "51 molduras decorativas com texto de chamada para ação",
+    "Upload de logo próprio com remoção automática de fundo",
+    "12 tipos de conteúdo: URL, Texto, Wi-Fi, vCard, E-mail, SMS, Evento, Telefone, Cripto, Localização",
+    "Download em PNG de alta resolução, vetor SVG e PDF (300 DPI)",
+    "Geração em lote de até 500 códigos QR via planilha CSV",
+    "100% gratuito sem marcas d'água e sem cadastro"
+  ],
+  tr: [
+    "Çiçek, yıldız, kalp, elmas ve altıgen dahil 40'tan fazla nokta deseni",
+    "19 göz çerçevesi ve 23 göz bebeği stili",
+    "Özel eylem çağrısı metinlerine sahip 51 dekoratif çerçeve",
+    "Otomatik arka plan kaldırma özellikli özel logo yükleme",
+    "12 içerik türü: URL, Metin, Wi-Fi, vCard, E-posta, SMS, Etkinlik, Telefon, Kripto, Konum",
+    "Yüksek çözünürlüklü PNG, vektörel SVG veya baskıya hazır PDF (300 DPI) indirme",
+    "CSV yüklemesiyle aynı anda 500 adede kadar toplu QR kod oluşturma",
+    "Filigransız, kayıtsız ve %100 tamamen ücretsiz"
+  ]
+};
+
+const scannerFeatureLists: Record<Locale, string[]> = {
+  en: [
+    "Real-time camera QR code scanning with auto-focus",
+    "Image and screenshot upload QR code reader",
+    "Barcode scanning support: EAN-13, UPC-A, Code 128, ITF, QR Code",
+    "Zero server uploads — 100% private in-browser decoding via WebAssembly",
+    "Copy decoded content to clipboard with 1 tap",
+    "100% free with no app downloads or registration required"
+  ],
+  es: [
+    "Escaneo de códigos QR en tiempo real con cámara y enfoque automático",
+    "Lector de códigos QR desde fotos, archivos e imágenes pegadas",
+    "Soporte para códigos de barras: EAN-13, UPC-A, Code 128, ITF y QR",
+    "Sin envíos a servidores: decodificación 100% privada mediante WebAssembly",
+    "Copia el contenido decodificado al portapapeles con 1 toque",
+    "100% gratis, sin instalar aplicaciones y sin registro"
+  ],
+  de: [
+    "Echtzeit-Kamera-QR-Code-Scan mit Autofokus",
+    "QR-Codes aus Bildern, Fotos und Screenshots einlesen",
+    "Barcode-Unterstützung: EAN-13, UPC-A, Code 128, ITF, QR-Code",
+    "Keine Server-Uploads — 100% private Entschlüsselung im Browser via WebAssembly",
+    "Erkannten Inhalt mit 1 Klick in die Zwischenablage kopieren",
+    "100% kostenlos ohne App-Download oder Registrierung"
+  ],
+  pt: [
+    "Leitura de QR code em tempo real com câmera e foco automático",
+    "Leitor de QR code a partir de fotos e capturas de tela",
+    "Suporte a códigos de barras: EAN-13, UPC-A, Code 128, ITF e QR Code",
+    "Sem envios para servidores — decodificação 100% privada via WebAssembly",
+    "Copie o conteúdo lido para a área de transferência com 1 toque",
+    "100% gratuito sem download de aplicativo e sem cadastro"
+  ],
+  tr: [
+    "Otomatik odaklamalı gerçek zamanlı kamera ile QR kod tarama",
+    "Fotoğraf ve ekran görüntüsü yükleyerek QR kod okuma",
+    "Barkod desteği: EAN-13, UPC-A, Code 128, ITF, QR Kod",
+    "Sunucuya yükleme yok — WebAssembly ile tarayıcıda %100 gizli ve yerel çözümleme",
+    "Çözülen içeriği tek dokunuşla panoya kopyalama",
+    "Uygulama indirmeden ve kayıt olmadan %100 ücretsiz"
+  ]
+};
 ---
 
 <!-- Primary Meta Tags -->
@@ -58,8 +154,6 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '/es/' || As
 {keywords && <meta name="keywords" content={keywords} />}
 <meta name="author" content="GenerateCustomQR" />
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-<meta name="last-modified" content={new Date().toISOString()} />
-<meta name="revised" content={new Date().toISOString()} />
 <link rel="canonical" href={resolvedCanonical} />
 {googleSiteVerification && <meta name="google-site-verification" content={googleSiteVerification} />}
 
@@ -84,7 +178,7 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '/es/' || As
   .map((a) => (
     <meta property="og:locale:alternate" content={localeConfig[a.locale].ogLocale} />
   ))}
-<meta property="og:updated_time" content={new Date().toISOString()} />
+<meta property="og:updated_time" content="2026-10-25T00:00:00Z" />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
@@ -97,6 +191,7 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '/es/' || As
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": "https://generatecustomqr.com/#website",
   "name": "GenerateCustomQR",
   "url": "https://generatecustomqr.com",
   "inLanguage": currentLocaleInfo.hreflang,
@@ -113,12 +208,13 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '/es/' || As
   <script type="application/ld+json" set:html={JSON.stringify(isScanner ? {
     "@context": "https://schema.org",
     "@type": "WebApplication",
+    "@id": `${resolvedCanonical}#webapp`,
     "name": "GenerateCustomQR Scanner",
     "inLanguage": currentLocaleInfo.hreflang,
     "description": description,
     "url": resolvedCanonical,
     "datePublished": "2026-01-01T00:00:00Z",
-    "dateModified": new Date().toISOString(),
+    "dateModified": "2026-10-25T00:00:00Z",
     "applicationCategory": "UtilitiesApplication",
     "applicationSubCategory": "QR Code & Barcode Scanner",
     "operatingSystem": "All",
@@ -129,26 +225,18 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '/es/' || As
       "price": "0",
       "priceCurrency": "USD"
     },
-    "featureList": [
-      "Real-time camera QR code scanning with auto-focus",
-      "Image and screenshot upload QR code reader",
-      "Barcode scanning support: EAN-13, UPC-A, Code 128, ITF, QR Code",
-      "Zero server uploads — 100% private in-browser decoding",
-      "Copy decoded content to clipboard with 1 tap",
-      "Auto-detect URLs, Wi-Fi networks, vCards, SMS, and geolocation coordinates",
-      "Torch/Flashlight toggle and front/rear camera switcher",
-      "100% free with no app downloads or registration required"
-    ],
+    "featureList": scannerFeatureLists[currentLocale] || scannerFeatureLists.en,
     "screenshot": resolvedOgImage
   } : {
     "@context": "https://schema.org",
     "@type": "WebApplication",
+    "@id": `${resolvedCanonical}#webapp`,
     "name": "GenerateCustomQR",
     "inLanguage": currentLocaleInfo.hreflang,
     "description": description,
     "url": resolvedCanonical,
     "datePublished": "2026-01-01T00:00:00Z",
-    "dateModified": new Date().toISOString(),
+    "dateModified": "2026-10-25T00:00:00Z",
     "applicationCategory": "DesignApplication",
     "applicationSubCategory": "QR Code Generator",
     "operatingSystem": "All",
@@ -159,26 +247,7 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '/es/' || As
       "price": "0",
       "priceCurrency": "USD"
     },
-    "featureList": [
-      "40+ dot module styles including flower, star, heart, diamond, hexagon",
-      "19 eye frame shapes and 23 eyeball styles",
-      "51 decorative text and CTA frames",
-      "22 layout frame designs",
-      "121 preset QR code templates",
-      "46 preset logo icons with brand colors",
-      "Custom logo upload with background removal",
-      "Logo dot clearance control",
-      "4 gradient types: vertical, horizontal, radial, diagonal",
-      "Shadow effects: soft, elevated, neon",
-      "12 content types: URL, Text, WiFi, vCard, Email, SMS, Event, Phone, Crypto, Location, PayPal, App Store",
-      "Download as PNG (custom resolution), SVG (vector), or PDF (300 DPI)",
-      "Transparent background export",
-      "Batch generation up to 500 QR codes from CSV",
-      "Per-eye independent styling for all 3 corners",
-      "Background image with blend modes",
-      "Copy to clipboard",
-      "100% free, no signup required, no watermarks"
-    ],
+    "featureList": generatorFeatureLists[currentLocale] || generatorFeatureLists.en,
     "screenshot": resolvedOgImage
   })} />
 )}
@@ -187,6 +256,7 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '/es/' || As
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": "https://generatecustomqr.com/#organization",
   "name": "GenerateCustomQR",
   "url": "https://generatecustomqr.com",
   "logo": {

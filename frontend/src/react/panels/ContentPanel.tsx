@@ -76,7 +76,13 @@ const contentCategoryDefs = [
   }
 ];
 
-export function ContentPanel() {
+import { type ContentType } from "@/types/qr";
+
+interface ContentPanelProps {
+  initialContentType?: ContentType;
+}
+
+export function ContentPanel({ initialContentType }: ContentPanelProps) {
   const { t } = useTranslation();
   const { 
     settings, 
@@ -89,14 +95,20 @@ export function ContentPanel() {
     updateBatchColumn
   } = useQRStore();
   
-  const [contentCategoryTab, setContentCategoryTab] = useState<string>('basic');
+  const [userSelectedType, setUserSelectedType] = useState<ContentType | null>(null);
+  const activeContentType = userSelectedType || initialContentType || settings.contentType;
+
+  const [contentCategoryTab, setContentCategoryTab] = useState<string>(() => {
+    const activeCategory = contentCategoryDefs.find(c => c.items.some(i => i.id === activeContentType));
+    return activeCategory ? activeCategory.id : 'basic';
+  });
 
   useEffect(() => {
-    const activeCategory = contentCategoryDefs.find(c => c.items.some(i => i.id === settings.contentType));
+    const activeCategory = contentCategoryDefs.find(c => c.items.some(i => i.id === activeContentType));
     if (activeCategory) {
       setContentCategoryTab(activeCategory.id);
     }
-  }, [settings.contentType]);
+  }, [activeContentType]);
 
   const parseCSV = (text: string) => {
     const lines = text.split('\n').filter(l => l.trim() !== '');
@@ -170,14 +182,17 @@ export function ContentPanel() {
             .find(c => c.id === contentCategoryTab)
             ?.items
             .map(type => {
-              const isSelected = settings.contentType === type.id;
+              const isSelected = activeContentType === type.id;
               const typeLabel = t(`studio.content.types.${type.labelKey}`) || type.label;
               return (
                 <button
                   key={type.id}
                   type="button"
                   disabled={(type as any).comingSoon}
-                  onClick={() => updateSettings({ contentType: type.id as any, contentData: "" })}
+                  onClick={() => {
+                    setUserSelectedType(type.id as any);
+                    updateSettings({ contentType: type.id as any, contentData: "" });
+                  }}
                   className={`flex items-center justify-between gap-2 px-4 py-3 rounded-xl border transition-colors outline-none font-bold text-sm ${
                     (type as any).comingSoon
                       ? "opacity-60 cursor-not-allowed bg-surface-container-low border-outline-variant/30 text-on-surface-variant/50"
@@ -206,35 +221,35 @@ export function ContentPanel() {
         <div className="flex items-start gap-2.5 p-3 rounded-xl bg-primary/5 border border-primary/15 text-sm">
           <span className="material-symbols-outlined text-primary text-lg mt-0.5 shrink-0">lightbulb</span>
           <p className="text-on-surface-variant leading-relaxed">
-            {settings.contentType === 'url' && 'Paste a website link below and your QR code will update instantly!'}
-            {settings.contentType === 'text' && 'Type any message below — it will be encoded into your QR code.'}
-            {settings.contentType === 'wifi' && 'Enter your Wi-Fi network details. Anyone who scans can connect instantly!'}
-            {settings.contentType === 'vcard' && 'Fill in contact details. Scanning this QR will save the contact to a phone.'}
-            {!['url', 'text', 'wifi', 'vcard'].includes(settings.contentType) && 'Fill in the details below. Your QR code updates live as you type!'}
+            {activeContentType === 'url' && 'Paste a website link below and your QR code will update instantly!'}
+            {activeContentType === 'text' && 'Type any message below — it will be encoded into your QR code.'}
+            {activeContentType === 'wifi' && 'Enter your Wi-Fi network details. Anyone who scans can connect instantly!'}
+            {activeContentType === 'vcard' && 'Fill in contact details. Scanning this QR will save the contact to a phone.'}
+            {!['url', 'text', 'wifi', 'vcard'].includes(activeContentType) && 'Fill in the details below. Your QR code updates live as you type!'}
           </p>
         </div>
       )}
 
       {/* Input Card */}
       <div className="bg-white rounded-xl border border-outline-variant space-y-6 p-4 sm:p-6">
-        {settings.contentType === "url" && <UrlForm />}
-        {settings.contentType === "text" && <TextForm />}
-        {settings.contentType === "phone" && <PhoneForm />}
-        {settings.contentType === "sms" && <SmsForm />}
-        {settings.contentType === "whatsapp" && <WhatsAppForm />}
-        {settings.contentType === "email" && <EmailForm />}
-        {settings.contentType === "vcard" && <VCardForm />}
-        {settings.contentType === "wifi" && <WifiForm />}
-        {settings.contentType === "location" && <LocationForm />}
-        {settings.contentType === "event" && <EventForm />}
-        {settings.contentType === "upi" && <UpiForm />}
-        {settings.contentType === "crypto" && <CryptoForm />}
-        {settings.contentType === "paypal" && <PaypalForm />}
-        {settings.contentType === "appstore" && <AppStoreForm />}
-        {settings.contentType === "googleplay" && <GooglePlayForm />}
-        {settings.contentType === "social" && <SocialForm />}
+        {activeContentType === "url" && <UrlForm />}
+        {activeContentType === "text" && <TextForm />}
+        {activeContentType === "phone" && <PhoneForm />}
+        {activeContentType === "sms" && <SmsForm />}
+        {activeContentType === "whatsapp" && <WhatsAppForm />}
+        {activeContentType === "email" && <EmailForm />}
+        {activeContentType === "vcard" && <VCardForm />}
+        {activeContentType === "wifi" && <WifiForm />}
+        {activeContentType === "location" && <LocationForm />}
+        {activeContentType === "event" && <EventForm />}
+        {activeContentType === "upi" && <UpiForm />}
+        {activeContentType === "crypto" && <CryptoForm />}
+        {activeContentType === "paypal" && <PaypalForm />}
+        {activeContentType === "appstore" && <AppStoreForm />}
+        {activeContentType === "googleplay" && <GooglePlayForm />}
+        {activeContentType === "social" && <SocialForm />}
 
-        {settings.contentType === "batch" && (
+        {activeContentType === "batch" && (
           <div className="space-y-4">
             <div>
               <h3 className="font-headline-sm text-on-surface font-bold">Batch ZIP Generation</h3>
