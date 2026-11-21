@@ -101,6 +101,7 @@ const howTo = post.data.howToSteps && post.data.howToSteps.length > 0 ? {
   locale={locale}
   title={`${title} | GenerateCustomQR Blog`}
   description={description}
+  canonicalUrl={canonicalUrl}
   keywords={post.data.tags && post.data.tags.length > 0 ? post.data.tags.join(', ') : undefined}
   ogImage={post.data.image || "/og-blog.jpg"}
   pageType="article"
