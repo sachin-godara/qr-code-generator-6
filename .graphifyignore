@@ -1,0 +1,44 @@
+# Graphify Ignore Rules for QR Code Maker project
+
+# Backups and historical snapshots
+backups/
+*.zip
+*.tar.gz
+
+# Agent skills and tool internal code
+Skills/
+
+# Build and distribution directories
+dist/
+frontend/dist/
+.astro/
+frontend/.astro/
+
+# Virtual environments
+backend/venv/
+venv/
+.venv/
+env/
+
+# Node dependencies
+frontend/node_modules/
+mcp-server-qrcode-enhanced/node_modules/
+node_modules/
+
+# Graphify output directory itself
+graphify-out/
+backend/graphify-out/
+frontend/graphify-out/
+frontend/src/graphify-out/
+
+# Static image assets and test artifacts
+images/
+backend/test_*.png
+backend/test_out*.pdf
+backend/test_out2.pdf
+
+# OS and IDE files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

@@ -14,3 +14,17 @@ node_modules/
 backend/test_*.png
 backend/test_out*.pdf
 backend/test_out2.pdf
+
+# Build outputs
+dist/
+.astro/
+frontend/dist/
+frontend/.astro/
+
+# Graphify caches and misplaced directories
+graphify-out/cache/
+graphify-out/memory/
+graphify-out/.*
+backend/graphify-out/
+frontend/graphify-out/
+frontend/src/graphify-out/
