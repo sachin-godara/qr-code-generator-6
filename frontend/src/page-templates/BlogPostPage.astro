@@ -105,10 +105,41 @@ const howTo = post.data.howToSteps && post.data.howToSteps.length > 0 ? {
   description: description,
   steps: post.data.howToSteps
 } : undefined;
+
+// Smart SERP title optimization (strict 50-65 chars for Google & Bing)
+const brandSuffix = ' | GenerateCustomQR';
+const MAX_TITLE_LEN = 60; // Safe threshold accounting for HTML entity escaping like &amp;
+let seoTitle = title;
+
+if (title.length + brandSuffix.length <= MAX_TITLE_LEN) {
+  seoTitle = `${title}${brandSuffix}`;
+} else if (title.length <= MAX_TITLE_LEN) {
+  seoTitle = title;
+} else {
+  // 1. Try stripping trailing parenthetical annotations e.g. (2026), (Complete Guide)
+  const withoutParens = title.replace(/\s*\([^)]*\)$/, '').trim();
+  if (withoutParens.length <= MAX_TITLE_LEN && withoutParens.length >= 30) {
+    seoTitle = withoutParens;
+  } else {
+    // 2. Try splitting on natural delimiters (' — ', ' - ', ':')
+    const parts = title.split(/\s+[—–]\s+|:\s+|\s+-\s+/);
+    if (parts.length > 1 && parts[0].trim().length >= 15 && parts[0].trim().length <= MAX_TITLE_LEN) {
+      seoTitle = parts[0].trim();
+    } else {
+      // 3. Word boundary truncation with connector stripping
+      let trimmed = title.slice(0, MAX_TITLE_LEN);
+      const lastSpace = trimmed.lastIndexOf(' ');
+      if (lastSpace > 30) {
+        trimmed = trimmed.slice(0, lastSpace);
+      }
+      seoTitle = trimmed.replace(/[\s\-,—–&:(]+$/, '').trim();
+    }
+  }
+}
 ---
 <BaseLayout
   locale={locale}
-  title={`${title} | GenerateCustomQR Blog`}
+  title={seoTitle}
   description={description}
   canonicalUrl={canonicalUrl}
   keywords={post.data.tags && post.data.tags.length > 0 ? post.data.tags.join(', ') : undefined}
