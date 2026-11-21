@@ -3,6 +3,47 @@ import { defineConfig } from 'astro/config';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 import sitemap from '@astrojs/sitemap';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+// Pre-compute blog post authentic lastmod dates from markdown frontmatter
+const blogLastmodMap = new Map();
+try {
+  const blogDirs = [
+    { lang: '', dir: path.join(__dirname, 'src/content/blog') },
+    { lang: 'es', dir: path.join(__dirname, 'src/content/blog/es') },
+    { lang: 'pt', dir: path.join(__dirname, 'src/content/blog/pt') },
+    { lang: 'de', dir: path.join(__dirname, 'src/content/blog/de') },
+    { lang: 'tr', dir: path.join(__dirname, 'src/content/blog/tr') },
+  ];
+  for (const { lang, dir } of blogDirs) {
+    if (fs.existsSync(dir)) {
+      const files = fs.readdirSync(dir).filter((f) => f.endsWith('.md'));
+      for (const file of files) {
+        const content = fs.readFileSync(path.join(dir, file), 'utf-8');
+        const pubMatch = content.match(/pubDate:\s*([^\r\n]+)/);
+        const upMatch = content.match(/updatedDate:\s*([^\r\n]+)/);
+        const rawDate = upMatch ? upMatch[1].trim() : (pubMatch ? pubMatch[1].trim() : null);
+        if (rawDate) {
+          const slug = file.replace(/\.md$/, '');
+          const postUrl = lang
+            ? `https://generatecustomqr.com/${lang}/blog/${slug}/`
+            : `https://generatecustomqr.com/blog/${slug}/`;
+          const d = new Date(rawDate);
+          if (!isNaN(d.getTime())) {
+            blogLastmodMap.set(postUrl, d.toISOString());
+            blogLastmodMap.set(postUrl.replace(/\/$/, ''), d.toISOString());
+          }
+        }
+      }
+    }
+  }
+} catch (e) {
+  console.warn('Could not precompute blog dates for sitemap:', e);
+}
 
 // https://astro.build/config
 export default defineConfig({
@@ -39,8 +80,17 @@ export default defineConfig({
         !page.includes('/pt/qr-code-scanner'),
       serialize: (item) => {
         const url = item.url.replace(/\/$/, '');
+        // Blog post articles - inject authentic content lastmod
+        if (item.url.includes('/blog/') && !item.url.endsWith('/blog/')) {
+          item.priority = 0.8;
+          item.changefreq = /** @type {any} */ ('weekly');
+          const lastmod = blogLastmodMap.get(item.url) || blogLastmodMap.get(item.url.replace(/\/$/, '')) || blogLastmodMap.get(`${item.url}/`);
+          if (lastmod) {
+            item.lastmod = lastmod;
+          }
+        }
         // Boost homepages (all 5 languages)
-        if (
+        else if (
           url === 'https://generatecustomqr.com' ||
           url === 'https://generatecustomqr.com/es' ||
           url === 'https://generatecustomqr.com/pt' ||
@@ -73,11 +123,6 @@ export default defineConfig({
         else if (
           url.endsWith('/blog')
         ) {
-          item.priority = 0.8;
-          item.changefreq = /** @type {any} */ ('weekly');
-        }
-        // Blog post articles
-        else if (item.url.includes('/blog/') && !item.url.endsWith('/blog/')) {
           item.priority = 0.8;
           item.changefreq = /** @type {any} */ ('weekly');
         }

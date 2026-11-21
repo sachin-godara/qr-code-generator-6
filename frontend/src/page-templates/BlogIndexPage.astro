@@ -371,6 +371,19 @@ const keywordsMap: Record<Locale, string> = {
           searchQuery = ((e.target as HTMLInputElement).value || '').trim().toLowerCase();
           filterArticles();
         });
+
+        // Parse initial search query from Sitelinks SearchAction (?q=...)
+        try {
+          const urlParams = new URLSearchParams(window.location.search);
+          const initialQ = urlParams.get('q');
+          if (initialQ) {
+            searchInput.value = initialQ;
+            searchQuery = initialQ.trim().toLowerCase();
+            filterArticles();
+          }
+        } catch (e) {
+          // ignore
+        }
       }
     }
 

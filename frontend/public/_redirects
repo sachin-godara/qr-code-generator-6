@@ -1,6 +1,3 @@
-# WWW to non-WWW Canonical 301 Redirect
-https://www.generatecustomqr.com/*  https://generatecustomqr.com/:splat  301
-
 # Short Tool URL Aliases (Rescue external links & user typos)
 /qr-code-generator/        /free-qr-code-generator/  301
 /qr-code-generator         /free-qr-code-generator/  301
@@ -28,8 +25,4 @@ https://www.generatecustomqr.com/*  https://generatecustomqr.com/:splat  301
 
 # Malformed External URL Fallbacks
 /&                  /                   301
-
-# Cloudflare Pages API Proxy
-# Proxies all /api/* requests to live Render backend
-/api/*  https://qr-code-generator-6-shry.onrender.com/api/:splat  200
 

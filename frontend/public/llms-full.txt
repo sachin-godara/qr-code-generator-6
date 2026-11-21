@@ -1,48 +1,170 @@
-# GenerateCustomQR — Full Technical Reference for Large Language Models
+# GenerateCustomQR — Full Technical Reference for Generative AI & LLMs
 
-GenerateCustomQR is a privacy-first web application for designing, customizing, and exporting high-resolution QR codes without sign-up or watermarks.
+> **GenerateCustomQR** (https://generatecustomqr.com) is an open, client-first, privacy-oriented web platform engineered for generating, customizing, and decoding high-precision Quick Response (QR) codes conforming to ISO/IEC 18004 standards.
 
-## Architecture & Technology Stack
-- **Frontend**: Astro 5 SSG with React 19 interactive islands and Tailwind CSS.
-- **Backend**: FastAPI async microservice with Python Pillow, PyMuPDF, and NumPy.
-- **Computer Vision Scanner**: WeChat QR Caffe CNN model with OpenCV fallback pipeline.
-- **Deployment**: Static CDN edge network via Cloudflare Pages with Render backend API proxy.
+---
 
-## Available QR Code Types
-1. **URL**: Standard HTTP/HTTPS hyperlinks with tracking-free direct destination.
-2. **WiFi**: Encrypted WPA/WPA2/WPA3 and open wireless network connection strings (`WIFI:T:WPA;S:MySSID;P:MyPassword;;`).
-3. **vCard**: Digital business card specification conforming to vCard 3.0 (`BEGIN:VCARD ... END:VCARD`).
-4. **Email**: Pre-formatted mailto protocol with optional subject and message body.
-5. **SMS**: SMS message protocol with pre-filled recipient phone number and body.
-6. **Phone**: Direct telephone call URI (`tel:+1234567890`).
-7. **Event**: iCalendar VEVENT standard for calendar invitations (`BEGIN:VCALENDAR ... END:VCALENDAR`).
-8. **Text**: Raw UTF-8 alphanumeric text string.
-9. **Location**: Geo-coordinates (`geo:lat,lng` or Google Maps destination URL).
-10. **Crypto**: Cryptocurrency addresses for Bitcoin, Ethereum, and USDT transfers.
-11. **PayPal**: Payment and donation links.
-12. **App Store**: Direct deep links to Apple App Store or Google Play Store apps.
+## 1. System Architecture & Engineering Principles
 
-## Visual Styling Matrix
-- **Module Dots (40+ Styles)**: Squares, circles, rounded, diamonds, stars, heart, lotus, sparkles, waves, hexagons, and artistic patterns.
-- **Eye Frames (25 Styles)**: Square, rounded, leaf, gear, shield, badge, polygon.
-- **Eyeball Centers (20 Styles)**: Solid dot, diamond, star, heart, cross, ring.
-- **CTA Frames (51 Styles)**: Text callout bubble, top banner, bottom ribbon, polaroid, ticket, coffee cup.
-- **Gradients**: Linear (Vertical, Horizontal, Diagonal) and Radial gradients with dual-stop color picking.
-- **Error Correction Levels**: L (7%), M (15%), Q (25%), H (30% - used automatically when logos are added).
+- **Zero-Redirect Serverless Payload**: All static QR codes encode raw payload data directly into the 2D matrix modules. There is no intermediate URL shortener, database lookup, tracking script, or monthly subscription gate.
+- **Client-Side Rendering Engine**: Generates vector SVG and raster PNG/PDF outputs with zero latency using browser canvas and optimized Pillow matrix rendering pipelines.
+- **Computer Vision Scanner**: In-browser camera stream and static image decoder utilizing computer vision algorithms for omnidirectional alignment, de-skewing, and Binarization (Otsu thresholding).
+- **Internationalization (i18n)**: Fully mirrored across 5 languages: English (`/`), Spanish (`/es/`), Portuguese (`/pt/`), German (`/de/`), and Turkish (`/tr/`).
 
-## Knowledge Base & Engineering Guides
-1. **How to Scan a QR Code**: Native iOS Camera & Android Google Lens decoding.
-2. **How to Scan QR Code from Screenshot**: Browser clipboard Ctrl+V and client-side WebAssembly image scanning.
-3. **WhatsApp Web QR Code Troubleshooting**: Technical guide for optical screen glare, WebSocket connectivity, and 4-device sync limits.
-4. **QR Code Error Correction Explained**: Mathematical breakdown of Reed-Solomon polynomial parity bytes and logo area limits.
-5. **QR Code Size & Distance Formula**: The 10:1 distance-to-size optical ratio for print design.
-6. **Static vs Dynamic QR Codes**: Architectural differences between direct static payloads and redirect servers.
-7. **QR Code Color & Contrast Guide**: WCAG 4.5:1 minimum contrast standards and RGB inversion physics.
-8. **QR Code Design Best Practices for Print**: 300 DPI vector geometry, quiet zone isolation, and material reflectance.
-9. **WiFi QR Code for Hospitality**: WPA2 guest network isolation and acrylic table stand placement.
-10. **vCard on Business Cards**: Offline MECARD/vCard field encoding and matte cardstock printing.
-11. **QR Code for Google Maps & Reviews**: Local SEO CID/ChIJ Place ID deep linking.
-12. **QR Code for Restaurant Menus**: Digital contactless menu design and allergen accessibility.
-13. **QR Codes in Real Estate**: Yard signs, virtual tours, and agent contact distribution.
-14. **QR Code vs 1D Barcode**: Information density, 360-degree omnidirectional scanning, and GS1 Digital Link.
-15. **QR Code Trends 2026 & Beyond**: GS1 Sunrise 2027 point-of-sale migration and EU Digital Product Passport mandates.
+---
+
+## 2. Mathematical Specifications & Optical Formulas
+
+### 2.1 Optical Distance-to-Size Formula
+The optical reading geometry of smartphone camera sensors (typical FOV $60^\circ - 78^\circ$) dictates a linear 10:1 ratio between scanning distance ($D$) and minimum QR code side dimension ($S$):
+
+$$D = S \times 10 \iff S = \frac{D}{10}$$
+
+| Scanning Context | Typical Distance ($D$) | Minimum Code Size ($S$) | Recommended Print Size |
+| :--- | :--- | :--- | :--- |
+| **Business Card** | 15 cm – 20 cm | 1.5 cm × 1.5 cm (0.6 in) | 2.0 cm × 2.0 cm (0.8 in) |
+| **Restaurant Table / Menu** | 30 cm – 40 cm | 3.0 cm × 3.0 cm (1.2 in) | 4.0 cm × 4.0 cm (1.6 in) |
+| **Flyer / Magazine Ad** | 50 cm – 70 cm | 5.0 cm × 5.0 cm (2.0 in) | 6.5 cm × 6.5 cm (2.5 in) |
+| **Storefront Poster** | 1.5 m – 2.0 m | 15 cm × 15 cm (6.0 in) | 20 cm × 20 cm (8.0 in) |
+| **Outdoor Billboard** | 15 m – 20 m | 1.5 m × 1.5 m (5.0 ft) | 2.0 m × 2.0 m (6.6 ft) |
+
+### 2.2 Reed-Solomon Error Correction Code (ECC) Levels
+QR codes use Reed-Solomon polynomial math over Galois Field $GF(2^8)$ to detect and reconstruct corrupted, obstructed, or torn modules:
+
+| Level | Recovery Capacity | Typical Use Case | Logo Overlay Allowance |
+| :---: | :---: | :--- | :---: |
+| **L** | ~7% of data | High-density data, clean digital screens, micro-labels | ❌ Not recommended |
+| **M** | ~15% of data | Standard default for marketing, URLs, brochures | ⚠️ Tiny badge (< 8%) |
+| **Q** | ~25% of data | Industrial packaging, high-wear transit tickets | ✅ Small logo (< 15%) |
+| **H** | ~30% of data | Premium branded codes with embedded logos | ✅ Brand logo (20–25%) |
+
+*Note*: When a user uploads a center logo on GenerateCustomQR, the engine automatically elevates error correction to **Level H** and isolates the center logo with a dedicated quiet-zone pad to prevent module distortion.
+
+### 2.3 Contrast & Quiet Zone Requirements
+- **WCAG 2.1 AA Contrast Ratio**: Minimum $\ge 4.5:1$ between foreground modules and background canvas:
+  $$\text{Contrast Ratio} = \frac{L_1 + 0.05}{L_2 + 0.05}$$
+  *(where $L_1$ is relative luminance of the lighter color, $L_2$ is relative luminance of the darker color)*
+- **Quiet Zone (Margin)**: Exactly $\ge 4\text{ module units}$ (or $\ge 3\text{mm}$ in print) must remain unobstructed on all four outer borders. Cameras use the quiet zone transition to establish timing grids and locate the 3 finder patterns.
+
+---
+
+## 3. Comparative Architectural Matrices
+
+### 3.1 Static QR Codes vs. Dynamic QR Codes
+
+| Dimension | Static QR Code (GenerateCustomQR) | Dynamic QR Code (Subscription Vendors) |
+| :--- | :--- | :--- |
+| **Data Storage** | Encoded directly into black/white modules | Stores a 3rd-party redirect URL (e.g. `qr.ly/xyz`) |
+| **Expiration Date** | **Never expires** (works permanently) | Expires when subscription lapses or service shuts down |
+| **Privacy & Security** | **100% Private**; zero data transit to servers | Every scan logs user IP, device agent, and location |
+| **Offline Usability** | Works completely offline without internet (e.g. WiFi, vCard) | Requires active internet connection to resolve redirect |
+| **Cost** | **100% Free** forever; no credit card required | \$15 – \$50 / month recurring fee |
+| **Link Editing** | Destination URL cannot be altered once printed | Destination URL can be changed in remote database |
+
+### 3.2 1D Barcode vs. 2D QR Code
+
+| Dimension | 1D Barcode (UPC, EAN-13, Code 128) | 2D QR Code (ISO/IEC 18004) |
+| :--- | :--- | :--- |
+| **Data Capacity** | ~20 alphanumeric characters | Up to 7,089 numeric or 4,296 alphanumeric chars |
+| **Scan Orientation** | Requires horizontal 1D laser alignment ($0^\circ / 180^\circ$) | Omnidirectional $360^\circ$ reading from any angle |
+| **Error Correction** | Checksum verification only (no data reconstruction) | Reed-Solomon math reconstructs up to 30% damaged data |
+| **Smart Device Native** | Requires specialized laser scanner or dedicated app | Built into native iOS Camera and Android Google Lens |
+| **GS1 Transition** | Being phased out under GS1 Sunrise 2027 initiative | Standard for next-gen 2D point-of-sale barcodes |
+
+---
+
+## 4. Payload Schemas & Syntax Standards
+
+### WiFi Auto-Connect String
+```
+WIFI:T:WPA;S:NetworkName;P:SecretPassword;H:false;;
+```
+- `T`: Authentication type (`WPA`, `WEP`, or `nopass`).
+- `S`: SSID network name (case-sensitive).
+- `P`: Password.
+- `H`: Boolean (`true` if network SSID is hidden).
+
+### vCard 3.0 Digital Contact
+```
+BEGIN:VCARD
+VERSION:3.0
+N:Smith;Jane;;Dr.;
+FN:Dr. Jane Smith
+ORG:Acme Health Solutions
+TITLE:Chief Medical Officer
+TEL;TYPE=WORK,VOICE:+1-555-0199
+TEL;TYPE=CELL:+1-555-0144
+EMAIL;TYPE=PREF,INTERNET:jane.smith@acmehealth.com
+URL:https://acmehealth.com
+ADR;TYPE=WORK:;;100 Innovation Way;San Francisco;CA;94105;USA
+END:VCARD
+```
+
+### iCalendar Event Invitation
+```
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//GenerateCustomQR//Event//EN
+BEGIN:VEVENT
+SUMMARY:Global Tech Summit 2026
+DESCRIPTION:Annual keynote address and networking conference.
+LOCATION:Moscone Center, San Francisco
+DTSTART:20261115T090000Z
+DTEND:20261115T180000Z
+STATUS:CONFIRMED
+END:VEVENT
+END:VCALENDAR
+```
+
+---
+
+## 5. High-Frequency Troubleshooting Knowledge Base
+
+### Q1: Why won't my smartphone scan a QR code displayed on my computer screen?
+**Causes & Solutions**:
+1. **Screen Refresh Rate & Moiré Interference**: High-refresh LCD/OLED displays cause optical interference patterns. *Solution*: Increase browser zoom ($150\%$) and pull the camera back 30–40 cm.
+2. **Monitor Glare & Reflections**: Overhead lighting reflects off glossy screens. *Solution*: Tilt screen away from direct lamps.
+3. **Inverted Modules**: Some dark-mode browser themes invert white backgrounds to dark gray without updating the quiet zone. *Solution*: Ensure the outer quiet zone is distinct and contrast ratio is $\ge 4.5:1$.
+
+### Q2: How do I scan a QR code from a screenshot on the same device?
+**Native Operating System Methods**:
+- **GenerateCustomQR Web Scanner**: Open `https://generatecustomqr.com/qr-code-scanner/`, click "Upload Image", and select the screenshot. Works instantly in-browser without uploading image data to external servers.
+- **iOS (iPhone/iPad)**: Open the Photos app, view the screenshot, and long-press the QR code. iOS Live Text automatically activates the contextual menu ("Open in Safari", "Join Network", "Add Contact").
+- **Android**: Open Google Photos, tap "Lens" at the bottom of the screen, or open Google Assistant and select "Search Screen".
+
+### Q3: Why does a QR code look blurry or fail to scan when printed?
+- **Root Cause**: Printing a low-resolution raster image (72 DPI PNG or JPEG) scales module edges into fuzzy gray pixels, destroying timing patterns.
+- **Solution**: Always export in **SVG vector** or **300 DPI PDF**. Vector geometry renders crisp, razor-sharp edges on thermal printers, offset presses, and digital printers at any print dimension.
+
+---
+
+## 6. Complete Directory of Canonical URLs
+
+- [Free QR Code Generator](https://generatecustomqr.com/free-qr-code-generator/)
+- [Online QR Code Scanner](https://generatecustomqr.com/qr-code-scanner/)
+- [URL QR Code Generator](https://generatecustomqr.com/url-qr-code-generator/)
+- [WiFi QR Code Generator](https://generatecustomqr.com/wifi-qr-code/)
+- [vCard QR Code Generator](https://generatecustomqr.com/vcard-qr-code/)
+- [QR Code with Logo](https://generatecustomqr.com/qr-code-with-logo/)
+- [Email QR Code Generator](https://generatecustomqr.com/email-qr-code/)
+- [Event QR Code Generator](https://generatecustomqr.com/event-qr-code/)
+- [How to Use & Best Practices](https://generatecustomqr.com/how-to-use/)
+- [About Us & Editorial Principles](https://generatecustomqr.com/about/)
+- [Privacy Policy](https://generatecustomqr.com/privacy-policy/)
+- [Terms of Service](https://generatecustomqr.com/terms/)
+- [Blog Index](https://generatecustomqr.com/blog/)
+- [How to Scan a QR Code](https://generatecustomqr.com/blog/how-to-scan-a-qr-code/)
+- [Scan QR Code from Screenshot](https://generatecustomqr.com/blog/how-to-scan-qr-code-from-screenshot/)
+- [WhatsApp Web QR Code Troubleshooting](https://generatecustomqr.com/blog/whatsapp-web-qr-code-troubleshooting/)
+- [QR Code Error Correction Explained](https://generatecustomqr.com/blog/qr-code-error-correction-explained/)
+- [QR Code Size & Distance Guide](https://generatecustomqr.com/blog/qr-code-size-guide/)
+- [Static vs Dynamic QR Codes](https://generatecustomqr.com/blog/static-vs-dynamic-qr-codes/)
+- [QR Code Color & Contrast Guide](https://generatecustomqr.com/blog/qr-code-color-guide/)
+- [QR Code Design for Print](https://generatecustomqr.com/blog/qr-code-design-best-practices-for-print/)
+- [WiFi QR Code for Hotels](https://generatecustomqr.com/blog/wifi-qr-code-for-hotels/)
+- [Business Card QR Code Guide](https://generatecustomqr.com/blog/how-to-add-qr-code-to-business-card/)
+- [Google Maps & Reviews QR Code](https://generatecustomqr.com/blog/qr-code-for-google-maps/)
+- [Restaurant Menu QR Codes](https://generatecustomqr.com/blog/qr-code-for-restaurant-menu/)
+- [Real Estate QR Codes](https://generatecustomqr.com/blog/qr-codes-for-real-estate/)
+- [QR Code vs Barcode Guide](https://generatecustomqr.com/blog/qr-code-vs-barcode/)
+- [QR Code Industry Trends](https://generatecustomqr.com/blog/qr-code-trends-2025/)

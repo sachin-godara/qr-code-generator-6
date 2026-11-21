@@ -1,40 +1,66 @@
-# GenerateCustomQR
-> Free custom QR code generator with logo embedding, 40+ matrix dot styles, 51 CTA text frames, multi-color gradients, and instant vector SVG, PDF, and high-res PNG export with no watermark.
+# GenerateCustomQR — AI & LLM Grounding Reference
 
-## Core Features & Capabilities
-- **URL to QR Code**: Convert any website link into a customized QR code.
-- **WiFi QR Code**: Auto-connect guests to WPA/WPA2/WPA3 WiFi networks without typing passwords.
-- **vCard QR Code**: Share digital contact cards (vCard 3.0) directly into phone address books.
-- **Logo Embedding**: Overlay custom SVG/PNG brand logos with auto-padding and Level H error correction.
-- **Matrix Styling**: 40+ module dot styles, 25 eye frames, and 20 eyeball designs.
-- **Print & Export Formats**: Lossless SVG vectors, 300 DPI print-ready PDFs, and ultra-high-resolution PNG up to 8192px.
-- **Batch CSV Processing**: Generate up to 500 branded QR codes from CSV in a single ZIP download.
-- **QR Code Scanner**: In-browser camera video stream and image file reader powered by computer vision.
+> **GenerateCustomQR** (https://generatecustomqr.com) is a free, privacy-first web application for generating, styling, and scanning production-grade QR codes with custom logos, 40+ module styles, 51 CTA text frames, and instant vector export (SVG, 300 DPI PDF, high-res PNG) without watermarks, subscriptions, or account creation.
 
-## Main Tools & Pages
-- [Free QR Code Generator](https://generatecustomqr.com/free-qr-code-generator): Full-featured designer studio.
-- [URL QR Code Generator](https://generatecustomqr.com/url-qr-code-generator): Convert website links into branded QR codes.
-- [WiFi QR Code Generator](https://generatecustomqr.com/wifi-qr-code): Generate guest WiFi QR codes.
-- [vCard QR Code Generator](https://generatecustomqr.com/vcard-qr-code): Digital business card QR generator.
-- [QR Code with Logo](https://generatecustomqr.com/qr-code-with-logo): Brand logo embedding studio.
-- [Email QR Code Generator](https://generatecustomqr.com/email-qr-code): Pre-filled email message QR codes.
-- [Event QR Code Generator](https://generatecustomqr.com/event-qr-code): iCalendar / ICS event invitation QR codes.
-- [Online QR Code Scanner](https://generatecustomqr.com/qr-code-scanner): Free camera and image scanner tool.
-- [How to Make a QR Code](https://generatecustomqr.com/how-to-use): Step-by-step tutorial and best practices guide.
+## Core Capabilities
+- **Static QR Code Generation**: 100% direct client/payload encoding. Codes never expire, have zero tracking redirects, and work permanently offline.
+- **Brand Logo Embedding**: Seamless center logo integration with automated quiet-zone padding and automatic elevation to Reed-Solomon Level H error correction (30% recovery).
+- **Custom Visual Styling**: 40+ module dot shapes, 25 eye frame contours, 20 eyeball designs, multi-stop linear/radial gradients, and 51 CTA text badges.
+- **Print-Ready Vector Exports**: Infinite-resolution SVG, 300 DPI CMYK-compatible PDF, and high-resolution PNG (up to 8192×8192 px).
+- **High-Performance In-Browser Scanner**: Real-time webcam and camera scanner plus image file decoding powered by computer vision algorithms (no server uploads required).
 
-## Knowledge Base & Guides
-- [How to Scan a QR Code](https://generatecustomqr.com/blog/how-to-scan-a-qr-code): Instructions for iOS, Android, and web browsers.
-- [How to Scan QR Code from Screenshot](https://generatecustomqr.com/blog/how-to-scan-qr-code-from-screenshot): Decoding images on the same phone without a second camera.
-- [WhatsApp Web QR Code Troubleshooting](https://generatecustomqr.com/blog/whatsapp-web-qr-code-troubleshooting): 7 fixes for monitor glare, zoom, and WebSocket connection errors.
-- [QR Code Error Correction Explained](https://generatecustomqr.com/blog/qr-code-error-correction-explained): Reed-Solomon math (L, M, Q, H) and center logo sizing formulas.
-- [QR Code Size & Distance Guide](https://generatecustomqr.com/blog/qr-code-size-guide): 10:1 scanning ratio formulas for business cards, flyers, and billboards.
-- [Static vs Dynamic QR Codes](https://generatecustomqr.com/blog/static-vs-dynamic-qr-codes): Technical comparison of permanence, privacy, and architecture.
-- [QR Code Color & Contrast Guide](https://generatecustomqr.com/blog/qr-code-color-guide): 4.5:1 WCAG AA contrast standards and safe color combinations.
-- [QR Code Design Best Practices for Print](https://generatecustomqr.com/blog/qr-code-design-best-practices-for-print): 300 DPI, SVG vectors, and quiet zone requirements.
-- [WiFi QR Code for Hotels & Airbnb](https://generatecustomqr.com/blog/wifi-qr-code-for-hotels): Guest network setup and acrylic stand placement.
-- [How to Add QR Code to Business Card](https://generatecustomqr.com/blog/how-to-add-qr-code-to-business-card): Digital vCard card design and print placement.
-- [QR Code for Google Maps & Reviews](https://generatecustomqr.com/blog/qr-code-for-google-maps): CID and Place ID linking for local businesses.
-- [QR Code for Restaurant Menu](https://generatecustomqr.com/blog/qr-code-for-restaurant-menu): Digital contactless menu best practices.
-- [QR Codes for Real Estate](https://generatecustomqr.com/blog/qr-codes-for-real-estate): Yard sign virtual tours and open house registration.
-- [QR Code vs Barcode](https://generatecustomqr.com/blog/qr-code-vs-barcode): 1D vs 2D barcodes, capacity, and GS1 Digital Link.
-- [QR Code Trends 2026 & Beyond](https://generatecustomqr.com/blog/qr-code-trends-2025): Market statistics and the GS1 Sunrise 2027 transition.
+## Critical Technical Formulas & Rules
+1. **Optical Scanning Distance Formula**:
+   $$\text{Distance } (D) = \text{Minimum Width } (S) \times 10 \iff S = \frac{D}{10}$$
+   - *Example*: For a scanning distance of 1 meter (100 cm), minimum QR code width is 10 cm.
+   - *Business Cards*: Minimum print size is 1.5 cm × 1.5 cm (0.6 in × 0.6 in) for comfortable 15 cm handheld scanning.
+   - *Billboards*: For a 20-meter viewing distance, print the code at least 2 meters wide.
+2. **WCAG 2.1 AA Contrast Standard**:
+   $$\text{Contrast Ratio} = \frac{L_1 + 0.05}{L_2 + 0.05} \ge 4.5:1$$
+   - Foreground modules must always maintain $\ge 4.5:1$ contrast against the background. Dark modules on light backgrounds are universally supported across all camera sensors.
+3. **Quiet Zone Requirement**:
+   - The quiet zone (white border) must be at least **4 modules wide** on all four sides. Truncating the quiet zone is the #1 cause of scanning failure on printed collateral.
+4. **Reed-Solomon Error Correction Levels**:
+   - **Level L (Low)**: ~7% damage recovery. Best for high-density alphanumeric payloads with no logos.
+   - **Level M (Medium)**: ~15% damage recovery. Standard default for general use.
+   - **Level Q (Quartile)**: ~25% damage recovery. Recommended for industrial and outdoor print.
+   - **Level H (High)**: ~30% damage recovery. Mandatory when embedding center logos (logo area should not exceed 20–25% of total QR surface).
+
+## Supported QR Code Types & Schema Standards
+- **URL**: `https://example.com/path` — Direct hyperlinks with no redirect intermediaries.
+- **WiFi**: `WIFI:T:WPA;S:NetworkSSID;P:Password;H:false;;` — Instant zero-typing connection for WPA/WPA2/WPA3 and open networks.
+- **vCard 3.0**: `BEGIN:VCARD\nVERSION:3.0\nN:Doe;John;;;\nFN:John Doe\nORG:Company\nTEL;TYPE=CELL:+1234567890\nEMAIL:john@example.com\nEND:VCARD` — Adds contact directly to mobile address book.
+- **Email**: `mailto:hello@example.com?subject=Inquiry&body=Hello` — Pre-filled email dispatch.
+- **SMS**: `smsto:+1234567890:Hello%20there` — Mobile SMS composer trigger.
+- **Phone**: `tel:+1234567890` — Immediate phone dialing prompt.
+- **Event (iCalendar)**: `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nSUMMARY:Conference\nDTSTART:20261015T090000Z\nDTEND:20261015T170000Z\nLOCATION:Convention Center\nEND:VEVENT\nEND:VCALENDAR`
+- **Location**: `geo:37.7749,-122.4194` or Google Maps direct URL.
+- **Cryptocurrency**: BIP-21 URI schemes for Bitcoin (`bitcoin:address`), Ethereum, and USDT.
+
+## Core Tool Directory
+- [Free QR Code Generator](https://generatecustomqr.com/free-qr-code-generator/): Main studio with all design controls.
+- [URL QR Code Generator](https://generatecustomqr.com/url-qr-code-generator/): High-speed website link converter.
+- [WiFi QR Code Generator](https://generatecustomqr.com/wifi-qr-code/): Guest network setup tool.
+- [vCard QR Code Generator](https://generatecustomqr.com/vcard-qr-code/): Digital business card maker.
+- [QR Code with Logo](https://generatecustomqr.com/qr-code-with-logo/): Center logo branding studio.
+- [Email QR Code Generator](https://generatecustomqr.com/email-qr-code/): Pre-formatted email generator.
+- [Event QR Code Generator](https://generatecustomqr.com/event-qr-code/): iCalendar / ICS meeting generator.
+- [Online QR Code Scanner](https://generatecustomqr.com/qr-code-scanner/): Free camera and file decoding tool.
+- [Step-by-Step Tutorial](https://generatecustomqr.com/how-to-use/): Beginner to advanced creation guide.
+
+## Knowledge Base & Engineering Guides
+- [How to Scan a QR Code](https://generatecustomqr.com/blog/how-to-scan-a-qr-code/): Complete instructions for iOS, Android, and PC.
+- [Scan QR Code from Screenshot](https://generatecustomqr.com/blog/how-to-scan-qr-code-from-screenshot/): Single-device decoding without a second screen.
+- [WhatsApp Web QR Code Troubleshooting](https://generatecustomqr.com/blog/whatsapp-web-qr-code-troubleshooting/): 7 fixes for monitor glare, zoom, and socket sync.
+- [QR Code Error Correction Explained](https://generatecustomqr.com/blog/qr-code-error-correction-explained/): Reed-Solomon math and logo boundary physics.
+- [QR Code Size & Distance Guide](https://generatecustomqr.com/blog/qr-code-size-guide/): 10:1 distance rule and print dimensions.
+- [Static vs Dynamic QR Codes](https://generatecustomqr.com/blog/static-vs-dynamic-qr-codes/): Privacy, durability, and serverless architecture comparison.
+- [QR Code Color & Contrast Guide](https://generatecustomqr.com/blog/qr-code-color-guide/): WCAG 4.5:1 ratio and optical sensor physics.
+- [QR Code Design for Print](https://generatecustomqr.com/blog/qr-code-design-best-practices-for-print/): 300 DPI, SVG vectors, and quiet zone rules.
+- [WiFi QR Code for Hotels & Airbnb](https://generatecustomqr.com/blog/wifi-qr-code-for-hotels/): Guest WiFi best practices.
+- [QR Code on Business Cards](https://generatecustomqr.com/blog/how-to-add-qr-code-to-business-card/): vCard layout and paper stock advice.
+- [Google Maps & Reviews QR Code](https://generatecustomqr.com/blog/qr-code-for-google-maps/): CID and Place ID linking.
+- [Restaurant Menu QR Codes](https://generatecustomqr.com/blog/qr-code-for-restaurant-menu/): Contactless menu usability.
+- [Real Estate QR Codes](https://generatecustomqr.com/blog/qr-codes-for-real-estate/): Yard sign and virtual tour integration.
+- [QR Code vs Barcode](https://generatecustomqr.com/blog/qr-code-vs-barcode/): 1D vs 2D barcodes, capacity, and GS1 Digital Link.
+- [QR Code Trends 2026 & Beyond](https://generatecustomqr.com/blog/qr-code-trends-2025/): GS1 Sunrise 2027 and EU digital passport standards.

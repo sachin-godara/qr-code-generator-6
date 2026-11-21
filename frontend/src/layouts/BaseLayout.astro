@@ -20,6 +20,8 @@ interface Props {
     steps: { name: string; text: string }[];
   };
   faqs?: { q: string; a: string }[];
+  lastModified?: string;
+  noindex?: boolean;
 }
 
 const currentLocale = (Astro.props.locale || getLocaleFromUrl(Astro.url)) as Locale;
@@ -36,6 +38,8 @@ const {
   breadcrumbs,
   howTo,
   faqs,
+  lastModified,
+  noindex = false,
 } = Astro.props;
 ---
 <!doctype html>
@@ -56,10 +60,9 @@ const {
     
     <!-- Security Headers -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob: https:; connect-src 'self' http://localhost:8000 http://127.0.0.1:8000 https://qr-code-generator-6-shry.onrender.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://cloudflareinsights.com https://api.web3forms.com; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com;" />
-    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta http-equiv="Permissions-Policy" content="camera=(self), microphone=(), geolocation=(), payment=()" />
-    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains" />
 
 
     <!-- Favicons -->
@@ -100,10 +103,20 @@ const {
       breadcrumbs={breadcrumbs}
       howTo={howTo}
       faqs={faqs}
+      lastModified={lastModified}
+      noindex={noindex}
     />
     
     <!-- RSS Feed Autodiscovery -->
-    <link rel="alternate" type="application/rss+xml" title="GenerateCustomQR Blog" href="/rss.xml" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title={currentLocale === 'en' ? 'GenerateCustomQR Blog' : `GenerateCustomQR Blog (${currentLocale.toUpperCase()})`}
+      href={currentLocale === 'en' ? '/rss.xml' : `/${currentLocale}/rss.xml`}
+    />
+    {currentLocale !== 'en' && (
+      <link rel="alternate" type="application/rss+xml" title="GenerateCustomQR Blog (EN)" href="/rss.xml" />
+    )}
 
     <!-- Core Fonts — Inter & Material Symbols Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

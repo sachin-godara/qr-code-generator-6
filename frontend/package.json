@@ -11,6 +11,8 @@
     "preview": "astro preview",
     "test": "vitest run",
     "test:seo": "node scripts/audit_seo.mjs",
+    "indexnow": "node scripts/submit_indexnow.mjs",
+    "build:index": "npm run build && npm run indexnow",
     "astro": "astro"
   },
   "dependencies": {

@@ -75,12 +75,16 @@ Disallow: /api/
 Sitemap: https://generatecustomqr.com/sitemap-index.xml
 Sitemap: https://generatecustomqr.com/sitemap-0.xml
 
+# Regional RSS Feeds (Autodiscovered via HTML head)
+# https://generatecustomqr.com/rss.xml
+# https://generatecustomqr.com/es/rss.xml
+# https://generatecustomqr.com/pt/rss.xml
+# https://generatecustomqr.com/de/rss.xml
+# https://generatecustomqr.com/tr/rss.xml
+
 # LLM Knowledge & Grounding Files (GEO)
 # https://generatecustomqr.com/llms.txt
 # https://generatecustomqr.com/llms-full.txt
-
-# RSS Feed
-# https://generatecustomqr.com/rss.xml
 
 
 

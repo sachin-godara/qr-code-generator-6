@@ -18,6 +18,8 @@ interface Props {
     steps: { name: string; text: string }[];
   };
   faqs?: { q: string; a: string }[];
+  lastModified?: string;
+  noindex?: boolean;
 }
 
 const {
@@ -32,6 +34,8 @@ const {
   breadcrumbs,
   howTo,
   faqs,
+  lastModified,
+  noindex = false,
 } = Astro.props;
 
 const currentLocale = (locale || getLocaleFromUrl(Astro.url)) as Locale;
@@ -47,8 +51,16 @@ const alternateUrls = getAllLocaleUrls(Astro.url.pathname, siteUrl);
 const xDefaultUrl = alternateUrls.find((a) => a.locale === 'en')?.url || `${siteUrl}/`;
 
 const isArticle = pageType === 'article' || (Astro.url.pathname.includes('/blog/') && !Astro.url.pathname.endsWith('/blog') && !Astro.url.pathname.endsWith('/blog/'));
-const isScanner = pageType === 'scanner' || Astro.url.pathname.includes('/qr-code-scanner');
+const isScanner = pageType === 'scanner' || Astro.url.pathname.includes('/qr-code-scanner') || Astro.url.pathname.includes('/qr-kod-okuyucu') || Astro.url.pathname.includes('/qr-code-scannen') || Astro.url.pathname.includes('/escanear-codigo-qr') || Astro.url.pathname.includes('/escanear-qr-code');
 const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '/es/' || Astro.url.pathname === '/pt/' || Astro.url.pathname === '/de/' || Astro.url.pathname === '/tr/' || Astro.url.pathname === '/es' || Astro.url.pathname === '/pt' || Astro.url.pathname === '/de' || Astro.url.pathname === '/tr';
+const isApp = pageType === 'generator' || pageType === 'scanner' || isHome || isScanner ||
+  canonicalPath.includes('/free-qr-code-generator') ||
+  canonicalPath.includes('/wifi-qr-code') ||
+  canonicalPath.includes('/vcard-qr-code') ||
+  canonicalPath.includes('/qr-code-with-logo') ||
+  canonicalPath.includes('/url-qr-code-generator') ||
+  canonicalPath.includes('/email-qr-code') ||
+  canonicalPath.includes('/event-qr-code');
 ---
 
 <!-- Primary Meta Tags -->
@@ -57,17 +69,27 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '/es/' || As
 <meta name="description" content={description} />
 {keywords && <meta name="keywords" content={keywords} />}
 <meta name="author" content="GenerateCustomQR" />
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
-<meta name="last-modified" content={new Date().toISOString()} />
-<meta name="revised" content={new Date().toISOString()} />
-<link rel="canonical" href={resolvedCanonical} />
-{googleSiteVerification && <meta name="google-site-verification" content={googleSiteVerification} />}
+{noindex ? (
+  <meta name="robots" content="noindex, nofollow" />
+) : (
+  <>
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    {lastModified && (
+      <>
+        <meta name="last-modified" content={lastModified} />
+        <meta name="revised" content={lastModified} />
+      </>
+    )}
+    <link rel="canonical" href={resolvedCanonical} />
+    {googleSiteVerification && <meta name="google-site-verification" content={googleSiteVerification} />}
 
-<!-- Internationalization (Hreflang) -->
-{alternateUrls.map((item) => (
-  <link rel="alternate" hreflang={item.hreflang} href={item.url} />
-))}
-<link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
+    <!-- Internationalization (Hreflang) -->
+    {alternateUrls.map((item) => (
+      <link rel="alternate" hreflang={item.hreflang} href={item.url} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={xDefaultUrl} />
+  </>
+)}
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content={isArticle ? "article" : "website"} />
@@ -94,22 +116,24 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '/es/' || As
 <meta property="twitter:image" content={resolvedOgImage} />
 
 <!-- WebSite Structured Data with Sitelinks SearchAction -->
-<script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "GenerateCustomQR",
-  "url": "https://generatecustomqr.com",
-  "inLanguage": currentLocaleInfo.hreflang,
-  "description": "Free custom QR code generator with logo, 40+ dot styles, and vector SVG/PDF export.",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://generatecustomqr.com/blog?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  }
-})} />
+{!noindex && (
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "GenerateCustomQR",
+    "url": "https://generatecustomqr.com",
+    "inLanguage": currentLocaleInfo.hreflang,
+    "description": "Free custom QR code generator with logo, 40+ dot styles, and vector SVG/PDF export.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": `${siteUrl}${currentLocale === 'en' ? '' : '/' + currentLocale}/blog/?q={search_term_string}`,
+      "query-input": "required name=search_term_string"
+    }
+  })} />
+)}
 
 <!-- JSON-LD Structured Data — WebApplication (Generator or Scanner) -->
-{!isArticle && (
+{isApp && !noindex && (
   <script type="application/ld+json" set:html={JSON.stringify(isScanner ? {
     "@context": "https://schema.org",
     "@type": "WebApplication",
@@ -184,29 +208,31 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '/es/' || As
 )}
 
 <!-- Organization Structured Data -->
-<script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "GenerateCustomQR",
-  "url": "https://generatecustomqr.com",
-  "logo": {
-    "@type": "ImageObject",
-    "url": "https://generatecustomqr.com/favicon-96x96.png",
-    "width": 96,
-    "height": 96
-  },
-  "description": "Free custom QR code generator with logo embedding, 40+ dot styles, and vector SVG/PDF export.",
-  "foundingDate": "2025",
-  "sameAs": [],
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "contactType": "customer support",
-    "url": "https://generatecustomqr.com/contact"
-  }
-})} />
+{!noindex && (
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "GenerateCustomQR",
+    "url": "https://generatecustomqr.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://generatecustomqr.com/favicon-96x96.png",
+      "width": 96,
+      "height": 96
+    },
+    "description": "Free custom QR code generator with logo embedding, 40+ dot styles, and vector SVG/PDF export.",
+    "foundingDate": "2025",
+    "sameAs": [],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer support",
+      "url": "https://generatecustomqr.com/contact/"
+    }
+  })} />
+)}
 
-<!-- BreadcrumbList Structured Data (if breadcrumbs provided) -->
-{breadcrumbs && breadcrumbs.length > 0 && (
+<!-- BreadcrumbList Structured Data (minimum 2 items required by Google) -->
+{!noindex && breadcrumbs && breadcrumbs.length > 1 && (
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -222,7 +248,7 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '/es/' || As
 )}
 
 <!-- HowTo Structured Data (if howTo provided) -->
-{howTo && (
+{!noindex && howTo && (
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "HowTo",
@@ -243,7 +269,7 @@ const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '/es/' || As
 )}
 
 <!-- FAQPage Structured Data (if faqs provided) -->
-{faqs && faqs.length > 0 && (
+{!noindex && faqs && faqs.length > 0 && (
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "FAQPage",

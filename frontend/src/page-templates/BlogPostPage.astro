@@ -59,27 +59,36 @@ function formatDate(date: Date): string {
 }
 
 // Article structured data
+const postImage = post.data.image
+  ? (post.data.image.startsWith('http') ? post.data.image : `https://generatecustomqr.com${post.data.image.startsWith('/') ? '' : '/'}${post.data.image}`)
+  : "https://generatecustomqr.com/og-blog.jpg";
+
 const articleSchema = {
   "@context": "https://schema.org",
   "@type": "Article",
   "inLanguage": locale,
   "headline": title,
   "description": description,
+  "image": [postImage],
   "datePublished": post.data.pubDate.toISOString(),
   "dateModified": (post.data.updatedDate || post.data.pubDate).toISOString(),
   "author": {
     "@type": "Organization",
-    "name": post.data.author || "GenerateCustomQR Team",
-    "url": "https://generatecustomqr.com/about"
+    "name": "GenerateCustomQR Technical Editorial Team",
+    "url": "https://generatecustomqr.com/about/",
+    "logo": "https://generatecustomqr.com/favicon-96x96.png"
   },
   "publisher": {
     "@type": "Organization",
     "name": "GenerateCustomQR",
-    "url": "https://generatecustomqr.com",
+    "url": "https://generatecustomqr.com/",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://generatecustomqr.com/favicon-96x96.png"
-    }
+      "url": "https://generatecustomqr.com/favicon-96x96.png",
+      "width": 96,
+      "height": 96
+    },
+    "publishingPrinciples": "https://generatecustomqr.com/about/"
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
@@ -108,6 +117,7 @@ const howTo = post.data.howToSteps && post.data.howToSteps.length > 0 ? {
   breadcrumbs={breadcrumbs}
   faqs={faqs}
   howTo={howTo}
+  lastModified={(post.data.updatedDate || post.data.pubDate).toISOString()}
 >
 
 

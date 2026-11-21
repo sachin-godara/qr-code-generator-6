@@ -1,15 +1,9 @@
 # Cloudflare Pages Headers Configuration
 # https://generatecustomqr.com
 
-# Staging / Preview Domain Bot Protection
-https://qr-code-generator-6.pages.dev/*
-  X-Robots-Tag: noindex
-
-https://*.qr-code-generator-6.pages.dev/*
-  X-Robots-Tag: noindex
-
 # Global Security Headers
 /*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
   X-Content-Type-Options: nosniff
   X-Frame-Options: SAMEORIGIN
   Referrer-Policy: strict-origin-when-cross-origin

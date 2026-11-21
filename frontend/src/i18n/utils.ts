@@ -94,9 +94,6 @@ export function getLocalizedUrl(targetLocale: Locale, pathname: string): string 
   }
 
   let cleanPath = getCleanPathname(cleanInput).replace(/^\/|\/$/g, '');
-  if (cleanPath === '404' || cleanPath === '500') {
-    cleanPath = '';
-  }
 
   let formattedPath = '';
   if (targetLocale === defaultLocale) {
