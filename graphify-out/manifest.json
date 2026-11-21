@@ -509,11 +509,6 @@
     "ast_hash": "7a576bf1b27f6fbc9aae3255cc617be9",
     "semantic_hash": "7a576bf1b27f6fbc9aae3255cc617be9"
   },
-  "frontend/src/lib/utils.ts": {
-    "mtime": 1784576098.919539,
-    "ast_hash": "5a6fd53fdcf2be529e9cc0b718fde352",
-    "semantic_hash": "5a6fd53fdcf2be529e9cc0b718fde352"
-  },
   "frontend/src/page-templates/AboutPage.astro": {
     "mtime": 1788264066.3249552,
     "ast_hash": "1fc1c7e4a430989e9b119daffcaba029",
@@ -1254,9 +1249,3144 @@
     "ast_hash": "8026dc5291905fbf9497d42502373936",
     "semantic_hash": "8026dc5291905fbf9497d42502373936"
   },
-  "seo_audit_report.json": {
-    "mtime": 1788265480.0054328,
-    "ast_hash": "db029b4bae69ee5af91ac5be4abad69b",
-    "semantic_hash": "db029b4bae69ee5af91ac5be4abad69b"
+  ".agents/AGENTS.md": {
+    "mtime": 1787600097.5245147,
+    "ast_hash": "e1812a4911db340ad7082aaba6e5fd98",
+    "semantic_hash": ""
+  },
+  ".github/workflows/ci.yml": {
+    "mtime": 1785954987.21103,
+    "ast_hash": "2bb9ebbe8cd879219c27ffcaacb1dac0",
+    "semantic_hash": ""
+  },
+  "backend/requirements.txt": {
+    "mtime": 1786469731.1376295,
+    "ast_hash": "8f5655bee07512a7f2867fb3055065b4",
+    "semantic_hash": ""
+  },
+  "docker-compose.yml": {
+    "mtime": 1786130885.9755166,
+    "ast_hash": "c5ae6fba2713c08948193d77e652148c",
+    "semantic_hash": ""
+  },
+  "docs/README.md": {
+    "mtime": 1795251310.9621134,
+    "ast_hash": "d03421da3c510a0097df1ad99784e642",
+    "semantic_hash": ""
+  },
+  "docs/important/competitive_analysis.md": {
+    "mtime": 1785015343.8909545,
+    "ast_hash": "611e8478d06aa1f68d85b4eebe83e7d8",
+    "semantic_hash": ""
+  },
+  "docs/important/current_keywords_audit.md": {
+    "mtime": 1795251272.727347,
+    "ast_hash": "2b1f14bf7bff06daec9c89fe255961ec",
+    "semantic_hash": ""
+  },
+  "docs/important/deploy_readiness_visual_audit.md": {
+    "mtime": 1786813197.1785908,
+    "ast_hash": "63788bb6c199759f1aaadb078273e97e",
+    "semantic_hash": ""
+  },
+  "docs/important/project_working_analysis.md": {
+    "mtime": 1787679661.5855608,
+    "ast_hash": "8bb266255969d157a1f4af4013894ce7",
+    "semantic_hash": ""
+  },
+  "docs/learnings/00_README.md": {
+    "mtime": 1795251295.6678572,
+    "ast_hash": "282cfffd292d36b94cef9d4e18616bd7",
+    "semantic_hash": ""
+  },
+  "docs/learnings/01_BACKEND_QR_ENGINE_AND_MODULE_MATRIX.md": {
+    "mtime": 1787163377.323217,
+    "ast_hash": "b95184fe61b194898f1b945e17476bc9",
+    "semantic_hash": ""
+  },
+  "docs/learnings/02_EYE_ENGINE_AND_FRAME_SYSTEMS.md": {
+    "mtime": 1787163392.9274828,
+    "ast_hash": "8518d5f4e29b4b30d8e0702c1ba1fc71",
+    "semantic_hash": ""
+  },
+  "docs/learnings/03_LOGO_PROCESSING_AND_VECTOR_OVERLAYS.md": {
+    "mtime": 1787163405.3835635,
+    "ast_hash": "b92a2f853bd059fa46e2a9d025cafe50",
+    "semantic_hash": ""
+  },
+  "docs/learnings/04_FRONTEND_UI_AND_CLIENT_STATE.md": {
+    "mtime": 1787679165.8750718,
+    "ast_hash": "0f69edea0d45004ffec47551f0e3d166",
+    "semantic_hash": ""
+  },
+  "docs/learnings/05_BATCH_PROCESSING_AND_EXPORT_PIPELINES.md": {
+    "mtime": 1787163430.4001396,
+    "ast_hash": "d578fcaaaa0c78b5f857b972900b99a6",
+    "semantic_hash": ""
+  },
+  "docs/learnings/06_COMPUTER_VISION_SCANNER_AND_QUALITY_ASSURANCE.md": {
+    "mtime": 1787163440.3745165,
+    "ast_hash": "b08525d5e854e4f2cbbb7ccd97a5befa",
+    "semantic_hash": ""
+  },
+  "docs/learnings/07_QR_CODE_STANDARDS_AND_SPECIFICATIONS.md": {
+    "mtime": 1787163501.3468459,
+    "ast_hash": "29e3eb43226b5bfd5a2b55725dc2eb75",
+    "semantic_hash": ""
+  },
+  "docs/learnings/08_GRAPHIFY_TOPOLOGY_AND_DEPENDENCY_ANALYSIS.md": {
+    "mtime": 1787164082.2034028,
+    "ast_hash": "0775bda7dd86af5c416ba7d5fdbe2858",
+    "semantic_hash": ""
+  },
+  "docs/learnings/09_MASTER_CODEBASE_SYMBOL_AND_FILE_INVENTORY.md": {
+    "mtime": 1787502171.4320054,
+    "ast_hash": "9f2c77df7172cb0c7c6c42742a139f95",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Backend/00_BACKEND_ARCHITECTURE_OVERVIEW.md": {
+    "mtime": 1787163826.789363,
+    "ast_hash": "826e48a10c6ae9cee529510d1f7098de",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Backend/01_FASTAPI_ROUTERS_AND_API_ENDPOINTS.md": {
+    "mtime": 1787163838.1014538,
+    "ast_hash": "24e4f5b795de771e1ba855b3cc2f2e51",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Backend/02_QR_ENGINE_AND_MODULE_DRAWERS.md": {
+    "mtime": 1787163848.6057284,
+    "ast_hash": "b7ddbf8db6b82974c611a0dfdba9fe1f",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Backend/03_EYE_ENGINE_AND_FINDER_PATTERNS.md": {
+    "mtime": 1787163861.9285593,
+    "ast_hash": "76fcd37d741edb1a5461ea3f4dd5828b",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Backend/04_DECORATIVE_TEXT_AND_LAYOUT_FRAMES.md": {
+    "mtime": 1787163874.6699343,
+    "ast_hash": "07c455ed46329190b287c62c609020e1",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Backend/05_LOGO_PROCESSOR_AND_TRANSPARENCY_REMOVAL.md": {
+    "mtime": 1787163882.914313,
+    "ast_hash": "34b8db5539db2553b2b0cf5c53b2b46b",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Backend/06_COMPUTER_VISION_SCANNER_AND_CAFFE_CNN.md": {
+    "mtime": 1787163891.2074754,
+    "ast_hash": "450dd760c78745aae045353f36a7519d",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Backend/07_CACHING_CONCURRENCY_AND_PERFORMANCE.md": {
+    "mtime": 1787163911.8576536,
+    "ast_hash": "5dfe4ccd4c6173b6aa2a5cf17fefb835",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Backend/08_TEST_SUITE_AND_SECURITY_HARNESS.md": {
+    "mtime": 1787164547.1886108,
+    "ast_hash": "70d37e1c10dba2d1b502a4eddf71d0f7",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Frontend/00_FRONTEND_ARCHITECTURE_OVERVIEW.md": {
+    "mtime": 1787590357.632498,
+    "ast_hash": "d7f650221a8af427a1577a601f5ee258",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Frontend/01_REACT_STUDIO_AND_APP_LIFECYCLE.md": {
+    "mtime": 1787163685.078981,
+    "ast_hash": "e8b4d4e5175f38cf730d580e1613f4c2",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Frontend/02_STATE_MANAGEMENT_AND_CUSTOM_HOOKS.md": {
+    "mtime": 1787163694.7311933,
+    "ast_hash": "e2477ce67795c32ec929148ebb101146",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Frontend/03_PANEL_COMPONENTS_AND_DESIGN_SYSTEM.md": {
+    "mtime": 1787163705.7052712,
+    "ast_hash": "34eee2630c4a3a20c5c784178122e28a",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Frontend/04_CLIENT_CANVAS_AND_SVG_PREVIEW_PIPELINE.md": {
+    "mtime": 1787163715.3065372,
+    "ast_hash": "be3524e0e8e6735f0c0968f65680afa0",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Frontend/05_SCANNABILITY_CALCULATOR_AND_VALIDATION.md": {
+    "mtime": 1787163725.2797544,
+    "ast_hash": "665f8742ae6e291bc7b201702d11ed2e",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Frontend/06_ASTRO_PAGES_SEO_AND_CONTENT_COLLECTIONS.md": {
+    "mtime": 1787679165.8760917,
+    "ast_hash": "c7d59a3c6bc1329c7b370c09d760da0d",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Frontend/07_FRONTEND_TESTS_UTILITIES_AND_SERVICES.md": {
+    "mtime": 1787502134.3796713,
+    "ast_hash": "1388e7f62efef8eb66f3ef7a2c366d39",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Frontend/08_SEO_AND_SEARCH_ENGINE_OPTIMIZATION.md": {
+    "mtime": 1787403152.4781525,
+    "ast_hash": "c5ba56e3dda18bff60d5508c2b499cd8",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Frontend/09_I18N_AND_MULTILINGUAL_ROUTING_ARCHITECTURE.md": {
+    "mtime": 1787502068.916693,
+    "ast_hash": "c533631afb83bcebf398fe70a43aa1e0",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Frontend/10_COMPUTER_VISION_SCANNER_AND_WEBRTC_PIPELINE.md": {
+    "mtime": 1787502081.803084,
+    "ast_hash": "ef277323db040102c21a9d397144ded6",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Frontend/11_PAGE_TEMPLATES_AND_LANDING_PAGE_ARCHITECTURE.md": {
+    "mtime": 1787922986.0637734,
+    "ast_hash": "f431626e7c3f963900ad807123f74202",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Frontend/12_TEMPLATE_PRESETS_AND_STYLE_CATALOG_SYSTEM.md": {
+    "mtime": 1787502105.2194986,
+    "ast_hash": "d8e9d7ec48ef3ae0fb2bc5e6dec43471",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Frontend/13_QR_SCANNER_MASTER_KEYWORD_DATASET_AND_SEARCH_INTELLIGENCE.md": {
+    "mtime": 1787589777.0986757,
+    "ast_hash": "05e97c6c2be319a0558bb38287407b25",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Frontend/14_QR_SCANNER_COMPREHENSIVE_IMPROVEMENT_PLAN.md": {
+    "mtime": 1787590145.718402,
+    "ast_hash": "374fc1101b420526da072706672adef8",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Graphify/00_GRAPHIFY_SYSTEM_OVERVIEW.md": {
+    "mtime": 1787164212.677971,
+    "ast_hash": "d8c85f808dad7eaa8bd1c81c7ac40a97",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Graphify/01_PIPELINE_STAGES_AND_EXECUTION_SCRIPTS.md": {
+    "mtime": 1787164227.843349,
+    "ast_hash": "37c5f6337c0518f8a75238e82bb6a6ba",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Graphify/02_INTERMEDIATE_DATA_SCHEMAS_AND_MANIFEST.md": {
+    "mtime": 1787164246.2759907,
+    "ast_hash": "1fcdf750e6262b9391da14a3ea208c23",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Graphify/03_CENTRALITY_COMMUNITIES_AND_ARCHITECTURAL_INSIGHTS.md": {
+    "mtime": 1787164263.7744777,
+    "ast_hash": "e36da054799ed87fb20c1e787260c3ee",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Graphify/04_QUERY_ENGINE_AND_AI_AGENT_INTEGRATION.md": {
+    "mtime": 1787164273.6895628,
+    "ast_hash": "e68e5bb4569a6fe26646f218d0fed808",
+    "semantic_hash": ""
+  },
+  "docs/learnings/MCP/00_MCP_SERVER_ARCHITECTURE_AND_TOOLS.md": {
+    "mtime": 1787164574.0722418,
+    "ast_hash": "7221727bbfdaa188227c21fc4e9314d3",
+    "semantic_hash": ""
+  },
+  "docs/learnings/Scripts/00_AUTOMATION_SCRIPTS_AND_OFFLINE_PIPELINES.md": {
+    "mtime": 1787164584.257314,
+    "ast_hash": "43f9c55cd810ad2e1db31d4f858bf2f0",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/plans/2026-10-14-fix-secondary-backend-and-i18n.md": {
+    "mtime": 1795248152.8675644,
+    "ast_hash": "c512ce05a05632230aad758323be2059",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/plans/2026-10-14-remedy-impression-drop-redirects-noindex.md": {
+    "mtime": 1795248152.8729937,
+    "ast_hash": "c2f75796754baba133d8e46996b7cd74",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/plans/2026-10-17-fix-scanner-issues.md": {
+    "mtime": 1795248152.8729937,
+    "ast_hash": "11ad042a10b0ff8232c8dd5cafdb2e1b",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/plans/2026-10-18-advanced-damaged-qr-scanning.md": {
+    "mtime": 1795248152.8749592,
+    "ast_hash": "fd3b167a55ddd50d3168fdf941d618ee",
+    "semantic_hash": ""
+  },
+  "docs/superpowers/plans/2026-10-18-restore-search-indexing-and-fix-cloudflare-redirects.md": {
+    "mtime": 1795248152.8749592,
+    "ast_hash": "94492cb8002d1ac1925edac649a4a47e",
+    "semantic_hash": ""
+  },
+  "frontend/public/llms-full.txt": {
+    "mtime": 1787596523.621594,
+    "ast_hash": "c1a55f8d8d70aee7825270e457aec167",
+    "semantic_hash": ""
+  },
+  "frontend/public/llms.txt": {
+    "mtime": 1787596516.7708223,
+    "ast_hash": "b531731daf117c0a70b5c935a0fb6845",
+    "semantic_hash": ""
+  },
+  "frontend/public/robots.txt": {
+    "mtime": 1787501064.6991775,
+    "ast_hash": "cc99bf39d21224b2410289578dda00bf",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/de/how-to-add-qr-code-to-business-card.md": {
+    "mtime": 1788279602.190646,
+    "ast_hash": "e5401f25919acf997fb813911556c07b",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/de/how-to-scan-a-qr-code.md": {
+    "mtime": 1795248153.0142355,
+    "ast_hash": "cbd5f9725d23386479b834ce89a9c670",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/de/how-to-scan-qr-code-from-screenshot.md": {
+    "mtime": 1795248153.015212,
+    "ast_hash": "c3e7c64f90ec940d5233d51731a590cf",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/de/qr-code-color-guide.md": {
+    "mtime": 1795248153.0162134,
+    "ast_hash": "b2217b5adf4e785c7c9597a3fdbf597b",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/de/qr-code-design-best-practices-for-print.md": {
+    "mtime": 1788279602.2237163,
+    "ast_hash": "eb135cba676bcb88b3cdc0ed8b70236a",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/de/qr-code-error-correction-explained.md": {
+    "mtime": 1788279602.2270083,
+    "ast_hash": "059555332500dd53fff890c66a18a23a",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/de/qr-code-for-google-maps.md": {
+    "mtime": 1788279602.22902,
+    "ast_hash": "613215f1703462eb8a3450a197fb32bd",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/de/qr-code-for-instagram.md": {
+    "mtime": 1788279602.2403371,
+    "ast_hash": "648e1a3269688aaeb8f2b36ea2585022",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/de/qr-code-for-restaurant-menu.md": {
+    "mtime": 1788279602.2631896,
+    "ast_hash": "dacfe97dca4c16c4273ba7a19b3e9c54",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/de/qr-code-for-whatsapp.md": {
+    "mtime": 1788279602.265916,
+    "ast_hash": "d74f0785901590480438309daad7f8c9",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/de/qr-code-for-youtube.md": {
+    "mtime": 1788279602.2664251,
+    "ast_hash": "b271c0d6bec9989f51764a05243fceef",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/de/qr-code-size-guide.md": {
+    "mtime": 1788279602.2681758,
+    "ast_hash": "c9b93e7544671498861a0481b5f0394d",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/de/qr-code-trends-2025.md": {
+    "mtime": 1788279602.3000965,
+    "ast_hash": "2cd50d9e7e2a4e42b0ba978c3ac5d3f0",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/de/qr-code-vs-barcode.md": {
+    "mtime": 1788279602.3068671,
+    "ast_hash": "f4b6a35e466293bb5608c9e0b14e57b8",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/de/qr-codes-for-real-estate.md": {
+    "mtime": 1788279602.325701,
+    "ast_hash": "03d0e60f234cfa6e6401bdbf8ba4c539",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/de/static-vs-dynamic-qr-codes.md": {
+    "mtime": 1795248153.0172129,
+    "ast_hash": "d7ca08b5a5b1115cdc45db97f411f1d8",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/de/svg-vs-png-vs-pdf-qr-code-export.md": {
+    "mtime": 1795248153.0172129,
+    "ast_hash": "c38f2c02697092db35b0b0831ef9fac2",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/de/what-is-quishing-qr-code-phishing.md": {
+    "mtime": 1795248153.0194366,
+    "ast_hash": "91e6772c7b77ceb1d67af36097cdae04",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/de/whatsapp-web-qr-code-troubleshooting.md": {
+    "mtime": 1788279602.3443866,
+    "ast_hash": "477229c7e5874cbdcebaac9f362fb254",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/de/wifi-qr-code-for-hotels.md": {
+    "mtime": 1788279602.3443866,
+    "ast_hash": "318c81c97c7c2ddaab27ebec738e30db",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/es/how-to-add-qr-code-to-business-card.md": {
+    "mtime": 1788279602.3609202,
+    "ast_hash": "19093ed9e646487589b1c81f342c838b",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/es/how-to-scan-a-qr-code.md": {
+    "mtime": 1795248153.0194366,
+    "ast_hash": "d53a520e6cfe7cd5dedbf002c6664fa8",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/es/how-to-scan-qr-code-from-screenshot.md": {
+    "mtime": 1795248153.0214481,
+    "ast_hash": "ea27d18418e2d14d4122052952af2064",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/es/qr-code-color-guide.md": {
+    "mtime": 1788282960.6830168,
+    "ast_hash": "84bb094a7fb660086d08f6fb234db190",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/es/qr-code-design-best-practices-for-print.md": {
+    "mtime": 1788279602.3875933,
+    "ast_hash": "cda7cccf0fe93d2ae27f941e1905fdf7",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/es/qr-code-error-correction-explained.md": {
+    "mtime": 1788279602.3923397,
+    "ast_hash": "6e63331b411fe33dc61cbac1326d5175",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/es/qr-code-for-google-maps.md": {
+    "mtime": 1788279602.397714,
+    "ast_hash": "83df8f4931e1c79e98aab56e32d0f5ed",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/es/qr-code-for-instagram.md": {
+    "mtime": 1788279602.397714,
+    "ast_hash": "6314451ea933cacf3fed6ce0aa5fb086",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/es/qr-code-for-restaurant-menu.md": {
+    "mtime": 1788279602.4032607,
+    "ast_hash": "dba0511319a4c7dbfe3f5d4f5d072cfe",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/es/qr-code-for-whatsapp.md": {
+    "mtime": 1788279602.4032607,
+    "ast_hash": "9df287acecaa31a4d035f32b4aebd3df",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/es/qr-code-for-youtube.md": {
+    "mtime": 1788279602.4032607,
+    "ast_hash": "993c25bc7b276ce250fb2fd3acee827c",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/es/qr-code-size-guide.md": {
+    "mtime": 1788279602.4069595,
+    "ast_hash": "a2235ce51c43c64fd285ef614c3ddcf3",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/es/qr-code-trends-2025.md": {
+    "mtime": 1788279602.4191935,
+    "ast_hash": "2d532beca79a41b262f54e8021561fc3",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/es/qr-code-vs-barcode.md": {
+    "mtime": 1788279602.4191935,
+    "ast_hash": "4fa83b74cacaba6336698ecc2f2ddae1",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/es/qr-codes-for-real-estate.md": {
+    "mtime": 1788279602.423075,
+    "ast_hash": "ca367c4a61110db0b83df6dc2823cddd",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/es/static-vs-dynamic-qr-codes.md": {
+    "mtime": 1788279602.4293642,
+    "ast_hash": "82aa424eb5d642b992fba5c9ddbed392",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/es/svg-vs-png-vs-pdf-qr-code-export.md": {
+    "mtime": 1788279602.4293642,
+    "ast_hash": "e982e447383577a0836d52cfc204f247",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/es/what-is-quishing-qr-code-phishing.md": {
+    "mtime": 1795248153.0214481,
+    "ast_hash": "408aff2c20b1623d6cc7d6ffb6142fa6",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/es/whatsapp-web-qr-code-troubleshooting.md": {
+    "mtime": 1788279602.4293642,
+    "ast_hash": "074a09384db500647e4b735e9a58d519",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/es/wifi-qr-code-for-hotels.md": {
+    "mtime": 1788279602.4293642,
+    "ast_hash": "f91be39fdcd9f5ee14c233283846fdc9",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/how-to-add-qr-code-to-business-card.md": {
+    "mtime": 1788279675.0036824,
+    "ast_hash": "ab6e0bc8301ce7523f75ce2ac33f92c8",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/how-to-scan-a-qr-code.md": {
+    "mtime": 1788279602.4508736,
+    "ast_hash": "a435a1514ffb229208ee428264da1b39",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/how-to-scan-qr-code-from-screenshot.md": {
+    "mtime": 1788279602.4735806,
+    "ast_hash": "47dd5a4129f822bd44ece4f940e00e22",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/pt/how-to-add-qr-code-to-business-card.md": {
+    "mtime": 1788279602.4735806,
+    "ast_hash": "2b796737a031d866a1ed97d099b48af0",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/pt/how-to-scan-a-qr-code.md": {
+    "mtime": 1795248153.0214481,
+    "ast_hash": "c5857459e2b521076c0776996ab70065",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/pt/how-to-scan-qr-code-from-screenshot.md": {
+    "mtime": 1795248153.023457,
+    "ast_hash": "d064169cda1dd68697c7743738cc9f29",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/pt/qr-code-color-guide.md": {
+    "mtime": 1788282960.6896913,
+    "ast_hash": "e400ea98d8b84d8234df9795982acec2",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/pt/qr-code-design-best-practices-for-print.md": {
+    "mtime": 1788279602.4923098,
+    "ast_hash": "0a435071b6ceff575db744f5648cf502",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/pt/qr-code-error-correction-explained.md": {
+    "mtime": 1788279602.4923098,
+    "ast_hash": "f48481450c79a221d2e3340e3df2db6e",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/pt/qr-code-for-google-maps.md": {
+    "mtime": 1788279602.4943185,
+    "ast_hash": "3ca0e0c3b44983ba0176b6ee240e8514",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/pt/qr-code-for-instagram.md": {
+    "mtime": 1788279602.4943185,
+    "ast_hash": "71e7b8ebe760bb1f9307774d713b6362",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/pt/qr-code-for-restaurant-menu.md": {
+    "mtime": 1788279602.498272,
+    "ast_hash": "f1d2dc809ce16f0a6711d507ad223c35",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/pt/qr-code-for-whatsapp.md": {
+    "mtime": 1788279602.498272,
+    "ast_hash": "c03c56b3047e6ac9bb27de311277038c",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/pt/qr-code-for-youtube.md": {
+    "mtime": 1788279602.498272,
+    "ast_hash": "2df539d31ea735696d6a881b3f76daf3",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/pt/qr-code-size-guide.md": {
+    "mtime": 1788279602.5069504,
+    "ast_hash": "87ade4d4ce71f478b2223efdafbab1a6",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/pt/qr-code-trends-2025.md": {
+    "mtime": 1788279602.54031,
+    "ast_hash": "51b306760dc72cbf742d0d858a409bfe",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/pt/qr-code-vs-barcode.md": {
+    "mtime": 1788279602.54031,
+    "ast_hash": "abe97bdd7e408b3fdfe0d6433f1c87df",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/pt/qr-codes-for-real-estate.md": {
+    "mtime": 1788279602.5447383,
+    "ast_hash": "44f3916a3b6d18e680a619fd88e20b28",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/pt/static-vs-dynamic-qr-codes.md": {
+    "mtime": 1788279602.5447383,
+    "ast_hash": "38d57f76572c525e0c75da8b91f781d1",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/pt/svg-vs-png-vs-pdf-qr-code-export.md": {
+    "mtime": 1788279602.546751,
+    "ast_hash": "5b6017e6282e38d11b9fcf0b4868bedf",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/pt/what-is-quishing-qr-code-phishing.md": {
+    "mtime": 1795248153.023457,
+    "ast_hash": "13c961c9dd4ab126f3a0605c81a62550",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/pt/whatsapp-web-qr-code-troubleshooting.md": {
+    "mtime": 1788279602.5487626,
+    "ast_hash": "4675bc987f6017be5e363cfad37843cf",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/pt/wifi-qr-code-for-hotels.md": {
+    "mtime": 1788279602.5507717,
+    "ast_hash": "9ed13981bfb08aa36ef5f2b36da052dc",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/qr-code-color-guide.md": {
+    "mtime": 1788282960.6830168,
+    "ast_hash": "f0ebdf8b4913849335935924fbad8218",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/qr-code-design-best-practices-for-print.md": {
+    "mtime": 1788279675.0145583,
+    "ast_hash": "3d3a9b0ad49edb5b304103db5aad5474",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/qr-code-error-correction-explained.md": {
+    "mtime": 1787678573.5289176,
+    "ast_hash": "96a718681d95ecc246590258cdcb9a6b",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/qr-code-for-google-maps.md": {
+    "mtime": 1788279602.5696037,
+    "ast_hash": "34ef8cbce4e5df12f1f35cd16b15a01d",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/qr-code-for-instagram.md": {
+    "mtime": 1787678573.532439,
+    "ast_hash": "84d09177f1516ef2d7f5746cd1ef922d",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/qr-code-for-restaurant-menu.md": {
+    "mtime": 1788279675.01683,
+    "ast_hash": "60a32b9acaf9a70f800ec9d06ddadb5f",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/qr-code-for-whatsapp.md": {
+    "mtime": 1787678573.53849,
+    "ast_hash": "fe7d115aea553721d122b57a9ff52f37",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/qr-code-for-youtube.md": {
+    "mtime": 1788279602.5735588,
+    "ast_hash": "67e910491b0cf17445bdb2f2ac80a3a4",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/qr-code-size-guide.md": {
+    "mtime": 1788279602.5760915,
+    "ast_hash": "b6e96dfa916f93f47d3ef1fefa858e32",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/qr-code-trends-2025.md": {
+    "mtime": 1788279602.5781002,
+    "ast_hash": "a505e8258a46016f594930548b20be08",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/qr-code-vs-barcode.md": {
+    "mtime": 1788279602.5801084,
+    "ast_hash": "3741c3daa3f7b8a02d26a766560f3778",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/qr-codes-for-real-estate.md": {
+    "mtime": 1788279602.5811946,
+    "ast_hash": "b003fd5906eb0f04f394f8abac293bc6",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/static-vs-dynamic-qr-codes.md": {
+    "mtime": 1788279602.5963364,
+    "ast_hash": "34edb566d1c896dcedda92df0a294fdc",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/svg-vs-png-vs-pdf-qr-code-export.md": {
+    "mtime": 1787682488.8233027,
+    "ast_hash": "69eca68bc7881f8dd4cc702cda8af235",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/tr/how-to-add-qr-code-to-business-card.md": {
+    "mtime": 1788279602.6332345,
+    "ast_hash": "8e1f95765991ada37c5042a6a24ddb23",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/tr/how-to-scan-a-qr-code.md": {
+    "mtime": 1795248153.025466,
+    "ast_hash": "adf1ac565c532c948778418d765f885b",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/tr/how-to-scan-qr-code-from-screenshot.md": {
+    "mtime": 1795248153.025466,
+    "ast_hash": "f6904bd4d475f8dc96d5dd70341592fc",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/tr/qr-code-color-guide.md": {
+    "mtime": 1788282960.696759,
+    "ast_hash": "67602df5850c37ac26423535999a4b16",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/tr/qr-code-design-best-practices-for-print.md": {
+    "mtime": 1788279602.6803424,
+    "ast_hash": "28dba33bfab65494748b57956f84c344",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/tr/qr-code-error-correction-explained.md": {
+    "mtime": 1788279602.6902375,
+    "ast_hash": "67aee3d1c4116a9aba05996628abaf3f",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/tr/qr-code-for-google-maps.md": {
+    "mtime": 1788279602.6951313,
+    "ast_hash": "e5bf3455544f28449bedb431f378c344",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/tr/qr-code-for-instagram.md": {
+    "mtime": 1788279602.6951313,
+    "ast_hash": "a0a56b203553f1ee0b4b8ca94f44709d",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/tr/qr-code-for-restaurant-menu.md": {
+    "mtime": 1788279602.6984935,
+    "ast_hash": "d820304fc08181b3cbf85b378d5535af",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/tr/qr-code-for-whatsapp.md": {
+    "mtime": 1788279602.6984935,
+    "ast_hash": "d00b785237e8cde7ab9413bb05e93a11",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/tr/qr-code-for-youtube.md": {
+    "mtime": 1788279602.7005024,
+    "ast_hash": "7813229c13a81a60f985f53dd747994b",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/tr/qr-code-size-guide.md": {
+    "mtime": 1788279602.7005024,
+    "ast_hash": "3a08f3b04487835ea5022365b7927751",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/tr/qr-code-trends-2025.md": {
+    "mtime": 1788279602.7005024,
+    "ast_hash": "be96a1d03372cbec2e7f0797e6813962",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/tr/qr-code-vs-barcode.md": {
+    "mtime": 1788279602.7005024,
+    "ast_hash": "0e7c982ec766aa6aa6e17202da895ac5",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/tr/qr-codes-for-real-estate.md": {
+    "mtime": 1788279602.7041893,
+    "ast_hash": "18bbb7aa10785d82aaa24e7ee331b07b",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/tr/static-vs-dynamic-qr-codes.md": {
+    "mtime": 1788279602.7069077,
+    "ast_hash": "eb40c7afd0e98c53ca716b5eb374271a",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/tr/svg-vs-png-vs-pdf-qr-code-export.md": {
+    "mtime": 1788279602.7069077,
+    "ast_hash": "75e827a2ecb33a15bf2cc61236d343c3",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/tr/what-is-quishing-qr-code-phishing.md": {
+    "mtime": 1795248153.025466,
+    "ast_hash": "2d23b2932ac2acbc75d1638e761f151c",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/tr/whatsapp-web-qr-code-troubleshooting.md": {
+    "mtime": 1788279602.7160354,
+    "ast_hash": "59e863d08b7c7e3ffed4e2af439bc1d7",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/tr/wifi-qr-code-for-hotels.md": {
+    "mtime": 1788279602.7193174,
+    "ast_hash": "5b12356e3c3cf646e0cae173ef837e68",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/what-is-quishing-qr-code-phishing.md": {
+    "mtime": 1788279602.7193174,
+    "ast_hash": "21d3e2131703b89cac320f5fdac36eda",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/whatsapp-web-qr-code-troubleshooting.md": {
+    "mtime": 1787678573.5622475,
+    "ast_hash": "c5c949645c79a580d3efcfed264da572",
+    "semantic_hash": ""
+  },
+  "frontend/src/content/blog/wifi-qr-code-for-hotels.md": {
+    "mtime": 1788279602.7229917,
+    "ast_hash": "c5609d3c0d16cf720b5c341e04b8d153",
+    "semantic_hash": ""
+  },
+  "implementation_plan.md": {
+    "mtime": 1787169189.8791628,
+    "ast_hash": "81c3991d30e17ba12cc22807bba0e504",
+    "semantic_hash": ""
+  },
+  "mcp-server-qrcode-enhanced/EXAMPLES.md": {
+    "mtime": 1784029128.7088459,
+    "ast_hash": "a35ad9cac39536894d6851ed0c45c120",
+    "semantic_hash": ""
+  },
+  "mcp-server-qrcode-enhanced/README.md": {
+    "mtime": 1784029128.7206616,
+    "ast_hash": "301732374bfafb57421c06981d96ae55",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/amazon.svg": {
+    "mtime": 1786809415.0837505,
+    "ast_hash": "646edd509bc07d64c8ca3d68ba6ac0ea",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/app.svg": {
+    "mtime": 1785004348.1790905,
+    "ast_hash": "b603c57171a12e1c5e5314f0bc09f744",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/calendar.svg": {
+    "mtime": 1785004348.1750705,
+    "ast_hash": "2ddb35493ad6940df377047a11e16d53",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/chat.svg": {
+    "mtime": 1785004348.17708,
+    "ast_hash": "6ae154bb25521344294d2140f4f9ae9c",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/coffee.svg": {
+    "mtime": 1785004348.169044,
+    "ast_hash": "1c3b00bb4c0681f89f5d7ee06b41f694",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/discord.svg": {
+    "mtime": 1785012918.2697165,
+    "ast_hash": "d7b337dc711c9b9aa30ab5c44b77d1f6",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/docs.svg": {
+    "mtime": 1785337097.1082692,
+    "ast_hash": "bde978248b7d70315d2fab11fe80459f",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/email.svg": {
+    "mtime": 1785004348.148669,
+    "ast_hash": "cf543a0ddfd0391ec92d845930477f35",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/facebook.svg": {
+    "mtime": 1785004348.1638587,
+    "ast_hash": "cbfe1a6bfa8c048607f9863584b564d9",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/forms.svg": {
+    "mtime": 1785337096.73057,
+    "ast_hash": "973dd23d364362797a7e480c2bead6bc",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/github.svg": {
+    "mtime": 1786526277.3411872,
+    "ast_hash": "d774bff9eea48e903922df058b2bbac7",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/globe.svg": {
+    "mtime": 1785004348.171052,
+    "ast_hash": "ee50e1b4c832d7c8cad7599cadf4dacb",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/gmail.svg": {
+    "mtime": 1785337095.2422814,
+    "ast_hash": "f6616dc0a75cc8a1dda09c5279940faf",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/heart.svg": {
+    "mtime": 1785004348.1730611,
+    "ast_hash": "98184edb382f7e835f444f2378753e5a",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/instagram.svg": {
+    "mtime": 1785004348.1566703,
+    "ast_hash": "999c94ddfa657b2b090465698ceb17a1",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/link.svg": {
+    "mtime": 1786809378.9057019,
+    "ast_hash": "e46c31a52efd6770fef1883f81446e8c",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/linkedin.svg": {
+    "mtime": 1785127218.812861,
+    "ast_hash": "acc4b6b89cb33df3ba1b04d222adfe9f",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/location.svg": {
+    "mtime": 1785004348.145674,
+    "ast_hash": "fa6d1023bf583f8aa147787abb299ce5",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/maps.svg": {
+    "mtime": 1785337094.0093138,
+    "ast_hash": "7890037b3743c3930f54bc56fc0958f1",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/music.svg": {
+    "mtime": 1785004348.171052,
+    "ast_hash": "c91aefba6f47b8bbd7b7829556a4bf81",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/netflix.svg": {
+    "mtime": 1786550995.259161,
+    "ast_hash": "473596691e2f49724c20d2881604f7bc",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/payment.svg": {
+    "mtime": 1785004348.1750705,
+    "ast_hash": "fe4e81d0b436af8f41c75fcd6ae42ef7",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/paypal.svg": {
+    "mtime": 1785127233.312977,
+    "ast_hash": "aef3faf9bed6061c162edc22d1c6c662",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/pdf.svg": {
+    "mtime": 1785337875.147456,
+    "ast_hash": "754f9216191b8df5872806746ed79546",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/phone.svg": {
+    "mtime": 1785004348.153671,
+    "ast_hash": "db749486a41864f9561846795a934460",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/pinterest.svg": {
+    "mtime": 1787163001.707785,
+    "ast_hash": "7f4e8469f5d97e09ecd5a382030d8dc9",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/play.svg": {
+    "mtime": 1785337094.66338,
+    "ast_hash": "648f03c154e19dc3b485bffbf1811659",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/reddit.svg": {
+    "mtime": 1786548782.193579,
+    "ast_hash": "0b77d502791b59eab7830f1e96d2f46f",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/scan.svg": {
+    "mtime": 1786809388.0877082,
+    "ast_hash": "8eb63c27822895b6304011de3795bcb0",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/scanme.svg": {
+    "mtime": 1786809392.7959433,
+    "ast_hash": "713303e1ea8280790b33ce19698a75f3",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/shopping.svg": {
+    "mtime": 1786809398.8529117,
+    "ast_hash": "de63e704c6817c2869da2626695276d8",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/snapchat.svg": {
+    "mtime": 1785337093.3502724,
+    "ast_hash": "a084c98187b4c69ad27d820c6424218c",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/spotify.svg": {
+    "mtime": 1785127235.3329642,
+    "ast_hash": "b7fa89bf3c9c43faf2d3b45bf7fcddeb",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/star.svg": {
+    "mtime": 1785004348.1730611,
+    "ast_hash": "590726a7d267be85475dbeab193db2de",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/store.svg": {
+    "mtime": 1785004348.17708,
+    "ast_hash": "ada92d2fc9dae440c63f5a7e8ee5e3f6",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/telegram.svg": {
+    "mtime": 1785127231.2936068,
+    "ast_hash": "82a6f6c6a7be49e6badb80a9b38caedf",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/tiktok.svg": {
+    "mtime": 1785127184.4112723,
+    "ast_hash": "d8d1a7a5f3400b2954b3b88d4497ed05",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/twitch.svg": {
+    "mtime": 1786526257.9250886,
+    "ast_hash": "47b6d29f3dca3edc33e7633d3bef5063",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/vcard.svg": {
+    "mtime": 1786809383.7174737,
+    "ast_hash": "e4740d0ef977fa52281d750d3df6f674",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/vimeo.svg": {
+    "mtime": 1785337096.0185318,
+    "ast_hash": "117b3f795d79f04b203476e5f56e5937",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/wechat.svg": {
+    "mtime": 1785337095.596727,
+    "ast_hash": "bb633e05a93e11c6ad0854a66abdf9d5",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/whatsapp.svg": {
+    "mtime": 1786550995.2578351,
+    "ast_hash": "1eaead1a9ecaffd0036b18c1b34e81f9",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/wifi.svg": {
+    "mtime": 1785004348.1466706,
+    "ast_hash": "d7797ea899a006907c396a562893f359",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/x.svg": {
+    "mtime": 1785127215.2365413,
+    "ast_hash": "9089e4bf13084605316de2e98727e04b",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/yelp.svg": {
+    "mtime": 1785337096.3871553,
+    "ast_hash": "5296c7f3c80350670becb9613986f88d",
+    "semantic_hash": ""
+  },
+  "backend/assets/preset_logos/youtube.svg": {
+    "mtime": 1785004348.1638587,
+    "ast_hash": "816c376f811a52464f77092503fc7fa8",
+    "semantic_hash": ""
+  },
+  "frontend/public/android-chrome-192x192.png": {
+    "mtime": 1786207803.9572513,
+    "ast_hash": "fe2e66c6b9e28ba16020f2afea64d09e",
+    "semantic_hash": ""
+  },
+  "frontend/public/android-chrome-512x512.png": {
+    "mtime": 1786207803.9582794,
+    "ast_hash": "3f98be5d2a1774efd576b0919219b9e3",
+    "semantic_hash": ""
+  },
+  "frontend/public/apple-touch-icon.png": {
+    "mtime": 1786207803.9582794,
+    "ast_hash": "ad3efeb73210be5f29bac4ac1dd1ecf1",
+    "semantic_hash": ""
+  },
+  "frontend/public/favicon-16x16.png": {
+    "mtime": 1786207803.9606314,
+    "ast_hash": "84614cf52292d24478ffcf2a7ac3d46a",
+    "semantic_hash": ""
+  },
+  "frontend/public/favicon-32x32.png": {
+    "mtime": 1786207803.9606314,
+    "ast_hash": "15b7a133c6cbd04c23926978bab7dbbe",
+    "semantic_hash": ""
+  },
+  "frontend/public/favicon-48x48.png": {
+    "mtime": 1786207803.9606314,
+    "ast_hash": "e4184bbe66b2d7fdb9dacb8c43db12d1",
+    "semantic_hash": ""
+  },
+  "frontend/public/favicon-96x96.png": {
+    "mtime": 1786207803.9626415,
+    "ast_hash": "0df0efae71f8efdec8dc72b03cde5a52",
+    "semantic_hash": ""
+  },
+  "frontend/public/favicon.svg": {
+    "mtime": 1786206321.1924014,
+    "ast_hash": "a7ab062f88ade146c25f10033d2bba16",
+    "semantic_hash": ""
+  },
+  "frontend/public/icons.svg": {
+    "mtime": 1783541075.2402246,
+    "ast_hash": "3b4fcfcf393eca4d264dca4a4663bc37",
+    "semantic_hash": ""
+  },
+  "frontend/public/icons/apple-touch-icon.png": {
+    "mtime": 1786134947.8600142,
+    "ast_hash": "b917087baf37a0105807b20868ccddcb",
+    "semantic_hash": ""
+  },
+  "frontend/public/icons/icon-192.png": {
+    "mtime": 1786134947.9980025,
+    "ast_hash": "6fbc033e99775eee3904500d026554d8",
+    "semantic_hash": ""
+  },
+  "frontend/public/icons/icon-512.png": {
+    "mtime": 1786134948.7531333,
+    "ast_hash": "508fc67b21a8a8957553dbd6e15d7487",
+    "semantic_hash": ""
+  },
+  "frontend/public/mstile-150x150.png": {
+    "mtime": 1786207803.96465,
+    "ast_hash": "55165d7549ceac2d28851a675003023f",
+    "semantic_hash": ""
+  },
+  "frontend/public/og-blog.jpg": {
+    "mtime": 1788612994.414526,
+    "ast_hash": "9329f459d1e25a911bb4d44568e14317",
+    "semantic_hash": ""
+  },
+  "frontend/public/og-email.png": {
+    "mtime": 1788612993.8700428,
+    "ast_hash": "cb35dc2248abdb0403fe8167022937de",
+    "semantic_hash": ""
+  },
+  "frontend/public/og-event.png": {
+    "mtime": 1788612994.0260222,
+    "ast_hash": "77faaf195659ce185e30910bb732fc50",
+    "semantic_hash": ""
+  },
+  "frontend/public/og-free.jpg": {
+    "mtime": 1788612994.1310732,
+    "ast_hash": "85f348d07ad00e239ab7dabc86ffa453",
+    "semantic_hash": ""
+  },
+  "frontend/public/og-howto.jpg": {
+    "mtime": 1788612994.226547,
+    "ast_hash": "a281615a8b44ac1ee5ccff83003262f9",
+    "semantic_hash": ""
+  },
+  "frontend/public/og-image.png": {
+    "mtime": 1788612992.6995983,
+    "ast_hash": "220edc9b4307754320aaa1611730c037",
+    "semantic_hash": ""
+  },
+  "frontend/public/og-logo.png": {
+    "mtime": 1788612993.5312898,
+    "ast_hash": "385e86595842af043f3f784aadb1c08c",
+    "semantic_hash": ""
+  },
+  "frontend/public/og-scanner.png": {
+    "mtime": 1788612993.7101202,
+    "ast_hash": "88c6c1f785973b6111bb8a9f6dc154a1",
+    "semantic_hash": ""
+  },
+  "frontend/public/og-url.jpg": {
+    "mtime": 1788612994.322054,
+    "ast_hash": "a71463d8e181e021b342327c7fc8cf2d",
+    "semantic_hash": ""
+  },
+  "frontend/public/og-vcard.png": {
+    "mtime": 1788612993.210542,
+    "ast_hash": "5f42a68eba4481d00c1b15499b5bf442",
+    "semantic_hash": ""
+  },
+  "frontend/public/og-wifi.png": {
+    "mtime": 1788612993.3685777,
+    "ast_hash": "71205dd60fd003af905412956e2dd062",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/amazon.svg": {
+    "mtime": 1785014700.4460216,
+    "ast_hash": "618d9da707181ff967a97d4981c6de96",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/app.svg": {
+    "mtime": 1785004348.1790905,
+    "ast_hash": "b603c57171a12e1c5e5314f0bc09f744",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/calendar.svg": {
+    "mtime": 1785004348.1750705,
+    "ast_hash": "2ddb35493ad6940df377047a11e16d53",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/chat.svg": {
+    "mtime": 1785004348.17708,
+    "ast_hash": "6ae154bb25521344294d2140f4f9ae9c",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/coffee.svg": {
+    "mtime": 1785004348.169044,
+    "ast_hash": "1c3b00bb4c0681f89f5d7ee06b41f694",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/discord.svg": {
+    "mtime": 1785012918.2697165,
+    "ast_hash": "d7b337dc711c9b9aa30ab5c44b77d1f6",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/docs.svg": {
+    "mtime": 1785337097.1082692,
+    "ast_hash": "bde978248b7d70315d2fab11fe80459f",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/email.svg": {
+    "mtime": 1785004348.148669,
+    "ast_hash": "cf543a0ddfd0391ec92d845930477f35",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/facebook.svg": {
+    "mtime": 1785004348.1638587,
+    "ast_hash": "cbfe1a6bfa8c048607f9863584b564d9",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/forms.svg": {
+    "mtime": 1785337096.73057,
+    "ast_hash": "973dd23d364362797a7e480c2bead6bc",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/globe.svg": {
+    "mtime": 1785004348.171052,
+    "ast_hash": "ee50e1b4c832d7c8cad7599cadf4dacb",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/gmail.svg": {
+    "mtime": 1785337095.2422814,
+    "ast_hash": "f6616dc0a75cc8a1dda09c5279940faf",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/heart.svg": {
+    "mtime": 1785004348.1730611,
+    "ast_hash": "98184edb382f7e835f444f2378753e5a",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/instagram.svg": {
+    "mtime": 1785004348.1566703,
+    "ast_hash": "999c94ddfa657b2b090465698ceb17a1",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/link.svg": {
+    "mtime": 1785004348.1446729,
+    "ast_hash": "52cfe1131773fc47d7c5562b37a68a74",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/linkedin.svg": {
+    "mtime": 1785127218.812861,
+    "ast_hash": "acc4b6b89cb33df3ba1b04d222adfe9f",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/location.svg": {
+    "mtime": 1785004348.145674,
+    "ast_hash": "fa6d1023bf583f8aa147787abb299ce5",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/maps.svg": {
+    "mtime": 1785337094.0093138,
+    "ast_hash": "7890037b3743c3930f54bc56fc0958f1",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/music.svg": {
+    "mtime": 1785004348.171052,
+    "ast_hash": "c91aefba6f47b8bbd7b7829556a4bf81",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/payment.svg": {
+    "mtime": 1785004348.1750705,
+    "ast_hash": "fe4e81d0b436af8f41c75fcd6ae42ef7",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/paypal.svg": {
+    "mtime": 1785127233.312977,
+    "ast_hash": "aef3faf9bed6061c162edc22d1c6c662",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/pdf.svg": {
+    "mtime": 1785337875.147456,
+    "ast_hash": "754f9216191b8df5872806746ed79546",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/phone.svg": {
+    "mtime": 1785004348.153671,
+    "ast_hash": "db749486a41864f9561846795a934460",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/pinterest.svg": {
+    "mtime": 1787162994.6395333,
+    "ast_hash": "7f4e8469f5d97e09ecd5a382030d8dc9",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/play.svg": {
+    "mtime": 1785337094.66338,
+    "ast_hash": "648f03c154e19dc3b485bffbf1811659",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/scan.svg": {
+    "mtime": 1785004348.1526687,
+    "ast_hash": "55d5c684365f1f1d0d62c18bf205cf18",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/scanme.svg": {
+    "mtime": 1785337809.1160214,
+    "ast_hash": "e85d69fdf80711ef8a162561522f3355",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/shopping.svg": {
+    "mtime": 1785004348.169044,
+    "ast_hash": "ac18504a8c496000c0f7bb8b6305d50b",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/snapchat.svg": {
+    "mtime": 1785337093.3502724,
+    "ast_hash": "a084c98187b4c69ad27d820c6424218c",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/spotify.svg": {
+    "mtime": 1785127235.3329642,
+    "ast_hash": "b7fa89bf3c9c43faf2d3b45bf7fcddeb",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/star.svg": {
+    "mtime": 1785004348.1730611,
+    "ast_hash": "590726a7d267be85475dbeab193db2de",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/store.svg": {
+    "mtime": 1785004348.17708,
+    "ast_hash": "ada92d2fc9dae440c63f5a7e8ee5e3f6",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/telegram.svg": {
+    "mtime": 1785127231.2936068,
+    "ast_hash": "82a6f6c6a7be49e6badb80a9b38caedf",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/tiktok.svg": {
+    "mtime": 1785127184.4112723,
+    "ast_hash": "d8d1a7a5f3400b2954b3b88d4497ed05",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/vcard.svg": {
+    "mtime": 1785004348.148669,
+    "ast_hash": "502613267314e2f3ae04ef18cec9b13d",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/vimeo.svg": {
+    "mtime": 1785337096.0185318,
+    "ast_hash": "117b3f795d79f04b203476e5f56e5937",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/wechat.svg": {
+    "mtime": 1785337095.596727,
+    "ast_hash": "bb633e05a93e11c6ad0854a66abdf9d5",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/whatsapp.svg": {
+    "mtime": 1785004348.1546698,
+    "ast_hash": "9d4ea1bf24a296ce3912e2277d9b6e5e",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/wifi.svg": {
+    "mtime": 1785004348.1466706,
+    "ast_hash": "d7797ea899a006907c396a562893f359",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/x.svg": {
+    "mtime": 1785127215.2365413,
+    "ast_hash": "9089e4bf13084605316de2e98727e04b",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/yelp.svg": {
+    "mtime": 1785337096.3871553,
+    "ast_hash": "5296c7f3c80350670becb9613986f88d",
+    "semantic_hash": ""
+  },
+  "frontend/public/preset_logos/youtube.svg": {
+    "mtime": 1785004348.1638587,
+    "ast_hash": "816c376f811a52464f77092503fc7fa8",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/arrow.png": {
+    "mtime": 1785301042.939938,
+    "ast_hash": "8f7cd26f2bca5c5a935667a5d4eafe03",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/bevel.png": {
+    "mtime": 1785301042.9419487,
+    "ast_hash": "0010f21ebf33191ad0e725abfc102f00",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/block_bridge.png": {
+    "mtime": 1786524644.4548876,
+    "ast_hash": "49ce41f1ac8a055f8a2847d8fa7f68c5",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/capsule_bridge.png": {
+    "mtime": 1786513649.5983686,
+    "ast_hash": "531925e55b6ef96b2da9c389c91d5eff",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/circle.png": {
+    "mtime": 1785301042.9419487,
+    "ast_hash": "3a4d5114e38a5881ac0a0c6bd73fac3b",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/circuit_bridge.png": {
+    "mtime": 1786524644.4156737,
+    "ast_hash": "c5cd78a975b11518b3e98ab7bc0323d1",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/clover.png": {
+    "mtime": 1785301042.943959,
+    "ast_hash": "2646d632b3b3737a9de660350e5395cf",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/crossstitch.png": {
+    "mtime": 1785301042.943959,
+    "ast_hash": "b04ced550025eb983894ff94d8dbd25d",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/diagonal_stripe.png": {
+    "mtime": 1785301042.945968,
+    "ast_hash": "8e831031b1c5d5aada77c111eb94eae8",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/diamond.png": {
+    "mtime": 1785301042.945968,
+    "ast_hash": "1b8c97df29dfffa303719005a63dbf9f",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/diamond_bridge.png": {
+    "mtime": 1786515917.265199,
+    "ast_hash": "a5bac178d7f1e5c15287ffe662226132",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/diamond_target.png": {
+    "mtime": 1785301042.947443,
+    "ast_hash": "e34a4e8dcce45d991cff59f988e31207",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/dotted_cross.png": {
+    "mtime": 1785301042.947443,
+    "ast_hash": "fe4b7958ad9274439112129eac3134b5",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/fishtail.png": {
+    "mtime": 1785301042.947443,
+    "ast_hash": "2617f90f7ad6bda4e9e0cb582e8a89f0",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/flower_cut.png": {
+    "mtime": 1785301042.949468,
+    "ast_hash": "15d2a76c499e731dc92b6ffe37294174",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/gapped.png": {
+    "mtime": 1785301042.949468,
+    "ast_hash": "1ed1766ac460a90d2b42fe782adc5825",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/gear_dot.png": {
+    "mtime": 1785301042.9514778,
+    "ast_hash": "8693581aca801cd510d63e9fd868f1a3",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/heart.png": {
+    "mtime": 1785301042.9514778,
+    "ast_hash": "51fb208cc5cdf54095081477b3018f66",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/hexagon.png": {
+    "mtime": 1785301042.9527495,
+    "ast_hash": "c91ba93969abb84a893f56888d485800",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/horizontal_bars.png": {
+    "mtime": 1785301042.95913,
+    "ast_hash": "e927fb567df61686978d38739f69f103",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/horizontal_slash.png": {
+    "mtime": 1785301042.95913,
+    "ast_hash": "37cafe5b6a8cfbf77c0cfc0222168142",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/hourglass.png": {
+    "mtime": 1785301042.95913,
+    "ast_hash": "ebf6efaee024d398b3c909222f44ac85",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/leaf_connect.png": {
+    "mtime": 1786524644.3740401,
+    "ast_hash": "4643ef53e43ac1f76a20cca958c40b7e",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/leaf_droplet.png": {
+    "mtime": 1785301042.9611397,
+    "ast_hash": "40b63fd14b6e1ad1220f6b2f4179bdb4",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/liquid_drop.png": {
+    "mtime": 1785301042.9611397,
+    "ast_hash": "f787079d8ca6e43f5cfa35220fb7a634",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/lotus_petal.png": {
+    "mtime": 1785301042.9631488,
+    "ast_hash": "ce47c931933a4eee07843d4d1234926d",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/medical_cross.png": {
+    "mtime": 1785301042.9631488,
+    "ast_hash": "2098d11d81e0ab5f0edeb9ca884c1140",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/minimal_dots.png": {
+    "mtime": 1785301042.9631488,
+    "ast_hash": "b096014a6dbf8302153f6bfb5b3153aa",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/network_nodes.png": {
+    "mtime": 1785301042.9651573,
+    "ast_hash": "346e7683e01be6a2a7be5ee7cef8019c",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/octagon.png": {
+    "mtime": 1785301042.9651573,
+    "ast_hash": "15c13550e0d1bcd8e12b40d90fec1133",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/pillow.png": {
+    "mtime": 1785301042.967168,
+    "ast_hash": "1d629c20aa6715fee9e16bf06a71671c",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/pipe_connect.png": {
+    "mtime": 1786519870.1240835,
+    "ast_hash": "b1f3add07bbaec5d5f3358a6919a54c6",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/pixel_art.png": {
+    "mtime": 1785301042.9691782,
+    "ast_hash": "489c7e116814535a3682c865fc1a1477",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/plus.png": {
+    "mtime": 1785301042.9704344,
+    "ast_hash": "443b85ecd27bf0003bdd4ff01ac855cb",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/quad_dots.png": {
+    "mtime": 1785301042.9704344,
+    "ast_hash": "0e77c4ce46a0975e9fa62f41438d51ff",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/rounded.png": {
+    "mtime": 1785301042.973436,
+    "ast_hash": "7b2392c6917f0d6543ae3965533a6c9d",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/rounded_plus.png": {
+    "mtime": 1785301042.973436,
+    "ast_hash": "fe93bc36cdf2b2d807d1dcbd6b74c86a",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/scalloped.png": {
+    "mtime": 1786524644.2304173,
+    "ast_hash": "67069324f6b9f8d8e3f4d4f598486ea7",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/sheared.png": {
+    "mtime": 1785301042.9744349,
+    "ast_hash": "4abc821c4269ccf9bea431484a5ed1b2",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/shield_connect.png": {
+    "mtime": 1786524644.3289714,
+    "ast_hash": "07ccfe4ae99fe285ccb18f7ee187afd0",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/sleek_dash.png": {
+    "mtime": 1785301042.975433,
+    "ast_hash": "326f36962ab8fec7cf0c71332bac4b1e",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/sparkle.png": {
+    "mtime": 1785301042.9764352,
+    "ast_hash": "0c048e582f1064da521bc42aaa60c684",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/square.png": {
+    "mtime": 1785301042.9764352,
+    "ast_hash": "e08b6c57ca1a9dd7a2cd3bc7641129d2",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/squircle.png": {
+    "mtime": 1785301042.9774363,
+    "ast_hash": "4eb1a85f8671e59e9dbbc5574a76e6b4",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/star.png": {
+    "mtime": 1785301042.978433,
+    "ast_hash": "43957a68bafbfdfcaeb17edb2284a2ad",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/stepped.png": {
+    "mtime": 1786524644.25903,
+    "ast_hash": "16a0a50e291dd8ee15f8bb529a1686b2",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/swallowtail.png": {
+    "mtime": 1786524644.293871,
+    "ast_hash": "661721d3def2aff76c73fb502e39b915",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/target_bullseye.png": {
+    "mtime": 1785301042.978433,
+    "ast_hash": "da16b1864f44ea19b4d4f90d4b95e103",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/triangle_mosaic.png": {
+    "mtime": 1785301042.9805233,
+    "ast_hash": "6753ec8774164cbc6d85abf427f0e4fe",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/vertical_bars.png": {
+    "mtime": 1785301042.9805233,
+    "ast_hash": "0872467567a8a8a1a9aefc154fd03c76",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/dots/vertical_slash.png": {
+    "mtime": 1785301042.9825306,
+    "ast_hash": "8521472964d178f471d1884b0f970ce1",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/arch_frame.png": {
+    "mtime": 1785301042.9825306,
+    "ast_hash": "1f7b6fda3de027c8d24c24d01f69e125",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/aztec_step_frame.png": {
+    "mtime": 1785301042.9845395,
+    "ast_hash": "3bb3b71ac8793276ce4948841c0506a5",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/camera_lens.png": {
+    "mtime": 1785301042.9870973,
+    "ast_hash": "37a743c4b75ce8cb9e2e6ace324c5e49",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/circuit_trace.png": {
+    "mtime": 1785340865.91783,
+    "ast_hash": "a44a0d69f9eede472e3ae4ed38f29ed1",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/clean_teardrop.png": {
+    "mtime": 1785839862.2723646,
+    "ast_hash": "737dbad95175eac744e9e57503b98ec6",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/crescent_drop.png": {
+    "mtime": 1785839862.2774773,
+    "ast_hash": "95cc92e5030f144b45cf39c852a93d0b",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/cross_notch_frame.png": {
+    "mtime": 1785301042.990096,
+    "ast_hash": "a334b9884f917a6b9fbc4576cfab0490",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/crystal_frame.png": {
+    "mtime": 1785301042.9910989,
+    "ast_hash": "c0acb160a2177e9f63669fc32644eff7",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/cushion_cut.png": {
+    "mtime": 1785340865.924902,
+    "ast_hash": "e61569e387b43297582564966fd02bad",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/droplet_bl.png": {
+    "mtime": 1785336551.8644445,
+    "ast_hash": "80df8c150857ff721926dc3cf6254ae0",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/droplet_br.png": {
+    "mtime": 1785336551.9288125,
+    "ast_hash": "d11149a1c2030e50db90fa666f49b471",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/droplet_tl.png": {
+    "mtime": 1785336551.7965827,
+    "ast_hash": "d3f3a3ca42a2585a35bbee57bc6da10e",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/droplet_tr.png": {
+    "mtime": 1785336551.8281517,
+    "ast_hash": "bd3c768cac98601529f262d88e77959b",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/dynamic_swept.png": {
+    "mtime": 1786523777.2471473,
+    "ast_hash": "34cd6783f6a00ce23ad6d986c0b6ef99",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/flower_of_life.png": {
+    "mtime": 1785837889.6908813,
+    "ast_hash": "4f0f247f5c4af7c2fee92d7b5e009104",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/geometric_deco.png": {
+    "mtime": 1785837889.6848862,
+    "ast_hash": "b76f9f951061d03ddd8dee09990f87ed",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/hex_nut.png": {
+    "mtime": 1785340865.931342,
+    "ast_hash": "3fbe76bd7ed2f2b614110caacbb64bb9",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/leaf.png": {
+    "mtime": 1785301043.0066216,
+    "ast_hash": "6618ee7ff30afe08611872b0f478f4b5",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/leaf_opposite.png": {
+    "mtime": 1785301043.0076232,
+    "ast_hash": "052420c1e509587eeaca584c1da3625b",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/left_rounded.png": {
+    "mtime": 1785301043.0086207,
+    "ast_hash": "f49cd77928aebc9f348ab63ef3d9679c",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/notched_ring.png": {
+    "mtime": 1785340865.9137893,
+    "ast_hash": "c3e23d6899b99e75fc3acfcd8d66896b",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/octagon.png": {
+    "mtime": 1785301043.0111344,
+    "ast_hash": "760bd61cb03dad03244fcbf52ea3ef10",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/perfect_leaf_tl.png": {
+    "mtime": 1785329175.998304,
+    "ast_hash": "a7d726bca8b72d89597ae65a4134d5d6",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/perfect_leaf_tr.png": {
+    "mtime": 1785329176.0169306,
+    "ast_hash": "c0715bbe4fa8df32b4ff59f1db570aaf",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/perspective_warped.png": {
+    "mtime": 1785841277.6416955,
+    "ast_hash": "02088b5b3436114dbb076be97d2932ed",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/pointed_top_frame.png": {
+    "mtime": 1785301043.012917,
+    "ast_hash": "228f1fdc8c452db8126f3103f0730e6f",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/reverse_crescent_drop.png": {
+    "mtime": 1785839862.2794833,
+    "ast_hash": "ccfe04a6f568afb47bb00a8842494fbe",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/right_rounded.png": {
+    "mtime": 1785301043.012917,
+    "ast_hash": "bd100fdc09ab4e6a1b3e72897a5c8dd6",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/rounded.png": {
+    "mtime": 1785301043.0139198,
+    "ast_hash": "654d91241815081a7377d0941884c9e2",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/shield.png": {
+    "mtime": 1785301043.0159187,
+    "ast_hash": "eafb4969e25f609fee720185f4eca9aa",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/shield_opposite.png": {
+    "mtime": 1785301043.0159187,
+    "ast_hash": "9b6e367e84ff7162a8cf3b88445c3f32",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/solid_square_circle_cut.png": {
+    "mtime": 1785301043.0169168,
+    "ast_hash": "9f3b3204b2b5d083b12ba73ffe940ab0",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/split_crosshairs.png": {
+    "mtime": 1785340865.9343426,
+    "ast_hash": "1b4efdb5168da4e50a03d3e76b906e90",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/square.png": {
+    "mtime": 1785301043.0179176,
+    "ast_hash": "e25b30e30d0cc68a53e6c6bec5cfa960",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/squircle.png": {
+    "mtime": 1785340865.909865,
+    "ast_hash": "d371626ce14b0fe7f50d3c74dfb98ef6",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eye_frames/superellipse_square.png": {
+    "mtime": 1785837889.6858442,
+    "ast_hash": "c0995c0a36806d0f724d9f6c8d6ce7ad",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/aerodynamic_slant.png": {
+    "mtime": 1785340865.9541786,
+    "ast_hash": "5b05f18e0375d1f280a8faf2451476e0",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/circle.png": {
+    "mtime": 1785301043.0234425,
+    "ast_hash": "9eb09d6cb7dede7d732324791107ed1d",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/circuit_trace.png": {
+    "mtime": 1785340865.9464943,
+    "ast_hash": "b0dc76105943511ed6357b4020f4db89",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/clover.png": {
+    "mtime": 1785301043.0234425,
+    "ast_hash": "6c371f14e5b36dd215e9d59c59a13a88",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/cushion_cut.png": {
+    "mtime": 1785340865.9541786,
+    "ast_hash": "16eae16b41f0048a4fb00f2658be93b7",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/deckled.png": {
+    "mtime": 1785329667.5344336,
+    "ast_hash": "ac14435b2f33512bc48a7b30302c1985",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/diamond.png": {
+    "mtime": 1785301043.0274646,
+    "ast_hash": "6679016ef665e87410582794136f18f0",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/droplet_bl.png": {
+    "mtime": 1785336551.8809023,
+    "ast_hash": "ce9d00c5fdd578f1804d790529dd4fee",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/droplet_br.png": {
+    "mtime": 1785336551.9346101,
+    "ast_hash": "c0d4d74cd20cf87825de6e03a0b6dbc5",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/droplet_tl.png": {
+    "mtime": 1785336551.8052442,
+    "ast_hash": "3067625ba01e60c0404b48b50ccab322",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/droplet_tr.png": {
+    "mtime": 1785336551.8382885,
+    "ast_hash": "470d0cb5ac0f57366394dd964d792ed8",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/flower_cut.png": {
+    "mtime": 1785301043.0314896,
+    "ast_hash": "d81897a6943fdde6001e8038ce8e818d",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/fluted_bezel.png": {
+    "mtime": 1785340865.9485059,
+    "ast_hash": "170a4f292e650a5f1643ef3f22ea2267",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/gear.png": {
+    "mtime": 1785845153.6320827,
+    "ast_hash": "c1a4e9aba53679a9b46e2990cf88b6f0",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/heart.png": {
+    "mtime": 1785301043.0335011,
+    "ast_hash": "e0e52978fc9219f23b767287c4bf7857",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/hex_nut.png": {
+    "mtime": 1785340865.9541786,
+    "ast_hash": "56faf918b926e842f030126fad79265f",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/hexagon.png": {
+    "mtime": 1785301043.0335011,
+    "ast_hash": "65b63af79038fd2117ef4212f32466a5",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/leaf.png": {
+    "mtime": 1785301043.0390263,
+    "ast_hash": "e44eefaeb97a070669504589f1cb3bb2",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/leaf_opposite.png": {
+    "mtime": 1785301043.0408754,
+    "ast_hash": "055a5840a16c5d6239770c8b9c7ddabd",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/left_rounded.png": {
+    "mtime": 1785301043.0418813,
+    "ast_hash": "0db7bc10e68d9847914df1f59fdaf8e2",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/octagon.png": {
+    "mtime": 1785301043.0448735,
+    "ast_hash": "62ad35edf9ca6e4b8178239b62c22bd3",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/perfect_leaf.png": {
+    "mtime": 1785327947.0689363,
+    "ast_hash": "d22c42f1b8d67eebb7e0015e6b399e00",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/pinched_square.png": {
+    "mtime": 1785301043.047293,
+    "ast_hash": "1b869262924825e468630209d9a027c1",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/plus.png": {
+    "mtime": 1785301043.049295,
+    "ast_hash": "ea605f16e1d7b2df6b51c60871ee29a5",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/rhombus.png": {
+    "mtime": 1785301043.050298,
+    "ast_hash": "6679016ef665e87410582794136f18f0",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/right_rounded.png": {
+    "mtime": 1785301043.0512915,
+    "ast_hash": "ed16567cb271e58003194395ed6b9e20",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/rounded.png": {
+    "mtime": 1785301043.0527208,
+    "ast_hash": "69c9d75154ee102784b40e3937607d73",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/sheared.png": {
+    "mtime": 1785301043.0548487,
+    "ast_hash": "ab32b01f9699e7e9b2f5118bd2274ecb",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/shield.png": {
+    "mtime": 1785301043.0548487,
+    "ast_hash": "97b49914434a0a43a696199adc4e5e33",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/shield_opposite.png": {
+    "mtime": 1785301043.0558498,
+    "ast_hash": "356f156c8a0a5837e2d350154b2bb274",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/split_crosshairs.png": {
+    "mtime": 1785340865.9541786,
+    "ast_hash": "a3e43da705304df0c9183b105d63c022",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/square.png": {
+    "mtime": 1785301043.0585885,
+    "ast_hash": "88c734295f8dc1e41b9b95a9ce8e69c0",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/eyeballs/squircle.png": {
+    "mtime": 1785340865.9422188,
+    "ast_hash": "dcde168374c63e07351721ac26eba113",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/aperture_orbit.png": {
+    "mtime": 1785842366.8980825,
+    "ast_hash": "492fb055a24c21c79d0e0e703b8b7107",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/art_deco.png": {
+    "mtime": 1785266934.9796631,
+    "ast_hash": "ff78e19aa880db0d403b88123988a015",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/border.png": {
+    "mtime": 1785266935.029259,
+    "ast_hash": "ae5e45c50ae4327e029dbb5b3701679b",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/brackets.png": {
+    "mtime": 1785266935.082525,
+    "ast_hash": "922d1830c4f87a1bbcdfbbb1675d4ea2",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/cellular_automata_frame.png": {
+    "mtime": 1785842123.4496236,
+    "ast_hash": "f52e317546650f3a7addbe7279c60d7e",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/chalkboard.png": {
+    "mtime": 1785266935.1286216,
+    "ast_hash": "85127af7b781dd69d53044d2eb3d7097",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/chamfered_monolith.png": {
+    "mtime": 1785842366.8350003,
+    "ast_hash": "e1d28982eab511d43a4fdcfcb3450eec",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/circle.png": {
+    "mtime": 1785843611.3576462,
+    "ast_hash": "6a3dbdbca32a1b822847941f50af538a",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/circle_sprinkles.png": {
+    "mtime": 1785843611.4071085,
+    "ast_hash": "5553f6a6c296fc4a2afc5f2b6f64f8c5",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/circle_sunburst.png": {
+    "mtime": 1785843611.4531846,
+    "ast_hash": "65b94a9eef88126e4194281f6dfc3936",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/coupon_dashed.png": {
+    "mtime": 1785266935.3847156,
+    "ast_hash": "73bd0734318c5b15ff086136f0e57a1f",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/dotted_border.png": {
+    "mtime": 1785843611.5020366,
+    "ast_hash": "4d471144fd37d962a95be36174883937",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/double_border.png": {
+    "mtime": 1785266935.4580412,
+    "ast_hash": "f6683010eda623fcbebc2b10c101c6f2",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/drop_shadow_card.png": {
+    "mtime": 1785266774.220126,
+    "ast_hash": "d4294c5702be19cf392536934f24497b",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/film_strip.png": {
+    "mtime": 1785266774.2221348,
+    "ast_hash": "71fb2a06e00ce2150b38fa20de2cdf48",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/floating_gallery_canvas.png": {
+    "mtime": 1785842366.9528637,
+    "ast_hash": "45a0fd2d3be685056afd78916f5cb9d5",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/guilloche_security.png": {
+    "mtime": 1785843767.6639872,
+    "ast_hash": "de578b5015bfbe5c6fa9ef6784b60adb",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/hanging_sign.png": {
+    "mtime": 1785266935.8831346,
+    "ast_hash": "0f2564b63a501ff39c7a136bbc2a9c8e",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/hexagon.png": {
+    "mtime": 1785266935.911628,
+    "ast_hash": "0fc8de086ddf1f171d525e1d3b508bbf",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/isometric_pedestal.png": {
+    "mtime": 1785843767.7807946,
+    "ast_hash": "19b03c26c39c19e195fd747c4b4dc03f",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/l_system_fractal.png": {
+    "mtime": 1785843767.8521037,
+    "ast_hash": "94010133adb00444c03047189071d7f5",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/modern_arch.png": {
+    "mtime": 1785842366.8053174,
+    "ast_hash": "3c23b4dd9f93255c443128ef6913cf10",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/modern_polaroid.png": {
+    "mtime": 1785266936.0996823,
+    "ast_hash": "d9b29244c7dd3319b11b35001bc02ea8",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/moire_interference.png": {
+    "mtime": 1785843767.8147168,
+    "ast_hash": "5412d9f4890aa65d7bf594ced239fccc",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/monitor_screen.png": {
+    "mtime": 1785266936.6836276,
+    "ast_hash": "856f0e5a7dd07619df95e34a0f9e8170",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/none.png": {
+    "mtime": 1785266774.2279038,
+    "ast_hash": "a7d8a799e33fcceb8a242f6256b53b82",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/phone_frame.png": {
+    "mtime": 1785592585.963581,
+    "ast_hash": "22c24bbd1677f5e584b79efa3f7a93af",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/polaroid_frame.png": {
+    "mtime": 1785266936.916656,
+    "ast_hash": "0b5c9e7a9a5933915449c7edb33a5836",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/scalloped_edge.png": {
+    "mtime": 1785266937.046664,
+    "ast_hash": "c70dbc195ca35a186a91104c24da34e6",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/sdf_metaball_frame.png": {
+    "mtime": 1785842123.5643299,
+    "ast_hash": "a0588e682bb71a0a167b5410a8181832",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/single_droplet_plaque.png": {
+    "mtime": 1785842366.916204,
+    "ast_hash": "0d65a62f336a7c1077d344558377eb58",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/storefront_awning.png": {
+    "mtime": 1785266937.1953886,
+    "ast_hash": "26e6b25210103f12cc1ae062d393f4a3",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/frames/ticket_cutout.png": {
+    "mtime": 1785266937.3380845,
+    "ast_hash": "24fbc472cb98520d8567b7d70961a192",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/academic_diploma.png": {
+    "mtime": 1786726015.7192192,
+    "ast_hash": "7531fdd3ec3749621a318fee7baef3f6",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/agent_vcard.png": {
+    "mtime": 1786726022.7245102,
+    "ast_hash": "e0ed7380a1cfe316cc4e8a561fa31d8c",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/amazon_gold_leaf.png": {
+    "mtime": 1786726027.2696786,
+    "ast_hash": "a6b46d917c2ca241ae0321bfdc6ab19d",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/app_download_promo.png": {
+    "mtime": 1786726024.7905974,
+    "ast_hash": "00935ef27540076a389c0d9ee6f89865",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/artisan_cafe_menu.png": {
+    "mtime": 1786726010.9447887,
+    "ast_hash": "8672d0ced90a20702fbab24605fac2fd",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/artisan_menu_scan.png": {
+    "mtime": 1786726011.457232,
+    "ast_hash": "16ac9bdf78f64ac0d60a21cc7ccba0c9",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/at_your_service.png": {
+    "mtime": 1786726015.9208581,
+    "ast_hash": "12cf8bb0ebd13ecc6a4708302b93d10f",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/beer_mug_coaster.png": {
+    "mtime": 1786726011.6065955,
+    "ast_hash": "4b24dba2cb6496c9d562b34a467109d7",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/best_seller_badge.png": {
+    "mtime": 1786726027.3706675,
+    "ast_hash": "78e34b9cdbfe36aa1a2b1007dc367394",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/billboard_scalable.png": {
+    "mtime": 1786726024.8421793,
+    "ast_hash": "d14092b51cc3d985bc5fe27b245dd051",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/black_canvas_dark_mode.png": {
+    "mtime": 1786726007.0099144,
+    "ast_hash": "c4f9cdf98839c381bf8b0695a417f4bc",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/black_glossy_header_card.png": {
+    "mtime": 1786726024.9096923,
+    "ast_hash": "07f1577c5928ad5ae6484947d8053a8c",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/black_pill_badge.png": {
+    "mtime": 1786726025.0159023,
+    "ast_hash": "82caa36c4022810b7d0b632b5f053b35",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/blue_circle_sprinkles.png": {
+    "mtime": 1786726007.3593917,
+    "ast_hash": "6c466b858c65043f4517b8b5e6f1c6fa",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/blue_header_tab.png": {
+    "mtime": 1786726025.174726,
+    "ast_hash": "db106a615a5855dcdf2c1da5d70f4e9f",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/blue_juice_cup.png": {
+    "mtime": 1786726011.7400002,
+    "ast_hash": "e0f7a4c1da11361f5f7a8a1c9625bfcf",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/blue_speech_bubble.png": {
+    "mtime": 1786726025.353887,
+    "ast_hash": "d50789bbf3d83ec62cd78456c73c777d",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/boutique_shop.png": {
+    "mtime": 1786726027.6736305,
+    "ast_hash": "cf8dd9412e4e2b94110f6a862a370944",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/bubble_tea_cup.png": {
+    "mtime": 1786726011.8338253,
+    "ast_hash": "71d911dd26bf228f61f451978bb91501",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/caf\u00e3\u00a9_wifi_warm.png": {
+    "mtime": 1786726019.8052082,
+    "ast_hash": "1bf706b0129bb39e5e7245cee7481b10",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/caf\u00e9_wifi_warm.png": {
+    "mtime": 1786555852.6873162,
+    "ast_hash": "cce174f71b51adee322160b693249ea0",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/cheers_pint.png": {
+    "mtime": 1786726016.077716,
+    "ast_hash": "4c273960b5ee8b11706fe6356fee5648",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/chinese_takeout_box.png": {
+    "mtime": 1786726011.9211967,
+    "ast_hash": "457950fcee6e9f703dfebc42783429d0",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/cocktail_lounge.png": {
+    "mtime": 1786726012.4100652,
+    "ast_hash": "be582027334e9065dc4e9d5aecd6f22e",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/coffee_mug_frame.png": {
+    "mtime": 1786726012.5294054,
+    "ast_hash": "3ba324f27173ce229e9edb96bbcccab6",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/conference_badge.png": {
+    "mtime": 1786726026.664851,
+    "ast_hash": "78c6023898fabd902a32ae7689e3b869",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/cyber_glitch.png": {
+    "mtime": 1785952122.095129,
+    "ast_hash": "f642795399f6b7675bab414d049d1af5",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/dark_minimal_wifi.png": {
+    "mtime": 1786726019.903523,
+    "ast_hash": "adc45c11d62265cb5e1fb406125b665b",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/deep_ocean_bioluminescence.png": {
+    "mtime": 1786726016.6028695,
+    "ast_hash": "9b02dea60356c619f170db03156f4f7f",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/destination_pin.png": {
+    "mtime": 1786726026.7637444,
+    "ast_hash": "9edb2120fec68a13eb4904401e2a771e",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/direct_mail_cta.png": {
+    "mtime": 1786726025.9819865,
+    "ast_hash": "0c3b35cb0b9cd85f24176fe50893d8d8",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/discord_dark_mode.png": {
+    "mtime": 1785954189.8528478,
+    "ast_hash": "d5793ef06f61fe37fc756f4e39fe28dd",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/discord_server_drop.png": {
+    "mtime": 1786726003.0779212,
+    "ast_hash": "8919032132756bb10178f16a3d61a13b",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/discord_soft_blue_gradient.png": {
+    "mtime": 1786726007.6011696,
+    "ast_hash": "5f682442edb558b913dee6384285865d",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/dynamic_pop.png": {
+    "mtime": 1786726016.7384648,
+    "ast_hash": "dbf6751f16d6a5c45fcffd2533f5acfb",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/electric_amethyst.png": {
+    "mtime": 1786726017.2866008,
+    "ast_hash": "f1f6066a6f440021f6042a5bce74b879",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/envelope_rsvp.png": {
+    "mtime": 1786726026.8545222,
+    "ast_hash": "e43491c546051e9619b2110a660752cf",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/facebook_blue_banner_card.png": {
+    "mtime": 1786726007.856954,
+    "ast_hash": "4a7622c8ccc7aa434ad063fbf4e8c23d",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/facebook_royal_blue_frame.png": {
+    "mtime": 1786726007.9981482,
+    "ast_hash": "1f76f164bed9d2130db347215861c20f",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/flash_sale_tag.png": {
+    "mtime": 1786726027.7491374,
+    "ast_hash": "2c0ba3dc59d8fd5a312781343b57c423",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/food_cloche_dome.png": {
+    "mtime": 1786726012.6609092,
+    "ast_hash": "c314092a8f0fdbb62a8090e621d63618",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/food_delivery_promo.png": {
+    "mtime": 1786726013.1727436,
+    "ast_hash": "cf2dfa53c0b3d5ceec5a07661d486bce",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/free_wifi_blue.png": {
+    "mtime": 1786726020.0098946,
+    "ast_hash": "cd2043dc79b8fdc494d2287aed841ecb",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/github_developer.png": {
+    "mtime": 1786726006.4415717,
+    "ast_hash": "e71c1af6007b3790b22c9358dad7a3ad",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/gold_foil_luxury.png": {
+    "mtime": 1786726017.9109998,
+    "ast_hash": "a1dbb01a115102458a851258ee22dfb5",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/gold_foil_menu.png": {
+    "mtime": 1786726018.008855,
+    "ast_hash": "1941ab1f284dd52fbe489ca6940e0896",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/gold_signal_wifi.png": {
+    "mtime": 1785954204.621836,
+    "ast_hash": "6ae4950e0eaaa0be1731c6ee1745a56d",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/google_4-color_brand_card.png": {
+    "mtime": 1786726008.1421518,
+    "ast_hash": "a94dfb5b470305fa2308edda7ea53251",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/green_circle_wifi.png": {
+    "mtime": 1786726020.3485045,
+    "ast_hash": "684b9e2bfc441f65e2e1bae2707634aa",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/green_leaf.png": {
+    "mtime": 1786726027.8522117,
+    "ast_hash": "102fca7dd9fe4f93629dd4f04df291e2",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/hanging_wooden_sign.png": {
+    "mtime": 1786726028.409045,
+    "ast_hash": "b79fbc2315db0fdbe0b86e95304deb7a",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/heavy_lifter_gym_pass.png": {
+    "mtime": 1786726022.8734055,
+    "ast_hash": "0675612b80a17a98ba3fc5ab3389eea9",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/instagram_banner_poster.png": {
+    "mtime": 1786726008.280368,
+    "ast_hash": "cd6c1b79ca98d2d002cb0ade0ba09df9",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/instagram_connect.png": {
+    "mtime": 1786726010.4621308,
+    "ast_hash": "c753b0f63c9dbfb74626e8226054688b",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/instagram_sunset_card.png": {
+    "mtime": 1786726008.9539742,
+    "ast_hash": "65c54308728943fb95ae3f5e9a007a2e",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/instagram_sunset_dots.png": {
+    "mtime": 1786726009.3426497,
+    "ast_hash": "58ddb7d6508b5693ace8bc7b5d275023",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/laptop_workspace.png": {
+    "mtime": 1786726015.8222945,
+    "ast_hash": "ec12ac57481e32b35b6cb9bc58e53dc7",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/linkedin_banner_card.png": {
+    "mtime": 1786726009.4339602,
+    "ast_hash": "ba4fdd52c4a5ff3084cf9fd26689af62",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/linkedin_network.png": {
+    "mtime": 1786726002.0312862,
+    "ast_hash": "79d10e0ac22f992d84532a66a662e0ce",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/mint_wifi_card.png": {
+    "mtime": 1786726020.459812,
+    "ast_hash": "2c586123ea3a24414904be16788c55e8",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/modern_monolith.png": {
+    "mtime": 1785952122.46893,
+    "ast_hash": "77ceef307e2cc2a84ee9d5fa647486e5",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/monochic_studio.png": {
+    "mtime": 1786726023.0328918,
+    "ast_hash": "af7435c47a6ef8925d3ad4d4247fa5c2",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/neon_restaurant_sign.png": {
+    "mtime": 1786726028.5267315,
+    "ast_hash": "4f163b45d5004f58e03aa1789859cdd6",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/netflix_cinematic.png": {
+    "mtime": 1786726006.0549574,
+    "ast_hash": "8a149f5e6de42877d1f87d8f0f6b0351",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/none.png": {
+    "mtime": 1786726001.846165,
+    "ast_hash": "7584d60c081296a158b4e601cf006948",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/orange_outline_card.png": {
+    "mtime": 1786726026.0428145,
+    "ast_hash": "0c3ddc2b301ec68f9ca5155a96d46d0a",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/orange_shopping_bag.png": {
+    "mtime": 1786726027.9487412,
+    "ast_hash": "1b50163fa81488b3d23fa3806e13c01a",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/organic_salad_bowl.png": {
+    "mtime": 1786726013.6390736,
+    "ast_hash": "7dfceb71780871c6233d4fc1561a1fe1",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/pastel_wifi_dots.png": {
+    "mtime": 1785954205.4813788,
+    "ast_hash": "0be6038d50fe8574f1fec91aaa79dcdc",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/patient_portal.png": {
+    "mtime": 1786726023.5495677,
+    "ast_hash": "a091a15d28f6f02b8b5ae0688d3a0d47",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/pink_dotted.png": {
+    "mtime": 1786726009.5051756,
+    "ast_hash": "64dbf129abd936ba3b2378e88551205d",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/pink_heart_header_pill_card.png": {
+    "mtime": 1786726009.670202,
+    "ast_hash": "cccc9b39dfd5d11b88d7716f49a46538",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/pink_pixel_hearts.png": {
+    "mtime": 1786726009.791869,
+    "ast_hash": "c1b89254e50890b4ae842bd04c0b45a9",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/pinterest_pinboard.png": {
+    "mtime": 1786726003.2484257,
+    "ast_hash": "efd3dda484e4f13117bd5d6becea84cd",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/pizza_delivery_box.png": {
+    "mtime": 1786726013.9412043,
+    "ast_hash": "9ae41716e1d10bbff477e71bfbd97a32",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/postage_stamp.png": {
+    "mtime": 1786726026.1738482,
+    "ast_hash": "e76c43298e4046e07de286d73a42e2c4",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/premium_real_estate.png": {
+    "mtime": 1785954208.6449986,
+    "ast_hash": "ec0e6112cefd03593bdd91b203003a36",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/prescription_info.png": {
+    "mtime": 1785954208.8438272,
+    "ast_hash": "20f016d59fea893c9970d955ff6d5297",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/product_authenticity.png": {
+    "mtime": 1786726028.2577205,
+    "ast_hash": "ab5853455f28ffe3fcfab0bb409d53ab",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/purple_rate_us_tab.png": {
+    "mtime": 1786726026.3157153,
+    "ast_hash": "c924aacda42bbece965ce817ed106261",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/purple_wifi_signal.png": {
+    "mtime": 1786726020.818782,
+    "ast_hash": "2eb495d8cb543924a9706a1ee626f107",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/ramen_bowl.png": {
+    "mtime": 1786726014.3182135,
+    "ast_hash": "6741a03f4fa6201a9fe53b029bd18279",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/recipe_chef.png": {
+    "mtime": 1786726014.443216,
+    "ast_hash": "8ae91edd2fc2348cb359977df56b25ad",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/red_double_hearts_valentine_card.png": {
+    "mtime": 1786726009.9444232,
+    "ast_hash": "d68af8a98737f603f6d3f0a4b50abc6a",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/red_hexagon_badge_card.png": {
+    "mtime": 1786726026.382298,
+    "ast_hash": "ed12d1e9c83840e51ff45a2883bcc711",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/red_phone_footer_card.png": {
+    "mtime": 1786726026.4528182,
+    "ast_hash": "d5793f05be6ca47f61bf49bde1cc74d1",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/red_ribbon_banner.png": {
+    "mtime": 1786726026.9479141,
+    "ast_hash": "71e99e717b366df694edbb0ff088f6a7",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/reddit_orange_blast.png": {
+    "mtime": 1786726006.7978394,
+    "ast_hash": "71bf9705a3873845daa85be4fa89a92b",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/retro_console.png": {
+    "mtime": 1786726010.061028,
+    "ast_hash": "4d38661e50ed67577a2cd4ab2a7b999a",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/retro_polaroid.png": {
+    "mtime": 1786726023.7107468,
+    "ast_hash": "7ed7aa88ad4501153ab85869498645e2",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/scan_for_wifi_teal.png": {
+    "mtime": 1785954205.9933782,
+    "ast_hash": "b1146b68a5924da6e0f1793e6d54b1d4",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/security_clearance.png": {
+    "mtime": 1785952122.3249786,
+    "ast_hash": "2c108b851649e9506526fa30f82aec9e",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/slice_pizzeria.png": {
+    "mtime": 1786726014.7047918,
+    "ast_hash": "64582bd10608fd7fc8d49872ce1874ed",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/snapchat_ghost_glow.png": {
+    "mtime": 1788284500.0340571,
+    "ast_hash": "bda321fc1ed13dadff3ba92a2ca364ce",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/social_media_link.png": {
+    "mtime": 1785954202.1935537,
+    "ast_hash": "b03eb542465871cc3d17fd8c9da54368",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/soft_mint_wellness.png": {
+    "mtime": 1785954226.9233608,
+    "ast_hash": "71307693d670840ff505ed0d2d836dd9",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/special_delivery.png": {
+    "mtime": 1786726018.1323478,
+    "ast_hash": "f40c0df694de13eb8514cab1b8cfab90",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/speedy_delivery.png": {
+    "mtime": 1786726018.2325346,
+    "ast_hash": "96bf21d86aff1c31d374190146152c33",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/spotify_neon_player.png": {
+    "mtime": 1786726005.7809412,
+    "ast_hash": "a402c47f02122f872bb060ee9492f0c5",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/spotify_soundwave.png": {
+    "mtime": 1788284263.627482,
+    "ast_hash": "b53c06327d58b49b7a10ba542a3c99de",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/sunset_bistro.png": {
+    "mtime": 1786726015.1937034,
+    "ast_hash": "6529aac85d793cb51c74f28ebfc7239b",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/sunset_gradient_glow.png": {
+    "mtime": 1786726018.6237576,
+    "ast_hash": "52c135f6d62779521f345674f5c40874",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/support_chat.png": {
+    "mtime": 1786726023.91221,
+    "ast_hash": "081e80382018e1fe48b8cdbcf386e8f1",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/table_check_out.png": {
+    "mtime": 1785954218.9592893,
+    "ast_hash": "55d613576327802f123a83d039afd25d",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/tech_app_download.png": {
+    "mtime": 1785954213.576243,
+    "ast_hash": "9877fcba811b8a12bc6f0df2424aafe6",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/telegram_blue_paper_plane.png": {
+    "mtime": 1786726005.5259762,
+    "ast_hash": "b6d76afdab41866600d028c2b0e106ac",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/telegram_paper_plane.png": {
+    "mtime": 1786726003.3812346,
+    "ast_hash": "d28ff385e0a775e5f239847ab026a80e",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/telehealth_link.png": {
+    "mtime": 1786726024.0656424,
+    "ast_hash": "a30642eb444f42185859ecd513359955",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/threads_black_canvas.png": {
+    "mtime": 1786726010.1509984,
+    "ast_hash": "f934fd35b8e0d1f0c2ed21330c7bf15c",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/tiktok_glitch_canvas.png": {
+    "mtime": 1786726004.5636063,
+    "ast_hash": "15ff8481682fe764e72d043dd2d213b6",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/tiktok_pulse.png": {
+    "mtime": 1786726001.9105098,
+    "ast_hash": "47d8562232fafdfc39f1c78da18981eb",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/tropical_mango.png": {
+    "mtime": 1786726019.0999124,
+    "ast_hash": "8008281e6d1e1c58495e8a496192348d",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/twitch_purple_stream.png": {
+    "mtime": 1786726006.2273326,
+    "ast_hash": "cad566f610b92c541b6c70d48b91aa5e",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/vantage_price_tag.png": {
+    "mtime": 1786726028.3318987,
+    "ast_hash": "d57e2f9e3be51658fcaccc724fe5b773",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/verified_shield.png": {
+    "mtime": 1786726010.2373803,
+    "ast_hash": "0a579592d2ad99f98247d374b8831301",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/video_link.png": {
+    "mtime": 1786726019.152549,
+    "ast_hash": "cca62b81807c41071a08a072a24862db",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/vinyl_soundtrack.png": {
+    "mtime": 1786726010.3360207,
+    "ast_hash": "50969ea7c29863aeaa9d2711c2ef86c7",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/virtual_tour.png": {
+    "mtime": 1786726024.4419484,
+    "ast_hash": "2ac273a8d805a569971601bf304fd624",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/warm_coffee_cup.png": {
+    "mtime": 1786726015.3387282,
+    "ast_hash": "a3f8853bf4910a78707a276fe7852241",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/web_browser.png": {
+    "mtime": 1786726026.5830033,
+    "ast_hash": "11b54ae2d7679516698786027ed7b3cd",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/wedding_rsvp.png": {
+    "mtime": 1786726027.2375152,
+    "ast_hash": "857493e6363807b6432ba06cc0059ea8",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/whatsapp_business_green.png": {
+    "mtime": 1786726005.358955,
+    "ast_hash": "49b6f6b85eec2e80a337f5c039bbfbdb",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/whatsapp_direct.png": {
+    "mtime": 1786726002.1786609,
+    "ast_hash": "4604eeef7d2f4955ad1ac2c097d93ff1",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/wifi_clipboard.png": {
+    "mtime": 1786726020.926853,
+    "ast_hash": "d145dfb2ef21c79424c10b56c1564ba3",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/wifi_cloud_badge.png": {
+    "mtime": 1786726021.0163305,
+    "ast_hash": "5f7f216bfb5d208111f5314469990394",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/wifi_dark_banner.png": {
+    "mtime": 1786726021.1709366,
+    "ast_hash": "43fc2dda5a68ce8b0f0776c9d9c99ee8",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/wifi_home_router.png": {
+    "mtime": 1786726021.292972,
+    "ast_hash": "75e82ce2b2cea7734c75d6a27fd15c87",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/wifi_qr_poster.png": {
+    "mtime": 1786726021.6853046,
+    "ast_hash": "a816599aed240b319b726785b7ce6767",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/wifi_scan_to_connect.png": {
+    "mtime": 1785954207.1327398,
+    "ast_hash": "7f2d3fe2dae2e8f383388547d69fa44e",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/wifi_sunset_swirl.png": {
+    "mtime": 1786726022.1478488,
+    "ast_hash": "66b9f3228806e3341d767653add181b8",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/wine_bottle_label.png": {
+    "mtime": 1786726019.2835863,
+    "ast_hash": "84d58b0c59072d1e78f04a540e3b3e2c",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/wooden_pizza_peel.png": {
+    "mtime": 1786726015.5900276,
+    "ast_hash": "326c3c4b6ba1f4a201a3d042844c11fb",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/x_(twitter)_profile.png": {
+    "mtime": 1786555839.4542353,
+    "ast_hash": "fd7ca448e29ac165c5465c34be2ed3e6",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/x_dark_minimal.png": {
+    "mtime": 1786726004.6272988,
+    "ast_hash": "f133603654c25ca9f36bcad5053c9d13",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/x_twitter_profile.png": {
+    "mtime": 1786726002.3286233,
+    "ast_hash": "dc76724cf63d03a11109ac8a01302c3d",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/youtube_cinematic_red.png": {
+    "mtime": 1786726004.4452925,
+    "ast_hash": "880139f14306992dd56ac9a6d641181c",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/youtube_subscribe.png": {
+    "mtime": 1788283807.6097374,
+    "ast_hash": "5b56735c55df2c9c44ee856aa172f799",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/templates/zen_fractal.png": {
+    "mtime": 1785952122.662107,
+    "ast_hash": "21338dd2b844ba4a9a9b894d52c7581c",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/app_store_badge.png": {
+    "mtime": 1785266774.2437315,
+    "ast_hash": "3addba222c6f8bd8c053bba2338103d8",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/award_badge.png": {
+    "mtime": 1785266937.5674748,
+    "ast_hash": "2593c3374ae00ad56e79597492761dd9",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/beer_mug.png": {
+    "mtime": 1785266937.8283346,
+    "ast_hash": "2747b5980d6ffa66c0eba67e74adb825",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/bottom_tab.png": {
+    "mtime": 1785266937.8778577,
+    "ast_hash": "074e8b1dc51c02f5986cc78c7b06a5c6",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/bottom_text.png": {
+    "mtime": 1785266937.9222648,
+    "ast_hash": "2f54e7040d1716856ddabc733cd57ea0",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/browser_window.png": {
+    "mtime": 1785266937.9484677,
+    "ast_hash": "ff8ced9b3d0082e36f8f5155f9b4299c",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/burger_shape.png": {
+    "mtime": 1785266938.1524608,
+    "ast_hash": "4f0afacecf576097629d74187421f922",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/chat_bubble.png": {
+    "mtime": 1785266938.1965458,
+    "ast_hash": "214798a37047e0012b1f21cdc722f593",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/chef_hat.png": {
+    "mtime": 1785266938.2336586,
+    "ast_hash": "29cbb3b67501f9ddbf327b2c66ebc952",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/coffee_bean.png": {
+    "mtime": 1785266938.5129478,
+    "ast_hash": "e7a3e7aa7afd920791da9a4218c7a652",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/coffee_cup.png": {
+    "mtime": 1785266938.5597253,
+    "ast_hash": "f0f35b3aa85f6593ba580b644c8cdd43",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/coffee_mug.png": {
+    "mtime": 1785266938.59638,
+    "ast_hash": "182c1137decd3667c6099a3762639b68",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/diploma_scroll.png": {
+    "mtime": 1785266938.6325417,
+    "ast_hash": "913b3da5595cd0f54e6f9ce646214f0f",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/drink_cup.png": {
+    "mtime": 1785266938.6659038,
+    "ast_hash": "2ae423c82258200f1f8e82531bdd60bf",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/floating_badge.png": {
+    "mtime": 1785266938.7131283,
+    "ast_hash": "3e448333eec82546448a0bc0b4cf52b0",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/floating_pill.png": {
+    "mtime": 1785266938.838058,
+    "ast_hash": "e4a1269ee3556b725a583ea405c165f1",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/food_dome.png": {
+    "mtime": 1785266938.8810382,
+    "ast_hash": "8603857accf84a6c0c0d8578a5faed55",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/game_console.png": {
+    "mtime": 1785266938.9134207,
+    "ast_hash": "2e2b0ecc1aa3f4f9e4c79ff2fdf52d77",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/hot_soup_bowl.png": {
+    "mtime": 1785266939.146148,
+    "ast_hash": "0a068c943cb6b1798b7cc8b78937895b",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/ice_cream_cone.png": {
+    "mtime": 1785266939.4440684,
+    "ast_hash": "4a386ff0b55d77062c3d0658d6b7090e",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/laptop_mockup.png": {
+    "mtime": 1785266939.500909,
+    "ast_hash": "d64e21388e82a9eb5f83986734fad1f9",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/magic_mirror.png": {
+    "mtime": 1785266939.5359912,
+    "ast_hash": "f351ac28a9bb44d67e85b26301b55a28",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/map_pin.png": {
+    "mtime": 1785266939.5677052,
+    "ast_hash": "0d24673bd5f0f3aff0082eb0662ef451",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/menu_board.png": {
+    "mtime": 1785266939.7274382,
+    "ast_hash": "1be4697e326639521f1cbc8e2e18f64d",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/none.png": {
+    "mtime": 1785266774.3450603,
+    "ast_hash": "a7d8a799e33fcceb8a242f6256b53b82",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/open_book.png": {
+    "mtime": 1785266939.8041346,
+    "ast_hash": "7866bb3094003ecc5b610c9a0729fdab",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/padlock.png": {
+    "mtime": 1785266939.8547704,
+    "ast_hash": "70f3b5f5f37d9170fdda66bef4f14eff",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/pizza_slice.png": {
+    "mtime": 1785266939.8927276,
+    "ast_hash": "c66d11d5ab1c89e6a1176280a1ed298e",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/plate_fork_knife.png": {
+    "mtime": 1785266940.1105685,
+    "ast_hash": "125f81db6c2422b88e5e1bbb4e22132a",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/polaroid_photo.png": {
+    "mtime": 1785266940.147887,
+    "ast_hash": "805c51e3a4b77c231944f22713765763",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/price_tag.png": {
+    "mtime": 1785266940.1988466,
+    "ast_hash": "c289b1cb72da428209b904f9e74f6b4b",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/retro_tv_set.png": {
+    "mtime": 1785266940.2604756,
+    "ast_hash": "e193042559f06bb2b20b1d2564a30cd5",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/ribbon_banner.png": {
+    "mtime": 1785266940.305999,
+    "ast_hash": "5d3d09162e910e60c33dbd74f4c5f795",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/rsvp_envelope.png": {
+    "mtime": 1785266940.420892,
+    "ast_hash": "baf30df3c2f0b71c5e2c48b51d8b8231",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/security_shield.png": {
+    "mtime": 1785266940.4544773,
+    "ast_hash": "5f590c8fec1ac9dbc24ab885429d3f38",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/shipping_label.png": {
+    "mtime": 1785266774.3786051,
+    "ast_hash": "92dccb4493eec4fb944369c291a36c40",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/shopping_bag.png": {
+    "mtime": 1785266940.5273275,
+    "ast_hash": "73a3be8c30a012fdee6757aedd1738a6",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/speech_bubble.png": {
+    "mtime": 1785266940.720024,
+    "ast_hash": "a7ea5439e5038cb30f855ae18cd0c2c2",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/speech_bubble_top.png": {
+    "mtime": 1785266940.757801,
+    "ast_hash": "c20ab85c356c7fffad41deff7c77c941",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/sushi_roll.png": {
+    "mtime": 1785266940.947683,
+    "ast_hash": "2ef1af9724368967416201dd159abfea",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/tea_pot.png": {
+    "mtime": 1785266941.1811113,
+    "ast_hash": "17b4a894f8af2fdd488e22bdf1701660",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/thought_cloud.png": {
+    "mtime": 1785266941.2604043,
+    "ast_hash": "f3bc2bdc31ff4230e816e89b50a547a4",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/ticket_stub.png": {
+    "mtime": 1785266941.2997885,
+    "ast_hash": "46ec58feb000c4c271dc9844d01aaee3",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/ufo_abduction.png": {
+    "mtime": 1785266941.3372552,
+    "ast_hash": "415b90187b21f9e6039447e375ba51c8",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/vertical_card_badge.png": {
+    "mtime": 1785266774.5020113,
+    "ast_hash": "bb13db88d154cf3f8597e9c108998fac",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/vertical_ribbon_left.png": {
+    "mtime": 1785266941.444431,
+    "ast_hash": "265accca3e5ea0efefb2aa5d8a29c81f",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/vertical_ribbon_right.png": {
+    "mtime": 1785266941.5230134,
+    "ast_hash": "eb107d05b4bed6125a7d35d1ad5dfaca",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/vertical_side_badge_left.png": {
+    "mtime": 1785266941.6122346,
+    "ast_hash": "a30c93e6a78441f77439821753223c5f",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/vertical_side_badge_right.png": {
+    "mtime": 1785266941.6789694,
+    "ast_hash": "ff92b0700e673f724489e1926d90241b",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/vintage_stamp.png": {
+    "mtime": 1785266941.7309954,
+    "ast_hash": "d7e74070a613f5e9fcb93985979bd947",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/vinyl_record.png": {
+    "mtime": 1785266941.7665062,
+    "ast_hash": "9ae6fe9b3ba951d3716288833b1e9a25",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/text_styles/wine_glass.png": {
+    "mtime": 1785266942.004462,
+    "ast_hash": "7213e34f401c1d924c547a2a25e0ddaf",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/texts/circular_text.png": {
+    "mtime": 1785266774.5425024,
+    "ast_hash": "a51a37672ae48e453be4eaef10c3b235",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/texts/floating_tag.png": {
+    "mtime": 1785266774.5491517,
+    "ast_hash": "a51a37672ae48e453be4eaef10c3b235",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/texts/hollow_pill.png": {
+    "mtime": 1785266774.5510137,
+    "ast_hash": "a51a37672ae48e453be4eaef10c3b235",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/texts/minimal_bracket_text.png": {
+    "mtime": 1785266774.552014,
+    "ast_hash": "a51a37672ae48e453be4eaef10c3b235",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/texts/minimal_pill.png": {
+    "mtime": 1785266774.553017,
+    "ast_hash": "a51a37672ae48e453be4eaef10c3b235",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/texts/minimal_slash_text.png": {
+    "mtime": 1785266774.5540137,
+    "ast_hash": "a51a37672ae48e453be4eaef10c3b235",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/texts/minimal_tab.png": {
+    "mtime": 1785266774.5540137,
+    "ast_hash": "a51a37672ae48e453be4eaef10c3b235",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/texts/minimal_tooltip.png": {
+    "mtime": 1785266774.5550172,
+    "ast_hash": "a51a37672ae48e453be4eaef10c3b235",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/texts/sidebar_text.png": {
+    "mtime": 1785266774.5560129,
+    "ast_hash": "a51a37672ae48e453be4eaef10c3b235",
+    "semantic_hash": ""
+  },
+  "frontend/public/previews/texts/subtle_underline.png": {
+    "mtime": 1785266774.5570157,
+    "ast_hash": "a51a37672ae48e453be4eaef10c3b235",
+    "semantic_hash": ""
+  },
+  "frontend/public/web-app-manifest-192x192.png": {
+    "mtime": 1786207803.9657457,
+    "ast_hash": "fe2e66c6b9e28ba16020f2afea64d09e",
+    "semantic_hash": ""
+  },
+  "frontend/public/web-app-manifest-512x512.png": {
+    "mtime": 1786207803.9657457,
+    "ast_hash": "3f98be5d2a1774efd576b0919219b9e3",
+    "semantic_hash": ""
   }
 }
