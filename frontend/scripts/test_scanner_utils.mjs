@@ -34,7 +34,7 @@ console.log('Running Scanner Utils Test Suite...');
   assert.equal(getCreatorUrl('https://example.com', 'es'), '/es/?text=https%3A%2F%2Fexample.com');
   assert.equal(getCreatorUrl('https://example.com', 'pt'), '/pt/?text=https%3A%2F%2Fexample.com');
   assert.equal(getCreatorUrl('https://example.com', 'tr'), '/tr/?text=https%3A%2F%2Fexample.com');
-  assert.equal(getCreatorUrl(null, 'de'), '/de');
+  assert.equal(getCreatorUrl(null, 'de'), '/de/');
   assert.equal(getCreatorUrl(null, 'en'), '/');
   console.log('  ✓ localized getCreatorUrl passed across all locales');
 }

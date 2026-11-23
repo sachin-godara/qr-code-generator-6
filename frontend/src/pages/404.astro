@@ -41,11 +41,11 @@ const locale = defaultLocale;
         </div>
 
         <h2 class="text-3xl sm:text-4xl font-bold text-on-surface mb-4 tracking-tight">
-          {t(locale, 'errors.title404') || "Page Not Found"}
+          {t(locale, 'errors.title404', undefined, "Page Not Found")}
         </h2>
         
         <p class="text-lg text-on-surface-variant max-w-lg mx-auto mb-12">
-          {t(locale, 'errors.desc404') || "The page you are looking for has vanished, moved, or never existed. Let's get you back on track."}
+          {t(locale, 'errors.desc404', undefined, "The page you are looking for has vanished, moved, or never existed. Let's get you back on track.")}
         </p>
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">

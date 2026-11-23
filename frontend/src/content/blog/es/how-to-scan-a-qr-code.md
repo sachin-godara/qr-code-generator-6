@@ -91,11 +91,21 @@ Desliza hacia abajo desde la parte superior de la pantalla y pulsa el icono **Es
 
 ## Cómo Escanear desde una Captura o Imagen Guardada
 
-Si el código QR está en una foto dentro de tu propio teléfono:
+Si alguien te envía un código QR a través de una aplicación de mensajería, correo electrónico o publicación en redes sociales, no puedes apuntar la cámara a tu propia pantalla.
 
-- **En iPhone**: Abre la foto en **Fotos** y mantén pulsado el código QR (o toca el icono de **Texto en Vivo** en la esquina inferior).
-- **En Android**: Abre la imagen en **Google Fotos** y pulsa el botón **Lens**.
-- **En Ordenador (PC / Mac)**: Entra en [GenerateCustomQR Escáner](/es/escanear-codigo-qr/) y sube la imagen o presiona `Ctrl+V` para pegar desde el portapapeles.
+### En iPhone:
+1. Abre la captura en la app **Fotos**.
+2. Toca el **icono de Texto en Vivo** en la esquina inferior derecha o mantén presionado el código QR directamente.
+3. Toca la notificación emergente con el enlace para abrir la acción.
+
+### En Android:
+1. Abre la imagen en **Google Fotos**.
+2. Toca el icono de **Google Lens** en la barra inferior.
+3. Toca la URL identificada para abrir la acción.
+
+### En Ordenador (PC y Mac):
+1. Abre **[generatecustomqr.com/es/escanear-codigo-qr](/es/escanear-codigo-qr/)**.
+2. Arrastra y suelta la imagen en el recuadro del escáner, o pulsa `Ctrl + V` (`Cmd + V` en Mac) para pegar directamente desde el portapapeles.
 
 ## ¿Dónde está el Escáner de WhatsApp Web?
 

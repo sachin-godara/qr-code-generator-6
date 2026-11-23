@@ -196,7 +196,7 @@ export function parseQRContent(rawText: string): ParsedQRData {
     const chatUrl = `https://wa.me/${cleanPhone}${message ? `?text=${encodeURIComponent(message)}` : ''}`;
     return {
       type: 'whatsapp',
-      title: `WhatsApp: ${phone || 'Direct Chat'}`,
+      title: phone ? `WhatsApp: ${phone}` : 'WhatsApp',
       raw,
       whatsapp: { phone, message, chatUrl }
     };
@@ -210,14 +210,14 @@ export function parseQRContent(rawText: string): ParsedQRData {
       if (!match) return '';
       return match[1].replace(/\\([;:,\\])/g, '$1');
     };
-    const ssid = getField('S') || 'Unknown WiFi';
+    const ssid = getField('S') || '';
     const password = getField('P');
     const authType = getField('T') || 'WPA';
     const hidden = getField('H') === 'true';
 
     return {
       type: 'wifi',
-      title: `WiFi: ${ssid}`,
+      title: ssid ? `WiFi: ${ssid}` : 'WiFi',
       raw,
       wifi: { ssid, password, authType, hidden }
     };

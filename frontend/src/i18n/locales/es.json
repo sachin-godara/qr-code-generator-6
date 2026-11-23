@@ -786,6 +786,13 @@
     "networkPassword": "Contraseña de Red",
     "openNoPassword": "Abierta (Sin Contraseña)",
     "contactInfo": "Información de Contacto",
+    "faqSubtitle": "Todo lo que necesitas saber sobre el escaneo de códigos QR y códigos de barras online.",
+    "browsers": {
+      "chrome": "Chrome / Edge",
+      "safari": "Safari (iOS)",
+      "android": "Android",
+      "firefox": "Firefox"
+    },
     "permBlockedTitle": "Acceso a la Cámara Bloqueado",
     "permBlockedSubtitle": "El navegador recordó tu bloqueo. Desbloquéala en 2 pasos:",
     "permChromeStep1": "Haz clic en el Candado (🔒) o Ajustes en la barra de direcciones.",
@@ -871,7 +878,11 @@
       "eventsTitle": "Eventos de Calendario",
       "eventsDesc": "Resumen del evento, hora y lugar",
       "textTitle": "Texto Plano y JSON",
-      "textDesc": "Datos en texto sin formato y serializaciones"
+      "textDesc": "Datos en texto sin formato y serializaciones",
+      "waTitle": "WhatsApp Web y Chat Directo",
+      "waDesc": "Escanea enlaces wa.me para abrir conversaciones con texto prefijado al instante.",
+      "barcodeTitle": "Códigos de Barras 1D/2D y Aztec",
+      "barcodeDesc": "Lee DataMatrix, UPC, EAN, Aztec y Code-128 además de códigos QR estándar."
     },
     "ctaTitle": "¿Necesitas Crear un Código QR Personalizado?",
     "ctaDesc": "Genera códigos QR en alta resolución con logo, colores, degradados y marcos gratis.",
@@ -895,7 +906,8 @@
       "geoCoordinates": "Coordenadas Geográficas",
       "decodedContent": "Contenido Decodificado",
       "chatWhatsApp": "Chatear en WhatsApp",
-      "wifiCopied": "¡Contraseña de WiFi copiada!"
+      "wifiCopied": "¡Contraseña de WiFi copiada!",
+      "org": "Org"
     },
     "badges": {
       "websiteLink": "Enlace web",
@@ -907,7 +919,15 @@
       "smsMessage": "Mensaje SMS",
       "mapLocation": "Ubicación en mapa",
       "calendarEvent": "Evento de calendario",
-      "plainText": "Texto sin formato"
+      "plainText": "Texto sin formato",
+      "redirect": "Redirección Instantánea",
+      "chat": "Chat Directo",
+      "wifi": "Conexión en 1 Toque",
+      "vcard": "Agenda .vcf",
+      "gps": "GPS en Directo",
+      "cal": "Calendario .ics",
+      "barcode": "Multiformato",
+      "payload": "Datos Directos"
     },
     "safety": {
       "unencryptedHttp": "Conexión HTTP no cifrada",
@@ -934,7 +954,12 @@
       "calendar": "Calendario",
       "calendarIcs": "Calendario (.ics)",
       "vectorSvg": "SVG vectorial",
-      "scalable": "Escalable"
+      "scalable": "Escalable",
+      "subPng": "PNG 1024px",
+      "subTxt": "Archivo .TXT",
+      "subJson": "Objeto .JSON",
+      "subVcf": "Contacto .VCF",
+      "subIcs": "Evento .ICS"
     },
     "toasts": {
       "scanHistoryCleared": "Historial de escaneo borrado",
@@ -966,8 +991,20 @@
       "copyItemAria": "Copiar",
       "deleteItemAria": "Eliminar",
       "snapshotAria": "Capturar foto y ejecutar escaneo profundo con IA",
-      "resumeCameraAria": "Reanudar transmisión de cámara en vivo"
-    }
+      "resumeCameraAria": "Reanudar transmisión de cámara en vivo",
+      "uploadedPreview": "Vista previa del código QR subido",
+      "uploadedAttempt": "Intento de imagen subida"
+    },
+    "invalidImageFile": "Por favor, sube un archivo de imagen válido (PNG, JPG, WebP, GIF, SVG, BMP)",
+    "deepScanStepContrast": "Aplicando contraste con IA y visión por computador...",
+    "deepScanStepNeural": "Ejecutando modelo neuronal de códigos QR...",
+    "exploreTools": "Explora Generadores de Códigos QR Gratuitos",
+    "companionGuideBadge": "Guía Paso a Paso",
+    "companionGuideTitle": "Cómo Escanear un Código QR de una Captura de Pantalla",
+    "companionGuideDesc": "¿Tienes un código QR guardado en tu galería de fotos? Aprende a descifrarlo en iPhone y Android sin un segundo móvil.",
+    "companionGuideBtn": "Leer Guía de Capturas",
+    "builtinCamera": "Cámara Integrada",
+    "lensCamera": "Cámara / Google Lens"
   },
   "landing": {
     "heroTitle": "Generador de Códigos QR Gratis con Logo",
@@ -1153,5 +1190,12 @@
     "copyright": "© {year} GenerateCustomQR. Todos los derechos reservados.",
     "isoBadge": "Conforme al Estándar ISO/IEC 18004",
     "freeQR": "Generador Gratis"
+  },
+  "errors": {
+    "title404": "Página no encontrada",
+    "desc404": "La página que buscas ha desaparecido, se ha movido o nunca existió. Te ayudamos a volver.",
+    "title500": "Algo ha salido mal",
+    "desc500": "Hemos experimentado un error inesperado. Por favor, intenta recargar la página.",
+    "reload": "Recargar página"
   }
 }

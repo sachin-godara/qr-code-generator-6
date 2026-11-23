@@ -78,46 +78,71 @@ La forma más rápida y sin instalar nada es usar un decodificador web en el nav
 Apple incluye **Texto en Vivo y Detección de QR** directamente en la aplicación Fotos.
 
 ### Pasos:
-1. Toma una captura de pantalla del código QR (presiona **Botón Lateral + Subir Volumen**).
+1. Toma una captura de pantalla del código QR (presiona **Botón Lateral + Subir Volumen** en iPhones modernos o **Botón Superior + Inicio** en modelos anteriores).
 2. Abre la app **Fotos** y visualiza la captura.
 3. Busca en la esquina inferior derecha el **icono de Texto en Vivo** (tres líneas dentro de un marco).
-4. Toca directamente sobre el código QR en la imagen. Aparecerá un menú emergente con la URL y opciones (*Abrir en Safari*, *Copiar Enlace* o *Compartir*).
+4. Toca directamente sobre el código QR en la imagen. Aparecerá un menú emergente con la URL y opciones (*Abrir en Safari*, *Añadir a lista de lectura*, *Copiar Enlace* o *Compartir*).
+
+### ¿Qué hacer si no aparece el icono de QR en iPhone?
+- Abre **Ajustes → General → Idioma y región** y comprueba que **Texto en Vivo** esté **ACTIVADO**.
+- Si la captura tiene baja resolución, haz zoom pellizcando la pantalla sobre el código QR para que ocupe más espacio y vuelve a tocar el código.
 
 ---
 
 ## Método 3: Escanear Capturas en Android y Samsung
 
-En Android dispones de dos opciones principales: **Google Fotos (Google Lens)** y la **Galería Samsung**.
+En Android dispones de dos opciones principales: **Google Fotos (Google Lens)** y la **Galería Samsung con Bixby Vision**.
 
 ### Opción A: Con Google Fotos (Cualquier Android)
 1. Toma la captura de pantalla (**Encendido + Bajar Volumen**).
 2. Abre la app **Google Fotos** y selecciona la imagen.
 3. Toca el botón **Lens** en la barra inferior.
-4. Google Lens reconocerá el código QR y te mostrará un botón para abrir el enlace.
+4. Google Lens reconocerá el código QR automáticamente y te mostrará un botón para abrir el enlace.
 
 ### Opción B: Con la Galería de Samsung
 1. Abre la app **Galería** en tu dispositivo Samsung Galaxy.
 2. Abre la captura que contiene el código QR.
-3. Toca el icono amarillo de **"T"** o el icono de **Bixby Vision**.
-4. Pulsa en el enlace web resaltado para abrirlo.
+3. Toca el icono amarillo de **"T" (Texto/QR)** o el icono de **Bixby Vision**.
+4. Pulsa en el enlace web resaltado para abrirlo en el navegador.
 
 ---
 
 ## Método 4: Escanear Capturas en Windows y Mac
 
+Si estás trabajando en un ordenador portátil o de sobremesa y ves un código QR en un correo electrónico, documento PDF o chat:
+
 | Sistema Operativo | Atajo de Captura | Método Más Rápido |
 | :--- | :--- | :--- |
 | **Windows 11 / 10** | `Win + Shift + S` (Recortes) | Pegar en [Escáner Web](/es/escanear-codigo-qr/) (`Ctrl+V`) |
-| **macOS** | `Cmd + Shift + 4` | Abrir en Vista Previa (Texto en Vivo) o pegar en [Escáner Web](/es/escanear-codigo-qr/) |
+| **macOS (Sonoma / Sequoia)** | `Cmd + Shift + 4` | Abrir en Vista Previa (Texto en Vivo) o pegar en [Escáner Web](/es/escanear-codigo-qr/) |
+| **Google Chrome (Cualquier SO)** | Clic derecho en imagen | Clic derecho → *"Buscar imagen con Google"* |
+
+### En Windows (Herramienta Recortes + Escáner Web):
+1. Presiona `Win + Shift + S` y traza un rectángulo alrededor del código QR en tu pantalla.
+2. Abre **[generatecustomqr.com/es/escanear-codigo-qr](/es/escanear-codigo-qr/)**.
+3. Pulsa `Ctrl + V`. La imagen se pegará directamente desde tu portapapeles y se descifrará al instante.
 
 ---
 
 ## 4 Razones por las que una Captura Puede Fallar
 
-1. **Modo Oscuro Invertido**: Si el modo oscuro invirtió los colores a módulos blancos sobre fondo negro, algunas cámaras fallan.
-2. **Zona de Silencio Recortada**: Todo código QR necesita un margen blanco alrededor de sus 4 bordes. Deja al menos 20px de espacio libre.
-3. **Compresión en Apps de Mensajería**: Enviar capturas por WhatsApp comprime la imagen. Pide el archivo como "Documento".
-4. **Baja Resolución (< 150x150 px)**: Haz zoom en la pantalla antes de tomar la captura para que el código tenga suficiente nitidez.
+Si tu captura no se lee correctamente, revisa estas cuatro causas técnicas habituales:
+
+### 1. Colores Invertidos por el Modo Oscuro
+- Los lectores QR esperan **módulos oscuros sobre fondo claro**. Si el modo oscuro de tu móvil invirtió la imagen a puntos blancos sobre fondo negro, los algoritmos de cámara estándar fallarán.
+- *Solución*: Utiliza un escáner con detección de módulos invertidos (como el modo Deep Scan de GenerateCustomQR).
+
+### 2. Recorte de la Zona de Silencio
+- Todo código QR necesita un margen libre de elementos en sus cuatro bordes (la **Zona de Silencio** o Quiet Zone). Si recortas la captura justo en las esquinas de los ojos guía, el escáner no podrá orientar la matriz.
+- *Solución*: Captura un marco más amplio que incluya al menos 20–30 píxeles de espacio en blanco alrededor de todo el cuadrado.
+
+### 3. Compresión en Aplicaciones de Mensajería
+- Cuando te envían una captura por WhatsApp, Telegram o Messenger, la aplicación recomprime la imagen JPEG, difuminando los bordes nítidos de los módulos individuales.
+- *Solución*: Pide al remitente que envíe la imagen como **"Documento / Archivo sin comprimir"**, o amplía la pantalla original antes de hacer la captura.
+
+### 4. Resolución Insuficiente (< 150x150 px)
+- Si el código QR aparece diminuto en una captura de pantalla de monitor 4K, los módulos podrían medir apenas 1 o 2 píxeles de ancho.
+- *Solución*: Haz zoom en el navegador o visor PDF (`Ctrl + Más` o pellizco en pantalla) hasta que el código mida al menos 300 píxeles de ancho antes de capturarlo.
 
 ---
 

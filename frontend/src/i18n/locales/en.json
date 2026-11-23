@@ -786,6 +786,13 @@
     "networkPassword": "Network Password",
     "openNoPassword": "Open (No Password)",
     "contactInfo": "Contact Info",
+    "faqSubtitle": "Everything you need to know about scanning QR codes and barcodes online.",
+    "browsers": {
+      "chrome": "Chrome / Edge",
+      "safari": "Safari (iOS)",
+      "android": "Android",
+      "firefox": "Firefox"
+    },
     "permBlockedTitle": "Camera Access Blocked",
     "permBlockedSubtitle": "Your browser remembered your block choice. Unblock in 2 steps:",
     "permChromeStep1": "Click the Lock (🔒) / Settings icon in the address bar.",
@@ -870,7 +877,11 @@
       "eventsTitle": "Calendar Events",
       "eventsDesc": "Event summary, time, and location",
       "textTitle": "Plain Text & JSON",
-      "textDesc": "Raw text data and serializations"
+      "textDesc": "Raw text data and serializations",
+      "waTitle": "WhatsApp Web & Direct Chat",
+      "waDesc": "Scan wa.me links to initiate chats with pre-filled messages instantly.",
+      "barcodeTitle": "1D/2D Barcodes & Aztec",
+      "barcodeDesc": "Read DataMatrix, UPC, EAN, Aztec, and Code-128 alongside QR codes."
     },
     "ctaTitle": "Need to Create a Custom QR Code?",
     "ctaDesc": "Generate high-resolution QR codes with logos, colors, gradients, and custom frames for free.",
@@ -894,7 +905,8 @@
       "geoCoordinates": "Geographic Coordinates",
       "decodedContent": "Decoded Content",
       "chatWhatsApp": "Chat on WhatsApp",
-      "wifiCopied": "WiFi password copied!"
+      "wifiCopied": "WiFi password copied!",
+      "org": "Org"
     },
     "badges": {
       "websiteLink": "Website Link",
@@ -906,7 +918,15 @@
       "smsMessage": "SMS Message",
       "mapLocation": "Map Location",
       "calendarEvent": "Calendar Event",
-      "plainText": "Plain Text"
+      "plainText": "Plain Text",
+      "redirect": "Instant Redirect",
+      "chat": "Direct Chat",
+      "wifi": "1-Tap Connect",
+      "vcard": "Phonebook .vcf",
+      "gps": "Live GPS",
+      "cal": ".ics Calendar",
+      "barcode": "Multi-Format",
+      "payload": "Raw Payload"
     },
     "safety": {
       "unencryptedHttp": "Unencrypted HTTP connection",
@@ -933,7 +953,12 @@
       "calendar": "Calendar",
       "calendarIcs": "Calendar (.ics)",
       "vectorSvg": "Vector SVG",
-      "scalable": "Scalable"
+      "scalable": "Scalable",
+      "subPng": "PNG 1024px",
+      "subTxt": ".TXT File",
+      "subJson": ".JSON Object",
+      "subVcf": ".VCF Contact",
+      "subIcs": ".ICS Event"
     },
     "toasts": {
       "scanHistoryCleared": "Scan history cleared",
@@ -965,8 +990,21 @@
       "copyItemAria": "Copy",
       "deleteItemAria": "Delete",
       "snapshotAria": "Capture snapshot and run AI deep scan",
-      "resumeCameraAria": "Resume live camera feed"
-    }
+      "resumeCameraAria": "Resume live camera feed",
+      "uploadedPreview": "Uploaded QR preview",
+      "uploadedAttempt": "Uploaded image attempt"
+    },
+    "invalidImageFile": "Please upload a valid image file (PNG, JPG, WebP, GIF, SVG, BMP)",
+    "deepScanSuccess": "QR code decoded with multi-pass enhancement algorithm!",
+    "deepScanStepContrast": "Applying AI contrast & computer vision...",
+    "deepScanStepNeural": "Running neural QR model...",
+    "exploreTools": "Explore Free QR Code Generator Tools",
+    "companionGuideBadge": "Comprehensive Guide",
+    "companionGuideTitle": "How to Scan a QR Code from a Screenshot or Photo",
+    "companionGuideDesc": "Saved an image with a QR code in your camera roll? Learn how to extract and decode links without needing a second device.",
+    "companionGuideBtn": "Read Screenshot Guide",
+    "builtinCamera": "Built-in Camera",
+    "lensCamera": "Camera / Google Lens"
   },
   "landing": {
     "heroTitle": "Free Custom QR Code Generator with Logo",
@@ -1152,5 +1190,12 @@
     "copyright": "© {year} GenerateCustomQR. All rights reserved.",
     "isoBadge": "ISO/IEC 18004 Standard Compliant",
     "freeQR": "Free Generator"
+  },
+  "errors": {
+    "title404": "Page Not Found",
+    "desc404": "The page you are looking for has vanished, moved, or never existed. Let's get you back on track.",
+    "title500": "Something went wrong",
+    "desc500": "We experienced an unexpected error. Please try reloading the page.",
+    "reload": "Reload Page"
   }
 }

@@ -786,6 +786,13 @@
     "networkPassword": "WLAN-Passwort",
     "openNoPassword": "Offen (Kein Passwort)",
     "contactInfo": "Kontaktinformationen",
+    "faqSubtitle": "Alles Wissenswerte über das Scannen von QR-Codes und Barcodes im Browser.",
+    "browsers": {
+      "chrome": "Chrome / Edge",
+      "safari": "Safari (iOS)",
+      "android": "Android",
+      "firefox": "Firefox"
+    },
     "permBlockedTitle": "Kamerazugriff Blockiert",
     "permBlockedSubtitle": "Dein Browser hat die Blockierung gespeichert. In 2 Schritten entsperren:",
     "permChromeStep1": "Klicke auf das Schloss-Symbol (🔒) / Einstellungen in der Adressleiste.",
@@ -860,7 +867,7 @@
     "supportedTitle": "Unterstützte QR-Code-Inhalte",
     "supportedSub": "Unser Scanner erkennt und verarbeitet automatisch alle gängigen QR-Formate.",
     "formats": {
-      "urlsTitle": "Websites & URLs",
+      "urlsTitle": "Webseiten & URLs",
       "urlsDesc": "Direkte Weiterleitung im Browser",
       "wifiTitle": "WLAN-Netzwerke",
       "wifiDesc": "1-Klick-Verbindung ohne Passworteingabe",
@@ -871,7 +878,11 @@
       "eventsTitle": "Kalenderevents",
       "eventsDesc": "Termine mit Datum, Zeit und Ort",
       "textTitle": "Reiner Text & JSON",
-      "textDesc": "Textinhalte und Formatierungen"
+      "textDesc": "Textinhalte und Formatierungen",
+      "waTitle": "WhatsApp Web & Direkt-Chat",
+      "waDesc": "Scannen Sie wa.me-Links für sofortige Chat-Starts mit vorausgefülltem Text.",
+      "barcodeTitle": "1D/2D-Barcodes & Aztec",
+      "barcodeDesc": "Liest neben QR-Codes auch DataMatrix, UPC, EAN, Aztec und Code-128."
     },
     "ctaTitle": "Möchten Sie einen eigenen QR-Code erstellen?",
     "ctaDesc": "Erstellen Sie hochauflösende QR-Codes mit Logos, Farben, Verläufen und Rahmen kostenlos.",
@@ -895,7 +906,8 @@
       "geoCoordinates": "Geografische Koordinaten",
       "decodedContent": "Decodierter Inhalt",
       "chatWhatsApp": "Auf WhatsApp chatten",
-      "wifiCopied": "WLAN-Passwort kopiert!"
+      "wifiCopied": "WLAN-Passwort kopiert!",
+      "org": "Firma"
     },
     "badges": {
       "websiteLink": "Webseiten-Link",
@@ -907,7 +919,15 @@
       "smsMessage": "SMS-Nachricht",
       "mapLocation": "Kartenstandort",
       "calendarEvent": "Kalenderereignis",
-      "plainText": "Reiner Text"
+      "plainText": "Reiner Text",
+      "redirect": "Sofort-Weiterleitung",
+      "chat": "Direkt-Chat",
+      "wifi": "1-Klick-Verbindung",
+      "vcard": "Adressbuch .vcf",
+      "gps": "Live-Standort",
+      "cal": ".ics-Kalender",
+      "barcode": "Multiformat",
+      "payload": "Rohdaten"
     },
     "safety": {
       "unencryptedHttp": "Unverschlüsselte HTTP-Verbindung",
@@ -934,7 +954,12 @@
       "calendar": "Kalender",
       "calendarIcs": "Kalender (.ics)",
       "vectorSvg": "Vektor-SVG",
-      "scalable": "Skalierbar"
+      "scalable": "Skalierbar",
+      "subPng": "PNG 1024px",
+      "subTxt": ".TXT-Datei",
+      "subJson": ".JSON-Objekt",
+      "subVcf": ".VCF-Kontakt",
+      "subIcs": ".ICS-Termin"
     },
     "toasts": {
       "scanHistoryCleared": "Scan-Verlauf gelöscht",
@@ -966,8 +991,20 @@
       "copyItemAria": "Kopieren",
       "deleteItemAria": "Löschen",
       "snapshotAria": "Schnappschuss aufnehmen und KI-Tiefenscan starten",
-      "resumeCameraAria": "Live-Kamera-Feed fortsetzen"
-    }
+      "resumeCameraAria": "Live-Kamera-Feed fortsetzen",
+      "uploadedPreview": "Vorschau des hochgeladenen QR-Codes",
+      "uploadedAttempt": "Versuch mit hochgeladenem Bild"
+    },
+    "invalidImageFile": "Bitte laden Sie eine gültige Bilddatei hoch (PNG, JPG, WebP, GIF, SVG, BMP)",
+    "deepScanStepContrast": "KI-Kontrastoptimierung & Computer Vision werden angewendet...",
+    "deepScanStepNeural": "Neuronales QR-Erkennungsmodell wird ausgeführt...",
+    "exploreTools": "Weitere kostenlose QR-Code Generatoren entdecken",
+    "companionGuideBadge": "Schritt-für-Schritt Anleitung",
+    "companionGuideTitle": "QR-Code von Screenshot oder Foto scannen: So funktioniert's",
+    "companionGuideDesc": "QR-Code als Screenshot in der Fotogalerie gespeichert? So dekodieren Sie ihn direkt auf iPhone und Android ohne Zweitgerät.",
+    "companionGuideBtn": "Screenshot-Ratgeber lesen",
+    "builtinCamera": "Integrierte Kamera",
+    "lensCamera": "Kamera / Google Lens"
   },
   "landing": {
     "heroTitle": "Kostenloser QR-Code Generator mit Logo",
@@ -1153,5 +1190,12 @@
     "copyright": "© {year} GenerateCustomQR. Alle Rechte vorbehalten.",
     "isoBadge": "ISO/IEC 18004 Standardkonform",
     "freeQR": "Kostenloser Generator"
+  },
+  "errors": {
+    "title404": "Seite nicht gefunden",
+    "desc404": "Die gesuchte Seite ist nicht vorhanden, wurde verschoben oder existiert nicht mehr. Kehren Sie zur Startseite zurück.",
+    "title500": "Etwas ist schiefgelaufen",
+    "desc500": "Es ist ein unerwarteter Fehler aufgetreten. Bitte laden Sie die Seite neu.",
+    "reload": "Seite neu laden"
   }
 }

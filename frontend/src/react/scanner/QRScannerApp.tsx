@@ -77,6 +77,31 @@ import { TranslationProvider, useTranslation } from '../../i18n/useTranslation';
 const STORAGE_KEY = 'genqr_scan_history_v1';
 const TAB_PREF_KEY = 'genqr_scanner_tab';
 
+function getHistoryItemTitle(item: ScanHistoryItem, t: (key: string) => string): string {
+  if (item.type === 'vcard') {
+    if (!item.title || item.title === 'Contact Card (vCard)' || item.title === 'vCard Contact' || item.title === 'vCard') {
+      return t('scanner.badges.contactCard');
+    }
+  } else if (item.type === 'whatsapp') {
+    if (!item.title || item.title === 'WhatsApp: Direct Chat' || item.title === 'WhatsApp' || item.title.includes('Direct Chat')) {
+      return t('scanner.badges.whatsappChat');
+    }
+  } else if (item.type === 'wifi') {
+    if (!item.title || item.title === 'WiFi: Unknown WiFi' || item.title === 'WiFi: WiFi Network' || item.title === 'WiFi') {
+      return t('scanner.badges.wifiCredentials');
+    }
+  } else if (item.type === 'geo') {
+    if (!item.title || item.title === 'Google Maps Location' || item.title === 'Location' || item.title.startsWith('Location:')) {
+      return t('scanner.badges.mapLocation');
+    }
+  } else if (item.type === 'event') {
+    if (!item.title || item.title === 'Calendar Event' || item.title === 'Event') {
+      return t('scanner.badges.calendarEvent');
+    }
+  }
+  return item.title || t('scanner.results.decodedContent');
+}
+
 function QRScannerAppContent() {
   const { t, locale } = useTranslation();
   const [scanResult, setScanResult] = useState<string | null>(null);
@@ -87,7 +112,7 @@ function QRScannerAppContent() {
   const [cameraRequested, setCameraRequested] = useState(false);
   const [uploadedImagePreview, setUploadedImagePreview] = useState<string | null>(null);
   const [isDeepScanning, setIsDeepScanning] = useState(false);
-  const [deepScanStep, setDeepScanStep] = useState<string>('Analyzing image...');
+  const [deepScanStep, setDeepScanStep] = useState<string>(() => t('scanner.deepScanAnalyzing'));
   const [isGeneratingDownloadQR, setIsGeneratingDownloadQR] = useState(false);
 
   // Extra UX features
@@ -469,7 +494,7 @@ function QRScannerAppContent() {
       await stopCamera();
       handleScanSuccess(decodedText);
     } catch (err: any) {
-      setError(err?.message || t('scanner.deepScanFrameFailed'));
+      setError(t('scanner.deepScanFrameFailed'));
     } finally {
       setIsDeepScanning(false);
     }
@@ -575,7 +600,7 @@ function QRScannerAppContent() {
   // Process any File (from input, drop, or clipboard paste)
   const processImageFile = async (file: File) => {
     if (!file.type.startsWith('image/')) {
-      setError("Please upload a valid image file (PNG, JPG, WebP, GIF, SVG, BMP)");
+      setError(t('scanner.invalidImageFile'));
       return;
     }
 
@@ -592,11 +617,11 @@ function QRScannerAppContent() {
     } catch (err) {
       // Level 3: Backend Deep Scan
       setIsDeepScanning(true);
-      setDeepScanStep('Applying AI contrast & computer vision...');
+      setDeepScanStep(t('scanner.deepScanStepContrast'));
       setError(null);
       
       const stepTimer = setTimeout(() => {
-        setDeepScanStep('Running neural QR model...');
+        setDeepScanStep(t('scanner.deepScanStepNeural'));
       }, 1200);
 
       try {
@@ -606,7 +631,7 @@ function QRScannerAppContent() {
         handleScanSuccess(decodedText);
       } catch (backendErr: any) {
         clearTimeout(stepTimer);
-        setError(backendErr.message || "Could not detect a clear QR code. Please try a higher contrast image or adjust lighting.");
+        setError(t('scanner.noQrFound'));
       } finally {
         setIsDeepScanning(false);
       }
@@ -1044,7 +1069,7 @@ function QRScannerAppContent() {
                               permissionBrowserTab === 'chrome' ? 'bg-white text-zinc-900 shadow-2xs' : 'text-zinc-500 hover:text-zinc-800'
                             }`}
                           >
-                            Chrome / Edge
+                            {t("scanner.browsers.chrome")}
                           </button>
                           <button
                             onClick={() => setPermissionBrowserTab('safari')}
@@ -1052,7 +1077,7 @@ function QRScannerAppContent() {
                               permissionBrowserTab === 'safari' ? 'bg-white text-zinc-900 shadow-2xs' : 'text-zinc-500 hover:text-zinc-800'
                             }`}
                           >
-                            Safari (iOS)
+                            {t("scanner.browsers.safari")}
                           </button>
                           <button
                             onClick={() => setPermissionBrowserTab('android')}
@@ -1060,7 +1085,15 @@ function QRScannerAppContent() {
                               permissionBrowserTab === 'android' ? 'bg-white text-zinc-900 shadow-2xs' : 'text-zinc-500 hover:text-zinc-800'
                             }`}
                           >
-                            Android
+                            {t("scanner.browsers.android")}
+                          </button>
+                          <button
+                            onClick={() => setPermissionBrowserTab('firefox')}
+                            className={`px-2 py-1 rounded-lg text-[10px] font-bold transition-all cursor-pointer ${
+                              permissionBrowserTab === 'firefox' ? 'bg-white text-zinc-900 shadow-2xs' : 'text-zinc-500 hover:text-zinc-800'
+                            }`}
+                          >
+                            {t("scanner.browsers.firefox")}
                           </button>
                         </div>
 
@@ -1290,7 +1323,7 @@ function QRScannerAppContent() {
                   <div className="w-32 h-32 sm:w-40 sm:h-40 rounded-2xl overflow-hidden relative mb-4 border border-outline-variant/60 bg-neutral-950 flex items-center justify-center shadow-inner">
                     <img 
                       src={uploadedImagePreview} 
-                      alt="Uploaded QR preview" 
+                      alt={t("scanner.aria.uploadedPreview")} 
                       className="w-full h-full object-contain opacity-50" 
                     />
                     <div className="absolute inset-0 flex flex-col items-center justify-center p-4 bg-black/40 text-white backdrop-blur-xs">
@@ -1317,7 +1350,7 @@ function QRScannerAppContent() {
                     <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-2xl overflow-hidden border-2 border-error/40 shadow-inner bg-surface flex items-center justify-center">
                       <img 
                         src={uploadedImagePreview} 
-                        alt="Uploaded attempt" 
+                        alt={t("scanner.aria.uploadedAttempt")} 
                         className="w-full h-full object-contain p-1 opacity-75" 
                       />
                     </div>
@@ -1595,7 +1628,7 @@ function QRScannerAppContent() {
               {parsedData?.type === 'url' && (
                 <div className="space-y-2.5 sm:space-y-3">
                   <div>
-                    <h4 className="font-black text-on-surface text-base sm:text-lg break-all">{parsedData.domain || 'Website'}</h4>
+                    <h4 className="font-black text-on-surface text-base sm:text-lg break-all">{parsedData.domain || t('scanner.formats.urlsTitle')}</h4>
                     <p className="text-xs text-on-surface-variant mt-0.5">{t('scanner.results.clickOpenWebsite')}</p>
                   </div>
 
@@ -1628,7 +1661,7 @@ function QRScannerAppContent() {
                 <div className="space-y-2.5 sm:space-y-3">
                   <div>
                     <p className="text-[11px] sm:text-xs font-bold text-emerald-600 uppercase tracking-wider">{t('scanner.results.whatsappContact')}</p>
-                    <h4 className="font-black text-on-surface text-base sm:text-lg">{parsedData.whatsapp?.phone || 'Direct Chat'}</h4>
+                    <h4 className="font-black text-on-surface text-base sm:text-lg">{parsedData.whatsapp?.phone || t('scanner.badges.chat')}</h4>
                   </div>
 
                   {parsedData.whatsapp?.message && (
@@ -1699,7 +1732,7 @@ function QRScannerAppContent() {
                     )}
                     {parsedData.vcard?.org && (
                       <div className="flex items-center gap-2 text-on-surface">
-                        <span className="text-[11px] font-bold text-on-surface-variant uppercase shrink-0">Org:</span>
+                        <span className="text-[11px] font-bold text-on-surface-variant uppercase shrink-0">{t("scanner.results.org")}:</span>
                         <span className="truncate">{parsedData.vcard.org} {parsedData.vcard.title ? `(${parsedData.vcard.title})` : ''}</span>
                       </div>
                     )}
@@ -1964,7 +1997,7 @@ function QRScannerAppContent() {
                     {isGeneratingDownloadQR ? <Loader2 size={14} className="animate-spin" /> : <QrCode size={14} />}
                   </div>
                   <span className="text-[11px] sm:text-xs font-bold text-on-surface">{t("scanner.downloads.qrImage")}</span>
-                  <span className="text-[9px] sm:text-[10px] text-on-surface-variant">PNG 1024px</span>
+                  <span className="text-[9px] sm:text-[10px] text-on-surface-variant">{t("scanner.downloads.subPng")}</span>
                 </motion.button>
 
                 {/* Download Option 2: Plain Text */}
@@ -1979,7 +2012,7 @@ function QRScannerAppContent() {
                     <FileText size={14} />
                   </div>
                   <span className="text-[11px] sm:text-xs font-bold text-on-surface">{t("scanner.downloads.rawText")}</span>
-                  <span className="text-[9px] sm:text-[10px] text-on-surface-variant">.TXT File</span>
+                  <span className="text-[9px] sm:text-[10px] text-on-surface-variant">{t("scanner.downloads.subTxt")}</span>
                 </motion.button>
 
                 {/* Download Option 3: Structured JSON */}
@@ -1994,7 +2027,7 @@ function QRScannerAppContent() {
                     <FileCode size={14} />
                   </div>
                   <span className="text-[11px] sm:text-xs font-bold text-on-surface">{t("scanner.downloads.metadata")}</span>
-                  <span className="text-[9px] sm:text-[10px] text-on-surface-variant">.JSON Object</span>
+                  <span className="text-[9px] sm:text-[10px] text-on-surface-variant">{t("scanner.downloads.subJson")}</span>
                 </motion.button>
 
                 {/* Download Option 4: Dynamic (vCard / Event / Vector SVG) */}
@@ -2010,7 +2043,7 @@ function QRScannerAppContent() {
                       <User size={14} />
                     </div>
                     <span className="text-[11px] sm:text-xs font-bold text-on-surface">{t("scanner.downloads.vcard")}</span>
-                    <span className="text-[9px] sm:text-[10px] text-on-surface-variant">.VCF Contact</span>
+                    <span className="text-[9px] sm:text-[10px] text-on-surface-variant">{t("scanner.downloads.subVcf")}</span>
                   </motion.button>
                 ) : parsedData?.type === 'event' ? (
                   <motion.button
@@ -2024,7 +2057,7 @@ function QRScannerAppContent() {
                       <Calendar size={14} />
                     </div>
                     <span className="text-[11px] sm:text-xs font-bold text-on-surface">{t("scanner.downloads.calendar")}</span>
-                    <span className="text-[9px] sm:text-[10px] text-on-surface-variant">.ICS Event</span>
+                    <span className="text-[9px] sm:text-[10px] text-on-surface-variant">{t("scanner.downloads.subIcs")}</span>
                   </motion.button>
                 ) : (
                   <motion.button
@@ -2098,7 +2131,7 @@ function QRScannerAppContent() {
                     className="flex items-center justify-between p-2.5 sm:p-3 bg-surface rounded-xl border border-outline-variant/50 hover:border-primary/50 transition-colors text-xs"
                   >
                     <div className="min-w-0 flex-1 pr-2">
-                      <p className="font-bold text-on-surface truncate">{item.title}</p>
+                      <p className="font-bold text-on-surface truncate">{getHistoryItemTitle(item, t)}</p>
                       <p className="text-[10px] sm:text-[11px] text-on-surface-variant font-mono truncate">{item.raw}</p>
                     </div>
                     <div className="flex items-center gap-1 shrink-0">

@@ -41,11 +41,11 @@ const locale = defaultLocale;
         </div>
 
         <h2 class="text-3xl sm:text-4xl font-bold text-on-surface mb-4 tracking-tight">
-          {t(locale, 'errors.title500') || "Something went wrong"}
+          {t(locale, 'errors.title500', undefined, "Something went wrong")}
         </h2>
         
         <p class="text-lg text-on-surface-variant max-w-lg mx-auto mb-12">
-          {t(locale, 'errors.desc500') || "We experienced an unexpected error. Please try reloading the page."}
+          {t(locale, 'errors.desc500', undefined, "We experienced an unexpected error. Please try reloading the page.")}
         </p>
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -54,7 +54,7 @@ const locale = defaultLocale;
             class="w-full sm:w-auto px-8 py-4 bg-primary text-white font-bold rounded-2xl hover:bg-primary-hover hover:scale-105 active:scale-95 transition-all duration-300 shadow-lg hover:shadow-primary/25 flex items-center justify-center gap-2 cursor-pointer"
           >
             <span class="material-symbols-outlined">refresh</span>
-            {t(locale, 'errors.reload') || "Reload Page"}
+            {t(locale, 'errors.reload', undefined, "Reload Page")}
           </button>
           <a
             href={getLocalizedUrl(locale, '/')}

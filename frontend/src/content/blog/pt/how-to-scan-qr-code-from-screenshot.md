@@ -77,45 +77,72 @@ A forma mais simples sem instalar nenhum aplicativo é usar um decodificador no 
 
 O iOS possui detecção nativa de **Texto ao Vivo e QR Codes** no aplicativo Fotos:
 
-1. Tire um print da tela (**Botão Lateral + Aumentar Volume**).
+### Passos:
+1. Tire um print da tela (**Botão Lateral + Aumentar Volume** em iPhones recentes ou **Botão Superior + Início** em modelos clássicos).
 2. Abra o app **Fotos** e selecione a captura de tela.
 3. Toque no ícone de **Texto ao Vivo** (três linhas no quadrado) no canto inferior direito.
-4. Toque diretamente sobre o código QR para abrir o menu com as opções (*Abrir no Safari*, *Copiar Link*, *Compartilhar*).
+4. Toque diretamente sobre o código QR para abrir o menu com as opções (*Abrir no Safari*, *Adicionar à Lista de Leitura*, *Copiar Link*, *Compartilhar*).
+
+### E se o ícone de QR não aparecer no iPhone?
+- Abra **Ajustes → Geral → Idioma e Região** e verifique se o **Texto ao Vivo** está **ATIVADO**.
+- Se a captura estiver com resolução baixa, dê zoom com o gesto de pinça no código QR para que ele ocupe mais espaço na tela e toque novamente.
 
 ---
 
 ## Método 3: Escanear Prints no Android e Samsung
 
+No Android você conta com duas opções nativas: o **Google Fotos (Google Lens)** e a **Galeria Samsung com Bixby Vision**.
+
 ### Opção A: Usando o Google Fotos (Google Lens)
 1. Tire o print da tela (**Ligar/Desligar + Diminuir Volume**).
 2. Abra o app **Google Fotos** e abra a imagem.
 3. Toque no botão **Lens** na barra inferior.
-4. O Google Lens reconhece o código QR automaticamente e exibe o botão clicável.
+4. O Google Lens reconhece o código QR automaticamente e exibe o botão clicável para abrir o link.
 
 ### Opção B: Usando a Galeria da Samsung
 1. Abra o app **Galeria** no seu Samsung Galaxy.
 2. Abra o print com o código QR.
-3. Toque no ícone amarelo **"T"** ou no ícone do **Bixby Vision**.
-4. Toque no link em destaque.
+3. Toque no ícone amarelo **"T" (Texto/QR)** ou no ícone do **Bixby Vision**.
+4. Toque no link em destaque para abrir no navegador.
 
 ---
 
 ## Método 4: Escanear Prints no Windows PC e Mac
 
+Se você estiver em um notebook ou computador e visualizar um QR code em um e-mail, PDF ou mensagem:
+
 | Sistema Operativo | Atalho de Captura de Tela | Método Mais Rápido |
 | :--- | :--- | :--- |
 | **Windows 11 / 10** | `Win + Shift + S` (Ferramenta de Captura) | Colar no [Leitor Web](/pt/escanear-qr-code/) (`Ctrl+V`) |
-| **macOS** | `Cmd + Shift + 4` | Abrir no Pré-Visualização (Texto ao Vivo) ou colar no [Leitor Web](/pt/escanear-qr-code/) |
-| **Google Chrome (Todos)** | Botão direito na imagem | *"Pesquisar imagem com o Google"* |
+| **macOS (Sonoma / Sequoia)** | `Cmd + Shift + 4` | Abrir no Pré-Visualização (Texto ao Vivo) ou colar no [Leitor Web](/pt/escanear-qr-code/) |
+| **Google Chrome (Todos)** | Botão direito na imagem | Botão direito → *"Pesquisar imagem com o Google"* |
+
+### No Windows (Ferramenta de Captura + Leitor Web):
+1. Pressione `Win + Shift + S` e selecione a área do código QR na tela.
+2. Acesse **[generatecustomqr.com/pt/escanear-qr-code](/pt/escanear-qr-code/)**.
+3. Pressione `Ctrl + V`. A imagem da área de transferência será colada e decodificada na hora.
 
 ---
 
 ## 4 Motivos Pelos Quais um Print Pode Falhar
 
-1. **Modo Escuro Invertido**: Módulos brancos em fundo preto falham em leitores simples.
-2. **Margem de Respiro Cortada**: Deixe sempre pelo menos 20px de margem branca ao redor do código.
-3. **Compressão em Mensagens**: O WhatsApp comprime imagens JPEG; peça o arquivo enviado como "Documento".
-4. **Baixa Resolução (< 150x150 px)**: Dê zoom na tela antes de tirar o print.
+Se o seu print não puder ser lido, verifique estas quatro causas técnicas comuns:
+
+### 1. Cores Invertidas pelo Modo Escuro
+- Os leitores de QR esperam **módulos escuros sobre fundo claro**. Se o modo noturno do celular inverteu a imagem para pontos brancos em fundo preto, os leitores convencionais falham.
+- *Solução*: Utilize um leitor com suporte a matriz invertida (como o modo Deep Scan do GenerateCustomQR).
+
+### 2. Corte da Zona de Silêncio (Borda Livre)
+- Todo QR code exige uma margem livre de elementos ao redor de suas 4 bordas (a **Zona de Silêncio**). Se a imagem for cortada rente aos olhos guia das pontas, o leitor não consegue calibrar a orientação.
+- *Solução*: Tire um print mais espaçoso que mantenha pelo menos 20 a 30 pixels de margem branca contínua em toda a volta.
+
+### 3. Compressão em Aplicativos de Mensagens
+- Ao receber prints pelo WhatsApp, Telegram ou Messenger, o aplicativo comprime o arquivo JPEG, borrando os cantos nítidos dos módulos quadrados.
+- *Solução*: Peça para enviarem a imagem como **"Documento / Arquivo sem compactação"**, ou aproxime a tela antes de tirar o print.
+
+### 4. Baixa Resolução (< 150x150 px)
+- Se o QR code ficar minúsculo em um print de tela 4K, cada módulo pode ter apenas 1 ou 2 pixels.
+- *Solução*: Aumente o zoom no navegador ou leitor de PDF (`Ctrl + Mais` ou pinça na tela) até o QR code ter pelo menos 300 pixels de largura antes de capturar.
 
 ---
 

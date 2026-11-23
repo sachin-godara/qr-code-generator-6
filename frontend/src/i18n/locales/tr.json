@@ -786,6 +786,13 @@
     "networkPassword": "Ağ Şifresi",
     "openNoPassword": "Açık (Şifresiz)",
     "contactInfo": "İletişim Bilgileri",
+    "faqSubtitle": "QR kodları ve barkodları online tarama hakkında bilmeniz gereken her şey.",
+    "browsers": {
+      "chrome": "Chrome / Edge",
+      "safari": "Safari (iOS)",
+      "android": "Android",
+      "firefox": "Firefox"
+    },
     "permBlockedTitle": "Kamera Erişimi Engellendi",
     "permBlockedSubtitle": "Tarayıcınız engelleme tercihinizi hatırladı. 2 adımda engeli kaldırın:",
     "permChromeStep1": "Adres çubuğundaki Kilit (🔒) / Ayarlar simgesine tıklayın.",
@@ -870,7 +877,11 @@
       "eventsTitle": "Takvim Etkinlikleri",
       "eventsDesc": "Etkinlik özeti, zamanı ve konumu",
       "textTitle": "Düz Metin & JSON",
-      "textDesc": "Ham metin verileri ve serileştirmeler"
+      "textDesc": "Ham metin verileri ve serileştirmeler",
+      "waTitle": "WhatsApp Web & Doğrudan Sohbet",
+      "waDesc": "Hazır mesajlı sohbetleri anında başlatmak için wa.me bağlantılarını tarayın.",
+      "barcodeTitle": "1D/2D Barkodlar & Aztec",
+      "barcodeDesc": "QR kodların yanı sıra DataMatrix, UPC, EAN, Aztec ve Code-128 okuyun."
     },
     "ctaTitle": "Özel Bir QR Kod Oluşturmanız mı Gerekiyor?",
     "ctaDesc": "Logolar, renkler, degradeler ve özel çerçevelerle ücretsiz yüksek çözünürlüklü QR kodları oluşturun.",
@@ -894,7 +905,8 @@
       "geoCoordinates": "Coğrafi Koordinatlar",
       "decodedContent": "Çözülen İçerik",
       "chatWhatsApp": "WhatsApp'ta Sohbet Başlat",
-      "wifiCopied": "WiFi şifresi kopyalandı!"
+      "wifiCopied": "WiFi şifresi kopyalandı!",
+      "org": "Kurum"
     },
     "badges": {
       "websiteLink": "Web Sitesi Bağlantısı",
@@ -906,7 +918,15 @@
       "smsMessage": "SMS Mesajı",
       "mapLocation": "Harita Konumu",
       "calendarEvent": "Takvim Etkinliği",
-      "plainText": "Düz Metin"
+      "plainText": "Düz Metin",
+      "redirect": "Anında Yönlendirme",
+      "chat": "Doğrudan Sohbet",
+      "wifi": "Tek Dokunuşla Bağlan",
+      "vcard": "Rehber .vcf",
+      "gps": "Canlı GPS",
+      "cal": ".ics Takvim",
+      "barcode": "Çoklu Format",
+      "payload": "Ham Veri"
     },
     "safety": {
       "unencryptedHttp": "Şifrelenmemiş HTTP bağlantısı",
@@ -933,7 +953,12 @@
       "calendar": "Takvim",
       "calendarIcs": "Takvim (.ics)",
       "vectorSvg": "Vektör SVG",
-      "scalable": "Ölçeklenebilir"
+      "scalable": "Ölçeklenebilir",
+      "subPng": "PNG 1024px",
+      "subTxt": ".TXT Dosyası",
+      "subJson": ".JSON Objesi",
+      "subVcf": ".VCF Kişi Kartı",
+      "subIcs": ".ICS Etkinliği"
     },
     "toasts": {
       "scanHistoryCleared": "Tarama geçmişi temizlendi",
@@ -965,8 +990,21 @@
       "copyItemAria": "Kopyala",
       "deleteItemAria": "Sil",
       "snapshotAria": "Enstantane çek ve yapay zeka derin taramasını çalıştır",
-      "resumeCameraAria": "Canlı kamera akışına devam et"
-    }
+      "resumeCameraAria": "Canlı kamera akışına devam et",
+      "uploadedPreview": "Yüklenen QR kod önizlemesi",
+      "uploadedAttempt": "Yüklenen görsel denemesi"
+    },
+    "invalidImageFile": "Lütfen geçerli bir resim dosyası yükleyin (PNG, JPG, WebP, GIF, SVG, BMP)",
+    "deepScanSuccess": "QR kodu çok aşamalı iyileştirme algoritması ile çözüldü!",
+    "deepScanStepContrast": "Yapay zeka kontrastı ve bilgisayarlı görü uygulanıyor...",
+    "deepScanStepNeural": "Yapay sinir ağı QR modeli çalıştırılıyor...",
+    "exploreTools": "Ücretsiz QR Kod Oluşturucu Araçlarını Keşfedin",
+    "companionGuideBadge": "Adım Adım Rehber",
+    "companionGuideTitle": "Ekran Görüntüsünden veya Fotoğraftan QR Kod Nasıl Taranır?",
+    "companionGuideDesc": "Galerinizde kayıtlı bir QR kod fotoğrafı mı var? İkinci bir cihaza gerek kalmadan doğrudan telefonunuzdan taramayı öğrenin.",
+    "companionGuideBtn": "Ekran Görüntüsü Rehberini Oku",
+    "builtinCamera": "Dahili Kamera",
+    "lensCamera": "Kamera / Google Lens"
   },
   "landing": {
     "heroTitle": "Logolu Ücretsiz Özel QR Kod Oluşturucu",
@@ -1152,5 +1190,12 @@
     "copyright": "© {year} GenerateCustomQR. Tüm hakları saklıdır.",
     "isoBadge": "ISO/IEC 18004 Standart Uyumlu",
     "freeQR": "Ücretsiz Oluşturucu"
+  },
+  "errors": {
+    "title404": "Sayfa Bulunamadı",
+    "desc404": "Aradığınız sayfa taşınmış, silinmiş veya hiç var olmamış olabilir. Ana sayfaya dönerek devam edebilirsiniz.",
+    "title500": "Bir hata oluştu",
+    "desc500": "Beklenmeyen bir hata meydana geldi. Lütfen sayfayı yenilemeyi deneyin.",
+    "reload": "Sayfayı Yenile"
   }
 }

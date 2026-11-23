@@ -77,14 +77,21 @@ Die einfachste Methode ohne Installation ist ein browserbasierter QR-Decoder wie
 
 Apple hat **Live-Text & QR-Erkennung** direkt in die Fotos-App integriert:
 
-1. Erstellen Sie einen Screenshot (**Seitentaste + Lauter** auf aktuellen iPhones).
+### Schritte:
+1. Erstellen Sie einen Screenshot (**Seitentaste + Lauter** auf aktuellen iPhones oder **Obere Taste + Home** auf älteren Modellen).
 2. Öffnen Sie die **Fotos-App** und wählen Sie den Screenshot aus.
-3. Achten Sie auf das **Live-Text-Symbol** (drei Linien im Kasten) unten rechts.
-4. Tippen Sie direkt auf den QR-Code im Bild, um die Optionen (*In Safari öffnen*, *Link kopieren*, *Teilen*) aufzurufen.
+3. Achten Sie auf das **Live-Text-Symbol** (drei horizontale Linien im Kasten) unten rechts.
+4. Tippen Sie direkt auf den QR-Code im Bild. Es öffnet sich ein Menü mit der Ziel-URL und Aktionen (*In Safari öffnen*, *Zur Leseliste hinzufügen*, *Link kopieren*, *Teilen*).
+
+### Was tun, wenn das QR-Symbol auf dem iPhone nicht erscheint?
+- Öffnen Sie **Einstellungen → Allgemein → Sprache & Region** und stellen Sie sicher, dass **Live-Text** aktiviert (**EIN**) ist.
+- Wenn der Screenshot eine niedrige Auflösung hat, zoomen Sie mit zwei Fingern in den QR-Code hinein, damit er mehr Bildschirmfläche einnimmt, und tippen Sie erneut darauf.
 
 ---
 
 ## Methode 3: Screenshot auf Android & Samsung scannen
+
+Android bietet zwei integrierte Methoden: **Google Fotos (Google Lens)** und die native **Samsung Galerie mit Bixby Vision**.
 
 ### Option A: Mit Google Fotos (Google Lens)
 1. Erstellen Sie einen Screenshot (**Ein/Aus + Leiser**).
@@ -96,26 +103,46 @@ Apple hat **Live-Text & QR-Erkennung** direkt in die Fotos-App integriert:
 1. Öffnen Sie die **Galerie-App** auf Ihrem Samsung Galaxy.
 2. Öffnen Sie den Screenshot mit dem QR-Code.
 3. Tippen Sie auf das gelbe **"T"-Symbol** unten rechts oder das **Bixby Vision-Auge**.
-4. Tippen Sie auf den angezeigten Link.
+4. Tippen Sie auf den angezeigten Link, um ihn im Browser zu öffnen.
 
 ---
 
 ## Methode 4: Screenshots am Windows PC & Mac scannen
 
+Wenn Sie an einem Laptop oder Desktop-PC arbeiten und einen QR-Code in einer E-Mail, einem PDF-Dokument oder einem Chat sehen:
+
 | Betriebssystem | Screenshot-Tastenkombination | Schnellste Decodierung |
 | :--- | :--- | :--- |
 | **Windows 11 / 10** | `Win + Umschalt + S` (Snipping Tool) | In [Web-Scanner](/de/qr-code-scannen/) einfügen (`Strg+V`) |
-| **macOS** | `Cmd + Umschalt + 4` | In Vorschau (Live-Text) oder im [Web-Scanner](/de/qr-code-scannen/) |
+| **macOS (Sonoma / Sequoia)** | `Cmd + Umschalt + 4` | In Vorschau (Live-Text) oder im [Web-Scanner](/de/qr-code-scannen/) |
 | **Google Chrome (Alle OS)** | Rechtsklick auf Bild | Rechtsklick → *"Bild mit Google suchen"* |
+
+### Auf Windows (Snipping Tool + Web-Scanner):
+1. Drücken Sie `Win + Umschalt + S` und ziehen Sie ein Rechteck um den QR-Code auf Ihrem Bildschirm.
+2. Öffnen Sie **[generatecustomqr.com/de/qr-code-scannen](/de/qr-code-scannen/)**.
+3. Drücken Sie `Strg + V`. Das Bild wird sofort aus Ihrer Zwischenablage eingefügt und decodiert.
 
 ---
 
 ## 4 Häufige Gründe für Scanfehler bei Screenshots
 
-1. **Invertierter Dunkelmodus**: Weiße Module auf schwarzem Hintergrund werden von Standardkameras nicht erkannt. Nutzen Sie den Deep-Scan-Modus von GenerateCustomQR.
-2. **Ruhezone abgeschnitten**: Ein QR-Code benötigt mindestens 20px weißen Rand an allen 4 Seiten.
-3. **Komprimierung in Chat-Apps**: WhatsApp komprimiert JPEG-Dateien stark. Bitten Sie um Zusendung als "Dokument".
-4. **Zu niedrige Auflösung (< 150x150 px)**: Zoomen Sie vor dem Screenshot näher heran.
+Wenn Ihr Screenshot nicht korrekt gelesen werden kann, prüfen Sie diese vier häufigen technischen Ursachen:
+
+### 1. Invertierte Farben im Dunkelmodus
+- QR-Scanner erwarten **dunkle Punkte auf hellem Hintergrund**. Wenn ein mobiler Dunkelmodus das Bild in weiße Module auf tiefschwarzem Hintergrund invertiert hat, scheitern Standardkamera-Algorithmen.
+- *Lösung*: Verwenden Sie einen Scanner mit automatischer Invertierungserkennung (wie den KI-gestützten Deep-Scan-Modus von GenerateCustomQR).
+
+### 2. Ruhezone abgeschnitten
+- Jeder QR-Code benötigt einen klaren Freiraum um seine vier Außenkanten (die sogenannte **Ruhezone** bzw. Quiet Zone). Wenn Ihr Screenshot direkt an den Eckmarkierungen (Suchmustern) abschneidet, können Scanner die Matrixausrichtung nicht mehr erkennen.
+- *Lösung*: Erstellen Sie einen großzügigeren Screenshot, der mindestens 20–30 Pixel weißen Rand um das gesamte QR-Quadrat enthält.
+
+### 3. Komprimierungsunschärfe in Messaging-Apps
+- Wenn Bekannte Ihnen einen Screenshot über WhatsApp, Telegram oder Messenger senden, komprimiert die App das JPEG-Bild stark, was die scharfen Ecken einzelner quadratischer Module verwischt.
+- *Lösung*: Bitten Sie den Absender, das Bild als **"Dokument / Unkomprimierte Datei"** zu senden, oder zoomen Sie vor dem Erstellen des Screenshots auf dem Bildschirm heran.
+
+### 4. Zu geringe Auflösung (< 150x150 px)
+- Wenn der QR-Code auf einem 4K-Monitor-Screenshot winzig klein erscheint, sind die einzelnen Module oft nur 1–2 Pixel breit.
+- *Lösung*: Zoomen Sie im Webbrowser oder PDF-Betrachter (`Strg + Plus` oder Zoom-Geste) heran, bis der QR-Code mindestens 300 Pixel breit ist, bevor Sie den Screenshot aufnehmen.
 
 ---
 
