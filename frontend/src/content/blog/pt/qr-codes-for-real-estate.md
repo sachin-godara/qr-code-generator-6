@@ -81,9 +81,19 @@ Envio de minutas de contrato e plantas em PDF para o cliente.
 
 ---
 
-## Design e Dimensões Recomendadas para Placas
+## Design de QR Codes Imobiliários
 
-### Dimensões por Posição
+### Cores e Identidade Visual
+
+Combine as cores do código QR com a identidade visual da sua imobiliária:
+- **RE/MAX**: Destaques em vermelho e azul
+- **Engel & Völkers**: Preto elegante e vermelho
+- **Lopes / Abyara**: Tons institucionais de azul ou verde
+- **Corretores autônomos**: Use as cores da sua marca pessoal
+
+Com o [GenerateCustomQR](/pt/), você personaliza o estilo dos pontos, molduras dos olhos e insere o logotipo da sua empresa garantindo leitura rápida.
+
+### Dimensões Recomendadas para Placas
 
 | Local | Tamanho Mínimo | Tamanho Recomendado |
 |---|---|---|
@@ -94,7 +104,7 @@ Envio de minutas de contrato e plantas em PDF para o cliente.
 
 ---
 
-## Chamadas que Convertem: Fazer vs Evitar
+### Chamadas que Convertem: Fazer vs Evitar
 
 <div class="blog-checklist-grid">
   <div class="blog-checklist-card do">

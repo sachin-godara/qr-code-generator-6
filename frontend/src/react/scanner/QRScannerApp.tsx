@@ -39,7 +39,8 @@ import {
   AlertTriangle,
   UploadCloud,
   Clipboard,
-  Globe
+  Globe,
+  Share2
 } from 'lucide-react';
 import { scanQRImageBackend, API_BASE } from '../../services/qrApi';
 
@@ -54,7 +55,8 @@ import {
   svgFileToPngFile,
   captureVideoFrame,
   detectBarcodeNative,
-  playScanSound
+  playScanSound,
+  serializeToVCard
 } from './scannerUtils';
 
 export {
@@ -128,6 +130,9 @@ function QRScannerAppContent() {
   const [facingMode, setFacingMode] = useState<'environment' | 'user'>('environment');
   const [hasTorch, setHasTorch] = useState(false);
   const [torchOn, setTorchOn] = useState(false);
+  const [hasZoom, setHasZoom] = useState(false);
+  const [currentZoom, setCurrentZoom] = useState(1);
+  const [zoomRange, setZoomRange] = useState({ min: 1, max: 2, step: 0.1 });
   const [permissionBrowserTab, setPermissionBrowserTab] = useState<'chrome' | 'safari' | 'android' | 'firefox'>('chrome');
 
   const scannerRef = useRef<Html5Qrcode | null>(null);
@@ -240,6 +245,14 @@ function QRScannerAppContent() {
     });
   };
 
+  const restoreFromHistory = (item: ScanHistoryItem) => {
+    setScanResult(item.raw);
+    const parsed = parseQRContent(item.raw);
+    setParsedData(parsed);
+    setShowHistory(false);
+    showToast(t('scanner.toasts.itemRestored') || t('scanner.toasts.qrDecodedSuccess'));
+  };
+
   // Safe check for scanning state
   const isScannerRunning = () => {
     if (!scannerRef.current) return false;
@@ -326,7 +339,8 @@ function QRScannerAppContent() {
             Html5QrcodeSupportedFormats.CODE_128,
             Html5QrcodeSupportedFormats.CODE_39
           ],
-          verbose: false
+          verbose: false,
+          experimentalFeatures: { useBarCodeDetectorIfSupported: true }
         });
       }
 
@@ -370,12 +384,20 @@ function QRScannerAppContent() {
         }
       }).catch(() => {});
 
-      // Check torch support
+      // Check torch & zoom support
       try {
         const capabilities = (scannerRef.current as any).getRunningTrackCameraCapabilities?.();
         setHasTorch(Boolean(capabilities?.torchFeature?.()?.isSupported?.()));
+        const zoomFeat = capabilities?.zoomFeature?.();
+        if (zoomFeat?.isSupported?.()) {
+          setHasZoom(true);
+          setZoomRange({ min: zoomFeat.min?.() || 1, max: zoomFeat.max?.() || 2, step: zoomFeat.step?.() || 0.1 });
+        } else {
+          setHasZoom(false);
+        }
       } catch (e) {
         setHasTorch(false);
+        setHasZoom(false);
       }
     } catch (err: any) {
       console.error("Camera start error:", err);
@@ -401,18 +423,14 @@ function QRScannerAppContent() {
     
     if (availableCameras.length > 1) {
       const currentIndex = availableCameras.findIndex(c => c.id === selectedCameraId);
-      const nextIndex = (currentIndex + 1) % availableCameras.length;
+      const nextIndex = currentIndex === -1 ? 1 : (currentIndex + 1) % availableCameras.length;
       const nextCam = availableCameras[nextIndex];
       setSelectedCameraId(nextCam.id);
-      await stopCamera();
-      setTimeout(() => startCamera(nextCam.id), 120);
       showToast(t('scanner.toasts.switchedCamera'));
     } else {
       const nextMode = facingMode === 'environment' ? 'user' : 'environment';
       setFacingMode(nextMode);
       setSelectedCameraId(null);
-      await stopCamera();
-      setTimeout(() => startCamera(undefined, nextMode), 120);
       showToast(t('scanner.toasts.flippedCamera'));
     }
   };
@@ -429,11 +447,24 @@ function QRScannerAppContent() {
     }
   };
 
+  const toggleZoom = async () => {
+    if (!scannerRef.current || !isScannerRunning() || !hasZoom) return;
+    const targetZoom = currentZoom <= 1.2 ? Math.min(2.0, zoomRange.max) : zoomRange.min;
+    try {
+      await (scannerRef.current as any).applyVideoConstraints({
+        advanced: [{ zoom: targetZoom }]
+      });
+      setCurrentZoom(targetZoom);
+    } catch (e) {
+      console.warn("Could not apply zoom:", e);
+    }
+  };
+
   // Switch camera tab lifecycle & page unload cleanup
   useEffect(() => {
     if (activeTab === 'camera' && cameraRequested && !scanResult) {
       const timer = setTimeout(() => {
-        startCamera(selectedCameraId || undefined);
+        startCamera(selectedCameraId || undefined, facingMode);
       }, 50);
       return () => {
         clearTimeout(timer);
@@ -442,7 +473,7 @@ function QRScannerAppContent() {
     } else {
       stopCamera();
     }
-  }, [activeTab, cameraRequested, scanResult, selectedCameraId]);
+  }, [activeTab, cameraRequested, scanResult, selectedCameraId, facingMode]);
 
   // Page reload / unload listener to immediately release camera hardware
   useEffect(() => {
@@ -611,8 +642,11 @@ function QRScannerAppContent() {
     setUploadedImagePreview(previewUrl);
     setError(null);
 
+    // Upfront rasterize SVG if needed so Level 1 and Level 2 client scans can decode instantly
+    const effectiveFile = await svgFileToPngFile(file);
+
     try {
-      const decodedText = await scanWithFallback(file);
+      const decodedText = await scanWithFallback(effectiveFile);
       handleScanSuccess(decodedText);
     } catch (err) {
       // Level 3: Backend Deep Scan
@@ -625,13 +659,17 @@ function QRScannerAppContent() {
       }, 1200);
 
       try {
-        const fileToProcess = await svgFileToPngFile(file);
-        const decodedText = await scanQRImageBackend(fileToProcess);
+        const decodedText = await scanQRImageBackend(effectiveFile);
         clearTimeout(stepTimer);
         handleScanSuccess(decodedText);
       } catch (backendErr: any) {
         clearTimeout(stepTimer);
-        setError(t('scanner.noQrFound'));
+        const errMsg = backendErr?.message || '';
+        if (errMsg.includes('exceeds') || errMsg.includes('timed out')) {
+          setError(errMsg);
+        } else {
+          setError(t('scanner.noQrFound'));
+        }
       } finally {
         setIsDeepScanning(false);
       }
@@ -831,10 +869,13 @@ function QRScannerAppContent() {
     }
   };
 
-  // 2. Generate vCard download
+  // 2. Generate vCard download (conforming strictly to RFC 2426 vCard 3.0)
   const downloadVCardFile = () => {
     if (!scanResult) return;
-    const blob = new Blob([scanResult], { type: 'text/vcard;charset=utf-8' });
+    const vcardContent = scanResult.startsWith('BEGIN:VCARD')
+      ? scanResult
+      : serializeToVCard(parsedData?.vcard);
+    const blob = new Blob([vcardContent], { type: 'text/vcard;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -944,9 +985,11 @@ function QRScannerAppContent() {
       <div className="px-3.5 sm:px-6 py-3 sm:py-4 border-b border-zinc-100 flex items-center justify-between gap-2 sm:gap-3 bg-white">
         
         {/* Main Segmented Mode Toggle */}
-        <div className="flex bg-zinc-100/90 rounded-2xl p-1 border border-zinc-200/50 shadow-2xs">
+        <div className="flex bg-zinc-100/90 rounded-2xl p-1 border border-zinc-200/50 shadow-2xs" role="tablist" aria-label={t("scanner.pageTitle") || "Scanner Mode"}>
           
           <button
+            role="tab"
+            aria-selected={activeTab === 'file'}
             onClick={() => handleTabChange('file')}
             className={`relative px-3 sm:px-4 py-1.5 sm:py-2 flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl font-bold transition-all text-xs sm:text-sm outline-none cursor-pointer select-none ${
               activeTab === 'file' ? 'text-zinc-900 shadow-xs' : 'text-zinc-500 hover:text-zinc-800'
@@ -965,6 +1008,8 @@ function QRScannerAppContent() {
           </button>
           
           <button
+            role="tab"
+            aria-selected={activeTab === 'camera'}
             onClick={() => handleTabChange('camera')}
             className={`relative px-3 sm:px-4 py-1.5 sm:py-2 flex items-center justify-center gap-1.5 sm:gap-2 rounded-xl font-semibold transition-all text-xs sm:text-sm outline-none cursor-pointer select-none ${
               activeTab === 'camera' ? 'text-zinc-900 shadow-xs' : 'text-zinc-500 hover:text-zinc-800'
@@ -1215,8 +1260,14 @@ function QRScannerAppContent() {
                 {/* Live Scanning Targeting Overlay */}
                 {isScanning && (
                   <>
+                    <style>{`
+                      @keyframes scannerLaserSweep {
+                        0%, 100% { top: 6%; opacity: 0.7; }
+                        50% { top: 92%; opacity: 1; }
+                      }
+                    `}</style>
                     <div className="absolute inset-0 pointer-events-none flex flex-col items-center justify-center p-6 sm:p-8 z-10">
-                      <div className="w-44 h-44 sm:w-56 sm:h-56 relative rounded-2xl border border-white/20">
+                      <div className="w-44 h-44 sm:w-56 sm:h-56 relative rounded-2xl border border-white/20 overflow-hidden">
                         {/* 4 Precision Corner Markers */}
                         <span className="absolute -top-1 -left-1 w-6 h-6 sm:w-7 sm:h-7 border-t-4 border-l-4 border-emerald-400 rounded-tl-xl shadow-[0_0_10px_rgba(52,211,153,0.6)]"></span>
                         <span className="absolute -top-1 -right-1 w-6 h-6 sm:w-7 sm:h-7 border-t-4 border-r-4 border-emerald-400 rounded-tr-xl shadow-[0_0_10px_rgba(52,211,153,0.6)]"></span>
@@ -1224,7 +1275,10 @@ function QRScannerAppContent() {
                         <span className="absolute -bottom-1 -right-1 w-6 h-6 sm:w-7 sm:h-7 border-b-4 border-r-4 border-emerald-400 rounded-br-xl shadow-[0_0_10px_rgba(52,211,153,0.6)]"></span>
                         
                         {/* Animated Laser Scanning Beam */}
-                        <div className="w-full h-1 bg-gradient-to-r from-transparent via-emerald-400 to-transparent shadow-[0_0_16px_#34d399] animate-pulse absolute top-1/2 -translate-y-1/2"></div>
+                        <div
+                          className="w-full h-1 bg-gradient-to-r from-transparent via-emerald-400 to-transparent shadow-[0_0_16px_#34d399] absolute"
+                          style={{ animation: 'scannerLaserSweep 2.4s ease-in-out infinite' }}
+                        ></div>
                       </div>
                     </div>
 
@@ -1243,6 +1297,24 @@ function QRScannerAppContent() {
                           aria-label={t('scanner.aria.toggleFlashlight')}
                         >
                           {torchOn ? <Zap size={16} /> : <ZapOff size={16} />}
+                        </button>
+                      )}
+
+                      {/* 1b. Digital/Optical Zoom Toggle (1x / 2x) */}
+                      {hasZoom && (
+                        <button
+                          type="button"
+                          onClick={toggleZoom}
+                          className={`px-3 py-2 rounded-full backdrop-blur-md shadow-lg transition-all cursor-pointer text-xs font-bold flex items-center gap-1 border ${
+                            currentZoom > 1.2
+                              ? 'bg-amber-400 text-neutral-950 border-amber-300 scale-105 shadow-amber-400/30'
+                              : 'bg-black/60 text-white border-white/20 hover:bg-black/80 hover:scale-105 active:scale-95'
+                          }`}
+                          title="Toggle Camera Zoom"
+                          aria-label="Toggle Camera Zoom"
+                        >
+                          <span className="material-symbols-outlined text-[15px]">zoom_in</span>
+                          <span>{currentZoom > 1.2 ? '2x' : '1x'}</span>
                         </button>
                       )}
 
@@ -1284,10 +1356,7 @@ function QRScannerAppContent() {
                         <select
                           value={selectedCameraId || ''}
                           onChange={(e) => {
-                            const id = e.target.value;
-                            setSelectedCameraId(id);
-                            stopCamera();
-                            setTimeout(() => startCamera(id), 150);
+                            setSelectedCameraId(e.target.value);
                           }}
                           className="bg-black/75 text-white text-xs font-semibold px-3 py-2 rounded-xl backdrop-blur-md border border-white/20 outline-none cursor-pointer max-w-[150px] sm:max-w-[180px] truncate shadow-lg"
                           aria-label={t('scanner.aria.selectLensAria')}
@@ -1414,10 +1483,19 @@ function QRScannerAppContent() {
                 <div className="w-full max-w-[540px] flex flex-col items-center">
                   <motion.div 
                     ref={dropZoneRef}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={t("scanner.dropImage")}
                     onDragOver={handleDragOver}
                     onDragLeave={handleDragLeave}
                     onDrop={handleDrop}
                     onClick={() => !isDeepScanning && fileInputRef.current?.click()}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        !isDeepScanning && fileInputRef.current?.click();
+                      }
+                    }}
                     whileHover={{ scale: 1.008, transition: { duration: 0.25, ease: "easeOut" } }}
                     whileTap={{ scale: 0.992 }}
                     className={`w-full rounded-3xl sm:rounded-[32px] border-2 transition-all duration-300 flex flex-col items-center justify-center cursor-pointer p-5 sm:p-8 md:p-11 text-center select-none relative overflow-hidden group shadow-sm ${
@@ -1799,7 +1877,9 @@ function QRScannerAppContent() {
                   </div>
                   <div className="min-w-0">
                     <p className="text-[11px] sm:text-xs font-bold text-on-surface-variant uppercase tracking-wider">{t('scanner.results.geoCoordinates')}</p>
-                    <h4 className="text-sm sm:text-base font-mono font-bold text-on-surface truncate">{parsedData.geo?.lat}, {parsedData.geo?.lng}</h4>
+                    <h4 className="text-sm sm:text-base font-mono font-bold text-on-surface truncate">
+                      {parsedData.geo?.lat && parsedData.geo?.lng ? `${parsedData.geo.lat}, ${parsedData.geo.lng}` : (parsedData.title || t('scanner.formats.mapsTitle'))}
+                    </h4>
                   </div>
                 </div>
               )}
@@ -1818,6 +1898,23 @@ function QRScannerAppContent() {
                       {parsedData.event.description}
                     </p>
                   )}
+                </div>
+              )}
+
+              {/* Type 8b: 1D Barcode */}
+              {parsedData?.type === 'barcode' && (
+                <div className="flex items-center gap-3">
+                  <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-cyan-500/10 text-cyan-600 flex items-center justify-center font-bold shrink-0">
+                    <span className="material-symbols-outlined text-2xl">barcode_scanner</span>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[11px] sm:text-xs font-bold text-on-surface-variant uppercase tracking-wider">
+                      {parsedData.barcode?.format || t('scanner.formats.barcodeTitle')}
+                    </p>
+                    <h4 className="text-sm sm:text-base font-mono font-bold text-on-surface truncate">
+                      {parsedData.barcode?.code || scanResult}
+                    </h4>
+                  </div>
                 </div>
               )}
 
@@ -1943,6 +2040,44 @@ function QRScannerAppContent() {
                   <MapPin size={16} />
                   <span>{t("scanner.openMap")}</span>
                 </motion.a>
+              )}
+
+              {/* Context Action 7: Search Barcode Product */}
+              {parsedData?.type === 'barcode' && parsedData.barcode?.searchUrl && (
+                <motion.a
+                  whileHover={{ scale: 1.02, y: -1 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                  href={parsedData.barcode.searchUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full flex items-center justify-center gap-2 bg-cyan-600 text-white py-3 sm:py-3.5 px-4 rounded-xl sm:rounded-2xl font-bold hover:bg-cyan-700 shadow-md transition-all btn-spring text-xs sm:text-sm min-h-[44px]"
+                >
+                  <ExternalLink size={16} />
+                  <span>{t("scanner.searchProduct") || 'Search Product'}</span>
+                </motion.a>
+              )}
+
+              {/* Universal Action: Share (if supported) */}
+              {typeof navigator !== 'undefined' && Boolean(navigator.share) && (
+                <motion.button
+                  whileHover={{ scale: 1.02, y: -1 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                  onClick={async () => {
+                    try {
+                      await navigator.share({
+                        title: parsedData?.title || 'QR Code Scan',
+                        text: scanResult || undefined,
+                        url: parsedData?.url || undefined
+                      });
+                    } catch (e) {}
+                  }}
+                  className="w-full flex items-center justify-center gap-2 bg-surface-container hover:bg-surface-container-high text-on-surface py-3 sm:py-3.5 px-4 rounded-xl sm:rounded-2xl font-bold border border-outline-variant/60 transition-all cursor-pointer text-xs sm:text-sm min-h-[44px]"
+                >
+                  <Share2 size={16} />
+                  <span>{t("scanner.share") || 'Share'}</span>
+                </motion.button>
               )}
 
               {/* Universal Action: Copy Raw Text */}
@@ -2130,8 +2265,20 @@ function QRScannerAppContent() {
                     key={item.id}
                     className="flex items-center justify-between p-2.5 sm:p-3 bg-surface rounded-xl border border-outline-variant/50 hover:border-primary/50 transition-colors text-xs"
                   >
-                    <div className="min-w-0 flex-1 pr-2">
-                      <p className="font-bold text-on-surface truncate">{getHistoryItemTitle(item, t)}</p>
+                    <div
+                      className="min-w-0 flex-1 pr-2 cursor-pointer group/hist"
+                      onClick={() => restoreFromHistory(item)}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          restoreFromHistory(item);
+                        }
+                      }}
+                      title={t('scanner.aria.restoreItemAria') || 'Click to view scan result'}
+                    >
+                      <p className="font-bold text-on-surface group-hover/hist:text-primary transition-colors truncate">{getHistoryItemTitle(item, t)}</p>
                       <p className="text-[10px] sm:text-[11px] text-on-surface-variant font-mono truncate">{item.raw}</p>
                     </div>
                     <div className="flex items-center gap-1 shrink-0">

@@ -5,7 +5,7 @@ pubDate: 2026-08-24
 author: "GenerateCustomQR Ekibi"
 keywords: "restoran menüsü için qr kod, restoran qr kod, dijital menü qr kod, temassız menü, ücretsiz qr kod menü oluşturucu, karekod menü"
 category: "use-cases"
-image: "/og-image.png"
+image: "/og-blog.jpg"
 imageAlt: "Masa üstü standında sergilenen restoran menüsü QR kodu"
 readingTime: 7
 featured: false

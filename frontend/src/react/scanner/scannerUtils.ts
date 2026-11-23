@@ -1,7 +1,7 @@
 // Pure business logic, type definitions, URL safety evaluator, and QR parsers
 // Separated from React JSX components for high-speed testing and clean modularity.
 
-export type ParsedQRType = 'url' | 'whatsapp' | 'wifi' | 'vcard' | 'email' | 'phone' | 'sms' | 'geo' | 'event' | 'text';
+export type ParsedQRType = 'url' | 'whatsapp' | 'wifi' | 'vcard' | 'email' | 'phone' | 'sms' | 'geo' | 'event' | 'barcode' | 'text';
 
 export interface URLSafetyReport {
   status: 'safe' | 'warning' | 'caution';
@@ -132,6 +132,32 @@ export interface ParsedQRData {
     dtstart?: string;
     dtend?: string;
   };
+  barcode?: {
+    code: string;
+    format: string;
+    searchUrl: string;
+  };
+}
+
+/**
+ * Serializes parsed vCard / MeCard data to standard RFC 2426 vCard 3.0 format for .vcf download.
+ */
+export function serializeToVCard(vcard?: ParsedQRData['vcard']): string {
+  if (!vcard) return '';
+  const lines: string[] = ['BEGIN:VCARD', 'VERSION:3.0'];
+  if (vcard.name) {
+    lines.push(`FN:${vcard.name}`);
+    lines.push(`N:;${vcard.name};;;`);
+  }
+  if (vcard.org) lines.push(`ORG:${vcard.org}`);
+  if (vcard.title) lines.push(`TITLE:${vcard.title}`);
+  if (vcard.phone) lines.push(`TEL;TYPE=CELL:${vcard.phone}`);
+  if (vcard.email) lines.push(`EMAIL:${vcard.email}`);
+  if (vcard.url) lines.push(`URL:${vcard.url}`);
+  if (vcard.address) lines.push(`ADR:;;${vcard.address};;;;`);
+  if (vcard.notes) lines.push(`NOTE:${vcard.notes}`);
+  lines.push('END:VCARD');
+  return lines.join('\r\n');
 }
 
 export interface ScanHistoryItem {
@@ -208,7 +234,8 @@ export function parseQRContent(rawText: string): ParsedQRData {
     const getField = (tag: string) => {
       const match = raw.match(new RegExp(`${tag}:((?:[^;\\\\]|\\\\.)*)`));
       if (!match) return '';
-      return match[1].replace(/\\([;:,\\])/g, '$1');
+      const val = match[1].replace(/\\([;:,\\])/g, '$1');
+      return val.replace(/^"(.*)"$/, '$1');
     };
     const ssid = getField('S') || '';
     const password = getField('P');
@@ -225,7 +252,9 @@ export function parseQRContent(rawText: string): ParsedQRData {
 
   // 2. vCard Format: BEGIN:VCARD ... END:VCARD
   if (raw.includes('BEGIN:VCARD')) {
-    const lines = raw.split(/\r\n|\r|\n/);
+    // Unfold RFC 6350 / RFC 2426 continuation lines
+    const unfolded = raw.replace(/\r?\n[ \t]/g, '');
+    const lines = unfolded.split(/\r\n|\r|\n/);
     let name = '';
     let phone = '';
     let email = '';
@@ -262,6 +291,33 @@ export function parseQRContent(rawText: string): ParsedQRData {
       title: name ? `Contact: ${name}` : 'Contact Card (vCard)',
       raw,
       vcard: { name, phone, email, org, title, url, address, notes }
+    };
+  }
+
+  // 2b. MeCard Format: MECARD:N:...;TEL:...;;
+  if (raw.startsWith('MECARD:') || raw.startsWith('mecard:')) {
+    const getMeCardField = (tag: string) => {
+      const match = raw.match(new RegExp(`${tag}:((?:[^;\\\\]|\\\\.)*)`, 'i'));
+      if (!match) return '';
+      return match[1].replace(/\\([;:,\\])/g, '$1').trim();
+    };
+    const rawName = getMeCardField('N');
+    const nameParts = rawName.split(',');
+    const name = nameParts.length > 1
+      ? `${nameParts[1].trim()} ${nameParts[0].trim()}`.trim()
+      : rawName;
+    const phone = getMeCardField('TEL');
+    const email = getMeCardField('EMAIL');
+    const url = getMeCardField('URL');
+    const address = getMeCardField('ADR');
+    const notes = getMeCardField('NOTE');
+    const org = getMeCardField('ORG');
+
+    return {
+      type: 'vcard',
+      title: name ? `Contact: ${name}` : 'Contact Card (MeCard)',
+      raw,
+      vcard: { name, phone, email, org, url, address, notes }
     };
   }
 
@@ -325,7 +381,7 @@ export function parseQRContent(rawText: string): ParsedQRData {
   }
 
   // 6. Geo format: geo:lat,lng or Google Maps URL
-  if (raw.startsWith('geo:') || (raw.startsWith('http') && (raw.includes('maps.google.com') || raw.includes('goo.gl/maps') || raw.includes('maps.app.goo.gl')))) {
+  if (raw.startsWith('geo:') || (raw.startsWith('http') && (raw.includes('maps.google.com') || raw.includes('google.com/maps') || raw.includes('goo.gl/maps') || raw.includes('maps.app.goo.gl')))) {
     let lat = '';
     let lng = '';
     let mapsUrl = raw;
@@ -334,6 +390,16 @@ export function parseQRContent(rawText: string): ParsedQRData {
       lat = coords[0]?.trim() || '';
       lng = coords[1]?.trim() || '';
       mapsUrl = `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+    } else {
+      const qMatch = raw.match(/[?&]q=([-\d.]+),([-\d.]+)/);
+      const atMatch = raw.match(/@([-\d.]+),([-\d.]+)/);
+      if (qMatch) {
+        lat = qMatch[1];
+        lng = qMatch[2];
+      } else if (atMatch) {
+        lat = atMatch[1];
+        lng = atMatch[2];
+      }
     }
     return {
       type: 'geo',
@@ -359,15 +425,16 @@ export function parseQRContent(rawText: string): ParsedQRData {
   }
 
   // 8. Standard URL / Website
-  if (/^https?:\/\//i.test(raw)) {
-    const safety = evaluateURLSafety(raw);
+  if (/^https?:\/\//i.test(raw) || /^www\./i.test(raw)) {
+    const normalizedUrl = raw.startsWith('www.') ? `https://${raw}` : raw;
+    const safety = evaluateURLSafety(normalizedUrl);
     try {
-      const parsedUrl = new URL(raw);
+      const parsedUrl = new URL(normalizedUrl);
       return {
         type: 'url',
         title: parsedUrl.hostname.replace(/^www\./, ''),
         raw,
-        url: raw,
+        url: normalizedUrl,
         domain: parsedUrl.hostname,
         isHttps: parsedUrl.protocol === 'https:',
         safety
@@ -375,13 +442,34 @@ export function parseQRContent(rawText: string): ParsedQRData {
     } catch (e) {
       return {
         type: 'url',
-        title: raw,
+        title: normalizedUrl,
         raw,
-        url: raw,
-        isHttps: raw.startsWith('https://'),
+        url: normalizedUrl,
+        isHttps: normalizedUrl.startsWith('https://'),
         safety
       };
     }
+  }
+
+  // 9. Standard 1D Barcode format (EAN-8, UPC-A, EAN-13, ITF-14)
+  const trimmed = raw.trim();
+  if (/^\d{8}$|^\d{12}$|^\d{13}$|^\d{14}$/.test(trimmed)) {
+    let format = 'Barcode';
+    if (trimmed.length === 8) format = 'EAN-8';
+    else if (trimmed.length === 12) format = 'UPC-A';
+    else if (trimmed.length === 13) format = 'EAN-13';
+    else if (trimmed.length === 14) format = 'ITF-14';
+
+    return {
+      type: 'barcode',
+      title: `${format}: ${trimmed}`,
+      raw,
+      barcode: {
+        code: trimmed,
+        format,
+        searchUrl: `https://www.google.com/search?q=${encodeURIComponent(trimmed)}`
+      }
+    };
   }
 
   // 9. Plain Text / JSON / Other

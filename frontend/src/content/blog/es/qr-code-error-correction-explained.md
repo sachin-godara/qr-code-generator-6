@@ -70,6 +70,8 @@ Cuando la cámara escanea el código:
 
 A mayor nivel de corrección de errores, más puntos (módulos) tendrá la cuadrícula:
 
+### Ejemplo: Codificación de una URL de 45 caracteres (`https://generatecustomqr.com/es/url-qr-code`)
+
 - **Nivel L (7% Recuperación)**: Cuadrícula de **25 × 25 módulos** (Versión 2). Puntos anchos muy fáciles de leer a tamaños pequeños.
 - **Nivel H (30% Recuperación)**: Cuadrícula de **33 × 33 módulos** (Versión 4). Mayor detalle que exige un tamaño físico de impresión ligeramente superior (mínimo 2,5 cm).
 
@@ -86,8 +88,11 @@ A mayor nivel de corrección de errores, más puntos (módulos) tendrá la cuadr
 | **Pantallas Digitales / Email** | Cero daño físico | **Nivel M** | Mantiene baja la densidad para pantallas Retina |
 | **Códigos con Logotipo de Marca** | Obstrucción deliberada de datos | **Nivel H** | Asegura que la cámara lea los datos alrededor del logo |
 
-## Corrección de Errores y Logotipos
+## Cálculo de Logotipo: ¿Qué Tamaño Puede Tener?
 
+Al diseñar un código QR con marca, colocar un logotipo sobredimensionado puede provocar fallos de escaneo.
+
+### La Proporción Áurea para el Tamaño del Logotipo:
 - **Área Máxima**: El logo no debe cubrir más del **20% al 25%** del área total del código QR.
 - **Margen de Seguridad (5%)**: Aunque el Nivel H tolera hasta un 30%, mantener el logo bajo el 22% deja un margen vital para cámaras con poco enfoque o sombras.
 - **Anillo de Protección (Padding)**: Añade siempre un marco blanco o del color de fondo alrededor del logotipo.

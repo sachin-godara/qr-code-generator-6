@@ -81,7 +81,19 @@ Envío directo de certificados energéticos, planos técnicos y memorias de cali
 
 ---
 
-## Dimensiones Recomendadas para Carteles Inmobiliarios
+## Diseño de Códigos QR Inmobiliarios
+
+### Color e Identidad Corporativa
+
+Adapta los colores del código QR a la identidad visual de tu agencia:
+- **RE/MAX**: Acentos en rojo y azul
+- **Engel & Völkers**: Negro elegante y rojo
+- **Century 21**: Dorado y grafito oscuro
+- **Agentes independientes**: Utiliza tu paleta de colores corporativos
+
+Con [GenerateCustomQR](/es/), puedes personalizar el diseño de puntos, los marcos de ojos y añadir el logotipo de tu inmobiliaria manteniendo siempre una legibilidad óptima.
+
+### Dimensiones Recomendadas para Carteles Inmobiliarios
 
 | Ubicación | Tamaño Mínimo | Tamaño Recomendado |
 |---|---|---|
@@ -92,7 +104,7 @@ Envío directo de certificados energéticos, planos técnicos y memorias de cali
 
 ---
 
-## Mensajes que Convierten: Qué Hacer y Qué Evitar
+### Mensajes que Convierten: Qué Hacer y Qué Evitar
 
 <div class="blog-checklist-grid">
   <div class="blog-checklist-card do">

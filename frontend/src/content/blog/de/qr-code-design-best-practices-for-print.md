@@ -6,7 +6,7 @@ pubDate: 2026-08-20
 author: "GenerateCustomQR Team"
 keywords: "qr code drucken tipps, qr code druckgroesse, qr code aufloesung druck, qr code design tipps, wie druckt man qr code, qr code mindestgroesse"
 category: "design-tips"
-image: "/og-image.png"
+image: "/og-blog.jpg"
 imageAlt: "Hochwertig gedruckter QR-Code auf einer Visitenkarte"
 readingTime: 6
 featured: false
@@ -103,6 +103,12 @@ Scanner messen den Helligkeitsunterschied zwischen Datenpunkten und Hintergrund.
     </ul>
   </div>
 </div>
+
+### Tipps für Farbverläufe
+
+- Farbverläufe verleihen ein modernes Design, müssen aber über den gesamten Code hinweg den Kontrast halten
+- Nutzen Sie Verläufe von dunkel zu noch dunkler (z. B. Schwarz zu Dunkelblau), niemals von dunkel zu hell
+- Testen Sie den Farbverlaufs-Code stets bei hellem Tageslicht und gedämpfter Beleuchtung
 
 ## 4. Die Ruhezone (Quiet Zone)
 

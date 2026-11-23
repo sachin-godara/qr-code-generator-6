@@ -127,5 +127,89 @@ END:VEVENT`;
   console.log('  ✓ detectBarcodeNative graceful environment check passed');
 }
 
-console.log('\n✅ ALL 9 SCANNER UTILS TEST SUITES PASSED CLEANLY!\n');
+// 10. Quoted Wi-Fi Parameters Test
+{
+  const raw = 'WIFI:S:"Office-Guest";T:WPA;P:"SecretPass123";;';
+  const parsed = parseQRContent(raw);
+  assert.equal(parsed.type, 'wifi');
+  assert.equal(parsed.wifi?.ssid, 'Office-Guest');
+  assert.equal(parsed.wifi?.password, 'SecretPass123');
+  console.log('  ✓ quoted Wi-Fi SSID and password stripping passed');
+}
+
+// 11. MeCard Parser and serializeToVCard Test
+{
+  const { serializeToVCard } = await import('../src/react/scanner/scannerUtils.ts');
+  const raw = 'MECARD:N:Smith,John;TEL:5551234;EMAIL:john@example.com;NOTE:VIP Client;;';
+  const parsed = parseQRContent(raw);
+  assert.equal(parsed.type, 'vcard');
+  assert.equal(parsed.vcard?.name, 'John Smith');
+  assert.equal(parsed.vcard?.phone, '5551234');
+  assert.equal(parsed.vcard?.email, 'john@example.com');
+  assert.equal(parsed.vcard?.notes, 'VIP Client');
+
+  const vcardStr = serializeToVCard(parsed.vcard);
+  assert.ok(vcardStr.startsWith('BEGIN:VCARD\r\nVERSION:3.0'));
+  assert.ok(vcardStr.includes('FN:John Smith'));
+  assert.ok(vcardStr.includes('TEL;TYPE=CELL:5551234'));
+  assert.ok(vcardStr.endsWith('END:VCARD'));
+  console.log('  ✓ MeCard parsing & RFC 2426 vCard serialization passed');
+}
+
+// 12. vCard RFC 6350 Line Unfolding Test
+{
+  const foldedVCard = `BEGIN:VCARD
+VERSION:3.0
+FN:Jane Doe
+NOTE:This is a long note that continues on 
+ the second line of the card.
+END:VCARD`;
+  const parsed = parseQRContent(foldedVCard);
+  assert.equal(parsed.vcard?.notes, 'This is a long note that continues on the second line of the card.');
+  console.log('  ✓ vCard RFC 6350 line unfolding passed');
+}
+
+// 13. Google Maps Coordinate Extraction (?q= and /@)
+{
+  const mapsQ = 'https://maps.google.com/?q=40.7128,-74.0060';
+  const parsedQ = parseQRContent(mapsQ);
+  assert.equal(parsedQ.type, 'geo');
+  assert.equal(parsedQ.geo?.lat, '40.7128');
+  assert.equal(parsedQ.geo?.lng, '-74.0060');
+
+  const mapsAt = 'https://www.google.com/maps/@37.7749,-122.4194,15z';
+  const parsedAt = parseQRContent(mapsAt);
+  assert.equal(parsedAt.type, 'geo');
+  assert.equal(parsedAt.geo?.lat, '37.7749');
+  assert.equal(parsedAt.geo?.lng, '-122.4194');
+  console.log('  ✓ Google Maps coordinate extraction passed');
+}
+
+// 14. www. URL Normalization
+{
+  const rawWww = 'www.wikipedia.org/wiki/QR_code';
+  const parsed = parseQRContent(rawWww);
+  assert.equal(parsed.type, 'url');
+  assert.equal(parsed.url, 'https://www.wikipedia.org/wiki/QR_code');
+  assert.equal(parsed.isHttps, true);
+  assert.equal(parsed.domain, 'www.wikipedia.org');
+  console.log('  ✓ www. URL normalization passed');
+}
+
+// 15. 1D Barcode Detection (UPC-A, EAN-13)
+{
+  const upcA = '012345678905';
+  const parsedUpc = parseQRContent(upcA);
+  assert.equal(parsedUpc.type, 'barcode');
+  assert.equal(parsedUpc.barcode?.format, 'UPC-A');
+  assert.ok(parsedUpc.barcode?.searchUrl.includes('google.com/search?q=012345678905'));
+
+  const ean13 = '9780306406157';
+  const parsedEan = parseQRContent(ean13);
+  assert.equal(parsedEan.type, 'barcode');
+  assert.equal(parsedEan.barcode?.format, 'EAN-13');
+  console.log('  ✓ 1D Barcode detection passed');
+}
+
+console.log('\n✅ ALL 15 SCANNER UTILS TEST SUITES PASSED CLEANLY!\n');
 

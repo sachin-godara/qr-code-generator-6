@@ -109,16 +109,45 @@ Os códigos 1D tradicionais codificam números através de barras de larguras va
 
 ## Quando Usar Código de Barras
 
-- **Caixas de Lojas e Supermercados (PDV)**: Para registrar preços de produtos
-- **Controle de Estoque e Galpões**: Paletes, etiquetas de frete e rastreio
-- **Bibliotecas**: Gestão de acervo de livros
+Os códigos de barras continuam sendo a opção ideal para:
+
+### Identificação de Produtos no Varejo (PDV)
+Cada produto em supermercados e lojas possui um código UPC ou EAN padronizado, universalmente suportado por caixas registradoras e sistemas de ponto de venda.
+
+### Cadeia de Suprimentos e Logística
+Etiquetas de frete, paletes e sistemas de gestão de estoque em centros de distribuição dependem de leitores a laser rápidos calibrados para códigos 1D.
+
+### Bibliotecas e Arquivos
+Livros e acervos usam códigos de barras (Code 39 ou Codabar) perfeitamente integrados aos softwares de gestão de empréstimos.
+
+### Setor de Saúde
+Pulseiras de identificação de pacientes, medicamentos e amostras laboratoriais usam códigos 1D para conferência segura em ambiente clínico.
+
+**Conclusão:** Se você está identificando mercadorias dentro de uma cadeia de suprimentos com infraestrutura de leitores a laser já instalada, continue usando códigos de barras.
 
 ## Quando Usar QR Code
 
-- **Marketing e Publicidade**: Cartazes, folhetos e embalagens ([Criar QR Code de URL →](/pt/url-qr-code-generator/))
-- **Cardápios Digitais sem Contato**: Restaurantes e cafeterias ([Guia para Restaurantes →](/pt/blog/qr-code-for-restaurant-menu/))
-- **Compartilhamento de Wi-Fi**: Conectar hóspedes sem digitar senhas ([Criar QR Code de Wi-Fi →](/pt/wifi-qr-code/))
-- **Cartões de Visita**: Salvar contatos instantaneamente ([Criar vCard →](/pt/vcard-qr-code/))
+Os códigos QR são a escolha superior para:
+
+### Marketing e Publicidade
+Impressos, anúncios, banners, outdoors e embalagens com link direto para páginas de destino e promoções. [Criar QR Code de URL →](/pt/url-qr-code-generator/)
+
+### Cardápios Digitais sem Contato
+Restaurantes e cafeterias que substituem cardápios físicos por menus digitais interativos. [Guia para Restaurantes →](/pt/blog/qr-code-for-restaurant-menu/)
+
+### Compartilhamento de Wi-Fi
+Hotéis, pousadas, cafeterias e escritórios conectam hóspedes e clientes sem digitação de senha. [Criar QR Code de Wi-Fi →](/pt/wifi-qr-code/)
+
+### Cartões de Visita Digitais
+QR codes vCard salvam nome, telefone e e-mail na agenda do celular com apenas 1 toque. [Criar vCard →](/pt/vcard-qr-code/)
+
+### Ingressos e Controle de Acesso
+Credenciais de conferências, bilhetes de shows e cartões de embarque utilizam QR codes para check-in instantâneo.
+
+### Pagamentos Móveis
+Sistemas de pagamento por aproximação (Pix, carteiras digitais, criptomoedas) utilizam códigos QR para transferências imediatas.
+
+**Conclusão:** Se o objetivo for conectar materiais físicos a conteúdos digitais com escaneamento pela câmera do smartphone, use QR codes.
 
 ## Os QR Codes Vão Substituir os Códigos de Barras?
 

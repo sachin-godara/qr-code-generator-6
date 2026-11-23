@@ -90,6 +90,9 @@ Aumentar a tolerância a danos aumenta o número de quadradinhos pretos e branco
 
 ## Cálculo de Logotipo: Qual o Tamanho Máximo Permitido?
 
+Ao criar um código QR com logotipo, muitos designers cometem o erro de colocar um ícone excessivamente grande no centro, impedindo a leitura.
+
+### A Proporção Áurea para o Tamanho do Logotipo:
 - **Área Máxima no Nível H**: O logotipo deve cobrir **no máximo 20% a 25%** da área total do código.
 - **Margem de Segurança de 5%**: Manter o logo abaixo de 22% garante tolerância para fotos tiradas em baixa luz ou com reflexos.
 - **Borda Branca de Respiro**: Deixe sempre uma margem circular ou quadrada limpa ao redor do ícone para não fundir a imagem com os pontos de dados.

@@ -89,6 +89,8 @@ Colocar el móvil *demasiado cerca* del monitor es el fallo más habitual:
 
 WhatsApp impone un límite de seguridad de **4 dispositivos vinculados a la vez**:
 
+### Cómo cerrar sesiones vinculadas antiguas:
+
 1. Abre WhatsApp en tu smartphone.
 2. Accede a **Ajustes** (iOS) o a los **3 Puntos (⋮)** (Android).
 3. Entra en **Dispositivos Vinculados**.
@@ -108,6 +110,7 @@ Las extensiones de privacidad y las VPNs pueden cortar el protocolo **WebSockets
 
 ## Solución 5: Borrar Caché y Cookies de WhatsApp Web
 
+### Cómo borrar la caché de WhatsApp Web:
 1. En la web de `web.whatsapp.com`, haz clic en el icono del **Candado** en la barra de direcciones.
 2. Selecciona **Cookies y datos del sitio**.
 3. Haz clic en **Eliminar Datos**.

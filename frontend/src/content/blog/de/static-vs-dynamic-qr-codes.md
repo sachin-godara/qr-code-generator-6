@@ -5,7 +5,7 @@ pubDate: 2026-08-18
 author: "GenerateCustomQR Team"
 keywords: "statisch vs dynamisch qr code, unterschied statische dynamische qr codes, statischer qr code, dynamischer qr code, welcher qr code typ"
 category: "comparisons"
-image: "/og-image.png"
+image: "/og-blog.jpg"
 imageAlt: "Vergleich von statischen und dynamischen QR-Codes"
 readingTime: 5
 featured: false
@@ -71,6 +71,8 @@ Beim Scannen decodiert das Smartphone das Muster und ruft den Inhalt direkt auf.
 
 ## Was ist ein dynamischer QR-Code?
 
+### Wie er funktioniert
+
 Ein dynamischer QR-Code kodiert eine **kurze Weiterleitungs-URL** (z. B. `qr.example.com/xyz`), die auf einem Server des Anbieters liegt und zum eigentlichen Ziel weiterleitet.
 
 ### Vorteile dynamischer QR-Codes
@@ -86,6 +88,9 @@ Ein dynamischer QR-Code kodiert eine **kurze Weiterleitungs-URL** (z. B. `qr.exa
 - **Kostenpflichtig** — Meist monatliche Gebühren
 - **Datenschutzbedenken** — Jeder Scan wird getrackt
 - **Ablaufgefahr** — Kostenlose Test-Codes werden oft nach 14–30 Tagen deaktiviert
+
+### Typische Einsatzbereiche für dynamische Codes
+Häufig wechselnde Werbekampagnen, Produktverpackungen mit variablen Landingpages und detaillierte Scan-Analysen.
 
 ## Welchen Typ sollten Sie wählen?
 

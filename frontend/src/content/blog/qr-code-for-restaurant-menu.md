@@ -5,7 +5,7 @@ pubDate: 2026-08-24
 author: "GenerateCustomQR Team"
 keywords: "qr code for restaurant menu, restaurant qr code, digital menu qr code, contactless menu, qr code menu generator free"
 category: "use-cases"
-image: "/og-image.png"
+image: "/og-blog.jpg"
 imageAlt: "QR code for restaurant menu displayed on a table tent"
 readingTime: 7
 featured: false

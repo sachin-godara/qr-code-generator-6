@@ -84,7 +84,19 @@ Ekspertiz raporları, tapu detayları, imar durumu ve yönetim planı PDF'lerini
 
 ---
 
-## Emlak QR Kodları İçin Boyutlandırma Standartları
+## Emlak QR Kodlarının Tasarımı
+
+### Renk ve Marka Kimliği
+
+QR kod renklerinizi gayrimenkul ofisinizin kurumsal kimliğiyle eşleştirin:
+- **RE/MAX**: Kırmızı ve mavi detaylar
+- **Century 21**: Altın sarısı ve antrasit
+- **Keller Williams**: Kırmızı ve koyu gri
+- **Bağımsız Danışmanlar**: Kişisel marka renkleriniz
+
+[GenerateCustomQR](/tr/) ile nokta desenlerini, göz çerçevelerini özelleştirebilir ve ofis logonuzu yüksek okunabilirlikle ekleyebilirsiniz.
+
+### Emlak Panoları İçin Boyutlandırma Standartları
 
 Tabelalar genellikle **3 ila 10 metre mesafeden** (araç içinden veya karşı kaldırımdan) taranır:
 
@@ -97,7 +109,7 @@ Tabelalar genellikle **3 ila 10 metre mesafeden** (araç içinden veya karşı k
 
 ---
 
-## Emlakta Yüksek Dönüşüm Sağlayan Mesajlar: Yapılması ve Yapılmaması Gerekenler
+### Emlakta Yüksek Dönüşüm Sağlayan Mesajlar: Yapılması ve Yapılmaması Gerekenler
 
 <div class="blog-checklist-grid">
   <div class="blog-checklist-card do">
@@ -142,6 +154,15 @@ Tabelalar genellikle **3 ila 10 metre mesafeden** (araç içinden veya karşı k
     </ul>
   </div>
 </div>
+
+---
+
+## QR Kod Performansını ve Sonuçlarını Takip Etme
+
+Tabela ve ilanlarınızın etkinliğini ücretsiz olarak ölçün:
+1. **UTM Parametreleri Ekleyin**: `?utm_source=tabela&utm_medium=qr&utm_campaign=ilan123`
+2. **Kısa Bağlantı ve İstatistik Araçları Kullanın**: Tıklama sayılarını anlık izleyin
+3. **Google Analytics ile Gelen Ziyaretçileri Analiz Edin**: Sokaktan gelen fiziksel trafiği ölçün
 
 ---
 

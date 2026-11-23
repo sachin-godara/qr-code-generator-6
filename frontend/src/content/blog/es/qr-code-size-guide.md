@@ -105,10 +105,17 @@ Con [GenerateCustomQR](/es/), puedes exportar imágenes PNG de hasta **8192 × 8
 
 ## Errores Comunes de Dimensionamiento
 
-- **Hacerlo demasiado pequeño**: Códigos menores de 2 cm son arriesgados en teléfonos antiguos o con poca luz.
-- **Olvidar la zona de silencio**: El margen blanco exterior debe tener al menos 4 módulos de grosor.
-- **Usar baja resolución en imprenta**: Un PNG de 300px saldrá borroso en papel. Usa SVG o PDF a 300 DPI.
-- **No hacer pruebas reales**: Imprime siempre una prueba de muestra y escanéala con 3 móviles diferentes a la distancia real.
+### Hacerlo demasiado pequeño
+Cualquier tamaño inferior a 2×2 cm es arriesgado. Los usuarios con teléfonos más antiguos o cámaras básicas tendrán dificultades para enfocarlo.
+
+### Olvidar la zona de silencio
+La zona de silencio es el margen libre alrededor del código QR. Sin ella, el código se funde con los gráficos circundantes y se vuelve ilegible. Mantén siempre al menos 4 módulos de margen blanco en todos los lados.
+
+### Usar baja resolución en imprenta
+Un PNG de 300×300 píxeles puede verse bien en pantalla, pero saldrá borroso al imprimirse. Exporta siempre en alta resolución (1000+ px) o utiliza vectores SVG y PDF.
+
+### No hacer pruebas reales de escaneo
+Imprime siempre una prueba de muestra a escala 100% y escanéala con diferentes smartphones antes de enviar una tirada completa a producción.
 
 ## Lista de Comprobación Antes de Imprimir
 

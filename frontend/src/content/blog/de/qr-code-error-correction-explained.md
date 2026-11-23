@@ -90,6 +90,9 @@ Mehr Redundanz bedeutet zwangsläufig mehr Module im Raster:
 
 ## Logo-Berechnung: Wie groß darf ein Logo sein?
 
+Beim Design eines gebrandeten QR-Codes wird häufig der Fehler gemacht, ein zu großes Logo in der Mitte zu platzieren.
+
+### Die goldene Regel für Logo-Größen:
 - **Maximale Logo-Fläche bei Level H**: Maximal **20% bis 25%** der Gesamtfläche.
 - **5% Sicherheitspuffer**: Bei maximal 22% bleibt genügend Toleranz für schwaches Licht und Reflexionen.
 - **Abstandshalter**: Immer eine weiße Schutzfläche um das Logo legen, damit die Grafik nicht in die Datenpunkte übergeht.

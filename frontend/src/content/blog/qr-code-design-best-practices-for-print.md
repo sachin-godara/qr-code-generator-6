@@ -5,7 +5,7 @@ pubDate: 2026-08-20
 author: "GenerateCustomQR Team"
 keywords: "qr code design best practices, qr code print size, qr code resolution for print, qr code design tips, how to print qr code, qr code minimum size"
 category: "design-tips"
-image: "/og-image.png"
+image: "/og-blog.jpg"
 imageAlt: "Well-designed QR code printed on a business card"
 readingTime: 6
 featured: false

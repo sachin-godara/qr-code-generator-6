@@ -5,7 +5,7 @@ pubDate: 2026-08-24
 author: "Equipe GenerateCustomQR"
 keywords: "qr code para cardapio, cardapio digital qr code, qr code restaurante, cardapio sem contato, gerador de qr code cardapio gratis"
 category: "use-cases"
-image: "/og-image.png"
+image: "/og-blog.jpg"
 imageAlt: "QR code para cardápio de restaurante em display de mesa"
 readingTime: 7
 featured: false
@@ -96,9 +96,11 @@ Antes de gerar o código, o cardápio precisa estar online:
 
 ## Passo 3: Imprimir e Posicionar nas Mesas
 
-- **Displays de acrílico (Table tents)** — A opção mais popular e elegante.
+### Melhores Opções de Posicionamento
+- **Displays de acrílico (Table tents)** — A opção mais popular e elegante no centro da mesa.
 - **Adesivos vinílicos impermeáveis** — Aplicados diretamente sobre a mesa.
 - **Balcão e caixa** — Para pedidos rápidos em balcão.
+- **Entrada ou vitrine** — Permite que os clientes consultem o cardápio antes de entrar.
 
 ### Especificações Técnicas de Impressão
 - **Tamanho mínimo:** 2 × 2 cm

@@ -189,26 +189,38 @@ export async function scanQRImageBackend(file: File): Promise<string> {
   const formData = new FormData();
   formData.append("file", file);
 
-  const response = await fetch(`${API_BASE}/api/generator/scan`, {
-    method: "POST",
-    body: formData,
-  });
+  try {
+    const response = await fetch(`${API_BASE}/api/generator/scan`, {
+      method: "POST",
+      body: formData,
+      signal: AbortSignal.timeout(15000),
+    });
 
-  if (!response.ok) {
-    let errMessage = "Backend scan failed.";
-    try {
-      const data = await response.json();
-      if (data.detail) errMessage = data.detail;
-    } catch (e) {
-      // Ignore
+    if (!response.ok) {
+      let errMessage = "Backend scan failed.";
+      if (response.status === 413) {
+        errMessage = "File size exceeds server limit (max 10MB).";
+      } else {
+        try {
+          const data = await response.json();
+          if (data.detail) errMessage = data.detail;
+        } catch (e) {
+          // Ignore
+        }
+      }
+      throw new Error(errMessage);
     }
-    throw new Error(errMessage);
-  }
 
-  const data = await response.json();
-  if (!data.success || !data.text) {
-    throw new Error("Backend could not find a valid QR code");
-  }
+    const data = await response.json();
+    if (!data.success || !data.text) {
+      throw new Error("Backend could not find a valid QR code");
+    }
 
-  return data.text;
+    return data.text;
+  } catch (err: any) {
+    if (err?.name === "TimeoutError") {
+      throw new Error("Scan request timed out after 15s. Please try a clearer screenshot.");
+    }
+    throw err;
+  }
 }

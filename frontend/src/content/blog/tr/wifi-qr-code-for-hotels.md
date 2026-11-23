@@ -132,6 +132,9 @@ Eski model dizüstü bilgisayarlar veya bazı cihazlar için QR kodun yanına ş
 ### Ayrı Bir Misafir Ağı (Guest Network) Kullanın
 **Ana yönetim ağınızı asla misafirlerle paylaşmayın.** Router ayarlarınızdan ayrı bir Misafir Ağı açın.
 
+### Şifreleri Düzenli Olarak Güncelleyin
+Oteller için konuk Wi-Fi şifrelerini aylık veya sezonluk periyotlarla güncelleyin. Airbnb konaklamalarında misafir değişimlerinde şifreyi yenilemek güvenliği artırır.
+
 ### WPA2 ve WPA3 Karşılaştırması
 
 | Şifreleme | Güvenlik Seviyesi | Cihaz Uyumluluğu |
@@ -160,6 +163,9 @@ Eski model dizüstü bilgisayarlar veya bazı cihazlar için QR kodun yanına ş
 - **Akrilik Masa Stantları**: Komodin ve resepsiyon masaları için idealdir
 - **Lamine Kartlar**: Suya dayanıklı, kolayca dezenfekte edilir
 - **Duvara Monte Çerçeveler**: Kalıcı ve kurumsal bir görünüm sağlar
+
+### Kendi Baskınızı Yapma (DIY)
+[GenerateCustomQR](/tr/wifi-qr-code/) üzerinden QR kodunuzu SVG veya yüksek çözünürlüklü PNG olarak indirin ve uzun ömürlü kullanım için lamine ederek odalara yerleştirin.
 
 ---
 

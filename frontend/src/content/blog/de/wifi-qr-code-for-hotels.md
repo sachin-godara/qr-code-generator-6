@@ -134,6 +134,9 @@ Für ältere Laptops empfiehlt sich das Andrucken der Daten in Klarschrift:
 - Die Bandbreite pro Nutzer reguliert
 - Regelmäßige Passwortänderungen ohne Betriebsunterbrechung erlaubt
 
+### Passwörter regelmäßig erneuern
+Für Hotels empfiehlt sich ein monatlicher oder quartalsweiser Wechsel des Gast-WLAN-Passworts. Bei Ferienwohnungen und Airbnb empfiehlt sich ein Wechsel zwischen Buchungen.
+
 ### WPA2 vs. WPA3 Verschlüsselung
 
 | Verschlüsselung | Sicherheitsniveau | Kompatibilität |
@@ -163,6 +166,9 @@ Für ältere Laptops empfiehlt sich das Andrucken der Daten in Klarschrift:
 - **Acryl-Tischaufsteller**: Ideal für Nachttische und Rezeptionen
 - **Laminierte Karten**: Wasserabweisend und leicht zu desinfizieren
 - **Wandrahmen**: Feste, diebstahlsichere Installation
+
+### DIY-Druck vor Ort
+Exportieren Sie den QR-Code aus [GenerateCustomQR](/de/wifi-qr-code/) als SVG-Vektordatei oder hochauflösendes PNG und laminieren Sie den Ausdruck für maximale Haltbarkeit.
 
 ---
 

@@ -87,6 +87,8 @@ Das Smartphone *zu nah* an den Bildschirm zu halten, ist die häufigste Fehlerur
 
 WhatsApp erlaubt maximal **4 gleichzeitig verknüpfte Geräte**:
 
+### So entfernen Sie alte verknüpfte Geräte:
+
 1. Öffnen Sie WhatsApp auf dem Smartphone.
 2. Gehen Sie zu **Einstellungen** (iOS) bzw. **Drei Punkte (⋮)** (Android).
 3. Tippen Sie auf **Verknüpfte Geräte**.
@@ -106,6 +108,7 @@ WhatsApp Web benötigt permanente **Secure WebSockets (`wss://`)**. Manche Track
 
 ## Fix 5: Cache und Cookies für WhatsApp Web löschen
 
+### So leeren Sie den Cache von WhatsApp Web:
 1. Klicken Sie auf `web.whatsapp.com` auf das **Schloss-Symbol** links in der Adressleiste.
 2. Wählen Sie **Cookies und Website-Daten**.
 3. Klicken Sie auf **Daten löschen**.

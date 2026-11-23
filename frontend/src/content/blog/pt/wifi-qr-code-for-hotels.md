@@ -134,6 +134,9 @@ Para notebooks antigos ou visitantes sem câmera compatível:
 - Limite a largura de banda por usuário
 - Permita alterar a senha sem impactar os sistemas internos
 
+### Renove as Senhas Regularmente
+Para hotéis e pousadas, renove as senhas de Wi-Fi mensalmente ou trimestralmente. No Airbnb, considere atualizar a senha a cada nova reserva.
+
 ### Criptografia WPA2 vs WPA3
 
 | Criptografia | Nível de Segurança | Compatibilidade |
@@ -163,6 +166,9 @@ Para notebooks antigos ou visitantes sem câmera compatível:
 - **Displays de acrílico**: Ideais para mesas de cabeceira e recepções
 - **Cartões plastificados**: Fáceis de higienizar e resistentes a líquidos
 - **Quadros de parede**: Instalação fixa e protegida
+
+### Impressão Caseira (DIY)
+Exporte o código QR no [GenerateCustomQR](/pt/wifi-qr-code/) em formato SVG vetorial ou PNG de alta resolução e plastifique a folha para proteger contra umidade e rasgos.
 
 ---
 

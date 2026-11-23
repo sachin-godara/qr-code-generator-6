@@ -124,6 +124,9 @@ Der weiße Rand (Quiet Zone) um den QR-Code muss mindestens 4 Module breit sein.
 ### 3. Zu geringe Bildauflösung im Druck
 Ein PNG mit 300×300 Pixeln sieht am Bildschirm scharf aus, wird auf einem DIN-A4-Plakat aber unscharf. Für den Druck immer Vektor-SVG oder 300-DPI-PDF nutzen.
 
+### 4. Keine Testscans im Originalmaßstab
+Drucken Sie vor der Großauflage immer einen Probedruck im 100%-Maßstab aus und testen Sie ihn mit mehreren Smartphones bei realem Lichteinfall.
+
 ---
 
 ## Checkliste vor dem Druck

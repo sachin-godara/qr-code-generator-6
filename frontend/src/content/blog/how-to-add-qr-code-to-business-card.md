@@ -5,7 +5,7 @@ pubDate: 2026-08-26
 author: "GenerateCustomQR Team"
 keywords: "qr code for business card, business card qr code, vcard qr code, digital business card, qr code business card generator free, how to add qr code to business card"
 category: "use-cases"
-image: "/og-image.png"
+image: "/og-blog.jpg"
 imageAlt: "Business card with a custom branded QR code"
 readingTime: 6
 featured: false

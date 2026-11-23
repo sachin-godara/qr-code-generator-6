@@ -5,7 +5,7 @@ pubDate: 2026-08-26
 author: "GenerateCustomQR Ekibi"
 keywords: "kartvizit için qr kod, kartvizit qr kod ekleme, vcard qr kod, dijital kartvizit, ücretsiz kartvizit qr kod oluşturucu, kartvizite karekod ekleme"
 category: "use-cases"
-image: "/og-image.png"
+image: "/og-blog.jpg"
 imageAlt: "Özel markalı QR koda sahip modern kartvizit"
 readingTime: 6
 featured: false

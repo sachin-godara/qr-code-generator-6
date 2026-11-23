@@ -5,7 +5,7 @@ pubDate: 2026-08-20
 author: "Equipo GenerateCustomQR"
 keywords: "mejores practicas diseno qr, tamano impresion qr, resolucion qr imprenta, consejos diseno codigo qr, como imprimir codigo qr, tamano minimo qr"
 category: "design-tips"
-image: "/og-image.png"
+image: "/og-blog.jpg"
 imageAlt: "Código QR bien diseñado impreso en una tarjeta de visita"
 readingTime: 6
 featured: false
@@ -102,6 +102,12 @@ Las cámaras leen identificando la diferencia de reflectancia entre los módulos
     </ul>
   </div>
 </div>
+
+### Consejos para Degradados de Color
+
+- Los degradados aportan un acabado visual premium, pero deben mantener el contraste en cada punto del código
+- Utiliza degradados de oscuro a más oscuro (por ejemplo, negro a azul marino), nunca de oscuro a claro
+- Prueba siempre el código degradado bajo diferentes condiciones de luz antes de imprimir
 
 ## 4. Zona de Silencio: El Margen Blanco Protector
 

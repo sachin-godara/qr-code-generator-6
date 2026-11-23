@@ -5,7 +5,7 @@ pubDate: 2026-08-18
 author: "GenerateCustomQR Team"
 keywords: "static vs dynamic qr code, difference between static and dynamic qr codes, static qr code, dynamic qr code, which qr code type to use"
 category: "comparisons"
-image: "/og-image.png"
+image: "/og-blog.jpg"
 imageAlt: "Comparison of static and dynamic QR codes side by side"
 readingTime: 5
 featured: false

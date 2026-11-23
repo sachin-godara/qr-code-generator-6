@@ -89,6 +89,8 @@ Segurar o celular *muito perto* do monitor é o erro mais comum:
 
 O WhatsApp possui um limite de segurança de **4 aparelhos conectados simultaneamente**:
 
+### Como encerrar sessões vinculadas antigas:
+
 1. Abra o WhatsApp no celular.
 2. Acesse **Configurações** (iOS) ou os **3 Pontos (⋮)** (Android).
 3. Toque em **Aparelhos Conectados**.
@@ -108,6 +110,7 @@ Extensões de privacidade e VPNs podem bloquear o protocolo **WebSockets (`wss:/
 
 ## Solução 5: Limpar Cache e Cookies do WhatsApp Web
 
+### Como limpar o cache do WhatsApp Web:
 1. No site `web.whatsapp.com`, clique no ícone do **Cadeado** na barra de endereços.
 2. Selecione **Cookies e dados do site**.
 3. Clique em **Limpar Dados**.

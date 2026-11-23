@@ -5,7 +5,7 @@ pubDate: 2026-08-26
 author: "Equipe GenerateCustomQR"
 keywords: "qr code cartao de visita, vcard qr code criar, cartao de visita digital qr code, imprimir qr code cartao, vcard no cartao"
 category: "use-cases"
-image: "/og-image.png"
+image: "/og-blog.jpg"
 imageAlt: "Cartão de visita com QR code personalizado"
 readingTime: 6
 featured: false
@@ -79,7 +79,9 @@ Leva a uma página mobile com apresentação dos seus principais trabalhos e lin
 
 ---
 
-## Passo 1: Criar o QR Code vCard
+## Passo 1: Criar o seu QR Code
+
+### Para um QR Code vCard:
 
 1. Abra o [Gerador de QR Code vCard](/pt/vcard-qr-code/).
 2. Preencha seus dados de contato:
@@ -90,14 +92,27 @@ Leva a uma página mobile com apresentação dos seus principais trabalhos e lin
    - Endereço físico (opcional)
 3. O código é gerado automaticamente em tempo real.
 
+### Para um QR Code de URL:
+
+1. Acesse o [Gerador de URL para QR Code](/pt/url-qr-code-generator/).
+2. Cole o link do seu portfólio, site institucional ou perfil do LinkedIn.
+3. O código é atualizado instantaneamente na tela.
+
 ---
 
 ## Passo 2: Personalizar o Design
 
-- **Cores**: Escolha cores com alto contraste (mínimo de 4.5:1 em relação ao fundo).
-- **Estilo de Pontos**: Pontos arredondados transmitem sofisticação; quadrados passam ar corporativo clássico.
-- **Logotipo**: Adicione o logotipo da sua empresa no centro com correção de erro **Nível H**.
-- **Moldura de Texto**: Aplique uma moldura discreta com a chamada *"Salvar Contato"* ou *"Escanear"*.
+### Cores
+Escolha cores com alto contraste (mínimo de 4.5:1 em relação ao fundo) alinhadas à sua identidade visual.
+
+### Estilo de Pontos
+Pontos arredondados transmitem sofisticação e modernidade; pontos quadrados passam um ar corporativo e clássico.
+
+### Logotipo
+Adicione o logotipo da sua empresa no centro com correção de erro **Nível H**.
+
+### Moldura de Texto (Opcional)
+Aplique uma moldura discreta com a chamada *"Salvar Contato"* ou *"Escanear"*.
 
 ---
 

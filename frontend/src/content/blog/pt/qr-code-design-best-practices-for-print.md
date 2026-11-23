@@ -5,7 +5,7 @@ pubDate: 2026-08-20
 author: "Equipe GenerateCustomQR"
 keywords: "boas praticas qr code impressao, tamanho qr code para imprimir, resolucao qr code grafica, dicas design qr code, como imprimir qr code"
 category: "design-tips"
-image: "/og-image.png"
+image: "/og-blog.jpg"
 imageAlt: "QR Code personalizado impresso em cartão de visita"
 readingTime: 6
 featured: false
@@ -102,6 +102,12 @@ Os leitores calculam a diferença de luminância entre os pontos e o fundo. A **
     </ul>
   </div>
 </div>
+
+### Dicas para Degradês de Cores
+
+- Degradês oferecem visual moderno e elegante, mas devem preservar o contraste em toda a extensão do código
+- Aplique transições de escuro para mais escuro (ex.: preto para azul-marinho), nunca de escuro para claro
+- Teste a leitura do código com degradê sob iluminação forte e fraca antes de imprimir
 
 ## 4. A Margem de Segurança (Quiet Zone)
 

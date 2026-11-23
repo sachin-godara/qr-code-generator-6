@@ -107,7 +107,7 @@ Verkaufsschilder werden typischerweise aus **3 bis 10 Metern Entfernung** (aus d
 
 ---
 
-## Erfolgreiche Handlungsaufforderungen: Do & Don't
+### Erfolgreiche Handlungsaufforderungen: Do & Don't
 
 <div class="blog-checklist-grid">
   <div class="blog-checklist-card do">

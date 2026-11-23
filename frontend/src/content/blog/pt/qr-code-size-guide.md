@@ -123,6 +123,9 @@ A borda branca ao redor do código deve ter no mínimo 4 módulos de largura. Co
 ### 3. Utilizar imagens em baixa resolução
 Um PNG de 300×300 pixels fica ótimo na tela do celular, mas fica embaçado ao ser impresso em um cartaz. Para gráfica, exporte em SVG ou PDF a 300 DPI.
 
+### 4. Não testar na escala real
+Sempre imprima uma prova de teste na escala de 100% e faça testes de leitura com aparelhos diferentes antes de autorizar a tiragem final.
+
 ---
 
 ## Checklist de Impressão

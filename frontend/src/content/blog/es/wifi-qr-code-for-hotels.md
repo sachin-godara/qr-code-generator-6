@@ -134,6 +134,9 @@ Para portátiles antiguos o personas que prefieran teclear:
 - Limite el ancho de banda por dispositivo
 - Permita renovar la contraseña periódicamente sin afectar la gestión
 
+### Rotar Contraseñas Periódicamente
+Para hoteles y alojamientos turísticos, cambie las claves Wi-Fi mensualmente o por temporada. Para Airbnb, considere renovarla entre reservas para máxima seguridad.
+
 ### Seguridad WPA2 vs WPA3
 
 | Cifrado | Nivel de Seguridad | Compatibilidad |
@@ -163,6 +166,9 @@ Para portátiles antiguos o personas que prefieran teclear:
 - **Soportes de acrílico**: Ideales para mesitas de noche y mostradores
 - **Tarjetas plastificadas**: Fáciles de limpiar e impermeables
 - **Cuadros de pared**: Instalación fija y protegida contra pérdidas
+
+### Impresión Casera (DIY)
+Exporte el código QR desde [GenerateCustomQR](/es/wifi-qr-code/) en formato vectorial SVG o PNG a 300 DPI y plastifique la hoja para protegerla contra el desgaste y líquidos.
 
 ---
 

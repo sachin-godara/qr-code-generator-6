@@ -6,7 +6,7 @@ pubDate: 2026-08-20
 author: "GenerateCustomQR Ekibi"
 keywords: "baskı için qr kod tasarımı, qr kod baskı boyutu, baskı için qr kod çözünürlüğü, qr kod tasarım ipuçları, qr kod nasıl basılır, qr kod minimum boyut"
 category: "design-tips"
-image: "/og-image.png"
+image: "/og-blog.jpg"
 imageAlt: "Kartvizite basılmış yüksek kaliteli özel tasarımlı QR kod"
 readingTime: 6
 featured: false

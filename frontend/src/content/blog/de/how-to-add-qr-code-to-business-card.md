@@ -5,7 +5,7 @@ pubDate: 2026-08-26
 author: "GenerateCustomQR Team"
 keywords: "qr code visitenkarte, vcard qr code erstellen, digitale visitenkarte qr code, qr code visitenkarte drucken, vcard auf visitenkarte"
 category: "use-cases"
-image: "/og-image.png"
+image: "/og-blog.jpg"
 imageAlt: "Visitenkarte mit individuellem QR-Code"
 readingTime: 6
 featured: false
@@ -83,6 +83,8 @@ Führt zu einer mobilen Übersichtsseite mit Arbeitsproben, Präsentationen und 
 
 ## Schritt 1: QR-Code erstellen
 
+### Für einen vCard QR-Code:
+
 1. Öffnen Sie den [Kostenlosen vCard QR-Code Generator](/de/vcard-qr-code/).
 2. Tragen Sie Ihre Kontaktdaten ein:
    - Vor- und Nachname, Berufsbezeichnung
@@ -92,14 +94,27 @@ Führt zu einer mobilen Übersichtsseite mit Arbeitsproben, Präsentationen und 
    - Anschrift (optional)
 3. Der QR-Code wird während der Eingabe in Echtzeit generiert.
 
+### Für einen URL QR-Code:
+
+1. Öffnen Sie den [URL zu QR-Code Generator](/de/url-qr-code-generator/).
+2. Fügen Sie den Link zu Ihrer Website, Ihrem Portfolio oder Ihrem LinkedIn-Profil ein.
+3. Der QR-Code wird direkt erzeugt.
+
 ---
 
 ## Schritt 2: Design an Ihre Marke anpassen
 
-- **Farben:** Stimmen Sie die Punktfarbe auf Ihre Hausfarben ab (Mindestkontrast 4.5:1 gegen den Hintergrund).
-- **Punktmuster:** Wählen Sie moderne runde Punkte oder zeitlose Quadrate.
-- **Logo:** Fügen Sie Ihr Firmenlogo im Zentrum ein (Fehlerkorrektur automatisch auf **Level H**).
-- **Textrahmen:** Fügen Sie einen kurzen Text wie *"Kontakt speichern"* oder *"Scan mich"* hinzu.
+### Farben
+Wählen Sie Markenfarben mit hohem Kontrast (mindestens 4,5:1 im Verhältnis zum Hintergrund).
+
+### Punktmuster
+Abgerundete Punkte wirken modern und ansprechend; klassische Quadrate vermitteln technische Präzision.
+
+### Logo
+Fügen Sie Ihr Firmenlogo mit hoher Fehlerkorrektur (Level H) zentriert ein.
+
+### Rahmen (Optional)
+Ein dezenter Rahmen mit Call-to-Action wie „KONTAKT SPEICHERN“ oder „SCAN ME“ führt zu mehr Scans.
 
 ---
 

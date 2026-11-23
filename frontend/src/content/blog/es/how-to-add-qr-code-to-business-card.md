@@ -5,8 +5,9 @@ pubDate: 2026-08-26
 author: "GenerateCustomQR Team"
 keywords: "codigo qr para tarjeta de visita, tarjeta de presentacion qr, vcard qr, tarjeta digital, generador qr tarjeta de visita"
 category: "use-cases"
-image: "/og-image.png"
+image: "/og-blog.jpg"
 imageAlt: "Tarjeta de visita con un código QR de marca personalizado"
+readingTime: 6
 featured: false
 faqs:
   - q: "¿Qué tipo de código QR es mejor para una tarjeta de visita?"

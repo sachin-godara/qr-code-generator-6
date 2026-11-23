@@ -5,7 +5,7 @@ pubDate: 2026-08-24
 author: "GenerateCustomQR Team"
 keywords: "qr code speisekarte, restaurant qr code, digitale speisekarte qr code, kontaktlose speisekarte, qr code speisekarte kostenlos"
 category: "use-cases"
-image: "/og-image.png"
+image: "/og-blog.jpg"
 imageAlt: "QR-Code für Speisekarte auf einem modernen Tischaufsteller"
 readingTime: 7
 featured: false
@@ -98,6 +98,7 @@ Bevor Sie den QR-Code erstellen, muss die Speisekarte online abrufbar sein:
 
 ## Schritt 3: Druck und Platzierung im Lokal
 
+### Die besten Platzierungsorte im Lokal
 - **Tischaufsteller (Acryl)**: Auf jedem Tisch aufgestellt (am beliebtesten).
 - **Tischaufkleber**: Wetter- und abriebfeste Folie direkt auf der Tischplatte.
 - **Theken- & Baraufsteller**: Am Eingang oder an der Kasse.

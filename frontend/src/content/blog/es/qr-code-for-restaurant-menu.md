@@ -6,7 +6,7 @@ pubDate: 2026-08-24
 author: "Equipo GenerateCustomQR"
 keywords: "codigo qr para carta restaurante, menu digital qr, qr restaurante, carta sin contacto, generador qr menu gratis"
 category: "use-cases"
-image: "/og-image.png"
+image: "/og-blog.jpg"
 imageAlt: "Código QR para carta de restaurante en soporte de mesa"
 readingTime: 7
 featured: false
@@ -97,9 +97,11 @@ Antes de crear el código QR, tu menú debe estar alojado en la red:
 
 ## Paso 3: Imprimir y Ubicar en las Mesas
 
-- **Soportes de mesa (Table tents)** — La opción clásica y más visible.
+### Mejores Opciones de Ubicación
+- **Soportes de mesa (Table tents)** — La opción clásica y más visible en el centro de la mesa.
 - **Vinilos adhesivos en mesa** — Resistentes a derrames de líquidos y limpieza constante.
 - **Barra y caja** — Para cartas rápidas en servicio de mostrador.
+- **Entrada o escaparate** — Permite que los clientes consulten el menú antes de sentarse.
 
 ### Especificaciones de Impresión
 - **Tamaño mínimo:** 2 × 2 cm
