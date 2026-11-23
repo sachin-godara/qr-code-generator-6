@@ -7,7 +7,9 @@ interface Props {
 }
 
 const currentLocale = getLocaleFromUrl(Astro.url);
-const cleanPath = getCleanPathname(Astro.url.pathname);
+const rawCleanPath = getCleanPathname(Astro.url.pathname);
+const isErrorPage = rawCleanPath === '/404' || rawCleanPath === '/500' || rawCleanPath === '/404.html' || rawCleanPath === '/500.html';
+const cleanPath = isErrorPage ? '/' : rawCleanPath;
 const currentInfo = localeConfig[currentLocale];
 const className = Astro.props.class || '';
 ---
