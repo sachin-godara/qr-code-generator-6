@@ -39,21 +39,21 @@ Herhangi bir cihazda kurulum gerektirmeyen en kolay yöntem, **[GenerateCustomQR
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Ekran Görüntüsü Alın</h4>
+      <p class="blog-flow-title font-bold">Ekran Görüntüsü Alın</p>
     </div>
     <p class="blog-flow-desc">iPhone, Android, PC veya Mac'inizde ekran görüntüsünü kaydedin.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Yapıştırın (Ctrl+V) / Yükleyin</h4>
+      <p class="blog-flow-title font-bold">Yapıştırın (Ctrl+V) / Yükleyin</p>
     </div>
     <p class="blog-flow-desc">Görseli web okuyucuya sürükleyin veya doğrudan panodan yapıştırın.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Anında İşlem Yapın</h4>
+      <p class="blog-flow-title font-bold">Anında İşlem Yapın</p>
     </div>
     <p class="blog-flow-desc">Tek tıkla siteyi açın, Wi-Fi'a bağlanın veya kişiyi rehbere kaydedin.</p>
   </div>

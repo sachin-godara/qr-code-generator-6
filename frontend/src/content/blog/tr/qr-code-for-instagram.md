@@ -1,7 +1,7 @@
 ---
 title: "Takipçi ve Etkileşimi Artırmak İçin Özel Instagram QR Kodu Nasıl Yapılır?"
 seoTitle: "Takipçi Artırmak İçin Instagram QR Kodu Oluşturma"
-description: "Profiliniz, reels videolarınız veya direkt mesajlarınız için markalı bir Instagram QR kodu oluşturun. Vektör tasarım ipuçları, derin bağlantı formatları ve yüksek dönüşümlü baskı yerleşimleri."
+description: "Profiliniz ve videolarınız için markalı Instagram QR kodu oluşturun. Vektör tasarım ipuçları, bağlantı formatları ve yüksek dönüşümlü yerleşimler."
 pubDate: 2026-08-25
 author: "GenerateCustomQR Ekibi"
 keywords: "instagram qr kod olusturucu, instagram profili icin qr kod, logolu instagram qr kodu, ucretsiz instagram qr kod, isletmeler icin instagram karekod"
@@ -68,21 +68,21 @@ Instagram, ulaşmak istediğiniz dönüşüm hedefine göre farklı URL yapılar
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Fiziksel Temas</h4>
+      <p class="blog-flow-title font-bold">Fiziksel Temas</p>
     </div>
     <p class="blog-flow-desc">Koli içi kartvizit, vitrin çıkartması, masa üstü pleksi veya yaka kartı.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Anında Tarama</h4>
+      <p class="blog-flow-title font-bold">Anında Tarama</p>
     </div>
     <p class="blog-flow-desc">Akıllı telefon kamerası matrisi okur ve yerel derin bağlantıyı tetikler.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Uygulama İçi Takip</h4>
+      <p class="blog-flow-title font-bold">Uygulama İçi Takip</p>
     </div>
     <p class="blog-flow-desc">Instagram uygulaması doğrudan açılır. Tek tıkla takip edilir.</p>
   </div>

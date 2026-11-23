@@ -1,7 +1,7 @@
 ---
 title: "Statik ve Dinamik QR Kodlar — Aralarındaki Temel Farklar Nelerdir?"
 seoTitle: "Statik ve Dinamik QR Kod Arasındaki Farklar Nedir?"
-description: "Statik ve dinamik QR kodlar arasındaki farkları anlayın. Hangi türü ne zaman kullanacağınızı, avantajlarını, dezavantajlarını ve işletmeniz için hangisinin en iyisi olduğunu öğrenin."
+description: "Statik ve dinamik QR kodlar arasındaki farkları anlayın. Avantajları, dezavantajları ve işletmeniz için hangi türün uygun olduğunu öğrenin."
 pubDate: 2026-08-18
 author: "GenerateCustomQR Ekibi"
 keywords: "statik dinamik qr kod, statik ve dinamik qr kod farki, statik qr kod nedir, dinamik qr kod nedir, hangi qr kod turu secilmeli"

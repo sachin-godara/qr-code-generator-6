@@ -46,21 +46,21 @@ O **QR code vCard** armazena todos os seus dados profissionais — nome completo
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Entregar Cartão</h4>
+      <p class="blog-flow-title font-bold">Entregar Cartão</p>
     </div>
     <p class="blog-flow-desc">O cliente aponta a câmera do celular para o código vCard no cartão.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Reconhecimento</h4>
+      <p class="blog-flow-title font-bold">Reconhecimento</p>
     </div>
     <p class="blog-flow-desc">O smartphone detecta o contato automaticamente no iOS ou Android.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Salvar com 1 Toque</h4>
+      <p class="blog-flow-title font-bold">Salvar com 1 Toque</p>
     </div>
     <p class="blog-flow-desc">Nome, telefone, e-mail e empresa são salvos direto na agenda sem digitação.</p>
   </div>

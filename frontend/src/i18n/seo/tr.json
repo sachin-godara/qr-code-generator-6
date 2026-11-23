@@ -1,7 +1,7 @@
 {
   "home": {
-    "title": "Ücretsiz Özel QR Kod Oluşturucu — Logolu ve Filigransız",
-    "description": "Logolu, 40+ nokta desenli ve renk geçişli özel QR kodları %100 ücretsiz oluşturun. Vektörel SVG, PDF veya yüksek çözünürlüklü PNG olarak filigransız indirin.",
+    "title": "Ücretsiz Özel QR Kod Oluşturucu — Logolu & Filigransız",
+    "description": "Logolu ve 40+ nokta desenli özel QR kodları ücretsiz oluşturun. Vektörel SVG, PDF veya yüksek çözünürlüklü PNG olarak filigransız indirin.",
     "keywords": "qr kod oluşturucu, ücretsiz qr kod yapma, logolu qr kod oluşturucu, filigransız qr kod, karekod oluşturucu, vektör svg qr kod, 300 dpi baskıya hazır qr kod, toplu qr kod oluşturma, online qr kod yap, yüksek çözünürlüklü qr kod",
     "howToName": "Özel QR Kod Nasıl Oluşturulur",
     "howToDesc": "Logo, renkler, degradeler ve çerçevelerle 2 dakikadan kısa sürede tamamen özelleştirilmiş bir QR kodu tasarlayın ve oluşturun — %100 ücretsiz.",
@@ -24,7 +24,7 @@
   },
   "scanner": {
     "title": "QR Kod Okuyucu Online — İndirmeden Karekod Okutma",
-    "description": "Kameradan, fotoğraftan veya ekran görüntüsünden (Ctrl+V) uygulama indirmeden anında karekod okutun. PC ve mobilde %100 ücretsiz, gizli ve güvenli online QR kod okuyucu.",
+    "description": "Kameradan veya ekran görüntüsünden (Ctrl+V) indirmeden anında karekod okutun. PC ve mobilde %100 ücretsiz, gizli ve güvenli online QR okuyucu.",
     "keywords": "qr kod okuyucu, karekod okutma, qr okuyucu, karekod, karekod okuyucu, karekod okuma, qr kod okuyucu online, uygulamasiz qr kod okuyucu, indirmeden karekod okutma, pc qr kod okuyucu, ekran goruntusunden qr kod okuma, resimden qr kod okuma, online karekod okuyucu, programsiz karekod okuma",
     "faqs": [
       { "q": "Uygulama indirmeden QR kodu nasıl tararım?", "a": "Herhangi bir uygulama yüklemenize gerek yoktur. Modern iOS ve Android telefonların yerel Kamera uygulamalarında QR okuyucular yerleşiktir. PC, Mac, dizüstü bilgisayar veya tabletlerde web kameranızla anında taramak, bir fotoğraf yüklemek veya Ctrl+V ile bir ekran görüntüsü yapıştırmak için GenerateCustomQR Web Okuyucu'yu açmanız yeterlidir." },

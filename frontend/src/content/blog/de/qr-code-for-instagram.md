@@ -68,21 +68,21 @@ Instagram unterstützt verschiedene Deep-Link-Formate für unterschiedliche Mark
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Physischer Werbeträger</h4>
+      <p class="blog-flow-title font-bold">Physischer Werbeträger</p>
     </div>
     <p class="blog-flow-desc">Paketbeileger, Schaufensterfolie, Tischaufsteller oder Messeausweis.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Sofortiger Kamerascan</h4>
+      <p class="blog-flow-title font-bold">Sofortiger Kamerascan</p>
     </div>
     <p class="blog-flow-desc">Der Kamera-Autofokus liest den Code und startet den nativen App-Aufruf.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Direkter In-App Follow</h4>
+      <p class="blog-flow-title font-bold">Direkter In-App Follow</p>
     </div>
     <p class="blog-flow-desc">Öffnet Ihr Profil in der Instagram-App. 1 Klick zum Folgen und Vernetzen.</p>
   </div>

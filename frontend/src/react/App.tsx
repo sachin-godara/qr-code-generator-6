@@ -468,7 +468,7 @@ function App() {
                         {t("studio.labels.trustPill") || "100% Free · No Signup · Permanent"}
                       </span>
                     </div>
-                    <h3 className="text-xl font-semibold text-on-surface tracking-tight panel-enter" key={`h-${activeTab}`}>{meta.headline}</h3>
+                    <div className="text-xl font-semibold text-on-surface tracking-tight panel-enter" key={`h-${activeTab}`}>{meta.headline}</div>
                     <p className="text-sm text-on-surface-variant mt-1 panel-enter" key={`s-${activeTab}`}>
                       {meta.sub}
                     </p>

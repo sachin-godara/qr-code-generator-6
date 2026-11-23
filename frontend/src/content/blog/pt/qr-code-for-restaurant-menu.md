@@ -1,6 +1,6 @@
 ---
 title: "Como Usar QR Codes para Cardápios de Restaurantes — Guia Completo (2026)"
-description: "Aprenda a criar, personalizar e imprimir QR codes para o cardápio digital do seu restaurante. Guia passo a passo com dicas de design, suportes de mesa e ferramentas gratuitas."
+description: "Aprenda a criar e imprimir QR codes para o cardápio digital do seu restaurante. Guia passo a passo com dicas de design e suportes de mesa."
 pubDate: 2026-08-24
 author: "Equipe GenerateCustomQR"
 keywords: "qr code para cardapio, cardapio digital qr code, qr code restaurante, cardapio sem contato, gerador de qr code cardapio gratis"
@@ -43,21 +43,21 @@ A transição para cardápios digitais melhora permanentemente a operação e a 
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Display na Mesa</h4>
+      <p class="blog-flow-title font-bold">Display na Mesa</p>
     </div>
     <p class="blog-flow-desc">Suporte de acrílico ou adesivo vinílico posicionado na altura dos olhos do cliente.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Leitura em 1 Segundo</h4>
+      <p class="blog-flow-title font-bold">Leitura em 1 Segundo</p>
     </div>
     <p class="blog-flow-desc">O cliente aponta a câmera nativa do iPhone ou Android sem instalar nenhum aplicativo.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Cardápio Digital</h4>
+      <p class="blog-flow-title font-bold">Cardápio Digital</p>
     </div>
     <p class="blog-flow-desc">Acesso a fotos em alta definição, preços atualizados e opções de alérgenos.</p>
   </div>

@@ -30,21 +30,21 @@ Traditional physical marketing limits property exposure. A yard sign only displa
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Yard Sign Rider</h4>
+      <p class="blog-flow-title font-bold">Yard Sign Rider</p>
     </div>
     <p class="blog-flow-desc">High-contrast QR sign rider placed at curb-height on the For-Sale sign.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Drive-By Scan</h4>
+      <p class="blog-flow-title font-bold">Drive-By Scan</p>
     </div>
     <p class="blog-flow-desc">Buyer scans from car window or sidewalk. Instant optical auto-focus.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">3D Virtual Tour</h4>
+      <p class="blog-flow-title font-bold">3D Virtual Tour</p>
     </div>
     <p class="blog-flow-desc">Opens MLS listing, 50+ photos, video walkthrough, and 1-tap agent contact.</p>
   </div>

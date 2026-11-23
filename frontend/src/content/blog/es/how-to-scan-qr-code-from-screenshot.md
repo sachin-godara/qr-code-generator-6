@@ -39,21 +39,21 @@ La forma más rápida y sin instalar nada es usar un decodificador web en el nav
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Tomar Captura</h4>
+      <p class="blog-flow-title font-bold">Tomar Captura</p>
     </div>
     <p class="blog-flow-desc">Guarda la captura en tu iPhone, Android, PC o Mac.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Pegar (Ctrl+V) / Subir</h4>
+      <p class="blog-flow-title font-bold">Pegar (Ctrl+V) / Subir</p>
     </div>
     <p class="blog-flow-desc">Arrastra la imagen o pégala directamente desde el portapapeles.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Acción Inmediata</h4>
+      <p class="blog-flow-title font-bold">Acción Inmediata</p>
     </div>
     <p class="blog-flow-desc">1 clic para abrir la web, conectar a Wi-Fi o guardar contacto.</p>
   </div>

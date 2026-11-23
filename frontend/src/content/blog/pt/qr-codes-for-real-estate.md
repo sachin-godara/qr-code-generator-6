@@ -30,21 +30,21 @@ Uma placa comum de "Vende-se" exibe apenas o telefone do corretor. No entanto, o
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Placa na Rua</h4>
+      <p class="blog-flow-title font-bold">Placa na Rua</p>
     </div>
     <p class="blog-flow-desc">Adesivo com QR code em alto contraste aplicado na placa de venda.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Leitura do Carro</h4>
+      <p class="blog-flow-title font-bold">Leitura do Carro</p>
     </div>
     <p class="blog-flow-desc">O cliente aponta a câmera da calçada ou de dentro do veículo.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Tour Virtual 3D</h4>
+      <p class="blog-flow-title font-bold">Tour Virtual 3D</p>
     </div>
     <p class="blog-flow-desc">Abre o anúncio completo com 50+ fotos e botão de contato no WhatsApp.</p>
   </div>

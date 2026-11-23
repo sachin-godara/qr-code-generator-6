@@ -77,21 +77,21 @@ Escolha se deseja abrir uma conversa limpa ou pré-preencher uma mensagem para f
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Material Físico</h4>
+      <p class="blog-flow-title font-bold">Material Físico</p>
     </div>
     <p class="blog-flow-desc">Balcão de atendimento, cardápio, adesivo na embalagem ou veículo da empresa.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Leitura com a Câmera</h4>
+      <p class="blog-flow-title font-bold">Leitura com a Câmera</p>
     </div>
     <p class="blog-flow-desc">A câmera padrão do iOS ou Android abre o link sem precisar baixar aplicativos extras.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Conversa com 1 Toque</h4>
+      <p class="blog-flow-title font-bold">Conversa com 1 Toque</p>
     </div>
     <p class="blog-flow-desc">Abre o WhatsApp com o texto pronto. Zero necessidade de salvar o número na agenda.</p>
   </div>

@@ -77,21 +77,21 @@ Legen Sie fest, ob der Chat leer öffnen oder ein vorgefertigter Text angezeigt 
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Physischer Werbeträger</h4>
+      <p class="blog-flow-title font-bold">Physischer Werbeträger</p>
     </div>
     <p class="blog-flow-desc">Kassenaufsteller, Tischkarte, Verpackungssticker oder Fahrzeugbeschriftung.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Sofortiger Kamerascan</h4>
+      <p class="blog-flow-title font-bold">Sofortiger Kamerascan</p>
     </div>
     <p class="blog-flow-desc">Die native Smartphone-Kamera öffnet den Link. Keine Extra-App erforderlich.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">1-Klick Direktchat</h4>
+      <p class="blog-flow-title font-bold">1-Klick Direktchat</p>
     </div>
     <p class="blog-flow-desc">Öffnet den Chat mit Startnachricht. Ohne Abspeichern der Nummer.</p>
   </div>

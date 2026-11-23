@@ -1145,9 +1145,9 @@ function QRScannerAppContent() {
                           <Camera size={28} />
                         </div>
                         
-                        <h4 className="text-base font-bold text-on-surface mb-1">
+                        <div className="text-base font-bold text-on-surface mb-1">
                           {t("scanner.liveCameraScanner")}
-                        </h4>
+                        </div>
                         
                         <p className="text-xs text-on-surface-variant leading-relaxed mb-4">
                           {t("scanner.cameraScanDesc")}
@@ -1416,9 +1416,9 @@ function QRScannerAppContent() {
                       </motion.div>
                     </div>
 
-                    <h3 className="text-base sm:text-xl font-bold text-zinc-900 mb-1 tracking-tight group-hover:text-black transition-colors">
+                    <div className="text-base sm:text-xl font-bold text-zinc-900 mb-1 tracking-tight group-hover:text-black transition-colors">
                       {t("scanner.dropImage")}
-                    </h3>
+                    </div>
                     
                     <p className="text-xs sm:text-sm text-zinc-500 max-w-[320px] leading-relaxed mb-4 sm:mb-5">
                       {t("scanner.dropSubtitle")}

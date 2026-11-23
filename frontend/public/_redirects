@@ -1,3 +1,5 @@
+# Canonical Hostname: WWW to non-WWW redirect is managed via Cloudflare Dashboard for www.generatecustomqr.com
+
 # Short Tool URL Aliases (Rescue external links & user typos)
 /qr-code-generator/        /free-qr-code-generator/  301
 /qr-code-generator         /free-qr-code-generator/  301

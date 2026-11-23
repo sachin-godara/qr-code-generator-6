@@ -68,21 +68,21 @@ Instagram supports multiple URL structures depending on the specific conversion 
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Physical Touchpoint</h4>
+      <p class="blog-flow-title font-bold">Physical Touchpoint</p>
     </div>
     <p class="blog-flow-desc">Packaging insert, storefront window decal, menu card, or event badge.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Instant Camera Scan</h4>
+      <p class="blog-flow-title font-bold">Instant Camera Scan</p>
     </div>
     <p class="blog-flow-desc">Smartphone autofocus reads the matrix and triggers universal deep linking.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Direct In-App Follow</h4>
+      <p class="blog-flow-title font-bold">Direct In-App Follow</p>
     </div>
     <p class="blog-flow-desc">Native app launches directly to your profile. 1-tap to follow and engage.</p>
   </div>

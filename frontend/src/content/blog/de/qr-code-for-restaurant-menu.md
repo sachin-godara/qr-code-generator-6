@@ -43,21 +43,21 @@ Der Wechsel zu digitalen Speisekarten optimiert Arbeitsabläufe und begeistert G
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Tischaufsteller</h4>
+      <p class="blog-flow-title font-bold">Tischaufsteller</p>
     </div>
     <p class="blog-flow-desc">Acryl-Aufsteller oder wischfester Tischaufkleber direkt im Blickfeld.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">1-Sekunden-Scan</h4>
+      <p class="blog-flow-title font-bold">1-Sekunden-Scan</p>
     </div>
     <p class="blog-flow-desc">Gast öffnet normale Kamera am Smartphone. Keine App-Installation nötig.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Sofortiges Menü</h4>
+      <p class="blog-flow-title font-bold">Sofortiges Menü</p>
     </div>
     <p class="blog-flow-desc">Hochauflösende Fotos, Allergenfilter und Mehrsprachigkeit.</p>
   </div>

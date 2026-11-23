@@ -77,22 +77,22 @@ O quishing aproveita a transição do computador corporativo seguro para o celul
   <div class="blog-threat-flow">
     <div class="blog-threat-card">
       <span class="blog-threat-tag">Fase 1: Envio</span>
-      <h4 class="blog-threat-title">Anexo com Imagem QR</h4>
+      <p class="blog-threat-title">Anexo com Imagem QR</p>
       <p class="blog-threat-desc">O criminoso envia PDF ou imagem fingindo ser do RH ou aviso de 'Atualização de MFA no Microsoft 365'.</p>
     </div>
     <div class="blog-threat-card">
       <span class="blog-threat-tag">Fase 2: Migração</span>
-      <h4 class="blog-threat-title">Leitura no Celular</h4>
+      <p class="blog-threat-title">Leitura no Celular</p>
       <p class="blog-threat-desc">O funcionário escaneia com o smartphone pessoal, saindo da VPN e da proteção corporativa.</p>
     </div>
     <div class="blog-threat-card">
       <span class="blog-threat-tag">Fase 3: Engano</span>
-      <h4 class="blog-threat-title">Página Clonada</h4>
+      <p class="blog-threat-title">Página Clonada</p>
       <p class="blog-threat-desc">O celular carrega uma réplica exata do Microsoft Entra ID, Okta ou Google Workspace.</p>
     </div>
     <div class="blog-threat-card">
       <span class="blog-threat-tag">Fase 4: Invasão</span>
-      <h4 class="blog-threat-title">Sequestro de Sessão</h4>
+      <p class="blog-threat-title">Sequestro de Sessão</p>
       <p class="blog-threat-desc">O invasor rouba usuário, senha e tokens de MFA em tempo real para acessar os sistemas internos.</p>
     </div>
   </div>
@@ -163,28 +163,28 @@ Milhares de parquímetros em grandes cidades foram adulterados com adesivos fals
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Visão Computacional</h4>
+      <p class="blog-flow-title font-bold">Visão Computacional</p>
     </div>
     <p class="blog-flow-desc">Filtros de e-mail com IA que extraem códigos QR e analisam os links em ambientes isolados.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Chaves FIDO2</h4>
+      <p class="blog-flow-title font-bold">Chaves FIDO2</p>
     </div>
     <p class="blog-flow-desc">Chaves físicas YubiKey vinculam o login ao domínio real, impedindo roubo de credenciais.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Proteção Mobile (MDM)</h4>
+      <p class="blog-flow-title font-bold">Proteção Mobile (MDM)</p>
     </div>
     <p class="blog-flow-desc">Gerenciamento com filtragem DNS ativa em todos os celulares corporativos.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">4</span>
-      <h4 class="blog-flow-title">Treinamentos Práticos</h4>
+      <p class="blog-flow-title font-bold">Treinamentos Práticos</p>
     </div>
     <p class="blog-flow-desc">Simulações periódicas de ataques de quishing com os colaboradores da empresa.</p>
   </div>

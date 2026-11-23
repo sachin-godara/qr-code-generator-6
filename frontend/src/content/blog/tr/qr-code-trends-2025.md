@@ -1,6 +1,6 @@
 ---
 title: "QR Kod Trendleri 2026 ve Ötesi — Tasarım Yenilikleri, İstatistikler ve GS1 Sunrise 2027"
-description: "2026 ve sonrasındaki en son QR kod trendlerini keşfedin: GS1 Sunrise 2027 geçişi, AB Dijital Ürün Pasaportu, tasarım inovasyonları ve küresel sektör istatistikleri."
+description: "2026 QR kod trendlerini keşfedin: GS1 Sunrise 2027 geçişi, AB Dijital Ürün Pasaportu, tasarım inovasyonları ve küresel sektör istatistikleri."
 pubDate: 2026-08-19
 author: "GenerateCustomQR Ekibi"
 keywords: "qr kod trendleri 2026, qr kod istatistikleri 2026, qr kodlarin gelecegi, gs1 digital link sunrise 2027, ab dijital urun pasaportu qr kod, karekod sektoru buyumesi"

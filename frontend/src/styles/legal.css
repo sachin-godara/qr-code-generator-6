@@ -131,7 +131,8 @@
   flex-shrink: 0;
 }
 
-.legal-highlight-card h4 {
+.legal-highlight-card h4,
+.legal-highlight-card .legal-card-heading {
   font-size: 0.95rem;
   font-weight: 700;
   color: var(--color-on-surface);

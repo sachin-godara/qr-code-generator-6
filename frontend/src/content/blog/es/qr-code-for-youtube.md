@@ -59,7 +59,7 @@ Si tu objetivo principal es conseguir nuevos suscriptores, no utilices el enlace
     Ventana de Suscripción de YouTube
   </div>
   <div class="blog-modal-body">
-    <h4 class="blog-modal-title">Confirmar Suscripción al Canal</h4>
+    <p class="blog-modal-title">Confirmar Suscripción al Canal</p>
     <p class="blog-modal-text">¿Seguro que quieres suscribirte a <strong>@TuCanal</strong>?</p>
   </div>
   <div class="blog-modal-actions">
@@ -78,21 +78,21 @@ Cuando los usuarios acceden a este enlace en ordenador o tablet, YouTube muestra
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Soporte Físico</h4>
+      <p class="blog-flow-title font-bold">Soporte Físico</p>
     </div>
     <p class="blog-flow-desc">El usuario ve tu código QR en envases, folletos o diapositivas de conferencias.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Apertura Inmediata</h4>
+      <p class="blog-flow-title font-bold">Apertura Inmediata</p>
     </div>
     <p class="blog-flow-desc">La cámara nativa del móvil abre la aplicación oficial de YouTube al instante.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Suscripción en 1 Toque</h4>
+      <p class="blog-flow-title font-bold">Suscripción en 1 Toque</p>
     </div>
     <p class="blog-flow-desc">El usuario se suscribe y disfruta de tus contenidos audiovisuales en alta definición.</p>
   </div>

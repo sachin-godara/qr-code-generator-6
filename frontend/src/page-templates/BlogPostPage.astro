@@ -84,9 +84,9 @@ const articleSchema = {
     "url": "https://generatecustomqr.com/",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://generatecustomqr.com/favicon-96x96.png",
-      "width": 96,
-      "height": 96
+      "url": "https://generatecustomqr.com/apple-touch-icon.png",
+      "width": 180,
+      "height": 180
     },
     "publishingPrinciples": "https://generatecustomqr.com/about/"
   },
@@ -148,9 +148,9 @@ if (!seoTitle) {
   }
 }
 
-// Brand enrichment: if resolved title is concise (< 42 chars) and brand fits, append it
-if (seoTitle.length + brandSuffix.length <= 65 && !seoTitle.includes('GenerateCustomQR')) {
-  if (seoTitle.length < 42) {
+// Brand enrichment: if resolved title is concise (< 37 chars) and brand fits within 58 chars, append it
+if (seoTitle.length + brandSuffix.length <= 58 && !seoTitle.includes('GenerateCustomQR')) {
+  if (seoTitle.length < 37) {
     seoTitle = `${seoTitle}${brandSuffix}`;
   }
 }
@@ -160,7 +160,7 @@ if (seoTitle.length + brandSuffix.length <= 65 && !seoTitle.includes('GenerateCu
   title={seoTitle}
   description={description}
   canonicalUrl={canonicalUrl}
-  keywords={post.data.tags && post.data.tags.length > 0 ? post.data.tags.join(', ') : undefined}
+  keywords={post.data.keywords || (post.data.tags && post.data.tags.length > 0 ? post.data.tags.join(', ') : undefined)}
   ogImage={post.data.image || "/og-blog.jpg"}
   pageType="article"
   breadcrumbs={breadcrumbs}

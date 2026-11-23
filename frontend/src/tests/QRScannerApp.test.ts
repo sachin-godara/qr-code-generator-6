@@ -154,7 +154,7 @@ END:VEVENT`;
     expect(getCreatorUrl('https://example.com', 'es')).toBe('/es/?text=https%3A%2F%2Fexample.com');
     expect(getCreatorUrl('https://example.com', 'pt')).toBe('/pt/?text=https%3A%2F%2Fexample.com');
     expect(getCreatorUrl('https://example.com', 'tr')).toBe('/tr/?text=https%3A%2F%2Fexample.com');
-    expect(getCreatorUrl(null, 'de')).toBe('/de');
+    expect(getCreatorUrl(null, 'de')).toBe('/de/');
     expect(getCreatorUrl(null, 'en')).toBe('/');
   });
 

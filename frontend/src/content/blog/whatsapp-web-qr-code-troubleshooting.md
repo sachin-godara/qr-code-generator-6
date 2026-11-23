@@ -40,21 +40,21 @@ When you load `web.whatsapp.com`, WhatsApp establishes an end-to-end encrypted s
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Browser Keygen</h4>
+      <p class="blog-flow-title font-bold">Browser Keygen</p>
     </div>
     <p class="blog-flow-desc">Desktop generates a 20-second ephemeral 2D cryptographic key matrix.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Optical Signature</h4>
+      <p class="blog-flow-title font-bold">Optical Signature</p>
     </div>
     <p class="blog-flow-desc">Phone camera scans matrix and signs session with account private key.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Encrypted Sync</h4>
+      <p class="blog-flow-title font-bold">Encrypted Sync</p>
     </div>
     <p class="blog-flow-desc">Persistent Secure WebSocket (`wss://`) syncs chats directly to desktop.</p>
   </div>

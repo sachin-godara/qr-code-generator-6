@@ -48,21 +48,21 @@ Ein **vCard-QR-Code** codiert alle Ihre beruflichen Kontaktdaten — vollständi
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Karte übergeben</h4>
+      <p class="blog-flow-title font-bold">Karte übergeben</p>
     </div>
     <p class="blog-flow-desc">Geschäftspartner richtet die Smartphone-Kamera auf den QR-Code.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Auto-Erkennung</h4>
+      <p class="blog-flow-title font-bold">Auto-Erkennung</p>
     </div>
     <p class="blog-flow-desc">Das Smartphone erkennt die vCard-Visitenkarte sofort nativ.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">1-Klick Speichern</h4>
+      <p class="blog-flow-title font-bold">1-Klick Speichern</p>
     </div>
     <p class="blog-flow-desc">Alle Kontaktdaten landen ohne Tippfehler direkt im Adressbuch.</p>
   </div>

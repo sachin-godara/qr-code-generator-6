@@ -77,22 +77,22 @@ Quishing attacks exploit the transition between secure enterprise desktop enviro
   <div class="blog-threat-flow">
     <div class="blog-threat-card">
       <span class="blog-threat-tag">Stage 1: Delivery</span>
-      <h4 class="blog-threat-title">Optical Email Attachment</h4>
+      <p class="blog-threat-title">Optical Email Attachment</p>
       <p class="blog-threat-desc">Attacker sends a PDF or PNG masquerading as an urgent HR memo, payroll update, or Microsoft 365 MFA reset notice.</p>
     </div>
     <div class="blog-threat-card">
       <span class="blog-threat-tag">Stage 2: Pivot</span>
-      <h4 class="blog-threat-title">Device Transition</h4>
+      <p class="blog-threat-title">Device Transition</p>
       <p class="blog-threat-desc">Employee scans the screen with a personal smartphone, stepping off corporate VPN, proxy inspection, and endpoint EDR.</p>
     </div>
     <div class="blog-threat-card">
       <span class="blog-threat-tag">Stage 3: Deception</span>
-      <h4 class="blog-threat-title">Cloned Identity Portal</h4>
+      <p class="blog-threat-title">Cloned Identity Portal</p>
       <p class="blog-threat-desc">Mobile browser loads a pixel-perfect clone of Okta, Microsoft Entra ID, or Google Workspace using reverse-proxy toolkits.</p>
     </div>
     <div class="blog-threat-card">
       <span class="blog-threat-tag">Stage 4: Breach</span>
-      <h4 class="blog-threat-title">Session Hijacking</h4>
+      <p class="blog-threat-title">Session Hijacking</p>
       <p class="blog-threat-desc">Attacker captures username, password, and live MFA session tokens in real time, achieving full corporate cloud compromise.</p>
     </div>
   </div>
@@ -167,28 +167,28 @@ Attackers frequently leverage **open redirect vulnerabilities** on authoritative
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Computer Vision</h4>
+      <p class="blog-flow-title font-bold">Computer Vision</p>
     </div>
     <p class="blog-flow-desc">Deploy AI email security that unpacks images, extracts QR payloads, and sandboxes deep links.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">FIDO2 Hardware Keys</h4>
+      <p class="blog-flow-title font-bold">FIDO2 Hardware Keys</p>
     </div>
     <p class="blog-flow-desc">Mandate physical YubiKeys. FIDO2 binds authentication to the true origin domain, preventing credential harvesting.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Mobile Threat Defense</h4>
+      <p class="blog-flow-title font-bold">Mobile Threat Defense</p>
     </div>
     <p class="blog-flow-desc">Install Mobile Device Management (MDM) with active DNS filtering on all corporate-accessible phones.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">4</span>
-      <h4 class="blog-flow-title">Quishing Drills</h4>
+      <p class="blog-flow-title font-bold">Quishing Drills</p>
     </div>
     <p class="blog-flow-desc">Incorporate optical QR attack simulations into quarterly employee security awareness training.</p>
   </div>

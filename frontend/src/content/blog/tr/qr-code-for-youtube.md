@@ -1,7 +1,7 @@
 ---
 title: "Abone, Video ve Oynatma Listeleri İçin YouTube QR Kodu Nasıl Oluşturulur? (2026)"
 seoTitle: "YouTube QR Kodu Nasıl Oluşturulur — Tam Rehber"
-description: "Kanal aboneliklerini, video eğitimlerini ve canlı yayınları açan özel YouTube QR kodları oluşturun. Dönüşümleri ikiye katlayan 1 tıkla otomatik abone olma hilesini öğrenin."
+description: "Kanal aboneliği ve video oynatma için YouTube QR kodu oluşturun. Dönüşümleri artıran 1 tıkla otomatik abone olma yöntemini keşfedin."
 pubDate: 2026-08-25
 author: "GenerateCustomQR Ekibi"
 keywords: "youtube qr kod olusturucu, youtube kanali icin qr kod, youtube abone ol qr kod, ucretsiz video qr kod olusturucu, youtube videosu icin qr kod"
@@ -61,7 +61,7 @@ Temel amacınız abone sayınızı artırmaksa, sıradan bir kanal bağlantısı
     YouTube Abonelik Onay Penceresi
   </div>
   <div class="blog-modal-body">
-    <h4 class="blog-modal-title">Kanal Aboneliğini Onaylayın</h4>
+    <p class="blog-modal-title">Kanal Aboneliğini Onaylayın</p>
     <p class="blog-modal-text"><strong>@Kanaliniz</strong> kanalına abone olmak istediğinizden emin misiniz?</p>
   </div>
   <div class="blog-modal-actions">
@@ -80,21 +80,21 @@ Masaüstü veya tablet kullanıcıları bu URL'yi taradığında veya tıkladı�
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Fiziksel Temas</h4>
+      <p class="blog-flow-title font-bold">Fiziksel Temas</p>
     </div>
     <p class="blog-flow-desc">İzleyici QR kodunuzu ürün kutusunda, broşürde veya sunum slaytında görür.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Anında Uygulama Başlatma</h4>
+      <p class="blog-flow-title font-bold">Anında Uygulama Başlatma</p>
     </div>
     <p class="blog-flow-desc">Yerel kamera resmi YouTube mobil uygulamasını doğrudan açar.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">1 Tıkla Abone Ol</h4>
+      <p class="blog-flow-title font-bold">1 Tıkla Abone Ol</p>
     </div>
     <p class="blog-flow-desc">İzleyici abone olur ve yüksek çözünürlüklü videolarınızla etkileşime girer.</p>
   </div>

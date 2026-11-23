@@ -49,21 +49,21 @@ SVG speichert QR-Codes als mathematische Pfadkoordinaten statt als statisches Pi
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Verlustfreie Skalierung</h4>
+      <p class="blog-flow-title font-bold">Verlustfreie Skalierung</p>
     </div>
     <p class="blog-flow-desc">Vom 1-cm-Etikett bis zum 10-Meter-Messebanner in perfekter Schärfe skalieren.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Software-Kompatibilität</h4>
+      <p class="blog-flow-title font-bold">Software-Kompatibilität</p>
     </div>
     <p class="blog-flow-desc">Direkt bearbeitbar in Adobe Illustrator, InDesign, Figma und Canva.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Minimale Dateigröße</h4>
+      <p class="blog-flow-title font-bold">Minimale Dateigröße</p>
     </div>
     <p class="blog-flow-desc">Kompakte Dateien unter 10 KB für blitzschnelle Ladezeiten.</p>
   </div>

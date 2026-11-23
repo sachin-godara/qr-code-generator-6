@@ -1,6 +1,6 @@
 ---
 title: "QR Code Trends 2026 & Beyond — Design Innovations, Statistics & GS1 Sunrise 2027"
-description: "Explore the latest QR code trends in 2026 and beyond, including GS1 Sunrise 2027 transition, EU Digital Product Passport, design innovations, and industry statistics."
+description: "Explore 2026 QR code trends: GS1 Sunrise 2027 transition, EU Digital Product Passport, design innovations, and global industry adoption stats."
 pubDate: 2026-08-19
 author: "GenerateCustomQR Team"
 keywords: "qr code trends 2026, qr code statistics 2026, future of qr codes, gs1 digital link sunrise 2027, eu digital product passport qr code, qr code adoption rate, qr code industry growth"

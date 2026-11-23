@@ -39,21 +39,21 @@ Apple has built QR code scanning directly into the **Camera app** since iOS 11. 
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Open Native Camera</h4>
+      <p class="blog-flow-title font-bold">Open Native Camera</p>
     </div>
     <p class="blog-flow-desc">Launch the default Camera app from your lock screen or home screen.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Frame the QR Code</h4>
+      <p class="blog-flow-title font-bold">Frame the QR Code</p>
     </div>
     <p class="blog-flow-desc">Hold steady 15–30 cm away. No need to press the shutter button.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Tap the Banner</h4>
+      <p class="blog-flow-title font-bold">Tap the Banner</p>
     </div>
     <p class="blog-flow-desc">A yellow pill banner pops up instantly. Tap to launch the destination link.</p>
   </div>

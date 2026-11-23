@@ -39,21 +39,21 @@ Apple hat die QR-Code-Erkennung seit iOS 11 direkt in die **Kamera-App** integri
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Kamera öffnen</h4>
+      <p class="blog-flow-title font-bold">Kamera öffnen</p>
     </div>
     <p class="blog-flow-desc">Standard-Kamera-App über Sperrbildschirm oder Startbildschirm starten.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Code anvisieren</h4>
+      <p class="blog-flow-title font-bold">Code anvisieren</p>
     </div>
     <p class="blog-flow-desc">15–30 cm Abstand halten. Kein Auslöser-Tippen erforderlich.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Banner antippen</h4>
+      <p class="blog-flow-title font-bold">Banner antippen</p>
     </div>
     <p class="blog-flow-desc">Ein gelbes Banner erscheint. Ein Fingertipp öffnet den Link direkt.</p>
   </div>

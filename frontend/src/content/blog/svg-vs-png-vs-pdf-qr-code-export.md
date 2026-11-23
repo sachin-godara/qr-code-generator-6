@@ -49,21 +49,21 @@ SVG files define QR code modules as mathematical vector coordinates rather than 
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Infinite Scaling</h4>
+      <p class="blog-flow-title font-bold">Infinite Scaling</p>
     </div>
     <p class="blog-flow-desc">Scale from a 1 cm watch face to a 10-meter highway billboard with zero loss in clarity.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Software Support</h4>
+      <p class="blog-flow-title font-bold">Software Support</p>
     </div>
     <p class="blog-flow-desc">Open and edit paths directly in Adobe Illustrator, InDesign, CorelDRAW, and Figma.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Ultra Lightweight</h4>
+      <p class="blog-flow-title font-bold">Ultra Lightweight</p>
     </div>
     <p class="blog-flow-desc">Tiny file footprint (under 10 KB) ensures rapid rendering and instant page loads.</p>
   </div>

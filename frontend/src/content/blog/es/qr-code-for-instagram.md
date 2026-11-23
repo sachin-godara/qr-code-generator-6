@@ -68,21 +68,21 @@ Instagram admite varias estructuras de enlaces según el objetivo de marketing d
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Soporte Físico</h4>
+      <p class="blog-flow-title font-bold">Soporte Físico</p>
     </div>
     <p class="blog-flow-desc">Adhesivo en el escaparate, tarjeta de agradecimiento en el paquete o carta de mesa.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Escaneo Inmediato</h4>
+      <p class="blog-flow-title font-bold">Escaneo Inmediato</p>
     </div>
     <p class="blog-flow-desc">El autofoco de la cámara lee el código y activa el enlace universal de la app.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Seguimiento en 1 Clic</h4>
+      <p class="blog-flow-title font-bold">Seguimiento en 1 Clic</p>
     </div>
     <p class="blog-flow-desc">La app de Instagram se abre directamente en tu perfil lista para pulsar Seguir.</p>
   </div>

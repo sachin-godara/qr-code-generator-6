@@ -1,5 +1,6 @@
 ---
 title: "WiFi QR Code for Hotels & Airbnb — Guest Network Setup Guide"
+seoTitle: "WiFi QR Code for Hotels & Airbnb — Setup Guide"
 description: "Create and print a WiFi QR code for your hotel, Airbnb, or guest house. Let visitors connect to your network with a single scan — no typing passwords."
 pubDate: 2026-08-22
 author: "GenerateCustomQR Team"

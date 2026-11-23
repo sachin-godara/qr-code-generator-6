@@ -1,7 +1,7 @@
 ---
 title: "¿El Código QR de WhatsApp Web No Funciona? 7 Soluciones Rápidas a Errores de Escaneo"
 seoTitle: "¿El Código QR de WhatsApp Web No Funciona? 7 Soluciones"
-description: "Soluciona problemas de lectura, bucles de recarga y fallos al vincular WhatsApp Web en Windows, Mac, iPhone y Android. Consejos de enfoque, brillo y límites de dispositivos."
+description: "Soluciona errores de escaneo y fallos al vincular WhatsApp Web en Windows, Mac, iPhone y Android. Consejos de brillo, cámara y sincronización."
 pubDate: 2026-08-23
 author: "Equipo GenerateCustomQR"
 keywords: "whatsapp web qr code no funciona, error escanear qr whatsapp web, vincular dispositivo whatsapp no lee codigo, whatsapp web no conecta qr"
@@ -40,21 +40,21 @@ Al abrir `web.whatsapp.com`, WhatsApp inicia un protocolo de enlace criptográfi
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Clave en Navegador</h4>
+      <p class="blog-flow-title font-bold">Clave en Navegador</p>
     </div>
     <p class="blog-flow-desc">El navegador genera una matriz criptográfica temporal con validez de 20 segundos.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Firma Óptica</h4>
+      <p class="blog-flow-title font-bold">Firma Óptica</p>
     </div>
     <p class="blog-flow-desc">La cámara escanea el código y firma la sesión con la clave privada de tu móvil.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Sincronización</h4>
+      <p class="blog-flow-title font-bold">Sincronización</p>
     </div>
     <p class="blog-flow-desc">La conexión segura WebSocket (`wss://`) sincroniza tus chats con cifrado total.</p>
   </div>

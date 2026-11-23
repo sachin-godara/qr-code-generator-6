@@ -59,7 +59,7 @@ Wenn Ihr Hauptziel darin besteht, Abonnenten zu gewinnen, verwenden Sie nicht de
     YouTube Abo-Bestätigung
   </div>
   <div class="blog-modal-body">
-    <h4 class="blog-modal-title">Kanalabonnements bestätigen</h4>
+    <p class="blog-modal-title">Kanalabonnements bestätigen</p>
     <p class="blog-modal-text">Möchtest du <strong>@IhrKanal</strong> wirklich abonnieren?</p>
   </div>
   <div class="blog-modal-actions">
@@ -78,21 +78,21 @@ Beim Aufruf auf Desktop- oder Tablet-Geräten zeigt YouTube ein klares Pop-up, d
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Physischer Werbeträger</h4>
+      <p class="blog-flow-title font-bold">Physischer Werbeträger</p>
     </div>
     <p class="blog-flow-desc">Zuschauer sieht Ihren QR-Code auf Verpackungen, Flyern oder Präsentationen.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Sofortiger App-Start</h4>
+      <p class="blog-flow-title font-bold">Sofortiger App-Start</p>
     </div>
     <p class="blog-flow-desc">Die Handykamera öffnet direkt die offizielle YouTube-App auf dem Smartphone.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">1-Klick Abonnieren</h4>
+      <p class="blog-flow-title font-bold">1-Klick Abonnieren</p>
     </div>
     <p class="blog-flow-desc">Nutzer abonniert Ihren Kanal und schaut Videos in brillanter Qualität.</p>
   </div>

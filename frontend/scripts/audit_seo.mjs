@@ -54,13 +54,14 @@ const scanPages = (dir, prefix = '') => {
 };
 scanPages(pagesDir);
 
-// 3. Audit Blog Posts across EN, ES, PT, DE
-console.log('🔍 Auditing Multilingual Blog Posts (48 articles across EN, ES, PT, DE)...');
+// 3. Audit Blog Posts across EN, ES, PT, DE, TR
+console.log('🔍 Auditing Multilingual Blog Posts (100 articles across EN, ES, PT, DE, TR)...');
 const blogDirs = [
   { locale: 'en', dir: blogBaseDir },
   { locale: 'es', dir: path.join(blogBaseDir, 'es') },
   { locale: 'pt', dir: path.join(blogBaseDir, 'pt') },
-  { locale: 'de', dir: path.join(blogBaseDir, 'de') }
+  { locale: 'de', dir: path.join(blogBaseDir, 'de') },
+  { locale: 'tr', dir: path.join(blogBaseDir, 'tr') }
 ];
 
 blogDirs.forEach(({ locale, dir }) => {

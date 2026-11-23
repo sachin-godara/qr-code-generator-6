@@ -43,21 +43,21 @@ The shift to digital menus permanently improves restaurant operations and guest 
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Table Tent Display</h4>
+      <p class="blog-flow-title font-bold">Table Tent Display</p>
     </div>
     <p class="blog-flow-desc">Acrylic table standee or vinyl decal placed directly at seated eye level.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">1-Second Camera Scan</h4>
+      <p class="blog-flow-title font-bold">1-Second Camera Scan</p>
     </div>
     <p class="blog-flow-desc">Guest opens native iPhone or Android camera. Zero app install required.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Instant Digital Menu</h4>
+      <p class="blog-flow-title font-bold">Instant Digital Menu</p>
     </div>
     <p class="blog-flow-desc">High-res photos, allergens, dietary filters, and multi-language support.</p>
   </div>

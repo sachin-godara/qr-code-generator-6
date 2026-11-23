@@ -47,21 +47,21 @@ A **vCard QR code** encodes your full contact information — name, phone, email
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Hand Out Card</h4>
+      <p class="blog-flow-title font-bold">Hand Out Card</p>
     </div>
     <p class="blog-flow-desc">Recipient points their phone camera at the vCard QR code on your card.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Auto-Prompt</h4>
+      <p class="blog-flow-title font-bold">Auto-Prompt</p>
     </div>
     <p class="blog-flow-desc">Native contact card prompt appears on iOS or Android automatically.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">1-Tap Save</h4>
+      <p class="blog-flow-title font-bold">1-Tap Save</p>
     </div>
     <p class="blog-flow-desc">Name, phone, email, company, and website saved directly with 0 typos.</p>
   </div>

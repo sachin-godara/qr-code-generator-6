@@ -1,6 +1,6 @@
 ---
 title: "Restoran Menüleri İçin QR Kod Nasıl Kullanılır — Tam Rehber (2026)"
-description: "Restoran menünüz için QR kod oluşturma, özelleştirme ve basma rehberi. Masa kartları, tasarım ipuçları ve temassız menü geçişi için ücretsiz araçlar."
+description: "Restoranlar için dijital menü QR kodu oluşturma rehberi. Masa çadırları, tasarım ipuçları ve temassız menü geçişi için pratik adımlar."
 pubDate: 2026-08-24
 author: "GenerateCustomQR Ekibi"
 keywords: "restoran menüsü için qr kod, restoran qr kod, dijital menü qr kod, temassız menü, ücretsiz qr kod menü oluşturucu, karekod menü"
@@ -43,21 +43,21 @@ Dijital menülere geçiş, restoran operasyonlarını ve misafir memnuniyetini k
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Masa Kartı Vitrini</h4>
+      <p class="blog-flow-title font-bold">Masa Kartı Vitrini</p>
     </div>
     <p class="blog-flow-desc">Pleksi masa standı veya vinil etiket masada doğrudan göz hizasında durur.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">1 Saniyede Tarama</h4>
+      <p class="blog-flow-title font-bold">1 Saniyede Tarama</p>
     </div>
     <p class="blog-flow-desc">Misafir yerel iPhone veya Android kamerasını açar. Uygulama indirmek gerekmez.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Anında Dijital Menü</h4>
+      <p class="blog-flow-title font-bold">Anında Dijital Menü</p>
     </div>
     <p class="blog-flow-desc">Yüksek çözünürlüklü fotoğraflar, alerjen uyarıları ve çoklu dil desteği.</p>
   </div>

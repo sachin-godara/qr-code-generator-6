@@ -49,21 +49,21 @@ Los archivos SVG calculan los módulos del código QR mediante fórmulas matemá
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Escalabilidad Infinita</h4>
+      <p class="blog-flow-title font-bold">Escalabilidad Infinita</p>
     </div>
     <p class="blog-flow-desc">Amplía desde un reloj de 1 cm hasta una valla publicitaria gigante sin perder nitidez.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Edición Profesional</h4>
+      <p class="blog-flow-title font-bold">Edición Profesional</p>
     </div>
     <p class="blog-flow-desc">Abre e integra los trazados directamente en Illustrator, InDesign, Canva y Figma.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Peso Mínimo</h4>
+      <p class="blog-flow-title font-bold">Peso Mínimo</p>
     </div>
     <p class="blog-flow-desc">Archivos ultra ligeros (menos de 10 KB) para cargas instantáneas en cualquier entorno.</p>
   </div>

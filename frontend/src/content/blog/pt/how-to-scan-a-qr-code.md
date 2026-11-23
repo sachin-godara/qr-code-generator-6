@@ -39,21 +39,21 @@ A Apple integrou a leitura de QR code diretamente ao aplicativo **Câmera** desd
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Abrir a Câmera</h4>
+      <p class="blog-flow-title font-bold">Abrir a Câmera</p>
     </div>
     <p class="blog-flow-desc">Abra o app Câmera nativo pela tela de bloqueio ou de início.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Apontar pro Código</h4>
+      <p class="blog-flow-title font-bold">Apontar pro Código</p>
     </div>
     <p class="blog-flow-desc">Mantenha a 15–30 cm de distância. Não é preciso tirar foto.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Tocar no Balão</h4>
+      <p class="blog-flow-title font-bold">Tocar no Balão</p>
     </div>
     <p class="blog-flow-desc">Um balão amarelo surge na tela. Basta tocar para acessar o link.</p>
   </div>

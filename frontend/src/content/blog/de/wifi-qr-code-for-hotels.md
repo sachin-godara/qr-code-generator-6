@@ -1,6 +1,6 @@
 ---
 title: "WLAN-QR-Code für Hotels & Ferienwohnungen (Airbnb) — Der Gastnetzwerk-Leitfaden"
-description: "Erstellen und drucken Sie einen WLAN-QR-Code für Ihr Hotel, Airbnb oder Gästehaus. Gäste scannen den Code und sind sofort verbunden — ohne mühsames Passworteintippen."
+description: "WLAN-QR-Code für Hotel, Airbnb oder Gästehaus erstellen und drucken. Gäste scannen den Code und sind sofort ohne Passworteingabe verbunden."
 pubDate: 2026-08-22
 author: "GenerateCustomQR Team"
 keywords: "wlan qr code hotel, airbnb wlan qr code, gastnetzwerk qr code, wlan passwort qr code drucken, wlan qr code aufsteller"

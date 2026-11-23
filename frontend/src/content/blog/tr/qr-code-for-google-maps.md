@@ -1,6 +1,6 @@
 ---
 title: "Google Haritalar İçin QR Kod Nasıl Oluşturulur — Konum QR Kodu Rehberi"
-description: "Tarandığında doğrudan Google Haritalar konumunu açan ücretsiz bir QR kod oluşturun. Düğün davetiyeleri, mağazalar, etkinlikler ve teslimat adresleri için mükemmeldir."
+description: "Google Haritalar konumu için QR kod oluşturun. Müşterileri mağaza, ofis veya etkinlik adresinize tek dokunuşla yol tarifiyle yönlendirin."
 pubDate: 2026-08-20
 author: "GenerateCustomQR Ekibi"
 keywords: "google haritalar için qr kod, konum qr kodu, google maps qr kod, adres için qr kod, harita qr kod olusturucu, yol tarifi qr kod"

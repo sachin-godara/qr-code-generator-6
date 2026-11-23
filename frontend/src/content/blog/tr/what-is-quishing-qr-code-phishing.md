@@ -1,7 +1,7 @@
 ---
 title: "Quishing Nedir? QR Kod Oltalama Saldırıları Nasıl Tanınır ve Korunulur? (2026 Kapsamlı Rehber)"
 seoTitle: "Quishing Nedir? QR Kod Oltalama Saldırıları Rehberi"
-description: "Quishing (QR kod oltalama saldırıları) hakkında kapsamlı 2026 rehberi. Siber suçluların e-posta güvenlik duvarlarını nasıl aştığını ve kurumunuzu nasıl koruyacağınızı öğrenin."
+description: "Quishing (QR kod oltalama) saldırıları rehberi. Siber suçluların e-posta filtrelerini nasıl aştığını ve kurumunuzu koruma yöntemlerini öğrenin."
 pubDate: 2026-08-25
 author: "GenerateCustomQR Güvenlik Araştırma Ekibi"
 keywords: "quishing nedir, qr kod oltalama, quishing nasil onlenir, bu qr kod guvenli mi, qr kod guvenligi, kurumsal quishing savunmasi"
@@ -77,22 +77,22 @@ Quishing saldırıları, korumalı kurumsal masaüstü bilgisayarlar ile savunma
   <div class="blog-threat-flow">
     <div class="blog-threat-card">
       <span class="blog-threat-tag">Aşama 1: İletim</span>
-      <h4 class="blog-threat-title">Optik E-posta Eki</h4>
+      <p class="blog-threat-title">Optik E-posta Eki</p>
       <p class="blog-threat-desc">Saldırgan; İK bildirimi, maaş bordrosu veya Microsoft 365 MFA sıfırlama uyarısı süsü verilmiş PDF/PNG görseli gönderir.</p>
     </div>
     <div class="blog-threat-card">
       <span class="blog-threat-tag">Aşama 2: Cihaz Atlama</span>
-      <h4 class="blog-threat-title">Mobil Cihaza Geçiş</h4>
+      <p class="blog-threat-title">Mobil Cihaza Geçiş</p>
       <p class="blog-threat-desc">Çalışan kodu kişisel telefonuyla tarar; şirket VPN'i, kurumsal proxy filtreleri ve EDR korumasının dışına çıkar.</p>
     </div>
     <div class="blog-threat-card">
       <span class="blog-threat-tag">Aşama 3: Aldatma</span>
-      <h4 class="blog-threat-title">Klon Giriş Portalı</h4>
+      <p class="blog-threat-title">Klon Giriş Portalı</p>
       <p class="blog-threat-desc">Mobil tarayıcı, ters proxy araçlarıyla birebir kopyalanmış sahte bir Microsoft, Okta veya Google giriş sayfasını yükler.</p>
     </div>
     <div class="blog-threat-card">
       <span class="blog-threat-tag">Aşama 4: İhlal</span>
-      <h4 class="blog-threat-title">Oturum Çalma</h4>
+      <p class="blog-threat-title">Oturum Çalma</p>
       <p class="blog-threat-desc">Saldırgan kullanıcı adı, şifre ve anlık MFA oturum belirteçlerini canlı olarak yakalayarak kurumsal bulut hesabını ele geçirir.</p>
     </div>
   </div>
@@ -165,28 +165,28 @@ Teknik bağlantı yapılarını anlamak sahte kodları tanımanızı sağlar:
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Görsel İşleme (CV)</h4>
+      <p class="blog-flow-title font-bold">Görsel İşleme (CV)</p>
     </div>
     <p class="blog-flow-desc">Görselleri tarayan, QR içeriğini çözen ve derin linkleri analiz eden yapay zeka e-posta güvenliği kullanın.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">FIDO2 Donanım Anahtarı</h4>
+      <p class="blog-flow-title font-bold">FIDO2 Donanım Anahtarı</p>
     </div>
     <p class="blog-flow-desc">Fiziksel YubiKey zorunlu kılın. FIDO2 doğrulamayı gerçek alan adına bağlar; sahte sitelerde şifre çalınamaz.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Mobil Tehdit Koruması</h4>
+      <p class="blog-flow-title font-bold">Mobil Tehdit Koruması</p>
     </div>
     <p class="blog-flow-desc">Şirket e-postalarına erişen tüm telefonlara aktif DNS filtreleme özellikli MDM kurun.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">4</span>
-      <h4 class="blog-flow-title">Quishing Tatbikatları</h4>
+      <p class="blog-flow-title font-bold">Quishing Tatbikatları</p>
     </div>
     <p class="blog-flow-desc">Çalışanlara periyodik olarak optik QR oltalama simülasyonları uygulayın.</p>
   </div>

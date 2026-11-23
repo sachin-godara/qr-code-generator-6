@@ -59,7 +59,7 @@ Se o seu objetivo principal é aumentar o número de inscritos, não use o link 
     Confirmação de Inscrição do YouTube
   </div>
   <div class="blog-modal-body">
-    <h4 class="blog-modal-title">Confirmar Inscrição no Canal</h4>
+    <p class="blog-modal-title">Confirmar Inscrição no Canal</p>
     <p class="blog-modal-text">Tem certeza de que deseja se inscrever em <strong>@SeuCanal</strong>?</p>
   </div>
   <div class="blog-modal-actions">
@@ -78,21 +78,21 @@ Quando os usuários acessam esse link em computadores ou tablets, o YouTube exib
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Material Impresso</h4>
+      <p class="blog-flow-title font-bold">Material Impresso</p>
     </div>
     <p class="blog-flow-desc">O cliente vê o QR code em embalagens, panfletos ou slides.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Abertura Imediata</h4>
+      <p class="blog-flow-title font-bold">Abertura Imediata</p>
     </div>
     <p class="blog-flow-desc">A câmera do celular abre o aplicativo oficial do YouTube automaticamente.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Inscrição em 1 Toque</h4>
+      <p class="blog-flow-title font-bold">Inscrição em 1 Toque</p>
     </div>
     <p class="blog-flow-desc">O usuário se inscreve e assiste aos seus vídeos em alta definição.</p>
   </div>

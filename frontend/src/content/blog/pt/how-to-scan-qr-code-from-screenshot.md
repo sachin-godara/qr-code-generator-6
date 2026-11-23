@@ -39,21 +39,21 @@ A forma mais simples sem instalar nenhum aplicativo é usar um decodificador no 
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Tirar Print</h4>
+      <p class="blog-flow-title font-bold">Tirar Print</p>
     </div>
     <p class="blog-flow-desc">Salve a captura no seu iPhone, Android, PC ou Mac.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Colar (Ctrl+V) / Enviar</h4>
+      <p class="blog-flow-title font-bold">Colar (Ctrl+V) / Enviar</p>
     </div>
     <p class="blog-flow-desc">Arraste a imagem ou cole diretamente da área de transferência.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Ação Imediata</h4>
+      <p class="blog-flow-title font-bold">Ação Imediata</p>
     </div>
     <p class="blog-flow-desc">1 clique para abrir o link, conectar ao Wi-Fi ou salvar contato.</p>
   </div>

@@ -1,6 +1,6 @@
 ---
 title: "Doğrudan Sohbet İçin WhatsApp QR Kodu Nasıl Oluşturulur (Numara Kaydetme Gerekmez)"
-description: "Hazır mesaj şablonlu özel bir WhatsApp QR kodu oluşturmayı öğrenin. Mağazalar, menüler, ürün paketleri ve müşteri desteği için tek dokunuşla sohbet başlatın."
+description: "Hazır mesaj şablonlu WhatsApp QR kodu oluşturun. Mağazalar, menüler ve müşteri desteği için tek dokunuşla doğrudan sohbet başlatın."
 pubDate: 2026-08-25
 author: "GenerateCustomQR Ekibi"
 keywords: "whatsapp qr kod olusturucu, whatsapp sohbet icin qr kod, wa me qr kod, ucretsiz whatsapp isletme qr kod, mesajli whatsapp qr kodu olusturma"
@@ -79,21 +79,21 @@ Sade bir sohbet bağlantısı mı yoksa otomatik hazır mesajlı bir link mi ist
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Fiziksel Materyal</h4>
+      <p class="blog-flow-title font-bold">Fiziksel Materyal</p>
     </div>
     <p class="blog-flow-desc">Kasa yanı pleksi standı, masa kartı, koli etiketi veya araç giydirme.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Anında Kamera Taraması</h4>
+      <p class="blog-flow-title font-bold">Anında Kamera Taraması</p>
     </div>
     <p class="blog-flow-desc">Yerel kamera bağlantıyı açar. Uygulama indirmek gerekmez.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Tek Tıkla Sohbet</h4>
+      <p class="blog-flow-title font-bold">Tek Tıkla Sohbet</p>
     </div>
     <p class="blog-flow-desc">Hazır mesajla WhatsApp açılır. Numara kaydetmeye gerek yoktur.</p>
   </div>

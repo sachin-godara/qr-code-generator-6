@@ -1,5 +1,5 @@
 ---
-title: "How to Scan a QR Code from a Screenshot (Phone, PC & Mac)"
+title: "How to Scan a QR Code from a Screenshot (Phone, PC and Mac)"
 description: "Step-by-step guide to decoding QR codes from screenshots or saved image files on your phone, PC, or Mac without needing a second camera."
 pubDate: 2026-08-28
 author: "GenerateCustomQR Team"
@@ -39,21 +39,21 @@ The easiest, zero-installation method on any device is using an in-browser clien
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Capture Screenshot</h4>
+      <p class="blog-flow-title font-bold">Capture Screenshot</p>
     </div>
     <p class="blog-flow-desc">Save screenshot on your iPhone, Android, PC, or Mac.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Paste (Ctrl+V) / Upload</h4>
+      <p class="blog-flow-title font-bold">Paste (Ctrl+V) / Upload</p>
     </div>
     <p class="blog-flow-desc">Drop image into web scanner or paste directly from clipboard.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Instant Action</h4>
+      <p class="blog-flow-title font-bold">Instant Action</p>
     </div>
     <p class="blog-flow-desc">1-click to open website, join WiFi, or save contact.</p>
   </div>

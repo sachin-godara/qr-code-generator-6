@@ -1,6 +1,6 @@
 ---
 title: "Kartvizite QR Kod Nasıl Eklenir — Kapsamlı Rehber"
-description: "Kartvizitinize özel bir QR kod oluşturma ve ekleme rehberi. vCard kurulumu, tasarım ipuçları, baskı boyutlandırması ve profesyonel sonuçlar için ücretsiz araçlar."
+description: "Kartvizitinize özel QR kod ekleme rehberi. vCard kurulumu, tasarım ipuçları, baskı boyutlandırması ve profesyonel sonuçlar için ücretsiz adımlar."
 pubDate: 2026-08-26
 author: "GenerateCustomQR Ekibi"
 keywords: "kartvizit için qr kod, kartvizit qr kod ekleme, vcard qr kod, dijital kartvizit, ücretsiz kartvizit qr kod oluşturucu, kartvizite karekod ekleme"
@@ -47,21 +47,21 @@ Bir **vCard QR kodu**, tüm iletişim bilgilerinizi — ad, telefon, e-posta, ş
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Kartı Uzatın</h4>
+      <p class="blog-flow-title font-bold">Kartı Uzatın</p>
     </div>
     <p class="blog-flow-desc">Muhatabınız kamerasını kartvizitinizdeki vCard QR koda doğrultur.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Otomatik Uyarı</h4>
+      <p class="blog-flow-title font-bold">Otomatik Uyarı</p>
     </div>
     <p class="blog-flow-desc">iOS veya Android cihazda rehbere kaydetme kartı otomatik belirir.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Tek Dokunuşla Kayıt</h4>
+      <p class="blog-flow-title font-bold">Tek Dokunuşla Kayıt</p>
     </div>
     <p class="blog-flow-desc">Ad, numara, e-posta ve şirket sıfır yazım hatasıyla anında rehbere kaydedilir.</p>
   </div>

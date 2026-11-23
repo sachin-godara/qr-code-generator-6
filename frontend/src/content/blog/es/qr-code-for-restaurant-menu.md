@@ -1,7 +1,7 @@
 ---
 title: "Cómo Usar Códigos QR para Cartas de Restaurante — Guía Completa (2026)"
 seoTitle: "Cómo Usar Códigos QR para Menús y Cartas de Restaurante"
-description: "Aprende a crear, personalizar e imprimir códigos QR para la carta digital de tu restaurante. Guía paso a paso con consejos de diseño, soportes de mesa y herramientas gratuitas."
+description: "Aprende a crear e imprimir códigos QR para la carta digital de tu restaurante. Guía paso a paso con consejos de diseño y soportes de mesa."
 pubDate: 2026-08-24
 author: "Equipo GenerateCustomQR"
 keywords: "codigo qr para carta restaurante, menu digital qr, qr restaurante, carta sin contacto, generador qr menu gratis"
@@ -44,21 +44,21 @@ El cambio al menú digital mejora de forma permanente la operativa del negocio y
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Display en Mesa</h4>
+      <p class="blog-flow-title font-bold">Display en Mesa</p>
     </div>
     <p class="blog-flow-desc">Soporte acrílico o adhesivo vinílico situado a la altura de los ojos del comensal.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Escaneo en 1 Segundo</h4>
+      <p class="blog-flow-title font-bold">Escaneo en 1 Segundo</p>
     </div>
     <p class="blog-flow-desc">El cliente enfoca con la cámara nativa del móvil sin instalar ninguna aplicación.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Menú Digital</h4>
+      <p class="blog-flow-title font-bold">Menú Digital</p>
     </div>
     <p class="blog-flow-desc">Acceso instantáneo a fotos de platos, alérgenos, precios y sugerencias del chef.</p>
   </div>

@@ -75,22 +75,22 @@ Los ataques de quishing aprovechan la transición entre el ordenador de trabajo 
   <div class="blog-threat-flow">
     <div class="blog-threat-card">
       <span class="blog-threat-tag">Fase 1: Envío</span>
-      <h4 class="blog-threat-title">Adjunto de Imagen Óptico</h4>
+      <p class="blog-threat-title">Adjunto de Imagen Óptico</p>
       <p class="blog-threat-desc">El atacante envía un PDF o imagen haciéndose pasar por RRHH o un aviso urgente de 'Reinicio de MFA en Microsoft 365'.</p>
     </div>
     <div class="blog-threat-card">
       <span class="blog-threat-tag">Fase 2: Salto</span>
-      <h4 class="blog-threat-title">Paso al Móvil</h4>
+      <p class="blog-threat-title">Paso al Móvil</p>
       <p class="blog-threat-desc">El empleado escanea la pantalla con su móvil personal, saliendo de la VPN corporativa y del control del antivirus.</p>
     </div>
     <div class="blog-threat-card">
       <span class="blog-threat-tag">Fase 3: Engaño</span>
-      <h4 class="blog-threat-title">Portal Clonado Idéntico</h4>
+      <p class="blog-threat-title">Portal Clonado Idéntico</p>
       <p class="blog-threat-desc">El navegador móvil carga una réplica exacta de Microsoft Entra ID, Okta o Google Workspace mediante proxys inversos.</p>
     </div>
     <div class="blog-threat-card">
       <span class="blog-threat-tag">Fase 4: Brecha</span>
-      <h4 class="blog-threat-title">Secuestro de Sesión</h4>
+      <p class="blog-threat-title">Secuestro de Sesión</p>
       <p class="blog-threat-desc">El atacante captura usuario, contraseña y tokens de sesión MFA en tiempo real, accediendo a toda la red interna.</p>
     </div>
   </div>
@@ -161,28 +161,28 @@ En varias capitales se detectaron miles de parquímetros manipulados con código
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Visión Artificial</h4>
+      <p class="blog-flow-title font-bold">Visión Artificial</p>
     </div>
     <p class="blog-flow-desc">Seguridad de correo con IA que extrae imágenes QR y analiza los enlaces de destino.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Llaves FIDO2</h4>
+      <p class="blog-flow-title font-bold">Llaves FIDO2</p>
     </div>
     <p class="blog-flow-desc">Llaves físicas YubiKey que vinculan el inicio de sesión al dominio real, impidiendo el robo de claves.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Filtros Móviles (MDM)</h4>
+      <p class="blog-flow-title font-bold">Filtros Móviles (MDM)</p>
     </div>
     <p class="blog-flow-desc">Sistemas de gestión móvil con filtrado DNS activo en dispositivos con acceso a la empresa.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">4</span>
-      <h4 class="blog-flow-title">Simulacros Periódicos</h4>
+      <p class="blog-flow-title font-bold">Simulacros Periódicos</p>
     </div>
     <p class="blog-flow-desc">Entrenamiento práctico a empleados con simulaciones periódicas de ataques de quishing.</p>
   </div>

@@ -1,6 +1,6 @@
 ---
 title: "QR Kod Hata Düzeltme Seviyeleri Açıklandı: Düşük, Orta, Yüksek ve Ultra (L, M, Q, H)"
-description: "QR kodlarda Reed-Solomon hata düzeltme matematiğini öğrenin. Özel logolar, dış mekan panoları ve garantili okunabilirlik için hangi kurtarma seviyesini (%7, %15, %25, %30) seçeceğinizi keşfedin."
+description: "QR kodlarda Reed-Solomon hata düzeltme seviyelerini (%7, %15, %25, %30) öğrenin. Logo yerleşimi ve garantili okunabilirlik için doğru seçimi yapın."
 pubDate: 2026-08-10
 author: "GenerateCustomQR Ekibi"
 keywords: "qr kod hata düzeltme seviyeleri, qr kod hata duzeltme L M Q H, reed solomon hata duzeltme qr kod, logolu qr kod hata duzeltme, maksimum logo boyutu qr kod"

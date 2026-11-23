@@ -1,6 +1,6 @@
 ---
 title: "QR Kodlar İçin SVG, PNG ve PDF Karşılaştırması — Nihai Baskı ve Web Dışa Aktarma Rehberi (2026)"
-description: "QR kodları ne zaman SVG, PNG veya PDF olarak dışa aktaracağınızı öğrenin. Vektör ölçeklenebilirliği, 300 DPI baskı standartları ve bulanık, okunamayan taramaları önleme yolları."
+description: "QR kodları ne zaman SVG, PNG veya PDF olarak indireceğinizi öğrenin. Vektör ölçekleme, 300 DPI baskı standartları ve net tarama ipuçları."
 pubDate: 2026-08-25
 author: "GenerateCustomQR Ekibi"
 keywords: "svg vs png qr kod, qr kod disa aktarma formatlari, vektor qr kod indir, baski icin pdf qr kod, yuksek cozunurluklu qr kod"
@@ -49,21 +49,21 @@ SVG dosyaları, QR kod modüllerini piksel kareleri yerine matematiksel vektör 
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Sonsuz Ölçekleme</h4>
+      <p class="blog-flow-title font-bold">Sonsuz Ölçekleme</p>
     </div>
     <p class="blog-flow-desc">1 cm'lik saat kadranından 10 metrelik dev otoyol panosuna kadar sıfır netlik kaybıyla büyür.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Yazılım Desteği</h4>
+      <p class="blog-flow-title font-bold">Yazılım Desteği</p>
     </div>
     <p class="blog-flow-desc">Adobe Illustrator, InDesign, CorelDRAW ve Figma'da doğrudan düzenlenebilir.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Ultra Hafif</h4>
+      <p class="blog-flow-title font-bold">Ultra Hafif</p>
     </div>
     <p class="blog-flow-desc">10 KB altındaki minik dosya boyutu sayesinde anında açılır ve hızlı yüklenir.</p>
   </div>

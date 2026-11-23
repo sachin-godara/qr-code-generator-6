@@ -38,21 +38,21 @@ Beim Laden von `web.whatsapp.com` initialisiert WhatsApp einen mehrstufigen Ende
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Browser-Schlüssel</h4>
+      <p class="blog-flow-title font-bold">Browser-Schlüssel</p>
     </div>
     <p class="blog-flow-desc">PC erzeugt eine flüchtige 2D-Schlüsselmatrix mit 20 Sekunden Gültigkeit.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Optische Signatur</h4>
+      <p class="blog-flow-title font-bold">Optische Signatur</p>
     </div>
     <p class="blog-flow-desc">Handykamera scannt Matrix und signiert Sitzung mit privatem Geräteschlüssel.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Verschlüsselter Sync</h4>
+      <p class="blog-flow-title font-bold">Verschlüsselter Sync</p>
     </div>
     <p class="blog-flow-desc">Sicherer WebSocket (`wss://`) synchronisiert Chats Ende-zu-Ende verschlüsselt.</p>
   </div>

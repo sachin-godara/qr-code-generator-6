@@ -53,14 +53,16 @@ const xDefaultUrl = alternateUrls.find((a) => a.locale === 'en')?.url || `${site
 const isArticle = pageType === 'article' || (Astro.url.pathname.includes('/blog/') && !Astro.url.pathname.endsWith('/blog') && !Astro.url.pathname.endsWith('/blog/'));
 const isScanner = pageType === 'scanner' || Astro.url.pathname.includes('/qr-code-scanner') || Astro.url.pathname.includes('/qr-kod-okuyucu') || Astro.url.pathname.includes('/qr-code-scannen') || Astro.url.pathname.includes('/escanear-codigo-qr') || Astro.url.pathname.includes('/escanear-qr-code');
 const isHome = Astro.url.pathname === '/' || Astro.url.pathname === '/es/' || Astro.url.pathname === '/pt/' || Astro.url.pathname === '/de/' || Astro.url.pathname === '/tr/' || Astro.url.pathname === '/es' || Astro.url.pathname === '/pt' || Astro.url.pathname === '/de' || Astro.url.pathname === '/tr';
-const isApp = pageType === 'generator' || pageType === 'scanner' || isHome || isScanner ||
+const isApp = !isArticle && (
+  pageType === 'generator' || pageType === 'scanner' || isHome || isScanner ||
   canonicalPath.includes('/free-qr-code-generator') ||
-  canonicalPath.includes('/wifi-qr-code') ||
+  canonicalPath.endsWith('/wifi-qr-code') || canonicalPath.endsWith('/wifi-qr-code/') ||
   canonicalPath.includes('/vcard-qr-code') ||
   canonicalPath.includes('/qr-code-with-logo') ||
   canonicalPath.includes('/url-qr-code-generator') ||
   canonicalPath.includes('/email-qr-code') ||
-  canonicalPath.includes('/event-qr-code');
+  canonicalPath.includes('/event-qr-code')
+);
 ---
 
 <!-- Primary Meta Tags -->
@@ -109,11 +111,11 @@ const isApp = pageType === 'generator' || pageType === 'scanner' || isHome || is
 <meta property="og:updated_time" content={new Date().toISOString()} />
 
 <!-- Twitter -->
-<meta property="twitter:card" content="summary_large_image" />
-<meta property="twitter:url" content={resolvedCanonical} />
-<meta property="twitter:title" content={title} />
-<meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={resolvedOgImage} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={resolvedCanonical} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={resolvedOgImage} />
 
 <!-- WebSite Structured Data with Sitelinks SearchAction -->
 {!noindex && (
@@ -132,7 +134,6 @@ const isApp = pageType === 'generator' || pageType === 'scanner' || isHome || is
   })} />
 )}
 
-<!-- JSON-LD Structured Data — WebApplication (Generator or Scanner) -->
 {isApp && !noindex && (
   <script type="application/ld+json" set:html={JSON.stringify(isScanner ? {
     "@context": "https://schema.org",
@@ -216,9 +217,9 @@ const isApp = pageType === 'generator' || pageType === 'scanner' || isHome || is
     "url": "https://generatecustomqr.com",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://generatecustomqr.com/favicon-96x96.png",
-      "width": 96,
-      "height": 96
+      "url": "https://generatecustomqr.com/apple-touch-icon.png",
+      "width": 180,
+      "height": 180
     },
     "description": "Free custom QR code generator with logo embedding, 40+ dot styles, and vector SVG/PDF export.",
     "foundingDate": "2025",

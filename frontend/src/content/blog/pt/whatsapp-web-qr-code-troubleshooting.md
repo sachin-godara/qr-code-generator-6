@@ -40,21 +40,21 @@ Ao abrir `web.whatsapp.com`, o WhatsApp inicializa um aperto de mão criptográf
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Chave no Navegador</h4>
+      <p class="blog-flow-title font-bold">Chave no Navegador</p>
     </div>
     <p class="blog-flow-desc">O computador gera uma matriz criptográfica temporária válida por 20 segundos.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Assinatura Óptica</h4>
+      <p class="blog-flow-title font-bold">Assinatura Óptica</p>
     </div>
     <p class="blog-flow-desc">A câmera escaneia o código e assina a sessão com a chave privada do celular.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Sync Criptografado</h4>
+      <p class="blog-flow-title font-bold">Sync Criptografado</p>
     </div>
     <p class="blog-flow-desc">O WebSocket seguro (`wss://`) sincroniza as conversas com criptografia total.</p>
   </div>

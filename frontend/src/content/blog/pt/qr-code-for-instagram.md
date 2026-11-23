@@ -68,21 +68,21 @@ O Instagram aceita diferentes formatos de links dependendo do seu objetivo comer
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Ponto de Contato Físico</h4>
+      <p class="blog-flow-title font-bold">Ponto de Contato Físico</p>
     </div>
     <p class="blog-flow-desc">Adesivo na vitrine, cartão na embalagem, display de mesa ou crachá em eventos.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Leitura Rápida com Câmera</h4>
+      <p class="blog-flow-title font-bold">Leitura Rápida com Câmera</p>
     </div>
     <p class="blog-flow-desc">O foco automático do smartphone lê o código e aciona o link universal da rede.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Seguir com 1 Toque</h4>
+      <p class="blog-flow-title font-bold">Seguir com 1 Toque</p>
     </div>
     <p class="blog-flow-desc">O app do Instagram abre direto no perfil. Basta 1 clique para seguir e acompanhar.</p>
   </div>

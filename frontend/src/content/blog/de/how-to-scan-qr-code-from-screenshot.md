@@ -39,21 +39,21 @@ Die einfachste Methode ohne Installation ist ein browserbasierter QR-Decoder wie
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Screenshot erstellen</h4>
+      <p class="blog-flow-title font-bold">Screenshot erstellen</p>
     </div>
     <p class="blog-flow-desc">Speichern Sie den Screenshot auf iPhone, Android, PC oder Mac.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Einfügen (Strg+V) / Upload</h4>
+      <p class="blog-flow-title font-bold">Einfügen (Strg+V) / Upload</p>
     </div>
     <p class="blog-flow-desc">Bild per Drag & Drop oder direkt aus der Zwischenablage einfügen.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Sofortige Aktion</h4>
+      <p class="blog-flow-title font-bold">Sofortige Aktion</p>
     </div>
     <p class="blog-flow-desc">Mit 1 Klick Link öffnen, WLAN verbinden oder Kontakt speichern.</p>
   </div>

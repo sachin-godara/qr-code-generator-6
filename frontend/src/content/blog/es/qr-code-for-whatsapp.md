@@ -77,21 +77,21 @@ Decide si deseas un chat directo o incluir un texto inicial para agilizar la ate
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Soporte Físico</h4>
+      <p class="blog-flow-title font-bold">Soporte Físico</p>
     </div>
     <p class="blog-flow-desc">Mostrador en tienda, carta de mesa, pegatina de envío o furgoneta comercial.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Escaneo con Cámara</h4>
+      <p class="blog-flow-title font-bold">Escaneo con Cámara</p>
     </div>
     <p class="blog-flow-desc">La cámara nativa de iOS o Android abre el enlace. Cero apps necesarias.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Chat Inmediato</h4>
+      <p class="blog-flow-title font-bold">Chat Inmediato</p>
     </div>
     <p class="blog-flow-desc">Abre el chat en WhatsApp con el saludo listo. Sin guardar el contacto.</p>
   </div>

@@ -61,7 +61,7 @@ If your primary goal is growing your subscriber count, do not use a plain channe
     YouTube Subscription Modal
   </div>
   <div class="blog-modal-body">
-    <h4 class="blog-modal-title">Confirm Channel Subscription</h4>
+    <p class="blog-modal-title">Confirm Channel Subscription</p>
     <p class="blog-modal-text">Are you sure you want to subscribe to <strong>@YourHandle</strong>?</p>
   </div>
   <div class="blog-modal-actions">
@@ -80,21 +80,21 @@ When desktop or tablet users scan or click this URL, YouTube displays a clean pr
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Physical Touchpoint</h4>
+      <p class="blog-flow-title font-bold">Physical Touchpoint</p>
     </div>
     <p class="blog-flow-desc">Viewer spots your QR code on packaging, flyers, or conference slides.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Instant App Launch</h4>
+      <p class="blog-flow-title font-bold">Instant App Launch</p>
     </div>
     <p class="blog-flow-desc">Native camera opens the official YouTube mobile app automatically.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">1-Tap Subscribe</h4>
+      <p class="blog-flow-title font-bold">1-Tap Subscribe</p>
     </div>
     <p class="blog-flow-desc">Viewer subscribes and engages with your high-definition video content.</p>
   </div>

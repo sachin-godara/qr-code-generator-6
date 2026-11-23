@@ -46,21 +46,21 @@ Un **código QR vCard** codifica todos tus datos profesionales (nombre, teléfon
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Entrega de Tarjeta</h4>
+      <p class="blog-flow-title font-bold">Entrega de Tarjeta</p>
     </div>
     <p class="blog-flow-desc">El contacto apunta la cámara de su móvil al código QR vCard de tu tarjeta.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Aviso Automático</h4>
+      <p class="blog-flow-title font-bold">Aviso Automático</p>
     </div>
     <p class="blog-flow-desc">Aparece la notificación nativa de contacto en iOS o Android sin escribir nada.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Guardar en 1 Toque</h4>
+      <p class="blog-flow-title font-bold">Guardar en 1 Toque</p>
     </div>
     <p class="blog-flow-desc">Nombre, teléfono, cargo y web se guardan directamente en la agenda sin fallos.</p>
   </div>

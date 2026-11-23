@@ -49,21 +49,21 @@ Arquivos SVG definem o código QR por coordenadas vetoriais em vez de uma grade 
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Escala Infinita</h4>
+      <p class="blog-flow-title font-bold">Escala Infinita</p>
     </div>
     <p class="blog-flow-desc">Amplie desde um adesivo de 1 cm até um outdoor de 10 metros sem qualquer perda de nitidez.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Edição Profissional</h4>
+      <p class="blog-flow-title font-bold">Edição Profissional</p>
     </div>
     <p class="blog-flow-desc">Abra e edite traçados diretamente no Illustrator, InDesign, Canva e Figma.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Super Leve</h4>
+      <p class="blog-flow-title font-bold">Super Leve</p>
     </div>
     <p class="blog-flow-desc">Arquivos com menos de 10 KB para carregamento imediato em qualquer sistema.</p>
   </div>

@@ -79,21 +79,21 @@ Choose whether you want a basic chat link or a link with an automated starter me
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Physical Asset</h4>
+      <p class="blog-flow-title font-bold">Physical Asset</p>
     </div>
     <p class="blog-flow-desc">Retail POS standee, table tent, packaging sticker, or vehicle wrap.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Instant Camera Scan</h4>
+      <p class="blog-flow-title font-bold">Instant Camera Scan</p>
     </div>
     <p class="blog-flow-desc">Native iOS or Android camera opens the link. Zero app install needed.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">1-Tap Direct Chat</h4>
+      <p class="blog-flow-title font-bold">1-Tap Direct Chat</p>
     </div>
     <p class="blog-flow-desc">Opens WhatsApp chat with pre-filled message. Zero contact saving required.</p>
   </div>

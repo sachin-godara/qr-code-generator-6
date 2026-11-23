@@ -30,21 +30,21 @@ Un cartel tradicional de "Se Vende" solo muestra un número de teléfono. Los co
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Cartel en Fachada</h4>
+      <p class="blog-flow-title font-bold">Cartel en Fachada</p>
     </div>
     <p class="blog-flow-desc">Adhesivo con código QR en alto contraste colocado en el cartel exterior.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Escaneo desde la Calle</h4>
+      <p class="blog-flow-title font-bold">Escaneo desde la Calle</p>
     </div>
     <p class="blog-flow-desc">El interesado apunta con la cámara desde la acera o el coche en segundos.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Visita Virtual 3D</h4>
+      <p class="blog-flow-title font-bold">Visita Virtual 3D</p>
     </div>
     <p class="blog-flow-desc">Abre la ficha con más de 50 fotos, tour 3D y botón de contacto por WhatsApp.</p>
   </div>

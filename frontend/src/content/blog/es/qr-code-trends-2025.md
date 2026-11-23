@@ -1,6 +1,6 @@
 ---
 title: "Tendencias en Códigos QR para 2026 y Más Allá — Innovaciones, Estadísticas y GS1 Sunrise 2027"
-description: "Descubre las principales tendencias en códigos QR para 2026: la transición global GS1 Sunrise 2027, el Pasaporte Digital de Productos de la UE y estadísticas mundiales."
+description: "Tendencias clave en códigos QR para 2026: transición global GS1 Sunrise 2027, Pasaporte Digital de Productos de la UE y estadísticas del sector."
 pubDate: 2026-08-19
 author: "Equipo GenerateCustomQR"
 keywords: "tendencias codigos qr 2026, estadisticas qr 2026, futuro de los codigos qr, gs1 digital link sunrise 2027, pasaporte digital productos qr, mercado codigos qr"

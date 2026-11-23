@@ -1,6 +1,6 @@
 ---
 title: "Gayrimenkul ve Emlak Sektörü İçin QR Kodlar — İlan Tabelaları ve Sanal Turlar"
-description: "Emlak danışmanları satılık tabelalarında, broşürlerde ve kartvizitlerde alıcıları sanal turlara, ilan detaylarına ve iletişim kartlarına yönlendirmek için QR kodları nasıl kullanır?"
+description: "Emlakçılar satılık tabelalarında ve broşürlerde alıcıları sanal turlara, ilanlara ve iletişim kartlarına yönlendirmek için QR kodları nasıl kullanır?"
 pubDate: 2026-08-21
 author: "GenerateCustomQR Ekibi"
 keywords: "emlak icin qr kod, satilik tabelasi qr kod, sanal tur icin qr kod, emlakci qr kod, gayrimenkul karekod olusturucu"
@@ -30,21 +30,21 @@ Geleneksel fiziksel tabelalar sınırlı bilgi sunar. Bir satılık tabelasında
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Tabela Şeridi</h4>
+      <p class="blog-flow-title font-bold">Tabela Şeridi</p>
     </div>
     <p class="blog-flow-desc">Satılık tabelasına göz hizasında yüksek kontrastlı QR kod eklenir.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Araçtan Tarama</h4>
+      <p class="blog-flow-title font-bold">Araçtan Tarama</p>
     </div>
     <p class="blog-flow-desc">Alıcı arabasından veya kaldırımdan telefon kamerasını koda tutar.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">3D Sanal Tur</h4>
+      <p class="blog-flow-title font-bold">3D Sanal Tur</p>
     </div>
     <p class="blog-flow-desc">50+ fotoğraf, video çekimi, kat planı ve danışmana tek tıkla arama açılır.</p>
   </div>

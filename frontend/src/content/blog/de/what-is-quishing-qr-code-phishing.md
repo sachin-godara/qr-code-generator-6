@@ -77,22 +77,22 @@ Quishing nutzt den Wechsel vom geschützten Firmencomputer auf das ungesicherte 
   <div class="blog-threat-flow">
     <div class="blog-threat-card">
       <span class="blog-threat-tag">Stufe 1: Zustellung</span>
-      <h4 class="blog-threat-title">Optischer Bild-Anhang</h4>
+      <p class="blog-threat-title">Optischer Bild-Anhang</p>
       <p class="blog-threat-desc">Gefälschte Support-Mail als PDF oder Bild mit Aufforderung zur 'MFA-Aktualisierung in Microsoft 365'.</p>
     </div>
     <div class="blog-threat-card">
       <span class="blog-threat-tag">Stufe 2: Gerätewechsel</span>
-      <h4 class="blog-threat-title">Scan mit Smartphone</h4>
+      <p class="blog-threat-title">Scan mit Smartphone</p>
       <p class="blog-threat-desc">Mitarbeiter scannt mit eigenem Smartphone außerhalb des Firmen-VPNs und EDR-Schutzes.</p>
     </div>
     <div class="blog-threat-card">
       <span class="blog-threat-tag">Stufe 3: Täuschung</span>
-      <h4 class="blog-threat-title">Geklonte Login-Seite</h4>
+      <p class="blog-threat-title">Geklonte Login-Seite</p>
       <p class="blog-threat-desc">Täuschend echte Anmeldeseite für Microsoft Entra ID, Okta oder Google Workspace.</p>
     </div>
     <div class="blog-threat-card">
       <span class="blog-threat-tag">Stufe 4: Zugriff</span>
-      <h4 class="blog-threat-title">Session-Hijacking</h4>
+      <p class="blog-threat-title">Session-Hijacking</p>
       <p class="blog-threat-desc">Angreifer erbeutet Zugangsdaten und aktive MFA-Sitzungstoken in Echtzeit für vollen Zugriff.</p>
     </div>
   </div>
@@ -163,28 +163,28 @@ In mehreren Großstädten führten gefälschte QR-Aufkleber zu unberechtigten Ab
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Computer Vision</h4>
+      <p class="blog-flow-title font-bold">Computer Vision</p>
     </div>
     <p class="blog-flow-desc">KI-gestützte E-Mail-Filter, die QR-Codes extrahieren und Zielseiten in Sandboxes prüfen.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">FIDO2-Hardware</h4>
+      <p class="blog-flow-title font-bold">FIDO2-Hardware</p>
     </div>
     <p class="blog-flow-desc">Physische YubiKeys binden Logins kryptografisch an die Domain und verhindern Passwortdiebstahl.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Mobilgeräte-Schutz</h4>
+      <p class="blog-flow-title font-bold">Mobilgeräte-Schutz</p>
     </div>
     <p class="blog-flow-desc">Mobile Device Management mit aktivem DNS-Schutz auf allen geschäftlich genutzten Smartphones.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">4</span>
-      <h4 class="blog-flow-title">Schulungen</h4>
+      <p class="blog-flow-title font-bold">Schulungen</p>
     </div>
     <p class="blog-flow-desc">Regelmäßige Praxissimulationen von Quishing-Szenarien für alle Mitarbeiter.</p>
   </div>

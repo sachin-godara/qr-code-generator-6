@@ -41,21 +41,21 @@ Apple integra la lectura de códigos QR directamente en la **app Cámara**. No n
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Abre la Cámara</h4>
+      <p class="blog-flow-title font-bold">Abre la Cámara</p>
     </div>
     <p class="blog-flow-desc">Inicia la app Cámara predeterminada desde la pantalla de bloqueo o inicio.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Enfoca el Código</h4>
+      <p class="blog-flow-title font-bold">Enfoca el Código</p>
     </div>
     <p class="blog-flow-desc">Mantén el móvil a 15–30 cm. No hace falta pulsar el botón de disparo.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Toca el Banner</h4>
+      <p class="blog-flow-title font-bold">Toca el Banner</p>
     </div>
     <p class="blog-flow-desc">Aparece un botón amarillo emergente con el enlace directo. Pulsa y accede.</p>
   </div>

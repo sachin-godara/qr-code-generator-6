@@ -42,21 +42,21 @@ Apple, iOS 11'den bu yana doğrudan **Kamera uygulamasına** yerleşik QR kod ta
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Kamerayı Açın</h4>
+      <p class="blog-flow-title font-bold">Kamerayı Açın</p>
     </div>
     <p class="blog-flow-desc">Kilit ekranından veya ana ekrandan standart Kamera uygulamasını başlatın.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Koda Odaklayın</h4>
+      <p class="blog-flow-title font-bold">Koda Odaklayın</p>
     </div>
     <p class="blog-flow-desc">Cihazınızı 15–30 cm mesafede sabit tutun. Fotoğraf çekmenize gerek yoktur.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Bağlantıya Dokunun</h4>
+      <p class="blog-flow-title font-bold">Bağlantıya Dokunun</p>
     </div>
     <p class="blog-flow-desc">Sarı renkli bildirim hapı belirdiğinde dokunarak hedef sayfayı anında açın.</p>
   </div>

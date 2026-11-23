@@ -1,7 +1,7 @@
 ---
 title: "WhatsApp Web QR Kodu Çalışmıyor mu? Tarama ve Bağlantı Hataları İçin 7 Kesin Çözüm"
 seoTitle: "WhatsApp Web QR Kodu Çalışmıyor mu? 7 Kolay Çözüm"
-description: "WhatsApp Web QR kodunun taranmaması, sürekli yeniden yüklenmesi, kamera odaklama sorunları ve cihaz bağlama hatalarını Windows, Mac, iPhone ve Android'de çözün."
+description: "WhatsApp Web QR kod taranmama, odaklama ve cihaz bağlama sorunlarını Windows, Mac, iPhone ve Android'de kolayca çözün."
 pubDate: 2026-08-23
 author: "GenerateCustomQR Ekibi"
 keywords: "whatsapp web qr kod yuklenmiyor, whatsapp web qr kod tarama hatasi, whatsapp karekod calismiyor, whatsapp cihaz baglanamiyor, ekrandan whatsapp qr kod okutma"
@@ -40,21 +40,21 @@ Ancak QR kod yüklenmediğinde, sonsuz bir yenileme döngüsüne girdiğinde vey
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Geçici Anahtar</h4>
+      <p class="blog-flow-title font-bold">Geçici Anahtar</p>
     </div>
     <p class="blog-flow-desc">Masaüstü tarayıcısı 20 saniye geçerli geçici bir kriptografik matris üretir.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Optik İmza</h4>
+      <p class="blog-flow-title font-bold">Optik İmza</p>
     </div>
     <p class="blog-flow-desc">Telefon kamerası kodu okur ve oturumu hesabın özel anahtarıyla imzalar.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">Şifreli Senkronizasyon</h4>
+      <p class="blog-flow-title font-bold">Şifreli Senkronizasyon</p>
     </div>
     <p class="blog-flow-desc">Güvenli WebSocket (`wss://`) sohbetleri doğrudan bilgisayara aktarır.</p>
   </div>

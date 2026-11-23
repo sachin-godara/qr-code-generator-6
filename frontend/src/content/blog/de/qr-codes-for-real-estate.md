@@ -1,6 +1,6 @@
 ---
 title: "QR-Codes für die Immobilienbranche — Verkaufsschilder & Virtuelle Touren"
-description: "Wie Immobilienmakler QR-Codes auf Verkaufsschildern, Exposés und Visitenkarten nutzen, um Interessenten direkt zu 3D-Touren, MLS-Inseraten und Maklerkontakten zu führen."
+description: "Wie Immobilienmakler QR-Codes auf Schildern, Exposés und Visitenkarten für 3D-Touren, Inserate und direkte Maklerkontakte wirkungsvoll nutzen."
 pubDate: 2026-08-21
 author: "GenerateCustomQR Team"
 keywords: "qr code immobilien, qr code immobilienexpose, makler qr code verkaufsschild, qr code virtuelle besichtigung, qr code makler"
@@ -30,21 +30,21 @@ Traditionelle Schildwerbung bietet nur begrenzten Platz. Ein herkömmliches Verk
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">1</span>
-      <h4 class="blog-flow-title">Verkaufsschild</h4>
+      <p class="blog-flow-title font-bold">Verkaufsschild</p>
     </div>
     <p class="blog-flow-desc">Kontrastreicher QR-Code-Aufkleber direkt auf dem Galgenschild platziert.</p>
   </div>
   <div class="blog-flow-card">
     <div class="blog-flow-header">
       <span class="blog-flow-step">2</span>
-      <h4 class="blog-flow-title">Scan vom Gehweg</h4>
+      <p class="blog-flow-title font-bold">Scan vom Gehweg</p>
     </div>
     <p class="blog-flow-desc">Interessent scannt den Code aus dem Auto oder vom Gehweg in Sekunden.</p>
   </div>
   <div class="blog-flow-card highlight">
     <div class="blog-flow-header">
       <span class="blog-flow-step">3</span>
-      <h4 class="blog-flow-title">3D-Besichtigung</h4>
+      <p class="blog-flow-title font-bold">3D-Besichtigung</p>
     </div>
     <p class="blog-flow-desc">Öffnet Exposé, 50+ Fotos, Video-Tour und direkten Makler-Kontakt.</p>
   </div>
