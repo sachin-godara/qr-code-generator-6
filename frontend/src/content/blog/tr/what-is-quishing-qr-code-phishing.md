@@ -1,6 +1,6 @@
 ---
 title: "Quishing Nedir? QR Kod Oltalama Saldırıları Nasıl Tanınır ve Korunulur? (2026 Kapsamlı Rehber)"
-seoTitle: "Quishing Nedir? QR Kod Oltalama Saldırı Rehberi"
+seoTitle: "Quishing Nedir? QR Kod Oltalama Saldırıları Rehberi"
 description: "Quishing (QR kod oltalama saldırıları) hakkında kapsamlı 2026 rehberi. Siber suçluların e-posta güvenlik duvarlarını nasıl aştığını ve kurumunuzu nasıl koruyacağınızı öğrenin."
 pubDate: 2026-08-25
 author: "GenerateCustomQR Güvenlik Araştırma Ekibi"

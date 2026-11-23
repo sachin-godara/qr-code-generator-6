@@ -15,28 +15,28 @@ const config = {
   vcard: {
     icon: 'contact_page',
     color: 'from-indigo-600 to-blue-600',
-    badge: 'vCard Studio',
-    defaultTitle: 'Create Your Digital Business Card QR',
-    defaultDesc: 'Embed phone numbers, emails, addresses, and company info into a permanent scannable card with logo.',
-    btnLabel: 'Make vCard QR',
+    badge: t(locale, 'blog.cta.vcardBadge') || 'vCard Studio',
+    defaultTitle: t(locale, 'blog.cta.vcardTitle') || 'Create Your Digital Business Card QR',
+    defaultDesc: t(locale, 'blog.cta.vcardDesc') || 'Embed phone numbers, emails, addresses, and company info into a permanent scannable card with logo.',
+    btnLabel: t(locale, 'blog.cta.vcardBtn') || 'Make vCard QR',
     url: getLocalizedUrl(locale, '/vcard-qr-code')
   },
   wifi: {
     icon: 'wifi',
     color: 'from-amber-600 to-orange-600',
-    badge: 'WiFi Connect',
-    defaultTitle: 'Make Instant Connect WiFi QR Stickers',
-    defaultDesc: 'Allow guests and customers to join your encrypted network in 1 tap without typing passwords.',
-    btnLabel: 'Make WiFi QR',
+    badge: t(locale, 'blog.cta.wifiBadge') || 'WiFi Connect',
+    defaultTitle: t(locale, 'blog.cta.wifiTitle') || 'Make Instant Connect WiFi QR Stickers',
+    defaultDesc: t(locale, 'blog.cta.wifiDesc') || 'Allow guests and customers to join your encrypted network in 1 tap without typing passwords.',
+    btnLabel: t(locale, 'blog.cta.wifiBtn') || 'Make WiFi QR',
     url: getLocalizedUrl(locale, '/wifi-qr-code')
   },
   scanner: {
     icon: 'crop_free',
     color: 'from-emerald-600 to-teal-600',
-    badge: 'Online Scanner',
-    defaultTitle: 'Scan Any QR Code in Your Browser',
-    defaultDesc: 'Free in-browser scanner. Decodes camera feeds, uploaded image files, and clipboard screenshots with 0 installs.',
-    btnLabel: 'Launch QR Scanner',
+    badge: t(locale, 'blog.cta.scannerBadge') || 'Online Scanner',
+    defaultTitle: t(locale, 'blog.cta.scannerTitle') || 'Scan Any QR Code in Your Browser',
+    defaultDesc: t(locale, 'blog.cta.scannerDesc') || 'Free in-browser scanner. Decodes camera feeds, uploaded image files, and clipboard screenshots with 0 installs.',
+    btnLabel: t(locale, 'blog.cta.scannerBtn') || 'Launch QR Scanner',
     url: getLocalizedUrl(locale, '/qr-code-scanner')
   },
   general: {

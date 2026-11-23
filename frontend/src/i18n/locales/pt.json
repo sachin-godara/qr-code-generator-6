@@ -729,6 +729,20 @@
       "industry": "Negócios",
       "comparisons": "Comparativos",
       "news": "Notícias"
+    },
+    "cta": {
+      "vcardBadge": "VCARD DIGITAL",
+      "vcardTitle": "Crie seu Cartão de Visita Digital com QR Code",
+      "vcardDesc": "Transforme cartões de papel em contatos salvos no celular.",
+      "vcardBtn": "Criar QR vCard",
+      "wifiBadge": "WI-FI RÁPIDO",
+      "wifiTitle": "Crie Códigos QR de Conexão Rápida para Wi-Fi",
+      "wifiDesc": "Permita que seus clientes e visitas conectem sem digitar senhas longas.",
+      "wifiBtn": "Criar QR de Wi-Fi",
+      "scannerBadge": "LEITOR RÁPIDO",
+      "scannerTitle": "Leia Qualquer QR Code Direto no Navegador",
+      "scannerDesc": "Sem instalar aplicativos. Funciona pela câmera ou envio de imagem.",
+      "scannerBtn": "Abrir Leitor QR"
     }
   },
   "scanner": {
@@ -1017,6 +1031,20 @@
         "paypalDesc": "Receba pagamentos ou doações",
         "appstoreTitle": "App Store",
         "appstoreDesc": "Redirecione para apps no iOS ou Android"
+      },
+      "types": {
+        "url": "URL",
+        "wifi": "Wi-Fi",
+        "vcard": "vCard",
+        "email": "E-mail",
+        "sms": "SMS",
+        "phone": "Telefone",
+        "event": "Evento",
+        "text": "Texto",
+        "location": "Localização",
+        "crypto": "Cripto",
+        "paypal": "PayPal",
+        "appstore": "App"
       }
     },
     "tutorial": {
@@ -1123,6 +1151,7 @@
     "privacy": "Política de Privacidade",
     "terms": "Termos e Condições",
     "copyright": "© {year} GenerateCustomQR. Todos os direitos reservados.",
-    "isoBadge": "Conforme o Padrão ISO/IEC 18004"
+    "isoBadge": "Conforme o Padrão ISO/IEC 18004",
+    "freeQR": "Gerador Grátis"
   }
 }

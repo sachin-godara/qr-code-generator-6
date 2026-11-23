@@ -1,5 +1,6 @@
 ---
 title: "Cómo Usar Códigos QR para Cartas de Restaurante — Guía Completa (2026)"
+seoTitle: "Cómo Usar Códigos QR para Menús y Cartas de Restaurante"
 description: "Aprende a crear, personalizar e imprimir códigos QR para la carta digital de tu restaurante. Guía paso a paso con consejos de diseño, soportes de mesa y herramientas gratuitas."
 pubDate: 2026-08-24
 author: "Equipo GenerateCustomQR"

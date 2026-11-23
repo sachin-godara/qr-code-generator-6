@@ -60,7 +60,7 @@ Herhangi bir cihazda kurulum gerektirmeyen en kolay yöntem, **[GenerateCustomQR
 </div>
 
 ### Adımlar:
-1. Safari, Chrome, Edge veya Firefox tarayıcınızda **[/tr/qr-kod-okuyucu](/tr/qr-kod-okuyucu/)** sayfasını açın.
+1. Safari, Chrome, Edge veya Firefox tarayıcınızda **[generatecustomqr.com/tr/qr-kod-okuyucu](/tr/qr-kod-okuyucu/)** sayfasını açın.
 2. **Görsel Yükle** sekmesini seçin.
 3. Seçeneklerden birini kullanın:
    - **"Dosya Seç"** düğmesine tıklayarak kayıtlı ekran görüntüsünü (`.png`, `.jpg`, `.webp`, `.svg`) seçin.

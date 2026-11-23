@@ -279,7 +279,7 @@ function App() {
         <div className="flex justify-between items-center h-14 sm:h-16 px-4 sm:px-6 max-w-[1400px] mx-auto w-full">
           <div className="flex items-center gap-4 sm:gap-8">
             {/* Premium Brand Wordmark */}
-            <a href="/" className="flex items-center gap-2.5 group shrink-0" title="GenerateCustomQR — Home">
+            <a href={getLocalizedUrl(locale, '/')} className="flex items-center gap-2.5 group shrink-0" title="GenerateCustomQR — Home">
               <div className="w-8 h-8 flex-shrink-0">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" className="w-full h-full drop-shadow-sm group-hover:drop-shadow-md transition-all">
                   <defs>

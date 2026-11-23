@@ -729,6 +729,20 @@
       "industry": "Sektörel",
       "comparisons": "Karşılaştırma",
       "news": "Haberler"
+    },
+    "cta": {
+      "vcardBadge": "DİJİTAL VCARD",
+      "vcardTitle": "Dijital Kartvizit QR Kodunuzu Oluşturun",
+      "vcardDesc": "Kartvizitlerinizi tek taramayla telefona kaydedilen rehber kişilerine dönüştürün.",
+      "vcardBtn": "vCard QR Oluştur",
+      "wifiBadge": "HIZLI WI-FI",
+      "wifiTitle": "Tek Dokunuşla Bağlanan Wi-Fi QR Kodu Yapın",
+      "wifiDesc": "Misafirleriniz şifre yazmadan sadece kodu tarayarak anında bağlansın.",
+      "wifiBtn": "Wi-Fi QR Oluştur",
+      "scannerBadge": "ÇEVRİMİÇİ OKUYUCU",
+      "scannerTitle": "Herhangi Bir QR Kodu Tarayıcınızda Okutun",
+      "scannerDesc": "Uygulama indirmeye gerek yok. Kamera, web kamerası veya görsel yüklemeyle çalışır.",
+      "scannerBtn": "QR Okuyucuyu Başlat"
     }
   },
   "scanner": {
@@ -990,7 +1004,7 @@
       "badge": "Desteklenen Formatlar",
       "title": "Her Şeyi Taranabilir Bir QR Koduna Dönüştürün",
       "sub": "Basit web sitesi URL'lerinden dijital kartvizitlere, şifrelenmiş WiFi kimlik bilgilerine ve kripto ödemelerine kadar.",
-      "makeCta": "{type} QR Yap",
+      "makeCta": "{type} QR Kodu Oluştur",
       "items": {
         "urlTitle": "Web Sitesi URL'si",
         "urlDesc": "Ziyaretçileri herhangi bir web bağlantısına yönlendirin",
@@ -1016,6 +1030,20 @@
         "paypalDesc": "Ödeme veya bağış alın",
         "appstoreTitle": "Uygulama Mağazası",
         "appstoreDesc": "iOS veya Android uygulamalarına yönlendirin"
+      },
+      "types": {
+        "url": "URL",
+        "wifi": "Wi-Fi",
+        "vcard": "vCard",
+        "email": "E-posta",
+        "sms": "SMS",
+        "phone": "Telefon",
+        "event": "Etkinlik",
+        "text": "Metin",
+        "location": "Konum",
+        "crypto": "Kripto",
+        "paypal": "PayPal",
+        "appstore": "Uygulama"
       }
     },
     "tutorial": {
@@ -1118,10 +1146,11 @@
     "screenshotGuide": "Ekran Görüntüsünden QR Tara",
     "printGuide": "Baskı İçin Tasarım İpuçları",
     "about": "Hakkımızda",
-    "contact": "Destek İletişim",
+    "contact": "İletişim ve Destek",
     "privacy": "Gizlilik Politikası",
     "terms": "Şartlar ve Koşullar",
     "copyright": "© {year} GenerateCustomQR. Tüm hakları saklıdır.",
-    "isoBadge": "ISO/IEC 18004 Standart Uyumlu"
+    "isoBadge": "ISO/IEC 18004 Standart Uyumlu",
+    "freeQR": "Ücretsiz Oluşturucu"
   }
 }

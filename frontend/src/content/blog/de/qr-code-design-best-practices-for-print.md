@@ -1,5 +1,6 @@
 ---
 title: "QR-Code Design Best Practices für den Druck — Experten-Tipps 2026"
+seoTitle: "QR-Code-Design für den Druck — Beste Praktiken"
 description: "Druckfertige QR-Codes meistern: Optimale Größen, 300 DPI Auflösung, Farbkontraste und Material-Tipps für garantiert erfolgreiche Scans."
 pubDate: 2026-08-20
 author: "GenerateCustomQR Team"

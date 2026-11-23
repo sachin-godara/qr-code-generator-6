@@ -234,6 +234,6 @@ A well-designed QR code on your business card:
 
 ## Create Your Business Card QR Code
 
-[GenerateCustomQR](https://generatecustomqr.com/) lets you create beautiful vCard QR codes with your logo, brand colors, and custom design — 100% free, with SVG/PDF export for perfect print quality.
+[GenerateCustomQR](/) lets you create beautiful vCard QR codes with your logo, brand colors, and custom design — 100% free, with SVG/PDF export for perfect print quality.
 
-[Create your vCard QR code →](https://generatecustomqr.com/)
+[Create your vCard QR code →](/vcard-qr-code/)

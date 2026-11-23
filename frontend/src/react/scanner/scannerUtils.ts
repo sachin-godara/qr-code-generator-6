@@ -144,7 +144,7 @@ export interface ScanHistoryItem {
 
 // Generate localized creator studio URL preserving active language route
 export function getCreatorUrl(rawText?: string | null, locale: string = 'en'): string {
-  if (!rawText) return locale && locale !== 'en' ? `/${locale}` : '/';
+  if (!rawText) return locale && locale !== 'en' ? `/${locale}/` : '/';
   const prefix = locale && locale !== 'en' ? `/${locale}` : '';
   return `${prefix}/?text=${encodeURIComponent(rawText)}`;
 }

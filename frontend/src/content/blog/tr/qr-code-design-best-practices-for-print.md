@@ -1,5 +1,6 @@
 ---
 title: "Baskı İçin QR Kod Tasarımı En İyi Uygulamaları — 2026 Uzman İpuçları"
+seoTitle: "Baskı İçin QR Kod Tasarımında En İyi Uygulamalar"
 description: "Baskıya hazır kusursuz QR kodlar tasarlayın. Optimum boyutlandırma, 300 DPI çözünürlük, renk kontrastı ve malzeme stratejileriyle her taramayı garanti altına alın."
 pubDate: 2026-08-20
 author: "GenerateCustomQR Ekibi"

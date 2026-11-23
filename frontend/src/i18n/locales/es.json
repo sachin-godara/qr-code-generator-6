@@ -729,6 +729,20 @@
       "industry": "Empresas",
       "comparisons": "Comparativas",
       "news": "Noticias"
+    },
+    "cta": {
+      "vcardBadge": "VCARD DIGITAL",
+      "vcardTitle": "Crea tu Código QR para Tarjeta de Visita",
+      "vcardDesc": "Convierte tarjetas impresas en contactos para móvil al instante.",
+      "vcardBtn": "Crear QR vCard",
+      "wifiBadge": "WIFI AL INSTANTE",
+      "wifiTitle": "Crea Códigos QR para Conexión Wi-Fi Rápida",
+      "wifiDesc": "Permite que tus invitados se conecten sin teclear contraseñas largas.",
+      "wifiBtn": "Crear QR de Wi-Fi",
+      "scannerBadge": "ESCÁNER RÁPIDO",
+      "scannerTitle": "Escanea Cualquier Código QR en tu Navegador",
+      "scannerDesc": "Sin descargas. Funciona con cámara web o imágenes subidas.",
+      "scannerBtn": "Abrir Escáner QR"
     }
   },
   "scanner": {
@@ -1017,6 +1031,20 @@
         "paypalDesc": "Recibe pagos o donaciones directas",
         "appstoreTitle": "Tienda de Apps",
         "appstoreDesc": "Redirige a apps en iOS o Android"
+      },
+      "types": {
+        "url": "URL",
+        "wifi": "WiFi",
+        "vcard": "vCard",
+        "email": "Email",
+        "sms": "SMS",
+        "phone": "Teléfono",
+        "event": "Evento",
+        "text": "Texto",
+        "location": "Ubicación",
+        "crypto": "Crypto",
+        "paypal": "PayPal",
+        "appstore": "App"
       }
     },
     "tutorial": {
@@ -1111,7 +1139,7 @@
     "eventQR": "Código QR para Eventos",
     "emailQR": "Código QR para Correo",
     "freeGenerator": "Generador Gratis",
-    "scanner": "Escáner de QR",
+    "scanner": "Escáner QR",
     "guide": "Cómo Crear un QR",
     "blog": "Blog",
     "colorGuide": "Guía de Colores QR",
@@ -1123,6 +1151,7 @@
     "privacy": "Política de Privacidad",
     "terms": "Términos y Condiciones",
     "copyright": "© {year} GenerateCustomQR. Todos los derechos reservados.",
-    "isoBadge": "Conforme al Estándar ISO/IEC 18004"
+    "isoBadge": "Conforme al Estándar ISO/IEC 18004",
+    "freeQR": "Generador Gratis"
   }
 }

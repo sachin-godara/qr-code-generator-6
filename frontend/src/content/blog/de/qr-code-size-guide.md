@@ -1,5 +1,6 @@
 ---
 title: "QR-Code Größen-Leitfaden — Mindestmaße für Druck, Plakate und Banner"
+seoTitle: "QR-Code-Größenleitfaden: Mindestmaße für den Druck"
 description: "Vollständige Größentabelle für QR-Codes. Berechnen Sie die Mindestmaße für Visitenkarten, Aufkleber, Plakate, Großflächenwerbung und Bildschirme."
 pubDate: 2026-08-22
 author: "GenerateCustomQR Team"

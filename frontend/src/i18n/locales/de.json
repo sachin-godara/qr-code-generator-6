@@ -729,6 +729,20 @@
       "industry": "Branchen",
       "comparisons": "Vergleich",
       "news": "Neuigkeiten"
+    },
+    "cta": {
+      "vcardBadge": "DIGITALE VCARD",
+      "vcardTitle": "Erstellen Sie Ihren digitalen Visitenkarten-QR-Code",
+      "vcardDesc": "Verwandeln Sie gedruckte Karten in sofort gespeicherte Smartphone-Kontakte.",
+      "vcardBtn": "vCard-QR erstellen",
+      "wifiBadge": "SCHNELLES WLAN",
+      "wifiTitle": "WLAN-QR-Codes zum sofortigen Verbinden erstellen",
+      "wifiDesc": "Gäste scannen und verbinden sich ohne langes Eintippen von Passwörtern.",
+      "wifiBtn": "WLAN-QR erstellen",
+      "scannerBadge": "ONLINE-SCANNER",
+      "scannerTitle": "Beliebige QR-Codes direkt im Browser scannen",
+      "scannerDesc": "Keine App erforderlich. Funktioniert mit Kamera, Webcam oder Bild-Upload.",
+      "scannerBtn": "QR-Scanner öffnen"
     }
   },
   "scanner": {
@@ -1017,6 +1031,20 @@
         "paypalDesc": "Zahlungen oder Spenden direkt empfangen",
         "appstoreTitle": "App Store",
         "appstoreDesc": "Direkt zu iOS- oder Android-Apps weiterleiten"
+      },
+      "types": {
+        "url": "URL",
+        "wifi": "WLAN",
+        "vcard": "vCard",
+        "email": "E-Mail",
+        "sms": "SMS",
+        "phone": "Telefon",
+        "event": "Termin",
+        "text": "Text",
+        "location": "Standort",
+        "crypto": "Krypto",
+        "paypal": "PayPal",
+        "appstore": "App"
       }
     },
     "tutorial": {
@@ -1123,6 +1151,7 @@
     "privacy": "Datenschutzerklärung",
     "terms": "Nutzungsbedingungen",
     "copyright": "© {year} GenerateCustomQR. Alle Rechte vorbehalten.",
-    "isoBadge": "ISO/IEC 18004 Standardkonform"
+    "isoBadge": "ISO/IEC 18004 Standardkonform",
+    "freeQR": "Kostenloser Generator"
   }
 }

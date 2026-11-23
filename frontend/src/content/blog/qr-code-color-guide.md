@@ -1,5 +1,6 @@
 ---
 title: "QR Code Color Guide — Best Color Combinations for Scannability"
+seoTitle: "QR Code Color Guide: Best Colors for Scannability"
 description: "Which colors work best for QR codes? Learn about contrast ratios, safe color combinations, and which colors to avoid for reliable scanning."
 pubDate: 2026-08-21
 author: "GenerateCustomQR Team"

@@ -1,6 +1,6 @@
 ---
 import { locales, localeConfig, type Locale } from '../../i18n/config';
-import { getLocaleFromUrl, getCleanPathname, getLocalizedUrl } from '../../i18n/utils';
+import { getLocaleFromUrl, getCleanPathname, getLocalizedUrl, t } from '../../i18n/utils';
 
 interface Props {
   class?: string;
@@ -71,7 +71,7 @@ const className = Astro.props.class || '';
     aria-labelledby="language-switcher-btn"
   >
     <div class="px-3 py-1.5 text-[10px] font-bold uppercase tracking-wider text-on-surface-variant/70 border-b border-outline-variant/30">
-      Language / Dil
+      {t(currentLocale, 'nav.language')}
     </div>
     {
       locales.map((loc) => {

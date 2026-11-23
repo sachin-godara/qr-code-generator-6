@@ -1,5 +1,6 @@
 ---
 title: "QR-Code Farb-Leitfaden — Die besten Farbkombinationen für garantierte Lesbarkeit"
+seoTitle: "QR-Code-Farbleitfaden: Beste Farbkombinationen"
 description: "Welche Farben eignen sich am besten für QR-Codes? Alles über Kontrastverhältnisse, sichere Farbkombinationen und No-Gos für zuverlässiges Scannen."
 pubDate: 2026-08-21
 author: "GenerateCustomQR Team"

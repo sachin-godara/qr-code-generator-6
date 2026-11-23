@@ -729,6 +729,20 @@
       "industry": "Industry",
       "comparisons": "Comparison",
       "news": "News"
+    },
+    "cta": {
+      "vcardBadge": "DIGITAL VCARD",
+      "vcardTitle": "Create Your Digital Business Card QR",
+      "vcardDesc": "Turn paper cards into instant smartphone contacts. No app needed.",
+      "vcardBtn": "Make vCard QR",
+      "wifiBadge": "ONE-TAP WIFI",
+      "wifiTitle": "Make Instant Connect WiFi QR Stickers",
+      "wifiDesc": "Let guests scan and connect without typing long complex passwords.",
+      "wifiBtn": "Make WiFi QR",
+      "scannerBadge": "INSTANT SCANNER",
+      "scannerTitle": "Scan Any QR Code in Your Browser",
+      "scannerDesc": "No download required. Works with camera, webcam, or uploaded images.",
+      "scannerBtn": "Launch QR Scanner"
     }
   },
   "scanner": {
@@ -1016,6 +1030,20 @@
         "paypalDesc": "Receive payments or donations",
         "appstoreTitle": "App Store",
         "appstoreDesc": "Redirect to iOS or Android apps"
+      },
+      "types": {
+        "url": "URL",
+        "wifi": "WiFi",
+        "vcard": "vCard",
+        "email": "Email",
+        "sms": "SMS",
+        "phone": "Phone",
+        "event": "Event",
+        "text": "Text",
+        "location": "Maps",
+        "crypto": "Crypto",
+        "paypal": "PayPal",
+        "appstore": "App"
       }
     },
     "tutorial": {
@@ -1122,6 +1150,7 @@
     "privacy": "Privacy Policy",
     "terms": "Terms & Conditions",
     "copyright": "© {year} GenerateCustomQR. All rights reserved.",
-    "isoBadge": "ISO/IEC 18004 Standard Compliant"
+    "isoBadge": "ISO/IEC 18004 Standard Compliant",
+    "freeQR": "Free Generator"
   }
 }
