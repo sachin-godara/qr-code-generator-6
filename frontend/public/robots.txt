@@ -4,72 +4,89 @@
 User-agent: *
 Allow: /
 Disallow: /api/
+Disallow: /cdn-cgi/
 
 # Primary Search Engine Crawlers
 User-agent: Googlebot
 Allow: /
 Disallow: /api/
+Disallow: /cdn-cgi/
 
 User-agent: Googlebot-Image
 Allow: /
 Disallow: /api/
+Disallow: /cdn-cgi/
 
 User-agent: Bingbot
 Allow: /
 Disallow: /api/
+Disallow: /cdn-cgi/
 
 User-agent: Applebot
 Allow: /
 Disallow: /api/
+Disallow: /cdn-cgi/
 
 User-agent: DuckDuckBot
 Allow: /
 Disallow: /api/
+Disallow: /cdn-cgi/
 
 # AI & LLM Search Crawlers (GEO / Answer Engine Optimization)
 User-agent: ClaudeBot
 Allow: /
 Disallow: /api/
+Disallow: /cdn-cgi/
 
 User-agent: Claude-SearchBot
 Allow: /
 Disallow: /api/
+Disallow: /cdn-cgi/
 
 User-agent: GPTBot
 Allow: /
 Disallow: /api/
+Disallow: /cdn-cgi/
 
 User-agent: ChatGPT-User
 Allow: /
 Disallow: /api/
+Disallow: /cdn-cgi/
 
 User-agent: PerplexityBot
 Allow: /
 Disallow: /api/
+Disallow: /cdn-cgi/
 
 User-agent: Applebot-Extended
 Allow: /
 Disallow: /api/
+Disallow: /cdn-cgi/
 
 User-agent: Google-Extended
 Allow: /
 Disallow: /api/
+Disallow: /cdn-cgi/
 
 User-agent: GoogleOther
 Allow: /
 Disallow: /api/
+Disallow: /cdn-cgi/
 
 User-agent: DuckAssistBot
 Allow: /
 Disallow: /api/
+Disallow: /cdn-cgi/
 
 User-agent: Cohere-ai
 Allow: /
 Disallow: /api/
+Disallow: /cdn-cgi/
 
 User-agent: Amazonbot
 Allow: /
 Disallow: /api/
+Disallow: /cdn-cgi/
 
 # Sitemaps
 Sitemap: https://generatecustomqr.com/sitemap-index.xml

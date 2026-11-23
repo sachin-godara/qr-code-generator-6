@@ -23,6 +23,10 @@
 /sitemap.xml        /sitemap-index.xml  301
 /sitemap_index.xml  /sitemap-index.xml  301
 
+# Cloudflare Email Protection Fallback
+/cdn-cgi/l/email-protection   /contact/  301
+/cdn-cgi/l/email-protection/  /contact/  301
+
 # Malformed External URL Fallbacks
 /&                  /                   301
 
