@@ -1,5 +1,6 @@
 ---
 title: "Was ist Quishing? Schutz vor Phishing-Angriffen mit QR-Codes (Leitfaden 2026)"
+seoTitle: "Was ist Quishing? Schutz vor Phishing mit QR-Codes"
 description: "Umfassender Leitfaden 2026 zu Quishing (QR-Code-Phishing). Wie Angreifer E-Mail-Filter umgehen, MFA-Tokens stehlen und wie Sie Unternehmen absichern."
 pubDate: 2026-08-25
 author: "GenerateCustomQR Sicherheitsforschung"

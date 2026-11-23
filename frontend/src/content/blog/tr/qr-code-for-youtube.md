@@ -1,5 +1,6 @@
 ---
 title: "Abone, Video ve Oynatma Listeleri İçin YouTube QR Kodu Nasıl Oluşturulur? (2026)"
+seoTitle: "YouTube QR Kodu Nasıl Oluşturulur — Tam Rehber"
 description: "Kanal aboneliklerini, video eğitimlerini ve canlı yayınları açan özel YouTube QR kodları oluşturun. Dönüşümleri ikiye katlayan 1 tıkla otomatik abone olma hilesini öğrenin."
 pubDate: 2026-08-25
 author: "GenerateCustomQR Ekibi"

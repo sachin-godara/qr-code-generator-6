@@ -1,5 +1,6 @@
 ---
 title: "¿Qué es el Quishing? Cómo Reconocer y Protegerte del Phishing con Códigos QR (Guía 2026)"
+seoTitle: "¿Qué es el Quishing? Guía de Protección y Defensa"
 description: "Guía completa 2026 sobre Quishing (phishing con códigos QR). Descubre cómo los ciberdelincuentes eluden cortafuegos de correo y cómo blindar tu empresa."
 pubDate: 2026-08-25
 author: "Equipo de Investigación de Seguridad GenerateCustomQR"

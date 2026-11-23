@@ -1,5 +1,6 @@
 ---
 title: "How to Make a Custom Instagram QR Code to Grow Followers & Engagement"
+seoTitle: "How to Make an Instagram QR Code to Grow Followers"
 description: "Create a branded Instagram QR code for your profile, reels, or direct messages. Learn vector design tips, deep-link formats, and high-converting print placements."
 pubDate: 2026-08-25
 author: "GenerateCustomQR Team"

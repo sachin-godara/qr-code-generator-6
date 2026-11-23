@@ -1,5 +1,6 @@
 ---
 title: "WhatsApp Web QR Code Not Working? 7 Fixes for Scan & Connection Errors"
+seoTitle: "WhatsApp Web QR Code Not Working? 7 Quick Fixes"
 description: "Fix WhatsApp Web QR code scan failures, loading loops, camera focus issues, and device linking errors on Windows, Mac, iPhone, and Android."
 pubDate: 2026-08-23
 author: "GenerateCustomQR Team"

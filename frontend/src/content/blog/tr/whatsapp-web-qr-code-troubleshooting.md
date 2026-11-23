@@ -1,5 +1,6 @@
 ---
 title: "WhatsApp Web QR Kodu Çalışmıyor mu? Tarama ve Bağlantı Hataları İçin 7 Kesin Çözüm"
+seoTitle: "WhatsApp Web QR Kodu Çalışmıyor mu? 7 Kolay Çözüm"
 description: "WhatsApp Web QR kodunun taranmaması, sürekli yeniden yüklenmesi, kamera odaklama sorunları ve cihaz bağlama hatalarını Windows, Mac, iPhone ve Android'de çözün."
 pubDate: 2026-08-23
 author: "GenerateCustomQR Ekibi"

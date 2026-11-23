@@ -1,5 +1,6 @@
 ---
 title: "Cómo Crear un Código QR de Instagram para Conseguir Seguidores y Engagement"
+seoTitle: "Cómo Crear un Código QR de Instagram para Seguidores"
 description: "Crea un código QR personalizado de Instagram para tu perfil, reels o mensajes directos. Aprende trucos de diseño vectorial y las mejores ubicaciones en imprenta."
 pubDate: 2026-08-25
 author: "GenerateCustomQR Team"

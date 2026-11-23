@@ -1,5 +1,6 @@
 ---
 title: "Como Criar QR Code para YouTube — Inscritos, Vídeos e Playlists (2026)"
+seoTitle: "Como Criar QR Code para YouTube — Guia Completo"
 description: "Crie códigos QR para o YouTube que abrem inscrições automáticas, tutoriais e lives. Conheça o truque de auto-inscrição para dobrar suas conversões."
 pubDate: 2026-08-25
 author: "Equipe GenerateCustomQR"

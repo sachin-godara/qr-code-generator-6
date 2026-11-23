@@ -1,5 +1,6 @@
 ---
 title: "Takipçi ve Etkileşimi Artırmak İçin Özel Instagram QR Kodu Nasıl Yapılır?"
+seoTitle: "Takipçi Artırmak İçin Instagram QR Kodu Oluşturma"
 description: "Profiliniz, reels videolarınız veya direkt mesajlarınız için markalı bir Instagram QR kodu oluşturun. Vektör tasarım ipuçları, derin bağlantı formatları ve yüksek dönüşümlü baskı yerleşimleri."
 pubDate: 2026-08-25
 author: "GenerateCustomQR Ekibi"

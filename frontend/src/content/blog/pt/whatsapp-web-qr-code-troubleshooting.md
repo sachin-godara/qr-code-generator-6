@@ -1,5 +1,6 @@
 ---
 title: "Código QR do WhatsApp Web Não Funciona? 7 Soluções Rápidas para Erros de Leitura"
+seoTitle: "QR Code do WhatsApp Web Não Funciona? 7 Soluções"
 description: "Resolva falhas de leitura, loops de carregamento e erros ao conectar o WhatsApp Web no Windows, Mac, iPhone e Android. Dicas de foco, brilho e limites de aparelhos."
 pubDate: 2026-08-23
 author: "Equipe GenerateCustomQR"

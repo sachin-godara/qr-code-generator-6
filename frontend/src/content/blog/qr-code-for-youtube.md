@@ -1,5 +1,6 @@
 ---
 title: "How to Create a YouTube QR Code for Subscribers, Videos & Playlists (2026)"
+seoTitle: "How to Create a YouTube QR Code — Complete Guide"
 description: "Generate custom YouTube QR codes that open channel subscriptions, video tutorials, and live streams. Learn the 1-click auto-subscribe trick to double conversions."
 pubDate: 2026-08-25
 author: "GenerateCustomQR Team"

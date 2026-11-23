@@ -1,5 +1,6 @@
 ---
 title: "What is Quishing? How to Recognize & Protect Against QR Code Phishing (2026 Guide)"
+seoTitle: "What is Quishing? QR Phishing Guide & Defense"
 description: "Comprehensive 2026 guide to Quishing (QR code phishing). Discover how cybercriminals bypass email firewalls, steal MFA tokens, and how to defend your enterprise."
 pubDate: 2026-08-25
 author: "GenerateCustomQR Security Research Team"

@@ -1,5 +1,6 @@
 ---
 title: "O que é Quishing? Como Identificar e Evitar Golpes com QR Code (Guia 2026)"
+seoTitle: "O que é Quishing? Guia de Proteção contra Golpes"
 description: "Guia completo 2026 sobre Quishing (phishing via QR code). Saiba como criminosos burlam filtros de e-mail, roubam tokens MFA e como proteger sua empresa."
 pubDate: 2026-08-25
 author: "Equipe de Pesquisa em Segurança GenerateCustomQR"

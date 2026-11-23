@@ -1,5 +1,6 @@
 ---
 title: "Instagram QR-Code erstellen für mehr Follower & Reichweite"
+seoTitle: "Instagram QR-Code erstellen für mehr Follower"
 description: "Erstellen Sie einen gebrandeten Instagram QR-Code für Profil, Reels oder Direktnachrichten. Vektordesign-Tipps und conversion-starke Druckplatzierungen."
 pubDate: 2026-08-25
 author: "GenerateCustomQR Team"

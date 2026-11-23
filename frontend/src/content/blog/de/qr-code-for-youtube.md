@@ -1,5 +1,6 @@
 ---
 title: "YouTube QR-Code erstellen — Für Abonnenten, Videos & Playlists (2026)"
+seoTitle: "YouTube QR-Code erstellen — Komplette Anleitung"
 description: "Erstellen Sie professionelle YouTube QR-Codes für Kanal-Abos, Video-Tutorials und Playlists. Mit dem 1-Klick-Auto-Abo-Trick zur Verdoppelung Ihrer Conversions."
 pubDate: 2026-08-25
 author: "GenerateCustomQR Team"
